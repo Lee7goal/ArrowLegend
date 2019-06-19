@@ -25,7 +25,7 @@ export default class GameUI extends ui.test.TestSceneUI {
     private translateA = new Laya.Vector3(-0.2, 0, 0);
     private translateD = new Laya.Vector3( 0.2, 0, 0);
     
-    private box:Laya.MeshSprite3D;
+    private box:Laya.Sprite3D;
 
     constructor() {
         super();
@@ -37,7 +37,7 @@ export default class GameUI extends ui.test.TestSceneUI {
         this.scene3d = Laya.stage.addChild(new Laya.Scene3D()) as Laya.Scene3D;
         //添加照相机
         this.camera3d = (this.scene3d.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
-        this.camera3d.transform.translate(new Laya.Vector3(0, 0, 3));
+        this.camera3d.transform.translate(new Laya.Vector3(0, -3, 3));
         this.camera3d.transform.rotate(new Laya.Vector3(30, 0, 0), true, false);
         this.camera3d.orthographic = true;
         //正交投影垂直矩阵尺寸
@@ -52,7 +52,7 @@ export default class GameUI extends ui.test.TestSceneUI {
         this.hero = new GameObj(this.scene3d,sp);
         this.hero.setIsMy(true);
         this.hero.setGameScale(1);
-        this.camera3d.transform.lookAt(this.hero.getSp().transform.position,new Laya.Vector3(0,1,0));
+        //this.camera3d.transform.lookAt(this.hero.getSp().transform.position,new Laya.Vector3(0,1,0));
         this.ro = new Rocker();
 		this.ro.x = Laya.stage.width/2;
 		this.ro.y = Laya.stage.height - 200;        
@@ -64,13 +64,20 @@ export default class GameUI extends ui.test.TestSceneUI {
         GameObj.earr.push(this.enemy);
 
         //Laya.stage.frameLoop(1,this,this.ai);
+        this.addBox(1);
+        this.addBox(2);
+    }
 
+    addBox(i:number):void{
+        var sp0:Laya.Sprite3D = new Laya.Sprite3D();
         var box: Laya.MeshSprite3D = new Laya.MeshSprite3D(Laya.PrimitiveMesh.createBox(1, 1, 1));
-        this.scene3d.addChild(box);
+        sp0.addChild(box);
+        box.transform.translate(new Laya.Vector3(0,0,0.5));
+        this.scene3d.addChild(sp0);
         //box.transform.rotate(new Laya.Vector3(0, 45, 0), false, false);
-        this.box = box;
+        this.box = sp0;
 
-        var pos:Laya.Vector3 = new Laya.Vector3(GameBG.ww*2,GameBG.ww*1+GameBG.ww2,0);
+        var pos:Laya.Vector3 = new Laya.Vector3(GameBG.ww*2,GameBG.ww*i+GameBG.ww2,0);
         var pos2:Laya.Vector3 = new Laya.Vector3(0,0,0);
         GameObj.gameCamera.convertScreenCoordToOrthographicCoord(pos, pos2);
         this.box.transform.position = pos2;
@@ -80,12 +87,6 @@ export default class GameUI extends ui.test.TestSceneUI {
         box.meshRenderer.material = material;
         Laya.Texture2D.load("res/layabox.png", Laya.Handler.create(null, function(tex:Laya.Texture2D) {
             material.albedoTexture = tex;
-
-            //this._pos.y =  this._pos2.y + GameBG.gameBG.y;
-            //console.log("this._pos.y " ,this._pos.y);
-            //this._pos.x  = this._pos2.x;
-            
-            
         }));
     }
 
