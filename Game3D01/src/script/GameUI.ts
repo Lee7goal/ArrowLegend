@@ -13,13 +13,17 @@ import GameObj from "../game/GameObj";
 export default class GameUI extends ui.test.TestSceneUI {
     private scene3d:Scene3D;
     private camera3d:Camera;
+
     private hero:GameObj;
+    private enemy:GameObj;
+
     private ro:Rocker;
     private bg:GameBG;
     private sp:Sprite3D;
+    private sp2:Sprite3D;
 
     private translateA = new Laya.Vector3(-0.2, 0, 0);
-	private translateD = new Laya.Vector3(0.2, 0, 0);
+	private translateD = new Laya.Vector3( 0.2, 0, 0);
 
     constructor() {
         super();
@@ -38,17 +42,8 @@ export default class GameUI extends ui.test.TestSceneUI {
         this.camera3d.orthographicVerticalSize = GameBG.orthographicVerticalSize;
         this.camera3d.clearFlag = Laya.BaseCamera.CLEARFLAG_DEPTHONLY;
         GameObj.gameCamera = this.camera3d;
-        Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok));
-        //Laya.Sprite3D.load("h5/toonbat1/toonbat1.lh",Laya.Handler.create(this,this.ok));
-    }
-
-    ok_(sp:Laya.Sprite3D):void{
-        //this.hero = new GameObj(this.scene3d,sp);
-        this.sp = sp;
-        sp.transform.localScale = new Laya.Vector3(1,1,1);
-        this.scene3d.addChild(sp);
-        this.camera3d.transform.lookAt(sp.transform.position,new Laya.Vector3(0,1,0));
-        Laya.timer.frameLoop(1, this, this.onKeyDown);    
+        //Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok));
+        Laya.Sprite3D.load("h5/toonbat1/toonbat1.lh",Laya.Handler.create(this,this.ok));
     }
 
     ok(sp:Laya.Sprite3D):void{
@@ -62,6 +57,11 @@ export default class GameUI extends ui.test.TestSceneUI {
 		this.addChild(this.ro);		
 		Laya.MouseManager.multiTouchEnabled = false;
         Laya.stage.on(Laya.Event.MOUSE_DOWN , this, this.md);
+
+        this.enemy = new GameObj(this.scene3d,sp,true);
+        GameObj.earr.push(this.enemy);
+
+        //Laya.stage.frameLoop(1,this,this.ai);
     }
 
     md(eve:MouseEvent):void{	    
@@ -72,7 +72,8 @@ export default class GameUI extends ui.test.TestSceneUI {
 		this.ro.x = xx;
 		this.ro.y = yy;
 		Laya.stage.addChild( this.ro );
-		Laya.stage.frameLoop(1,this,this.moves);
+        Laya.stage.frameLoop(1,this,this.moves);
+        Laya.stage.clearTimer(this,this.ai);
 	}
 
     up(eve:Event):void{
@@ -81,9 +82,12 @@ export default class GameUI extends ui.test.TestSceneUI {
 		if(this.ro && this.ro.parent){			
 			this.ro.reset();
 			this.ro.x = Laya.stage.width/2;
-			this.ro.y = Laya.stage.height - 200;
+            this.ro.y = Laya.stage.height - 200;
+            
+            //this.hero.reset();
 		}
-		Laya.stage.clearTimer(this,this.moves);
+        Laya.stage.clearTimer(this,this.moves);
+        Laya.stage.frameOnce(0,this,this.ai);
     }
     
     moves():void{
@@ -99,13 +103,37 @@ export default class GameUI extends ui.test.TestSceneUI {
             this.hero.move(n);
 		}else{
 
-		}		
+        }
+        this.enemy.update();		
+    }
+
+
+    ai():void{
+        if(this.hero){
+            this.hero.play("BiteAttack");
+        }
+    }
+
+    /*
+    ok_(sp:Laya.Sprite3D):void{
+        //this.hero = new GameObj(this.scene3d,sp);
+        this.sp = sp;
+        sp.transform.localScale = new Laya.Vector3(0.5,0.5,0.5);
+        this.scene3d.addChild(sp);
+        this.camera3d.transform.lookAt(sp.transform.position,new Laya.Vector3(0,1,0));
+        this.sp2 = Laya.Sprite3D.instantiate(this.sp,null,false);        
+        this.scene3d.addChild(this.sp2);
+        this.sp2.transform.translate(new Laya.Vector3(-2, 0, 0));
+        Laya.timer.frameLoop(1, this, this.onKeyDown);    
     }
 
     onKeyDown() {
 		// Laya.KeyBoardManager.hasKeyDown(87) && this.sp.transform.translate(this.translateW);//W
 		// Laya.KeyBoardManager.hasKeyDown(83) && this.sp.transform.translate(this.translateS);//S
 		Laya.KeyBoardManager.hasKeyDown(65) && this.sp.transform.translate(this.translateA);//A
-		Laya.KeyBoardManager.hasKeyDown(68) && this.sp.transform.translate(this.translateD);//D
-	}
+        Laya.KeyBoardManager.hasKeyDown(68) && this.sp.transform.translate(this.translateD);//D
+        Laya.KeyBoardManager.hasKeyDown(65) && this.sp2.transform.translate(this.translateA);//A
+        Laya.KeyBoardManager.hasKeyDown(68) && this.sp2.transform.translate(this.translateD);//D
+    }
+    */
 }
