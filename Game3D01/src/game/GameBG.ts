@@ -4,6 +4,7 @@ import Sprite = Laya.Sprite;
     
 export default class GameBG extends Laya.Sprite{
 
+    
     static wnum:number = 12;
     static hnum:number = 48;
 
@@ -14,7 +15,7 @@ export default class GameBG extends Laya.Sprite{
     static ww:number = GameBG.width/GameBG.wnum;//地形的碰撞方块尺寸
     static ww2:number = GameBG.ww/2;            // 1/2 地形的碰撞方块尺寸
 
-    static fw:number  = GameBG.ww *0.2;
+    static fw:number  = GameBG.ww *0.4;
     static mw:number  = GameBG.ww-GameBG.fw;//主角的碰撞方块尺寸
     static mw2:number = GameBG.mw/2;        // 1/2 主角的碰撞方块尺寸
 
@@ -102,6 +103,10 @@ export default class GameBG extends Laya.Sprite{
 
         this.mySp = new Sprite();
         this.mySp.graphics.drawRect(0,0,GameBG.mw,GameBG.mw,0x00ff00);
+    }
+
+    public setZhuan(box: Laya.MeshSprite3D): any {
+        //throw new Error("Method not implemented.");
     }
 
     public updata(x:number , y:number):void{

@@ -31,33 +31,17 @@ export default class GameObj{
     constructor(scene3d:Laya.Scene3D,sprite3D:Laya.Sprite3D,noumenon:boolean=false){
         let camera:Camera = GameObj.gameCamera;
         this.scene = scene3d;
-        // GameObj.sp3d = sprite3D;
-        // this.scene.addChild(GameObj.sp3d);
-        // this.sp = Laya.Loader.getRes("h5/toonbat1/toonbat1.lh");
-        //this.scene.addChild(Laya.Loader.getRes("h5/toonbat1/toonbat1.lh"));
         if(noumenon){
             this.sp = this.scene.addChild( sprite3D ) as Laya.Sprite3D;
         }else{
             this.sp = this.scene.addChild( Laya.Sprite3D.instantiate(sprite3D, null, false) ) as Laya.Sprite3D;
         }
-        //this.sp = GameObj.sp3d;
-        //this.sp.url = GameObj.sp3d.url;
-        //this.sp["ur" + "l"] = GameObj.sp3d.url;
-        //let layaMonkeySon = this.scene.addChild( Laya.Sprite3D.instantiate(sprite3D, null, false) ) as Laya.Sprite3D;
-        //let layaMonkeySon = Laya.Loader.getRes("h5/toonbat1/toonbat1.lh");
-        //layaMonkeySon.transform.position = this._translate;
-        //this.scene.addChild(layaMonkeySon);
         var aniSprite3d:Laya.Sprite3D = this.sp.getChildAt(0) as Laya.Sprite3D;
         this.ani = aniSprite3d;
-
         this.animator = aniSprite3d.getComponent(Laya.Animator) as Laya.Animator;
         camera.convertScreenCoordToOrthographicCoord(this._pos, this._translate);
         this.sp.transform.position = this._translate; 
-        //this.sp.addComponent(new GameScirt());
         this.animator.play("Idle");
-        //this.animator.play("Run");
-        //console.log(this.sp);
-        //console.log(GameObj.sp3d);
     }
 
     private luck:boolean = true;
@@ -65,12 +49,6 @@ export default class GameObj{
     public play(ac:string):void{
         if(this.luck){
             this.luck = false;
-            //this.animator
-            //this.animator.getCurrentAnimatorPlayState().on(Laya.Event.COMPLETE,this,this.com);
-            //this.ani.on(Laya.Event.COMPLETE,this,this.com)
-            //this.animator
-            //this.ani.on(Laya.Event.COMPLETE,this,this.com)
-            
             this.animator.play(ac);
             Laya.stage.frameLoop(1,this,this.com);
 
@@ -78,13 +56,11 @@ export default class GameObj{
     }
 
     public com():void{
-        //console.log("com , com , com , com !!" + this.animator.getCurrentAnimatorPlayState().normalizedTime );
         if( this.animator.getCurrentAnimatorPlayState().normalizedTime >=1 ){
             this.animator.play("Idle");
             Laya.timer.clear(this,this.com);
             this.luck = true;
         }
-        
     }
 
     public setIsMy(b:boolean):void{
@@ -92,7 +68,7 @@ export default class GameObj{
     }
 
     public rotation(n:number):void{
-        this.sp.transform.localRotationEulerY = n;
+        this.sp.transform.localRotationEulerZ = n;
     }
 
     public setGameScale(size:number,fix:number = 1):void{
@@ -148,6 +124,18 @@ export default class GameObj{
                 GameBG.gameBG.y = dy;
             }
         }
+        this.update();
+    }
+
+    public to2DInidex(xx:number , yy:number ):void{
+        this._pos2.x = (xx * GameBG.ww) - GameBG.ww2;
+        this._pos2.y = (yy * GameBG.ww);
+        this.update();
+    }
+
+    public to2DPosition(xx:number , yy:number ):void{
+        this._pos2.x = xx;
+        this._pos2.y = yy;
         this.update();
     }
 
