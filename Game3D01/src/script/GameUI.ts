@@ -45,7 +45,7 @@ export default class GameUI extends ui.test.TestSceneUI {
         this.camera3d.clearFlag = Laya.BaseCamera.CLEARFLAG_DEPTHONLY;
         GameObj.gameCamera = this.camera3d;
         //Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok));
-        Laya.Sprite3D.load("h5/toonbat1/toonbat1.lh",Laya.Handler.create(this,this.ok));
+        Laya.Sprite3D.load("h5/toonbat2/toonbat1.lh",Laya.Handler.create(this,this.ok));
     }
 
     ok(sp:Laya.Sprite3D):void{
