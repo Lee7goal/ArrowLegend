@@ -23239,6 +23239,7 @@ var Animator=(function(_super){
 	*/
 	__proto._cloneTo=function(dest){
 		var animator=dest;
+		animator.cullingMode=this.cullingMode;
 		animator.avatar=this.avatar;
 		for (var i=0,n=this._controllerLayers.length;i < n;i++){
 			var controllLayer=this._controllerLayers[i];
