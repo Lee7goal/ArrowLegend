@@ -9,8 +9,8 @@ export default class GameBG extends Laya.Sprite{
     static hnum:number = 48;
 
     static width:number = 750;
-    //static height:number = 1000;
-    static height:number = 1334;
+    static height:number = 1000;
+    //static height:number = 1334;
 
     static ww:number = GameBG.width/GameBG.wnum;//地形的碰撞方块尺寸
     static ww2:number = GameBG.ww/2;            // 1/2 地形的碰撞方块尺寸
@@ -19,12 +19,12 @@ export default class GameBG extends Laya.Sprite{
     static mw:number  = GameBG.ww-GameBG.fw;//主角的碰撞方块尺寸
     static mw2:number = GameBG.mw/2;        // 1/2 主角的碰撞方块尺寸
 
-    static orthographicVerticalSize:number = GameBG.wnum*GameBG.height/GameBG.width;
+    static orthographicVerticalSize:number = GameBG.wnum * GameBG.height / GameBG.width;
     static gameBG:GameBG;
 
     static arrsp:Sprite[] = [];
 
-    static arr0:number[] = [
+    static arr:number[] = [
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -46,7 +46,7 @@ export default class GameBG extends Laya.Sprite{
         0,0,0,0,0,0,0,0,0,0,0,0,0,
     ];
 
-    static arr:number[] = [
+    static arr0:number[] = [
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,1,1,0,0,0,0,0,0,0,1,1,0,
         0,1,1,0,0,0,0,0,0,0,1,1,0,
@@ -98,7 +98,8 @@ export default class GameBG extends Laya.Sprite{
 
     constructor(){
         super();
-        GameBG.orthographicVerticalSize = GameBG.wnum*Laya.stage.height/Laya.stage.width;
+        console.log(GameBG.wnum , Laya.stage.height , Laya.stage.width);
+        //GameBG.orthographicVerticalSize = GameBG.wnum*Laya.stage.height/Laya.stage.width;
         GameBG.gameBG = this;
 
         this.mySp = new Sprite();

@@ -64,8 +64,8 @@ export default class GameUI extends ui.test.TestSceneUI {
         GameObj.earr.push(this.enemy);
 
         //Laya.stage.frameLoop(1,this,this.ai);
-        this.addBox(1);
-        this.addBox(2);
+        //this.addBox(1);
+        //this.addBox(2);
     }
 
     addBox(i:number):void{
