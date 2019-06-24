@@ -1,26 +1,50 @@
 import Image = Laya.Image;
 import GameConfig from "../GameConfig";
 import Sprite = Laya.Sprite;
-    
+//2d地图板块    
 export default class GameBG extends Laya.Sprite{
-
-    
+    /**地图恒星格子数*/
     static wnum:number = 12;
-    static hnum:number = 48;
-
+    /**地图纵向格子数*/
+    static hnum:number = 49;
+    /**舞台宽度*/
     static width:number = 750;
-    static height:number = 1000;
-    //static height:number = 1334;
-
-    static ww:number = GameBG.width/GameBG.wnum;//地形的碰撞方块尺寸
-    static ww2:number = GameBG.ww/2;            // 1/2 地形的碰撞方块尺寸
-
+    /**舞台高度*/
+    static height:number = 1334;
+    //static height:number = 1000;
+    /**地形的碰撞方块尺寸*/
+    static ww:number = GameBG.width/GameBG.wnum;
+    /**1/2 地形的碰撞方块尺寸*/
+    static ww2:number = GameBG.ww/2;
+    //主角的碰撞方块尺寸比例
     static fw:number  = GameBG.ww *0.4;
-    static mw:number  = GameBG.ww-GameBG.fw;//主角的碰撞方块尺寸
-    static mw2:number = GameBG.mw/2;        // 1/2 主角的碰撞方块尺寸
-
+    //主角的碰撞方块尺寸
+    static mw:number  = GameBG.ww-GameBG.fw;
+    //1/2 主角的碰撞方块尺寸
+    static mw2:number = GameBG.mw/2;        
+    //正交相机纵向尺寸
     static orthographicVerticalSize:number = GameBG.wnum * GameBG.height / GameBG.width;
+    //2D地图
     static gameBG:GameBG;
+    //地图居中坐标x
+    static cx:number;
+    //地图居中坐标y
+    static cy:number;
+    //地图居中格子i
+    static ci:number = 6;
+    //地图居中格子j
+    static cj:number = 24;
+
+    private static v3d:Laya.Vector3;
+
+    static get3D(xx:number , yy:number):Laya.Vector3{
+        if(!GameBG.v3d){
+            GameBG.v3d = new Laya.Vector3(0,0.5,0);
+        }
+        GameBG.v3d.x = ( xx - GameBG.ci );
+        GameBG.v3d.z = ( yy - GameBG.cj ) * 2;
+        return GameBG.v3d;
+    }
 
     static arrsp:Sprite[] = [];
 
@@ -116,6 +140,47 @@ export default class GameBG extends Laya.Sprite{
     }
 
     public drawR():void{
+        var img:Image;
+        var ww:number =GameBG.ww;
+        var k:number = 0;
+        let sp:Sprite;
+        for (let j = 0; j < GameBG.hnum; j++) {
+            this.bgh += ww;
+            for (let i = 0; i < GameBG.wnum+1; i++) {
+                img = new Image();
+                img.skin = (k%2==0)?"comp/g256h.jpg":"comp/g256l.jpg";
+                this.addChild(img);
+                img.x = i * ww;//- (ww/2);
+                img.y = j * ww;
+                //console.log(i,j);
+                // if( k < GameBG.arr.length && GameBG.arr[k]==1){
+                //     sp = new Sprite();
+                //     sp.graphics.drawRect(0,0,GameBG.ww,GameBG.ww,0xff0000);
+                //     sp.x = i * ww - (ww/2);
+                //     sp.y = j * ww;
+                //     this.addChild(sp);
+                //     this.sp = sp;
+                //     GameBG.arrsp.push(sp);
+                // }
+                if(i==GameBG.ci && j==GameBG.cj){
+                    sp = new Sprite();
+                    sp.graphics.drawRect(0,0,GameBG.ww,GameBG.ww,0xff0000);
+                    sp.x = i * ww;
+                    sp.y = j * ww;
+                    this.addChild(sp);
+                    this.sp = sp;
+                }
+
+                k++;
+            }
+        }
+        this.x = 0 - GameBG.ww2;
+        this.y =( Laya.stage.height - (GameBG.hnum*GameBG.ww) ) /2
+        GameBG.cx = this.x;
+        GameBG.cy = this.y;
+    }
+
+    public drawR0():void{
         var img:Image;
         var k:number = 0;
         var ww:number =GameBG.ww;
