@@ -64,7 +64,9 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
             }
         }
         
-        Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok1));
+        //Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok1));
+        //Laya.Sprite3D.load("h5/ToonDeathKnight/ToonDeathKnight.lh",Laya.Handler.create(this,this.ok1));
+        Laya.Sprite3D.load("h5/game1/game1.lh",Laya.Handler.create(this,this.ok1));
     }
 
     getBox():Laya.Sprite3D{        
@@ -83,7 +85,8 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.sp3d.addChild(sp);
         sp.transform.scale = new Laya.Vector3(0.5,0.5,0.5);
         //sp.transform.translate(new Laya.Vector3(0, 0, 2));
-        Game.hero = sp as Laya.Sprite3D; 
+        Game.hero = sp as Laya.Sprite3D;
+        Game.hero.transform.localPositionY = 2; 
 
         //Laya.stage.on(Laya.Event.KEY_DOWN,this,this.kd);
         Game.ro = new Rocker();
@@ -120,23 +123,29 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         //Laya.stage.frameOnce(0,this,this.ai);
     }
 
-    speed:number = 5;
-    _pos2:Laya.Vector3 = new Laya.Vector3(0,0,0);
+    speed:number = 4;
+    _pos2:Laya.Vector3 = new Laya.Vector3(0,0,0);    
     public move2d(n:number):void{
         //2D移动计算
         var vx:number = this.speed * Math.cos(n);
         var vz:number = this.speed * Math.sin(n) *-1;
-        this._pos2.x += vx;
-        this._pos2.z += vz;
 
+        var dx:number = this._pos2.x + vx;
+        var dz:number = this._pos2.z + vz;
+        
+        this._pos2.x = dx;
+        this._pos2.z = dz;
         //2D转3D坐标 给主角模型
         Game.hero.transform.localPositionX = this._pos2.x / GameBG.ww;
         Game.hero.transform.localPositionZ = this._pos2.z * 2 / GameBG.ww;
 
-        //移动2D背景板
-        Game.bg.y = GameBG.cy - this._pos2.z;
-        //摄像机跟随主角
-        Game.camera.transform.localPositionZ = 10*Math.sqrt(3) + Game.hero.transform.localPositionZ;
+        var bgy:number = GameBG.cy - this._pos2.z;
+        if(bgy<=0 && bgy>=Laya.stage.height-Game.bg.getBgh()){
+            //移动2D背景板
+            Game.bg.y = bgy;
+            //摄像机跟随主角
+            Game.camera.transform.localPositionZ = Game.sqrt3 + Game.hero.transform.localPositionZ;
+        }
     }
 
     moves():void{

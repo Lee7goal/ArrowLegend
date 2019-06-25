@@ -25,6 +25,10 @@ export default class Game{
     //摇杆
     static ro:Rocker;
 
+    static cameraY:number = 10;
+
+    static sqrt3:number = 10*Math.sqrt(3);
+
     constructor(){
         //Laya.Scene3D
     }
