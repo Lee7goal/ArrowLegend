@@ -86,7 +86,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         sp.transform.scale = new Laya.Vector3(0.5,0.5,0.5);
         //sp.transform.translate(new Laya.Vector3(0, 0, 2));
         Game.hero = sp as Laya.Sprite3D;
-        Game.hero.transform.localPositionY = 2; 
+        //Game.hero.transform.localPositionY = 2; 
 
         //Laya.stage.on(Laya.Event.KEY_DOWN,this,this.kd);
         Game.ro = new Rocker();
@@ -132,9 +132,12 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 
         var dx:number = this._pos2.x + vx;
         var dz:number = this._pos2.z + vz;
-        
-        this._pos2.x = dx;
-        this._pos2.z = dz;
+        if(dx>=Laya.stage.width*-0.5 && dx<Laya.stage.width*0.5){
+            this._pos2.x = dx;
+        }
+        if(dz>=Game.bg.getBgh()*-0.5 && dz<Game.bg.getBgh()*0.5){
+            this._pos2.z = dz;
+        }
         //2D转3D坐标 给主角模型
         Game.hero.transform.localPositionX = this._pos2.x / GameBG.ww;
         Game.hero.transform.localPositionZ = this._pos2.z * 2 / GameBG.ww;
