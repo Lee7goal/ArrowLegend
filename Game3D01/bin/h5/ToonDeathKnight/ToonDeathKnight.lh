@@ -166,7 +166,6 @@
 							"enableRender":true,
 							"materials":[
 								{
-									"type":"Laya.BlinnPhongMaterial",
 									"path":"Assets/Toon Enemies Pack/Toon Death Knight Pack/Toon Death Knight/Materials/Toon Death Knight-Blue.lmat"
 								}
 							]
@@ -243,7 +242,7 @@
 								1
 							],
 							"threeDStartRotation":false,
-							"startRotationType":0,
+							"startRotationType":2,
 							"startRotationConstant":360,
 							"startRotationConstantMin":0,
 							"startRotationConstantMax":360,
@@ -293,7 +292,7 @@
 							"playOnAwake":true,
 							"maxParticles":20,
 							"autoRandomSeed":true,
-							"randomSeed":0,
+							"randomSeed":2.496362E+09,
 							"emission":{
 								"enable":true,
 								"emissionRate":10,
@@ -658,7 +657,6 @@
 							},
 							"materials":[
 								{
-									"type":"Laya.BlinnPhongMaterial",
 									"path":"Assets/Toon Enemies Pack/Toon Death Knight Pack/Toon Death Knight/Materials/Toon Death Knight-Blue.lmat"
 								}
 							],
