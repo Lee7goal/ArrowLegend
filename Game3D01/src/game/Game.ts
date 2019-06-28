@@ -4,6 +4,7 @@ import Vector3 = Laya.Vector3;
 import Scene3D =Laya.Scene3D;
 import GameBG from "./GameBG";
 import Rocker from "./GameRocker";
+import GameMap0 from "./GameMap0";
 
 export default class Game{
     //3d层
@@ -28,6 +29,19 @@ export default class Game{
     static cameraY:number = 10;
 
     static sqrt3:number = 10*Math.sqrt(3);
+
+    static map0:GameMap0;
+
+    static ani:Laya.Animator;
+
+    static updateMap():void{
+        if(Game.map0){
+            if(Game.bg){
+                Game.map0.x = Game.bg.x;
+                Game.map0.y = Game.bg.y;
+            }
+        }
+    }
 
     constructor(){
         //Laya.Scene3D

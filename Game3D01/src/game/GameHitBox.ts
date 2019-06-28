@@ -22,6 +22,43 @@ export default class GameHitBox {
         this.setXY(0,0);
     }
 
+    public setVV(x0:number,y0:number,vx:number,vy:number):GameHitBox{
+
+        var ax = Math.abs(vx);
+        var ay = Math.abs(vy);
+
+        if(ax>0 && ay>0){
+            this.ww_ = ax;
+            this.hh_ = ay;
+            this.h2_ = this.hh_/2;
+            this.w2_ = this.ww_/2;
+            this.setXY(Math.min(x0,x0+vx),Math.min(y0,y0+vy));
+        }
+        else if(ax==0 && ay>0){
+            this.ww_ = 2;
+            this.hh_ = ay;
+            this.h2_ = this.hh_/2;
+            this.w2_ = this.ww_/2;
+            this.setXY(x0-1,Math.min(y0,y0+vy));
+        }
+        else if(ax>0 && ay==0){
+            this.ww_ = ax;
+            this.hh_ = 2;
+            this.h2_ = this.hh_/2;
+            this.w2_ = this.ww_/2;
+            this.setXY(Math.min(x0,x0+vx),y0-1);
+        }
+        else{
+            this.ww_ = 2;
+            this.hh_ = 2;
+            this.h2_ = this.hh_/2;
+            this.w2_ = this.ww_/2;
+            this.setXY(x0-1,y0-1);
+        }
+
+        return this;
+    }
+
     public get ww():number{
         return this.ww_;
     }

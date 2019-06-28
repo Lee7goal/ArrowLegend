@@ -9,9 +9,10 @@ export default class GameBG extends Laya.Sprite{
     static hnum:number = 49;
     /**舞台宽度*/
     static width:number = 750;
+    //static width:number = 768;
     /**舞台高度*/
     static height:number = 1334;
-    //static height:number = 1000;
+    //static height:number = 1024;
     /**地形的碰撞方块尺寸*/
     static ww:number = GameBG.width/GameBG.wnum;
     /**1/2 地形的碰撞方块尺寸*/
@@ -34,6 +35,10 @@ export default class GameBG extends Laya.Sprite{
     static ci:number = 6;
     //地图居中格子j
     static cj:number = 24;
+    //主角中心坐标
+    static mcx:number;
+    //主角中心坐标
+    static mcy:number;
 
     private static v3d:Laya.Vector3;
 
@@ -71,6 +76,29 @@ export default class GameBG extends Laya.Sprite{
     ];
 
     static arr0:number[] = [
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,2,1,0,0,0,0,0,0,0,3,1,0,
+        0,1,2,0,0,0,0,0,0,0,1,3,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,4,0,0,5,0,0,6,0,0,0,
+        0,0,0,0,0,0,1,0,0,0,0,0,0,
+        0,0,0,0,0,0,1,0,0,0,0,0,0,
+        0,0,0,7,1,1,1,1,1,7,0,0,0,
+        0,0,0,0,0,0,1,0,0,0,0,0,0,
+        0,0,0,0,0,0,1,0,0,0,0,0,0,
+        0,0,0,8,0,0,5,0,0,9,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,10,1,0,0,0,0,0,0,0,11,1,0,
+        0,1,10,0,0,0,0,0,0,0,1,11,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0
+    ];
+
+    static arr1:number[] = [
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,1,1,0,0,0,0,0,0,0,1,1,0,
         0,1,1,0,0,0,0,0,0,0,1,1,0,
@@ -162,14 +190,15 @@ export default class GameBG extends Laya.Sprite{
                 //     this.sp = sp;
                 //     GameBG.arrsp.push(sp);
                 // }
-                if(i==GameBG.ci && j==GameBG.cj){
-                    sp = new Sprite();
-                    sp.graphics.drawRect(0,0,GameBG.ww,GameBG.ww,0xff0000);
-                    sp.x = i * ww;
-                    sp.y = j * ww;
-                    this.addChild(sp);
-                    this.sp = sp;
-                }
+
+                // if(i==GameBG.ci && j==GameBG.cj){
+                //     sp = new Sprite();
+                //     sp.graphics.drawRect(0,0,GameBG.ww,GameBG.ww,0xff0000);
+                //     sp.x = i * ww;
+                //     sp.y = j * ww;
+                //     this.addChild(sp);
+                //     this.sp = sp;
+                // }
 
                 k++;
             }
@@ -178,6 +207,8 @@ export default class GameBG extends Laya.Sprite{
         this.y =( Laya.stage.height - (GameBG.hnum*GameBG.ww) ) /2
         GameBG.cx = this.x;
         GameBG.cy = this.y;
+        GameBG.mcx = ((GameBG.wnum+1)*(GameBG.ww))/2 - GameBG.mw2;
+        GameBG.mcy = (GameBG.hnum*GameBG.ww)/2 - GameBG.mw2;
     }
 
     public drawR0():void{
