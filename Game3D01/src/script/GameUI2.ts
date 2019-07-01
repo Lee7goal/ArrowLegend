@@ -3,10 +3,12 @@ import Game from "../game/Game";
 import GameBG from "../game/GameBG";
 import Rocker from "../game/GameRocker";
 import GameMap0 from "../game/GameMap0";
+import GameHitBox from "../game/GameHitBox";
+import GamePro from "../game/GamePro";
+import { HeroGameMove, SimpleGameMove, ArrowGameMove } from "../game/GameMove";
+import { HeroAI, HeroArrowAI } from "../game/GameAI";
 export default class GameUI2 extends  ui.test.TestSceneUI {
 
-    
-    
     constructor() {
         super();
         
@@ -19,7 +21,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 
         //添加3D场景
         var scene: Laya.Scene3D = Laya.stage.addChild(new Laya.Scene3D()) as Laya.Scene3D;
-        scene.addChild(Game.sp3d);
+        scene.addChild(Game.layer3d);
         Game.scene3d = scene;
         
         //添加照相机
@@ -68,13 +70,13 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 
         var map0:GameMap0 = new GameMap0();
         map0.drawMap();
-        Laya.stage.addChild(map0);        
+        //Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
         
         //Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok1));
-        Laya.Sprite3D.load("h5/ToonDeathKnight/ToonDeathKnight.lh",Laya.Handler.create(this,this.ok1));
-        //Laya.Sprite3D.load("h5/game1/game1.lh",Laya.Handler.create(this,this.ok1));
+       Laya.Sprite3D.load("h5/ToonRockGolem/ToonRockGolem.lh",Laya.Handler.create(this,this.ok2));
+       
     }
 
     getBox():Laya.Sprite3D{        
@@ -82,18 +84,53 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
             Game.box = new Laya.MeshSprite3D(Laya.PrimitiveMesh.createBox(1, 1, 2)) as Laya.MeshSprite3D;            
         }
         var box:Laya.MeshSprite3D;
-        box = Game.sp3d.addChild(Laya.Sprite3D.instantiate(Game.box)) as Laya.MeshSprite3D;        
+        box = Game.layer3d.addChild(Laya.Sprite3D.instantiate(Game.box)) as Laya.MeshSprite3D;        
         box.meshRenderer.material = Game.material_blinn;
         return box;
+    }
+
+    getBullet():GamePro{        
+        var gp:GamePro;
+        if(Game.HeroArrows.length<=0){
+            gp = new GamePro();
+            var bullet:Laya.Sprite3D;
+            bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
+            gp.setSp3d(bullet);
+        }else{
+            gp = Game.HeroArrows.shift();
+        }
+        return gp;
+    }
+
+    ok3(sp:Laya.Sprite3D):void{  
+        Game.layer3d.addChild(sp);
+        var gpro = new GamePro();
+        gpro.setSp3d(sp);
+        Game.a0 = gpro;
+        Laya.Sprite3D.load("h5/ToonSkeletons/ToonSkeletons.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
+    }
+
+    ok2(sp:Laya.Sprite3D):void{  
+        Game.layer3d.addChild(sp);
+        var gpro = new GamePro();
+        gpro.setSp3d(sp);               
+        gpro.play("Idle");
+        Game.e0 = gpro;
+        Game.map0.addChild(Game.e0.sp2d);
+        //Game.e0.startAi();
+        //Laya.Sprite3D.load("h5/ToonDeathKnight/ToonDeathKnight.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
+        //Laya.Sprite3D.load("h5/ToonSkeletons/ToonSkeletons.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
+        Laya.Sprite3D.load("h5/ArrowBlue/ToonSkeletons.lh",Laya.Handler.create(this,this.ok3));
     }
 
     ok1(sp:Laya.Sprite3D):void{        
         //得到原始Sprite3D
         //this.sp3d = sp;        
-        Game.sp3d.addChild(sp);
-        sp.transform.scale = new Laya.Vector3(1.5,1.5,1.5);
+        Game.layer3d.addChild(sp);
+        //sp.transform.scale = new Laya.Vector3(1.5,1.5,1.5);
         //sp.transform.translate(new Laya.Vector3(0, 0, 2));
-        Game.hero = sp as Laya.Sprite3D;
+        Game.hero = new GamePro();
+        Game.hero.setSp3d( sp as Laya.Sprite3D );
         //Game.hero.transform.localPositionY = 2; 
         //Laya.stage.on(Laya.Event.KEY_DOWN,this,this.kd);
         Game.ro = new Rocker();
@@ -102,15 +139,35 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 		this.addChild(Game.ro);		
 		Laya.MouseManager.multiTouchEnabled = false;
         Laya.stage.on(Laya.Event.MOUSE_DOWN , this, this.md);
+        Game.hero.play("Idle");
+        Game.map0.addChild(Game.hero.sp2d);
+        Game.hero.setGameMove(new HeroGameMove());
+        Game.hero.setGameAi(new HeroAI());
 
-        
-        var aniSprite3d:Laya.Sprite3D = Game.hero.getChildAt(0) as Laya.Sprite3D;       
-        Game.ani = aniSprite3d.getComponent(Laya.Animator) as Laya.Animator;        
-        Game.ani.play("Idle");
+        Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+        Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
+        Game.bg.updateY();
+
+        Game.hero.on(Game.Short,this,this.short)
+    }
+
+    short():void{
+        var bo = this.getBullet();
+        bo.sp3d.transform.localPositionY = 0.5;
+        bo.setXY2D(Game.hero.pos2.x,Game.hero.pos2.z);
+        bo.setSpeed(30);
+        bo.rotation(Game.hero.face3d);
+        bo.setGameMove(new ArrowGameMove());
+        bo.setGameAi(new HeroArrowAI());        
+        bo.gamedata.bounce = 1;
+        Game.layer3d.addChild(bo.sp3d);
+        bo.startAi();
     }
 
     md(eve:MouseEvent):void{
-        Game.ani.play("Run");	    
+        Game.hero.stopAi();        
+        Game.hero.play("Run");
+        //Game.hero.rotation(Game.hero.face3d);
 		Laya.stage.off(Laya.Event.MOUSE_DOWN , this, this.md);        
 		Laya.stage.on(Laya.Event.MOUSE_UP , this, this.up);
 		let xx:number = Laya.stage.mouseX;
@@ -123,7 +180,11 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
     }
     
     up(eve:Event):void{
-        Game.ani.play("Idle");
+        Game.hero.play("Idle");
+        var a:number = GameHitBox.faceTo3D(Game.hero.hbox ,  Game.e0.hbox);
+        Game.hero.rotation(a);
+        //this.heron = GameHitBox.faceTo(Game.hero.hbox , Game.e0.hbox);
+
         Laya.stage.off(Laya.Event.MOUSE_UP , this, this.up);
         Laya.stage.on(Laya.Event.MOUSE_DOWN , this, this.md);
 		if(Game.ro && Game.ro.parent){			
@@ -134,59 +195,18 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
             //this.hero.reset();
 		}
         Laya.stage.clearTimer(this,this.moves);
-        Game.map0.drawBallistic(this.heron);
+        Game.hero.startAi();
+        Game.map0.drawBallistic(Game.hero.face2d);
         //Laya.stage.frameOnce(0,this,this.ai);
+        
+        
+        // //bo.setGameMove(new BulletGameMove(5,bo.face2d,bo));
+        // bo.startAi();
     }
 
-    speed:number = 5;
-    _pos2:Laya.Vector3 = new Laya.Vector3(0,0,0);
-    heron:number = 0;
-    
     public move2d(n:number):void{
-        this.heron = n;
-        //2D移动计算
-        var vx:number = this.speed * Math.cos(n);
-        var vz:number = this.speed * Math.sin(n);
-
-        if( Game.map0.chechHit(vx,vz) ){
-            if( vz!=0 && Game.map0.chechHit(vx,0) ){
-                vx = 0;
-                vz = (vz<0?-1:1) * this.speed;
-            }
-            if( vx!=0 && Game.map0.chechHit(0,vz) ){
-                vz = 0;
-                vx = (vx<0?-1:1) * this.speed;
-            }
-            if( Game.map0.chechHit(vx,vz) ){
-                return;
-            }
-        }
-
-        var dx:number = this._pos2.x + vx;
-        var dz:number = this._pos2.z + vz;
-
-        // if(dx>=Laya.stage.width*-0.5+GameBG.mw2+GameBG.ww2 && dx<Laya.stage.width*0.5-GameBG.mw2-GameBG.ww2){
-        //     this._pos2.x = dx;
-        // }
-        // if(dz>=Game.bg.getBgh()*-0.5+GameBG.ww+GameBG.mw2 && dz<Game.bg.getBgh()*0.5-GameBG.ww-GameBG.mw2){
-        //     this._pos2.z = dz;
-        // }
-        this._pos2.x = dx;
-        this._pos2.z = dz;
-
-        //2D转3D坐标 给主角模型
-        Game.hero.transform.localPositionX = this._pos2.x / GameBG.ww;
-        Game.hero.transform.localPositionZ = this._pos2.z * 2 / GameBG.ww;
-
-        var bgy:number = GameBG.cy - this._pos2.z;
-        if(bgy<=0 && bgy>=Laya.stage.height-Game.bg.getBgh()){
-            //移动2D背景板
-            Game.bg.y = bgy;
-            //摄像机跟随主角
-            Game.camera.transform.localPositionZ = Game.sqrt3 + Game.hero.transform.localPositionZ;
-            Game.updateMap();
-        }
-        Game.map0.updateMy(this._pos2);
+        Game.hero.move2D(n);
+        Game.bg.updateY();
     }
 
     moves():void{
@@ -195,33 +215,33 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 		let n:number;
 		Game.ro.setSp0(xx,yy);		
         var speed:number = Game.ro.getSpeed();
-        n = Game.ro.getA3d();            
-        Game.hero.transform.localRotationEulerY = ((n+Math.PI/2)/Math.PI*180);
-		if(speed>0){            
+        n = Game.ro.getA3d();        
+		if(speed>0){         
+            Game.hero.rotation(n);   
             this.move2d(Game.ro.getA());
 		}else{
 
         }
     }
 
-    kd(k:Laya.Event):void{
-        console.log("k : "+k.keyCode);        
-        if(k.keyCode == 38){
-            Game.hero.transform.translate(new Laya.Vector3(0,0,-0.2));
-            Game.camera.transform.localPositionZ-=0.2;
-            Game.bg.y += 0.1*GameBG.ww;
+    // kd(k:Laya.Event):void{
+    //     console.log("k : "+k.keyCode);        
+    //     if(k.keyCode == 38){
+    //         Game.hero.transform.translate(new Laya.Vector3(0,0,-0.2));
+    //         Game.camera.transform.localPositionZ-=0.2;
+    //         Game.bg.y += 0.1*GameBG.ww;
             
-        }
-        else if(k.keyCode == 40){
-            Game.hero.transform.translate(new Laya.Vector3(0,0,+0.2));
-            Game.camera.transform.localPositionZ+=0.2;
-            Game.bg.y -= 0.1*GameBG.ww;
-        }
-        else if(k.keyCode == 37){
-            Game.hero.transform.translate(new Laya.Vector3(-0.2,0,0));
-        }
-        else if(k.keyCode == 39){
-            Game.hero.transform.translate(new Laya.Vector3(0.2,0,0));
-        }        
-    }
+    //     }
+    //     else if(k.keyCode == 40){
+    //         Game.hero.transform.translate(new Laya.Vector3(0,0,+0.2));
+    //         Game.camera.transform.localPositionZ+=0.2;
+    //         Game.bg.y -= 0.1*GameBG.ww;
+    //     }
+    //     else if(k.keyCode == 37){
+    //         Game.hero.transform.translate(new Laya.Vector3(-0.2,0,0));
+    //     }
+    //     else if(k.keyCode == 39){
+    //         Game.hero.transform.translate(new Laya.Vector3(0.2,0,0));
+    //     }        
+    // }
 }

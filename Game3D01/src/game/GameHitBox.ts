@@ -83,6 +83,15 @@ export default class GameHitBox {
         this.update();
     }
 
+    setRq(x:number,y:number,ww:number,hh:number):GameHitBox{
+        this.ww_ = ww;
+        this.hh_ = hh;
+        this.h2_ = this.hh_/2;
+        this.w2_ = this.ww_/2;
+        this.setXY(x,y);
+        return this;
+    }
+
     private update():void{
         this.top_ = this.y_;
         this.left_ = this.x_;
@@ -121,6 +130,18 @@ export default class GameHitBox {
         b0.right > b1.x &&
         b0.y < b1.bottom &&
         b0.bottom > b1.y
+    }
+
+    public static faceTo(my:GameHitBox , target:GameHitBox):number{
+        var xx:number = target.cx - my.cx;
+        var yy:number = target.cy - my.cy;
+        return Math.atan2(yy,xx);
+    }
+
+    public static faceTo3D(my:GameHitBox , target:GameHitBox):number{
+        var xx:number = target.cx - my.cx;
+        var yy:number = my.cy - target.cy;
+        return Math.atan2(yy,xx);
     }
 }
 

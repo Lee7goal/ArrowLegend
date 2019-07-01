@@ -43,7 +43,7 @@ export default class Rocker extends Laya.Sprite {
         let n:number = xx - this.x;
         let m:number = yy - this.y;
         this.a = Math.atan2(m,n);
-        this.a3d = Math.atan2(this.y-yy,xx-this.x);
+        this.a3d = Math.atan2(this.y-yy,xx-this.x);//+Math.PI/2;
 
         let l:number = Math.sqrt(n*n + m*m);
         if(l>4){

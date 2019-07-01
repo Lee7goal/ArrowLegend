@@ -1,6 +1,7 @@
 import Image = Laya.Image;
 import GameConfig from "../GameConfig";
 import Sprite = Laya.Sprite;
+import Game from "./Game";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite{
     /**地图恒星格子数*/
@@ -53,29 +54,24 @@ export default class GameBG extends Laya.Sprite{
 
     static arrsp:Sprite[] = [];
 
-    static arr:number[] = [
+    static arr0:number[] = [
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,2,2,0,0,0,0,0,0,0,3,3,0,
+        0,4,0,0,0,0,0,0,0,0,0,5,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,1,0,0,0,1,0,0,0,0,0,
-        0,0,1,1,1,0,1,1,1,0,0,0,0,
-        0,0,0,1,0,0,0,1,0,0,0,0,0,   
+        0,0,0,0,0,0,0,0,0,0,0,0,0,   
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,1,0,0,0,0,
-        0,0,0,0,0,0,0,1,1,1,0,0,0,
-        0,0,0,0,0,0,0,0,1,1,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,1,0,1,0,0,0,0,0,
-        0,0,0,0,0,1,0,1,0,0,0,0,0,
-        0,0,0,0,0,1,1,1,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,6,0,0,0,0,0,0,0,0,0,7,0,
+        0,8,8,0,0,0,0,0,0,0,9,9,0        
     ];
 
-    static arr0:number[] = [
+    static arr:number[] = [
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,2,1,0,0,0,0,0,0,0,3,1,0,
@@ -241,5 +237,16 @@ export default class GameBG extends Laya.Sprite{
         }
         this.addChild(this.mySp);
        // this.bgh = Laya.stage.height - this.bgh;
+    }
+
+    public updateY():void{
+        var bgy:number = GameBG.cy - Game.hero.pos2.z;
+        if(bgy<=0 && bgy>=Laya.stage.height-Game.bg.getBgh()){
+            //移动2D背景板
+            Game.bg.y = bgy;
+            //摄像机跟随主角
+            Game.camera.transform.localPositionZ = Game.sqrt3 + Game.hero.z;
+            Game.updateMap();
+        }
     }
 }
