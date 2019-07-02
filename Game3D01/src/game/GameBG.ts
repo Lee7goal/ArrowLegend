@@ -202,11 +202,11 @@ export default class GameBG extends Laya.Sprite{
                 //     this.sp = sp;
                 // }
                 console.log("gridType",gridType);
-                if(GridType.isRiver(gridType))
+                if(GridType.isRiverPoint(gridType))
                 {
                     var grid2d:Grid2D = new Grid2D();
                     // grid2d.setGridType(gridType);
-                    grid2d.skin = 'bg/'+gridType+'.png';
+                    grid2d.skin = 'bg/100.png';
                     grid2d.width = grid2d.height = GameBG.ww;
                     grid2d.setRectangle(img.x, img.y, GameBG.ww, GameBG.ww);
                     img.addChild(grid2d);
@@ -216,10 +216,20 @@ export default class GameBG extends Laya.Sprite{
                     var grid2d:Grid2D = new Grid2D();
                     // grid2d.setGridType(gridType);
                     grid2d.skin = 'bg/'+gridType+'.png';
+                    grid2d.skin = 'bg/500.png';
                     grid2d.width = grid2d.height = GameBG.ww;
                     grid2d.setRectangle(img.x, img.y, GameBG.ww, GameBG.ww);
                     img.addChild(grid2d);
                     // this.thornGrids.push(grid2d);
+                }
+                else if(GridType.isRiver(gridType))
+                {
+                    var grid2d:Grid2D = new Grid2D();
+                    // grid2d.setGridType(gridType);
+                    grid2d.skin = 'bg/'+gridType+'.png';
+                    grid2d.width = grid2d.height = GameBG.ww;
+                    grid2d.setRectangle(img.x, img.y, GameBG.ww, GameBG.ww);
+                    img.addChild(grid2d);
                 }
 
                 k++;

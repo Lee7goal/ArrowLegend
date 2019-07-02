@@ -51,7 +51,7 @@ export default class GameMap0 extends Laya.Sprite{
                 var ww = GameBG.ww;
                 var x = i * ww;//- (ww/2);
                 var y = j * ww;
-                if( k < GameBG.arr0.length&& GridType.isWall(GameBG.arr0[k])){
+                if( k < GameBG.arr0.length && (GridType.isWall(GameBG.arr0[k]) || GridType.isRiverPoint(GameBG.arr0[k]) || GridType.isThorn(GameBG.arr0[k])  || GridType.isRiver(GameBG.arr0[k]))){
                     let key = GameBG.arr0[k];
                     if(this.map[key]){
                         hb = this.map[key];
