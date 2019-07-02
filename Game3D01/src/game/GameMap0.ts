@@ -2,6 +2,7 @@ import GameBG from "./GameBG";
 import GameHitBox from "./GameHitBox";
 import Game from "./Game";
 import GamePro from "./GamePro";
+import GridType from "./bg/GridType";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite{
 
@@ -50,7 +51,7 @@ export default class GameMap0 extends Laya.Sprite{
                 var ww = GameBG.ww;
                 var x = i * ww;//- (ww/2);
                 var y = j * ww;
-                if( k < GameBG.arr0.length && GameBG.arr0[k]>1){
+                if( k < GameBG.arr0.length && (GridType.isWall(GameBG.arr0[k]) || GridType.isRiverPoint(GameBG.arr0[k]) || GridType.isThorn(GameBG.arr0[k])  || GridType.isRiver(GameBG.arr0[k]))){
                     let key = GameBG.arr0[k];
                     if(this.map[key]){
                         hb = this.map[key];

@@ -2,6 +2,8 @@ import Image = Laya.Image;
 import GameConfig from "../GameConfig";
 import Sprite = Laya.Sprite;
 import Game from "./Game";
+import Grid2D from "./bg/Grid2D";
+import GridType from "./bg/GridType";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite{
     /**地图恒星格子数*/
@@ -54,23 +56,25 @@ export default class GameBG extends Laya.Sprite{
 
     static arrsp:Sprite[] = [];
 
-    static arr0:number[] = [
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,2,2,0,0,0,0,0,0,0,3,3,0,
-        0,4,0,0,0,0,0,0,0,0,0,5,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,   
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,0,0,0,
-        0,6,0,0,0,0,0,0,0,0,0,7,0,
-        0,8,8,0,0,0,0,0,0,0,9,9,0        
-    ];
+    // static arr0:number[] = [
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,2,2,0,0,0,0,0,0,0,3,3,0,
+    //     0,4,0,0,0,0,0,0,0,0,0,5,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,   
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
+    //     0,6,0,0,0,0,0,0,0,0,0,7,0,
+    //     0,8,8,0,0,0,0,0,0,0,9,9,0        
+    // ];
 
+    static arr0:number[] = [];
+    
     static arr:number[] = [
         0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -168,14 +172,16 @@ export default class GameBG extends Laya.Sprite{
         var ww:number =GameBG.ww;
         var k:number = 0;
         let sp:Sprite;
+        let gridType:Number;
         for (let j = 0; j < GameBG.hnum; j++) {
             this.bgh += ww;
             for (let i = 0; i < GameBG.wnum+1; i++) {
                 img = new Image();
-                img.skin = (k%2==0)?"comp/g256h.jpg":"comp/g256l.jpg";
+                img.skin = (k%2==0)?"bg/10.jpg":"bg/11.jpg";
                 this.addChild(img);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
+                gridType = GameBG.arr0[k];
                 //console.log(i,j);
                 // if( k < GameBG.arr.length && GameBG.arr[k]==1){
                 //     sp = new Sprite();
@@ -195,6 +201,36 @@ export default class GameBG extends Laya.Sprite{
                 //     this.addChild(sp);
                 //     this.sp = sp;
                 // }
+                console.log("gridType",gridType);
+                if(GridType.isRiverPoint(gridType))
+                {
+                    var grid2d:Grid2D = new Grid2D();
+                    // grid2d.setGridType(gridType);
+                    grid2d.skin = 'bg/100.png';
+                    grid2d.width = grid2d.height = GameBG.ww;
+                    grid2d.setRectangle(img.x, img.y, GameBG.ww, GameBG.ww);
+                    img.addChild(grid2d);
+                    // this.riverGrids.push(grid2d);
+                }
+                else if(GridType.isThorn(gridType)){
+                    var grid2d:Grid2D = new Grid2D();
+                    // grid2d.setGridType(gridType);
+                    grid2d.skin = 'bg/'+gridType+'.png';
+                    grid2d.skin = 'bg/500.png';
+                    grid2d.width = grid2d.height = GameBG.ww;
+                    grid2d.setRectangle(img.x, img.y, GameBG.ww, GameBG.ww);
+                    img.addChild(grid2d);
+                    // this.thornGrids.push(grid2d);
+                }
+                else if(GridType.isRiver(gridType))
+                {
+                    var grid2d:Grid2D = new Grid2D();
+                    // grid2d.setGridType(gridType);
+                    grid2d.skin = 'bg/'+gridType+'.png';
+                    grid2d.width = grid2d.height = GameBG.ww;
+                    grid2d.setRectangle(img.x, img.y, GameBG.ww, GameBG.ww);
+                    img.addChild(grid2d);
+                }
 
                 k++;
             }
