@@ -1,11 +1,10 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.UnlitMaterial",
-		"name":"Toon Rock Golem-Blue",
+		"type":"Laya.TrailMaterial",
 		"renderStates":[
 			{
-				"cull":2,
+				"cull":0,
 				"blend":0,
 				"srcBlend":1,
 				"dstBlend":0,
@@ -13,18 +12,16 @@
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
+		"name":"FX-ArrowTrail",
 		"alphaTest":false,
-		"alphaTestValue":0.01,
-		"renderQueue":2000,
-		"albedoIntensity":1.5,
+		"renderQueue":3000,
 		"textures":[
 			{
-				"name":"albedoTexture",
-				"path":"../Textures/Toon Rock Golem-Blue.jpg",
+				"name":"texture",
+				"path":"../Textures/FX-ArrowTrail.jpg",
 				"constructParams":[
-					2048,
-					2048,
+					64,
+					64,
 					0,
 					true
 				],
@@ -47,7 +44,7 @@
 				]
 			},
 			{
-				"name":"albedoColor",
+				"name":"color",
 				"value":[
 					0.5,
 					0.5,

@@ -75,7 +75,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.updateMap();
         
         //Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok1));
-       Laya.Sprite3D.load("h5/ToonRockGolem/ToonRockGolem.lh",Laya.Handler.create(this,this.ok2));
+       Laya.Sprite3D.load("h5/ToonRockGolem/ToonSkeletons.lh",Laya.Handler.create(this,this.ok2));
        
     }
 
@@ -89,18 +89,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         return box;
     }
 
-    getBullet():GamePro{        
-        var gp:GamePro;
-        if(Game.HeroArrows.length<=0){
-            gp = new GamePro();
-            var bullet:Laya.Sprite3D;
-            bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
-            gp.setSp3d(bullet);
-        }else{
-            gp = Game.HeroArrows.shift();
-        }
-        return gp;
-    }
+    
 
     ok3(sp:Laya.Sprite3D):void{  
         Game.layer3d.addChild(sp);
@@ -117,6 +106,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         gpro.setSp3d(sp);               
         gpro.play("Idle");
         Game.e0 = gpro;
+        Game.map0.Eharr.push(gpro.hbox);
         Game.map0.addChild(Game.e0.sp2d);
         //Game.e0.startAi();
         //Laya.Sprite3D.load("h5/ToonDeathKnight/ToonDeathKnight.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
@@ -149,21 +139,10 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
         Game.bg.updateY();
 
-        Game.hero.on(Game.Short,this,this.short)
+        //Game.hero.on(Game.Event_Short,this,this.short)
     }
 
-    short():void{
-        var bo = this.getBullet();
-        bo.sp3d.transform.localPositionY = 0.5;
-        bo.setXY2D(Game.hero.pos2.x,Game.hero.pos2.z);
-        bo.setSpeed(30);
-        bo.rotation(Game.hero.face3d);
-        bo.setGameMove(new ArrowGameMove());
-        bo.setGameAi(new HeroArrowAI());        
-        bo.gamedata.bounce = 1;
-        Game.layer3d.addChild(bo.sp3d);
-        bo.startAi();
-    }
+    
 
     md(eve:MouseEvent):void{
         Game.hero.stopAi();        

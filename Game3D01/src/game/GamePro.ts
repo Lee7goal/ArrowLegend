@@ -4,7 +4,7 @@ import Animator = Laya.Animator;
 import GameBG from "./GameBG";
 import Game from "./Game";
 import { GameMove } from "./GameMove";
-import { GameAI } from "./GameAI";
+import { GameAI, HeroAI } from "./GameAI";
 import GameData from "./GameData";
 
 export default class GamePro extends Laya.EventDispatcher{
@@ -33,11 +33,18 @@ export default class GamePro extends Laya.EventDispatcher{
     public setSp3d(sp:Sprite3D):void{
         this.sp3d_ = sp;
         this.hbox_ = new GameHitBox(GameBG.mw,GameBG.mw);
-        this.hbox_.setXY(GameBG.mcx,GameBG.mcy);
+        this.hbox_.linkPro_ = this;
+        this.hbox_.setCenter(GameBG.mcx,GameBG.mcy);
         let aniSprite3d = sp.getChildAt(0) as Sprite3D;
         if(aniSprite3d){
             this.ani_ = aniSprite3d.getComponent(Laya.Animator) as Animator;
         }
+        this.on(Game.Event_Hit,this,this.hit);
+    }
+
+    private hit(array:any){
+        var a:GamePro = <GamePro>array[0];
+        this.play("TakeDamage");
     }
 
     public get acstr():string{
@@ -93,6 +100,19 @@ export default class GamePro extends Laya.EventDispatcher{
     public play(actionstr:string):void{
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
+
+        if( this.acstr!=HeroAI.Run &&  this.acstr!=HeroAI.Idle ){
+            Laya.stage.frameLoop(1,this,this.ac0);            
+        }else{
+            Laya.stage.timer.clear(this,this.ac0);
+        }
+    }
+
+    ac0():void{
+        if(this.normalizedTime >=1){
+            this.play(HeroAI.Idle);
+            Laya.stage.timer.clear(this,this.ac0);
+        }
     }
 
     public get normalizedTime():number{

@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Toon Rock Golem-Blue",
+		"name":"Toon Skeleton Archer-Blue",
 		"renderStates":[
 			{
 				"cull":2,
@@ -16,12 +16,12 @@
 		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.01,
-		"renderQueue":2000,
-		"albedoIntensity":1.5,
+		"renderQueue":3000,
+		"albedoIntensity":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/Toon Rock Golem-Blue.jpg",
+				"path":"../Textures/Toon Skeleton Archer-Blue.jpg",
 				"constructParams":[
 					2048,
 					2048,

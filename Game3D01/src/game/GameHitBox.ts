@@ -1,3 +1,5 @@
+import GamePro from "./GamePro";
+
 export default class GameHitBox {
 
     private x_:number  = 0;
@@ -21,6 +23,8 @@ export default class GameHitBox {
         this.w2_ = this.ww_/2;
         this.setXY(0,0);
     }
+
+    public linkPro_:GamePro;
 
     public setVV(x0:number,y0:number,vx:number,vy:number):GameHitBox{
 
