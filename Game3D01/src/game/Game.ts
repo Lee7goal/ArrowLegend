@@ -9,10 +9,10 @@ import GamePro from "./GamePro";
 
 export default class Game{
 
+    static Event_Short:string = "Game.Event_Short";
+    static Event_Hit:string   = "Game.Event_Hit";
+
     static HeroArrows:GamePro[] = [];
-
-    static Short:string = "Game.Short";
-
     //3d层
     static layer3d:Sprite3D = new Sprite3D();
     //3d摄像机

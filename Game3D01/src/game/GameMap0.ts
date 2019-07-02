@@ -4,7 +4,14 @@ import Game from "./Game";
 import GamePro from "./GamePro";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite{
-    private harr :GameHitBox[];
+
+    Aharr :GameHitBox[];//半空碰撞组
+    Wharr :GameHitBox[];//地面碰撞组    
+    Eharr :GameHitBox[];//敌人组
+    Hharr :GameHitBox[];//主角组
+    
+
+
     private arrhb  :GameHitBox;
     public ballistic:Laya.Sprite;
     //public laodings:Laya.Sprite;
@@ -17,24 +24,25 @@ export default class GameMap0 extends Laya.Sprite{
     }
 
     public drawMap():void{
-        //this.laodings.graphics.drawRect(0,0,Laya.stage.width + GameBG.ww,Laya.stage.height+GameBG.ww,"#00000");
-
         let hb:GameHitBox = null;
-        this.harr = [];
+        this.Aharr = [];
+        this.Wharr = [];
+        this.Eharr = [];
+        this.Hharr = [];        
         this.map = {};
         this.graphics.clear();
 
         hb = new GameHitBox(GameBG.ww*(GameBG.wnum+1),GameBG.ww);
         hb.setXY(0,0);
-        this.harr.push(hb);
+        this.Wharr.push(hb);
 
         hb = new GameHitBox(GameBG.ww,GameBG.ww*(GameBG.hnum-2));
         hb.setXY(0,GameBG.ww*2);
-        this.harr.push(hb);
+        this.Wharr.push(hb);
 
         hb = new GameHitBox(GameBG.ww,GameBG.ww*(GameBG.hnum-2));
         hb.setXY(GameBG.ww*GameBG.wnum,GameBG.ww*2);
-        this.harr.push(hb);
+        this.Wharr.push(hb);
 
         var k:number = 0;
         for (var j = 0; j < GameBG.hnum; j++) {           
@@ -50,7 +58,7 @@ export default class GameMap0 extends Laya.Sprite{
                     }else{
                         hb = new GameHitBox(GameBG.ww,GameBG.ww);
                         hb.setXY(x,y);
-                        this.harr.push(hb);
+                        this.Wharr.push(hb);
                         this.map[key] = hb;
                     }
                 }
@@ -63,19 +71,19 @@ export default class GameMap0 extends Laya.Sprite{
 
         hb = new GameHitBox(GameBG.ww*(GameBG.wnum-1),GameBG.ww);
         hb.setXY(GameBG.ww,GameBG.ww * (j+1));
-        this.harr.push(hb);
+        this.Wharr.push(hb);
         
         //传送门左侧
         hb = new GameHitBox(GameBG.ww*5,GameBG.ww);
         hb.setXY(0,GameBG.ww);
-        this.harr.push(hb);
+        this.Wharr.push(hb);
         //传送门右侧
         hb = new GameHitBox(GameBG.ww*5,GameBG.ww);
         hb.setXY(GameBG.ww*8,GameBG.ww);
-        this.harr.push(hb);
+        this.Wharr.push(hb);
 
-        for (let i = 0; i < this.harr.length; i++) {
-            hb = this.harr[i];
+        for (let i = 0; i < this.Wharr.length; i++) {
+            hb = this.Wharr[i];
             this.graphics.drawRect(hb.left,hb.top,hb.ww,hb.hh,null,0xff0000);
         }
 
@@ -94,19 +102,14 @@ export default class GameMap0 extends Laya.Sprite{
         var hb = gamepro.hbox;
         var fb = this.futureBox;
         fb.setRq(hb.x+vx,hb.y+vy,hb.ww,hb.hh);
-        for (let i = 0; i < this.harr.length; i++) {
-            let ehb = this.harr[i];
+        for (let i = 0; i < this.Wharr.length; i++) {
+            let ehb = this.Wharr[i];
             if(ehb.hit(ehb,fb)){
                 return true;
             }
         }
         return false;
     }
-
-    public getHarr():GameHitBox[]{
-        return this.harr;
-    }
-
 
     public chechHit_arr(thb:GameHitBox,thbArr:GameHitBox[]):GameHitBox{
         let ehb:GameHitBox = null;
@@ -148,7 +151,7 @@ export default class GameMap0 extends Laya.Sprite{
                 break;
             } 
 
-            ebh  = this.chechHit_arr(this.arrhb,this.harr);
+            ebh  = this.chechHit_arr(this.arrhb,this.Wharr);
             if( ebh  ){
                 g.drawRect(this.arrhb.x,this.arrhb.y,this.arrhb.ww, this.arrhb.hh,null,"#ff0000");
                 g.drawRect(ebh.x,ebh.y,ebh.ww, ebh.hh,"#00ff00","#00ff00"); 
@@ -157,10 +160,10 @@ export default class GameMap0 extends Laya.Sprite{
                 this.sp.y = y0;
 
                 if(this.fcount<4){                              
-                    if(!this.chechHit_arr( this.arrhb.setVV(x0,y0,-1*vx,vy),this.harr)){
+                    if(!this.chechHit_arr( this.arrhb.setVV(x0,y0,-1*vx,vy),this.Wharr)){
                         vx = -1*vx;
                         this.fcount++;
-                    }else if(!this.chechHit_arr( this.arrhb.setVV(x0,y0,vx,-1*vy),this.harr)){
+                    }else if(!this.chechHit_arr( this.arrhb.setVV(x0,y0,vx,-1*vy),this.Wharr)){
                         vy = -1*vy;
                         this.fcount++;
                     }else{
