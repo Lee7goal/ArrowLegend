@@ -73,9 +73,8 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         // Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
-        
-        //Laya.Sprite3D.load("https://img.kuwan511.com/h5/LayaMonkey/LayaMonkey.lh",Laya.Handler.create(this,this.ok1));
-       Laya.Sprite3D.load("h5/ToonRockGolem/ToonSkeletons.lh",Laya.Handler.create(this,this.ok2));
+
+       Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh","h5/hero/hero.lh","h5/ArrowBlue/ToonSkeletons.lh"],Laya.Handler.create(this,this.onComplete))
        
     }
 
@@ -89,17 +88,8 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         return box;
     }
 
-    
-
-    ok3(sp:Laya.Sprite3D):void{  
-        Game.layer3d.addChild(sp);
-        var gpro = new GamePro();
-        gpro.setSp3d(sp);
-        Game.a0 = gpro;
-        Laya.Sprite3D.load("h5/ToonSkeletons/ToonSkeletons.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
-    }
-
-    ok2(sp:Laya.Sprite3D):void{  
+    onComplete():void{  
+        let sp:Laya.Sprite3D = Laya.loader.getRes("h5/ToonRockGolem/ToonSkeletons.lh");
         Game.bg.drawR();
         Game.layer3d.addChild(sp);
         var gpro = new GamePro();
@@ -108,13 +98,16 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.e0 = gpro;
         Game.map0.Eharr.push(gpro.hbox);
         Game.map0.addChild(Game.e0.sp2d);
-        //Game.e0.startAi();
-        //Laya.Sprite3D.load("h5/ToonDeathKnight/ToonDeathKnight.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
-        //Laya.Sprite3D.load("h5/ToonSkeletons/ToonSkeletons.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
-        Laya.Sprite3D.load("h5/ArrowBlue/ToonSkeletons.lh",Laya.Handler.create(this,this.ok3));
-    }
 
-    ok1(sp:Laya.Sprite3D):void{        
+
+        sp = Laya.loader.getRes("h5/ArrowBlue/ToonSkeletons.lh");
+        Game.layer3d.addChild(sp);
+        var gpro = new GamePro();
+        gpro.setSp3d(sp);
+        Game.a0 = gpro;
+
+
+        sp = Laya.loader.getRes("h5/hero/hero.lh");
         //得到原始Sprite3D
         //this.sp3d = sp;        
         Game.layer3d.addChild(sp);
@@ -138,11 +131,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
         Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
         Game.bg.updateY();
-
-        //Game.hero.on(Game.Event_Short,this,this.short)
     }
-
-    
 
     md(eve:MouseEvent):void{
         Game.hero.stopAi();        
