@@ -32,7 +32,17 @@ class Main {
 	}
 
 	onConfigLoaded(): void {
+		console.log(Laya.loader.getRes('bg/50.png'));
+		Laya.loader.load("h5/mapConfig/1001.json",new Laya.Handler(this,this.onHandler));
+		
+	}
+
+	private onHandler():void{
 		//加载IDE指定的场景
+		let map = Laya.loader.getRes("h5/mapConfig/1001.json");
+		// GameBG.hnum = map.rowNum;
+		// GameBG.cj = Math.floor(GameBG.hnum / 2);
+		GameBG.arr0 = map.arr;
 		GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);	
 	}
 }
