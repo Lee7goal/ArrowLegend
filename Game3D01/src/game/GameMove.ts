@@ -43,7 +43,7 @@ export class ArrowGameMove implements GameMove {
         }
 
 
-        var hits = Game.map0.Wharr;
+        var hits = Game.map0.Aharr;
         ebh = Game.map0.chechHit_arr(this.future,hits);
         if(ebh ){
             if( pro.gamedata.bounce<=0 ){
