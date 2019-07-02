@@ -7,7 +7,7 @@ import { GameMove } from "./GameMove";
 import { GameAI, HeroAI } from "./GameAI";
 import GameData from "./GameData";
 
-export default class GamePro extends Laya.EventDispatcher{
+export default class GamePro extends Laya.EventDispatcher{    
     //  id  :number;
     //  name:String;
     private gamedata_:GameData;
@@ -24,6 +24,7 @@ export default class GamePro extends Laya.EventDispatcher{
     private facen2d_:number;
     private facen3d_:number;
     private acstr_:string = "";
+    
 
     constructor(){
         super();
@@ -46,8 +47,6 @@ export default class GamePro extends Laya.EventDispatcher{
         var a:GamePro = <GamePro>array[0];        
         if(this.gameAI){
             this.gameAI.hit(a)
-        }else{
-            this.play(GameAI.TakeDamage);
         }
     }
 
@@ -75,8 +74,9 @@ export default class GamePro extends Laya.EventDispatcher{
         this.movef = gamemove;
     }
 
-    public setGameAi(gameAI:GameAI){
+    public setGameAi(gameAI:GameAI):GameAI{
         this.gameAI = gameAI;
+        return this.gameAI;
     }
 
     public get hbox():GameHitBox{
