@@ -9,6 +9,7 @@ import GamePro from "./GamePro";
 
 export default class Game{
 
+    static Event_PlayStop:string = "Game.Event_PlayStop";
     static Event_Short:string = "Game.Event_Short";
     static Event_Hit:string   = "Game.Event_Hit";
 

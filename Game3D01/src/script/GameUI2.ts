@@ -6,7 +6,7 @@ import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
 import { HeroGameMove, SimpleGameMove, ArrowGameMove } from "../game/GameMove";
-import { HeroAI, HeroArrowAI } from "../game/GameAI";
+import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 export default class GameUI2 extends  ui.test.TestSceneUI {
 
     constructor() {
@@ -102,8 +102,9 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
     ok2(sp:Laya.Sprite3D):void{  
         Game.layer3d.addChild(sp);
         var gpro = new GamePro();
-        gpro.setSp3d(sp);               
-        gpro.play("Idle");
+        gpro.setSp3d(sp);
+        gpro.setGameAi(new MonsterAI1(gpro));
+        //gpro.play("Idle");
         Game.e0 = gpro;
         Game.map0.Eharr.push(gpro.hbox);
         Game.map0.addChild(Game.e0.sp2d);

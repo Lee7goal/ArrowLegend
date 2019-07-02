@@ -43,8 +43,12 @@ export default class GamePro extends Laya.EventDispatcher{
     }
 
     private hit(array:any){
-        var a:GamePro = <GamePro>array[0];
-        this.play("TakeDamage");
+        var a:GamePro = <GamePro>array[0];        
+        if(this.gameAI){
+            this.gameAI.hit(a)
+        }else{
+            this.play(GameAI.TakeDamage);
+        }
     }
 
     public get acstr():string{
@@ -100,18 +104,20 @@ export default class GamePro extends Laya.EventDispatcher{
     public play(actionstr:string):void{
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
-
-        if( this.acstr!=HeroAI.Run &&  this.acstr!=HeroAI.Idle ){
+        //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
+        if( this.acstr!=GameAI.Run &&  this.acstr!=GameAI.Idle ){
             Laya.stage.frameLoop(1,this,this.ac0);            
         }else{
             Laya.stage.timer.clear(this,this.ac0);
         }
     }
 
-    ac0():void{
+    private ac0():void{
         if(this.normalizedTime >=1){
-            this.play(HeroAI.Idle);
+            var str = this.acstr_;
             Laya.stage.timer.clear(this,this.ac0);
+            this.play(GameAI.Idle);
+            this.event(Game.Event_PlayStop,str);            
         }
     }
 
