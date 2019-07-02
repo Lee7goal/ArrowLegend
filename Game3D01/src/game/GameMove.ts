@@ -2,6 +2,7 @@ import GamePro from "./GamePro";
 import Game from "./Game";
 import GameHitBox from "./GameHitBox";
 import GameBG from "./GameBG";
+import GameProType from "./GameProType";
 
 export interface GameMove {
     move2d(n:number,pro:GamePro,speed:number):boolean;
@@ -32,7 +33,13 @@ export class ArrowGameMove implements GameMove {
         var y0:number = pro.hbox.cy;        
         this.future.setVV(x0,y0,vx,vz);
 
-        var ebh = Game.map0.chechHit_arr(this.future,Game.map0.Eharr);
+        var ebh;
+        if(pro.gamedata.proType==GameProType.HeroArrow){
+            ebh = Game.map0.chechHit_arr(this.future,Game.map0.Eharr);
+        }else{
+            ebh = Game.map0.chechHit_arr(this.future,Game.map0.Hharr);
+        }
+
         if(ebh ){
             pro.setXY2D(pro.pos2.x+vx,pro.pos2.z+vz);
             pro.setSpeed(0);

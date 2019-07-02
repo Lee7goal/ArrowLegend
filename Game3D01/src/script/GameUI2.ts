@@ -6,8 +6,9 @@ import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
 import { HeroGameMove, SimpleGameMove, ArrowGameMove } from "../game/GameMove";
-import { HeroAI, HeroArrowAI } from "../game/GameAI";
+import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
+import GameProType from "../game/GameProType";
 export default class GameUI2 extends  ui.test.TestSceneUI {
 
     constructor() {
@@ -92,8 +93,8 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
     
 
     ok3(sp:Laya.Sprite3D):void{  
-        Game.layer3d.addChild(sp);
-        var gpro = new GamePro();
+        //Game.layer3d.addChild(sp);
+        var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
         Laya.Sprite3D.load("h5/ToonSkeletons/ToonSkeletons.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
@@ -102,13 +103,12 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
     ok2(sp:Laya.Sprite3D):void{  
         Game.bg.drawR();
         Game.layer3d.addChild(sp);
-        var gpro = new GamePro();
-        gpro.setSp3d(sp);               
-        gpro.play("Idle");
+        var gpro = new GamePro(GameProType.RockGolem_Blue);
+        gpro.setSp3d(sp);
         Game.e0 = gpro;
         Game.map0.Eharr.push(gpro.hbox);
         Game.map0.addChild(Game.e0.sp2d);
-        //Game.e0.startAi();
+        
         //Laya.Sprite3D.load("h5/ToonDeathKnight/ToonDeathKnight.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
         //Laya.Sprite3D.load("h5/ToonSkeletons/ToonSkeletons.lh",Laya.Handler.create(this,this.ok1));//ToonSkeletons
         Laya.Sprite3D.load("h5/ArrowBlue/ToonSkeletons.lh",Laya.Handler.create(this,this.ok3));
@@ -120,7 +120,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.layer3d.addChild(sp);
         //sp.transform.scale = new Laya.Vector3(1.5,1.5,1.5);
         //sp.transform.translate(new Laya.Vector3(0, 0, 2));
-        Game.hero = new GamePro();
+        Game.hero = new GamePro(GameProType.Hero);
         Game.hero.setSp3d( sp as Laya.Sprite3D );
         //Game.hero.transform.localPositionY = 2; 
         //Laya.stage.on(Laya.Event.KEY_DOWN,this,this.kd);
@@ -138,6 +138,11 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
         Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
         Game.bg.updateY();
+
+        Game.e0.setGameAi(new MonsterAI1(Game.e0));
+        Game.e0.startAi();
+
+        Game.map0.Hharr.push(Game.hero.hbox);
 
         //Game.hero.on(Game.Event_Short,this,this.short)
     }

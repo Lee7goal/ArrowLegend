@@ -26,9 +26,10 @@ export default class GamePro extends Laya.EventDispatcher{
     private acstr_:string = "";
     
 
-    constructor(){
+    constructor(proType_:number){
         super();
         this.gamedata_ = new GameData();
+        this.gamedata_.proType = proType_;
     }
 
     public setSp3d(sp:Sprite3D):void{

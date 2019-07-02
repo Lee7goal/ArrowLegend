@@ -2,6 +2,7 @@ import GamePro from "./GamePro";
 import Game from "./Game";
 import { ArrowGameMove } from "./GameMove";
 import GameHitBox from "./GameHitBox";
+import GameProType from "./GameProType";
 
 // export interface GameAI {    
 //     exeAI(pro:GamePro):boolean;
@@ -38,10 +39,10 @@ export class MonsterAI1 implements GameAI {
         this.pro.on(Game.Event_Short,this,this.shootAc);
     }
 
-    shootAc():void{
-        this.shooting.short_arrow(10,this.pro.face3d,this.pro);
-        this.shooting.short_arrow(10,this.pro.face3d + Math.PI/6,this.pro);
-        this.shooting.short_arrow(10,this.pro.face3d - Math.PI/6,this.pro);
+    shootAc(proType_:number):void{
+        this.shooting.short_arrow(10,this.pro.face3d,this.pro,proType_);
+        this.shooting.short_arrow(10,this.pro.face3d + Math.PI/6,this.pro,proType_);
+        this.shooting.short_arrow(10,this.pro.face3d - Math.PI/6,this.pro,proType_);
     }
 
     hit(pro: GamePro) {
@@ -49,7 +50,7 @@ export class MonsterAI1 implements GameAI {
             this.pro.play(GameAI.TakeDamage);
         }
     }
-    
+
     exeAI(pro: GamePro): boolean {
         this.shooting.now = Laya.Browser.now();
         if(this.shooting.now >= this.shooting.st ){
@@ -70,7 +71,7 @@ export class MonsterAI1 implements GameAI {
 
     private ac0():void{
         var pro = this.pro;
-        if(pro.normalizedTime>=0.35){           
+        if(pro.normalizedTime>=this.shooting.at){           
             if(this.shooting.scd==0){
                 this.shooting.scd = 1;
                 this.pro.event(Game.Event_Short,null);
@@ -140,14 +141,14 @@ export class HeroAI implements GameAI {
     getBullet():GamePro{        
         var gp:GamePro;
         if(Game.HeroArrows.length<=0){
-            gp = new GamePro();            
+            gp = new GamePro(GameProType.HeroArrow);            
             var bullet:Laya.Sprite3D;
             bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
             gp.setSp3d(bullet);
         }else{
             gp = Game.HeroArrows.shift();
         }
-        gp.gamedata.proType = 9998;
+        //gp.gamedata.proType = 9998;
         return gp;
     }
 
@@ -219,10 +220,10 @@ export class Shooting {
     /**攻击前摇时间*/
     public at:number = 0;
 
-    private getBullet():GamePro{        
+    private getBullet(proType_:number):GamePro{        
         var gp:GamePro;
         if(Game.HeroArrows.length<=0){
-            gp = new GamePro();
+            gp = new GamePro(proType_);
             var bullet:Laya.Sprite3D;
             bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
             gp.setSp3d(bullet);
@@ -232,8 +233,8 @@ export class Shooting {
         return gp;
     }
 
-    public short_arrow(speed_:number,r_:number,pro: GamePro){
-        var bo = this.getBullet();
+    public short_arrow(speed_:number,r_:number,pro: GamePro,proType_:number){
+        var bo = this.getBullet(proType_);
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x,pro.pos2.z);
         bo.setSpeed(speed_);
@@ -244,4 +245,27 @@ export class Shooting {
         Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
     }
+
+    public exeAI(pro: GamePro): boolean {
+        this.now = Laya.Browser.now();
+        if(this.now >= this.st ){
+            //var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.hero.hbox);
+            //this.pro.rotation(a);
+            this.st  = this.now + this.attackCd;
+            this.scd = 0;
+            pro.play(GameAI.SpinAttack);
+            if(this.at>0){
+                Laya.stage.timer.frameOnce(this.at,this,this.ac0);
+            }else{
+                this.ac0();
+            }
+            //this.shooting.short_arrow(40,this.pro.face3d,this.pro);
+        }
+        return false;
+    }
+
+    private ac0():void{        
+    }
+
+
 }
