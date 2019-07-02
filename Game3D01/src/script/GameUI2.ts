@@ -6,7 +6,7 @@ import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
 import { HeroGameMove, SimpleGameMove, ArrowGameMove } from "../game/GameMove";
-import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
+import { HeroAI, HeroArrowAI } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 export default class GameUI2 extends  ui.test.TestSceneUI {
 
@@ -14,12 +14,11 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         super();
         
         var bg:GameBG = new GameBG();
-        bg.drawR();
+       
         //bg.y = 1.5 * GameBG.ww;
         //bg.alpha = 0;
         Laya.stage.addChild(bg);
         Game.bg = bg;
-
         //添加3D场景
         var scene: Laya.Scene3D = Laya.stage.addChild(new Laya.Scene3D()) as Laya.Scene3D;
         scene.addChild(Game.layer3d);
@@ -54,8 +53,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         for (let j = 0; j < GameBG.hnum; j++) {            
             for (let i = 0; i < GameBG.wnum+1; i++) {                
                 //console.log(i,j);
-                if( k < GameBG.arr0.length && GridType.isWall(GameBG.arr0[k])
-            ){
+                if( k < GameBG.arr0.length && GridType.isWall(GameBG.arr0[k])){
                     let v3 = GameBG.get3D(i,j);
                     let box = this.getBox();    
                     box.transform.translate(v3);
@@ -72,7 +70,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 
         var map0:GameMap0 = new GameMap0();
         map0.drawMap();
-        //Laya.stage.addChild(map0);        
+        // Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
         
@@ -102,12 +100,11 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
     }
 
     ok2(sp:Laya.Sprite3D):void{  
+        Game.bg.drawR();
         Game.layer3d.addChild(sp);
         var gpro = new GamePro();
-        gpro.setSp3d(sp);
-        gpro.setGameAi(new MonsterAI1(gpro));
-        
-        //gpro.play("Idle");
+        gpro.setSp3d(sp);               
+        gpro.play("Idle");
         Game.e0 = gpro;
         Game.map0.Eharr.push(gpro.hbox);
         Game.map0.addChild(Game.e0.sp2d);
@@ -124,7 +121,6 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         //sp.transform.scale = new Laya.Vector3(1.5,1.5,1.5);
         //sp.transform.translate(new Laya.Vector3(0, 0, 2));
         Game.hero = new GamePro();
-        Game.hero.gamedata.proType = 9999;
         Game.hero.setSp3d( sp as Laya.Sprite3D );
         //Game.hero.transform.localPositionY = 2; 
         //Laya.stage.on(Laya.Event.KEY_DOWN,this,this.kd);
@@ -142,7 +138,6 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
         Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
         Game.bg.updateY();
-        Game.e0.startAi();
 
         //Game.hero.on(Game.Event_Short,this,this.short)
     }

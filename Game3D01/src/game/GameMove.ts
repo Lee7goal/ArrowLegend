@@ -32,20 +32,18 @@ export class ArrowGameMove implements GameMove {
         var y0:number = pro.hbox.cy;        
         this.future.setVV(x0,y0,vx,vz);
 
-        var ebh;
-        if(pro.gamedata.proType==9998){
-            ebh = Game.map0.chechHit_arr(this.future,Game.map0.Eharr);
-            if(ebh ){
-                pro.setXY2D(pro.pos2.x+vx,pro.pos2.z+vz);
-                pro.setSpeed(0);
-                if( ebh.linkPro_ ){
-                    ebh.linkPro_.event(Game.Event_Hit,pro);
-                }
-                return false;
+        var ebh = Game.map0.chechHit_arr(this.future,Game.map0.Eharr);
+        if(ebh ){
+            pro.setXY2D(pro.pos2.x+vx,pro.pos2.z+vz);
+            pro.setSpeed(0);
+            if( ebh.linkPro_ ){
+                ebh.linkPro_.event(Game.Event_Hit,pro);
             }
+            return false;
         }
 
-        var hits = Game.map0.Wharr;
+
+        var hits = Game.map0.Aharr;
         ebh = Game.map0.chechHit_arr(this.future,hits);
         if(ebh ){
             if( pro.gamedata.bounce<=0 ){

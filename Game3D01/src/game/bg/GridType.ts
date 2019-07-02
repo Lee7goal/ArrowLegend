@@ -1,14 +1,26 @@
 export default class GridType {
-    /**是否是河水 */
+    /**是否是水点 */
     public static isRiverPoint(type:Number):boolean
     {
         return type >= 100 && type < 200;
     }
 
-     /**是否是河水 */
-     public static isRiver(type:Number):boolean
+     /**是否是九宫格水 */
+     public static isRiverScale9Grid(type:Number):boolean
      {
-         return type >= 200 && type < 500;
+         return type > 200 && type < 300;
+     }
+
+     /**是否是横水 */
+     public static isRiverRow(type:Number):boolean
+     {
+         return type > 400 && type < 500;
+     }
+
+     /**是否是纵水 */
+     public static isRiverCol(type:Number):boolean
+     {
+         return type > 300 && type < 400;
      }
 
     /**是否是陷进 */
