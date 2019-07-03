@@ -78,7 +78,7 @@ export class ArrowGameMove implements GameMove {
     }
 }
 
-export class HeroGameMove implements GameMove {
+export class PlaneGameMove implements GameMove {
     move2d(n: number, pro: GamePro, speed: number):boolean {
         var vx:number = pro.speed * Math.cos(n);
         var vz:number = pro.speed * Math.sin(n);

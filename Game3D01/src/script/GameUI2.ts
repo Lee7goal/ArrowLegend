@@ -5,7 +5,7 @@ import Rocker from "../game/GameRocker";
 import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
-import { HeroGameMove, SimpleGameMove, ArrowGameMove } from "../game/GameMove";
+import { SimpleGameMove, ArrowGameMove, PlaneGameMove } from "../game/GameMove";
 import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 import GameProType from "../game/GameProType";
@@ -101,7 +101,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.map0.addChild(Game.e0.sp2d);
 
         sp = Laya.loader.getRes("h5/ArrowBlue/ToonSkeletons.lh");
-        Game.layer3d.addChild(sp);
+        //Game.layer3d.addChild(sp);
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
@@ -125,7 +125,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Laya.stage.on(Laya.Event.MOUSE_DOWN , this, this.md);
         Game.hero.play("Idle");
         Game.map0.addChild(Game.hero.sp2d);
-        Game.hero.setGameMove(new HeroGameMove());
+        Game.hero.setGameMove(new PlaneGameMove());
         Game.hero.setGameAi(new HeroAI());
 
         Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
@@ -136,9 +136,6 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.e0.startAi();
 
         Game.map0.Hharr.push(Game.hero.hbox);
-
-        //Game.hero.on(Game.Event_Short,this,this.short)
-
     }
 
     md(eve:MouseEvent):void{

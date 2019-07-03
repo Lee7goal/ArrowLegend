@@ -4,14 +4,7 @@ import { ArrowGameMove } from "./GameMove";
 import GameHitBox from "./GameHitBox";
 import GameProType from "./GameProType";
 
-// export interface GameAI {    
-//     exeAI(pro:GamePro):boolean;
-//     starAi();
-//     stopAi();
-// }
-
 export abstract class GameAI {
-    
     static JumpAttack:string = "JumpAttack";
     static ArrowAttack:string = "ArrowAttack";
     static Idle:string = "Idle";
@@ -19,19 +12,17 @@ export abstract class GameAI {
     static Run:string = "Run";
     static SpinAttack:string = "SpinAttack";
     static TakeDamage:string = "TakeDamage";
-
     abstract exeAI(pro:GamePro):boolean;
     abstract starAi();
     abstract stopAi();
     abstract hit(pro:GamePro);
 }
 //巡逻&攻击
-export class MonsterAI1 implements GameAI {
+export class MonsterAI1 extends GameAI {
     private pro:GamePro;
-
     private shooting:Shooting = new Shooting();
-
     constructor(pro:GamePro){
+        super();
         this.pro = pro;
         this.pro.play(GameAI.Idle);
         this.shooting.attackCd = 3000;
@@ -79,8 +70,6 @@ export class MonsterAI1 implements GameAI {
             }
         }
     }
-
-
     starAi() {
         this.shooting.now = Laya.Browser.now();
         this.shooting.st  = this.shooting.now + this.shooting.attackCd;
@@ -122,51 +111,24 @@ export class HeroArrowAI extends GameAI {
 }
 
 
-export class HeroAI implements GameAI {
+export class HeroAI extends GameAI {
+
+    private shootin:Shooting = new Shooting();
+
     hit(pro: GamePro) {
         //throw new Error("Method not implemented.");
     }
-    
-    public scd:number = 0;
-    public attackCd:number = 1200;
-    public st:number = 0;
-    public now:number = 0;
 
     public starAi(){
         Game.hero.on(Game.Event_Short,this,this.short);
-        this.now = Laya.Browser.now();
+        this.shootin.at = 0.35;
+        this.shootin.now = Laya.Browser.now();
         //this.st = this.now;
     }
 
-    getBullet():GamePro{        
-        var gp:GamePro;
-        if(Game.HeroArrows.length<=0){
-            gp = new GamePro(GameProType.HeroArrow);            
-            var bullet:Laya.Sprite3D;
-            bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
-            gp.setSp3d(bullet);
-        }else{
-            gp = Game.HeroArrows.shift();
-        }
-        //gp.gamedata.proType = 9998;
-        return gp;
-    }
-
-    public short_arrow(speed_:number,r_:number){
-        var bo = this.getBullet();
-        bo.sp3d.transform.localPositionY = 0.8;
-        bo.setXY2D(Game.hero.pos2.x,Game.hero.pos2.z);
-        bo.setSpeed(speed_);
-        bo.rotation(r_);
-        bo.setGameMove(new ArrowGameMove());
-        bo.setGameAi(new HeroArrowAI());        
-        bo.gamedata.bounce = Game.hero.gamedata.bounce;
-        Game.layer3d.addChild(bo.sp3d);
-        bo.startAi();
-    }
-
     public short():void{
-        this.short_arrow(40,Game.hero.face3d);
+        this.shootin.short_arrow(40,Game.hero.face3d,Game.hero,GameProType.HeroArrow);
+        //this.short_arrow(40,Game.hero.face3d);        
         // this.short_arrow(40,Game.hero.face3d + Math.PI/6);
         // this.short_arrow(40,Game.hero.face3d - Math.PI/6);
         // this.short_arrow(40,Game.hero.face3d - Math.PI/2);
@@ -182,12 +144,12 @@ export class HeroAI implements GameAI {
     public exeAI(pro:GamePro):boolean{
         var hero = Game.hero;
         if( hero.acstr!=GameAI.ArrowAttack ){
-            this.now = Laya.Browser.now();
-            if(this.now >= this.st){
+            this.shootin.now = Laya.Browser.now();
+            if(this.shootin.now >= this.shootin.st){
                 pro.play(GameAI.ArrowAttack);
                 Laya.stage.frameLoop(1,this,this.ac0);
-                this.st = this.now + this.attackCd;
-                this.scd = 0;
+                this.shootin.st = this.shootin.now + this.shootin.attackCd;
+                this.shootin.scd = 0;
             }
         }
         return true;
@@ -195,13 +157,13 @@ export class HeroAI implements GameAI {
 
     private ac0():void{
         var hero = Game.hero;
-        if(hero.normalizedTime>=0.35){
+        if(hero.normalizedTime>=this.shootin.at){
             if(hero.normalizedTime >=1){
                 hero.play(GameAI.Idle);
                 Laya.stage.timer.clear(this,this.ac0);
             }
-            if(this.scd==0){
-                this.scd = 1;
+            if(this.shootin.scd==0){
+                this.shootin.scd = 1;
                 Game.hero.event(Game.Event_Short,null);
             }
         }
@@ -266,6 +228,4 @@ export class Shooting {
 
     private ac0():void{        
     }
-
-
 }
