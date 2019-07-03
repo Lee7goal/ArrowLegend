@@ -32,7 +32,6 @@ class Main {
 	}
 
 	onConfigLoaded(): void {
-		console.log(Laya.loader.getRes('bg/50.png'));
 		Laya.loader.load("h5/mapConfig/1001.json",new Laya.Handler(this,this.onHandler));
 		
 	}

@@ -44,6 +44,22 @@ export default class GamePro extends Laya.EventDispatcher{
         this.on(Game.Event_Hit,this,this.hit);
     }
 
+    public get animator():Animator{
+        return this.ani_;
+    }
+
+    private _hat:Sprite3D;
+    public addSprite3DToAvatarNode(nodeName:string,sprite3d:Sprite3D):void{
+        this._hat = sprite3d;
+        this.ani_.linkSprite3DToAvatarNode(nodeName,sprite3d);
+        Game.layer3d.addChild(sprite3d);
+    }
+
+    public removeSprite3DToAvatarNode():void
+    {
+        this.ani_.unLinkSprite3DToAvatarNode(this._hat);
+    }
+
     private hit(array:any){
         var a:GamePro = <GamePro>array[0];        
         if(this.gameAI){
