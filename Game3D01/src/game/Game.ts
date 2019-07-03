@@ -26,7 +26,7 @@ export default class Game{
     //static hero:Laya.Sprite3D;
     static hero:GamePro;
     //主敌人    
-    static e0:GamePro;
+    static e0_:GamePro;
     //主箭    
     static a0:GamePro;
 

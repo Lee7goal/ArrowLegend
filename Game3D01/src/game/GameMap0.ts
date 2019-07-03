@@ -186,13 +186,13 @@ export default class GameMap0 extends Laya.Sprite{
             this.arrhb.setVV(x0,y0,vx,vy);
             var ebh;// = this.chechHit_arr(this.arrhb,Game.e0.);
 
-            if( Game.e0.hbox.hit(Game.e0.hbox,this.arrhb) ){
-                ebh = Game.e0.hbox;
-                g.drawRect(this.arrhb.x,this.arrhb.y,this.arrhb.ww, this.arrhb.hh,null,"#ff0000");
-                g.drawRect(ebh.x,ebh.y,ebh.ww, ebh.hh,"#00ff00","#00ff00");
-                g.drawLine(this.sp.x,this.sp.y,x0,y0,"#ff0000");
-                break;
-            } 
+            // if( Game.e0.hbox.hit(Game.e0.hbox,this.arrhb) ){
+            //     ebh = Game.e0.hbox;
+            //     g.drawRect(this.arrhb.x,this.arrhb.y,this.arrhb.ww, this.arrhb.hh,null,"#ff0000");
+            //     g.drawRect(ebh.x,ebh.y,ebh.ww, ebh.hh,"#00ff00","#00ff00");
+            //     g.drawLine(this.sp.x,this.sp.y,x0,y0,"#ff0000");
+            //     break;
+            // } 
 
             ebh  = this.chechHit_arr(this.arrhb,this.Wharr);
             if( ebh  ){

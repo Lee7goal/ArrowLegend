@@ -21,7 +21,8 @@ export class SimpleGameMove implements GameMove {
 }
 
 export class ArrowGameMove implements GameMove {
-    private future:GameHitBox = new GameHitBox(2,2);    
+    private future:GameHitBox = new GameHitBox(2,2);
+    //static  trail ;   
     move2d(n: number, pro: GamePro, speed: number):boolean {
         //pro.rotation(n);
         pro.setSpeed( speed );
@@ -33,9 +34,12 @@ export class ArrowGameMove implements GameMove {
         var y0:number = pro.hbox.cy;        
         this.future.setVV(x0,y0,vx,vz);
 
-        var ebh;
+        var ebh:GameHitBox;
         if(pro.gamedata.proType==GameProType.HeroArrow){
             ebh = Game.map0.chechHit_arr(this.future,Game.map0.Eharr);
+            // var trail = pro.sp3d.getChildByName("Arrow-Blue").getChildByName("Trail") as Laya.TrailSprite3D;            
+            // console.log(trail);
+            // if( trail.trailRenderer._renderElements.length ){}
         }else{
             ebh = Game.map0.chechHit_arr(this.future,Game.map0.Hharr);
         }
@@ -45,6 +49,7 @@ export class ArrowGameMove implements GameMove {
             pro.setSpeed(0);
             if( ebh.linkPro_ ){
                 ebh.linkPro_.event(Game.Event_Hit,pro);
+                
             }
             return false;
         }

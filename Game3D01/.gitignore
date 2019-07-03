@@ -32,4 +32,4 @@
 ### Layabox ###
 /release/
 /.laya/
-/bin/js/
+/bin/js/bundle.js

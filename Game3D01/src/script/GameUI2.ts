@@ -93,16 +93,28 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         return box;
     }
 
-    onComplete():void{  
-        let sp:Laya.Sprite3D = Laya.loader.getRes("h5/ToonRockGolem/ToonSkeletons.lh");
-
-        Game.bg.drawR();
-        Game.layer3d.addChild(sp);
+    getMonster():GamePro{
+        var sp = Laya.Sprite3D.instantiate( Game.e0_.sp3d );
         var gpro = new GamePro(GameProType.RockGolem_Blue);
         gpro.setSp3d(sp);
-        Game.e0 = gpro;
+        gpro.setGameAi(new MonsterAI1(gpro));
+        gpro.setGameMove(new PlaneGameMove());
         Game.map0.Eharr.push(gpro.hbox);
-        Game.map0.addChild(Game.e0.sp2d);
+        Game.map0.addChild(gpro.sp2d);
+        Game.layer3d.addChild(sp);
+        return gpro;
+    }
+
+    onComplete():void{  
+        Game.bg.drawR();
+
+        let sp:Laya.Sprite3D = Laya.loader.getRes("h5/ToonRockGolem/ToonSkeletons.lh");
+        //Game.layer3d.addChild(sp);        
+        var gpro = new GamePro(GameProType.RockGolem_Blue);
+        gpro.setSp3d(sp);
+        Game.e0_ = gpro;
+
+        
 
         sp = Laya.loader.getRes("h5/ArrowBlue/ToonSkeletons.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
@@ -128,15 +140,20 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 
         // let maozi = Laya.loader.getRes("h5/maozi/hero.lh");
         // Game.hero.addSprite3DToAvatarNode("joint11",maozi);
-
-        Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+       
+        
         Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
         Game.bg.updateY();
-
-        Game.e0.setGameAi(new MonsterAI1(Game.e0));
-        Game.e0.startAi();
-
         Game.map0.Hharr.push(Game.hero.hbox);
+
+        // gpro = this.getMonster();
+        // gpro.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+        // gpro.startAi();
+
+        gpro = this.getMonster();
+        gpro.setXY2DBox(GameBG.ww*7 , (GameBG.arr0.length/13 - 6) * GameBG.ww );
+        gpro.startAi();
+        Game.e0_ = gpro;
     }
 
     md(eve:MouseEvent):void{
@@ -156,7 +173,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
     
     up(eve:Event):void{
         Game.hero.play("Idle");
-        var a:number = GameHitBox.faceTo3D(Game.hero.hbox ,  Game.e0.hbox);
+        var a:number = GameHitBox.faceTo3D(Game.hero.hbox ,  Game.e0_.hbox);
         Game.hero.rotation(a);
         //this.heron = GameHitBox.faceTo(Game.hero.hbox , Game.e0.hbox);
 
