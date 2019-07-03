@@ -10,6 +10,7 @@ class Main {
 		Laya["DebugPanel"] && Laya["DebugPanel"].enable();
 		//Laya.stage.scaleMode = GameConfig.scaleMode;
 		//console.log(Laya.Stage.SCALE_FIXED_WIDTH);
+		Laya.stage.bgColor = "#ffffff";
 		Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_WIDTH;
 		//Laya.stage.screenMode = GameConfig.screenMode;
 		Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;
