@@ -47,7 +47,7 @@ export default class GameBG extends Laya.Sprite {
 
     static get3D(xx: number, yy: number): Laya.Vector3 {
         if (!GameBG.v3d) {
-            GameBG.v3d = new Laya.Vector3(0, 0.5, 0);
+            GameBG.v3d = new Laya.Vector3(0, 0, 0);
         }
         GameBG.v3d.x = (xx - GameBG.ci);
         GameBG.v3d.z = (yy - GameBG.cj) * 2;
@@ -194,7 +194,7 @@ export default class GameBG extends Laya.Sprite {
                 }
                 gType = GameBG.arr0[k];
                 img = new Image();
-                img.skin = (k % 2 == 0) ? "bg/10.jpg" : "bg/11.jpg";
+                img.skin = (k % 2 == 0) ? "bg/10.png" : "bg/11.png";
                 this._box.addChild(img);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
