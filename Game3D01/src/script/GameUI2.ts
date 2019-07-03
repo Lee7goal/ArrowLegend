@@ -75,7 +75,7 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.map0 = map0;
         Game.updateMap();
 
-       Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh","h5/ToonSkeletons/ToonSkeletons.lh","h5/ArrowBlue/ToonSkeletons.lh"],Laya.Handler.create(this,this.onComplete))
+       Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh","h5/ToonSkeletons/ToonSkeletons.lh","h5/ArrowBlue/ToonSkeletons.lh","h5/maozi/hero.lh"],Laya.Handler.create(this,this.onComplete))
        
     }
 
@@ -106,17 +106,12 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         gpro.setSp3d(sp);
         Game.a0 = gpro;
 
-
-        sp = Laya.loader.getRes("h5/ToonSkeletons/ToonSkeletons.lh");
-        //得到原始Sprite3D
-        //this.sp3d = sp;        
+        //得到原始Sprite3D   
+        sp = Laya.loader.getRes("h5/ToonSkeletons/ToonSkeletons.lh");   
         Game.layer3d.addChild(sp);
-        //sp.transform.scale = new Laya.Vector3(1.5,1.5,1.5);
-        //sp.transform.translate(new Laya.Vector3(0, 0, 2));
         Game.hero = new GamePro(GameProType.Hero);
         Game.hero.setSp3d( sp as Laya.Sprite3D );
-        //Game.hero.transform.localPositionY = 2; 
-        //Laya.stage.on(Laya.Event.KEY_DOWN,this,this.kd);
+
         Game.ro = new Rocker();
 		Game.ro.x = Laya.stage.width/2;
 		Game.ro.y = Laya.stage.height - 200;        
@@ -128,6 +123,9 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.hero.setGameMove(new HeroGameMove());
         Game.hero.setGameAi(new HeroAI());
 
+        // let maozi = Laya.loader.getRes("h5/maozi/hero.lh");
+        // Game.hero.addSprite3DToAvatarNode("joint11",maozi);
+
         Game.e0.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
         Game.hero.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 1) * GameBG.ww );
         Game.bg.updateY();
@@ -136,9 +134,6 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.e0.startAi();
 
         Game.map0.Hharr.push(Game.hero.hbox);
-
-        //Game.hero.on(Game.Event_Short,this,this.short)
-
     }
 
     md(eve:MouseEvent):void{
