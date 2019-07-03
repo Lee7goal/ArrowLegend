@@ -21,13 +21,21 @@ export abstract class GameAI {
 export class MonsterAI1 extends GameAI {
     private pro:GamePro;
     private shooting:Shooting = new Shooting();
+
+    private aicd = 0;
+    private aist = 0;
+
     constructor(pro:GamePro){
         super();
         this.pro = pro;
         this.pro.play(GameAI.Idle);
-        this.shooting.attackCd = 3000;
+        this.shooting.attackCd = 1500;
         this.shooting.at = 0.4;
         this.pro.on(Game.Event_Short,this,this.shootAc);
+
+        this.aicd = this.shooting.attackCd + 100;
+        this.aist = Laya.Browser.now();
+        this.pro.setSpeed(2);
     }
 
     shootAc(proType_:number):void{
@@ -42,39 +50,44 @@ export class MonsterAI1 extends GameAI {
         }
     }
 
+    private aiCount:number = Math.floor(Math.random()*5);
+
     exeAI(pro: GamePro): boolean {
-        this.shooting.now = Laya.Browser.now();
-        if(this.shooting.now >= this.shooting.st ){
-            var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
-            this.pro.rotation(a);
-            this.shooting.st  = this.shooting.now + this.shooting.attackCd;
-            this.shooting.scd = 0;
-            this.pro.play(GameAI.SpinAttack);
-            if(this.shooting.at>0){
-                Laya.stage.frameLoop(1,this,this.ac0);
+        var now = Laya.Browser.now();
+        if(now>=this.aist){
+            Laya.stage.timer.clear(this,this.go);
+            this.aiCount++;
+            if( this.aiCount % 5 != 0 ){
+                this.shooting.now = now;
+                if(this.shooting.attaclCD()){
+                    var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
+                    this.pro.rotation(a);
+                    this.shooting.starAttack(this.pro,GameAI.SpinAttack);
+                    //return true;
+                    this.aist = now + this.aicd;
+                }
             }else{
-                this.ac0();
+                var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
+                this.pro.rotation(a);
+                Laya.stage.frameLoop(1,this,this.go);
+                this.aist = now + 2000 + (1000*Math.random());
             }
-            //this.shooting.short_arrow(40,this.pro.face3d,this.pro);
+
+            
         }
         return false;
     }
 
-    private ac0():void{
-        var pro = this.pro;
-        if(pro.normalizedTime>=this.shooting.at){           
-            if(this.shooting.scd==0){
-                this.shooting.scd = 1;
-                this.pro.event(Game.Event_Short,null);
-                Laya.stage.timer.clear(this,this.ac0);
-            }
-        }
+    private go():void{
+        this.pro.move2D(this.pro.face2d);
     }
+
     starAi() {
         this.shooting.now = Laya.Browser.now();
         this.shooting.st  = this.shooting.now + this.shooting.attackCd;
     }
-    stopAi() {        
+    stopAi() {
+        this.shooting.cancelAttack();        
     }
 }
 
@@ -96,7 +109,7 @@ export class HeroArrowAI extends GameAI {
                 pro.stopAi();
                 if(pro.sp3d.parent){
                     Game.layer3d.removeChild(pro.sp3d);                
-                    //Game.HeroArrows.push(pro);
+                    Game.HeroArrows.push(pro);
                 } 
             }
         }
@@ -117,16 +130,18 @@ export class HeroAI extends GameAI {
 
     hit(pro: GamePro) {
         //throw new Error("Method not implemented.");
+        pro.gamedata.hp--;
+        console.log("pro.gamedata.hp " , pro.gamedata.hp);
+        
     }
 
     public starAi(){
         Game.hero.on(Game.Event_Short,this,this.short);
         this.shootin.at = 0.35;
         this.shootin.now = Laya.Browser.now();
-        //this.st = this.now;
     }
 
-    public short():void{
+    public short():void{        
         this.shootin.short_arrow(40,Game.hero.face3d,Game.hero,GameProType.HeroArrow);
         //this.short_arrow(40,Game.hero.face3d);        
         // this.short_arrow(40,Game.hero.face3d + Math.PI/6);
@@ -137,39 +152,17 @@ export class HeroAI extends GameAI {
     }
 
     public stopAi(){
+        this.shootin.cancelAttack();
         Game.hero.off(Game.Event_Short,this,this.short);
-        Laya.stage.timer.clear(this,this.ac0);        
+       
     }
 
     public exeAI(pro:GamePro):boolean{
-        var hero = Game.hero;
-        if( hero.acstr!=GameAI.ArrowAttack ){
-            this.shootin.now = Laya.Browser.now();
-            if(this.shootin.now >= this.shootin.st){
-                pro.play(GameAI.ArrowAttack);
-                Laya.stage.frameLoop(1,this,this.ac0);
-                this.shootin.st = this.shootin.now + this.shootin.attackCd;
-                this.shootin.scd = 0;
-            }
-        }
-        return true;
-    }
-
-    private ac0():void{
-        var hero = Game.hero;
-        if(hero.normalizedTime>=this.shootin.at){
-            if(hero.normalizedTime >=1){
-                hero.play(GameAI.Idle);
-                Laya.stage.timer.clear(this,this.ac0);
-            }
-            if(this.shootin.scd==0){
-                this.shootin.scd = 1;
-                Game.hero.event(Game.Event_Short,null);
-            }
-        }
+        return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
     }
 }
-    
+
+/**射击器*/
 export class Shooting {
     /**单次出手次数*/
     public scd:number = 0;
@@ -181,6 +174,9 @@ export class Shooting {
     public now:number = 0;
     /**攻击前摇时间*/
     public at:number = 0;
+    //private static bulletCount:number = 0;
+
+    private pro:GamePro;
 
     private getBullet(proType_:number):GamePro{        
         var gp:GamePro;
@@ -189,8 +185,11 @@ export class Shooting {
             var bullet:Laya.Sprite3D;
             bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
             gp.setSp3d(bullet);
+            //Shooting.bulletCount++;
+            //console.log("Shooting.bulletCount " , Shooting.bulletCount);
         }else{
             gp = Game.HeroArrows.shift();
+            gp.gamedata.proType = proType_;
         }
         return gp;
     }
@@ -208,24 +207,43 @@ export class Shooting {
         bo.startAi();
     }
 
-    public exeAI(pro: GamePro): boolean {
+    public attaclCD():boolean{
+        return this.now >= this.st ;
+    }
+
+    public starAttack(pro: GamePro,acstr:string): boolean {
+        this.pro = pro;
         this.now = Laya.Browser.now();
-        if(this.now >= this.st ){
-            //var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.hero.hbox);
-            //this.pro.rotation(a);
+        if(this.attaclCD() ){
             this.st  = this.now + this.attackCd;
             this.scd = 0;
-            pro.play(GameAI.SpinAttack);
+            pro.play(acstr);
             if(this.at>0){
-                Laya.stage.timer.frameOnce(this.at,this,this.ac0);
+                Laya.stage.timer.frameLoop(this.at,this,this.ac0);
             }else{
                 this.ac0();
             }
-            //this.shooting.short_arrow(40,this.pro.face3d,this.pro);
+            return true;            
         }
         return false;
     }
 
-    private ac0():void{        
+    public cancelAttack():void{
+        Laya.stage.timer.clear(this,this.ac0);
+        this.scd = 0;
+    }
+
+    private ac0():void{
+        //this.pro;
+        if(this.pro.normalizedTime>=this.at){
+            if(this.pro.normalizedTime >=1){
+                Laya.stage.timer.clear(this,this.ac0);
+                this.pro.play(GameAI.Idle);                
+            }
+            if(this.scd==0){
+                this.scd = 1;
+                this.pro.event(Game.Event_Short,null);
+            }
+        }        
     }
 }

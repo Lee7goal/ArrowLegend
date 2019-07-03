@@ -60,10 +60,11 @@ export default class GamePro extends Laya.EventDispatcher{
         this.ani_.unLinkSprite3DToAvatarNode(this._hat);
     }
 
-    private hit(array:any){
-        var a:GamePro = <GamePro>array[0];        
+    private hit(pro:any):void{
+        // var a:GamePro = <GamePro>pro;
+        // console.log("a " , a);
         if(this.gameAI){
-            this.gameAI.hit(a)
+            this.gameAI.hit(pro);
         }
     }
 
