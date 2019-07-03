@@ -35,7 +35,7 @@ export default class Game{
     //贴图材质
     static material_blinn:Laya.BlinnPhongMaterial;
     
-    static box:Laya.MeshSprite3D;
+    static box:Laya.Sprite3D;
 
     static bullet:Laya.MeshSprite3D;
     //摇杆
