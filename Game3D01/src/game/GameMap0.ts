@@ -36,7 +36,7 @@ export default class GameMap0 extends Laya.Sprite{
         this.graphics.clear();
 
         hb = new GameHitBox(GameBG.ww*(GameBG.wnum+1),GameBG.ww);
-        hb.setXY(0,0);
+        hb.setXY(0,GameBG.ww * 8);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
 
@@ -64,12 +64,13 @@ export default class GameMap0 extends Laya.Sprite{
                 || GridType.isRiverCol(GameBG.arr0[k]) 
                 || GridType.isRiverPoint(GameBG.arr0[k]) 
                 // || GridType.isThorn(GameBG.arr0[k])  
-                || GridType.isRiverScale9Grid(GameBG.arr0[k]))){
-                    let key = GameBG.arr0[k];
-                    if(this.map[key]){
-                        hb = this.map[key];
-                        hb.setVV(hb.x,hb.y,x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
-                    }else{
+                )){
+                     let key = GameBG.arr0[k];
+                     if(this.map[key]){
+                         hb = this.map[key];
+                         //hb.setVV(hb.x,hb.y,x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
+                         hb.setRq(hb.x,hb.y,x + GameBG.ww - hb.x,y + GameBG.ww - hb.y);
+                     }else{
                         hb = new GameHitBox(GameBG.ww,GameBG.ww);
                         hb.setXY(x,y);
                         this.Wharr.push(hb);
@@ -115,12 +116,12 @@ export default class GameMap0 extends Laya.Sprite{
         
         //传送门左侧
         hb = new GameHitBox(GameBG.ww*5,GameBG.ww);
-        hb.setXY(0,GameBG.ww);
+        hb.setXY(0,GameBG.ww * 9);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         //传送门右侧
         hb = new GameHitBox(GameBG.ww*5,GameBG.ww);
-        hb.setXY(GameBG.ww*8,GameBG.ww);
+        hb.setXY(GameBG.ww*8,GameBG.ww * 9);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
 

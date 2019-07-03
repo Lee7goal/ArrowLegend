@@ -32,7 +32,7 @@ class Main {
 	}
 
 	onConfigLoaded(): void {
-		Laya.loader.load("h5/mapConfig/1001.json",new Laya.Handler(this,this.onHandler));
+		Laya.loader.load(["h5/mapConfig/1001.json"],new Laya.Handler(this,this.onHandler));
 		
 	}
 
@@ -41,6 +41,10 @@ class Main {
 		let map = Laya.loader.getRes("h5/mapConfig/1001.json");
 		// GameBG.hnum = map.rowNum;
 		// GameBG.cj = Math.floor(GameBG.hnum / 2);
+
+		// GameBG.hnum = 30;
+		// GameBG.cj = 26;
+		GameBG.MAP_ROW = map.rowNum;
 		GameBG.arr0 = map.arr;
 		GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);	
 	}

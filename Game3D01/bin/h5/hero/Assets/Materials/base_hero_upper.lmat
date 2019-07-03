@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"base_hero_hands",
+		"name":"base_hero_upper",
 		"renderStates":[
 			{
 				"cull":2,
@@ -21,10 +21,10 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/base_hero_hands.jpg",
+				"path":"../Hero/Textures/base_hero_upper.jpg",
 				"constructParams":[
-					128,
-					128,
+					256,
+					256,
 					0,
 					true
 				],

@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Maleface_01_hero_diffuse",
+		"name":"base_hero_hands",
 		"renderStates":[
 			{
 				"cull":2,
@@ -21,10 +21,10 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/Maleface_01_hero_diffuse.jpg",
+				"path":"../Hero/Textures/base_hero_hands.jpg",
 				"constructParams":[
-					256,
-					256,
+					128,
+					128,
 					0,
 					true
 				],

@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/heavy_050lv_01_o01_hero_lower_mip_0.jpg",
+				"path":"../Hero/Textures/heavy_050lv_01_o01_hero_lower_mip_0.jpg",
 				"constructParams":[
 					256,
 					256,

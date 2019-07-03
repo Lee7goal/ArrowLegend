@@ -50,11 +50,12 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
 				material.albedoTexture = tex;
         }));
         
+        
         let k:number = 0;
         for (let j = 0; j < GameBG.hnum; j++) {            
             for (let i = 0; i < GameBG.wnum+1; i++) {                
                 //console.log(i,j);
-                if( k < GameBG.arr0.length && GridType.isWall(GameBG.arr0[k])){
+                if( k < GameBG.arr0.length && (GridType.isWall(GameBG.arr0[k]) || (GameBG.arr0[k] ==1))){
                     let v3 = GameBG.get3D(i,j);
                     let box = this.getBox();    
                     box.transform.translate(v3);
@@ -74,10 +75,13 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         // Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
-
-       Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh","h5/ToonSkeletons/ToonSkeletons.lh","h5/ArrowBlue/ToonSkeletons.lh","h5/maozi/hero.lh"],Laya.Handler.create(this,this.onComplete))
+        this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
+        // this.heroUrl = "h5/hero/hero.lh";
+       Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh",this.heroUrl,"h5/ArrowBlue/ToonSkeletons.lh","h5/maozi/hero.lh"],Laya.Handler.create(this,this.onComplete))
        
     }
+
+    private heroUrl:string;
 
     getBox():Laya.Sprite3D{        
         if(Game.box==null){
@@ -101,13 +105,12 @@ export default class GameUI2 extends  ui.test.TestSceneUI {
         Game.map0.addChild(Game.e0.sp2d);
 
         sp = Laya.loader.getRes("h5/ArrowBlue/ToonSkeletons.lh");
-        //Game.layer3d.addChild(sp);
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
 
         //得到原始Sprite3D   
-        sp = Laya.loader.getRes("h5/ToonSkeletons/ToonSkeletons.lh");   
+        sp = Laya.loader.getRes(this.heroUrl);   
         Game.layer3d.addChild(sp);
         Game.hero = new GamePro(GameProType.Hero);
         Game.hero.setSp3d( sp as Laya.Sprite3D );

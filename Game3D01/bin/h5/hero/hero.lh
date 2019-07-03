@@ -62,7 +62,11 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/Hero/Animations/daiji-Take 001.lani"
+										"clipPath":"Assets/Hero/Animations/daiji-Idle.lani"
+									},
+									{
+										"name":"Run",
+										"clipPath":"Assets/Hero/Animations/paopao-Run.lani"
 									}
 								]
 							}
@@ -118,19 +122,19 @@
 							},
 							"materials":[
 								{
-									"path":"Assets/Hero/Materials/Maleface_01_hero_diffuse.lmat"
+									"path":"Assets/Materials/Maleface_01_hero_diffuse.lmat"
 								},
 								{
-									"path":"Assets/Hero/Materials/base_hero_hands.lmat"
+									"path":"Assets/Materials/base_hero_hands.lmat"
 								},
 								{
-									"path":"Assets/Hero/Materials/base_hero_lower_new.lmat"
+									"path":"Assets/Materials/base_hero_lower_new.lmat"
 								},
 								{
-									"path":"Assets/Hero/Materials/base_hero_upper.lmat"
+									"path":"Assets/Materials/base_hero_upper.lmat"
 								},
 								{
-									"path":"Assets/Hero/Materials/heavy_050lv_01_o01_hero_lower_mip_0.lmat"
+									"path":"Assets/Materials/heavy_050lv_01_o01_hero_lower_mip_0.lmat"
 								}
 							],
 							"meshPath":"Assets/Hero/FBX/xiaohai-polySurface7.lm"

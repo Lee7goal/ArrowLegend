@@ -31,7 +31,7 @@ export default class GridType {
 
     public static isWall(type:Number):boolean
     {
-        return type>=600 && type<700 || type == 1;
+        return type>=600 && type<700;
     }
 
 }

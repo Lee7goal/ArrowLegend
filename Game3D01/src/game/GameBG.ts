@@ -5,6 +5,7 @@ import Game from "./Game";
 import GridType from "./bg/GridType";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
+    static MAP_ROW: number;
     /**地图恒星格子数*/
     static wnum: number = 12;
     /**地图纵向格子数*/
@@ -24,7 +25,7 @@ export default class GameBG extends Laya.Sprite {
     //主角的碰撞方块尺寸
     static mw: number = GameBG.ww - GameBG.fw;
     //1/2 主角的碰撞方块尺寸
-    static mw2: number = GameBG.mw / 2;
+    static mw2: number = 24;
     //正交相机纵向尺寸
     static orthographicVerticalSize: number = GameBG.wnum * GameBG.height / GameBG.width;
     //2D地图
@@ -147,11 +148,23 @@ export default class GameBG extends Laya.Sprite {
             GameBG.mw + dy > d2.y
     }
 
+    private _box: Sprite = new Sprite();
+    private _top: Image = new Image();
+    private _bottom: Image = new Image();
     constructor() {
         super();
         console.log(GameBG.wnum, Laya.stage.height, Laya.stage.width);
         //GameBG.orthographicVerticalSize = GameBG.wnum*Laya.stage.height/Laya.stage.width;
         GameBG.gameBG = this;
+
+        this.addChild(this._box);
+        this.addChild(this._top);
+        this._top.x = GameBG.ww2;
+        this._top.skin = "bg/top.png";
+
+        this.addChild(this._bottom);
+        this._bottom.x = GameBG.ww2;
+
 
         this.mySp = new Sprite();
         this.mySp.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, 0x00ff00);
@@ -172,15 +185,20 @@ export default class GameBG extends Laya.Sprite {
         var k: number = 0;
         let sp: Sprite;
         let gType: number = 0;
+
         for (let j = 0; j < GameBG.hnum; j++) {
             this.bgh += ww;
             for (let i = 0; i < GameBG.wnum + 1; i++) {
+                if (k > GameBG.arr0.length)  {
+                    continue;
+                }
+                gType = GameBG.arr0[k];
                 img = new Image();
                 img.skin = (k % 2 == 0) ? "bg/10.jpg" : "bg/11.jpg";
-                this.addChild(img);
+                this._box.addChild(img);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
-                gType = GameBG.arr0[k];
+
 
                 // if(i==GameBG.ci && j==GameBG.cj){
                 //     sp = new Sprite();
@@ -190,20 +208,44 @@ export default class GameBG extends Laya.Sprite {
                 //     this.addChild(sp);
                 //     this.sp = sp;
                 // }
-                if (GridType.isRiverPoint(gType))  {
+
+                if (GridType.isRiverPoint(gType)) {
                     img.skin = 'bg/100.png';
                 }
                 else if (GridType.isThorn(gType)) {
                     img.skin = 'bg/500.png';
                 }
-                else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType))  {
+                else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType)) {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
                     img.skin = 'bg/' + gType + '.png';
                 }
-
                 k++;
             }
         }
+
+        for (let j = 0; j < GameBG.hnum; j++) {
+            if (j % 2 == 0) {
+                var left: Image = new Image();
+                this._box.addChild(left);
+                left.skin = "bg/border.png";
+                left.x = 0;
+                left.y = Math.floor(j / 2) * 128;
+                left.mouseEnabled = false;
+
+                var right: Image = new Image();
+                this._box.addChild(right);
+                right.skin = "bg/border.png";
+                right.x = 0 + GameBG.wnum * ww;
+                right.y = Math.floor(j / 2) * 128;
+                right.mouseEnabled = false;
+            }
+        }
+
+        this.addChild(this._bottom);
+        this._bottom.skin = "bg/bottom.png";
+        this._bottom.y = (GameBG.MAP_ROW - 2) * GameBG.ww - GameBG.ww * 0.1;
+        this._bottom.height = 1000;
+
         this.x = 0 - GameBG.ww2;
         this.y = (Laya.stage.height - (GameBG.hnum * GameBG.ww)) / 2
         GameBG.cx = this.x;

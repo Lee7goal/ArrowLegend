@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/base_hero_lower_new.jpg",
+				"path":"../Hero/Textures/base_hero_lower_new.jpg",
 				"constructParams":[
 					256,
 					256,
