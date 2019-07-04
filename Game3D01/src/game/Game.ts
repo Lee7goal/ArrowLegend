@@ -34,8 +34,11 @@ export default class Game{
     static bg:GameBG;
     //贴图材质
     static material_blinn:Laya.BlinnPhongMaterial;
-    
+    //墙块
     static box:Laya.Sprite3D;
+
+    //栅栏
+    static fence:Laya.Sprite3D;
 
     static bullet:Laya.MeshSprite3D;
     //摇杆

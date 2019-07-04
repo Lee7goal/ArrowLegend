@@ -56,26 +56,36 @@ export default class GameMap0 extends Laya.Sprite{
                 var ww = GameBG.ww;
                 var x = i * ww;//- (ww/2);
                 var y = j * ww;
-                if( k < GameBG.arr0.length && (
-                    GridType.isWall(GameBG.arr0[k]) 
-                || GridType.isRiverPoint(GameBG.arr0[k]) 
-                || GridType.isRiverScale9Grid(GameBG.arr0[k]) 
-                || GridType.isRiverRow(GameBG.arr0[k]) 
-                || GridType.isRiverCol(GameBG.arr0[k]) 
-                || GridType.isRiverPoint(GameBG.arr0[k]) 
-                // || GridType.isThorn(GameBG.arr0[k])  
-                )){
-                     let key = GameBG.arr0[k];
-                     if(this.map[key]){
-                         hb = this.map[key];
-                         //hb.setVV(hb.x,hb.y,x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
-                         hb.setRq(hb.x,hb.y,x + GameBG.ww - hb.x,y + GameBG.ww - hb.y);
-                     }else{
-                        hb = new GameHitBox(GameBG.ww,GameBG.ww);
-                        hb.setXY(x,y);
-                        this.Wharr.push(hb);
-                        this.map[key] = hb;
+                let key:number = GameBG.arr0[k];
+                if( k < GameBG.arr0.length){
+                    if(GridType.isWall(key)  
+                    || GridType.isRiverPoint(key) 
+                    || GridType.isRiverScale9Grid(key) 
+                    || GridType.isRiverRow(key) 
+                    || GridType.isRiverCol(key) 
+                    || GridType.isRiverPoint(key) )
+                    {
+                        if(this.map[key]){
+                            hb = this.map[key];
+                            hb.setRq(hb.x,hb.y,x + GameBG.ww - hb.x,y + GameBG.ww - hb.y);
+                        }else{
+                           hb = new GameHitBox(GameBG.ww,GameBG.ww);
+                           hb.setXY(x,y);
+                           this.Wharr.push(hb);
+                           this.map[key] = hb;
+                       }
                     }
+                     else if(GridType.isFence(key) ){
+                        if(this.map[key]){
+                            hb = this.map[key];
+                            hb.setRq(hb.x - 64,hb.y,x + GameBG.ww * 3 - hb.x,y + GameBG.ww - hb.y);
+                        }else{
+                           hb = new GameHitBox(GameBG.ww * 3,GameBG.ww);
+                           hb.setXY(x,y);
+                           this.Wharr.push(hb);
+                           this.map[key] = hb;
+                       }
+                     }
                 }
                 k++;
             }
@@ -90,17 +100,33 @@ export default class GameMap0 extends Laya.Sprite{
                 var ww = GameBG.ww;
                 var x = i * ww;//- (ww/2);
                 var y = j * ww;
-                if( k < GameBG.arr0.length && (GridType.isWall(GameBG.arr0[k]))){
+                if( k < GameBG.arr0.length){
                     let key = GameBG.arr0[k];
-                    if(this.Amap[key]){
-                        hb = this.Amap[key];
-                        hb.setVV(hb.x,hb.y,x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
-                    }else{
-                        hb = new GameHitBox(GameBG.ww,GameBG.ww);
-                        hb.setXY(x,y);
-                        this.Aharr.push(hb);
-                        this.Amap[key] = hb;
+                    if(GridType.isWall(GameBG.arr0[k]))
+                    {
+                        if(this.Amap[key]){
+                            hb = this.Amap[key];
+                            hb.setVV(hb.x,hb.y,x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
+                        }else{
+                            hb = new GameHitBox(GameBG.ww,GameBG.ww);
+                            hb.setXY(x,y);
+                            this.Aharr.push(hb);
+                            this.Amap[key] = hb;
+                        }
                     }
+                    else if(GridType.isFence(GameBG.arr0[k]))
+                    {
+                        if(this.map[key]){
+                            hb = this.map[key];
+                            hb.setRq(hb.x - 64,hb.y,x + GameBG.ww * 3 - hb.x,y + GameBG.ww - hb.y);
+                        }else{
+                           hb = new GameHitBox(GameBG.ww * 3,GameBG.ww);
+                           hb.setXY(x,y);
+                           this.Wharr.push(hb);
+                           this.map[key] = hb;
+                       }
+                    }
+                   
                 }
                 k++;
             }
