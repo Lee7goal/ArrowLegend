@@ -107,6 +107,10 @@ export class ArrowGameMove implements GameMove {
 
 export class PlaneGameMove implements GameMove {
     move2d(n: number, pro: GamePro, speed: number):boolean {
+        if(pro.gamedata.hp<=0){
+            return;
+        }
+        
         var vx:number = pro.speed * Math.cos(n);
         var vz:number = pro.speed * Math.sin(n);
         if( Game.map0.chechHit(pro,vx,vz) ){

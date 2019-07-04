@@ -16,6 +16,7 @@ export abstract class GameAI {
     abstract exeAI(pro:GamePro):boolean;
     abstract starAi();
     abstract stopAi();
+    /**遭到攻击 */
     abstract hit(pro:GamePro);
 }
 //巡逻&攻击
@@ -46,14 +47,32 @@ export class MonsterAI1 extends GameAI {
     }
 
     hit(pro: GamePro) {
-        if(this.pro.acstr == GameAI.Idle){
-            this.pro.play(GameAI.TakeDamage);
+        this.pro.gamedata.hp-=5;
+        if(this.pro.gamedata.hp<=0){
+            this.pro.play(GameAI.Die);
+            this.pro.stopAi();
+
+            if(Game.map0.Eharr.indexOf( this.pro.hbox )>=0){
+                Game.map0.Eharr.splice( Game.map0.Eharr.indexOf( this.pro.hbox ) , 1 );
+            }
+        }else{
+            if(this.pro.acstr == GameAI.Idle){
+                this.pro.play(GameAI.TakeDamage);
+            }
         }
     }
 
     private aiCount:number = Math.floor(Math.random()*5);
 
     exeAI(pro: GamePro): boolean {
+        if(Game.hero.gamedata.hp<=0){
+            this.stopAi();
+            if(this.pro.gamedata.hp>0){
+                this.pro.play(GameAI.Idle);
+            }
+            return;
+        }
+
         var now = Laya.Browser.now();
         if(now>=this.aist){
             Laya.stage.timer.clear(this,this.go);
@@ -88,6 +107,7 @@ export class MonsterAI1 extends GameAI {
         this.shooting.st  = this.shooting.now + this.shooting.attackCd;
     }
     stopAi() {
+        Laya.stage.timer.clear(this,this.go);
         this.shooting.cancelAttack();        
     }
 }
@@ -124,6 +144,7 @@ export class HeroArrowAI extends GameAI {
         this.i = 25;
         this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
         this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
+        this.pro.sp3d.transform.localRotationEulerY -= pro.sp3d.transform.localRotationEulerY;
         pro.sp3d.addChild(this.pro.sp3d);
         //this.trail_off();
     }
@@ -167,12 +188,22 @@ export class HeroAI extends GameAI {
         if(Game.hero.acstr == GameAI.Idle){
             // Game.hero.play(GameAI.TakeDamage);
         }
+        Game.hero.gamedata.hp-=5;
+        if(Game.hero.gamedata.hp<=0){
+            this.stopAi();
+            Game.hero.play(GameAI.Die);
+        }
     }
 
     public starAi(){
-        Game.map0.Eharr.sort(this.sore0);
-        Game.e0_ = Game.map0.Eharr[0].linkPro_;
+        if(Game.hero.gamedata.hp<=0){
+            return;
+        }
 
+        if(Game.map0.Eharr.length>1){
+            Game.map0.Eharr.sort(this.sore0);
+            Game.e0_ = Game.map0.Eharr[0].linkPro_;
+        }
         Game.hero.on(Game.Event_Short,this,this.short);
         this.shootin.at = 0.35;
         this.shootin.now = Laya.Browser.now();
@@ -195,12 +226,12 @@ export class HeroAI extends GameAI {
     }
 
     public exeAI(pro:GamePro):boolean{
-        if(this.shootin.attackOk()){
+        if(Game.map0.Eharr.length>0 && this.shootin.attackOk()){
             
             //Game.e0_ = Game.map0.Eharr[0].linkPro_;
             var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.e0_.hbox);
             var facen2d_ = (2*Math.PI - a);
-            if( this.shootin.checkBallistic(facen2d_,Game.hero,Game.e0_) ){
+            if(Game.e0_.gamedata.hp>0 && this.shootin.checkBallistic(facen2d_,Game.hero,Game.e0_) ){
                 pro.rotation(a);
                 return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
             }
@@ -336,14 +367,9 @@ export class Shooting {
             ebh = null;
             this.future.setVV(x0,y0,vx,vz);
 
-            //ehb.hit(ehb,thb)
             if( ero.hbox.hit( ero.hbox , this.future) ){
                 return ero;    
             }
-            // ebh = Game.map0.chechHit_arr(this.future,hitArr);
-            // if(ebh){
-            //     return ebh.linkPro_;
-            // }
 
             var hits = Game.map0.Aharr;
             ebh = Game.map0.chechHit_arr(this.future,hits);

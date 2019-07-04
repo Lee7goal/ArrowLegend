@@ -120,10 +120,14 @@ export default class GamePro extends Laya.EventDispatcher{
     }
 
     public play(actionstr:string):void{
+        if(this.acstr==GameAI.Die){
+            return;
+        }
+
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
         //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
-        if( this.acstr!=GameAI.Run &&  this.acstr!=GameAI.Idle ){
+        if( this.acstr!=GameAI.Run &&  this.acstr!=GameAI.Idle && this.acstr!=GameAI.Die){
             Laya.stage.frameLoop(1,this,this.ac0);            
         }else{
             Laya.stage.timer.clear(this,this.ac0);
@@ -144,6 +148,9 @@ export default class GamePro extends Laya.EventDispatcher{
     }
 
     public rotation(n:number):void{
+        if(this.gamedata.hp<=0){
+            return;
+        }
         //this.sp3d_.transform.localRotationEulerY = (n+Math.PI/2)/Math.PI*180;
          var nn = n;
          nn = Math.atan2( Math.sin(nn)*2,Math.cos(nn) );
