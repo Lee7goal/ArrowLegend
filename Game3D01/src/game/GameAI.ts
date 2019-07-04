@@ -7,7 +7,7 @@ import GameBG from "./GameBG";
 
 export abstract class GameAI {
     static JumpAttack:string = "JumpAttack";
-    static ArrowAttack:string = "ArrowAttack";
+    static ArrowAttack:string = "Attack";
     static Idle:string = "Idle";
     static Die:string = "Die";
     static Run:string = "Run";
@@ -165,7 +165,7 @@ export class HeroAI extends GameAI {
 
     hit(pro: GamePro) {
         if(Game.hero.acstr == GameAI.Idle){
-            Game.hero.play(GameAI.TakeDamage);
+            // Game.hero.play(GameAI.TakeDamage);
         }
     }
 

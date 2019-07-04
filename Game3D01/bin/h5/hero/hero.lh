@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"xiaohai",
+					"name":"zhuangbei01",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -51,8 +51,27 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/Hero/FBX/xiaohai-xiaohai-xiaohaiAvatar.lav",
-							"linkSprites":{}
+							"path":"Assets/Hero/FBX/xiaohai-zhuangbei01-xiaohaiAvatar.lav",
+							"linkSprites":{
+								"maozi1":[
+									"maozi1"
+								],
+								"youshou":[
+									"youshou"
+								],
+								"zuoshou":[
+									"zuoshou"
+								],
+								"yifu 1":[
+									"yifu 1"
+								],
+								"youxue":[
+									"youxue"
+								],
+								"zuoxue":[
+									"zuoxue"
+								]
+							}
 						},
 						"layers":[
 							{
@@ -67,6 +86,14 @@
 									{
 										"name":"Run",
 										"clipPath":"Assets/Hero/Animations/paopao-Run.lani"
+									},
+									{
+										"name":"Attack",
+										"clipPath":"Assets/Hero/Animations/gongji-Attack.lani"
+									},
+									{
+										"name":"die",
+										"clipPath":"Assets/Hero/Animations/siwang-die.lani"
 									}
 								]
 							}
@@ -76,6 +103,232 @@
 					}
 				],
 				"child":[
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"maozi1",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								-0.0002444515,
+								1.303158,
+								-0.0315
+							],
+							"rotation":[
+								0.7071068,
+								-1.2213E-07,
+								1.2213E-07,
+								-0.7071067
+							],
+							"scale":[
+								0.9900001,
+								0.9900001,
+								0.9900002
+							],
+							"meshPath":"Assets/Hero/zhuangbei/maozi/FBX/maozi-default009.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/Hero/zhuangbei/maozi/Materials/heavy_020lv_01_o01_hero_head_M.lmat"
+								}
+							]
+						},
+						"components":[
+							{
+								"type":"Animator",
+								"avatar":{
+									"path":"Assets/Hero/zhuangbei/maozi/FBX/maozi-maozi1-maoziAvatar.lav",
+									"linkSprites":{}
+								},
+								"layers":[],
+								"cullingMode":0,
+								"playOnWake":true
+							}
+						],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"youshou",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								-0.5222122,
+								0.6032261,
+								-0.0063
+							],
+							"rotation":[
+								-5.008254E-17,
+								3.525931E-17,
+								-0.0895423,
+								-0.9959831
+							],
+							"scale":[
+								0.9,
+								0.9,
+								0.9
+							],
+							"meshPath":"Assets/Hero/zhuangbei/youshou/FBX/youshou-polySurface23.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/Hero/zhuangbei/youshou/Materials/New Material.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"zuoshou",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0.5183355,
+								0.6097111,
+								0.0045
+							],
+							"rotation":[
+								0,
+								0,
+								0.0359563,
+								-0.9993533
+							],
+							"scale":[
+								0.9000001,
+								0.9000001,
+								0.9
+							],
+							"meshPath":"Assets/Hero/zhuangbei/zuoshou/FBX/zuoshou-polySurface22.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/Hero/zhuangbei/zuoshou/Materials/New Material.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"yifu 1",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								8.911639E-05,
+								0.7118499,
+								-0.0153
+							],
+							"rotation":[
+								0.7071068,
+								-2.77795E-08,
+								2.777949E-08,
+								-0.7071067
+							],
+							"scale":[
+								0.9174272,
+								0.9174275,
+								0.9174277
+							],
+							"meshPath":"Assets/Hero/zhuangbei/yifu/FBX/yifu-default007.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/Hero/zhuangbei/yifu/Materials/New Material.lmat"
+								}
+							]
+						},
+						"components":[
+							{
+								"type":"Animator",
+								"avatar":{
+									"path":"Assets/Hero/zhuangbei/yifu/FBX/yifu-yifu 1-yifuAvatar.lav",
+									"linkSprites":{}
+								},
+								"layers":[],
+								"cullingMode":0,
+								"playOnWake":true
+							}
+						],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"youxue",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								-0.1426285,
+								0.1472103,
+								0.0162
+							],
+							"rotation":[
+								-0.01254209,
+								0.002688577,
+								-0.002492921,
+								-0.9999146
+							],
+							"scale":[
+								0.9000001,
+								0.9000003,
+								0.9
+							],
+							"meshPath":"Assets/Hero/zhuangbei/youxie/FBX/youxue-polySurface87.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/Hero/zhuangbei/youxie/Materials/New Material.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"zuoxue",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0.1742784,
+								0.1536564,
+								0.018
+							],
+							"rotation":[
+								-0.07156568,
+								0.00266729,
+								-0.08510197,
+								-0.9937952
+							],
+							"scale":[
+								0.9000002,
+								0.9000002,
+								0.8999999
+							],
+							"meshPath":"Assets/Hero/zhuangbei/zuoxie/FBX/zuoxue-polySurface88.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/Hero/zhuangbei/zuoxie/Materials/New Material.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
 					{
 						"type":"SkinnedMeshSprite3D",
 						"props":{

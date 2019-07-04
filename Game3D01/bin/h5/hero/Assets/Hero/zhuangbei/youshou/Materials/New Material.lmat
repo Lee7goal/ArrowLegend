@@ -1,8 +1,8 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.BlinnPhongMaterial",
-		"name":"StoneKing",
+		"type":"Laya.UnlitMaterial",
+		"name":"New Material",
 		"renderStates":[
 			{
 				"cull":2,
@@ -13,16 +13,18 @@
 				"depthTest":515
 			}
 		],
+		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
 		"renderQueue":2000,
+		"albedoIntensity":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/StoneKing.jpg",
+				"path":"../Textures/heavy_020lv_01_o01_hero_hands_M.jpg",
 				"constructParams":[
-					1024,
-					1024,
+					128,
+					128,
 					0,
 					true
 				],
@@ -42,6 +44,15 @@
 					1,
 					0,
 					0
+				]
+			},
+			{
+				"name":"albedoColor",
+				"value":[
+					1,
+					1,
+					1,
+					1
 				]
 			}
 		],
