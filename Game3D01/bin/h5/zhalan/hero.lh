@@ -32,7 +32,7 @@
 					"layer":0,
 					"position":[
 						0,
-						0,
+						0.258,
 						0
 					],
 					"rotation":[
@@ -44,7 +44,7 @@
 					"scale":[
 						0.313782,
 						0.3137819,
-						0.1447835
+						0.21
 					],
 					"meshPath":"Library/unity default resources-Plane.lm",
 					"enableRender":true,

@@ -52,7 +52,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        //Laya.stage.addChild(map0);        
+        // Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
