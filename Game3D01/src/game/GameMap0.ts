@@ -78,7 +78,7 @@ export default class GameMap0 extends Laya.Sprite{
                      else if(GridType.isFence(key) ){
                         if(this.map[key]){
                             hb = this.map[key];
-                            hb.setRq(hb.x - 64,hb.y,x + GameBG.ww * 3 - hb.x,y + GameBG.ww - hb.y);
+                            hb.setRq(hb.x - GameBG.ww,hb.y,x + GameBG.ww * 3 - hb.x,y + GameBG.ww - hb.y);
                         }else{
                            hb = new GameHitBox(GameBG.ww * 3,GameBG.ww);
                            hb.setXY(x,y);
@@ -116,14 +116,14 @@ export default class GameMap0 extends Laya.Sprite{
                     }
                     else if(GridType.isFence(GameBG.arr0[k]))
                     {
-                        if(this.map[key]){
-                            hb = this.map[key];
-                            hb.setRq(hb.x - 64,hb.y,x + GameBG.ww * 3 - hb.x,y + GameBG.ww - hb.y);
+                        if(this.Amap[key]){
+                            hb = this.Amap[key];
+                            hb.setRq(hb.x - GameBG.ww,hb.y,x + GameBG.ww * 3 - hb.x,y + GameBG.ww - hb.y);
                         }else{
                            hb = new GameHitBox(GameBG.ww * 3,GameBG.ww);
                            hb.setXY(x,y);
-                           this.Wharr.push(hb);
-                           this.map[key] = hb;
+                           this.Aharr.push(hb);
+                           this.Amap[key] = hb;
                        }
                     }
                    
