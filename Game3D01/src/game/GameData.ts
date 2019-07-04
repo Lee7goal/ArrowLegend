@@ -4,8 +4,8 @@ export default class GameData{
     public bounce:number = 0;
     public proType:number = 0;
 
-    public hp:number = 100;
-    public maxhp:number = 100;
+    public hp:number = 10;
+    public maxhp:number = 10;
 
     public initData():void{
         this.bounce = 0;
