@@ -50,12 +50,6 @@ export default class GameUI2 extends ui.test.TestSceneUI {
             material.albedoTexture = tex;
         }));
 
-        //屏幕中心线
-        // var sp2d:Laya.Sprite = new Laya.Sprite();
-        // Laya.stage.addChild(sp2d);
-        // sp2d.graphics.drawLine(Laya.stage.width/2,0,Laya.stage.width/2,Laya.stage.height,"#ff0000");
-        // sp2d.graphics.drawLine(0,Laya.stage.height/2,Laya.stage.width,Laya.stage.height/2,"#ff0000");
-
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
         //Laya.stage.addChild(map0);        
@@ -63,21 +57,11 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         // this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/maozi/hero.lh", "h5/wall/wall.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/maozi/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
     private heroUrl: string;
-
-    getBox(): Laya.Sprite3D {
-        if (Game.box == null) {
-            Game.box = new Laya.MeshSprite3D(Laya.PrimitiveMesh.createBox(1, 1, 2)) as Laya.MeshSprite3D;
-        }
-        var box: Laya.MeshSprite3D;
-        box = Game.layer3d.addChild(Laya.Sprite3D.instantiate(Game.box)) as Laya.MeshSprite3D;
-        box.meshRenderer.material = Game.material_blinn;
-        return box;
-    }
 
     getMonster(): GamePro {
         var sp = Laya.Sprite3D.instantiate(Game.e0_.sp3d);
@@ -96,15 +80,29 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         var aa = Laya.loader.getRes("h5/wall/wall.lh");
         Game.box = aa;
 
+        var aa = Laya.loader.getRes("h5/zhalan/hero.lh");
+        Game.fence = aa;
+
         let k: number = 0;
         for (let j = 0; j < GameBG.hnum; j++) {
             for (let i = 0; i < GameBG.wnum + 1; i++) {
                 //console.log(i,j);
-                if (k < GameBG.arr0.length && (GridType.isWall(GameBG.arr0[k]) || (GameBG.arr0[k] == 1))) {
-                    let v3 = GameBG.get3D(i, j);
-                    let box:Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.box);
-                    box.transform.translate(v3);
-                    Game.layer3d.addChild(box)
+                let type:number = GameBG.arr0[k];
+                if (k < GameBG.arr0.length) {
+                    if((GridType.isWall(type) || (type == 1)))
+                    {
+                        let v3 = GameBG.get3D(i, j);
+                        let box:Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.box);
+                        box.transform.translate(v3);
+                        Game.layer3d.addChild(box)
+                    }
+                    else if(GridType.isFence(type))
+                    {
+                        let v3 = GameBG.get3D(i, j);
+                        let box:Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.fence);
+                        box.transform.translate(v3);
+                        Game.layer3d.addChild(box)
+                    }
                 }
                 k++;
             }

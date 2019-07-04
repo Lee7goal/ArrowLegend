@@ -33,5 +33,10 @@ export default class GridType {
     {
         return type>=600 && type<700;
     }
+    /**是否是栅栏 */
+    public static isFence(type:Number):boolean
+    {
+        return type>=700 && type<800;
+    }
 
 }

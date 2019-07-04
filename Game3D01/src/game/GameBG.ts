@@ -208,17 +208,18 @@ export default class GameBG extends Laya.Sprite {
                 //     this.addChild(sp);
                 //     this.sp = sp;
                 // }
-
+                var grid:Image = new Image();
                 if (GridType.isRiverPoint(gType)) {
-                    img.skin = 'bg/100.png';
+                    grid.skin = 'bg/100.png';
                 }
                 else if (GridType.isThorn(gType)) {
-                    img.skin = 'bg/500.png';
+                    grid.skin = 'bg/500.png';
                 }
                 else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType)) {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
-                    img.skin = 'bg/' + gType + '.png';
+                    grid.skin = 'bg/' + gType + '.png';
                 }
+                img.addChild(grid);
                 k++;
             }
         }
