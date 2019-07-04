@@ -191,6 +191,7 @@ export class HeroAI extends GameAI {
         Game.hero.gamedata.hp-=5;
         if(Game.hero.gamedata.hp<=0){
             this.stopAi();
+            console.log("主角死亡");
             Game.hero.play(GameAI.Die);
         }
     }

@@ -92,8 +92,8 @@
 										"clipPath":"Assets/Hero/Animations/gongji-Attack.lani"
 									},
 									{
-										"name":"die",
-										"clipPath":"Assets/Hero/Animations/siwang-die.lani"
+										"name":"Die",
+										"clipPath":"Assets/Hero/Animations/siwang-Die.lani"
 									}
 								]
 							}
@@ -117,8 +117,8 @@
 							],
 							"rotation":[
 								0.7071068,
-								-1.2213E-07,
-								1.2213E-07,
+								-6.286106E-08,
+								6.286106E-08,
 								-0.7071067
 							],
 							"scale":[

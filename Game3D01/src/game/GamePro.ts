@@ -126,6 +126,7 @@ export default class GamePro extends Laya.EventDispatcher{
 
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
+        this.ani_.speed = 1.5;
         //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
         if( this.acstr!=GameAI.Run &&  this.acstr!=GameAI.Idle && this.acstr!=GameAI.Die){
             Laya.stage.frameLoop(1,this,this.ac0);            
