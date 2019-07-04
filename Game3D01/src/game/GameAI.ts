@@ -3,6 +3,7 @@ import Game from "./Game";
 import { ArrowGameMove } from "./GameMove";
 import GameHitBox from "./GameHitBox";
 import GameProType from "./GameProType";
+import GameBG from "./GameBG";
 
 export abstract class GameAI {
     static JumpAttack:string = "JumpAttack";
@@ -59,7 +60,7 @@ export class MonsterAI1 extends GameAI {
             this.aiCount++;
             if( this.aiCount % 5 != 0 ){
                 this.shooting.now = now;
-                if(this.shooting.attaclCD()){
+                if(this.shooting.attackOk()){
                     var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
                     this.pro.rotation(a);
                     this.shooting.starAttack(this.pro,GameAI.SpinAttack);
@@ -92,10 +93,42 @@ export class MonsterAI1 extends GameAI {
 }
 
 export class HeroArrowAI extends GameAI {
-    hit(pro: GamePro) {
-        //throw new Error("Method not implemented.");
+
+    private pro:GamePro;
+    // private trail:Laya.TrailSprite3D;
+    // private trail_parent:Laya.Sprite3D;
+
+    constructor(pro:GamePro){
+        super();
+        this.pro = pro;
+        //this.trail = pro.sp3d.getChildByName("Arrow-Blue").getChildByName("Trail") as Laya.TrailSprite3D;            
+        //console.log(trail);
+        
     }
-    i:number = 0;
+
+    // private trail_off():void{        
+    //     if(this.trail.parent){
+    //         this.trail_parent = this.trail.parent as Laya.Sprite3D;
+    //         this.trail_parent.removeChild(this.trail);
+    //     }
+    // }
+
+    // private trail_on():void{
+    //     if(this.trail.parent){
+    //         //this.trail_parent = this.trail.parent;
+    //         this.pro.sp3d.getChildByName("Arrow-Blue").addChild(this.trail);
+    //     }
+    // }
+
+    hit(pro: GamePro) {
+        this.i = 25;
+        this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
+        this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
+        pro.sp3d.addChild(this.pro.sp3d);
+        //this.trail_off();
+    }
+
+    private i:number = 0;
     exeAI(pro: GamePro): boolean {
 
         if( this.i==0 && !pro.move2D(pro.face2d)){
@@ -108,8 +141,9 @@ export class HeroArrowAI extends GameAI {
             if(this.i>30){
                 pro.stopAi();
                 if(pro.sp3d.parent){
-                    Game.layer3d.removeChild(pro.sp3d);                
+                    pro.sp3d.parent.removeChild(pro.sp3d);                
                     Game.HeroArrows.push(pro);
+                    this.pro.stopAi();
                 } 
             }
         }
@@ -120,6 +154,7 @@ export class HeroArrowAI extends GameAI {
     }
     stopAi() {
         this.i = 0;
+        //this.trail_on();
     }
 }
 
@@ -129,13 +164,15 @@ export class HeroAI extends GameAI {
     private shootin:Shooting = new Shooting();
 
     hit(pro: GamePro) {
-        //throw new Error("Method not implemented.");
-        pro.gamedata.hp--;
-        console.log("pro.gamedata.hp " , pro.gamedata.hp);
-        
+        if(Game.hero.acstr == GameAI.Idle){
+            Game.hero.play(GameAI.TakeDamage);
+        }
     }
 
     public starAi(){
+        Game.map0.Eharr.sort(this.sore0);
+        Game.e0_ = Game.map0.Eharr[0].linkPro_;
+
         Game.hero.on(Game.Event_Short,this,this.short);
         this.shootin.at = 0.35;
         this.shootin.now = Laya.Browser.now();
@@ -158,7 +195,46 @@ export class HeroAI extends GameAI {
     }
 
     public exeAI(pro:GamePro):boolean{
-        return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+        if(this.shootin.attackOk()){
+            
+            //Game.e0_ = Game.map0.Eharr[0].linkPro_;
+            var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.e0_.hbox);
+            var facen2d_ = (2*Math.PI - a);
+            if( this.shootin.checkBallistic(facen2d_,Game.hero,Game.e0_) ){
+                pro.rotation(a);
+                return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+            }
+            
+            if(Game.map0.Eharr.length>1){
+                Game.map0.Eharr.sort(this.sore0);
+                var arr = Game.map0.Eharr;                
+                for (let i = 0; i < arr.length; i++) {
+                    var ero = arr[i];
+                    if(ero.linkPro_!=Game.e0_){
+                        var a:number = GameHitBox.faceTo3D(pro.hbox ,ero);
+                        var facen2d_ = (2*Math.PI - a);
+                        if( this.shootin.checkBallistic(facen2d_,Game.hero,ero.linkPro_) ){
+                            Game.e0_ = ero.linkPro_;
+                            pro.rotation(a);
+                            return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+                        }
+                    }
+                    
+                }
+            } 
+
+            Game.e0_ = Game.map0.Eharr[0].linkPro_;
+            var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.e0_.hbox);
+            pro.rotation(a);
+            this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+        }
+        return true;
+    }
+
+    public sore0(g0:GameHitBox,g1:GameHitBox):number{
+        // var hits = Game.map0.Eharr;
+        // hits.sort()
+        return GameHitBox.faceToLenth(Game.hero.hbox,g0) - GameHitBox.faceToLenth(Game.hero.hbox,g1);
     }
 }
 
@@ -182,9 +258,12 @@ export class Shooting {
         var gp:GamePro;
         if(Game.HeroArrows.length<=0){
             gp = new GamePro(proType_);
+           
             var bullet:Laya.Sprite3D;
             bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
             gp.setSp3d(bullet);
+            gp.setGameMove(new ArrowGameMove());
+            gp.setGameAi(new HeroArrowAI(gp));
             //Shooting.bulletCount++;
             //console.log("Shooting.bulletCount " , Shooting.bulletCount);
         }else{
@@ -199,22 +278,20 @@ export class Shooting {
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x,pro.pos2.z);
         bo.setSpeed(speed_);
-        bo.rotation(r_);
-        bo.setGameMove(new ArrowGameMove());
-        bo.setGameAi(new HeroArrowAI());        
+        bo.rotation(r_);               
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
     }
 
-    public attaclCD():boolean{
+    public attackOk():boolean{
+        this.now = Laya.Browser.now();
         return this.now >= this.st ;
     }
 
     public starAttack(pro: GamePro,acstr:string): boolean {
         this.pro = pro;
-        this.now = Laya.Browser.now();
-        if(this.attaclCD() ){
+        if(this.attackOk() ){
             this.st  = this.now + this.attackCd;
             this.scd = 0;
             pro.play(acstr);
@@ -245,5 +322,37 @@ export class Shooting {
                 this.pro.event(Game.Event_Short,null);
             }
         }        
+    }
+
+    private future:GameHitBox = new GameHitBox(2,2);
+
+    public checkBallistic(n: number, pro: GamePro , ero:GamePro):GamePro{
+        var vx:number = GameBG.mw2 * Math.cos(n);
+        var vz:number = GameBG.mw2 * Math.sin(n);
+        var x0:number = pro.hbox.cx;
+        var y0:number = pro.hbox.cy;
+        var ebh:GameHitBox;
+        for (let i = 0; i < 6000; i++) {
+            ebh = null;
+            this.future.setVV(x0,y0,vx,vz);
+
+            //ehb.hit(ehb,thb)
+            if( ero.hbox.hit( ero.hbox , this.future) ){
+                return ero;    
+            }
+            // ebh = Game.map0.chechHit_arr(this.future,hitArr);
+            // if(ebh){
+            //     return ebh.linkPro_;
+            // }
+
+            var hits = Game.map0.Aharr;
+            ebh = Game.map0.chechHit_arr(this.future,hits);
+            if(ebh){
+                return null;
+            }
+            x0 += vx;
+            y0 += vz;
+        }
+        return null;
     }
 }
