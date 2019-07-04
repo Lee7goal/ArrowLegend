@@ -21,9 +21,34 @@ export class SimpleGameMove implements GameMove {
 }
 
 export class ArrowGameMove implements GameMove {
+
     private future:GameHitBox = new GameHitBox(2,2);
-    //static  trail ;   
-    move2d(n: number, pro: GamePro, speed: number):boolean {
+
+    // public check(n: number, pro: GamePro, hitArr:GameHitBox[]):boolean{
+    //     var vx:number = pro.speed * Math.cos(n);
+    //     var vz:number = pro.speed * Math.sin(n);
+    //     var x0:number = pro.hbox.cx;
+    //     var y0:number = pro.hbox.cy;
+    //     var ebh:GameHitBox;
+    //     for (let i = 0; i < 6000; i++) {
+    //         ebh = null;
+    //         this.future.setVV(x0,y0,vx,vz);
+    //         ebh = Game.map0.chechHit_arr(this.future,hitArr);
+    //         if(ebh){
+    //             return true;
+    //         }
+    //         var hits = Game.map0.Aharr;
+    //         ebh = Game.map0.chechHit_arr(this.future,hits);
+    //         if(ebh){
+    //             return false;
+    //         }
+    //         x0 += vx;
+    //         y0 += vz;
+    //     }
+    //     return false;
+    // }
+    
+    public move2d(n: number, pro: GamePro, speed: number):boolean {
         //pro.rotation(n);
         pro.setSpeed( speed );
         if(pro.speed<=0)return;
@@ -37,9 +62,6 @@ export class ArrowGameMove implements GameMove {
         var ebh:GameHitBox;
         if(pro.gamedata.proType==GameProType.HeroArrow){
             ebh = Game.map0.chechHit_arr(this.future,Game.map0.Eharr);
-            // var trail = pro.sp3d.getChildByName("Arrow-Blue").getChildByName("Trail") as Laya.TrailSprite3D;            
-            // console.log(trail);
-            // if( trail.trailRenderer._renderElements.length ){}
         }else{
             ebh = Game.map0.chechHit_arr(this.future,Game.map0.Hharr);
         }
@@ -49,7 +71,7 @@ export class ArrowGameMove implements GameMove {
             pro.setSpeed(0);
             if( ebh.linkPro_ ){
                 ebh.linkPro_.event(Game.Event_Hit,pro);
-                
+                pro.event(Game.Event_Hit,ebh.linkPro_);
             }
             return false;
         }

@@ -5,11 +5,14 @@ import GamePro from "./GamePro";
 import GridType from "./bg/GridType";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite{
-
-    Aharr :GameHitBox[];//半空碰撞组
-    Wharr :GameHitBox[];//地面碰撞组    
-    Eharr :GameHitBox[];//敌人组
-    Hharr :GameHitBox[];//主角组
+    /**半空碰撞组*/
+    Aharr :GameHitBox[];
+    /**地面碰撞组*/
+    Wharr :GameHitBox[];
+    /**敌人组*/
+    Eharr :GameHitBox[];
+    /**主角组*/
+    Hharr :GameHitBox[];
     
 
 
@@ -115,7 +118,7 @@ export default class GameMap0 extends Laya.Sprite{
         this.Aharr.push(hb);
         
         //传送门左侧
-        hb = new GameHitBox(GameBG.ww*5,GameBG.ww);
+        hb = new GameHitBox(GameBG.ww*(5+3),GameBG.ww);
         hb.setXY(0,GameBG.ww * 9);
         this.Wharr.push(hb);
         this.Aharr.push(hb);

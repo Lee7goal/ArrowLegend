@@ -147,5 +147,11 @@ export default class GameHitBox {
         var yy:number = my.cy - target.cy;
         return Math.atan2(yy,xx);
     }
+
+    public static faceToLenth(my:GameHitBox , target:GameHitBox):number{
+        var vx =  my.x - target.x ;
+        var vy =  my.y - target.y ;
+        return Math.sqrt(vx*vx + vy*vy);
+    }
 }
 

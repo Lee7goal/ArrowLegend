@@ -58,7 +58,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        // Laya.stage.addChild(map0);        
+        //Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
@@ -181,8 +181,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
     up(eve: Event): void {
         Game.hero.play("Idle");
-        var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
-        Game.hero.rotation(a);
+        //var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
+        //Game.hero.rotation(a);
         //this.heron = GameHitBox.faceTo(Game.hero.hbox , Game.e0.hbox);
 
         Laya.stage.off(Laya.Event.MOUSE_UP, this, this.up);
@@ -196,7 +196,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         }
         Laya.stage.clearTimer(this, this.moves);
         Game.hero.startAi();
-        Game.map0.drawBallistic(Game.hero.face2d);
+        //Game.map0.drawBallistic(Game.hero.face2d);
         //Laya.stage.frameOnce(0,this,this.ai);
 
 
