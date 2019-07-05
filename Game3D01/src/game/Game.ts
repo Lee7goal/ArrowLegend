@@ -13,6 +13,7 @@ export default class Game{
     static Event_Short:string = "Game.Event_Short";
     static Event_Hit:string   = "Game.Event_Hit";
 
+    static AiArr:GamePro[] = [];
     static HeroArrows:GamePro[] = [];
     //3d层
     static layer3d:Sprite3D = new Sprite3D();
