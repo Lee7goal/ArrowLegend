@@ -188,7 +188,7 @@ export class HeroAI extends GameAI {
         if(Game.hero.acstr == GameAI.Idle){
             // Game.hero.play(GameAI.TakeDamage);
         }
-        Game.hero.gamedata.hp-=5;
+        Game.hero.hurt(20);
         if(Game.hero.gamedata.hp<=0){
             this.stopAi();
             console.log("主角死亡");

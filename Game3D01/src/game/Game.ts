@@ -50,6 +50,9 @@ export default class Game{
 
     static map0:GameMap0;
 
+    static footLayer:Laya.Sprite = new Laya.Sprite();
+    static bloodLayer:Laya.Sprite = new Laya.Sprite();
+    
     //static ani:Laya.Animator;
 
     static updateMap():void{

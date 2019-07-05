@@ -20,11 +20,14 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         //bg.alpha = 0;
         Laya.stage.addChild(bg);
         Game.bg = bg;
+        //脚底层
+        Laya.stage.addChild(Game.footLayer);
         //添加3D场景
         var scene: Laya.Scene3D = Laya.stage.addChild(new Laya.Scene3D()) as Laya.Scene3D;
         scene.addChild(Game.layer3d);
         Game.scene3d = scene;
-
+        //血条层
+        Laya.stage.addChild(Game.bloodLayer);
         //添加照相机
         var camera: Laya.Camera = (scene.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
         // camera.transform.translate(new Laya.Vector3(0, 10, 10));
@@ -139,6 +142,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.map0.addChild(Game.hero.sp2d);
         Game.hero.setGameMove(new PlaneGameMove());
         Game.hero.setGameAi(new HeroAI());
+        Game.hero.initBlood();
+
 
         let gong = Laya.loader.getRes("h5/gong/hero.lh");
         Game.hero.addSprite3DToAvatarNode("youshougong",gong);
@@ -214,6 +219,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.ro.setSp0(xx, yy);
         var speed: number = Game.ro.getSpeed();
         n = Game.ro.getA3d();
+        Game.ro.rotate(n);
         if (speed > 0) {
             Game.hero.rotation(n);
             this.move2d(Game.ro.getA());

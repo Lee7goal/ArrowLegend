@@ -1,21 +1,10 @@
 import Sprite = Laya.Sprite;
+import { ui } from "./../ui/layaMaxUI";
     
-export default class Rocker extends Laya.Sprite {
-
-    private sp:Sprite = new Sprite();
-
-    private sp0:Sprite = new Sprite();
+export default class Rocker extends ui.test.RockerViewUI{
 
     constructor(){
         super();
-        this.sp.graphics.drawCircle(0,0,120,0xff0000,0xff0000);
-        this.sp.alpha = 0.5;
-        this.addChild(this.sp);
-
-        
-        this.sp0.graphics.drawCircle(0,0,60,0x00ff00);
-        this.sp0.alpha = 0.5;
-        this.addChild(this.sp0);
     }
 
     public reset():void{
@@ -81,5 +70,9 @@ export default class Rocker extends Laya.Sprite {
         this.sp0.y = n;
 
         //this.sp0.y = yy - this.y;
+    }
+
+    public rotate(n:number):void{
+        this.dir.rotation = (2*Math.PI - n) / Math.PI * 180 + 90;
     }
 }

@@ -4,6 +4,30 @@ import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
 export module ui.test {
+    export class BloodUIUI extends View {
+		public bar:Laya.Image;
+		public colBox:Laya.Box;
+		public txt:Laya.Label;
+        public static  uiView:any ={"type":"View","props":{"y":24,"x":42,"width":85,"height":24,"anchorY":1,"anchorX":0.5},"compId":2,"child":[{"type":"Image","props":{"y":7,"x":0,"skin":"bg/xuetiaodi.png"},"compId":8},{"type":"Image","props":{"y":7,"width":85,"var":"bar","skin":"bg/xuetiaoshang.png","height":17},"compId":10},{"type":"Box","props":{"y":7,"width":85,"var":"colBox","height":17},"compId":7},{"type":"Label","props":{"y":0,"x":0,"width":85,"var":"txt","text":"600","stroke":3,"height":18,"fontSize":18,"color":"#ffffff","bold":true,"align":"center"},"compId":6}],"loadList":["bg/xuetiaodi.png","bg/xuetiaoshang.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(BloodUIUI.uiView);
+        }
+    }
+    REG("ui.test.BloodUIUI",BloodUIUI);
+    export class RockerViewUI extends View {
+		public sp:Laya.Sprite;
+		public dir:Laya.Box;
+		public sp0:Laya.Sprite;
+        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"width":304,"var":"sp","texture":"bg/rockerBg.png","pivotY":152,"pivotX":152,"height":304},"compId":3},{"type":"Box","props":{"y":0,"x":0,"width":304,"var":"dir","pivotY":152,"pivotX":152,"height":304},"compId":7,"child":[{"type":"Sprite","props":{"y":-9,"x":26.5,"texture":"bg/rollDir.png"},"compId":5}]},{"type":"Sprite","props":{"width":251,"var":"sp0","texture":"bg/rockerBall.png","pivotY":126,"pivotX":126,"height":251},"compId":4}],"loadList":["bg/rockerBg.png","bg/rollDir.png","bg/rockerBall.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(RockerViewUI.uiView);
+        }
+    }
+    REG("ui.test.RockerViewUI",RockerViewUI);
     export class TestSceneUI extends Scene {
         constructor(){ super()}
         createChildren():void {
