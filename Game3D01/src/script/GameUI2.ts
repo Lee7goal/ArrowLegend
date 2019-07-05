@@ -57,7 +57,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/maozi/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
@@ -140,8 +140,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.hero.setGameMove(new PlaneGameMove());
         Game.hero.setGameAi(new HeroAI());
 
-        // let maozi = Laya.loader.getRes("h5/maozi/hero.lh");
-        // Game.hero.addSprite3DToAvatarNode("joint11",maozi);
+        let gong = Laya.loader.getRes("h5/gong/hero.lh");
+        Game.hero.addSprite3DToAvatarNode("youshougong",gong);
 
 
         Game.hero.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 1) * GameBG.ww);
