@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"New Material",
+		"name":"heavy_020lv_01_o01_hero_hands_M",
 		"renderStates":[
 			{
 				"cull":2,
@@ -18,24 +18,7 @@
 		"alphaTestValue":0.5,
 		"renderQueue":2000,
 		"albedoIntensity":1,
-		"textures":[
-			{
-				"name":"albedoTexture",
-				"path":"../Textures/cannongun_020lv_01_o01_M.jpg",
-				"constructParams":[
-					128,
-					128,
-					0,
-					true
-				],
-				"propertyParams":{
-					"filterMode":1,
-					"wrapModeU":0,
-					"wrapModeV":0,
-					"anisoLevel":1
-				}
-			}
-		],
+		"textures":[],
 		"vectors":[
 			{
 				"name":"tilingOffset",

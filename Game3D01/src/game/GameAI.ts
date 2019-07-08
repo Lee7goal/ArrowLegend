@@ -47,11 +47,16 @@ export class MonsterAI1 extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.gamedata.hp-=5;
+        this.pro.hurt(100);
+        this.pro.sp3d.addChild(Game.selectFoot);
+        // this.pro.addSprite3DToChild("RigHeadGizmo",Game.selectHead)
+        // this.pro.sp3d.addChild(Game.selectHead);
         if(this.pro.gamedata.hp<=0){
             this.pro.play(GameAI.Die);
             this.pro.stopAi();
-
+            this.pro.sp3d.removeChild(Game.selectFoot);
+            // this.pro.sp3d.removeChild(Game.selectHead);
+            // this.pro.removeSprite3DToAvatarNode(Game.selectHead)
             if(Game.map0.Eharr.indexOf( this.pro.hbox )>=0){
                 Game.map0.Eharr.splice( Game.map0.Eharr.indexOf( this.pro.hbox ) , 1 );
             }
@@ -188,7 +193,7 @@ export class HeroAI extends GameAI {
         if(Game.hero.acstr == GameAI.Idle){
             // Game.hero.play(GameAI.TakeDamage);
         }
-        Game.hero.hurt(20);
+        Game.hero.hurt(100);
         if(Game.hero.gamedata.hp<=0){
             this.stopAi();
             console.log("主角死亡");

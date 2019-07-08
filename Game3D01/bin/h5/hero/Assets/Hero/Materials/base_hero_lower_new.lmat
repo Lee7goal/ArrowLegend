@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"New Material",
+		"name":"base_hero_lower_new",
 		"renderStates":[
 			{
 				"cull":2,
@@ -21,10 +21,10 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/cannongun_020lv_01_o01_M.jpg",
+				"path":"../Textures/base_hero_lower_new.jpg",
 				"constructParams":[
-					128,
-					128,
+					256,
+					256,
 					0,
 					true
 				],

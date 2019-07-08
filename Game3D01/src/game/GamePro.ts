@@ -7,6 +7,9 @@ import { GameMove } from "./GameMove";
 import { GameAI, HeroAI } from "./GameAI";
 import GameData from "./GameData";
 import HeroBlood from "./HeroBlood";
+import FootCircle from "./FootCircle";
+import GameProType from "./GameProType";
+import Blood from "./Blood";
 
 export default class GamePro extends Laya.EventDispatcher {
     //  id  :number;
@@ -26,7 +29,8 @@ export default class GamePro extends Laya.EventDispatcher {
     private facen3d_: number;
     private acstr_: string = "";
 
-    private _bloodUI: HeroBlood;
+    private _bloodUI: Blood;
+    private _footCircle: FootCircle;
 
 
     constructor(proType_: number) {
@@ -35,20 +39,28 @@ export default class GamePro extends Laya.EventDispatcher {
         this.gamedata_.proType = proType_;
     }
 
-    public get bloodUI(): HeroBlood  {
+    public get bloodUI(): Blood {
         return this._bloodUI;
     }
 
-    public initBlood(): void  {
-        if (!this._bloodUI)  {
-            this._bloodUI = new HeroBlood();
+    public initBlood(): void {
+        if (!this._bloodUI) {
+            this._bloodUI = new Blood();
         }
         this._bloodUI.init(this.gamedata_);
         Game.bloodLayer.addChild(this._bloodUI);
-        this._bloodUI && this._bloodUI.pos(this.hbox_.cx + Game.map0.x,this.hbox_.cy + Game.map0.y - 90);
+        this._bloodUI && this._bloodUI.pos(this.hbox_.cx + Game.map0.x, this.hbox_.cy + Game.map0.y - 90);
     }
 
-    public hurt(hurt: number): void  {
+    public addFootCircle(): void {
+        if (!this._footCircle) {
+            this._footCircle = new FootCircle();
+        }
+        Game.footLayer.addChild(this._footCircle);
+        this._footCircle && this._footCircle.pos(this.hbox_.cx + Game.map0.x, this.hbox_.cy + Game.map0.y);
+    }
+
+    public hurt(hurt: number): void {
         this._bloodUI && this._bloodUI.update(hurt);
     }
 
@@ -64,19 +76,36 @@ export default class GamePro extends Laya.EventDispatcher {
         this.on(Game.Event_Hit, this, this.hit);
     }
 
+    public setUI():void
+    {
+        if (this.gamedata.proType == GameProType.Hero)  {
+            this.initBlood();
+            this.addFootCircle();
+        }
+        else if(this.gamedata.proType == GameProType.RockGolem_Blue)
+        {
+            this.initBlood();
+        }
+    }
+
     public get animator(): Animator {
         return this.ani_;
     }
 
-    private _hat: Sprite3D;
-    public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): void {
-        this._hat = sprite3d;
-        this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
-        Game.layer3d.addChild(sprite3d);
+    public addSprite3DToChild(childName:string,sprite3d: Sprite3D):Sprite3D
+    {
+        var ss = this.sp3d.getChildByName(childName);
+        return ss.addChild(sprite3d) as Sprite3D;
     }
 
-    public removeSprite3DToAvatarNode(): void  {
-        this.ani_.unLinkSprite3DToAvatarNode(this._hat);
+    
+    public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): Sprite3D {
+        this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
+        return Game.layer3d.addChild(sprite3d) as Sprite3D;
+    }
+
+    public removeSprite3DToAvatarNode(s3d:Sprite3D): void {
+        this.ani_.unLinkSprite3DToAvatarNode(s3d);
     }
 
     private hit(pro: any): void {
@@ -139,6 +168,7 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public play(actionstr: string): void {
+        console.log(actionstr);
         if (this.acstr == GameAI.Die) {
             return;
         }
@@ -192,7 +222,8 @@ export default class GamePro extends Laya.EventDispatcher {
             this.sp2d_.x = this.hbox_.x;
             this.sp2d_.y = this.hbox_.y;
         }
-        this._bloodUI && this._bloodUI.pos(this.hbox_.cx + Game.map0.x,this.hbox_.cy + Game.map0.y - 90);
+        this._bloodUI && this._bloodUI.pos(this.hbox_.cx- 50, this.hbox_.cy - 90);
+        this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
     }
 
     public get z(): number {

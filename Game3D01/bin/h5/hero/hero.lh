@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"zhuangbei01",
+					"name":"daiji",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/Hero/FBX/xiaohai-zhuangbei01-xiaohaiAvatar.lav",
+							"path":"Assets/Hero/Animations/daiji-daiji-daijiAvatar.lav",
 							"linkSprites":{
 								"maozi1":[
 									"maozi1"
@@ -84,12 +84,12 @@
 										"clipPath":"Assets/Hero/Animations/daiji-Idle.lani"
 									},
 									{
-										"name":"Run",
-										"clipPath":"Assets/Hero/Animations/paopao-Run.lani"
-									},
-									{
 										"name":"Attack",
 										"clipPath":"Assets/Hero/Animations/gongji-Attack.lani"
+									},
+									{
+										"name":"Run",
+										"clipPath":"Assets/Hero/Animations/paopao-Run.lani"
 									},
 									{
 										"name":"Die",
@@ -111,7 +111,7 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-0.0002444515,
+								0.1697555,
 								1.303158,
 								-0.0315
 							],
@@ -156,20 +156,20 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-0.5222122,
-								0.6032261,
-								-0.0063
+								0.109394,
+								0.6486511,
+								0.2978371
 							],
 							"rotation":[
-								-5.008254E-17,
-								3.525931E-17,
-								-0.0895423,
-								-0.9959831
+								-0.2620924,
+								0.7166964,
+								0.4177035,
+								0.4931303
 							],
 							"scale":[
 								0.9,
-								0.9,
-								0.9
+								0.9000002,
+								0.9000002
 							],
 							"meshPath":"Assets/Hero/zhuangbei/youshou/FBX/youshou-polySurface23.lm",
 							"enableRender":true,
@@ -190,18 +190,18 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								0.5183355,
-								0.6097111,
-								0.0045
+								0.439256,
+								0.6325505,
+								0.3296238
 							],
 							"rotation":[
-								0,
-								0,
-								0.0359563,
-								-0.9993533
+								-0.6816824,
+								0.1973821,
+								-0.6199462,
+								0.334688
 							],
 							"scale":[
-								0.9000001,
+								0.9000003,
 								0.9000001,
 								0.9
 							],
@@ -224,7 +224,7 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								8.911639E-05,
+								0.1700891,
 								0.7118499,
 								-0.0153
 							],
@@ -269,7 +269,7 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-0.1426285,
+								0.02737147,
 								0.1472103,
 								0.0162
 							],
@@ -303,7 +303,7 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								0.1742784,
+								0.3442784,
 								0.1536564,
 								0.018
 							],
@@ -356,44 +356,79 @@
 							"boundBox":{
 								"min":[
 									-0.5974454,
-									-0.705817,
+									-0.4222224,
 									-0.315251
 								],
 								"max":[
-									1.095846,
-									0.6924586,
-									0.2889441
+									1.095845,
+									0.4115123,
+									0.5016626
 								]
 							},
 							"boundSphere":{
 								"center":[
-									0.2492002,
-									-0.006679147,
-									-0.01315343
+									0.2491998,
+									-0.005355075,
+									0.09320581
 								],
-								"radius":1.1388
+								"radius":1.028311
 							},
 							"materials":[
 								{
-									"path":"Assets/Materials/Maleface_01_hero_diffuse.lmat"
+									"path":"Assets/Hero/Materials/Maleface_01_hero_diffuse.lmat"
 								},
 								{
-									"path":"Assets/Materials/base_hero_hands.lmat"
+									"path":"Assets/Hero/Materials/base_hero_hands.lmat"
 								},
 								{
-									"path":"Assets/Materials/base_hero_lower_new.lmat"
+									"path":"Assets/Hero/Materials/base_hero_lower_new.lmat"
 								},
 								{
-									"path":"Assets/Materials/base_hero_upper.lmat"
+									"path":"Assets/Hero/Materials/base_hero_upper.lmat"
 								},
 								{
-									"path":"Assets/Materials/heavy_050lv_01_o01_hero_lower_mip_0.lmat"
+									"path":"Assets/Hero/Materials/heavy_050lv_01_o01_hero_lower_mip_0.lmat"
 								}
 							],
-							"meshPath":"Assets/Hero/FBX/xiaohai-polySurface7.lm"
+							"meshPath":"Assets/Hero/Animations/daiji-polySurface7.lm"
 						},
 						"components":[],
-						"child":[]
+						"child":[
+							{
+								"type":"MeshSprite3D",
+								"props":{
+									"name":"transform16",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									],
+									"meshPath":"Assets/Hero/Animations/daiji-transform16.lm",
+									"enableRender":true,
+									"materials":[
+										{
+											"path":"Assets/Materials/heavy_020lv_01_o01_hero_hands_M.lmat"
+										}
+									]
+								},
+								"components":[],
+								"child":[]
+							}
+						]
 					}
 				]
 			}

@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Hero/Textures/base_hero_hands.jpg",
+				"path":"../Textures/base_hero_hands.jpg",
 				"constructParams":[
 					128,
 					128,

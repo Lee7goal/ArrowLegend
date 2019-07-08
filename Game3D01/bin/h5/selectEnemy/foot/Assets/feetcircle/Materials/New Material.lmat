@@ -2,30 +2,30 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"base_hero_upper",
+		"name":"New Material",
 		"renderStates":[
 			{
 				"cull":2,
-				"blend":0,
-				"srcBlend":1,
-				"dstBlend":0,
-				"depthWrite":true,
+				"blend":1,
+				"srcBlend":770,
+				"dstBlend":771,
+				"depthWrite":false,
 				"depthTest":515
 			}
 		],
 		"enableVertexColor":false,
 		"alphaTest":false,
-		"alphaTestValue":0.5,
-		"renderQueue":2000,
+		"alphaTestValue":0.144,
+		"renderQueue":3000,
 		"albedoIntensity":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Hero/Textures/base_hero_upper.jpg",
+				"path":"../Textures/hongdi.png",
 				"constructParams":[
-					256,
-					256,
-					0,
+					128,
+					128,
+					1,
 					true
 				],
 				"propertyParams":{

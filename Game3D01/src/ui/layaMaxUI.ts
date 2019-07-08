@@ -4,11 +4,21 @@ import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
 export module ui.test {
+    export class Blood2UIUI extends View {
+		public bar:Laya.Sprite;
+        public static  uiView:any ={"type":"View","props":{"width":85,"height":17},"compId":2,"child":[{"type":"Sprite","props":{"texture":"bg/xuetiaodi.png"},"compId":3},{"type":"Sprite","props":{"var":"bar","texture":"bg/xuetiaoshanghong.png"},"compId":4}],"loadList":["bg/xuetiaodi.png","bg/xuetiaoshanghong.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(Blood2UIUI.uiView);
+        }
+    }
+    REG("ui.test.Blood2UIUI",Blood2UIUI);
     export class BloodUIUI extends View {
 		public bar:Laya.Image;
 		public colBox:Laya.Box;
 		public txt:Laya.Label;
-        public static  uiView:any ={"type":"View","props":{"y":24,"x":42,"width":85,"height":24,"anchorY":1,"anchorX":0.5},"compId":2,"child":[{"type":"Image","props":{"y":7,"x":0,"skin":"bg/xuetiaodi.png"},"compId":8},{"type":"Image","props":{"y":7,"width":85,"var":"bar","skin":"bg/xuetiaoshang.png","height":17},"compId":10},{"type":"Box","props":{"y":7,"width":85,"var":"colBox","height":17},"compId":7},{"type":"Label","props":{"y":0,"x":0,"width":85,"var":"txt","text":"600","stroke":3,"height":18,"fontSize":18,"color":"#ffffff","bold":true,"align":"center"},"compId":6}],"loadList":["bg/xuetiaodi.png","bg/xuetiaoshang.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"y":24,"x":42,"width":85,"height":24,"anchorY":1,"anchorX":0.5},"compId":2,"child":[{"type":"Image","props":{"y":7,"x":0,"skin":"bg/heroBlood.png"},"compId":8},{"type":"Image","props":{"y":7,"width":85,"var":"bar","skin":"bg/xuetiaoshang.png","height":17},"compId":10},{"type":"Box","props":{"y":7,"width":85,"var":"colBox","height":17},"compId":7},{"type":"Label","props":{"y":2,"x":0,"width":85,"var":"txt","text":"600","stroke":3,"height":18,"fontSize":18,"color":"#ffffff","bold":true,"align":"center"},"compId":6}],"loadList":["bg/heroBlood.png","bg/xuetiaoshang.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -16,6 +26,15 @@ export module ui.test {
         }
     }
     REG("ui.test.BloodUIUI",BloodUIUI);
+    export class HeroFootUI extends View {
+        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":-55,"x":-66,"texture":"bg/renlankuang.png"},"compId":3}],"loadList":["bg/renlankuang.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(HeroFootUI.uiView);
+        }
+    }
+    REG("ui.test.HeroFootUI",HeroFootUI);
     export class RockerViewUI extends View {
 		public sp:Laya.Sprite;
 		public dir:Laya.Box;

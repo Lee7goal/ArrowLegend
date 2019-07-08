@@ -26,46 +26,35 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"qiang",
+					"name":"hongquan",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-0.157029,
-						0.05398666,
-						0.02111111
+						0,
+						0,
+						0
 					],
 					"rotation":[
-						0.234506,
-						-0.6670885,
-						-0.6670884,
-						0.2345061
+						0,
+						0,
+						0,
+						-1
 					],
 					"scale":[
 						1.111111,
 						1.111112,
-						1.111112
+						1.111111
 					],
-					"meshPath":"Assets/Hero/zhuangbei/gong/FBX/qiang-default1.lm",
+					"meshPath":"Assets/feetcircle/FBX/hongquan-polySurface90.lm",
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/Hero/zhuangbei/gong/Materials/New Material.lmat"
+							"path":"Assets/feetcircle/Materials/New Material.lmat"
 						}
 					]
 				},
-				"components":[
-					{
-						"type":"Animator",
-						"avatar":{
-							"path":"Assets/Hero/zhuangbei/gong/FBX/qiang-qiang-qiangAvatar.lav",
-							"linkSprites":{}
-						},
-						"layers":[],
-						"cullingMode":0,
-						"playOnWake":true
-					}
-				],
+				"components":[],
 				"child":[]
 			}
 		]

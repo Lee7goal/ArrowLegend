@@ -9,6 +9,8 @@ import { SimpleGameMove, ArrowGameMove, PlaneGameMove } from "../game/GameMove";
 import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 import GameProType from "../game/GameProType";
+import FootRotateScript from "../game/controllerScript/FootRotateScript";
+import HeadTranslateScript from "../game/controllerScript/HeadTranslateScript";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -55,12 +57,12 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        // Laya.stage.addChild(map0);        
+        Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
@@ -79,6 +81,12 @@ export default class GameUI2 extends ui.test.TestSceneUI {
     }
 
     onComplete(): void {
+        Game.selectFoot = Laya.loader.getRes("h5/selectEnemy/foot/hero.lh");
+        Game.selectFoot.addComponent(FootRotateScript);
+
+        Game.selectHead = Laya.loader.getRes("h5/selectEnemy/head/hero.lh");
+        Game.selectHead.transform.localRotationEulerY = 90;
+        Game.selectHead.addComponent(HeadTranslateScript);
         //克隆墙的母体
         var aa = Laya.loader.getRes("h5/wall/wall.lh");
         Game.box = aa;
@@ -142,11 +150,11 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.map0.addChild(Game.hero.sp2d);
         Game.hero.setGameMove(new PlaneGameMove());
         Game.hero.setGameAi(new HeroAI());
-        Game.hero.initBlood();
+        
 
 
         let gong = Laya.loader.getRes("h5/gong/hero.lh");
-        Game.hero.addSprite3DToAvatarNode("youshougong",gong);
+        Game.hero.addSprite3DToAvatarNode("joint14",gong);
 
 
         Game.hero.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 1) * GameBG.ww);
@@ -156,15 +164,20 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         gpro = this.getMonster();
         gpro.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
         gpro.startAi();
+        gpro.setUI();
 
         gpro = this.getMonster();
         gpro.setXY2DBox(GameBG.ww*7 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
         gpro.startAi();
+        gpro.setUI();
 
         gpro = this.getMonster();
         gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
         gpro.startAi();
+        gpro.setUI();
         Game.e0_ = gpro;
+
+        Game.hero.setUI();
     }
 
     md(eve: MouseEvent): void {

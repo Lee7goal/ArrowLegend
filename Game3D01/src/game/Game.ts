@@ -52,14 +52,18 @@ export default class Game{
 
     static footLayer:Laya.Sprite = new Laya.Sprite();
     static bloodLayer:Laya.Sprite = new Laya.Sprite();
+
+    static selectFoot:Laya.Sprite3D;
+    static selectHead:Laya.Sprite3D;
     
     //static ani:Laya.Animator;
 
     static updateMap():void{
         if(Game.map0){
             if(Game.bg){
-                Game.map0.x = Game.bg.x;
-                Game.map0.y = Game.bg.y;
+                Game.bloodLayer.pos(Game.bg.x,Game.bg.y);
+                Game.footLayer.pos(Game.bg.x,Game.bg.y);
+                Game.map0.pos(Game.bg.x,Game.bg.y);
             }
         }
     }

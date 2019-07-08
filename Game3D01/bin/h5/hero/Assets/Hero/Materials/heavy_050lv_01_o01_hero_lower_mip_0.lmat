@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"base_hero_lower_new",
+		"name":"heavy_050lv_01_o01_hero_lower_mip_0",
 		"renderStates":[
 			{
 				"cull":2,
@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Hero/Textures/base_hero_lower_new.jpg",
+				"path":"../Textures/heavy_050lv_01_o01_hero_lower_mip_0.jpg",
 				"constructParams":[
 					256,
 					256,
