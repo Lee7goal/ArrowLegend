@@ -9,11 +9,12 @@ import { SimpleGameMove, ArrowGameMove, PlaneGameMove } from "../game/GameMove";
 import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 import GameProType from "../game/GameProType";
+import GameExecut from "../game/GameExecut";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
         super();
-
+        Game.executor = new GameExecut();
         var bg: GameBG = new GameBG();
 
         //bg.y = 1.5 * GameBG.ww;
@@ -153,24 +154,33 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.bg.updateY();
         Game.map0.Hharr.push(Game.hero.hbox);
 
-        gpro = this.getMonster();
-        gpro.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
-        gpro.startAi();
+        // gpro = this.getMonster();
+        // gpro.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+        // gpro.startAi();
 
-        gpro = this.getMonster();
-        gpro.setXY2DBox(GameBG.ww*7 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
-        gpro.startAi();
+        // gpro = this.getMonster();
+        // gpro.setXY2DBox(GameBG.ww*7 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+        // gpro.startAi();
 
         gpro = this.getMonster();
         gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
         gpro.startAi();
         Game.e0_ = gpro;
+
+        Game.hero.startAi();
+        Game.executor.start();
+        Laya.stage.on(Laya.Event.KEY_DOWN , this ,this.kd );
+    }
+
+    kd(eve: KeyboardEvent): void {
+        if(Game.executor.isRun){
+            Game.executor.stop_();
+        }else{
+            Game.executor.start();
+        }
     }
 
     md(eve: MouseEvent): void {
-        Game.hero.stopAi();
-        Game.hero.play("Run");
-        //Game.hero.rotation(Game.hero.face3d);
         Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.md);
         Laya.stage.on(Laya.Event.MOUSE_UP, this, this.up);
         let xx: number = Laya.stage.mouseX;
@@ -179,37 +189,31 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.ro.y = yy;
         Laya.stage.addChild(Game.ro);
         Laya.stage.frameLoop(1, this, this.moves);
-        //Laya.stage.clearTimer(this,this.ai);
+
+        //Game.hero.stopAi();
+        if(Game.executor.isRun){
+            ( <HeroAI>Game.hero.getGameAi() ).run = true; 
+        }
+        
+        
+        
     }
 
-    up(eve: Event): void {
-        Game.hero.play("Idle");
-        //var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
-        //Game.hero.rotation(a);
-        //this.heron = GameHitBox.faceTo(Game.hero.hbox , Game.e0.hbox);
-
+    up(eve: Event): void {        
         Laya.stage.off(Laya.Event.MOUSE_UP, this, this.up);
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
         if (Game.ro && Game.ro.parent) {
             Game.ro.reset();
             Game.ro.x = Laya.stage.width / 2;
             Game.ro.y = Laya.stage.height - 200;
-
-            //this.hero.reset();
         }
         Laya.stage.clearTimer(this, this.moves);
-        Game.hero.startAi();
-        //Game.map0.drawBallistic(Game.hero.face2d);
-        //Laya.stage.frameOnce(0,this,this.ai);
 
-
-        // //bo.setGameMove(new BulletGameMove(5,bo.face2d,bo));
-        // bo.startAi();
-    }
-
-    public move2d(n: number): void {
-        Game.hero.move2D(n);
-        Game.bg.updateY();
+        if(Game.executor.isRun){
+            ( <HeroAI>Game.hero.getGameAi() ).run = false; 
+        }
+         
+        // Game.hero.startAi();        
     }
 
     moves(): void {
@@ -217,14 +221,16 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         let yy: number = Laya.stage.mouseY;
         let n: number;
         Game.ro.setSp0(xx, yy);
-        var speed: number = Game.ro.getSpeed();
-        n = Game.ro.getA3d();
-        Game.ro.rotate(n);
-        if (speed > 0) {
-            Game.hero.rotation(n);
-            this.move2d(Game.ro.getA());
-        } else {
+        // var speed: number = Game.ro.getSpeed();
+        // n = Game.ro.getA3d();
+        // Game.ro.rotate(n);
+        // if (speed > 0) {
+        //     // Game.hero.rotation(n);
+        //     // this.move2d(Game.ro.getA());
+        // } else {
 
-        }
+        // }
     }
+
+    
 }
