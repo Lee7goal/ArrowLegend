@@ -6,6 +6,7 @@ import GameBG from "./GameBG";
 import Rocker from "./GameRocker";
 import GameMap0 from "./GameMap0";
 import GamePro from "./GamePro";
+import GameExecut from "./GameExecut";
 
 export default class Game{
 
@@ -57,7 +58,7 @@ export default class Game{
     static selectFoot:Laya.Sprite3D;
     static selectHead:Laya.Sprite3D;
     
-    //static ani:Laya.Animator;
+    static executor:GameExecut;
 
     static updateMap():void{
         if(Game.map0){

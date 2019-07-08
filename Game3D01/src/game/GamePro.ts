@@ -145,6 +145,10 @@ export default class GamePro extends Laya.EventDispatcher {
         return this.gameAI;
     }
 
+    public getGameAi(): GameAI {        
+        return this.gameAI;
+    }
+
     public get hbox(): GameHitBox {
         if (!this.hbox_) {
             this.hbox_ = new GameHitBox(GameBG.mw, GameBG.mw);
@@ -175,7 +179,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
-        this.ani_.speed = 1.5;
+        //this.ani_.speed = 1;
         //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
         if (this.acstr != GameAI.Run && this.acstr != GameAI.Idle && this.acstr != GameAI.Die) {
             Laya.stage.frameLoop(1, this, this.ac0);
@@ -255,16 +259,23 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public startAi(): void {
-        Laya.stage.frameLoop(1, this, this.ai);
+        //Laya.stage.frameLoop(1, this, this.ai);
         if (this.gameAI) {
             this.gameAI.starAi();
+            if(Game.AiArr.indexOf(this)<0){
+                Game.AiArr.push(this);
+            }            
         }
     }
 
     public stopAi(): void {
-        Laya.stage.timer.clear(this, this.ai);
+        //Laya.stage.timer.clear(this, this.ai);
         if (this.gameAI) {
             this.gameAI.stopAi();
+        }
+        var index:number = Game.AiArr.indexOf(this);
+        if(index>-1){
+            Game.AiArr.slice(index,1);
         }
     }
 

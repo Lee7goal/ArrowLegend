@@ -8,6 +8,8 @@ export default class GameExecut extends Laya.EventDispatcher {
     startt:number = 0;
     dt:number = 0;//时间轴静止时间
 
+    isRun:boolean = false;
+
     constructor(){
         super();
         this.now = Laya.Browser.now();
@@ -22,6 +24,7 @@ export default class GameExecut extends Laya.EventDispatcher {
         for (let i = 0; i < arr.length; i++) {
             if( arr[i].animator ) arr[i].animator.speed = 1;
         }
+        this.isRun = true;
         Laya.stage.frameLoop(1,this,this.ai);
     }
 
@@ -34,6 +37,7 @@ export default class GameExecut extends Laya.EventDispatcher {
         for (let i = 0; i < arr.length; i++) {
             if( arr[i].animator ) arr[i].animator.speed = 0;
         }
+        this.isRun = false;
     }
 
     /**得到游戏世界的时间轴 */
