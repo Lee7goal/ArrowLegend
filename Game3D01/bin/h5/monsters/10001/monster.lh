@@ -1,0 +1,204 @@
+{
+	"version":"LAYAHIERARCHY:01",
+	"data":{
+		"type":"Sprite3D",
+		"props":{
+			"name":"monster",
+			"active":true,
+			"position":[
+				0,
+				0,
+				0
+			],
+			"rotation":[
+				0,
+				0,
+				0,
+				-1
+			],
+			"scale":[
+				1,
+				1,
+				1
+			]
+		},
+		"child":[
+			{
+				"type":"Sprite3D",
+				"props":{
+					"name":"Toon Bat-Red",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					]
+				},
+				"components":[
+					{
+						"type":"Animator",
+						"avatar":{
+							"path":"Assets/10001/Toon Bat/FBX/Toon Bat-Toon Bat-Red-Toon BatAvatar.lav",
+							"linkSprites":{}
+						},
+						"layers":[
+							{
+								"name":"Base Layer",
+								"weight":0,
+								"blendingMode":0,
+								"states":[
+									{
+										"name":"Idle",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@Idle-Idle.lani"
+									},
+									{
+										"name":"FlyForward",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@FlyForward-FlyForward.lani"
+									},
+									{
+										"name":"Attack",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@BiteAttack-Attack.lani"
+									},
+									{
+										"name":"CastSpell",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@CastSpell-CastSpell.lani"
+									},
+									{
+										"name":"SoundwaveAttack Cast (Loop)",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast (Loop).lani"
+									},
+									{
+										"name":"SoundwaveAttack Cast to Idle",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast to Idle.lani"
+									},
+									{
+										"name":"Soundwave Attack Idle to Cast",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@SoundwaveAttack-Soundwave Attack Idle to Cast.lani"
+									},
+									{
+										"name":"Defend",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@Defend-Defend.lani"
+									},
+									{
+										"name":"TakeDamage",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@TakeDamage-TakeDamage.lani"
+									},
+									{
+										"name":"Die",
+										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@Die-Die.lani"
+									}
+								]
+							}
+						],
+						"cullingMode":0,
+						"playOnWake":true
+					}
+				],
+				"child":[
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"RigHeadGizmo",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								9.530202E-09,
+								0.7987216,
+								-0.2180273
+							],
+							"rotation":[
+								-0.5000001,
+								-0.5000001,
+								-0.4999999,
+								-0.4999999
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"enableRender":true,
+							"materials":[
+								{
+									"type":"Laya.BlinnPhongMaterial",
+									"path":"Library/unity default resources.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"SkinnedMeshSprite3D",
+						"props":{
+							"name":"Toon Bat",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								0.7071068,
+								0,
+								0,
+								-0.7071067
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"rootBone":"RigHead",
+							"boundBox":{
+								"min":[
+									-0.4060674,
+									-0.1314161,
+									-1.615449
+								],
+								"max":[
+									0.9756825,
+									0.5892512,
+									1.615449
+								]
+							},
+							"boundSphere":{
+								"center":[
+									0.2848076,
+									0.2289175,
+									0
+								],
+								"radius":1.793551
+							},
+							"materials":[
+								{
+									"type":"Laya.BlinnPhongMaterial",
+									"path":"Assets/10001/Toon Bat/Materials/Toon Bat-Red.lmat"
+								}
+							],
+							"meshPath":"Assets/10001/Toon Bat/FBX/Toon Bat-Toon Bat.lm"
+						},
+						"components":[],
+						"child":[]
+					}
+				]
+			}
+		]
+	}
+}

@@ -6,12 +6,13 @@ import GameProType from "./GameProType";
 import GameBG from "./GameBG";
 
 export abstract class GameAI {
-    static JumpAttack:string = "JumpAttack";
-    static ArrowAttack:string = "Attack";
+    static NormalAttack:string = "Attack";
+    // static JumpAttack:string = "JumpAttack";
+    // static ArrowAttack:string = "Attack";
+    // static SpinAttack:string = "SpinAttack";
     static Idle:string = "Idle";
     static Die:string = "Die";
     static Run:string = "Run";
-    static SpinAttack:string = "SpinAttack";
     static TakeDamage:string = "TakeDamage";
     abstract exeAI(pro:GamePro):boolean;
     abstract starAi();
@@ -96,7 +97,7 @@ export class MonsterAI1 extends GameAI {
                 if(this.shooting.attackOk()){
                     var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
                     this.pro.rotation(a);
-                    this.shooting.starAttack(this.pro,GameAI.SpinAttack);
+                    this.shooting.starAttack(this.pro,GameAI.NormalAttack);
                     //return true;
                     this.aist = now + this.aicd;
                 }
@@ -210,9 +211,9 @@ export class HeroAI extends GameAI {
             this.run_ = b;
             if(this.run_){
                 this.stopAi();
-                Game.hero.play("Run");
+                Game.hero.play(GameAI.Run);
             }else{
-                Game.hero.play("Idle");
+                Game.hero.play(GameAI.Idle);
                 this.starAi();
             }
         }
@@ -274,7 +275,7 @@ export class HeroAI extends GameAI {
             var facen2d_ = (2*Math.PI - a);
             if(Game.e0_.gamedata.hp>0 && this.shootin.checkBallistic(facen2d_,Game.hero,Game.e0_) ){
                 pro.rotation(a);
-                return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+                return this.shootin.starAttack(Game.hero,GameAI.NormalAttack);
             }
             
             if(Game.map0.Eharr.length>1){
@@ -288,7 +289,7 @@ export class HeroAI extends GameAI {
                         if( this.shootin.checkBallistic(facen2d_,Game.hero,ero.linkPro_) ){
                             Game.e0_ = ero.linkPro_;
                             pro.rotation(a);
-                            return this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+                            return this.shootin.starAttack(Game.hero,GameAI.NormalAttack);
                         }
                     }
                     
@@ -298,7 +299,7 @@ export class HeroAI extends GameAI {
             Game.e0_ = Game.map0.Eharr[0].linkPro_;
             var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.e0_.hbox);
             pro.rotation(a);
-            this.shootin.starAttack(Game.hero,GameAI.ArrowAttack);
+            this.shootin.starAttack(Game.hero,GameAI.NormalAttack);
         }
         return true;
     }
