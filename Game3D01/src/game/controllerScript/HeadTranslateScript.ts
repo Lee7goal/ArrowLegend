@@ -1,6 +1,6 @@
 export default class HeadTranslateScript extends Laya.Script3D {
     
-    private flag:boolean = true;
+    private flag:boolean = false;
     private box:Laya.MeshSprite3D;
     constructor() {
 		super();
@@ -13,8 +13,7 @@ export default class HeadTranslateScript extends Laya.Script3D {
 	public onAwake():void {
 		//得到3D对象
         this.box = this.owner as Laya.MeshSprite3D;
-        this.box.transform.localPositionY = 3;
-        
+        this.flag = true;
 	}
 	
 	public onStart():void {
@@ -26,20 +25,21 @@ export default class HeadTranslateScript extends Laya.Script3D {
 	public onUpdate():void {
         if(this.flag)
         {
-            this.box.transform.localPositionY += 0.05;
+            this.box.transform.translate(new Laya.Vector3(0,-0.02,0),false)
         }
         else{
-            this.box.transform.localPositionY -= 0.05;
+            this.box.transform.translate(new Laya.Vector3(0,0.02,0),false)
         }
-        if(this.box.transform.localPositionY >= 5)
-        {
-            this.flag = false;
-        }
-        else if(this.box.transform.localPositionY <= 3)
+        if(this.box.transform.localPositionX >= -1)
         {
             this.flag = true;
         }
-        console.log(this.box.transform.localPositionY);
+        else if(this.box.transform.localPositionX <= -1.5)
+        {
+            this.flag = false;
+        }
+        console.log(this.box.transform.localPositionX);
+        
 	}
 	
 	public onDisable() {

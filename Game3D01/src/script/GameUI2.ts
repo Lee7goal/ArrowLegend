@@ -63,7 +63,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/ToonRockGolem/ToonSkeletons.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/monsters/wall.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/door/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
@@ -86,7 +86,6 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.selectFoot.addComponent(FootRotateScript);
 
         Game.selectHead = Laya.loader.getRes("h5/selectEnemy/head/hero.lh");
-        Game.selectHead.transform.localRotationEulerY = 90;
         Game.selectHead.addComponent(HeadTranslateScript);
         //克隆墙的母体
         var aa = Laya.loader.getRes("h5/wall/wall.lh");
@@ -122,7 +121,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         Game.bg.drawR();
 
-        let sp: Laya.Sprite3D = Laya.loader.getRes("h5/ToonRockGolem/ToonSkeletons.lh");
+        let sp: Laya.Sprite3D = Laya.loader.getRes("h5/monsters/wall.lh");
         //Game.layer3d.addChild(sp);        
         var gpro = new GamePro(GameProType.RockGolem_Blue);
         gpro.setSp3d(sp);

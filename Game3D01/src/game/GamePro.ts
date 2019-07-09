@@ -94,7 +94,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public addSprite3DToChild(childName:string,sprite3d: Sprite3D):Sprite3D
     {
-        var ss = this.sp3d.getChildByName(childName);
+        var ss = this.sp3d.getChildAt(0).getChildByName(childName);
         return ss.addChild(sprite3d) as Sprite3D;
     }
 

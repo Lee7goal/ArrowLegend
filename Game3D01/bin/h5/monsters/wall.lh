@@ -3,7 +3,7 @@
 	"data":{
 		"type":"Sprite3D",
 		"props":{
-			"name":"ToonSkeletons",
+			"name":"wall",
 			"active":true,
 			"position":[
 				0,
@@ -129,6 +129,40 @@
 				],
 				"child":[
 					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"RigHeadGizmo",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								-1.505866E-08,
+								1.84891,
+								0.1694219
+							],
+							"rotation":[
+								-0.5000001,
+								-0.5000001,
+								-0.4999999,
+								-0.4999999
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"enableRender":true,
+							"materials":[
+								{
+									"type":"Laya.BlinnPhongMaterial",
+									"path":"Library/unity default resources.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
 						"type":"ShuriKenParticle3D",
 						"props":{
 							"name":"Wave",
@@ -247,7 +281,7 @@
 							"playOnAwake":true,
 							"maxParticles":5,
 							"autoRandomSeed":true,
-							"randomSeed":0,
+							"randomSeed":1.091714E+09,
 							"emission":{
 								"enable":true,
 								"emissionRate":5,
@@ -673,6 +707,7 @@
 							},
 							"materials":[
 								{
+									"type":"Laya.BlinnPhongMaterial",
 									"path":"Assets/Toon Enemies Pack/Toon Rock Golem/Materials/Toon Rock Golem-Blue.lmat"
 								}
 							],

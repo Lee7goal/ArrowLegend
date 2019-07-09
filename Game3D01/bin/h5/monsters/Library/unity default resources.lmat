@@ -1,8 +1,8 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.UnlitMaterial",
-		"name":"heavy_020lv_01_o01_hero_head_M",
+		"type":"Laya.BlinnPhongMaterial",
+		"name":"Font Material",
 		"renderStates":[
 			{
 				"cull":2,
@@ -13,27 +13,12 @@
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
-		"renderQueue":2000,
-		"albedoIntensity":1,
+		"renderQueue":3000,
 		"textures":[
 			{
-				"name":"albedoTexture",
-				"path":"../Textures/heavy_020lv_01_o01_hero_head_M.jpg",
-				"constructParams":[
-					256,
-					256,
-					0,
-					true
-				],
-				"propertyParams":{
-					"filterMode":1,
-					"wrapModeU":0,
-					"wrapModeV":0,
-					"anisoLevel":1
-				}
+				"name":"albedoTexture"
 			}
 		],
 		"vectors":[
