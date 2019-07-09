@@ -1,7 +1,7 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.BlinnPhongMaterial",
+		"type":"Laya.UnlitMaterial",
 		"name":"Toon Rock Golem-Blue",
 		"renderStates":[
 			{
@@ -13,9 +13,11 @@
 				"depthTest":515
 			}
 		],
+		"enableVertexColor":false,
 		"alphaTest":false,
-		"alphaTestValue":0.5,
+		"alphaTestValue":0.01,
 		"renderQueue":2000,
+		"albedoIntensity":1.5,
 		"textures":[
 			{
 				"name":"albedoTexture",
@@ -42,6 +44,15 @@
 					1,
 					0,
 					0
+				]
+			},
+			{
+				"name":"albedoColor",
+				"value":[
+					0.5,
+					0.5,
+					0.5,
+					0.5
 				]
 			}
 		],

@@ -707,7 +707,6 @@
 							},
 							"materials":[
 								{
-									"type":"Laya.BlinnPhongMaterial",
 									"path":"Assets/Toon Enemies Pack/Toon Rock Golem/Materials/Toon Rock Golem-Blue.lmat"
 								}
 							],
