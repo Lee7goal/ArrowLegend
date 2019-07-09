@@ -98,6 +98,11 @@ export default class GamePro extends Laya.EventDispatcher {
         return ss.addChild(sprite3d) as Sprite3D;
     }
 
+    private weapon:Laya.Sprite3D;
+    public addWeapon():void{
+        this.weapon = Laya.loader.getRes("h5/gong/hero.lh");
+        this.addSprite3DToAvatarNode("joint14",this.weapon);
+    }
     
     public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): Sprite3D {
         this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
@@ -172,13 +177,24 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public play(actionstr: string): void {
-        console.log(actionstr);
         if (this.acstr == GameAI.Die) {
             return;
         }
 
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
+
+        if(actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero)
+        {
+            setTimeout(() => {
+                let eff:Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/monster.lh");
+                this.weapon.addChild(eff);
+                setTimeout(() => {
+                    eff.removeSelf();
+                }, 400);
+            }, 300);
+        }
+
         //this.ani_.speed = 1;
         //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
         if (this.acstr != GameAI.Run && this.acstr != GameAI.Idle && this.acstr != GameAI.Die) {

@@ -63,7 +63,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/ToonSkeletons.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/door/hero.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/monster.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/gunEffect/monster.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
@@ -129,7 +129,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
 
 
-        sp = Laya.loader.getRes("h5/ArrowBlue/ToonSkeletons.lh");
+        sp = Laya.loader.getRes("h5/ArrowBlue/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
@@ -150,12 +150,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.map0.addChild(Game.hero.sp2d);
         Game.hero.setGameMove(new PlaneGameMove());
         Game.hero.setGameAi(new HeroAI());
-        
-
-
-        let gong = Laya.loader.getRes("h5/gong/hero.lh");
-        Game.hero.addSprite3DToAvatarNode("joint14",gong);
-
+        Game.hero.addWeapon();
 
         Game.hero.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 1) * GameBG.ww);
         Game.bg.updateY();

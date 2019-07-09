@@ -3,7 +3,7 @@
 	"data":{
 		"type":"Sprite3D",
 		"props":{
-			"name":"ToonSkeletons",
+			"name":"monster",
 			"active":true,
 			"position":[
 				0,
@@ -26,7 +26,7 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"Arrow-Blue",
+					"name":"Arrow-Purple",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,15 +42,15 @@
 						-0.7071068
 					],
 					"scale":[
-						2,
-						4,
-						2
+						1.2,
+						1.2,
+						1.2
 					],
-					"meshPath":"Assets/Toon Enemies Pack/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Arrow-Arrow.lm",
+					"meshPath":"Assets/10001/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Arrow-Arrow.lm",
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/Toon Enemies Pack/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Blue.lmat"
+							"path":"Assets/10001/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Purple.lmat"
 						}
 					]
 				},
@@ -147,9 +147,9 @@
 							"randomizeRotationDirection":0,
 							"startColorType":0,
 							"startColorConstant":[
+								1,
+								0.3921569,
 								0,
-								1,
-								1,
 								1
 							],
 							"startColorConstantMin":[
@@ -159,9 +159,9 @@
 								0
 							],
 							"startColorConstantMax":[
+								1,
+								0.3921569,
 								0,
-								1,
-								1,
 								1
 							],
 							"gravity":[
@@ -175,7 +175,7 @@
 							"playOnAwake":true,
 							"maxParticles":10,
 							"autoRandomSeed":true,
-							"randomSeed":2.241714E+09,
+							"randomSeed":1.331849E+09,
 							"emission":{
 								"enable":true,
 								"emissionRate":5,
@@ -423,7 +423,7 @@
 							"sortingFudge":0,
 							"material":{
 								"type":"Laya.ShurikenParticleMaterial",
-								"path":"Assets/Toon Enemies Pack/Toon Skeletons Pack/Toon Skeleton Archer/Materials/FX-Glow.lmat"
+								"path":"Assets/10001/Toon Skeletons Pack/Toon Skeleton Archer/Materials/FX-Glow.lmat"
 							}
 						},
 						"components":[],
@@ -476,41 +476,41 @@
 									{
 										"time":0,
 										"value":[
-											0,
-											0.9176471,
-											1
+											1,
+											0.4352941,
+											0
 										]
 									},
 									{
 										"time":0.2500038,
 										"value":[
-											0.3254902,
-											0.972549,
-											1
+											1,
+											0.7019608,
+											0.3254902
 										]
 									},
 									{
 										"time":0.5000076,
 										"value":[
-											0.6039216,
-											0.9490196,
-											1
+											1,
+											0.7607843,
+											0.1333333
 										]
 									},
 									{
 										"time":0.7499962,
 										"value":[
-											0.8313726,
-											0.972549,
-											1
+											0.9843137,
+											1,
+											0
 										]
 									},
 									{
 										"time":1,
 										"value":[
+											0.9960784,
 											1,
-											1,
-											1
+											0.6980392
 										]
 									}
 								],
@@ -540,7 +540,7 @@
 							"materials":[
 								{
 									"type":"Laya.TrailMaterial",
-									"path":"Assets/Toon Enemies Pack/Toon Skeletons Pack/Toon Skeleton Archer/Materials/FX-ArrowTrail.lmat"
+									"path":"Assets/10001/Toon Skeletons Pack/Toon Skeleton Archer/Materials/FX-ArrowTrail.lmat"
 								}
 							]
 						},

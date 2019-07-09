@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Toon Skeleton Archer-Blue",
+		"name":"Toon Skeleton Archer-Purple",
 		"renderStates":[
 			{
 				"cull":2,
@@ -17,11 +17,11 @@
 		"alphaTest":false,
 		"alphaTestValue":0.01,
 		"renderQueue":2000,
-		"albedoIntensity":2,
+		"albedoIntensity":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/Toon Skeleton Archer-Blue.jpg",
+				"path":"../Textures/Toon Skeleton Archer-Purple.jpg",
 				"constructParams":[
 					2048,
 					2048,
