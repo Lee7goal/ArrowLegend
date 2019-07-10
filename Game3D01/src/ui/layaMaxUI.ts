@@ -26,6 +26,16 @@ export module ui.test {
         }
     }
     REG("ui.test.BloodUIUI",BloodUIUI);
+    export class equipUI extends Scene {
+		public bg:Laya.Image;
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":553,"x":305,"width":200,"text":"装备","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(equipUI.uiView);
+        }
+    }
+    REG("ui.test.equipUI",equipUI);
     export class HeroFootUI extends View {
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":-55,"x":-66,"texture":"bg/renlankuang.png"},"compId":3}],"loadList":["bg/renlankuang.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -35,6 +45,14 @@ export module ui.test {
         }
     }
     REG("ui.test.HeroFootUI",HeroFootUI);
+    export class mainSceneUI extends Scene {
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("test/mainScene");
+        }
+    }
+    REG("ui.test.mainSceneUI",mainSceneUI);
     export class mainUIUI extends Scene {
 		public btn_xin:Laya.Button;
 		public jinbishuliang:Laya.Box;
@@ -71,6 +89,36 @@ export module ui.test {
         }
     }
     REG("ui.test.RockerViewUI",RockerViewUI);
+    export class settingUI extends Scene {
+		public bg:Laya.Image;
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":533,"x":285,"width":200,"text":"设置","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(settingUI.uiView);
+        }
+    }
+    REG("ui.test.settingUI",settingUI);
+    export class shopUI extends Scene {
+		public bg:Laya.Image;
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":543,"x":295,"width":200,"text":"商店","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(shopUI.uiView);
+        }
+    }
+    REG("ui.test.shopUI",shopUI);
+    export class talentUI extends Scene {
+		public bg:Laya.Image;
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":523,"x":275,"width":200,"text":"天赋","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(talentUI.uiView);
+        }
+    }
+    REG("ui.test.talentUI",talentUI);
     export class TestSceneUI extends Scene {
         constructor(){ super()}
         createChildren():void {

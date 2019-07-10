@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":19,
+    "selecteID":4,
     "searchKey":"Scene",
-    "props":{"width":750,"sceneColor":"#000000","height":1334},
+    "props":{"width":750,"sceneColor":"#000000","runtime":"main/scene/main/MainScene.ts","height":1334},
     "nodeParent":-1,
-    "maxID":20,
+    "maxID":5,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -16,30 +16,15 @@
     "child":[
         {
             "x":15,
-            "type":"Image",
-            "searchKey":"Image,bg",
-            "props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},
-            "nodeParent":2,
-            "label":"bg",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ],
-            "$LOCKED":true
-        },
-        {
-            "x":15,
             "type":"Label",
             "searchKey":"Label",
-            "props":{"y":533,"x":285,"width":200,"text":"设置","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},
+            "props":{"y":531,"x":162,"width":200,"text":"label","height":40,"fontSize":36,"color":"#a5f104"},
             "nodeParent":2,
             "label":"Label",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":19,
+            "compId":4,
             "child":[
                 ]
         }],

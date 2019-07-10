@@ -33,7 +33,7 @@
             "x":15,
             "type":"Label",
             "searchKey":"Label",
-            "props":{"y":533,"x":285,"width":200,"text":"设置","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},
+            "props":{"y":523,"x":275,"width":200,"text":"天赋","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},
             "nodeParent":2,
             "label":"Label",
             "isDirectory":false,

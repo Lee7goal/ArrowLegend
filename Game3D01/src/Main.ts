@@ -1,5 +1,6 @@
 import GameConfig from "./GameConfig";
 import GameBG from "./game/GameBG";
+import GameMain from "./main/GameMain";
 
 class Main {
 	constructor() {
@@ -47,7 +48,8 @@ class Main {
 		// GameBG.cj = 26;
 		GameBG.MAP_ROW = map.rowNum;
 		GameBG.arr0 = map.arr;
-		GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);	
+		
+		new GameMain();
 	}
 }
 //激活启动类
