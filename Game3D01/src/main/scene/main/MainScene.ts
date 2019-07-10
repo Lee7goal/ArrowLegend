@@ -1,8 +1,9 @@
 import { ui } from "../../../ui/layaMaxUI";
 import MainUI from "./MainUI";
 import MainView from "./MainView";
+import WorldView from "./world/WorldView";
 
-    export default class MainScene extends ui.test.mainSceneUI {
+    export default class MainScene extends ui.test.mainSceneUI{
     private mainUI:MainUI;
     private mainView:MainView;
     
@@ -13,8 +14,15 @@ import MainView from "./MainView";
 
     private initUI():void{
         this.mainView = new MainView();
-        this.addChild(this.mainView);
         this.mainUI = new MainUI();
+        this.addChild(this.mainView);
         this.addChild(this.mainUI);
+
+        Laya.stage.on("switchView",this,this.switchView);
+        this.switchView();
+    }
+
+    private switchView():void{
+        this.mainView.selectIndex = this.mainUI.selectIndex;
     }
 }

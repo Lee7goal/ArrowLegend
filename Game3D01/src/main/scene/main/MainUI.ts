@@ -1,83 +1,109 @@
 import { ui } from "../../../ui/layaMaxUI";
+import ShakeUtils from "../../../core/utils/ShakeUtils";
     export default class MainUI extends ui.test.mainUIUI {
         private bottomUI:BottomUI;
         constructor(){
             super();
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);
-            this.bottomUI.y = this.height - 121;
+            this.bottomUI.y = this.height - 122;
+
+            this.mouseThrough = true;
+        }
+
+        public get selectIndex():number
+        {
+            return this.bottomUI.selectIndex;
         }
     }
 
     export class BottomUI extends Laya.Sprite
     {
-        static BTN_SHOP:number = 1;
-        static BTN_EQUIP:number = 2;
-        static BTN_WORLD:number = 3;
-        static BTN_TALENT:number = 4;
-        static BTN_SETTING:number = 5;
+        private bgBox:Laya.Sprite = new Laya.Sprite();
+        private curBg:Laya.Image = new Laya.Image();
+        private btnBox:Laya.Sprite = new Laya.Sprite();
+        private bgs:Laya.Image[] = [];
+        private btns:Laya.Button[] = [];
 
-        private ids:number[] = [BottomUI.BTN_SHOP,BottomUI.BTN_EQUIP,BottomUI.BTN_WORLD,BottomUI.BTN_TALENT,BottomUI.BTN_SETTING];
-        private btns:BottomBtn[] = [];
+        private ww1:number = 127;
+        private ww2:number = 242;
+
+        private _selectIndex:number = 2;
+
+        private opens:number[] = [0,1,-1,1,-1,1];
         constructor(){
             super();
-            var ww:number = 0;
-            for(let i = 0; i < this.ids.length; i++)
+            this.addChild(this.bgBox);
+            this.curBg.skin = 'main/dazhao.png';
+            this.addChild(this.curBg);
+            this.addChild(this.btnBox);
+            for(let i = 1; i < 6; i++)
             {
-                let btn:BottomBtn = new BottomBtn(this.ids[i],new Laya.Handler(this,this.onClick,[this.ids[i]]));
-                this.addChild(btn);
-                this.btns.push(btn);
-                if(this.ids[i] == BottomUI.BTN_WORLD)
+                let bg:Laya.Image = new Laya.Image();
+                bg.skin = 'main/xiaobiao.png';
+                bg.width = this.ww1;
+                this.bgBox.addChild(bg);
+                bg.x = (i - 1) * bg.width;
+                this.bgs.push(bg);
+                let btn:Laya.Button = new Laya.Button();
+                btn.tag = this.opens[i];
+                if(this.opens[i] == 1)
                 {
-                    btn.setBg(true);
+                    btn.stateNum = 2;
+                    btn.width = 108;
+                    btn.skin = 'main/bottom_' + i + '.png';
                 }
-                btn.x = ww;
-                ww += btn.ww;
+                else{
+                    btn.stateNum = 1;
+                    btn.width = 38;
+                    btn.skin = 'main/suo.png';
+                }
+                
+                this.btnBox.addChild(btn);
+                btn.x = bg.x + (bg.width - btn.width) * 0.5;
+                btn.clickHandler = new Laya.Handler(this,this.onClick,[btn]);
+                this.btns.push(btn);
             }
+
+            this.onClick(this.btns[this._selectIndex]);
         }
 
-        private onClick(id:number):void
+        private onClick(clickBtn:Laya.Button):void
         {
+            if(clickBtn.tag == -1)
+            {
+                ShakeUtils.execute(clickBtn,300,2);
+                return;
+            }
+            var ww:number = 0;
+            let tmp:Laya.Image;
             for(let i = 0; i < this.btns.length; i++)
             {
-                let btn:BottomBtn = this.btns[i];
-                btn.setBg(btn.id == id);
+                let btn:Laya.Button = this.btns[i];
+                let bg:Laya.Image = this.bgs[i];
+                bg.skin = 'main/xiaobiao.png';
+                bg.width = this.ww1;
+                btn.selected = false;
+                btn.y = btn.tag == -1 ? 25 : 0;
+                if(btn == clickBtn)
+                {
+                    btn.y = -25;
+                    btn.selected = true;
+                    bg.skin = 'main/dabiao.png';
+                    bg.width = this.ww2;
+                    this._selectIndex = i;
+                    tmp = bg;
+                }
+                bg.x = ww;
+                ww += bg.width;
+                btn.x = bg.x + (bg.width - btn.width) * 0.5;
             }
-        }
-    }
-
-    export class BottomBtn extends Laya.Sprite
-    {
-        private bg:Laya.Image = new Laya.Image();
-        private btn:Laya.Button = new Laya.Button();
-        public id:number;
-        public ww:number;
-        constructor(id:number,clickHandler:Laya.Handler){
-            super();
-            this.id = id;
-            this.addChild(this.bg);
-            this.btn.stateNum = 2;
-            this.btn.skin = 'main/bottom_' + id + '.png';
-            this.addChild(this.btn);
-            this.btn.clickHandler = clickHandler;
-            this.setBg(false);
+            Laya.Tween.to(this.curBg,{x:tmp.x},500,Laya.Ease.cubicInOut);
+            Laya.stage.event("switchView");
         }
 
-        public setBg(isSelect:boolean):void
+        public get selectIndex():number
         {
-            if(isSelect)
-            {
-                this.bg.skin = 'main/dabiao.png';
-                this.bg.width = 242;
-                this.bg.height = 122;
-            }
-            else
-            {
-                this.bg.skin = 'main/xiaobiao.png';
-                this.bg.width = 127;
-                this.bg.height = 121;
-            }
-            this.btn.x = (this.bg.width - this.btn.width) >> 1;
-            this.ww = this.bg.width;
+            return this._selectIndex;
         }
     }
