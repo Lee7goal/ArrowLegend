@@ -38,7 +38,6 @@ export default class HeadTranslateScript extends Laya.Script3D {
         {
             this.flag = false;
         }
-        console.log(this.box.transform.localPositionX);
         
 	}
 	
