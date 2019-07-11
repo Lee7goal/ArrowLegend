@@ -6,10 +6,17 @@ import GridType from "./bg/GridType";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
+    /** 半空碰撞组*/
     Aharr: GameHitBox[];//半空碰撞组
+    /** 地面碰撞组*/
     Wharr: GameHitBox[];//地面碰撞组    
+    /** 敌人组*/
     Eharr: GameHitBox[];//敌人组
+    /** 主角组*/
     Hharr: GameHitBox[];//主角组
+    
+    /** 碰撞 主角的 伤害组*/
+    Fharr: GameHitBox[];//碰撞伤害组
 
 
 
@@ -27,10 +34,13 @@ export default class GameMap0 extends Laya.Sprite {
 
     public drawMap(): void {
         let hb: GameHitBox = null;
+
         this.Aharr = [];
         this.Wharr = [];
         this.Eharr = [];
         this.Hharr = [];
+        this.Fharr = [];
+
         this.map = {};
         this.Amap = {};
         this.graphics.clear();

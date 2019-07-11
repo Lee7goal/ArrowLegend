@@ -51,6 +51,18 @@ export default class GameExecut extends Laya.EventDispatcher {
         for (let i = 0; i < arr.length; i++) {
             arr[i].ai();
         }
+
+        var farr = Game.map0.Fharr;
+        for (let i = 0; i < farr.length; i++) {
+            var fhit = farr[i];
+            var pro  = fhit.linkPro_;
+            if( fhit.hit(fhit,Game.hero.hbox) ){
+                pro.closeCombat(Game.hero);
+                if(pro.gamedata.ammoClip==0){
+                    farr.slice( farr.indexOf(fhit) , 1 );
+                }
+            }
+        }
     }
 
 }
