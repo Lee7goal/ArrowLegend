@@ -3,38 +3,37 @@ import ShopView from "./shop/ShopView";
 import EquipView from "./equip/EquipView";
 import SettingView from "./setting/SettingView";
 import TalentView from "./talent/TalentView";
+import GameConfig from "../../../GameConfig";
 export default class MainView extends Laya.Sprite {
-    private shopView: ShopView;
-    private equipView: EquipView;
-    private worldView: WorldView;
-    private talentView:TalentView;
-    private settingView: SettingView;
-    constructor() { 
-        super(); 
+
+    private content: Laya.Sprite;
+    private views: Laya.Sprite[] = [];
+    constructor() {
+        super();
         this.initUI();
     }
 
-    private initUI():void{
-        this.shopView = new ShopView();
-        this.addChild(this.shopView);
-
-        this.equipView = new EquipView();
-        this.addChild(this.equipView);
-        this.equipView.x = this.shopView.x +this.shopView.width;
-
-        this.worldView = new WorldView();
-        this.addChild(this.worldView);
-        this.worldView.x = this.equipView.x +this.equipView.width;
-
-        this.talentView = new TalentView();
-        this.addChild(this.talentView);
-        this.talentView.x = this.equipView.x +this.equipView.width;
-
-        this.settingView = new SettingView();
-        this.addChild(this.settingView);
-        this.settingView.x = this.talentView.x +this.talentView.width;
+    private initUI(): void {
+        this.content = new Laya.Sprite();
+        this.addChild(this.content);
+        this.views = [new ShopView(), new EquipView(), new WorldView(), new TalentView(), new SettingView()];
     }
 
+    private curIndex: number;
+    public set selectIndex(index: number)  {
+        let view: Laya.Sprite = this.views[index];
+        this.content.addChild(view);
+        if (this.curIndex != null)  {
+            var xx:number = index > this.curIndex ? GameConfig.width : -GameConfig.width;
+            view.x = xx;
+            Laya.Tween.clearTween(this.content);
+            Laya.Tween.to(this.content, { x: -xx }, 500, null, new Laya.Handler(this, this.onCom, [view]));
+        }
+        this.curIndex = index;
+    }
 
-
+    private onCom(view: Laya.View): void {
+        this.content.x = 0;
+        view.x = 0;
+    }
 }

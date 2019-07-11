@@ -26,9 +26,9 @@ export module ui.test {
         }
     }
     REG("ui.test.BloodUIUI",BloodUIUI);
-    export class equipUI extends Scene {
+    export class equipUI extends View {
 		public bg:Laya.Image;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":553,"x":305,"width":200,"text":"装备","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":553,"x":305,"width":200,"text":"装备","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -89,9 +89,9 @@ export module ui.test {
         }
     }
     REG("ui.test.RockerViewUI",RockerViewUI);
-    export class settingUI extends Scene {
+    export class settingUI extends View {
 		public bg:Laya.Image;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":533,"x":285,"width":200,"text":"设置","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":533,"x":285,"width":200,"text":"设置","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -99,9 +99,9 @@ export module ui.test {
         }
     }
     REG("ui.test.settingUI",settingUI);
-    export class shopUI extends Scene {
+    export class shopUI extends View {
 		public bg:Laya.Image;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":543,"x":295,"width":200,"text":"商店","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":543,"x":295,"width":200,"text":"商店","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -109,9 +109,9 @@ export module ui.test {
         }
     }
     REG("ui.test.shopUI",shopUI);
-    export class talentUI extends Scene {
+    export class talentUI extends View {
 		public bg:Laya.Image;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":523,"x":275,"width":200,"text":"天赋","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"Label","props":{"y":523,"x":275,"width":200,"text":"天赋","height":50,"fontSize":40,"color":"#40f108","bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -127,7 +127,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TestSceneUI",TestSceneUI);
-    export class worldUI extends Scene {
+    export class worldUI extends View {
 		public bg:Laya.Image;
 		public dao:Laya.Image;
 		public btn_start:Laya.Button;
@@ -137,7 +137,7 @@ export module ui.test {
 		public baioti:Laya.Label;
 		public zuigao:Laya.Label;
 		public jinbishu:Laya.FontClip;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"SkeletonPlayer","props":{"y":642,"x":355,"url":"main/shuiwen.sk","runtime":"laya.ani.bone.Skeleton"},"compId":5},{"type":"Image","props":{"y":321,"x":33,"var":"dao","skin":"main/yidao.png"},"compId":4},{"type":"Button","props":{"y":1046,"x":375,"width":367,"var":"btn_start","stateNum":1,"skin":"main/btn_huang.png","sizeGrid":"0,25,0,21","height":157,"anchorY":0.5,"anchorX":0.5},"compId":6,"child":[{"type":"Image","props":{"y":88,"x":133,"skin":"main/anniudian.png"},"compId":7},{"type":"Image","props":{"y":18.5,"x":134,"skin":"main/kaishi.png"},"compId":8}]},{"type":"Image","props":{"y":808,"x":233,"var":"baoxiang","skin":"main/baoxiang01.png"},"compId":10},{"type":"Sprite","props":{"y":883,"x":205,"texture":"main/haibo.png"},"compId":11},{"type":"Label","props":{"y":852,"x":343,"var":"guanwenzi","text":"通过关卡1-10","fontSize":30,"color":"#ffffff"},"compId":12},{"type":"Label","props":{"y":171,"x":229.98046875,"var":"biaoti2","text":"1.我也草原","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},"compId":14,"child":[{"type":"Script","props":{"y":1,"x":0,"strength":2,"runtime":"laya.effect.BlurFilterSetter"},"compId":15}]},{"type":"Label","props":{"y":166,"x":230,"var":"baioti","text":"1.我也草原","fontSize":60,"color":"#ffffff","align":"center"},"compId":13},{"type":"Label","props":{"y":239,"x":278,"var":"zuigao","text":"最高层数：9/50","fontSize":30,"color":"#ffffff"},"compId":16},{"type":"FontClip","props":{"y":1064,"x":364,"width":63,"var":"jinbishu","value":"1","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"left"},"compId":18}],"loadList":["main/zhudi.jpg","main/shuiwen.sk","main/yidao.png","main/btn_huang.png","main/anniudian.png","main/kaishi.png","main/baoxiang01.png","main/haibo.png","main/clipshuzi.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3},{"type":"SkeletonPlayer","props":{"y":642,"x":355,"url":"main/shuiwen.sk","runtime":"laya.ani.bone.Skeleton"},"compId":5},{"type":"Image","props":{"y":321,"x":33,"var":"dao","skin":"main/yidao.png"},"compId":4},{"type":"Button","props":{"y":1046,"x":375,"width":367,"var":"btn_start","stateNum":1,"skin":"main/btn_huang.png","sizeGrid":"0,25,0,21","height":157,"anchorY":0.5,"anchorX":0.5},"compId":6,"child":[{"type":"Image","props":{"y":88,"x":133,"skin":"main/anniudian.png"},"compId":7},{"type":"Image","props":{"y":18.5,"x":134,"skin":"main/kaishi.png"},"compId":8}]},{"type":"Image","props":{"y":808,"x":233,"var":"baoxiang","skin":"main/baoxiang01.png"},"compId":10},{"type":"Sprite","props":{"y":883,"x":205,"texture":"main/haibo.png"},"compId":11},{"type":"Label","props":{"y":852,"x":343,"var":"guanwenzi","text":"通过关卡1-10","fontSize":30,"color":"#ffffff"},"compId":12},{"type":"Label","props":{"y":171,"x":229.98046875,"var":"biaoti2","text":"1.我也草原","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},"compId":14,"child":[{"type":"Script","props":{"y":1,"x":0,"strength":2,"runtime":"laya.effect.BlurFilterSetter"},"compId":15}]},{"type":"Label","props":{"y":166,"x":230,"var":"baioti","text":"1.我也草原","fontSize":60,"color":"#ffffff","align":"center"},"compId":13},{"type":"Label","props":{"y":239,"x":278,"var":"zuigao","text":"最高层数：9/50","fontSize":30,"color":"#ffffff"},"compId":16},{"type":"FontClip","props":{"y":1064,"x":364,"width":63,"var":"jinbishu","value":"1","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"left"},"compId":18}],"loadList":["main/zhudi.jpg","main/shuiwen.sk","main/yidao.png","main/btn_huang.png","main/anniudian.png","main/kaishi.png","main/baoxiang01.png","main/haibo.png","main/clipshuzi.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

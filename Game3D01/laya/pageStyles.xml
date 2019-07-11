@@ -6,7 +6,7 @@
    <item name="test/Blood2UI.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/world.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/mainUI.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="test/mainScene.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="test/mainScene.scene" props="" ifExport="加载模式" aName=""/>
    <item name="test/shop.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/setting.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/equip.scene" props="" ifExport="内嵌模式" aName=""/>
