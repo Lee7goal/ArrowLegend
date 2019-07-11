@@ -164,20 +164,20 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.bg.updateY();
         Game.map0.Hharr.push(Game.hero.hbox);
 
-        gpro = this.getMonster();
-        gpro.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
-        gpro.startAi();
-        gpro.setUI();
+        // gpro = this.getMonster();
+        // gpro.setXY2DBox(GameBG.ww*6 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+        // gpro.startAi();
+        // gpro.setUI();
 
-        gpro = this.getMonster();
-        gpro.setXY2DBox(GameBG.ww*7 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
-        gpro.startAi();
-        gpro.setUI();
+        // gpro = this.getMonster();
+        // gpro.setXY2DBox(GameBG.ww*7 , (GameBG.arr0.length/13 - 5) * GameBG.ww );
+        // gpro.startAi();
+        // gpro.setUI();
 
-        gpro = this.getMonster();
-        gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
-        gpro.startAi();
-        gpro.setUI();
+        // gpro = this.getMonster();
+        // gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
+        // gpro.startAi();
+        // gpro.setUI();
         Game.e0_ = gpro;
 
 

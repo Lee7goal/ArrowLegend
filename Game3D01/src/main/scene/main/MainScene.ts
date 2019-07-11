@@ -2,6 +2,7 @@ import { ui } from "../../../ui/layaMaxUI";
 import MainUI from "./MainUI";
 import MainView from "./MainView";
 import WorldView from "./world/WorldView";
+import GameBG from "../../../game/GameBG";
 
     export default class MainScene extends ui.test.mainSceneUI{
     private mainUI:MainUI;
@@ -9,6 +10,7 @@ import WorldView from "./world/WorldView";
     
     constructor() { 
         super(); 
+        this.height = GameBG.height;
         this.initUI();
     }
 

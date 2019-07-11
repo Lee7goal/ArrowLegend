@@ -16,15 +16,15 @@
 		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
-		"renderQueue":3000,
+		"renderQueue":2000,
 		"albedoIntensity":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/heavy_020lv_01_o01_hero_upper_M.jpg",
+				"path":"../Textures/cannongun_020lv_01_o01_M.jpg",
 				"constructParams":[
-					256,
-					256,
+					128,
+					128,
 					0,
 					true
 				],
