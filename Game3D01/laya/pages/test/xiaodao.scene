@@ -18,7 +18,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,dao",
-            "props":{"y":0,"x":0,"var":"dao","skin":"main/yidao.png"},
+            "props":{"y":0,"x":0,"var":"dao","skin":"main/erdao.png"},
             "nodeParent":2,
             "label":"dao",
             "isDirectory":false,
