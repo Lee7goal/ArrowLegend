@@ -6,7 +6,7 @@ var REG: Function = Laya.ClassUtils.regClass;
 export module ui.test {
     export class Blood2UIUI extends View {
 		public bar:Laya.Sprite;
-        public static  uiView:any ={"type":"View","props":{"width":85,"height":17},"compId":2,"child":[{"type":"Sprite","props":{"texture":"bg/xuetiaodi.png"},"compId":3},{"type":"Sprite","props":{"var":"bar","texture":"bg/xuetiaoshanghong.png"},"compId":4}],"loadList":["bg/xuetiaodi.png","bg/xuetiaoshanghong.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":85,"height":17,"centerX":0},"compId":2,"child":[{"type":"Sprite","props":{"texture":"bg/xuetiaodi.png"},"compId":3},{"type":"Sprite","props":{"var":"bar","texture":"bg/xuetiaoshanghong.png"},"compId":4}],"loadList":["bg/xuetiaodi.png","bg/xuetiaoshanghong.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

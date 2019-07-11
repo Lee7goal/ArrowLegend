@@ -76,14 +76,12 @@ export default class GamePro extends Laya.EventDispatcher {
         this.on(Game.Event_Hit, this, this.hit);
     }
 
-    public setUI():void
-    {
-        if (this.gamedata.proType == GameProType.Hero)  {
+    public setUI(): void  {
+        if (this.gamedata.proType == GameProType.Hero) {
             this.initBlood();
             this.addFootCircle();
         }
-        else if(this.gamedata.proType == GameProType.RockGolem_Blue)
-        {
+        else if (this.gamedata.proType == GameProType.RockGolem_Blue)  {
             this.initBlood();
         }
     }
@@ -92,24 +90,23 @@ export default class GamePro extends Laya.EventDispatcher {
         return this.ani_;
     }
 
-    public addSprite3DToChild(childName:string,sprite3d: Sprite3D):Sprite3D
-    {
+    public addSprite3DToChild(childName: string, sprite3d: Sprite3D): Sprite3D  {
         var ss = this.sp3d.getChildAt(0).getChildByName(childName);
         return ss.addChild(sprite3d) as Sprite3D;
     }
 
-    private weapon:Laya.Sprite3D;
-    public addWeapon():void{
+    private weapon: Laya.Sprite3D;
+    public addWeapon(): void {
         this.weapon = Laya.loader.getRes("h5/gong/hero.lh");
-        this.addSprite3DToAvatarNode("joint14",this.weapon);
+        this.addSprite3DToAvatarNode("joint14", this.weapon);
     }
-    
+
     public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): Sprite3D {
         this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
         return Game.layer3d.addChild(sprite3d) as Sprite3D;
     }
 
-    public removeSprite3DToAvatarNode(s3d:Sprite3D): void {
+    public removeSprite3DToAvatarNode(s3d: Sprite3D): void {
         this.ani_.unLinkSprite3DToAvatarNode(s3d);
     }
 
@@ -123,8 +120,8 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     /**近战伤害 */
-    public closeCombat(pro:GamePro):void{
-        
+    public closeCombat(pro: GamePro): void {
+
     }
 
 
@@ -157,7 +154,7 @@ export default class GamePro extends Laya.EventDispatcher {
         return this.gameAI;
     }
 
-    public getGameAi(): GameAI {        
+    public getGameAi(): GameAI {
         return this.gameAI;
     }
 
@@ -191,10 +188,9 @@ export default class GamePro extends Laya.EventDispatcher {
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
 
-        if(actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero)
-        {
+        if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero)  {
             setTimeout(() => {
-                let eff:Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/monster.lh");
+                let eff: Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/hero.lh");
                 this.weapon.addChild(eff);
                 setTimeout(() => {
                     eff.removeSelf();
@@ -231,6 +227,7 @@ export default class GamePro extends Laya.EventDispatcher {
         //this.sp3d_.transform.localRotationEulerY = (n+Math.PI/2)/Math.PI*180;
         var nn = n;
         nn = Math.atan2(Math.sin(nn) / Game.cameraCN.cos0, Math.cos(nn));
+        // nn = Math.atan2(Math.sin(nn) , Math.cos(nn));
         this.sp3d_.transform.localRotationEulerY = (nn + Math.PI / 2) / Math.PI * 180;
         this.facen3d_ = n;
         this.facen2d_ = (2 * Math.PI - n);
@@ -240,6 +237,7 @@ export default class GamePro extends Laya.EventDispatcher {
         return this._pos2;
     }
 
+    private lastTime: number = 0;
     public pos2To3d(): void {
         //2D转3D坐标 给主角模型
         this.sp3d_.transform.localPositionX = this._pos2.x / GameBG.ww;
@@ -251,6 +249,23 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
+        if (this.gamedata.proType == GameProType.Hero)  {
+            if (Laya.Browser.now() - this.lastTime >= 300)  {
+                var yan: Laya.Image = new Laya.Image();
+                yan.skin = "bg/renyan.png";
+                yan.size(64, 64);
+                Game.footLayer.addChild(yan);
+                yan.anchorX = 0.5;
+                yan.anchorY = 0.5;
+                yan.pos(this.hbox_.cx, this.hbox_.cy);
+                Laya.Tween.to(yan, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [yan]))
+                this.lastTime = Laya.Browser.now();
+            }
+        }
+    }
+
+    private onClear(yan: Laya.Image): void {
+        yan.removeSelf();
     }
 
     public get z(): number {
@@ -285,9 +300,9 @@ export default class GamePro extends Laya.EventDispatcher {
         //Laya.stage.frameLoop(1, this, this.ai);
         if (this.gameAI) {
             this.gameAI.starAi();
-            if(Game.AiArr.indexOf(this)<0){
+            if (Game.AiArr.indexOf(this) < 0) {
                 Game.AiArr.push(this);
-            }            
+            }
         }
     }
 
@@ -296,9 +311,9 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.gameAI) {
             this.gameAI.stopAi();
         }
-        var index:number = Game.AiArr.indexOf(this);
-        if(index>-1){
-            Game.AiArr.slice(index,1);
+        var index: number = Game.AiArr.indexOf(this);
+        if (index > -1) {
+            Game.AiArr.slice(index, 1);
         }
     }
 

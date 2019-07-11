@@ -63,12 +63,12 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        Laya.stage.addChild(map0);        
+        // Laya.stage.addChild(map0);        
         Game.map0 = map0;
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/monster.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/gunEffect/monster.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/monster.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/gunEffect/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
@@ -174,10 +174,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         // gpro.startAi();
         // gpro.setUI();
 
-        // gpro = this.getMonster();
-        // gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
-        // gpro.startAi();
-        // gpro.setUI();
+         gpro = this.getMonster();
+         gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
+         gpro.startAi();
+         gpro.setUI();
         Game.e0_ = gpro;
 
 
