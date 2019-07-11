@@ -5,9 +5,9 @@ import GameBG from "../../../game/GameBG";
         private bottomUI:BottomUI;
         constructor(){
             super();
+            this.height = GameBG.height;
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);
-            this.height = GameBG.height;
             this.bottomUI.bottom = 0;
 
             this.mouseThrough = true;

@@ -1,4 +1,6 @@
 D .
+R 39B957DA texture.png
+R C35323C9 箭主界面.jpg
 D bg
 P 48FD5DFF 10.png
 P 2E8B7160 100.png
@@ -88,7 +90,7 @@ D main
 P 3159A1FA anniudian.png
 P FBBDC073 baoxiang01.png
 P 3DC653B9 bottom_1.png
-P 6022A6C0 bottom_2.png
+P 1980AB68 bottom_2.png
 P 829E4ED0 bottom_3.png
 P 48E6372C bottom_4.png
 P D3F91D58 bottom_5.png
@@ -97,6 +99,9 @@ P 3086A902 btn_xin.png
 P FABE0781 clipshuzi.png
 P 248C5986 dabiao.png
 P C3C6DE3B dazhao.png
+R BC23220B guang1.png
+R DDF4E1DD guang2.png
+P F211986B guangdian.png
 P 375AA97B haibo.png
 P 5B32D6B6 jinbijia.png
 P C913B447 jindutiao.png

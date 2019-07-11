@@ -249,7 +249,7 @@ export default class GamePro extends Laya.EventDispatcher {
             this.sp2d_.x = this.hbox_.x;
             this.sp2d_.y = this.hbox_.y;
         }
-        this._bloodUI && this._bloodUI.pos(this.hbox_.cx- 50, this.hbox_.cy - 90);
+        this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
     }
 

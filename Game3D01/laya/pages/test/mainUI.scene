@@ -17,10 +17,10 @@
         {
             "x":15,
             "type":"Box",
-            "searchKey":"Box",
-            "props":{"x":10,"top":160},
+            "searchKey":"Box,topBox",
+            "props":{"var":"topBox","top":0},
             "nodeParent":2,
-            "label":"Box",
+            "label":"topBox",
             "isOpen":null,
             "isDirectory":true,
             "isAniNode":true,

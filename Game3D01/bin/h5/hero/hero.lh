@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"daiji (1)",
+					"name":"daiji",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -51,13 +51,10 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/Hero/Animations/daiji-daiji (1)-daijiAvatar.lav",
+							"path":"Assets/Hero/Animations/daiji-daiji-daijiAvatar.lav",
 							"linkSprites":{
 								"maozi1":[
 									"maozi1"
-								],
-								"qiang":[
-									"qiang"
 								],
 								"youshou":[
 									"youshou"
@@ -142,51 +139,6 @@
 								"type":"Animator",
 								"avatar":{
 									"path":"Assets/Hero/zhuangbei/maozi/FBX/maozi-maozi1-maoziAvatar.lav",
-									"linkSprites":{}
-								},
-								"layers":[],
-								"cullingMode":0,
-								"playOnWake":true
-							}
-						],
-						"child":[]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"qiang",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0.04099455,
-								0.6826543,
-								0.3014726
-							],
-							"rotation":[
-								-0.0829445,
-								-0.3114212,
-								0.0166707,
-								-0.9464984
-							],
-							"scale":[
-								1,
-								1.000001,
-								1.000001
-							],
-							"meshPath":"Assets/Hero/zhuangbei/gong/FBX/qiang-default1.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/Hero/zhuangbei/gong/Materials/New Material.lmat"
-								}
-							]
-						},
-						"components":[
-							{
-								"type":"Animator",
-								"avatar":{
-									"path":"Assets/Hero/zhuangbei/gong/FBX/qiang-qiang-qiangAvatar.lav",
 									"linkSprites":{}
 								},
 								"layers":[],
