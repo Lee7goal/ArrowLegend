@@ -1,12 +1,14 @@
 import { ui } from "../../../ui/layaMaxUI";
 import ShakeUtils from "../../../core/utils/ShakeUtils";
+import GameBG from "../../../game/GameBG";
     export default class MainUI extends ui.test.mainUIUI {
         private bottomUI:BottomUI;
         constructor(){
             super();
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);
-            this.bottomUI.y = this.height - 122;
+            this.height = GameBG.height;
+            this.bottomUI.bottom = 0;
 
             this.mouseThrough = true;
         }
@@ -17,7 +19,7 @@ import ShakeUtils from "../../../core/utils/ShakeUtils";
         }
     }
 
-    export class BottomUI extends Laya.Sprite
+    export class BottomUI extends Laya.Box
     {
         private bgBox:Laya.Sprite = new Laya.Sprite();
         private curBg:Laya.Image = new Laya.Image();

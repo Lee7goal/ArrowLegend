@@ -4,7 +4,12 @@ import GameMain from "./main/GameMain";
 
 class Main {
 	constructor() {
-		//根据IDE设置初始化引擎		
+		//根据IDE设置初始化引擎	
+		if (Laya.Browser.window.wx) {
+			var win = Laya.Browser.window.wx.getSystemInfoSync();
+			GameBG.height = GameBG.width / win.windowWidth * win.windowHeight;
+			console.log("舞台高度",GameBG.height);
+		}	
 		if (window["Laya3D"]) Laya3D.init(GameBG.width, GameBG.height);
 		else Laya.init(GameBG.width, GameBG.height, Laya["WebGL"]);
 		Laya["Physics"] && Laya["Physics"].enable();
@@ -24,6 +29,11 @@ class Main {
 		if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
+		if (Laya.Browser.window.wx) {
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend04/";
+		}
+		
+
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
 		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
 	}
@@ -35,14 +45,14 @@ class Main {
 
 	onConfigLoaded(): void {
 		
-		Laya.loader.load(["h5/mapConfig/1001.json","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
+		Laya.loader.load(["h5/mapConfig/1003.json","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
 		
 	}
 
 	private onHandler():void{
 		console.log("=========",Laya.loader.getRes('main/xiaobiao.png'));
 		//加载IDE指定的场景
-		let map = Laya.loader.getRes("h5/mapConfig/1001.json");
+		let map = Laya.loader.getRes("h5/mapConfig/1003.json");
 		// GameBG.hnum = map.rowNum;
 		// GameBG.cj = Math.floor(GameBG.hnum / 2);
 

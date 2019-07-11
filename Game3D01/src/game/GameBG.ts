@@ -219,7 +219,38 @@ export default class GameBG extends Laya.Sprite {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
                     grid.skin = 'bg/' + gType + '.png';
                 }
+                else if(GridType.isFlower(gType))
+                {
+                    grid.skin = 'bg/' + gType + '.png';
+                }
                 img.addChild(grid);
+                k++;
+            }
+        }
+
+        var k = 0;
+        for (let j = 0; j < GameBG.hnum; j++) {
+            for (let i = 0; i < GameBG.wnum + 1; i++) {
+                if (k > GameBG.arr0.length)  {
+                    continue;
+                }
+                gType = GameBG.arr0[k];
+                var shadow:Laya.Image = new Laya.Image();
+                if((GridType.isWall(gType) || (gType == 1)))
+                {
+                    shadow.skin = 'bg/shitouying.png';
+                    shadow.x = i * ww;
+                    shadow.y = j * ww;
+                    this._box.addChild(shadow);
+                }
+                else if(GridType.isFence(gType))
+                {
+                    shadow.skin = 'bg/lanying.png';
+                    shadow.width = 200;
+                    shadow.x = i * ww - 64;
+                    shadow.y = j * ww + 50;
+                    this._box.addChild(shadow);
+                }
                 k++;
             }
         }
@@ -244,7 +275,7 @@ export default class GameBG extends Laya.Sprite {
 
         this.addChild(this._bottom);
         this._bottom.skin = "bg/bottom.png";
-        this._bottom.y = (GameBG.MAP_ROW - 2) * GameBG.ww - GameBG.ww * 0.1;
+        this._bottom.y = (GameBG.MAP_ROW + 11 - 2) * GameBG.ww - GameBG.ww * 0.1;
         this._bottom.height = 1000;
 
         this.x = 0 - GameBG.ww2;

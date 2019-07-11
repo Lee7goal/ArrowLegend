@@ -29,6 +29,11 @@ export default class GridType {
         return type >= 500 && type<600;
     }
 
+    public static isFlower(type:Number):boolean
+    {
+        return type >= 801 && type<=804;
+    }
+
     public static isWall(type:Number):boolean
     {
         return type>=600 && type<700;
