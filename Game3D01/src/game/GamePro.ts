@@ -113,6 +113,7 @@ export default class GamePro extends Laya.EventDispatcher {
         this.ani_.unLinkSprite3DToAvatarNode(s3d);
     }
 
+    /**被攻击 */
     private hit(pro: any): void {
         // var a:GamePro = <GamePro>pro;
         // console.log("a " , a);
@@ -120,6 +121,12 @@ export default class GamePro extends Laya.EventDispatcher {
             this.gameAI.hit(pro);
         }
     }
+
+    /**近战伤害 */
+    public closeCombat(pro:GamePro):void{
+        
+    }
+
 
     public get acstr(): string {
         return this.acstr_;
@@ -223,7 +230,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         //this.sp3d_.transform.localRotationEulerY = (n+Math.PI/2)/Math.PI*180;
         var nn = n;
-        nn = Math.atan2(Math.sin(nn) * 2, Math.cos(nn));
+        nn = Math.atan2(Math.sin(nn) / Game.cameraCN.cos0, Math.cos(nn));
         this.sp3d_.transform.localRotationEulerY = (nn + Math.PI / 2) / Math.PI * 180;
         this.facen3d_ = n;
         this.facen2d_ = (2 * Math.PI - n);
@@ -236,7 +243,7 @@ export default class GamePro extends Laya.EventDispatcher {
     public pos2To3d(): void {
         //2D转3D坐标 给主角模型
         this.sp3d_.transform.localPositionX = this._pos2.x / GameBG.ww;
-        this.sp3d_.transform.localPositionZ = this._pos2.z * 2 / GameBG.ww;
+        this.sp3d_.transform.localPositionZ = this._pos2.z / Game.cameraCN.cos0 / GameBG.ww;
         this.hbox_.setXY(GameBG.mcx + this._pos2.x, GameBG.mcy + this._pos2.z);
         if (this.sp2d_) {
             this.sp2d_.x = this.hbox_.x;

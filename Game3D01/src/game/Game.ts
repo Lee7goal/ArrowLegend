@@ -7,8 +7,11 @@ import Rocker from "./GameRocker";
 import GameMap0 from "./GameMap0";
 import GamePro from "./GamePro";
 import GameExecut from "./GameExecut";
+import GameCameraNum from "./GameCameraNum";
 
 export default class Game{
+
+    static cameraCN:GameCameraNum;
 
     static Event_PlayStop:string = "Game.Event_PlayStop";
     static Event_Short:string = "Game.Event_Short";

@@ -21,32 +21,8 @@ export class SimpleGameMove implements GameMove {
 }
 
 export class ArrowGameMove implements GameMove {
-
+    
     private future:GameHitBox = new GameHitBox(2,2);
-
-    // public check(n: number, pro: GamePro, hitArr:GameHitBox[]):boolean{
-    //     var vx:number = pro.speed * Math.cos(n);
-    //     var vz:number = pro.speed * Math.sin(n);
-    //     var x0:number = pro.hbox.cx;
-    //     var y0:number = pro.hbox.cy;
-    //     var ebh:GameHitBox;
-    //     for (let i = 0; i < 6000; i++) {
-    //         ebh = null;
-    //         this.future.setVV(x0,y0,vx,vz);
-    //         ebh = Game.map0.chechHit_arr(this.future,hitArr);
-    //         if(ebh){
-    //             return true;
-    //         }
-    //         var hits = Game.map0.Aharr;
-    //         ebh = Game.map0.chechHit_arr(this.future,hits);
-    //         if(ebh){
-    //             return false;
-    //         }
-    //         x0 += vx;
-    //         y0 += vz;
-    //     }
-    //     return false;
-    // }
     
     public move2d(n: number, pro: GamePro, speed: number):boolean {
         //pro.rotation(n);

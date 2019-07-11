@@ -12,6 +12,7 @@ import GameProType from "../game/GameProType";
 import FootRotateScript from "../game/controllerScript/FootRotateScript";
 import HeadTranslateScript from "../game/controllerScript/HeadTranslateScript";
 import GameExecut from "../game/GameExecut";
+import GameCameraNum from "../game/GameCameraNum";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -34,9 +35,13 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         //添加照相机
         var camera: Laya.Camera = (scene.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
         // camera.transform.translate(new Laya.Vector3(0, 10, 10));
-        camera.transform.translate(new Laya.Vector3(0, 10, 10 * Math.sqrt(3)));
+        //camera.transform.translate(new Laya.Vector3(0, 10, 10 * Math.sqrt(3)));
         //camera.transform.rotate(new Laya.Vector3(-90, 0, 0), true, false);
-        camera.transform.rotate(new Laya.Vector3(-30, 0, 0), true, false);
+        //camera.transform.rotate(new Laya.Vector3(-45, 0, 0), true, false);
+        Game.cameraCN = new GameCameraNum(-45,10);
+        camera.transform.translate(new Laya.Vector3(0, Game.cameraCN.y, Game.cameraCN.z));       
+        camera.transform.rotate(new Laya.Vector3(Game.cameraCN.a, 0, 0), true, false);
+
 
         camera.orthographic = true;
         Game.camera = camera;
@@ -75,7 +80,9 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         gpro.setSp3d(sp);
         gpro.setGameAi(new MonsterAI1(gpro));
         gpro.setGameMove(new PlaneGameMove());
-        Game.map0.Eharr.push(gpro.hbox);
+
+        Game.map0.Eharr.push(gpro.hbox);//加入敌人组
+        Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
         Game.map0.addChild(gpro.sp2d);
         Game.layer3d.addChild(sp);
         return gpro;
@@ -104,6 +111,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                     {
                         let v3 = GameBG.get3D(i, j);
                         let box:Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.box);
+                        box.transform.scale = Game.cameraCN.boxscale0;
                         box.transform.translate(v3);
                         Game.layer3d.addChild(box)
                     }

@@ -50,7 +50,7 @@ export default class GameBG extends Laya.Sprite {
             GameBG.v3d = new Laya.Vector3(0, 0, 0);
         }
         GameBG.v3d.x = (xx - GameBG.ci);
-        GameBG.v3d.z = (yy - GameBG.cj) * 2;
+        GameBG.v3d.z = (yy - GameBG.cj) / Game.cameraCN.cos0;
         return GameBG.v3d;
     }
 
@@ -293,7 +293,7 @@ export default class GameBG extends Laya.Sprite {
             //移动2D背景板
             Game.bg.y = bgy;
             //摄像机跟随主角
-            Game.camera.transform.localPositionZ = Game.sqrt3 + Game.hero.z;
+            Game.camera.transform.localPositionZ = Game.cameraCN.z + Game.hero.z;
             Game.updateMap();
         }
     }
