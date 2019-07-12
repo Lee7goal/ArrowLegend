@@ -52,7 +52,7 @@ export class MonsterAI1 extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.hurt(100);
+        this.pro.hurt(10);
         this.pro.sp3d.addChild(Game.selectFoot);
         this.pro.addSprite3DToChild("RigHeadGizmo",Game.selectHead)
         // this.pro.sp3d.addChild(Game.selectHead);
@@ -223,10 +223,9 @@ export class HeroAI extends GameAI {
         if(Game.hero.acstr == GameAI.Idle){
             // Game.hero.play(GameAI.TakeDamage);
         }
-        Game.hero.hurt(100);
+        Game.hero.hurt(10);
         if(Game.hero.gamedata.hp<=0){
             this.stopAi();
-            console.log("主角死亡");
             Game.hero.play(GameAI.Die);
         }
     }

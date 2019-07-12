@@ -16,7 +16,7 @@
 		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
-		"renderQueue":2000,
+		"renderQueue":3000,
 		"albedoIntensity":1,
 		"textures":[
 			{
