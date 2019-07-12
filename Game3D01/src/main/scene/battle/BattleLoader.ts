@@ -1,20 +1,30 @@
 import GameBG from "../../../game/GameBG";
 import GameConfig from "../../../GameConfig";
+import App from "../../../core/App";
+import SysMap from "../../sys/SysMap";
 
 export default class BattleLoader{
     constructor() {}
     
     private _mapId:number;
+    public chaterId:number = 1;
+    private _configId:number;
+    private _index:number = 0;
     public get mapId():number
     {
         return this._mapId;
     }
 
-    public load(mapId:number):void
+    public load():void
     {
-        this._mapId = mapId;
+        this._mapId = this.chaterId * 1000 + this._index;
+        let sysMap:SysMap = SysMap.getData(this.chaterId,this._mapId);
+        let configArr:string[] = sysMap.stageGroup.split(',');
+        let configId:number = Number(configArr[Math.floor(configArr.length * Math.random())]);
+        this._configId = configId;
+        console.log("==============",this._configId);
         var arr: string[] = [
-            "h5/mapConfig/"+this._mapId+".json",
+            "h5/mapConfig/"+this._configId+".json",
             "h5/wall/wall.lh",
             "h5/zhalan/hero.lh",
             "h5/selectEnemy/foot/hero.lh",
@@ -31,7 +41,8 @@ export default class BattleLoader{
     }
 
     onComplete(): void {
-        let map = Laya.loader.getRes("h5/mapConfig/"+this._mapId+".json");
+        this._index++;
+        let map = Laya.loader.getRes("h5/mapConfig/"+this._configId+".json");
 		GameBG.MAP_ROW = map.rowNum;
 		GameBG.arr0 = map.arr;
         Laya.Scene.open("test/TestScene.scene");

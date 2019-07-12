@@ -188,7 +188,7 @@ export default class GameMap0 extends Laya.Sprite {
             {
                 this._isNext = true;
                 console.log("传送下一关");
-                Game.battleLoader.load(1001);
+                Game.battleLoader.load();
                 return true;
             }
             if (ehb.hit(ehb, fb)) {
