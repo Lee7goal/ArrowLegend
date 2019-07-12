@@ -44,4 +44,9 @@ export default class GridType {
         return type>=700 && type<800;
     }
 
+    public static isRiverCube(type:Number):boolean
+    {
+        return type==900;
+    }
+
 }

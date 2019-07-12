@@ -86,7 +86,6 @@ export class PlaneGameMove implements GameMove {
         if(pro.gamedata.hp<=0){
             return;
         }
-        
         var vx:number = pro.speed * Math.cos(n);
         var vz:number = pro.speed * Math.sin(n);
         if( Game.map0.chechHit(pro,vx,vz) ){

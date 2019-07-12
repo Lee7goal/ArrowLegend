@@ -37,7 +37,7 @@ export module ui.test {
     }
     REG("ui.test.equipUI",equipUI);
     export class HeroFootUI extends View {
-        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":-55,"x":-66,"texture":"bg/renlankuang.png"},"compId":3}],"loadList":["bg/renlankuang.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":-55,"x":-59,"texture":"bg/renlankuang.png"},"compId":3}],"loadList":["bg/renlankuang.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

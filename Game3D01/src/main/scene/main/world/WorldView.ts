@@ -1,5 +1,6 @@
 import { ui } from "../../../../ui/layaMaxUI";
 import GameBG from "../../../../game/GameBG";
+import Game from "../../../../game/Game";
     export default class WorldView extends ui.test.worldUI {
     constructor() { 
         super();
@@ -9,6 +10,6 @@ import GameBG from "../../../../game/GameBG";
 
     private onStart():void
     {
-        Laya.Scene.open("test/TestScene.scene");
+        Game.battleLoader.load(1000);
     }
 }

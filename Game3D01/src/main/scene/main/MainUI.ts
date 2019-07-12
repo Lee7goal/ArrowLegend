@@ -67,10 +67,10 @@ import GameBG from "../../../game/GameBG";
                 this.btns.push(btn);
             }
 
-            this.onClick(this.btns[this._selectIndex]);
+            this.onClick(this.btns[this._selectIndex],10);
         }
 
-        private onClick(clickBtn:Laya.Button):void
+        private onClick(clickBtn:Laya.Button,delay:number = 500):void
         {
             if(clickBtn.tag == -1)
             {
@@ -100,7 +100,7 @@ import GameBG from "../../../game/GameBG";
                 ww += bg.width;
                 btn.x = bg.x + (bg.width - btn.width) * 0.5;
             }
-            Laya.Tween.to(this.curBg,{x:tmp.x},500,Laya.Ease.cubicInOut);
+            Laya.Tween.to(this.curBg,{x:tmp.x},delay,Laya.Ease.cubicInOut);
             Laya.stage.event("switchView");
         }
 
