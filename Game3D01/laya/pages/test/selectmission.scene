@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":21,
+    "selectedBox":21,
+    "selecteID":24,
     "searchKey":"Scene",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":23,
+    "maxID":26,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -51,13 +51,14 @@
             "props":{"x":18.5,"centerY":0},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":21,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"x":0.5,"width":714,"skin":"main/biaotilan.png","sizeGrid":"0,38,0,134","height":99},
@@ -72,6 +73,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,biaoti2",
                     "props":{"y":24,"x":210.5,"var":"biaoti2","text":"1.我也草原","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},
@@ -102,6 +104,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,biaoti",
                     "props":{"y":19,"x":212.5,"var":"biaoti","text":"1.我也草原","fontSize":60,"color":"#ffffff","align":"center"},
@@ -117,12 +120,13 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,changdu2",
                     "props":{"y":686,"x":171.5,"var":"changdu2","text":"章节长度：50","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},
                     "nodeParent":21,
                     "label":"changdu2",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -147,6 +151,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,changdu",
                     "props":{"y":682,"x":172.5,"var":"changdu","text":"章节长度：50","fontSize":60,"color":"#ffffff","align":"center"},
@@ -162,12 +167,13 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,miaoshu2",
                     "props":{"y":781,"x":37.5,"width":630,"var":"miaoshu2","text":"一片肥沃的草原，是打猎的好地方","height":34,"fontSize":34,"color":"#000000","alpha":0.5,"align":"center"},
                     "nodeParent":21,
                     "label":"miaoshu2",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
@@ -192,6 +198,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,miaoshu",
                     "props":{"y":776,"x":37.5,"width":630,"var":"miaoshu","text":"一片肥沃的草原，是打猎的好地方","fontSize":34,"color":"#ffffff","align":"center"},
@@ -207,6 +214,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,btn_jinru",
                     "props":{"y":958,"x":354.5,"width":301,"var":"btn_jinru","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,16,0,18","height":157,"anchorY":0.5,"anchorX":0.5},
@@ -219,9 +227,10 @@
                     "compId":14,
                     "child":[
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
-                            "props":{"y":47,"x":90,"text":"进入","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},
+                            "props":{"y":42,"x":90,"text":"进入","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},
                             "nodeParent":14,
                             "label":"Label",
                             "isOpen":true,
@@ -231,6 +240,7 @@
                             "compId":15,
                             "child":[
                                 {
+                                    "x":60,
                                     "type":"BlurFilterSetter",
                                     "switchAble":true,
                                     "searchKey":"BlurFilterSetter",
@@ -249,9 +259,10 @@
                             "$HIDDEN":false
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
-                            "props":{"y":43,"x":93,"text":"进入","strokeColor":"#000000","stroke":3,"fontSize":60,"color":"#ffffff","align":"center"},
+                            "props":{"y":38,"x":93,"text":"进入","strokeColor":"#000000","stroke":3,"fontSize":60,"color":"#ffffff","align":"center"},
                             "nodeParent":14,
                             "label":"Label",
                             "isOpen":true,
@@ -266,6 +277,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,fanhui",
                     "props":{"y":1155,"x":41.5,"var":"fanhui","stateNum":"1","skin":"main/btn_lan.png","anchorY":0.5,"anchorX":0.5},
@@ -294,6 +306,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"UIView",
                     "source":"test/xiaodao.scene",
                     "searchKey":"UIView",
@@ -306,6 +319,53 @@
                     "compId":22,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,tiaojian2",
+                    "props":{"y":944,"x":245,"var":"tiaojian2","text":"通过第1章解锁","height":34,"fontSize":34,"color":"#000000","alpha":0.5,"align":"center"},
+                    "nodeParent":21,
+                    "label":"tiaojian2",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":23,
+                    "child":[
+                        {
+                            "type":"BlurFilterSetter",
+                            "switchAble":true,
+                            "searchKey":"BlurFilterSetter",
+                            "removeAble":true,
+                            "props":{"y":1,"x":0,"strength":2},
+                            "nodeParent":23,
+                            "label":"BlurFilterSetter",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":25,
+                            "child":[
+                                ],
+                            "$HIDDEN":false
+                        }],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,tiaojian",
+                    "props":{"y":938,"x":245.06494140625,"var":"tiaojian","text":"通过第1章解锁","fontSize":34,"color":"#ffffff","align":"center"},
+                    "nodeParent":21,
+                    "label":"tiaojian",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":24,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
                 }],
             "$HIDDEN":false
         }],
