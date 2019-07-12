@@ -22,6 +22,7 @@ export default class BattleLoader{
         let configArr:string[] = sysMap.stageGroup.split(',');
         let configId:number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
+        this._configId = 100104;
         console.log("==============",this._configId);
         var arr: string[] = [
             "h5/mapConfig/"+this._configId+".json",

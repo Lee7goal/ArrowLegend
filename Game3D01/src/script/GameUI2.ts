@@ -149,7 +149,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         {
             Game.ro = new Rocker();
         }
-        Game.ro.reset();
+        Game.ro.resetPos();
         Laya.stage.addChild(Game.ro);
         
         Laya.MouseManager.multiTouchEnabled = false;
@@ -231,7 +231,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Laya.stage.off(Laya.Event.MOUSE_UP, this, this.up);
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
         if (Game.ro && Game.ro.parent) {
-            Game.ro.reset();
+            Game.ro.resetPos();
         }
         Laya.stage.clearTimer(this, this.moves);
 
