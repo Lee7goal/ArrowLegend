@@ -33,6 +33,7 @@ export default class GameMap0 extends Laya.Sprite {
     }
 
     public drawMap(): void {
+        this._isNext = false;
         let hb: GameHitBox = null;
 
         this.Aharr = [];
@@ -46,7 +47,7 @@ export default class GameMap0 extends Laya.Sprite {
         this.graphics.clear();
 
         hb = new GameHitBox(GameBG.ww * (GameBG.wnum + 1), GameBG.ww);
-        hb.setXY(0, GameBG.ww * 8);
+        hb.setXY(0, GameBG.ww * 7);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
 
@@ -136,24 +137,33 @@ export default class GameMap0 extends Laya.Sprite {
         this.Aharr.push(hb);
 
         //传送门左侧
-        hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww);
-        hb.setXY(0, GameBG.ww * 9);
+        hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww * 2);
+        hb.setXY(0, GameBG.ww * 8);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         //传送门右侧
-        hb = new GameHitBox(GameBG.ww * 5, GameBG.ww);
-        hb.setXY(GameBG.ww * 8, GameBG.ww * 9);
+        hb = new GameHitBox(GameBG.ww * 5, GameBG.ww * 2);
+        hb.setXY(GameBG.ww * 8, GameBG.ww * 8);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
-
-        for (let i = 0; i < this.Wharr.length; i++) {
-            hb = this.Wharr[i];
-            this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
-        }
-
         this.alpha = 1;
         this.addChild(this.ballistic);
         //this.addChild(this.laodings);
+
+        this.setDoor(false);
+        
+    }
+
+    /**开关门 */
+    public setDoor(isOpen:boolean):void{
+        let num:number = isOpen ? 0 : 3;
+        this.Wharr[this.Wharr.length - 2].setRq(0,GameBG.ww * 8,GameBG.ww * (5 + num), GameBG.ww * 2);
+        this.Wharr[this.Wharr.length - 2].setRq(0,GameBG.ww * 8,GameBG.ww * (5 + num), GameBG.ww * 2);
+        this.graphics.clear();
+        for (let i = 0; i < this.Wharr.length; i++) {
+            var hb = this.Wharr[i];
+            this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
+        }
     }
 
     private futureBox: GameHitBox = new GameHitBox(1, 1);
@@ -162,12 +172,25 @@ export default class GameMap0 extends Laya.Sprite {
         return this.chechHit(Game.hero, vx, vy);
     }
 
+    private _isNext:boolean = false;
     public chechHit(gamepro: GamePro, vx: number, vy: number): boolean {
+        if(this._isNext)
+        {
+
+            return true;
+        }
         var hb = gamepro.hbox;
         var fb = this.futureBox;
         fb.setRq(hb.x + vx, hb.y + vy, hb.ww, hb.hh);
         for (let i = 0; i < this.Wharr.length; i++) {
             let ehb = this.Wharr[i];
+            if(gamepro == Game.hero && i == 0 && ehb.hit(ehb, fb))
+            {
+                this._isNext = true;
+                console.log("传送下一关");
+                Game.battleLoader.load(1001);
+                return true;
+            }
             if (ehb.hit(ehb, fb)) {
                 return true;
             }

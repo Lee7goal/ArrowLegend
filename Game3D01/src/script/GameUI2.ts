@@ -17,30 +17,33 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
         super();
-        Game.executor = new GameExecut();
+        console.log("进入战斗");
+        this.removeChildren();
+        Game.reset();
+        // Game.executor = new GameExecut();
         var bg: GameBG = new GameBG();
 
         //bg.y = 1.5 * GameBG.ww;
         //bg.alpha = 0;
-        Laya.stage.addChild(bg);
+        this.addChild(bg);
         Game.bg = bg;
         //脚底层
-        Laya.stage.addChild(Game.footLayer);
-        Laya.stage.addChild(Game.frontLayer);
+        this.addChild(Game.footLayer);
+        this.addChild(Game.frontLayer);
         //添加3D场景
-        var scene: Laya.Scene3D = Laya.stage.addChild(new Laya.Scene3D()) as Laya.Scene3D;
+        var scene: Laya.Scene3D = this.addChild(new Laya.Scene3D()) as Laya.Scene3D;
         scene.addChild(Game.layer3d);
         Game.scene3d = scene;
         //血条层
-        Laya.stage.addChild(Game.bloodLayer);
+        this.addChild(Game.bloodLayer);
         //添加照相机
         var camera: Laya.Camera = (scene.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
         // camera.transform.translate(new Laya.Vector3(0, 10, 10));
         //camera.transform.translate(new Laya.Vector3(0, 10, 10 * Math.sqrt(3)));
         //camera.transform.rotate(new Laya.Vector3(-90, 0, 0), true, false);
         //camera.transform.rotate(new Laya.Vector3(-45, 0, 0), true, false);
-        Game.cameraCN = new GameCameraNum(-45,10);
-        camera.transform.translate(new Laya.Vector3(0, Game.cameraCN.y, Game.cameraCN.z));       
+        Game.cameraCN = new GameCameraNum(-45, 10);
+        camera.transform.translate(new Laya.Vector3(0, Game.cameraCN.y, Game.cameraCN.z));
         camera.transform.rotate(new Laya.Vector3(Game.cameraCN.a, 0, 0), true, false);
 
 
@@ -55,25 +58,15 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
         directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
 
-        //添加自定义模型
-        var material: Laya.BlinnPhongMaterial = new Laya.BlinnPhongMaterial();
-        Game.material_blinn = material;
-        Laya.Texture2D.load("res/layabox.png", Laya.Handler.create(null, function (tex: Laya.Texture2D) {
-            material.albedoTexture = tex;
-        }));
-
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        // Laya.stage.addChild(map0);        
+        // this.addChild(map0);
         Game.map0 = map0;
         Game.updateMap();
-        this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
-        this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/monster.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/gunEffect/hero.lh", "h5/effects/door/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
+        
+        this.onComplete();
     }
-
-    private heroUrl: string;
 
     getMonster(): GamePro {
         var sp = Laya.Sprite3D.instantiate(Game.e0_.sp3d);
@@ -90,6 +83,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
     }
 
     onComplete(): void {
+        Game.closeDoor();
+
         Game.selectFoot = Laya.loader.getRes("h5/selectEnemy/foot/hero.lh");
         Game.selectFoot.addComponent(FootRotateScript);
 
@@ -106,20 +101,18 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         for (let j = 0; j < GameBG.hnum; j++) {
             for (let i = 0; i < GameBG.wnum + 1; i++) {
                 //console.log(i,j);
-                let type:number = GameBG.arr0[k];
+                let type: number = GameBG.arr0[k];
                 if (k < GameBG.arr0.length) {
-                    if((GridType.isWall(type) || (type == 1)))
-                    {
+                    if ((GridType.isWall(type) || (type == 1))) {
                         let v3 = GameBG.get3D(i, j);
-                        let box:Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.box);
+                        let box: Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.box);
                         box.transform.scale = Game.cameraCN.boxscale0;
                         box.transform.translate(v3);
                         Game.layer3d.addChild(box)
                     }
-                    else if(GridType.isFence(type))
-                    {
+                    else if (GridType.isFence(type)) {
                         let v3 = GameBG.get3D(i, j);
-                        let box:Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.fence);
+                        let box: Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.fence);
                         box.transform.translate(v3);
                         Game.layer3d.addChild(box)
                     }
@@ -144,15 +137,18 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.a0 = gpro;
 
         //得到原始Sprite3D   
-        sp = Laya.loader.getRes(this.heroUrl);
+        sp = Laya.loader.getRes("h5/hero/hero.lh");
         Game.layer3d.addChild(sp);
         Game.hero = new GamePro(GameProType.Hero);
         Game.hero.setSp3d(sp as Laya.Sprite3D);
 
-        Game.ro = new Rocker();
-        Game.ro.x = Laya.stage.width / 2;
-        Game.ro.y = Laya.stage.height - 200;
-        this.addChild(Game.ro);
+        if(Game.ro == null)
+        {
+            Game.ro = new Rocker();
+        }
+        Game.ro.reset();
+        Laya.stage.addChild(Game.ro);
+        
         Laya.MouseManager.multiTouchEnabled = false;
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
         Game.hero.play("Idle");
@@ -182,26 +178,29 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.e0_ = gpro;
 
 
-        Game.hero.setUI();
+
         Game.hero.startAi();
         Game.executor.start();
-        Laya.stage.on(Laya.Event.KEY_DOWN , this ,this.kd );
+        Game.hero.setUI();
+        Laya.stage.on(Laya.Event.KEY_DOWN, this, this.kd);
 
-        this.openDoor();
+        Game.footLayer.pos(0, 0);
+        Game.hero.rotation(90 / 180 * Math.PI);
+        Game.hero.sp3d.transform.localPositionY = 15;
+        Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn);
+
+        if(Game.battleLoader.mapId == 1000)
+        {
+            Game.openDoor();
+        }
     }
 
-    openDoor():void
-    {
-        let v3 = GameBG.get3D(6, 9);
-        let door:Laya.Sprite3D = Laya.loader.getRes("h5/effects/door/hero.lh");
-        door.transform.translate(v3);
-        Game.layer3d.addChild(door);
-    }
+
 
     kd(eve: KeyboardEvent): void {
-        if(Game.executor.isRun){
+        if (Game.executor.isRun) {
             Game.executor.stop_();
-        }else{
+        } else {
             Game.executor.start();
         }
     }
@@ -217,28 +216,26 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Laya.stage.frameLoop(1, this, this.moves);
 
         //Game.hero.stopAi();
-        if(Game.executor.isRun){
-            ( <HeroAI>Game.hero.getGameAi() ).run = true; 
+        if (Game.executor.isRun) {
+            (<HeroAI>Game.hero.getGameAi()).run = true;
         }
-        
-        
-        
+
+
+
     }
 
-    up(eve: Event): void {        
+    up(eve: Event): void {
         Laya.stage.off(Laya.Event.MOUSE_UP, this, this.up);
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
         if (Game.ro && Game.ro.parent) {
             Game.ro.reset();
-            Game.ro.x = Laya.stage.width / 2;
-            Game.ro.y = Laya.stage.height - 200;
         }
         Laya.stage.clearTimer(this, this.moves);
 
-        if(Game.executor.isRun){
-            ( <HeroAI>Game.hero.getGameAi() ).run = false; 
+        if (Game.executor.isRun) {
+            (<HeroAI>Game.hero.getGameAi()).run = false;
         }
-         
+
         // Game.hero.startAi();        
     }
 
@@ -258,5 +255,5 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         // }
     }
 
-    
+
 }

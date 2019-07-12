@@ -8,6 +8,7 @@ import GameMap0 from "./GameMap0";
 import GamePro from "./GamePro";
 import GameExecut from "./GameExecut";
 import GameCameraNum from "./GameCameraNum";
+import BattleLoader from "../main/scene/battle/BattleLoader";
 
 export default class Game{
 
@@ -59,19 +60,45 @@ export default class Game{
     static bloodLayer:Laya.Sprite = new Laya.Sprite();
     static frontLayer:Laya.Sprite = new Laya.Sprite();
 
+
     static selectFoot:Laya.Sprite3D;
     static selectHead:Laya.Sprite3D;
     
-    static executor:GameExecut;
+    static executor:GameExecut = new GameExecut();
+
+    static battleLoader:BattleLoader = new BattleLoader();
 
     static updateMap():void{
         if(Game.map0){
             if(Game.bg){
                 Game.bloodLayer.pos(Game.bg.x,Game.bg.y);
+                Game.frontLayer.pos(Game.bg.x,Game.bg.y);
                 Game.footLayer.pos(Game.bg.x,Game.bg.y);
                 Game.map0.pos(Game.bg.x,Game.bg.y);
             }
         }
+    }
+
+    static door:Laya.Sprite3D;
+    static openDoor():void
+    {
+        let v3 = GameBG.get3D(6, 9);
+        Game.door = Laya.loader.getRes("h5/effects/door/hero.lh");
+        Game.door.transform.translate(v3);
+        Game.layer3d.addChild(Game.door);
+        Game.map0.setDoor(true);
+    }
+
+    static closeDoor():void{
+        Game.door && Game.door.removeSelf();
+        Game.map0.setDoor(false);
+    }
+
+    static reset():void{
+        Game.AiArr.length = 0;
+        Game.bloodLayer.removeChildren();
+        Game.frontLayer.removeChildren();
+        Game.footLayer.removeChildren();
     }
 
     constructor(){

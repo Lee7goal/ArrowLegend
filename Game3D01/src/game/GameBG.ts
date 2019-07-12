@@ -155,8 +155,6 @@ export default class GameBG extends Laya.Sprite {
     private _leftShadow:Image = new Image();
     constructor() {
         super();
-        console.log(GameBG.wnum, Laya.stage.height, Laya.stage.width);
-        //GameBG.orthographicVerticalSize = GameBG.wnum*Laya.stage.height/Laya.stage.width;
         GameBG.gameBG = this;
         this.mySp = new Sprite();
         this.mySp.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, 0x00ff00);
@@ -172,33 +170,12 @@ export default class GameBG extends Laya.Sprite {
     }
 
     public drawR(): void {
-        this._topShadow.skin = "bg/yingzi.png";
-        this._topShadow.width = GameBG.ww * (GameBG.wnum + 1);
-        this._leftShadow.skin = "bg/yingzi.png";
-        this._leftShadow.height = GameBG.ww * GameBG.hnum - 10 * GameBG.ww;
-        this._leftShadow.y = GameBG.ww * 10 + 28;
-        this._leftShadow.x = GameBG.ww - 10;
-
-        this.addChild(this._box);
-        this.addChild(this._topShadow);
-        this.addChild(this._leftShadow);
-        this.addChild(this._top);
-
-        this._top.x = GameBG.ww2;
-        this._top.skin = "bg/top.png";
-        this._topShadow.y = 10 * GameBG.ww;
-
-        this.addChild(this._bottom);
-        this._bottom.x = GameBG.ww2;
-
-
-
         var img: Image;
         var ww: number = GameBG.ww;
         var k: number = 0;
         let sp: Sprite;
         let gType: number = 0;
-
+        this.addChild(this._box);
         for (let j = 0; j < GameBG.hnum; j++) {
             this.bgh += ww;
             for (let i = 0; i < GameBG.wnum + 1; i++) {
@@ -281,14 +258,14 @@ export default class GameBG extends Laya.Sprite {
         for (let j = 0; j < GameBG.hnum; j++) {
             if (j % 2 == 0) {
                 var left: Image = new Image();
-                this._box.addChild(left);
+                Game.frontLayer.addChild(left);
                 left.skin = "bg/border.png";
                 left.x = 0;
                 left.y = Math.floor(j / 2) * 128 - 1;
                 left.mouseEnabled = false;
 
                 var right: Image = new Image();
-                this._box.addChild(right);
+                Game.frontLayer.addChild(right);
                 right.skin = "bg/border.png";
                 right.x = 0 + GameBG.wnum * ww;
                 right.y = Math.floor(j / 2) * 128 - 1;
@@ -296,7 +273,23 @@ export default class GameBG extends Laya.Sprite {
             }
         }
 
-        this.addChild(this._bottom);
+        this._topShadow.skin = "bg/yingzi.png";
+        this._topShadow.width = GameBG.ww * (GameBG.wnum + 1);
+        this._leftShadow.skin = "bg/yingzi.png";
+        this._leftShadow.height = GameBG.ww * GameBG.hnum - 10 * GameBG.ww;
+        this._leftShadow.y = GameBG.ww * 10 + 28;
+        this._leftShadow.x = GameBG.ww - 10;
+        // Game.frontLayer.alpha = 0
+        Game.frontLayer.addChild(this._topShadow);
+        Game.frontLayer.addChild(this._leftShadow);
+        Game.frontLayer.addChild(this._top);
+
+        this._top.x = GameBG.ww2;
+        this._top.skin = "bg/top.png";
+        this._topShadow.y = 10 * GameBG.ww;
+
+        Game.frontLayer.addChild(this._bottom);
+        this._bottom.x = GameBG.ww2;
         this._bottom.skin = "bg/bottom.png";
         this._bottom.y = (GameBG.MAP_ROW + 11 - 3) * GameBG.ww - GameBG.ww * 0.1;
         this._bottom.height = 1000;

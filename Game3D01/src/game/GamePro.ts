@@ -37,7 +37,8 @@ export default class GamePro extends Laya.EventDispatcher {
     constructor(proType_: number) {
         super();
         this.gamedata_ = new GameData();
-        this.gamedata_.proType = proType_;        
+        this.gamedata_.proType = proType_;     
+        this.rotationEulerY = 0;   
     }
 
     public get bloodUI(): Blood {
