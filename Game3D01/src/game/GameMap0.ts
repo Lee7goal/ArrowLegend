@@ -18,6 +18,8 @@ export default class GameMap0 extends Laya.Sprite {
     /** 碰撞 主角的 伤害组*/
     Fharr: GameHitBox[];//碰撞伤害组
 
+    Flyharr: GameHitBox[];//飞行碰撞组
+
 
 
     private arrhb: GameHitBox;
@@ -41,6 +43,7 @@ export default class GameMap0 extends Laya.Sprite {
         this.Eharr = [];
         this.Hharr = [];
         this.Fharr = [];
+        this.Flyharr = [];
 
         this.map = {};
         this.Amap = {};
@@ -50,16 +53,19 @@ export default class GameMap0 extends Laya.Sprite {
         hb.setXY(0, GameBG.ww * 7);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
+        this.Flyharr.push(hb);
 
         hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
         hb.setXY(0, GameBG.ww * 2);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
+        this.Flyharr.push(hb);
 
         hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
         hb.setXY(GameBG.ww * GameBG.wnum, GameBG.ww * 2);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
+        this.Flyharr.push(hb);
 
         var k: number = 0;
         for (var j = 0; j < GameBG.hnum; j++) {
@@ -135,17 +141,20 @@ export default class GameMap0 extends Laya.Sprite {
         hb.setXY(GameBG.ww, GameBG.ww * (j + 0));//原先是加1
         this.Wharr.push(hb);
         this.Aharr.push(hb);
+        this.Flyharr.push(hb);
 
         //传送门左侧
         hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww * 2);
         hb.setXY(0, GameBG.ww * 8);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
+        this.Flyharr.push(hb);
         //传送门右侧
         hb = new GameHitBox(GameBG.ww * 5, GameBG.ww * 2);
         hb.setXY(GameBG.ww * 8, GameBG.ww * 8);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
+        this.Flyharr.push(hb);
         this.alpha = 1;
         this.addChild(this.ballistic);
         //this.addChild(this.laodings);
@@ -191,6 +200,19 @@ export default class GameMap0 extends Laya.Sprite {
                 Game.battleLoader.load();
                 return true;
             }
+            if (ehb.hit(ehb, fb)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public chechHitArrs(gamepro: GamePro, vx: number, vy: number , thbArr: GameHitBox[]): boolean {
+        var hb = gamepro.hbox;
+        var fb = this.futureBox;
+        fb.setRq(hb.x + vx, hb.y + vy, hb.ww, hb.hh);
+        for (let i = 0; i < thbArr.length; i++) {
+            let ehb = thbArr[i];
             if (ehb.hit(ehb, fb)) {
                 return true;
             }

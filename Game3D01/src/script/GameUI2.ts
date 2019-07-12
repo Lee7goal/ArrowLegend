@@ -5,7 +5,7 @@ import Rocker from "../game/GameRocker";
 import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
-import { SimpleGameMove, ArrowGameMove, PlaneGameMove } from "../game/GameMove";
+import { SimpleGameMove, ArrowGameMove, PlaneGameMove, FlyGameMove } from "../game/GameMove";
 import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 import GameProType from "../game/GameProType";
@@ -13,6 +13,7 @@ import FootRotateScript from "../game/controllerScript/FootRotateScript";
 import HeadTranslateScript from "../game/controllerScript/HeadTranslateScript";
 import GameExecut from "../game/GameExecut";
 import GameCameraNum from "../game/GameCameraNum";
+import { FlyAndHitAi } from "../ai/FlyAndHitAi";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -72,8 +73,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         var sp = Laya.Sprite3D.instantiate(Game.e0_.sp3d);
         var gpro = new GamePro(GameProType.RockGolem_Blue);
         gpro.setSp3d(sp);
-        gpro.setGameAi(new MonsterAI1(gpro));
-        gpro.setGameMove(new PlaneGameMove());
+        //gpro.setGameAi(new MonsterAI1(gpro));
+        gpro.setGameAi(new FlyAndHitAi(gpro));        
+        //gpro.setGameMove(new PlaneGameMove());
+        gpro.setGameMove(new FlyGameMove());
 
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组

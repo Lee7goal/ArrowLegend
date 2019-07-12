@@ -17,6 +17,7 @@ export default class Game{
     static Event_PlayStop:string = "Game.Event_PlayStop";
     static Event_Short:string = "Game.Event_Short";
     static Event_Hit:string   = "Game.Event_Hit";
+    static Event_KeyNum:string   = "Game.Event_KeyNum";
 
     static AiArr:GamePro[] = [];
     static HeroArrows:GamePro[] = [];
