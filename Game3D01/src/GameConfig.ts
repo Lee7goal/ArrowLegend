@@ -12,7 +12,6 @@ export default class GameConfig{
     static alignV:string="top";
     static alignH:string="left";
     static startScene:any="test/mainScene.scene";
-    static battleScene:string = "test/TestScene.scene";
     static sceneRoot:string="";
     static debug:boolean=false;
     static stat:boolean=false;

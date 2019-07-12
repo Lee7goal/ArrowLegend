@@ -34,6 +34,6 @@ export default class BattleLoader{
         let map = Laya.loader.getRes("h5/mapConfig/"+this._mapId+".json");
 		GameBG.MAP_ROW = map.rowNum;
 		GameBG.arr0 = map.arr;
-        Laya.Scene.open(GameConfig.battleScene);
+        Laya.Scene.open("test/TestScene.scene");
     }
 }
