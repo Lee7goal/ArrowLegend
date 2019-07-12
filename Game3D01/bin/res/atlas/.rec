@@ -26,12 +26,13 @@ P 8E17C47A 801.png
 P BFF7C632 802.png
 P 1B33CB61 803.png
 P 7BBE4CFE 804.png
+P 728763FC 900.png
 P 766D284F andanlandian.png
 P 8DF563AC border.png
 R 2AC8AA19 bottom.png
 P D99251CA heroBlood.png
 P A653A0FF lanying.png
-P B993209B renlankuang.png
+P 5FE5FDA4 renlankuang.png
 P 66D52362 renyan.png
 P DB4A2B49 rockerBall.png
 P 766F45B3 rockerBg.png
@@ -42,6 +43,7 @@ P D99251CA xuetiaodi.png
 P 6F98F189 xuetiaogang.png
 P A1D267A2 xuetiaoshang.png
 P 4A625AC3 xuetiaoshanghong.png
+P 3A067C42 yingzi.png
 D comp
 P 9401CC40 blank.png
 P B03390E5 btn_close.png
@@ -89,12 +91,15 @@ P 2BFF7046 vslider.png
 D main
 P 3159A1FA anniudian.png
 P FBBDC073 baoxiang01.png
+P 43FA4528 biaotilan.png
 P 3DC653B9 bottom_1.png
 P 1980AB68 bottom_2.png
 P 829E4ED0 bottom_3.png
-P 48E6372C bottom_4.png
+P 5B927E4E bottom_4.png
 P D3F91D58 bottom_5.png
 P FD2396C8 btn_huang.png
+P 9744F290 btn_lan.png
+P 110F91D5 btn_lv.png
 P 3086A902 btn_xin.png
 P FABE0781 clipshuzi.png
 P 248C5986 dabiao.png
@@ -103,6 +108,7 @@ R BC23220B guang1.png
 R DDF4E1DD guang2.png
 P F211986B guangdian.png
 P 375AA97B haibo.png
+R 6773E926 jiandi.jpg
 P 5B32D6B6 jinbijia.png
 P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
@@ -114,6 +120,7 @@ R 344E9FF1 shuiwen.png
 R 557E099B shuiwen.sk
 P 5C9A5072 shukuang.png
 P FB648920 suo.png
+P EB6FAE7B toujian.png
 P 5166B8D7 xiaobiao.png
 R 5A7DAF7D yidao.png
 R 218DADB9 zhudi.jpg

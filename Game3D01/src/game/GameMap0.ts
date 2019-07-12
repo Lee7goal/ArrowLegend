@@ -131,7 +131,7 @@ export default class GameMap0 extends Laya.Sprite {
         }
 
         hb = new GameHitBox(GameBG.ww * (GameBG.wnum - 1), GameBG.ww);
-        hb.setXY(GameBG.ww, GameBG.ww * (j + 1));
+        hb.setXY(GameBG.ww, GameBG.ww * (j + 0));//原先是加1
         this.Wharr.push(hb);
         this.Aharr.push(hb);
 

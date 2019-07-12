@@ -45,14 +45,14 @@ class Main {
 
 	onConfigLoaded(): void {
 		
-		Laya.loader.load(["h5/mapConfig/1003.json","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
+		Laya.loader.load(["h5/mapConfig/1000.json","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
 		
 	}
 
 	private onHandler():void{
 		console.log("=========",Laya.loader.getRes('main/xiaobiao.png'));
 		//加载IDE指定的场景
-		let map = Laya.loader.getRes("h5/mapConfig/1003.json");
+		let map = Laya.loader.getRes("h5/mapConfig/1000.json");
 		// GameBG.hnum = map.rowNum;
 		// GameBG.cj = Math.floor(GameBG.hnum / 2);
 

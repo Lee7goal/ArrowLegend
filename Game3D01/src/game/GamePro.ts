@@ -76,12 +76,12 @@ export default class GamePro extends Laya.EventDispatcher {
         this.on(Game.Event_Hit, this, this.hit);
     }
 
-    public setUI(): void  {
+    public setUI(): void {
         if (this.gamedata.proType == GameProType.Hero) {
             this.initBlood();
             this.addFootCircle();
         }
-        else if (this.gamedata.proType == GameProType.RockGolem_Blue)  {
+        else if (this.gamedata.proType == GameProType.RockGolem_Blue) {
             this.initBlood();
         }
     }
@@ -90,7 +90,7 @@ export default class GamePro extends Laya.EventDispatcher {
         return this.ani_;
     }
 
-    public addSprite3DToChild(childName: string, sprite3d: Sprite3D): Sprite3D  {
+    public addSprite3DToChild(childName: string, sprite3d: Sprite3D): Sprite3D {
         var ss = this.sp3d.getChildAt(0).getChildByName(childName);
         return ss.addChild(sprite3d) as Sprite3D;
     }
@@ -188,7 +188,7 @@ export default class GamePro extends Laya.EventDispatcher {
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
 
-        if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero)  {
+        if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero) {
             setTimeout(() => {
                 let eff: Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/hero.lh");
                 this.weapon.addChild(eff);
@@ -249,23 +249,19 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
-        if (this.gamedata.proType == GameProType.Hero)  {
-            if (Laya.Browser.now() - this.lastTime >= 300)  {
-                var yan: Laya.Image = new Laya.Image();
-                yan.skin = "bg/renyan.png";
-                yan.size(64, 64);
-                Game.footLayer.addChild(yan);
-                yan.anchorX = 0.5;
-                yan.anchorY = 0.5;
-                yan.pos(this.hbox_.cx, this.hbox_.cy);
-                Laya.Tween.to(yan, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [yan]))
+
+        //脚下的烟雾
+        if (this.gamedata.proType == GameProType.Hero) {
+            if (Laya.Browser.now() - this.lastTime >= 300) {
+                var runSmog:RunSmog = RunSmog.create(this.hbox_.cx, this.hbox_.cy);
+                Laya.Tween.to(runSmog, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [runSmog]));
                 this.lastTime = Laya.Browser.now();
             }
         }
     }
 
-    private onClear(yan: Laya.Image): void {
-        yan.removeSelf();
+    private onClear(runSmog:RunSmog): void {
+        RunSmog.recover(runSmog);
     }
 
     public get z(): number {
@@ -397,4 +393,30 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
      */
+}
+
+export class RunSmog extends Laya.Image {
+    static flag:string = "RunSmog"
+    constructor() {
+        super();
+        this.skin = "bg/renyan.png";
+        this.size(64, 64);
+        this.anchorX = 0.5;
+        this.anchorY = 0.5;
+    }
+
+    static create(xx:number,yy:number):RunSmog
+    {
+        var smog:RunSmog = Laya.Pool.getItemByClass(RunSmog.flag,RunSmog);
+        smog.pos(xx,yy);
+        Game.footLayer.addChild(smog);
+        return smog;
+    }
+
+    static recover(smog:RunSmog):void{
+        smog.removeSelf();
+        smog.alpha = 1;
+        smog.scale(1,1);
+        Laya.Pool.recover(RunSmog.flag,smog);
+    }
 }

@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":684,"height":531},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"dao","skin":"main/yidao.png"},"compId":3}],"loadList":["main/yidao.png"],"loadList3D":[]}

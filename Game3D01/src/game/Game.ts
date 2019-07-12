@@ -57,6 +57,7 @@ export default class Game{
 
     static footLayer:Laya.Sprite = new Laya.Sprite();
     static bloodLayer:Laya.Sprite = new Laya.Sprite();
+    static frontLayer:Laya.Sprite = new Laya.Sprite();
 
     static selectFoot:Laya.Sprite3D;
     static selectHead:Laya.Sprite3D;

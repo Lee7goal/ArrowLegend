@@ -26,6 +26,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.bg = bg;
         //脚底层
         Laya.stage.addChild(Game.footLayer);
+        Laya.stage.addChild(Game.frontLayer);
         //添加3D场景
         var scene: Laya.Scene3D = Laya.stage.addChild(new Laya.Scene3D()) as Laya.Scene3D;
         scene.addChild(Game.layer3d);
@@ -68,7 +69,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.updateMap();
         this.heroUrl = "h5/ToonSkeletons/ToonSkeletons.lh";
         this.heroUrl = "h5/hero/hero.lh";
-        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/monster.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/gunEffect/hero.lh"], Laya.Handler.create(this, this.onComplete))
+        Laya.loader.create(["h5/monsters/10001/monster.lh", this.heroUrl, "h5/ArrowBlue/monster.lh", "h5/gong/hero.lh", "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/selectEnemy/foot/hero.lh", "h5/selectEnemy/head/hero.lh", "h5/gunEffect/hero.lh", "h5/effects/door/hero.lh"], Laya.Handler.create(this, this.onComplete))
 
     }
 
@@ -160,7 +161,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.hero.setGameAi(new HeroAI());
         Game.hero.addWeapon();
 
-        Game.hero.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 1) * GameBG.ww);
+        Game.hero.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 2) * GameBG.ww);//原先是减1
         Game.bg.updateY();
         Game.map0.Hharr.push(Game.hero.hbox);
 
@@ -174,10 +175,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         // gpro.startAi();
         // gpro.setUI();
 
-         gpro = this.getMonster();
-         gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
-         gpro.startAi();
-         gpro.setUI();
+        //  gpro = this.getMonster();
+        //  gpro.setXY2DBox(GameBG.ww * 7, (GameBG.arr0.length / 13 - 6) * GameBG.ww);
+        //  gpro.startAi();
+        //  gpro.setUI();
         Game.e0_ = gpro;
 
 
@@ -185,6 +186,16 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.hero.startAi();
         Game.executor.start();
         Laya.stage.on(Laya.Event.KEY_DOWN , this ,this.kd );
+
+        this.openDoor();
+    }
+
+    openDoor():void
+    {
+        let v3 = GameBG.get3D(6, 9);
+        let door:Laya.Sprite3D = Laya.loader.getRes("h5/effects/door/hero.lh");
+        door.transform.translate(v3);
+        Game.layer3d.addChild(door);
     }
 
     kd(eve: KeyboardEvent): void {
