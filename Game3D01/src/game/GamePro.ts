@@ -31,17 +31,24 @@ export default class GamePro extends Laya.EventDispatcher {
 
     private _bloodUI: Blood;
     private _footCircle: FootCircle;
-    private rotationEulerY:number;
+    private rotationEulerY:number = 0;
+    /**关键帧比例0.0-1.0 */
+    private keyNum:number = -1;//关键帧比例0.0-1.0
 
 
     constructor(proType_: number) {
         super();
         this.gamedata_ = new GameData();
-        this.gamedata_.proType = proType_;        
+        this.gamedata_.proType = proType_;  
+        this.rotationEulerY = -1;      
     }
 
     public get bloodUI(): Blood {
         return this._bloodUI;
+    }
+
+    public setKeyNum(n:number):void{
+        this.keyNum = n;
     }
 
     public initBlood(): void {
@@ -215,6 +222,13 @@ export default class GamePro extends Laya.EventDispatcher {
             this.play(GameAI.Idle);
             this.event(Game.Event_PlayStop, str);
         }
+    }
+
+    private ac1():void{        
+        if(this.keyNum >=0 && this.normalizedTime>=this.keyNum){            
+            this.event(Game.Event_KeyNum,this.keyNum);
+            this.keyNum = -1;
+        }        
     }
 
     public get normalizedTime(): number {
