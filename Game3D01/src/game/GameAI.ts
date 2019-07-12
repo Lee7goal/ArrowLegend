@@ -45,10 +45,10 @@ export class MonsterAI1 extends GameAI {
         this.pro.setSpeed(2);
     }
 
-    shootAc(proType_:number):void{
-        this.shooting.short_arrow(10,this.pro.face3d,this.pro,proType_);
-        this.shooting.short_arrow(10,this.pro.face3d + Math.PI/6,this.pro,proType_);
-        this.shooting.short_arrow(10,this.pro.face3d - Math.PI/6,this.pro,proType_);
+    shootAc():void{
+        this.shooting.short_arrow(10,this.pro.face3d,this.pro,GameProType.MonstorArrow);
+        this.shooting.short_arrow(10,this.pro.face3d + Math.PI/6,this.pro,GameProType.MonstorArrow);
+        this.shooting.short_arrow(10,this.pro.face3d - Math.PI/6,this.pro,GameProType.MonstorArrow);
     }
 
     hit(pro: GamePro) {
@@ -344,7 +344,9 @@ export class Shooting {
 
     private pro:GamePro;
 
-    private getBullet(proType_:number):GamePro{        
+    private getBullet(proType_:number):GamePro{
+        console.log(" getBullet proType_ " , proType_ );
+                
         var gp:GamePro;
         if(Game.HeroArrows.length<=0){
             gp = new GamePro(proType_);
@@ -359,6 +361,7 @@ export class Shooting {
         }else{
             gp = Game.HeroArrows.shift();
             gp.gamedata.proType = proType_;
+            //gp.gamedata.rspeed = 0;
         }
         return gp;
     }

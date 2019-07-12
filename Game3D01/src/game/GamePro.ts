@@ -31,12 +31,13 @@ export default class GamePro extends Laya.EventDispatcher {
 
     private _bloodUI: Blood;
     private _footCircle: FootCircle;
+    private rotationEulerY:number;
 
 
     constructor(proType_: number) {
         super();
         this.gamedata_ = new GameData();
-        this.gamedata_.proType = proType_;
+        this.gamedata_.proType = proType_;        
     }
 
     public get bloodUI(): Blood {
@@ -224,14 +225,80 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.gamedata.hp <= 0) {
             return;
         }
-        //this.sp3d_.transform.localRotationEulerY = (n+Math.PI/2)/Math.PI*180;
-        var nn = n;
-        nn = Math.atan2(Math.sin(nn) / Game.cameraCN.cos0, Math.cos(nn));
-        // nn = Math.atan2(Math.sin(nn) , Math.cos(nn));
-        this.sp3d_.transform.localRotationEulerY = (nn + Math.PI / 2) / Math.PI * 180;
+        
         this.facen3d_ = n;
         this.facen2d_ = (2 * Math.PI - n);
+        var nn = Math.atan2(Math.sin(n) / Game.cameraCN.cos0, Math.cos(n));
+        nn = (  (nn + Math.PI / 2) / Math.PI * 180 )
+
+        var ey = Math.round(  nn );
+        if(ey>=360){
+          while(ey>=360){
+              ey-=360;
+          }  
+        }
+        else if(ey<0){
+            while(ey<0){
+                ey+=360;
+            }
+        }
+
+        if(this.gamedata_.rspeed<=0){//瞬间转身
+            this.sp3d_.transform.localRotationEulerY = ey;
+            this.rotationEulerY = this.sp3d_.transform.localRotationEulerY;
+            return;
+        }
+
+        //逐帧转身
+        if(this.rotationEulerY!=ey){
+            this.rotationEulerY = ey;
+            if(this.sp3d_.transform.localRotationEulerY>=360){
+                while(this.sp3d_.transform.localRotationEulerY>=360){
+                    this.sp3d_.transform.localRotationEulerY-=360;
+                }  
+            }
+            else if(this.sp3d_.transform.localRotationEulerY<0){
+                while(this.sp3d_.transform.localRotationEulerY<0){
+                    this.sp3d_.transform.localRotationEulerY+=360;
+                }
+            }
+        }
     }
+
+    public ai(): void {
+        if (this.gameAI) {
+            this.gameAI.exeAI(this);
+        }
+
+        if(this.rotationEulerY == this.sp3d_.transform.localRotationEulerY){
+             return;
+        }
+
+        //用华达公式计算转向方向 并转动模型
+        for (let i = 0; i < this.gamedata_.rspeed; i++) {
+            //var n = this.sp3d_.transform.localRotationEulerY - this.rotationEulerY;
+            var n =  this.rotationEulerY - this.sp3d_.transform.localRotationEulerY;
+            if(n==0){
+                break;
+            }
+            else if( (n>0 && n<=180) || (n<-180)){
+                this.sp3d_.transform.localRotationEulerY += 1;
+            }else{
+                this.sp3d_.transform.localRotationEulerY -= 1;
+            }
+
+            while(this.sp3d_.transform.localRotationEulerY>=360){
+                this.sp3d_.transform.localRotationEulerY-= 360;
+            }
+            while(this.sp3d_.transform.localRotationEulerY<0){
+                this.sp3d_.transform.localRotationEulerY += 360;
+            }
+        }
+        
+    }
+
+
+
 
     public get pos2(): Laya.Vector3 {
         return this._pos2;
@@ -313,12 +380,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
     }
 
-    public ai(): void {
-        if (this.gameAI) {
-            this.gameAI.exeAI(this);
-        }
-    }
-
+    
     public get gamedata(): GameData {
         return this.gamedata_;
     }
