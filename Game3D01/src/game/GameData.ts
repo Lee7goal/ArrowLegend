@@ -14,7 +14,7 @@ export default class GameData{
     /**攻击CD　1000毫秒 */
     public  attackCD:number = 1000;
     /**转身速度 （<=0 瞬间转身） */
-    public  rspeed:number = 24;
+    public  rspeed:number = 20;
 
     constructor(){}
 
@@ -24,10 +24,10 @@ export default class GameData{
 
     public set proType(pt:number){
         this.proType_ = pt;
-        if(this.proType<=800){
+        if(this.proType_<=800){
             this.rspeed = 0;
         }else{
-            this.rspeed = 24;
+            this.rspeed = 20;
         }
     }
 

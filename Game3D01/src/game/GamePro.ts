@@ -37,10 +37,7 @@ export default class GamePro extends Laya.EventDispatcher {
     constructor(proType_: number) {
         super();
         this.gamedata_ = new GameData();
-        this.gamedata_.proType = proType_;
-        if(this.gamedata_.proType<=800){
-            this.gamedata_.rspeed = 0;
-        }
+        this.gamedata_.proType = proType_;        
     }
 
     public get bloodUI(): Blood {
@@ -228,16 +225,10 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.gamedata.hp <= 0) {
             return;
         }
-        //this.sp3d_.transform.localRotationEulerY = (n+Math.PI/2)/Math.PI*180;
-        var nn = n;
-        nn = Math.atan2(Math.sin(nn) / Game.cameraCN.cos0, Math.cos(nn));
-        // nn = Math.atan2(Math.sin(nn) , Math.cos(nn));
-        this.sp3d_.transform.localRotationEulerY = (nn + Math.PI / 2) / Math.PI * 180;
+        
         this.facen3d_ = n;
         this.facen2d_ = (2 * Math.PI - n);
-
-        var nn = n;
-        nn = Math.atan2(Math.sin(nn) / Game.cameraCN.cos0, Math.cos(nn));
+        var nn = Math.atan2(Math.sin(n) / Game.cameraCN.cos0, Math.cos(n));
         nn = (  (nn + Math.PI / 2) / Math.PI * 180 )
 
         var ey = Math.round(  nn );
