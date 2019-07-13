@@ -43,9 +43,7 @@ class Main {
 	}
 
 	onConfigLoaded(): void {
-		
 		Laya.loader.load(["res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
-		
 	}
 
 	private onHandler():void{

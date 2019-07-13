@@ -14,7 +14,7 @@ export default class GameExecut extends Laya.EventDispatcher {
         super();
         this.now = Laya.Browser.now();
         this.st  = this.now;
-        // this.stop_();
+        this.stop_();
     }
 
     public start():void{

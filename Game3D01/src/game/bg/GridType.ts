@@ -49,4 +49,9 @@ export default class GridType {
         return type==900;
     }
 
+    public static isMonster(type:Number):boolean
+    {
+        return type > 10000;
+    }
+
 }

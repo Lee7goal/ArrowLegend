@@ -65,7 +65,7 @@ export default class Game{
     static selectFoot:Laya.Sprite3D;
     static selectHead:Laya.Sprite3D;
     
-    static executor:GameExecut = new GameExecut();
+    static executor:GameExecut;
 
     static battleLoader:BattleLoader = new BattleLoader();
 
@@ -100,6 +100,12 @@ export default class Game{
         Game.bloodLayer.removeChildren();
         Game.frontLayer.removeChildren();
         Game.footLayer.removeChildren();
+        Game.layer3d.removeChildren();
+        Game.executor && Game.executor.stop_();
+        if(Game.ro)
+        {
+            Game.ro.destroy();
+        }
     }
 
     constructor(){
