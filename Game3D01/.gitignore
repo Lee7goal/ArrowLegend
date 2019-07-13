@@ -33,3 +33,4 @@
 /release/
 /.laya/
 /bin/js/bundle.js
+/.laya/*.*
