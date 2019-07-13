@@ -18,7 +18,7 @@ export default class GamePro extends Laya.EventDispatcher {
     private movef: GameMove;
     private gameAI: GameAI;
 
-    private speed_: number = 5;
+    private speed_: number = 4;
     private hbox_: GameHitBox;
     private sp2d_: Laya.Sprite;
     private _pos2: Laya.Vector3 = new Laya.Vector3(0, 0, 0);
@@ -281,6 +281,19 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public ai(): void {
+        //按照达叔的视觉要求 修正人物跑步动作的播放速度
+        if(this.animator.speed>0 && this.gamedata_.proType == GameProType.Hero  ){
+            if(this.acstr_ == GameAI.Run){
+                if(this.animator.speed == 1){
+                    this.animator.speed = (this.speed_ / 2);
+                }
+            }else{
+                if(this.animator.speed != 1){
+                    this.animator.speed = 1;
+                }
+            }
+        }
+
         if (this.gameAI) {
             this.gameAI.exeAI(this);
         }
