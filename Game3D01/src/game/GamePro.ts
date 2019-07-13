@@ -74,6 +74,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public setSp3d(sp: Sprite3D): void {
         this.sp3d_ = sp;
+        this.sp3d_.transform.localRotationEulerY = this.rotationEulerY;
         this.hbox_ = new GameHitBox(GameBG.mw, GameBG.mw);
         this.hbox_.linkPro_ = this;
         this.hbox_.setCenter(GameBG.mcx, GameBG.mcy);
@@ -281,7 +282,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public ai(): void {
         //按照达叔的视觉要求 修正人物跑步动作的播放速度
-        if(this.animator.speed>0 && this.gamedata_.proType == GameProType.Hero  ){
+        if(this.animator && this.animator.speed>0 && this.gamedata_.proType == GameProType.Hero  ){
             if(this.acstr_ == GameAI.Run){
                 if(this.animator.speed == 1){
                     this.animator.speed = (this.speed_ / 2);

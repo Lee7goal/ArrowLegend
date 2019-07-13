@@ -2,6 +2,8 @@ import GameBG from "../../../game/GameBG";
 import GameConfig from "../../../GameConfig";
 import App from "../../../core/App";
 import SysMap from "../../sys/SysMap";
+import SysEnemy from "../../sys/SysEnemy";
+import GridType from "../../../game/bg/GridType";
 
 export default class BattleLoader{
     constructor() {}
@@ -22,8 +24,15 @@ export default class BattleLoader{
         let configArr:string[] = sysMap.stageGroup.split(',');
         let configId:number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        this._configId = 100104;
-        console.log("==============",this._configId);
+        Laya.loader.load("h5/mapConfig/"+this._configId+".json",new Laya.Handler(this,this.onLoadRes));
+    }
+
+    private onLoadRes():void{
+        let map = Laya.loader.getRes("h5/mapConfig/"+this._configId+".json");
+		GameBG.MAP_ROW = map.rowNum;
+        GameBG.arr0 = map.arr;
+        
+        //公共资源
         var arr: string[] = [
             "h5/mapConfig/"+this._configId+".json",
             "h5/wall/wall.lh",
@@ -33,19 +42,30 @@ export default class BattleLoader{
             "h5/gunEffect/hero.lh",
             "h5/effects/door/hero.lh"
         ];
-        arr.push("h5/monsters/10001/monster.lh");
+        //主角
         arr.push("h5/ArrowBlue/monster.lh");
         arr.push("h5/gong/hero.lh");
         arr.push("h5/hero/hero.lh");
 
+        //怪
+        let k: number = 0;
+        for (let j = 0; j < GameBG.hnum; j++) {
+            for (let i = 0; i < GameBG.wnum + 1; i++) {
+                let type: number = GameBG.arr0[k];
+                if (k < GameBG.arr0.length) {
+                    if (GridType.isMonster(type))  {
+                        let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
+                        arr.push("h5/monsters/"+sysEnemy.enemymode+"/monster.lh");
+                    }
+                }
+                k++;
+            }
+        }
         Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete))
     }
 
     onComplete(): void {
         this._index++;
-        let map = Laya.loader.getRes("h5/mapConfig/"+this._configId+".json");
-		GameBG.MAP_ROW = map.rowNum;
-		GameBG.arr0 = map.arr;
         Laya.Scene.open("test/TestScene.scene");
     }
 }

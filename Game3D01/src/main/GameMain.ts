@@ -4,6 +4,7 @@ import MainScene from "./scene/main/MainScene";
 import SysChapter from "./sys/SysChapter";
 import SysMap from "./sys/SysMap";
 import ZipLoader from "../core/utils/ZipLoader";
+import SysEnemy from "./sys/SysEnemy";
     export default class GameMain{
     
     constructor(){
@@ -21,6 +22,7 @@ import ZipLoader from "../core/utils/ZipLoader";
     private initTable(arr: any[]):void{
         App.tableManager.register(SysChapter.NAME,SysChapter);
         App.tableManager.register(SysMap.NAME,SysMap);
+        App.tableManager.register(SysEnemy.NAME,SysEnemy);
 
         App.tableManager.onParse(arr);
     }
