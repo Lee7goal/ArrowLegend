@@ -10,6 +10,6 @@ import Game from "../../../../game/Game";
 
     private onStart():void
     {
-        Game.battleLoader.load(1000);
+        Game.battleLoader.load();
     }
 }

@@ -56,5 +56,9 @@
     "compile": true,
     "onlyIndexJS": true,
     "projectType": "ts",
+<<<<<<< HEAD
     "pubTime": 1562932357971
+=======
+    "pubTime": 1562927264914
+>>>>>>> c6e684e31f8a080d5a1283f4b456e7722be3c027
 }

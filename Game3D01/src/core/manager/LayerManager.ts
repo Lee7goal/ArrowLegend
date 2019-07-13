@@ -14,4 +14,5 @@ export default class LayerManager extends Sprite {
         this.addChild(this.alertLayer);
         this.addChild(this.guideLayer);
     }
+    
 }

@@ -10,6 +10,9 @@ export default class Rocker extends ui.test.RockerViewUI{
     public reset():void{
         this.sp0.x = 0;
         this.sp0.y = 0;
+    }
+
+    public resetPos():void{
         this.x = Laya.stage.width / 2;
         this.y = Laya.stage.height - 200;
     }
