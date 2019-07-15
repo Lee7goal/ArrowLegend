@@ -42,15 +42,9 @@
 						-1
 					],
 					"scale":[
-<<<<<<< HEAD
 						1,
 						1,
 						1
-=======
-						1.5,
-						1.5,
-						1.5
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 					]
 				},
 				"components":[
@@ -58,15 +52,11 @@
 						"type":"Animator",
 						"avatar":{
 							"path":"Assets/10002/Toon Rock Golem/FBX/Toon Rock Golem-Toon Rock Golem-Red-Toon Rock GolemAvatar.lav",
-<<<<<<< HEAD
 							"linkSprites":{
 								"Wave":[
 									"Wave"
 								]
 							}
-=======
-							"linkSprites":{}
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 						},
 						"layers":[
 							{
@@ -84,7 +74,6 @@
 									},
 									{
 										"name":"Attack",
-<<<<<<< HEAD
 										"clipPath":"Assets/10002/Toon Rock Golem/Animations/Toon Rock Golem@Skill-Attack.lani"
 									},
 									{
@@ -98,21 +87,6 @@
 									{
 										"name":"SkillStart",
 										"clipPath":"Assets/10002/Toon Rock Golem/Animations/Toon Rock Golem@Skill-SkillStart.lani"
-=======
-										"clipPath":"Assets/10002/Toon Rock Golem/Animations/Toon Rock Golem@Attack-Attack.lani"
-									},
-									{
-										"name":"SpinAttack-End",
-										"clipPath":"Assets/10002/Toon Rock Golem/Animations/Toon Rock Golem@SpinAttack-SpinAttack-End.lani"
-									},
-									{
-										"name":"SpinAttack-Spin",
-										"clipPath":"Assets/10002/Toon Rock Golem/Animations/Toon Rock Golem@SpinAttack-SpinAttack-Spin.lani"
-									},
-									{
-										"name":"SpinAttack-Start",
-										"clipPath":"Assets/10002/Toon Rock Golem/Animations/Toon Rock Golem@SpinAttack-SpinAttack-Start.lani"
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 									},
 									{
 										"name":"TakeDamage",
@@ -140,11 +114,7 @@
 							"position":[
 								-1.505866E-08,
 								1.84891,
-<<<<<<< HEAD
 								0.1694219
-=======
-								0.169422
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 							],
 							"rotation":[
 								-0.5000001,
@@ -169,20 +139,13 @@
 						"child":[]
 					},
 					{
-<<<<<<< HEAD
 						"type":"ShuriKenParticle3D",
 						"props":{
 							"name":"Wave",
-=======
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"RigPelvis",
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 							"active":true,
 							"isStatic":false,
 							"layer":0,
 							"position":[
-<<<<<<< HEAD
 								-1.424208E-08,
 								-5.960464E-08,
 								1.490116E-08
@@ -192,24 +155,12 @@
 								9.463849E-09,
 								-6.596795E-08,
 								-0.7071068
-=======
-								-1.659798E-09,
-								0.5540994,
-								0.03797033
-							],
-							"rotation":[
-								-0.4785121,
-								-0.5206018,
-								-0.4785119,
-								-0.5206017
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 							],
 							"scale":[
 								1,
 								1,
 								1
 							],
-<<<<<<< HEAD
 							"isPerformanceMode":true,
 							"duration":2,
 							"looping":true,
@@ -391,31 +342,10 @@
 									"type":1,
 									"constant":[
 										0,
-=======
-							"enableRender":true,
-							"materials":[
-								{
-									"type":"Laya.BlinnPhongMaterial",
-									"path":"Library/unity default resources.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[
-							{
-								"type":"Sprite3D",
-								"props":{
-									"name":"RigSpine1",
-									"active":true,
-									"isStatic":false,
-									"layer":0,
-									"position":[
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 										0,
 										0,
 										0
 									],
-<<<<<<< HEAD
 									"gradient":{
 										"alphas":[
 											{
@@ -456,398 +386,10 @@
 									},
 									"constantMin":[
 										0,
-=======
-									"rotation":[
-										-1.180162E-09,
-										1.645362E-08,
-										0.0608928,
-										-0.9981443
-									],
-									"scale":[
-										1,
-										1,
-										1
-									]
-								},
-								"components":[],
-								"child":[
-									{
-										"type":"Sprite3D",
-										"props":{
-											"name":"RigSpine2",
-											"active":true,
-											"isStatic":false,
-											"layer":0,
-											"position":[
-												0.1651647,
-												0,
-												0
-											],
-											"rotation":[
-												1.73454E-09,
-												2.452472E-09,
-												-0.04161311,
-												-0.9991338
-											],
-											"scale":[
-												1,
-												1,
-												1
-											]
-										},
-										"components":[],
-										"child":[
-											{
-												"type":"Sprite3D",
-												"props":{
-													"name":"RigSpine3",
-													"active":true,
-													"isStatic":false,
-													"layer":0,
-													"position":[
-														0.07893402,
-														0,
-														4.547473E-15
-													],
-													"rotation":[
-														1.751019E-09,
-														-3.723424E-08,
-														-0.02044955,
-														-0.9997909
-													],
-													"scale":[
-														1,
-														1,
-														1
-													]
-												},
-												"components":[],
-												"child":[
-													{
-														"type":"Sprite3D",
-														"props":{
-															"name":"RigSpine4",
-															"active":true,
-															"isStatic":false,
-															"layer":0,
-															"position":[
-																0.1360584,
-																-4.768371E-09,
-																-2.273737E-15
-															],
-															"rotation":[
-																3.178903E-09,
-																-1.281201E-08,
-																-0.07431568,
-																-0.9972348
-															],
-															"scale":[
-																1,
-																1,
-																1
-															]
-														},
-														"components":[],
-														"child":[
-															{
-																"type":"Sprite3D",
-																"props":{
-																	"name":"RigRibcage",
-																	"active":true,
-																	"isStatic":false,
-																	"layer":0,
-																	"position":[
-																		0.2742145,
-																		4.768371E-09,
-																		0
-																	],
-																	"rotation":[
-																		-2.129077E-09,
-																		3.478833E-09,
-																		-0.07062507,
-																		-0.9975029
-																	],
-																	"scale":[
-																		0.9999998,
-																		0.9999998,
-																		1
-																	]
-																},
-																"components":[],
-																"child":[
-																	{
-																		"type":"Sprite3D",
-																		"props":{
-																			"name":"RigLArm1",
-																			"active":true,
-																			"isStatic":false,
-																			"layer":0,
-																			"position":[
-																				-0.02983932,
-																				0.006304665,
-																				0.663389
-																			],
-																			"rotation":[
-																				0.1140796,
-																				0.9709696,
-																				0.1114073,
-																				-0.1783044
-																			],
-																			"scale":[
-																				0.9999999,
-																				1,
-																				1
-																			]
-																		},
-																		"components":[],
-																		"child":[
-																			{
-																				"type":"Sprite3D",
-																				"props":{
-																					"name":"RigLArm2",
-																					"active":true,
-																					"isStatic":false,
-																					"layer":0,
-																					"position":[
-																						0.4562178,
-																						-3.242493E-07,
-																						1.525879E-07
-																					],
-																					"rotation":[
-																						-0.2732663,
-																						0.1903031,
-																						-0.03063277,
-																						-0.9424288
-																					],
-																					"scale":[
-																						1,
-																						0.9999995,
-																						1
-																					]
-																				},
-																				"components":[],
-																				"child":[
-																					{
-																						"type":"Sprite3D",
-																						"props":{
-																							"name":"RigLArmPalm",
-																							"active":true,
-																							"isStatic":false,
-																							"layer":0,
-																							"position":[
-																								0.32482,
-																								-2.098083E-07,
-																								2.288818E-07
-																							],
-																							"rotation":[
-																								0.8276289,
-																								-0.004253319,
-																								0.005874536,
-																								-0.5612289
-																							],
-																							"scale":[
-																								1,
-																								1,
-																								0.9999995
-																							]
-																						},
-																						"components":[],
-																						"child":[]
-																					}
-																				]
-																			}
-																		]
-																	},
-																	{
-																		"type":"Sprite3D",
-																		"props":{
-																			"name":"RigNeck",
-																			"active":true,
-																			"isStatic":false,
-																			"layer":0,
-																			"position":[
-																				0,
-																				0,
-																				0
-																			],
-																			"rotation":[
-																				1.067731E-09,
-																				-2.365644E-09,
-																				-0.02297899,
-																				-0.999736
-																			],
-																			"scale":[
-																				1,
-																				1,
-																				1
-																			]
-																		},
-																		"components":[],
-																		"child":[
-																			{
-																				"type":"Sprite3D",
-																				"props":{
-																					"name":"RigHead",
-																					"active":true,
-																					"isStatic":false,
-																					"layer":0,
-																					"position":[
-																						0.6670296,
-																						0,
-																						4.547473E-15
-																					],
-																					"rotation":[
-																						-8.428237E-10,
-																						2.247123E-08,
-																						0.1267509,
-																						-0.9919346
-																					],
-																					"scale":[
-																						0.9999999,
-																						0.9999999,
-																						1
-																					]
-																				},
-																				"components":[],
-																				"child":[
-																					{
-																						"type":"Sprite3D",
-																						"props":{
-																							"name":"RigMouth",
-																							"active":true,
-																							"isStatic":false,
-																							"layer":0,
-																							"position":[
-																								-0.1641318,
-																								-0.05369344,
-																								1.045449E-08
-																							],
-																							"rotation":[
-																								6.776882E-14,
-																								-1.629178E-07,
-																								-0.836732,
-																								-0.5476127
-																							],
-																							"scale":[
-																								1,
-																								1,
-																								1
-																							]
-																						},
-																						"components":[],
-																						"child":[]
-																					}
-																				]
-																			}
-																		]
-																	},
-																	{
-																		"type":"Sprite3D",
-																		"props":{
-																			"name":"RigRArm1",
-																			"active":true,
-																			"isStatic":false,
-																			"layer":0,
-																			"position":[
-																				-0.0298394,
-																				0.006304645,
-																				-0.6633888
-																			],
-																			"rotation":[
-																				0.1140799,
-																				0.9709695,
-																				-0.1114072,
-																				0.1783046
-																			],
-																			"scale":[
-																				1,
-																				1,
-																				1
-																			]
-																		},
-																		"components":[],
-																		"child":[
-																			{
-																				"type":"Sprite3D",
-																				"props":{
-																					"name":"RigRArm2",
-																					"active":true,
-																					"isStatic":false,
-																					"layer":0,
-																					"position":[
-																						0.4562178,
-																						3.242493E-07,
-																						1.525879E-07
-																					],
-																					"rotation":[
-																						0.2732669,
-																						-0.1903027,
-																						-0.03063373,
-																						-0.9424286
-																					],
-																					"scale":[
-																						0.9999998,
-																						1,
-																						0.9999998
-																					]
-																				},
-																				"components":[],
-																				"child":[
-																					{
-																						"type":"Sprite3D",
-																						"props":{
-																							"name":"RigRArmPalm",
-																							"active":true,
-																							"isStatic":false,
-																							"layer":0,
-																							"position":[
-																								0.3248198,
-																								1.907349E-07,
-																								2.288818E-07
-																							],
-																							"rotation":[
-																								-0.8276288,
-																								0.004253119,
-																								0.005873656,
-																								-0.5612291
-																							],
-																							"scale":[
-																								0.9999997,
-																								1,
-																								1
-																							]
-																						},
-																						"components":[],
-																						"child":[]
-																					}
-																				]
-																			}
-																		]
-																	}
-																]
-															}
-														]
-													}
-												]
-											}
-										]
-									}
-								]
-							},
-							{
-								"type":"Sprite3D",
-								"props":{
-									"name":"RigTail1",
-									"active":true,
-									"isStatic":false,
-									"layer":0,
-									"position":[
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 										0,
 										0,
 										0
 									],
-<<<<<<< HEAD
 									"constantMax":[
 										0,
 										0,
@@ -950,167 +492,15 @@
 									"constantMin":0,
 									"constantMax":0,
 									"constantMinSeparate":[
-=======
-									"rotation":[
-										-9.035349E-14,
-										1.94707E-07,
-										0.999999,
-										0.001426829
-									],
-									"scale":[
-										0.9999999,
-										0.9999999,
-										1
-									]
-								},
-								"components":[],
-								"child":[
-									{
-										"type":"Sprite3D",
-										"props":{
-											"name":"RigTail2",
-											"active":true,
-											"isStatic":false,
-											"layer":0,
-											"position":[
-												0.1379329,
-												0,
-												1.136868E-15
-											],
-											"rotation":[
-												5.178222E-14,
-												-2.543058E-08,
-												-0.1306093,
-												-0.9914339
-											],
-											"scale":[
-												0.9999999,
-												0.9999999,
-												1
-											]
-										},
-										"components":[],
-										"child":[
-											{
-												"type":"Sprite3D",
-												"props":{
-													"name":"RigTail3",
-													"active":true,
-													"isStatic":false,
-													"layer":0,
-													"position":[
-														0.1823868,
-														0,
-														5.684342E-16
-													],
-													"rotation":[
-														4.268968E-13,
-														-1.326621E-08,
-														-0.06813383,
-														-0.9976762
-													],
-													"scale":[
-														1,
-														1,
-														1
-													]
-												},
-												"components":[],
-												"child":[]
-											}
-										]
-									}
-								]
-							},
-							{
-								"type":"ShuriKenParticle3D",
-								"props":{
-									"name":"Wave",
-									"active":true,
-									"isStatic":false,
-									"layer":0,
-									"position":[
-										-0.5489427,
-										-0.08443824,
-										0
-									],
-									"rotation":[
-										0.7064802,
-										0.02976198,
-										0.7064802,
-										-0.02976187
-									],
-									"scale":[
-										1,
-										1,
-										1
-									],
-									"isPerformanceMode":true,
-									"duration":2,
-									"looping":true,
-									"prewarm":false,
-									"startDelayType":0,
-									"startDelay":0,
-									"startDelayMin":0,
-									"startDelayMax":0,
-									"startLifetimeType":0,
-									"startLifetimeConstant":2,
-									"startLifetimeConstantMin":0,
-									"startLifetimeConstantMax":2,
-									"startLifetimeGradient":{
-										"startLifetimes":[]
-									},
-									"startLifetimeGradientMin":{
-										"startLifetimes":[]
-									},
-									"startLifetimeGradientMax":{
-										"startLifetimes":[]
-									},
-									"startSpeedType":0,
-									"startSpeedConstant":0,
-									"startSpeedConstantMin":0,
-									"startSpeedConstantMax":0,
-									"threeDStartSize":false,
-									"startSizeType":0,
-									"startSizeConstant":2,
-									"startSizeConstantMin":0,
-									"startSizeConstantMax":2,
-									"startSizeConstantSeparate":[
-										2,
-										1,
-										1
-									],
-									"startSizeConstantMinSeparate":[
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 										0,
 										0,
 										0
 									],
-<<<<<<< HEAD
 									"constantMaxSeparate":[
-=======
-									"startSizeConstantMaxSeparate":[
-										2,
-										1,
-										1
-									],
-									"threeDStartRotation":false,
-									"startRotationType":0,
-									"startRotationConstant":360,
-									"startRotationConstantMin":0,
-									"startRotationConstantMax":360,
-									"startRotationConstantSeparate":[
-										0,
-										0,
-										-360
-									],
-									"startRotationConstantMinSeparate":[
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 										0,
 										0,
 										0
 									],
-<<<<<<< HEAD
 									"gradientMin":{
 										"sizes":[]
 									},
@@ -1182,32 +572,15 @@
 									"constantMin":0,
 									"constantMax":360,
 									"constantSeparate":[
-=======
-									"startRotationConstantMaxSeparate":[
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 										0,
 										0,
 										-360
 									],
-<<<<<<< HEAD
 									"constantMinSeparate":[
-=======
-									"randomizeRotationDirection":0,
-									"startColorType":0,
-									"startColorConstant":[
-										1,
-										1,
-										1,
-										1
-									],
-									"startColorConstantMin":[
-										0,
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 										0,
 										0,
 										0
 									],
-<<<<<<< HEAD
 									"constantMaxSeparate":[
 										0,
 										0,
@@ -1263,406 +636,6 @@
 						},
 						"components":[],
 						"child":[]
-=======
-									"startColorConstantMax":[
-										1,
-										1,
-										1,
-										1
-									],
-									"gravity":[
-										0,
-										-9.81,
-										0
-									],
-									"gravityModifier":0,
-									"simulationSpace":1,
-									"scaleMode":2,
-									"playOnAwake":true,
-									"maxParticles":5,
-									"autoRandomSeed":true,
-									"randomSeed":0,
-									"emission":{
-										"enable":true,
-										"emissionRate":5,
-										"emissionRateTip":"Time",
-										"bursts":[]
-									},
-									"shape":{
-										"enable":true,
-										"shapeType":1,
-										"sphereRadius":0.01,
-										"sphereEmitFromShell":false,
-										"sphereRandomDirection":0,
-										"hemiSphereRadius":0.01,
-										"hemiSphereEmitFromShell":false,
-										"hemiSphereRandomDirection":0,
-										"coneAngle":25,
-										"coneRadius":0.01,
-										"coneLength":5,
-										"coneEmitType":1,
-										"coneRandomDirection":0,
-										"boxX":1,
-										"boxY":1,
-										"boxZ":1,
-										"boxRandomDirection":0,
-										"circleRadius":0.01,
-										"circleArc":360,
-										"circleEmitFromEdge":false,
-										"circleRandomDirection":0
-									},
-									"velocityOverLifetime":{
-										"enable":true,
-										"space":1,
-										"velocity":{
-											"type":0,
-											"constant":[
-												0,
-												0.3,
-												0
-											],
-											"gradientX":{
-												"velocitys":[]
-											},
-											"gradientY":{
-												"velocitys":[]
-											},
-											"gradientZ":{
-												"velocitys":[]
-											},
-											"constantMin":[
-												0,
-												0,
-												0
-											],
-											"constantMax":[
-												0,
-												0.3,
-												0
-											],
-											"gradientXMin":{
-												"velocitys":[]
-											},
-											"gradientXMax":{
-												"velocitys":[]
-											},
-											"gradientYMin":{
-												"velocitys":[]
-											},
-											"gradientYMax":{
-												"velocitys":[]
-											},
-											"gradientZMin":{
-												"velocitys":[]
-											},
-											"gradientZMax":{
-												"velocitys":[]
-											}
-										}
-									},
-									"colorOverLifetime":{
-										"enable":true,
-										"color":{
-											"type":1,
-											"constant":[
-												0,
-												0,
-												0,
-												0
-											],
-											"gradient":{
-												"alphas":[
-													{
-														"key":0,
-														"value":1
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												],
-												"rgbs":[
-													{
-														"key":0,
-														"value":[
-															1,
-															1,
-															1
-														]
-													},
-													{
-														"key":0.7529412,
-														"value":[
-															1,
-															1,
-															1
-														]
-													},
-													{
-														"key":1,
-														"value":[
-															0,
-															0,
-															0
-														]
-													}
-												]
-											},
-											"constantMin":[
-												0,
-												0,
-												0,
-												0
-											],
-											"constantMax":[
-												0,
-												0,
-												0,
-												0
-											],
-											"gradientMax":{
-												"alphas":[
-													{
-														"key":0,
-														"value":1
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												],
-												"rgbs":[
-													{
-														"key":0,
-														"value":[
-															1,
-															1,
-															1
-														]
-													},
-													{
-														"key":0.7529412,
-														"value":[
-															1,
-															1,
-															1
-														]
-													},
-													{
-														"key":1,
-														"value":[
-															0,
-															0,
-															0
-														]
-													}
-												]
-											}
-										}
-									},
-									"sizeOverLifetime":{
-										"enable":true,
-										"size":{
-											"type":0,
-											"separateAxes":false,
-											"gradient":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0.3333333
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"gradientX":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0.3333333
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"gradientY":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"gradientZ":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"constantMin":0,
-											"constantMax":0,
-											"constantMinSeparate":[
-												0,
-												0,
-												0
-											],
-											"constantMaxSeparate":[
-												0,
-												0,
-												0
-											],
-											"gradientMin":{
-												"sizes":[]
-											},
-											"gradientMax":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0.3333333
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"gradientXMin":{
-												"sizes":[]
-											},
-											"gradientXMax":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0.3333333
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"gradientYMin":{
-												"sizes":[]
-											},
-											"gradientYMax":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											},
-											"gradientZMin":{
-												"sizes":[]
-											},
-											"gradientZMax":{
-												"sizes":[
-													{
-														"key":0,
-														"value":0
-													},
-													{
-														"key":1,
-														"value":1
-													}
-												]
-											}
-										}
-									},
-									"rotationOverLifetime":{
-										"enable":true,
-										"angularVelocity":{
-											"type":0,
-											"separateAxes":false,
-											"constant":360,
-											"constantMin":0,
-											"constantMax":360,
-											"constantSeparate":[
-												0,
-												0,
-												-360
-											],
-											"constantMinSeparate":[
-												0,
-												0,
-												0
-											],
-											"constantMaxSeparate":[
-												0,
-												0,
-												360
-											],
-											"gradient":{
-												"angularVelocitys":[]
-											},
-											"gradientX":{
-												"angularVelocitys":[]
-											},
-											"gradientY":{
-												"angularVelocitys":[]
-											},
-											"gradientZ":{
-												"angularVelocitys":[]
-											},
-											"gradientMin":{
-												"angularVelocitys":[]
-											},
-											"gradientMax":{
-												"angularVelocitys":[]
-											},
-											"gradientXMin":{
-												"angularVelocitys":[]
-											},
-											"gradientXMax":{
-												"angularVelocitys":[]
-											},
-											"gradientYMin":{
-												"angularVelocitys":[]
-											},
-											"gradientYMax":{
-												"angularVelocitys":[]
-											},
-											"gradientZMin":{
-												"angularVelocitys":[]
-											},
-											"gradientZMax":{
-												"angularVelocitys":[]
-											}
-										}
-									},
-									"renderMode":2,
-									"stretchedBillboardCameraSpeedScale":0,
-									"stretchedBillboardSpeedScale":0,
-									"stretchedBillboardLengthScale":2,
-									"sortingFudge":0,
-									"material":{
-										"type":"Laya.ShurikenParticleMaterial",
-										"path":"Assets/10002/Toon Rock Golem/Materials/FX-Wave-Red.lmat"
-									}
-								},
-								"components":[],
-								"child":[]
-							}
-						]
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 					},
 					{
 						"type":"SkinnedMeshSprite3D",
@@ -1721,11 +694,7 @@
 					{
 						"type":"MeshSprite3D",
 						"props":{
-<<<<<<< HEAD
 							"name":"guadia",
-=======
-							"name":"guadian",
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 							"active":true,
 							"isStatic":false,
 							"layer":0,

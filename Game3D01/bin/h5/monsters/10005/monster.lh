@@ -42,15 +42,9 @@
 						-1
 					],
 					"scale":[
-<<<<<<< HEAD
 						1,
 						1,
 						1
-=======
-						0.8,
-						0.8,
-						0.8
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 					]
 				},
 				"components":[
@@ -72,18 +66,13 @@
 									},
 									{
 										"name":"Run",
-<<<<<<< HEAD
 										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@FlyForward-Run.lani"
-=======
-										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@Run-Run.lani"
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 									},
 									{
 										"name":"Attack",
 										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@BiteAttack-Attack.lani"
 									},
 									{
-<<<<<<< HEAD
 										"name":"SkillLoop",
 										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@Skill-SkillLoop.lani"
 									},
@@ -94,18 +83,6 @@
 									{
 										"name":"SkillStart",
 										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@Skill-SkillStart.lani"
-=======
-										"name":"SoundwaveAttack Cast (Loop)",
-										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast (Loop).lani"
-									},
-									{
-										"name":"SoundwaveAttack Cast to Idle",
-										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast to Idle.lani"
-									},
-									{
-										"name":"Soundwave Attack Idle to Cast",
-										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@SoundwaveAttack-Soundwave Attack Idle to Cast.lani"
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 									},
 									{
 										"name":"TakeDamage",
@@ -220,11 +197,7 @@
 							"layer":0,
 							"position":[
 								0,
-<<<<<<< HEAD
 								0.78,
-=======
-								0.79,
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 								0
 							],
 							"rotation":[

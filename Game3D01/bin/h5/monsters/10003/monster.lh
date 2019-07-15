@@ -42,15 +42,9 @@
 						-1
 					],
 					"scale":[
-<<<<<<< HEAD
 						1,
 						1,
 						1
-=======
-						1.5,
-						1.5,
-						1.5
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 					]
 				},
 				"components":[
@@ -80,7 +74,6 @@
 									},
 									{
 										"name":"Attack",
-<<<<<<< HEAD
 										"clipPath":"Assets/10003/Toon Rock Golem/Animations/Toon Rock Golem@Skill-Attack.lani"
 									},
 									{
@@ -94,21 +87,6 @@
 									{
 										"name":"SkillStart",
 										"clipPath":"Assets/10003/Toon Rock Golem/Animations/Toon Rock Golem@Skill-SkillStart.lani"
-=======
-										"clipPath":"Assets/10003/Toon Rock Golem/Animations/Toon Rock Golem@Attack-Attack.lani"
-									},
-									{
-										"name":"SpinAttack-End",
-										"clipPath":"Assets/10003/Toon Rock Golem/Animations/Toon Rock Golem@SpinAttack-SpinAttack-End.lani"
-									},
-									{
-										"name":"SpinAttack-Spin",
-										"clipPath":"Assets/10003/Toon Rock Golem/Animations/Toon Rock Golem@SpinAttack-SpinAttack-Spin.lani"
-									},
-									{
-										"name":"SpinAttack-Start",
-										"clipPath":"Assets/10003/Toon Rock Golem/Animations/Toon Rock Golem@SpinAttack-SpinAttack-Start.lani"
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 									},
 									{
 										"name":"TakeDamage",
@@ -136,11 +114,7 @@
 							"position":[
 								-1.505866E-08,
 								1.84891,
-<<<<<<< HEAD
 								0.1694219
-=======
-								0.169422
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 							],
 							"rotation":[
 								-0.5000001,
@@ -178,11 +152,7 @@
 							],
 							"rotation":[
 								0.7071068,
-<<<<<<< HEAD
 								9.463849E-09,
-=======
-								9.463851E-09,
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 								-6.596795E-08,
 								-0.7071068
 							],
@@ -237,11 +207,7 @@
 								1
 							],
 							"threeDStartRotation":false,
-<<<<<<< HEAD
 							"startRotationType":2,
-=======
-							"startRotationType":0,
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 							"startRotationConstant":360,
 							"startRotationConstantMin":0,
 							"startRotationConstantMax":360,
@@ -724,7 +690,6 @@
 						},
 						"components":[],
 						"child":[]
-<<<<<<< HEAD
 					},
 					{
 						"type":"MeshSprite3D",
@@ -759,8 +724,6 @@
 						},
 						"components":[],
 						"child":[]
-=======
->>>>>>> 70842944030d3e5d75930580bd402e4c95762a57
 					}
 				]
 			}
