@@ -61,12 +61,12 @@ export default class BattleLoader{
                 k++;
             }
         }
-        arr.push("h5/monsters/10001/monster.lh");
-        arr.push("h5/monsters/10002/monster.lh");
-        arr.push("h5/monsters/10003/monster.lh");
-        arr.push("h5/monsters/10004/monster.lh");
-        arr.push("h5/monsters/10005/monster.lh");
-        arr.push("h5/monsters/10006/monster.lh");
+
+        let max = 10009;
+        for(var i = 10001; i <= max; i++)
+        {
+            arr.push("h5/monsters/"+i+"/monster.lh");
+        }
         Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete))
     }
 

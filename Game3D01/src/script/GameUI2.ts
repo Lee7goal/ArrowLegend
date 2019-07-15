@@ -139,7 +139,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                     }
                     else if (GridType.isMonster(type))  {
                         let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
-                        monster = this.getMonster(Laya.loader.getRes("h5/monsters/10001/monster.lh"));//"h5/monsters/"+sysEnemy.enemymode+"/monster.lh"
+                        monster = this.getMonster(Laya.loader.getRes("h5/monsters/10005/monster.lh"));//"h5/monsters/"+sysEnemy.enemymode+"/monster.lh"
                         monster.setXY2DBox(GameBG.ww * i, j * GameBG.ww);
                         monster.startAi();
                         monster.setUI();
