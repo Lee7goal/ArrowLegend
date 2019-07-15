@@ -2,10 +2,10 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Toon Bat-Red",
+		"name":"Toon Plant Monster-Purple",
 		"renderStates":[
 			{
-				"cull":2,
+				"cull":0,
 				"blend":0,
 				"srcBlend":1,
 				"dstBlend":0,
@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/Toon Bat-Red.jpg",
+				"path":"../Textures/Toon Plant Monster-Purple.jpg",
 				"constructParams":[
 					2048,
 					2048,

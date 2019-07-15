@@ -1,30 +1,27 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.UnlitMaterial",
-		"name":"Toon Bat-Red",
+		"type":"Laya.ShurikenParticleMaterial",
 		"renderStates":[
 			{
-				"cull":2,
-				"blend":0,
-				"srcBlend":1,
-				"dstBlend":0,
-				"depthWrite":true,
+				"cull":0,
+				"blend":1,
+				"srcBlend":770,
+				"dstBlend":1,
+				"depthWrite":false,
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
+		"name":"FX-Wave-Blue",
 		"alphaTest":false,
-		"alphaTestValue":0.01,
-		"renderQueue":2000,
-		"albedoIntensity":2,
+		"renderQueue":3000,
 		"textures":[
 			{
-				"name":"albedoTexture",
-				"path":"../Textures/Toon Bat-Red.jpg",
+				"name":"texture",
+				"path":"../Textures/FX-Wave-Blue.jpg",
 				"constructParams":[
-					2048,
-					2048,
+					256,
+					256,
 					0,
 					true
 				],
@@ -47,7 +44,7 @@
 				]
 			},
 			{
-				"name":"albedoColor",
+				"name":"color",
 				"value":[
 					0.5,
 					0.5,
@@ -56,6 +53,8 @@
 				]
 			}
 		],
-		"defines":[]
+		"defines":[
+			"ADDTIVEFOG"
+		]
 	}
 }

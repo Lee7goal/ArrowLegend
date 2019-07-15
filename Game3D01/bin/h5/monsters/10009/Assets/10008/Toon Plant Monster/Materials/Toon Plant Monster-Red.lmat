@@ -2,10 +2,10 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Toon Bat-Red",
+		"name":"Toon Plant Monster-Red",
 		"renderStates":[
 			{
-				"cull":2,
+				"cull":0,
 				"blend":0,
 				"srcBlend":1,
 				"dstBlend":0,
@@ -14,14 +14,14 @@
 			}
 		],
 		"enableVertexColor":false,
-		"alphaTest":false,
+		"alphaTest":true,
 		"alphaTestValue":0.01,
-		"renderQueue":2000,
+		"renderQueue":2450,
 		"albedoIntensity":2,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/Toon Bat-Red.jpg",
+				"path":"../Textures/Toon Plant Monster-Red.jpg",
 				"constructParams":[
 					2048,
 					2048,
