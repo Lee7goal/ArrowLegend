@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"Toon Bat-Red",
+					"name":"Toon Bat-Pink",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10001/Toon Bat/FBX/Toon Bat-Toon Bat-Red-Toon BatAvatar.lav",
+							"path":"Assets/10005/Toon Bat/FBX/Toon Bat-Toon Bat-Pink-Toon BatAvatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[
@@ -62,35 +62,35 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@Idle-Idle.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@Idle-Idle.lani"
 									},
 									{
 										"name":"Run",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@Run-Run.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@Run-Run.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@BiteAttack-Attack.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@BiteAttack-Attack.lani"
 									},
 									{
 										"name":"SoundwaveAttack Cast (Loop)",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast (Loop).lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast (Loop).lani"
 									},
 									{
 										"name":"SoundwaveAttack Cast to Idle",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast to Idle.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@SoundwaveAttack-SoundwaveAttack Cast to Idle.lani"
 									},
 									{
 										"name":"Soundwave Attack Idle to Cast",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@SoundwaveAttack-Soundwave Attack Idle to Cast.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@SoundwaveAttack-Soundwave Attack Idle to Cast.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@TakeDamage-TakeDamage.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@TakeDamage-TakeDamage.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10001/Toon Bat/Animations/Toon Bat@Die-Die.lani"
+										"clipPath":"Assets/10005/Toon Bat/Animations/Toon Bat@Die-Die.lani"
 									}
 								]
 							}
@@ -180,10 +180,10 @@
 							},
 							"materials":[
 								{
-									"path":"Assets/10001/Toon Bat/Materials/Toon Bat-Red.lmat"
+									"path":"Assets/10005/Toon Bat/Materials/Toon Bat-Pink.lmat"
 								}
 							],
-							"meshPath":"Assets/10001/Toon Bat/FBX/Toon Bat-Toon Bat.lm"
+							"meshPath":"Assets/10005/Toon Bat/FBX/Toon Bat-Toon Bat.lm"
 						},
 						"components":[],
 						"child":[]

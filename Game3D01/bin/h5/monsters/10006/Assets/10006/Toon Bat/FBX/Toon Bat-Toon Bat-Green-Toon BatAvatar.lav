@@ -2,7 +2,7 @@
 	"version":"LAYAAVATAR:01",
 	"rootNode":{
 		"props":{
-			"name":"Toon Bat-Red",
+			"name":"Toon Bat-Green",
 			"translate":[
 				0,
 				0,
@@ -342,8 +342,8 @@
 					],
 					"rotation":[
 						0.2557381,
-						0.6600947,
-						0.6602234,
+						0.6600948,
+						0.6602235,
 						0.2509541
 					],
 					"scale":[

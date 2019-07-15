@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Toon Bat-Red",
+		"name":"Toon Bat-Pink",
 		"renderStates":[
 			{
 				"cull":2,
@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/Toon Bat-Red.jpg",
+				"path":"../Textures/Toon Bat-Pink.jpg",
 				"constructParams":[
 					2048,
 					2048,
