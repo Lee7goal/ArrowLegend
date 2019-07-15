@@ -18,7 +18,7 @@ export default class GamePro extends Laya.EventDispatcher {
     private movef: GameMove;
     private gameAI: GameAI;
 
-    private speed_: number = 4;
+    private speed_: number = 6;
     private hbox_: GameHitBox;
     private sp2d_: Laya.Sprite;
     private _pos2: Laya.Vector3 = new Laya.Vector3(0, 0, 0);
@@ -74,7 +74,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public setSp3d(sp: Sprite3D): void {
         this.sp3d_ = sp;
-        this.sp3d_.transform.localRotationEulerY = this.rotationEulerY;
+        this.sp3d_.transform.localRotationEulerY = this.rotationEulerY = 0;
         this.hbox_ = new GameHitBox(GameBG.mw, GameBG.mw);
         this.hbox_.linkPro_ = this;
         this.hbox_.setCenter(GameBG.mcx, GameBG.mcy);
@@ -82,6 +82,7 @@ export default class GamePro extends Laya.EventDispatcher {
         if (aniSprite3d) {
             this.ani_ = aniSprite3d.getComponent(Laya.Animator) as Animator;
         }
+        
         this.on(Game.Event_Hit, this, this.hit);
     }
 
@@ -237,6 +238,10 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public rotation(n: number): void {
+        if(!n)
+        {
+            return;
+        }
         if (this.gamedata.hp <= 0) {
             return;
         }
@@ -257,12 +262,13 @@ export default class GamePro extends Laya.EventDispatcher {
                 ey+=360;
             }
         }
-
         if(this.gamedata_.rspeed<=0){//瞬间转身
             this.sp3d_.transform.localRotationEulerY = ey;
             this.rotationEulerY = this.sp3d_.transform.localRotationEulerY;
             return;
         }
+
+        
 
         //逐帧转身
         if(this.rotationEulerY!=ey){
@@ -285,7 +291,7 @@ export default class GamePro extends Laya.EventDispatcher {
         if(this.animator && this.animator.speed>0 && this.gamedata_.proType == GameProType.Hero  ){
             if(this.acstr_ == GameAI.Run){
                 if(this.animator.speed == 1){
-                    this.animator.speed = (this.speed_ / 2);
+                    this.animator.speed = (this.speed_ / 3);
                 }
             }else{
                 if(this.animator.speed != 1){

@@ -299,6 +299,7 @@ export class HeroAI extends GameAI {
             var a:number = GameHitBox.faceTo3D(pro.hbox ,Game.e0_.hbox);
             pro.rotation(a);
             this.shootin.starAttack(Game.hero,GameAI.NormalAttack);
+            
         }
         return true;
     }

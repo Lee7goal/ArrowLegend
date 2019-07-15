@@ -78,19 +78,24 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         var sp = Laya.Sprite3D.instantiate(monster);
         var gpro = new GamePro(GameProType.RockGolem_Blue);
         gpro.setSp3d(sp);
-        //gpro.setGameAi(new MonsterAI1(gpro));
-        gpro.setGameAi(new FlyAndHitAi(gpro));
-        //gpro.setGameMove(new PlaneGameMove());
-        gpro.setGameMove(new FlyGameMove());
+        gpro.setGameAi(new MonsterAI1(gpro));
+        // gpro.setGameAi(new FlyAndHitAi(gpro));
+        gpro.setGameMove(new PlaneGameMove());
+        // gpro.setGameMove(new FlyGameMove());
 
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
         Game.map0.addChild(gpro.sp2d);
         Game.layer3d.addChild(sp);
+        
         return gpro;
     }
 
     onComplete(): void {
+        GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
+        GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
+
+
         Game.closeDoor();
 
         Game.selectFoot = Laya.loader.getRes("h5/selectEnemy/foot/hero.lh");
@@ -134,7 +139,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                     }
                     else if (GridType.isMonster(type))  {
                         let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
-                        monster = this.getMonster(Laya.loader.getRes("h5/monsters/"+sysEnemy.enemymode+"/monster.lh"));
+                        monster = this.getMonster(Laya.loader.getRes("h5/monsters/10002/monster.lh"));//"h5/monsters/"+sysEnemy.enemymode+"/monster.lh"
                         monster.setXY2DBox(GameBG.ww * i, j * GameBG.ww);
                         monster.startAi();
                         monster.setUI();
@@ -180,11 +185,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
             Game.e0_ = monster;
         }
 
-
         Game.hero.startAi();
         Game.executor.start();
         Game.hero.setUI();
-        Laya.stage.on(Laya.Event.KEY_DOWN, this, this.kd);
+        // Laya.stage.on(Laya.Event.KEY_DOWN, this, this.kd);
 
         Game.footLayer.pos(0, 0);
         Game.hero.rotation(90 / 180 * Math.PI);
