@@ -106,6 +106,10 @@ export default class Game{
         {
             Game.ro.destroy();
         }
+
+        // Game.bloodLayer.pos(0, 0);
+        // Game.frontLayer.pos(0, 0);
+        // Game.footLayer.pos(0, 0);
     }
 
     constructor(){

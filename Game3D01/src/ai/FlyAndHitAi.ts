@@ -9,6 +9,7 @@ export class FlyAndHitAi extends GameAI {
     private pro: GamePro;
     private st:number = 0;
     private status:number = 0;
+    private collisionCd:number = 0;
 
     exeAI(pro: GamePro): boolean {
         var now = Game.executor.getWorldNow();
@@ -17,6 +18,16 @@ export class FlyAndHitAi extends GameAI {
                 var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
                 this.pro.rotation(a);
                 this.pro.move2D(this.pro.face2d);
+            }
+            else{
+                if(now > this.collisionCd)
+                {
+                    if( Game.hero.hbox.linkPro_ ){
+                        Game.hero.hbox.linkPro_.event(Game.Event_Hit,pro);
+                        pro.event(Game.Event_Hit,Game.hero.hbox.linkPro_);
+                        this.collisionCd = now +1000;
+                    }
+                }
             }
         }
         else{
@@ -38,7 +49,7 @@ export class FlyAndHitAi extends GameAI {
                 }
             }
             if( this.pro.normalizedTime >0.5 ){
-                this.pro.setSpeed(6);
+                this.pro.setSpeed(10);
                 this.pro.move2D(this.pro.face2d);
             }
         }
@@ -55,17 +66,28 @@ export class FlyAndHitAi extends GameAI {
     }
 
     stopAi(){
-
+        this.run_ = false;
     }
 
     hit(pro:GamePro){
-    
+        this.pro.hurt(10);
+        if(this.pro.gamedata.hp<=0){
+            this.pro.play(GameAI.Die);
+            this.pro.stopAi();
+            if(Game.map0.Eharr.indexOf( this.pro.hbox )>=0){
+                Game.map0.Eharr.splice( Game.map0.Eharr.indexOf( this.pro.hbox ) , 1 );
+            }
+        }else{
+            if(this.pro.acstr == GameAI.Idle){
+                this.pro.play(GameAI.TakeDamage);
+            }
+        }
     }
     
     constructor(pro: GamePro){
         super();
         this.pro = pro;
-        this.pro.sp3d.transform.localPositionY = 1;
-        this.pro.sp3d.transform.scale = new Laya.Vector3(0.5,0.5,0.5);
+        // this.pro.sp3d.transform.localPositionY = 1;
+        // this.pro.sp3d.transform.scale = new Laya.Vector3(0.5,0.5,0.5);
     }
 }

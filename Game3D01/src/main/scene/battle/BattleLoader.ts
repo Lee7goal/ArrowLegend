@@ -24,6 +24,7 @@ export default class BattleLoader{
         let configArr:string[] = sysMap.stageGroup.split(',');
         let configId:number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
+        // this._configId = 100301;
         Laya.loader.load("h5/mapConfig/"+this._configId+".json",new Laya.Handler(this,this.onLoadRes));
     }
 
@@ -31,6 +32,9 @@ export default class BattleLoader{
         let map = Laya.loader.getRes("h5/mapConfig/"+this._configId+".json");
 		GameBG.MAP_ROW = map.rowNum;
         GameBG.arr0 = map.arr;
+        let bgType = map.bgType ? map.bgType : 1;
+        bgType = Math.max(bgType,1);
+        GameBG.BG_TYPE = "map_" + bgType;
         
         //公共资源
         var arr: string[] = [
@@ -43,7 +47,7 @@ export default class BattleLoader{
             "h5/effects/door/hero.lh"
         ];
         //主角
-        arr.push("h5/ArrowBlue/monster.lh");
+        arr.push("h5/jian/monster.lh");
         arr.push("h5/gong/hero.lh");
         arr.push("h5/hero/hero.lh");
 
@@ -62,11 +66,11 @@ export default class BattleLoader{
             }
         }
 
-        let max = 10009;
-        for(var i = 10001; i <= max; i++)
-        {
-            arr.push("h5/monsters/"+i+"/monster.lh");
-        }
+        // let max = 10009;
+        // for(var i = 10001; i <= max; i++)
+        // {
+        //     arr.push("h5/monsters/"+i+"/monster.lh");
+        // }
         Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete))
     }
 

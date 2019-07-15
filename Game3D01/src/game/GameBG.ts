@@ -5,6 +5,8 @@ import Game from "./Game";
 import GridType from "./bg/GridType";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
+    /**地图颜色 绿色1 蓝色2 黄色3 */
+    static BG_TYPE:string;
     static MAP_ROW: number;
     /**地图恒星格子数*/
     static wnum: number = 12;
@@ -184,7 +186,7 @@ export default class GameBG extends Laya.Sprite {
                 }
                 gType = GameBG.arr0[k];
                 img = new Image();
-                img.skin = (k % 2 == 0) ? "bg/10.png" : "bg/11.png";
+                img.skin = (k % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
                 this._box.addChild(img);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
@@ -200,18 +202,18 @@ export default class GameBG extends Laya.Sprite {
                 // }
                 var grid:Image = new Image();
                 if (GridType.isRiverPoint(gType)) {
-                    grid.skin = 'bg/100.png';
+                    grid.skin = GameBG.BG_TYPE + '/100.png';
                 }
                 else if (GridType.isThorn(gType)) {
-                    grid.skin = 'bg/500.png';
+                    grid.skin = GameBG.BG_TYPE + '/500.png';
                 }
-                else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType)) {
+                else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverScale9Grid2(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType)) {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
-                    grid.skin = 'bg/' + gType + '.png';
+                    grid.skin = GameBG.BG_TYPE + '/' + gType + '.png';
                 }
                 else if(GridType.isFlower(gType))
                 {
-                    grid.skin = 'bg/' + gType + '.png';
+                    grid.skin = GameBG.BG_TYPE + '/' + gType + '.png';
                 }
                 img.addChild(grid);
                 k++;
@@ -228,14 +230,14 @@ export default class GameBG extends Laya.Sprite {
                 var shadow:Laya.Image = new Laya.Image();
                 if((GridType.isWall(gType) || (gType == 1)))
                 {
-                    shadow.skin = 'bg/shitouying.png';
+                    shadow.skin = GameBG.BG_TYPE + '/shitouying.png';
                     shadow.x = i * ww;
                     shadow.y = j * ww;
                     this._box.addChild(shadow);
                 }
                 else if(GridType.isFence(gType))
                 {
-                    shadow.skin = 'bg/lanying.png';
+                    shadow.skin = GameBG.BG_TYPE + '/lanying.png';
                     shadow.width = 200;
                     shadow.x = i * ww - 64;
                     shadow.y = j * ww + 50;
@@ -243,7 +245,7 @@ export default class GameBG extends Laya.Sprite {
                 }
                 else if(GridType.isRiverCube(gType))
                 {
-                    shadow.skin = 'bg/900.png';
+                    shadow.skin = GameBG.BG_TYPE + '/900.png';
                     shadow.width = 122;
                     shadow.height = 134;
                     // shadow.width = 200;
@@ -259,14 +261,14 @@ export default class GameBG extends Laya.Sprite {
             if (j % 2 == 0) {
                 var left: Image = new Image();
                 Game.frontLayer.addChild(left);
-                left.skin = "bg/border.png";
+                left.skin = GameBG.BG_TYPE + "/border.png";
                 left.x = 0;
                 left.y = Math.floor(j / 2) * 128 - 1;
                 left.mouseEnabled = false;
 
                 var right: Image = new Image();
                 Game.frontLayer.addChild(right);
-                right.skin = "bg/border.png";
+                right.skin = GameBG.BG_TYPE + "/border.png";
                 right.x = 0 + GameBG.wnum * ww;
                 right.y = Math.floor(j / 2) * 128 - 1;
                 right.mouseEnabled = false;
@@ -285,12 +287,12 @@ export default class GameBG extends Laya.Sprite {
         Game.frontLayer.addChild(this._top);
 
         this._top.x = GameBG.ww2;
-        this._top.skin = "bg/top.png";
+        this._top.skin = GameBG.BG_TYPE + "/top.png";
         this._topShadow.y = 10 * GameBG.ww;
 
         Game.frontLayer.addChild(this._bottom);
         this._bottom.x = GameBG.ww2;
-        this._bottom.skin = "bg/bottom.png";
+        this._bottom.skin = GameBG.BG_TYPE + "/bottom.png";
         this._bottom.y = (GameBG.MAP_ROW + 11 - 3) * GameBG.ww - GameBG.ww * 0.1;
         this._bottom.height = 1000;
 

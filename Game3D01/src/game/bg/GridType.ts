@@ -11,6 +11,12 @@ export default class GridType {
          return type > 200 && type < 300;
      }
 
+      /**是否是九宫格水 */
+      public static isRiverScale9Grid2(type:Number):boolean
+      {
+          return type > 900 && type < 1000;
+      }
+
      /**是否是横水 */
      public static isRiverRow(type:Number):boolean
      {

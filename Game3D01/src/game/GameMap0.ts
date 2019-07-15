@@ -78,6 +78,7 @@ export default class GameMap0 extends Laya.Sprite {
                     if (GridType.isWall(key)
                         || GridType.isRiverPoint(key)
                         || GridType.isRiverScale9Grid(key)
+                        || GridType.isRiverScale9Grid2(key)
                         || GridType.isRiverRow(key)
                         || GridType.isRiverCol(key)
                         || GridType.isRiverPoint(key)) {

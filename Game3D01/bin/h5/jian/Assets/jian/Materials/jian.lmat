@@ -5,7 +5,7 @@
 		"name":"jian",
 		"renderStates":[
 			{
-				"cull":2,
+				"cull":0,
 				"blend":0,
 				"srcBlend":1,
 				"dstBlend":0,

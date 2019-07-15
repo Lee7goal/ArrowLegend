@@ -5,7 +5,7 @@ import Rocker from "../game/GameRocker";
 import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
-import { SimpleGameMove, ArrowGameMove, PlaneGameMove, FlyGameMove } from "../game/GameMove";
+import { SimpleGameMove, ArrowGameMove, PlaneGameMove, FlyGameMove, FixedGameMove } from "../game/GameMove";
 import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 import GameProType from "../game/GameProType";
@@ -16,17 +16,18 @@ import GameCameraNum from "../game/GameCameraNum";
 import { FlyAndHitAi } from "../ai/FlyAndHitAi";
 import SysEnemy from "../main/sys/SysEnemy";
 import App from "../core/App";
+import AttackType from "../game/AttackType";
+import MonsterType from "../game/MonsterType";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
         super();
         this.removeChildren();
         Game.reset();
-        if(!Game.executor)
-        {
+        if (!Game.executor) {
             Game.executor = new GameExecut();
         }
-        
+
         var bg: GameBG = new GameBG();
 
         //bg.y = 1.5 * GameBG.ww;
@@ -66,7 +67,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        // this.addChild(map0);
+        this.addChild(map0);
         Game.map0 = map0;
         Game.updateMap();
 
@@ -74,20 +75,35 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         this.onComplete();
     }
 
-    getMonster(monster): GamePro {
-        var sp = Laya.Sprite3D.instantiate(monster);
+    getAttCla(type: number): any {
+        return Laya.ClassUtils.getClass(AttackType.TAG + type);
+    }
+
+    getMonsCla(type: number): any {
+        return Laya.ClassUtils.getClass(MonsterType.TAG + type);
+    }
+
+    getMonster(skinId: number): GamePro {
+        let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, skinId);
+        var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         var gpro = new GamePro(GameProType.RockGolem_Blue);
         gpro.setSp3d(sp);
-        gpro.setGameAi(new MonsterAI1(gpro));
+
+        var ATT: any = this.getAttCla(sysEnemy.attackType);
+        var MONS: any = this.getMonsCla(sysEnemy.enemyType);
+
+        gpro.setGameAi(new ATT(gpro));
+        gpro.setGameMove(new MONS());
+
         // gpro.setGameAi(new FlyAndHitAi(gpro));
-        gpro.setGameMove(new PlaneGameMove());
         // gpro.setGameMove(new FlyGameMove());
 
+        let tScale: number = sysEnemy.zoomMode / 100;
+        gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
         Game.map0.addChild(gpro.sp2d);
         Game.layer3d.addChild(sp);
-        
         return gpro;
     }
 
@@ -117,7 +133,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         // gpro.setSp3d(sp);
         // Game.e0_ = gpro;
 
-        var monster:GamePro;
+        var monster: GamePro;
         let k: number = 0;
         for (let j = 0; j < GameBG.hnum; j++) {
             for (let i = 0; i < GameBG.wnum + 1; i++) {
@@ -137,9 +153,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                         box.transform.translate(v3);
                         Game.layer3d.addChild(box)
                     }
-                    else if (GridType.isMonster(type))  {
-                        let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
-                        monster = this.getMonster(Laya.loader.getRes("h5/monsters/10005/monster.lh"));//"h5/monsters/"+sysEnemy.enemymode+"/monster.lh"
+                    else if (GridType.isMonster(type)) {
+                        monster = this.getMonster(type);
                         monster.setXY2DBox(GameBG.ww * i, j * GameBG.ww);
                         monster.startAi();
                         monster.setUI();
@@ -149,11 +164,13 @@ export default class GameUI2 extends ui.test.TestSceneUI {
             }
         }
 
-        
+        if (monster) {
+            Game.e0_ = monster;
+        }
 
         Game.bg.drawR();
 
-        sp = Laya.loader.getRes("h5/ArrowBlue/monster.lh");
+        sp = Laya.loader.getRes("h5/jian/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
@@ -177,25 +194,22 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.hero.addWeapon();
 
         Game.hero.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 2) * GameBG.ww);//原先是减1
+        Game.hero.setUI();
         Game.bg.updateY();
         Game.map0.Hharr.push(Game.hero.hbox);
 
-        if(monster)
-        {
-            Game.e0_ = monster;
-        }
-
         Game.hero.startAi();
         Game.executor.start();
-        Game.hero.setUI();
+        
         // Laya.stage.on(Laya.Event.KEY_DOWN, this, this.kd);
-
-        Game.footLayer.pos(0, 0);
+        
         Game.hero.rotation(90 / 180 * Math.PI);
         Game.hero.sp3d.transform.localPositionY = 15;
-        Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn);
-
+        Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn,new Laya.Handler(this,this.onJumpDown));
         Game.openDoor();
+    }
+
+    private onJumpDown():void{
     }
 
 
