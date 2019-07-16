@@ -18,6 +18,7 @@ import SysEnemy from "../main/sys/SysEnemy";
 import App from "../core/App";
 import AttackType from "../game/AttackType";
 import MonsterType from "../game/MonsterType";
+import BattleLoader from "../main/scene/battle/BattleLoader";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -170,7 +171,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         Game.bg.drawR();
 
-        sp = Laya.loader.getRes("h5/jian/monster.lh");
+        sp = Laya.loader.getRes("h5/bullets/10001/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
@@ -206,7 +207,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.hero.rotation(90 / 180 * Math.PI);
         Game.hero.sp3d.transform.localPositionY = 15;
         Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn,new Laya.Handler(this,this.onJumpDown));
-        Game.openDoor();
+
+        setTimeout(() => {
+            Game.openDoor();
+        }, 3000);
     }
 
     private onJumpDown():void{

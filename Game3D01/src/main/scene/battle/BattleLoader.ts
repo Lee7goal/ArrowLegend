@@ -47,7 +47,7 @@ export default class BattleLoader{
             "h5/effects/door/hero.lh"
         ];
         //主角
-        arr.push("h5/jian/monster.lh");
+        arr.push("h5/bullets/10001/monster.lh");
         arr.push("h5/gong/hero.lh");
         arr.push("h5/hero/hero.lh");
 

@@ -155,6 +155,7 @@ export default class GameBG extends Laya.Sprite {
     private _bottom: Image = new Image();
     private _topShadow:Image = new Image();
     private _leftShadow:Image = new Image();
+    private _door:Image = new Image();
     constructor() {
         super();
         GameBG.gameBG = this;
@@ -290,6 +291,9 @@ export default class GameBG extends Laya.Sprite {
         this._top.skin = GameBG.BG_TYPE + "/top.png";
         this._topShadow.y = 10 * GameBG.ww;
 
+        this._top.addChild(this._door);
+        this._door.pos(281,418);
+
         Game.frontLayer.addChild(this._bottom);
         this._bottom.x = GameBG.ww2;
         this._bottom.skin = GameBG.BG_TYPE + "/bottom.png";
@@ -302,6 +306,10 @@ export default class GameBG extends Laya.Sprite {
         GameBG.cy = this.y;
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
+    }
+
+    public setDoor(state:number):void{
+        this._door.skin = 'bg/door' + state + '.png';
     }
 
     public drawR0(): void {
