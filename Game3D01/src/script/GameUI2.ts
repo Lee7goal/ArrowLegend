@@ -19,6 +19,7 @@ import App from "../core/App";
 import AttackType from "../game/AttackType";
 import MonsterType from "../game/MonsterType";
 import BattleLoader from "../main/scene/battle/BattleLoader";
+import BulletRotateScript from "../game/controllerScript/BulletRotateScript";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -88,6 +89,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, skinId);
         var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         var gpro = new GamePro(GameProType.RockGolem_Blue);
+        gpro.sysEnemy = sysEnemy;
         gpro.setSp3d(sp);
 
         var ATT: any = this.getAttCla(sysEnemy.attackType);
@@ -171,10 +173,12 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         Game.bg.drawR();
 
-        sp = Laya.loader.getRes("h5/bullets/10001/monster.lh");
+        sp = Laya.loader.getRes("h5/bullets/10003/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
+
+        //Game.a0.sp3d.transform.scale = Game.cameraCN.boxscale;
 
         //得到原始Sprite3D   
         sp = Laya.loader.getRes("h5/hero/hero.lh");

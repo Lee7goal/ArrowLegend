@@ -170,6 +170,7 @@ export default class GameMap0 extends Laya.Sprite {
         this.alpha = 1;
         this.addChild(this.ballistic);
         //this.addChild(this.laodings);
+        
 
         this.setDoor(false);
         

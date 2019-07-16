@@ -10,8 +10,10 @@ import HeroBlood from "./HeroBlood";
 import FootCircle from "./FootCircle";
 import GameProType from "./GameProType";
 import Blood from "./Blood";
+import SysEnemy from "../main/sys/SysEnemy";
 
 export default class GamePro extends Laya.EventDispatcher {
+    public sysEnemy:SysEnemy;
     public hurtValue:number = 10;
     //  id  :number;
     //  name:String;
@@ -263,6 +265,12 @@ export default class GamePro extends Laya.EventDispatcher {
                 ey+=360;
             }
         }
+
+        // if(this.gamedata_.proType == GameProType.HeroArrow || this.gamedata_.proType == GameProType.MonstorArrow )
+        // {
+        //     (this.sp3d_.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = ey;
+        // }
+
         if(this.gamedata_.rspeed<=0){//瞬间转身
             this.sp3d_.transform.localRotationEulerY = ey;
             this.rotationEulerY = this.sp3d_.transform.localRotationEulerY;

@@ -26,14 +26,14 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"whiteball",
+					"name":"redball",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						0,
 						0,
-						0
+						0.48
 					],
 					"rotation":[
 						0,
@@ -50,7 +50,7 @@
 				"components":[],
 				"child":[
 					{
-						"type":"Sprite3D",
+						"type":"MeshSprite3D",
 						"props":{
 							"name":"qiu",
 							"active":true,
@@ -71,6 +71,13 @@
 								1,
 								1,
 								1
+							],
+							"enableRender":true,
+							"materials":[
+								{
+									"type":"Laya.BlinnPhongMaterial",
+									"path":"Library/unity default resources.lmat"
+								}
 							]
 						},
 						"components":[],
@@ -78,31 +85,31 @@
 							{
 								"type":"MeshSprite3D",
 								"props":{
-									"name":"shitouqiu",
+									"name":"zidanqiu",
 									"active":true,
 									"isStatic":false,
 									"layer":0,
 									"position":[
 										0,
-										0,
+										0.018,
 										0
 									],
 									"rotation":[
 										0,
+										1,
 										0,
-										0,
-										-1
+										0
 									],
 									"scale":[
 										1.5,
 										1.5,
 										1.5
 									],
-									"meshPath":"Assets/zidanshitou/FBX/zidanqiu-pPlane1.lm",
+									"meshPath":"Assets/zidanqiu/FBX/zidanqiu-pPlane1.lm",
 									"enableRender":true,
 									"materials":[
 										{
-											"path":"Assets/zidanshitou/Materials/zidanqiu.lmat"
+											"path":"Assets/zidanqiu/Materials/zidanqiu.lmat"
 										}
 									]
 								},
@@ -121,7 +128,7 @@
 							"position":[
 								0,
 								0,
-								-0.02
+								0.01
 							],
 							"rotation":[
 								0,
@@ -170,41 +177,41 @@
 									{
 										"time":0,
 										"value":[
-											0.9632353,
-											0.9632353,
-											0.9632353
+											1,
+											0.1034483,
+											0
 										]
 									},
 									{
 										"time":0.2500038,
 										"value":[
-											0.8014706,
-											0.8014706,
-											0.8014706
+											0.8823529,
+											0.04541522,
+											0.04541522
 										]
 									},
 									{
 										"time":0.5000076,
 										"value":[
-											0.7058823,
-											0.7058823,
-											0.7058823
+											0.7941176,
+											0,
+											0
 										]
 									},
 									{
-										"time":0.6588235,
+										"time":0.7499962,
 										"value":[
-											0.5073529,
-											0.5073529,
-											0.5073529
+											0.5441177,
+											0.008001738,
+											0.008001738
 										]
 									},
 									{
 										"time":1,
 										"value":[
-											0.05882353,
-											0.05882353,
-											0.05882353
+											0.1470588,
+											0,
+											0
 										]
 									}
 								],
@@ -222,7 +229,7 @@
 										"value":1
 									},
 									{
-										"time":0.6764782,
+										"time":0.7499962,
 										"value":1
 									},
 									{
@@ -234,7 +241,7 @@
 							"materials":[
 								{
 									"type":"Laya.TrailMaterial",
-									"path":"Assets/zidanshitou/Materials/FX-ArrowTrail 1.lmat"
+									"path":"Assets/zidanqiu/Materials/FX-ArrowTrail.lmat"
 								}
 							]
 						},

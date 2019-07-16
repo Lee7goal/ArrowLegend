@@ -12,5 +12,10 @@ export default class SysEnemy {
     public enemyHp:number = 0;
     public enemyAttack:number = 0;
     public enemymode:number = 0;
+    public enemyBlack:number = 0;
+    public bulletId:number = 0;
+    public enemySpeed:number = 0;
+    public bulletNum:number = 0;
+    public bulletAngle:number = 0;
     public skillId:string = '';
 }

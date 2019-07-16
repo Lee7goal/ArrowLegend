@@ -4,6 +4,7 @@ import App from "../../../core/App";
 import SysMap from "../../sys/SysMap";
 import SysEnemy from "../../sys/SysEnemy";
 import GridType from "../../../game/bg/GridType";
+import SysBullet from "../../sys/SysBullet";
 
 export default class BattleLoader{
     constructor() {}
@@ -24,7 +25,7 @@ export default class BattleLoader{
         let configArr:string[] = sysMap.stageGroup.split(',');
         let configId:number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        // this._configId = 100301;
+        this._configId = 100104;
         Laya.loader.load("h5/mapConfig/"+this._configId+".json",new Laya.Handler(this,this.onLoadRes));
     }
 
@@ -47,7 +48,7 @@ export default class BattleLoader{
             "h5/effects/door/hero.lh"
         ];
         //主角
-        arr.push("h5/bullets/10001/monster.lh");
+        arr.push("h5/bullets/10003/monster.lh");
         arr.push("h5/gong/hero.lh");
         arr.push("h5/hero/hero.lh");
 
@@ -60,17 +61,17 @@ export default class BattleLoader{
                     if (GridType.isMonster(type))  {
                         let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
                         arr.push("h5/monsters/"+sysEnemy.enemymode+"/monster.lh");
+                        if(sysEnemy.bulletId > 0)
+                        {
+                            let sysBullet:SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,sysEnemy.bulletId);
+                            arr.push("h5/bullets/"+sysBullet.bulletMode+"/monster.lh");
+                        }
                     }
                 }
                 k++;
             }
         }
 
-        // let max = 10009;
-        // for(var i = 10001; i <= max; i++)
-        // {
-        //     arr.push("h5/monsters/"+i+"/monster.lh");
-        // }
         Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete))
     }
 

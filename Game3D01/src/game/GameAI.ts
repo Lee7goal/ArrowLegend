@@ -1,9 +1,12 @@
 import GamePro from "./GamePro";
 import Game from "./Game";
-import { ArrowGameMove } from "./GameMove";
+import { ArrowGameMove, MonsterBulletMove } from "./GameMove";
 import GameHitBox from "./GameHitBox";
 import GameProType from "./GameProType";
 import GameBG from "./GameBG";
+import BulletRotateScript from "./controllerScript/BulletRotateScript";
+import SysBullet from "../main/sys/SysBullet";
+import App from "../core/App";
 
 export abstract class GameAI {
     static NormalAttack: string = "Attack";
@@ -25,7 +28,7 @@ export abstract class GameAI {
 //巡逻&攻击
 export class MonsterAI1 extends GameAI {
     private pro: GamePro;
-    private shooting: Shooting = new Shooting();
+    private shooting: MonsterShooting = new MonsterShooting();
 
     private aicd = 0;
     private aist = 0;
@@ -38,7 +41,9 @@ export class MonsterAI1 extends GameAI {
         super();
         this.pro = pro;
         this.pro.play(GameAI.Idle);
-        this.shooting.attackCd = 1500;
+        this.shooting.attackCd = pro.sysEnemy.enemySpeed;
+        this.shooting.attackCd = 2000;
+        this.shooting.setBullet(pro.sysEnemy.bulletId);
         this.shooting.at = 0.4;
         this.pro.on(Game.Event_Short, this, this.shootAc);
 
@@ -48,9 +53,28 @@ export class MonsterAI1 extends GameAI {
     }
 
     shootAc(): void {
-        this.shooting.short_arrow(10, this.pro.face3d, this.pro, GameProType.MonstorArrow);
-        this.shooting.short_arrow(10, this.pro.face3d + Math.PI / 6, this.pro, GameProType.MonstorArrow);
-        this.shooting.short_arrow(10, this.pro.face3d - Math.PI / 6, this.pro, GameProType.MonstorArrow);
+        if(this.pro.sysEnemy.bulletId > 0)
+        {
+            let bulletNum:number = this.pro.sysEnemy.bulletNum;
+            bulletNum = 4;
+            if(bulletNum == 1)
+            {
+                this.shooting.short_arrow(this.pro.face3d, this.pro, GameProType.MonstorArrow);
+            }
+            else if(bulletNum == 3)
+            {
+                this.shooting.short_arrow(this.pro.face3d, this.pro, GameProType.MonstorArrow);
+                this.shooting.short_arrow(this.pro.face3d + Math.PI / 6, this.pro, GameProType.MonstorArrow);
+                this.shooting.short_arrow(this.pro.face3d - Math.PI / 6, this.pro, GameProType.MonstorArrow);
+            }
+            else if(bulletNum == 4 || bulletNum == 8)
+            {
+                for(var i = 1; i <= bulletNum; i++)
+                {
+                    this.shooting.short_arrow(2 * Math.PI / bulletNum * i, this.pro, GameProType.MonstorArrow);
+                }
+            }
+        }
     }
 
     hit(pro: GamePro) {
@@ -207,6 +231,53 @@ export class HeroArrowAI extends GameAI {
     stopAi() {
         this.i = 0;
         //this.trail_on();
+    }
+}
+
+export class MonsterBulletAI extends GameAI {
+
+    private pro: GamePro;
+
+    constructor(pro: GamePro) {
+        super();
+        this.pro = pro;
+
+    }
+
+    hit(pro: GamePro) {
+        this.i = 25;
+        this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
+        this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
+        this.pro.sp3d.transform.localRotationEulerY -= pro.sp3d.transform.localRotationEulerY;
+        pro.sp3d.addChild(this.pro.sp3d);
+    }
+
+    private i: number = 0;
+    exeAI(pro: GamePro): boolean {
+
+        if (this.i == 0 && !pro.move2D(pro.face2d)) {
+            this.i = 1;
+            return false;
+        }
+
+        if (this.i > 0) {
+            this.i++;
+            if (this.i > 30) {
+                pro.stopAi();
+                if (pro.sp3d.parent) {
+                    pro.sp3d.parent.removeChild(pro.sp3d);
+                    Game.HeroArrows.push(pro);
+                    this.pro.stopAi();
+                }
+            }
+        }
+
+    }
+    starAi() {
+        this.i = 0;
+    }
+    stopAi() {
+        this.i = 0;
     }
 }
 
@@ -383,6 +454,7 @@ export class Shooting {
             gp.setSp3d(bullet);
             gp.setGameMove(new ArrowGameMove());
             gp.setGameAi(new HeroArrowAI(gp));
+            // bullet.getChildAt(0).addComponent(BulletRotateScript);
             //Shooting.bulletCount++;
             //console.log("Shooting.bulletCount " , Shooting.bulletCount);
         } else {
@@ -399,6 +471,136 @@ export class Shooting {
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(speed_);
         bo.rotation(r_);
+        (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
+        bo.gamedata.bounce = pro.gamedata.bounce;
+        Game.layer3d.addChild(bo.sp3d);
+        bo.startAi();
+    }
+
+    public attackOk(): boolean {
+        this.now = Game.executor.getWorldNow();
+        return this.now >= this.st;
+    }
+
+    public starAttack(pro: GamePro, acstr: string): boolean {
+        this.pro = pro;
+        if (this.attackOk()) {
+            this.st = this.now + this.attackCd;
+            this.scd = 0;
+            pro.play(acstr);
+            if (this.at > 0) {
+                Laya.stage.timer.frameLoop(this.at, this, this.ac0);
+            } else {
+                this.ac0();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public cancelAttack(): void {
+        Laya.stage.timer.clear(this, this.ac0);
+        this.scd = 0;
+    }
+
+    private ac0(): void {
+        //this.pro;
+        if (this.pro.normalizedTime >= this.at) {
+            if (this.pro.normalizedTime >= 1) {
+                Laya.stage.timer.clear(this, this.ac0);
+                this.pro.play(GameAI.Idle);
+            }
+            if (this.scd == 0) {
+                this.scd = 1;
+                this.pro.event(Game.Event_Short, null);
+            }
+        }
+    }
+
+    private future: GameHitBox = new GameHitBox(2, 2);
+
+    public checkBallistic(n: number, pro: GamePro, ero: GamePro): GamePro {
+        var vx: number = GameBG.mw2 * Math.cos(n);
+        var vz: number = GameBG.mw2 * Math.sin(n);
+        var x0: number = pro.hbox.cx;
+        var y0: number = pro.hbox.cy;
+        var ebh: GameHitBox;
+        for (let i = 0; i < 6000; i++) {
+            ebh = null;
+            this.future.setVV(x0, y0, vx, vz);
+
+            if (ero.hbox.hit(ero.hbox, this.future)) {
+                return ero;
+            }
+
+            var hits = Game.map0.Aharr;
+            ebh = Game.map0.chechHit_arr(this.future, hits);
+            if (ebh) {
+                return null;
+            }
+            x0 += vx;
+            y0 += vz;
+        }
+        return null;
+    }
+}
+
+/**怪射击器*/
+export class MonsterShooting {
+    /**单次出手次数*/
+    public scd: number = 0;
+    /**攻击CD*/
+    public attackCd: number = 1200;
+    /**下次攻击时间*/
+    public st: number = 0;
+    /**当前时间*/
+    public now: number = 0;
+    /**攻击前摇时间*/
+    public at: number = 0;
+    //private static bulletCount:number = 0;
+
+    private pro: GamePro;
+
+    private _sysBullet:SysBullet;
+    public setBullet(bulletId:number):void{
+        if(bulletId > 0)
+        {
+            this._sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,bulletId);
+            this._sysBullet.bulletMode = 10003
+            console.log("设置子弹",this._sysBullet.bulletMode);
+        }
+    }
+
+    private getBullet(proType_: number): GamePro {
+        console.log(" getBullet proType_ ", proType_);
+
+        var gp: GamePro;
+        if (Game.HeroArrows.length <= 0) {
+            gp = new GamePro(proType_);
+            console.log("当前的子弹",this._sysBullet.bulletMode);
+            var bullet: Laya.Sprite3D;
+            bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/"+this._sysBullet.bulletMode+"/monster.lh"))) as Laya.Sprite3D;
+            gp.setSp3d(bullet);
+            gp.setGameMove(new MonsterBulletMove());
+            gp.setGameAi(new MonsterBulletAI(gp));
+            bullet.getChildAt(0).addComponent(BulletRotateScript);
+            //Shooting.bulletCount++;
+            //console.log("Shooting.bulletCount " , Shooting.bulletCount);
+        } else {
+            gp = Game.HeroArrows.shift();
+            gp.gamedata.proType = proType_;
+            //gp.gamedata.rspeed = 0;
+        }
+        return gp;
+    }
+
+    public short_arrow(r_: number, pro: GamePro, proType_: number) {
+        var bo = this.getBullet(proType_);
+        bo.sp3d.transform.localPositionY = 1;
+        bo.setXY2D(pro.pos2.x, pro.pos2.z);
+        bo.setSpeed(this._sysBullet.bulletSpeed);
+        bo.rotation(r_);
+        (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
