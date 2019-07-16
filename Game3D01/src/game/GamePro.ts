@@ -12,6 +12,7 @@ import GameProType from "./GameProType";
 import Blood from "./Blood";
 
 export default class GamePro extends Laya.EventDispatcher {
+    public hurtValue:number = 10;
     //  id  :number;
     //  name:String;
     private gamedata_: GameData;

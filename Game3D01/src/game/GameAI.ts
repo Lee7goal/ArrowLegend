@@ -54,7 +54,7 @@ export class MonsterAI1 extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.hurt(10);
+        this.pro.hurt(pro.hurtValue);
         this.pro.sp3d.addChild(Game.selectFoot);
         this.pro.addSprite3DToChild("RigHeadGizmo", Game.selectHead)
         // this.pro.sp3d.addChild(Game.selectHead);
@@ -91,9 +91,9 @@ export class MonsterAI1 extends GameAI {
 
         var now = Game.executor.getWorldNow();
         if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) < GameBG.ww2) {
-            if (now > this.collisionCd)  {
+            if (now > this.collisionCd) {
                 if (Game.hero.hbox.linkPro_) {
-                    Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
+                    // Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
                     pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
                     this.collisionCd = now + 1000;
                 }
@@ -234,7 +234,7 @@ export class HeroAI extends GameAI {
         if (Game.hero.acstr == GameAI.Idle) {
             // Game.hero.play(GameAI.TakeDamage);
         }
-        Game.hero.hurt(10);
+        Game.hero.hurt(pro.hurtValue);
         if (Game.hero.gamedata.hp <= 0) {
             this.stopAi();
             Game.hero.play(GameAI.Die);
@@ -273,6 +273,22 @@ export class HeroAI extends GameAI {
 
 
     public exeAI(pro: GamePro): boolean {
+        var now = Game.executor.getWorldNow();
+        //地刺
+        if (Game.map0.Thornarr.length > 0) {
+            for (var i = 0; i < Game.map0.Thornarr.length; i++) {
+                let thornBox: GameHitBox = Game.map0.Thornarr[i];
+                if (Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
+                    if (now > thornBox.cdTime) {
+                        if (Game.hero.hbox.linkPro_) {
+                            // Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
+                            pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
+                            thornBox.cdTime = now + 1000;
+                        }
+                    }
+                }
+            }
+        }
         if (this.run_) {
             this.moves();
             return;
@@ -305,7 +321,6 @@ export class HeroAI extends GameAI {
 
                 }
             }
-
             Game.e0_ = Game.map0.Eharr[0].linkPro_;
             var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
             pro.rotation(a);

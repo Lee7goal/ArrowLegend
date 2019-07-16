@@ -23,7 +23,7 @@ export class FlyAndHitAi extends GameAI {
                 if(now > this.collisionCd)
                 {
                     if( Game.hero.hbox.linkPro_ ){
-                        Game.hero.hbox.linkPro_.event(Game.Event_Hit,pro);
+                        // Game.hero.hbox.linkPro_.event(Game.Event_Hit,pro);
                         pro.event(Game.Event_Hit,Game.hero.hbox.linkPro_);
                         this.collisionCd = now +1000;
                     }
