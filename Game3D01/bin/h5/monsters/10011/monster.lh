@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"Toon Plant Monster-Red",
+					"name":"Dark Treant-Blue",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -51,10 +51,10 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10009/Toon Plant Monster/FBX/Toon Plant Monster-Toon Plant Monster-Red-Toon Plant MonsterAvatar.lav",
+							"path":"Assets/10011/Dark Treant/FBX/Dark Treant-Dark Treant-Blue-Dark TreantAvatar.lav",
 							"linkSprites":{
-								"Breath":[
-									"Breath"
+								"Aura":[
+									"Aura"
 								]
 							}
 						},
@@ -65,36 +65,36 @@
 								"blendingMode":0,
 								"states":[
 									{
-										"name":"Run",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Run-Run.lani"
-									},
-									{
 										"name":"Idle",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Idle-Idle.lani"
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Idle-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Attack-Attack.lani"
-									},
-									{
-										"name":"SkillStart",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillStart.lani"
-									},
-									{
-										"name":"SkillEnd",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillEnd.lani"
-									},
-									{
-										"name":"SkillLoop",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillLoop.lani"
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Attack-Attack.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@TakeDamage-TakeDamage.lani"
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@TakeDamage-TakeDamage.lani"
+									},
+									{
+										"name":"Run",
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Run-Run.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Die-Die.lani"
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Die-Die.lani"
+									},
+									{
+										"name":"SkillStart",
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Skill-SkillStart.lani"
+									},
+									{
+										"name":"SkillLoop",
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Skill-SkillStart.lani"
+									},
+									{
+										"name":"SkillEnd",
+										"clipPath":"Assets/10011/Dark Treant/Animations/Dark Treant@Skill-SkillEnd.lani"
 									}
 								]
 							}
@@ -105,6 +105,60 @@
 				],
 				"child":[
 					{
+						"type":"SkinnedMeshSprite3D",
+						"props":{
+							"name":"Dark Treant",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								-8.146034E-08,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								0.8115566,
+								0.8115566,
+								0.8115566
+							],
+							"rootBone":"RigPelvis",
+							"boundBox":{
+								"min":[
+									-0.5572096,
+									-0.7885108,
+									-0.684836
+								],
+								"max":[
+									1.250665,
+									0.6319935,
+									0.6835194
+								]
+							},
+							"boundSphere":{
+								"center":[
+									0.3467275,
+									-0.0782586,
+									-0.0006582737
+								],
+								"radius":1.337782
+							},
+							"materials":[
+								{
+									"path":"Assets/10011/Dark Treant/Materials/Dark Treant-Blue.lmat"
+								}
+							],
+							"meshPath":"Assets/10011/Dark Treant/FBX/Dark Treant-Dark Treant.lm"
+						},
+						"components":[],
+						"child":[]
+					},
+					{
 						"type":"MeshSprite3D",
 						"props":{
 							"name":"RigHeadGizmo",
@@ -112,15 +166,15 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-2.18427E-08,
-								0.8963674,
-								0.0637373
+								-3.252653E-08,
+								0.9061196,
+								-0.08212911
 							],
 							"rotation":[
-								-0.5612864,
-								-0.4300671,
-								-0.5612863,
-								-0.4300669
+								-0.4359492,
+								-0.5567302,
+								-0.435949,
+								-0.55673
 							],
 							"scale":[
 								1,
@@ -141,28 +195,28 @@
 					{
 						"type":"ShuriKenParticle3D",
 						"props":{
-							"name":"Breath",
+							"name":"Aura",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-9.079282E-08,
-								1.11791,
-								0.2062849
+								-8.968497E-05,
+								1.251408,
+								-0.1303128
 							],
 							"rotation":[
-								0.7071067,
-								-3.054062E-08,
-								-2.173364E-08,
-								-0.7071068
+								0.8100541,
+								-0.003053988,
+								-0.003463984,
+								-0.5863369
 							],
 							"scale":[
-								1,
-								1,
-								1
+								0.9999,
+								0.9999002,
+								0.9999
 							],
 							"isPerformanceMode":true,
-							"duration":5,
+							"duration":0.5,
 							"looping":true,
 							"prewarm":false,
 							"startDelayType":0,
@@ -170,9 +224,9 @@
 							"startDelayMin":0,
 							"startDelayMax":0,
 							"startLifetimeType":0,
-							"startLifetimeConstant":2,
+							"startLifetimeConstant":0.5,
 							"startLifetimeConstantMin":0,
-							"startLifetimeConstantMax":2,
+							"startLifetimeConstantMax":0.5,
 							"startLifetimeGradient":{
 								"startLifetimes":[]
 							},
@@ -187,22 +241,22 @@
 							"startSpeedConstantMin":0,
 							"startSpeedConstantMax":0,
 							"threeDStartSize":false,
-							"startSizeType":0,
-							"startSizeConstant":0.5,
-							"startSizeConstantMin":0,
-							"startSizeConstantMax":0.5,
+							"startSizeType":2,
+							"startSizeConstant":0.8,
+							"startSizeConstantMin":0.5,
+							"startSizeConstantMax":0.8,
 							"startSizeConstantSeparate":[
-								0.5,
+								0.8,
 								1,
 								1
 							],
 							"startSizeConstantMinSeparate":[
-								0,
+								0.5,
 								0,
 								0
 							],
 							"startSizeConstantMaxSeparate":[
-								0.5,
+								0.8,
 								1,
 								1
 							],
@@ -229,9 +283,9 @@
 							"randomizeRotationDirection":0,
 							"startColorType":0,
 							"startColorConstant":[
-								1,
-								0.8901961,
 								0,
+								0.5843138,
+								1,
 								1
 							],
 							"startColorConstantMin":[
@@ -241,9 +295,9 @@
 								0
 							],
 							"startColorConstantMax":[
-								1,
-								0.8901961,
 								0,
+								0.5843138,
+								1,
 								1
 							],
 							"gravity":[
@@ -252,31 +306,31 @@
 								0
 							],
 							"gravityModifier":0,
-							"simulationSpace":1,
+							"simulationSpace":0,
 							"scaleMode":2,
 							"playOnAwake":true,
-							"maxParticles":10,
+							"maxParticles":20,
 							"autoRandomSeed":true,
 							"randomSeed":0,
 							"emission":{
 								"enable":true,
-								"emissionRate":5,
+								"emissionRate":20,
 								"emissionRateTip":"Time",
 								"bursts":[]
 							},
 							"shape":{
 								"enable":true,
-								"shapeType":0,
+								"shapeType":1,
 								"sphereRadius":0.01,
 								"sphereEmitFromShell":false,
 								"sphereRandomDirection":0,
 								"hemiSphereRadius":0.01,
 								"hemiSphereEmitFromShell":false,
 								"hemiSphereRandomDirection":0,
-								"coneAngle":25,
+								"coneAngle":0.12,
 								"coneRadius":0.01,
 								"coneLength":5,
-								"coneEmitType":0,
+								"coneEmitType":1,
 								"coneRandomDirection":0,
 								"boxX":1,
 								"boxY":1,
@@ -289,13 +343,13 @@
 							},
 							"velocityOverLifetime":{
 								"enable":true,
-								"space":0,
+								"space":1,
 								"velocity":{
 									"type":0,
 									"constant":[
 										0,
-										0,
-										0.1
+										0.72,
+										0
 									],
 									"gradientX":{
 										"velocitys":[]
@@ -313,8 +367,8 @@
 									],
 									"constantMax":[
 										0,
-										0,
-										0.1
+										0.72,
+										0
 									],
 									"gradientXMin":{
 										"velocitys":[]
@@ -367,15 +421,7 @@
 												]
 											},
 											{
-												"key":0.1411765,
-												"value":[
-													1,
-													1,
-													1
-												]
-											},
-											{
-												"key":0.8176547,
+												"key":0.3235371,
 												"value":[
 													1,
 													1,
@@ -425,15 +471,7 @@
 												]
 											},
 											{
-												"key":0.1411765,
-												"value":[
-													1,
-													1,
-													1
-												]
-											},
-											{
-												"key":0.8176547,
+												"key":0.3235371,
 												"value":[
 													1,
 													1,
@@ -461,11 +499,11 @@
 										"sizes":[
 											{
 												"key":0,
-												"value":0
+												"value":0.9913793
 											},
 											{
 												"key":1,
-												"value":2
+												"value":1.534828
 											}
 										]
 									},
@@ -473,11 +511,11 @@
 										"sizes":[
 											{
 												"key":0,
-												"value":0
+												"value":0.9913793
 											},
 											{
 												"key":1,
-												"value":2
+												"value":1.534828
 											}
 										]
 									},
@@ -524,11 +562,11 @@
 										"sizes":[
 											{
 												"key":0,
-												"value":0
+												"value":0.9913793
 											},
 											{
 												"key":1,
-												"value":2
+												"value":1.534828
 											}
 										]
 									},
@@ -539,11 +577,11 @@
 										"sizes":[
 											{
 												"key":0,
-												"value":0
+												"value":0.4956897
 											},
 											{
 												"key":1,
-												"value":1
+												"value":0.7674139
 											}
 										]
 									},
@@ -586,62 +624,8 @@
 							"sortingFudge":0,
 							"material":{
 								"type":"Laya.ShurikenParticleMaterial",
-								"path":"Assets/10009/Toon Plant Monster/Materials/FX-Breath.lmat"
+								"path":"Assets/10011/Dark Treant/Materials/FX-Aura.lmat"
 							}
-						},
-						"components":[],
-						"child":[]
-					},
-					{
-						"type":"SkinnedMeshSprite3D",
-						"props":{
-							"name":"Toon Plant Monster",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0.1883869,
-								8.234654E-09
-							],
-							"rotation":[
-								0.7071068,
-								0,
-								0,
-								-0.7071067
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"rootBone":"RigPelvis",
-							"boundBox":{
-								"min":[
-									-0.5488472,
-									-0.8632346,
-									-0.8447912
-								],
-								"max":[
-									1.539491,
-									0.8690268,
-									0.8447855
-								]
-							},
-							"boundSphere":{
-								"center":[
-									0.4953221,
-									0.0028961,
-									-2.831221E-06
-								],
-								"radius":1.598167
-							},
-							"materials":[
-								{
-									"path":"Assets/10009/Toon Plant Monster/Materials/Toon Plant Monster-Red.lmat"
-								}
-							],
-							"meshPath":"Assets/10009/Toon Plant Monster/FBX/Toon Plant Monster-Toon Plant Monster.lm"
 						},
 						"components":[],
 						"child":[]
@@ -655,7 +639,7 @@
 							"layer":0,
 							"position":[
 								0,
-								0.65,
+								0.6,
 								0
 							],
 							"rotation":[
