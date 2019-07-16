@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Toon Skeleton Archer-Green-Toon Skeleton ArcherAvatar.lav",
+							"path":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Toon Skeleton Archer-Green-Toon Skeleton ArcherAvatar.lav",
 							"linkSprites":{
 								"Arrow":[
 									"Arrow"
@@ -66,35 +66,35 @@
 								"states":[
 									{
 										"name":"Run",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Run-Run.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Run-Run.lani"
 									},
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Idle-Idle.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Idle-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@ArrowAttack-Attack.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Attack-Attack.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@TakeDamage-TakeDamage.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@TakeDamage-TakeDamage.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Die-Die.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Die-Die.lani"
 									},
 									{
 										"name":"SkillStart",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Skill-SkillStart.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Skill-SkillStart.lani"
 									},
 									{
 										"name":"SkillLoop",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Skill-SkillLoop.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Skill-SkillLoop.lani"
 									},
 									{
 										"name":"SkillEnd",
-										"clipPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Skill-SkillEnd.lani"
+										"clipPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Animations/Toon Skeleton Archer@Skill-SkillEnd.lani"
 									}
 								]
 							}
@@ -184,10 +184,10 @@
 							},
 							"materials":[
 								{
-									"path":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Green.lmat"
+									"path":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Green.lmat"
 								}
 							],
-							"meshPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Bow.lm"
+							"meshPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Bow.lm"
 						},
 						"components":[],
 						"child":[]
@@ -215,11 +215,11 @@
 								1,
 								1
 							],
-							"meshPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Arrow.lm",
+							"meshPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Arrow.lm",
 							"enableRender":true,
 							"materials":[
 								{
-									"path":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Green.lmat"
+									"path":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Green.lmat"
 								}
 							]
 						},
@@ -272,10 +272,10 @@
 							},
 							"materials":[
 								{
-									"path":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Green.lmat"
+									"path":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/Materials/Toon Skeleton Archer-Green.lmat"
 								}
 							],
-							"meshPath":"Assets/10014/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Toon Skeleton Archer.lm"
+							"meshPath":"Assets/10013/Toon Skeletons Pack/Toon Skeleton Archer/FBX/Toon Skeleton Archer-Toon Skeleton Archer.lm"
 						},
 						"components":[],
 						"child":[]
