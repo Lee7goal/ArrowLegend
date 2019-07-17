@@ -11,9 +11,15 @@ import FootCircle from "./FootCircle";
 import GameProType from "./GameProType";
 import Blood from "./Blood";
 import SysEnemy from "../main/sys/SysEnemy";
+import SysBullet from "../main/sys/SysBullet";
 
 export default class GamePro extends Laya.EventDispatcher {
+    public curLen:number;
+    public moveLen:number;
     public sysEnemy:SysEnemy;
+    public sysBullet:SysBullet;
+
+
     public hurtValue:number = 10;
     //  id  :number;
     //  name:String;
@@ -38,7 +44,7 @@ export default class GamePro extends Laya.EventDispatcher {
     /**关键帧比例0.0-1.0 */
     private keyNum:number = -1;//关键帧比例0.0-1.0
 
-
+    public flag:number = 0;
     constructor(proType_: number) {
         super();
         this.gamedata_ = new GameData();
@@ -265,11 +271,6 @@ export default class GamePro extends Laya.EventDispatcher {
                 ey+=360;
             }
         }
-
-        // if(this.gamedata_.proType == GameProType.HeroArrow || this.gamedata_.proType == GameProType.MonstorArrow )
-        // {
-        //     (this.sp3d_.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = ey;
-        // }
 
         if(this.gamedata_.rspeed<=0){//瞬间转身
             this.sp3d_.transform.localRotationEulerY = ey;

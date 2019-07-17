@@ -141,7 +141,7 @@
 								1,
 								1
 							],
-							"time":0.2,
+							"time":0.3,
 							"minVertexDistance":0.1,
 							"widthMultiplier":1,
 							"textureMode":0,

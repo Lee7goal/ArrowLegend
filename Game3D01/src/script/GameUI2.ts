@@ -69,7 +69,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         var map0: GameMap0 = new GameMap0();
         map0.drawMap();
-        this.addChild(map0);
+        // this.addChild(map0);
         Game.map0 = map0;
         Game.updateMap();
 
@@ -157,10 +157,16 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                         Game.layer3d.addChild(box)
                     }
                     else if (GridType.isMonster(type)) {
-                        monster = this.getMonster(type);
-                        monster.setXY2DBox(GameBG.ww * i, j * GameBG.ww);
-                        monster.startAi();
-                        monster.setUI();
+                        if (!monster)  {
+                            type = 10007;
+                            // type = 10003;
+                            // type = 10011;
+                            monster = this.getMonster(type);
+                            monster.setXY2DBox(GameBG.ww * i, j * GameBG.ww);
+                            monster.startAi();
+                            monster.setUI();
+                        }
+
                     }
                 }
                 k++;
@@ -173,7 +179,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         Game.bg.drawR();
 
-        sp = Laya.loader.getRes("h5/bullets/10003/monster.lh");
+        sp = Laya.loader.getRes("h5/bullets/20001/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
@@ -205,19 +211,19 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         Game.hero.startAi();
         Game.executor.start();
-        
+
         // Laya.stage.on(Laya.Event.KEY_DOWN, this, this.kd);
-        
+
         Game.hero.rotation(90 / 180 * Math.PI);
         Game.hero.sp3d.transform.localPositionY = 15;
-        Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn,new Laya.Handler(this,this.onJumpDown));
+        Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn, new Laya.Handler(this, this.onJumpDown));
 
         setTimeout(() => {
             Game.openDoor();
         }, 3000);
     }
 
-    private onJumpDown():void{
+    private onJumpDown(): void {
     }
 
 

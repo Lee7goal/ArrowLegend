@@ -53,24 +53,18 @@ export class MonsterAI1 extends GameAI {
     }
 
     shootAc(): void {
-        if(this.pro.sysEnemy.bulletId > 0)
-        {
-            let bulletNum:number = this.pro.sysEnemy.bulletNum;
-            bulletNum = 4;
-            if(bulletNum == 1)
-            {
+        if (this.pro.sysEnemy.bulletId > 0) {
+            let bulletNum: number = this.pro.sysEnemy.bulletNum;
+            if (bulletNum == 1) {
                 this.shooting.short_arrow(this.pro.face3d, this.pro, GameProType.MonstorArrow);
             }
-            else if(bulletNum == 3)
-            {
+            else if (bulletNum == 3) {
                 this.shooting.short_arrow(this.pro.face3d, this.pro, GameProType.MonstorArrow);
                 this.shooting.short_arrow(this.pro.face3d + Math.PI / 6, this.pro, GameProType.MonstorArrow);
                 this.shooting.short_arrow(this.pro.face3d - Math.PI / 6, this.pro, GameProType.MonstorArrow);
             }
-            else if(bulletNum == 4 || bulletNum == 8)
-            {
-                for(var i = 1; i <= bulletNum; i++)
-                {
+            else if (bulletNum == 4 || bulletNum == 8) {
+                for (var i = 1; i <= bulletNum; i++) {
                     this.shooting.short_arrow(2 * Math.PI / bulletNum * i, this.pro, GameProType.MonstorArrow);
                 }
             }
@@ -237,7 +231,6 @@ export class HeroArrowAI extends GameAI {
 export class MonsterBulletAI extends GameAI {
 
     private pro: GamePro;
-
     constructor(pro: GamePro) {
         super();
         this.pro = pro;
@@ -245,32 +238,43 @@ export class MonsterBulletAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.i = 25;
-        this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
-        this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
-        this.pro.sp3d.transform.localRotationEulerY -= pro.sp3d.transform.localRotationEulerY;
-        pro.sp3d.addChild(this.pro.sp3d);
+        // this.i = 25;
+        // this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
+        // this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
+        // this.pro.sp3d.transform.localRotationEulerY -= pro.sp3d.transform.localRotationEulerY;
+        // pro.sp3d.addChild(this.pro.sp3d);
+
+        // this.pro.stopAi();
+        // if (this.pro.sp3d.parent) {
+        //     this.pro.sp3d.parent.removeChild(this.pro.sp3d);
+        // }
     }
 
     private i: number = 0;
     exeAI(pro: GamePro): boolean {
-
-        if (this.i == 0 && !pro.move2D(pro.face2d)) {
-            this.i = 1;
+        if (!pro.move2D(pro.face2d))  {
+            this.pro.stopAi();
+            if (this.pro.sp3d.parent) {
+                this.pro.sp3d.parent.removeChild(this.pro.sp3d);
+            }
             return false;
         }
+        // if (this.i == 0 && !pro.move2D(pro.face2d)) {
+        //     this.i = 1;
+        //     return false;
+        // }
 
-        if (this.i > 0) {
-            this.i++;
-            if (this.i > 30) {
-                pro.stopAi();
-                if (pro.sp3d.parent) {
-                    pro.sp3d.parent.removeChild(pro.sp3d);
-                    Game.HeroArrows.push(pro);
-                    this.pro.stopAi();
-                }
-            }
-        }
+        // if (this.i > 0) {
+        //     this.i++;
+        //     if (this.i > 30) {
+        //         pro.stopAi();
+        //         if (pro.sp3d.parent) {
+        //             pro.sp3d.parent.removeChild(pro.sp3d);
+        //             // Game.HeroArrows.push(pro);
+        //             this.pro.stopAi();
+        //         }
+        //     }
+        // }
 
     }
     starAi() {
@@ -301,6 +305,7 @@ export class HeroAI extends GameAI {
         }
     }
 
+    
     hit(pro: GamePro) {
         if (Game.hero.acstr == GameAI.Idle) {
             // Game.hero.play(GameAI.TakeDamage);
@@ -310,6 +315,14 @@ export class HeroAI extends GameAI {
             this.stopAi();
             Game.hero.play(GameAI.Die);
         }
+
+        let hitEff:Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh"));
+        Game.layer3d.addChild(hitEff);
+        Game.hero.addSprite3DToAvatarNode("joint2",hitEff);
+        setTimeout(() => {
+            hitEff.removeSelf();
+        }, 500);
+
     }
 
     public starAi() {
@@ -471,7 +484,7 @@ export class Shooting {
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(speed_);
         bo.rotation(r_);
-        (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
+        // (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
@@ -561,13 +574,10 @@ export class MonsterShooting {
 
     private pro: GamePro;
 
-    private _sysBullet:SysBullet;
-    public setBullet(bulletId:number):void{
-        if(bulletId > 0)
-        {
-            this._sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,bulletId);
-            this._sysBullet.bulletMode = 10003
-            console.log("设置子弹",this._sysBullet.bulletMode);
+    private _sysBullet: SysBullet;
+    public setBullet(bulletId: number): void {
+        if (bulletId > 0) {
+            this._sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, bulletId);
         }
     }
 
@@ -575,31 +585,34 @@ export class MonsterShooting {
         console.log(" getBullet proType_ ", proType_);
 
         var gp: GamePro;
-        if (Game.HeroArrows.length <= 0) {
-            gp = new GamePro(proType_);
-            console.log("当前的子弹",this._sysBullet.bulletMode);
-            var bullet: Laya.Sprite3D;
-            bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/"+this._sysBullet.bulletMode+"/monster.lh"))) as Laya.Sprite3D;
-            gp.setSp3d(bullet);
-            gp.setGameMove(new MonsterBulletMove());
-            gp.setGameAi(new MonsterBulletAI(gp));
-            bullet.getChildAt(0).addComponent(BulletRotateScript);
-            //Shooting.bulletCount++;
-            //console.log("Shooting.bulletCount " , Shooting.bulletCount);
-        } else {
-            gp = Game.HeroArrows.shift();
-            gp.gamedata.proType = proType_;
-            //gp.gamedata.rspeed = 0;
-        }
+        // if (Game.HeroArrows.length <= 0) {
+        gp = new GamePro(proType_);
+        gp.flag = Math.random();
+        var bullet: Laya.Sprite3D;
+        bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + this._sysBullet.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
+        gp.setSp3d(bullet);
+        gp.sysBullet = this._sysBullet;
+        gp.setGameMove(new MonsterBulletMove());
+        gp.setGameAi(new MonsterBulletAI(gp));
+        bullet.getChildAt(0).addComponent(BulletRotateScript);
+        //Shooting.bulletCount++;
+        //console.log("Shooting.bulletCount " , Shooting.bulletCount);
+        // } else {
+        //     gp = Game.HeroArrows.shift();
+        //     gp.gamedata.proType = proType_;
+        //     //gp.gamedata.rspeed = 0;
+        // }
         return gp;
     }
 
     public short_arrow(r_: number, pro: GamePro, proType_: number) {
         var bo = this.getBullet(proType_);
-        bo.sp3d.transform.localPositionY = 1;
+        bo.sp3d.transform.localPositionY = 0.1;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(this._sysBullet.bulletSpeed);
         bo.rotation(r_);
+        bo.curLen = 0;
+        bo.moveLen = Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
         (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);

@@ -3,15 +3,21 @@ R 39B957DA texture.png
 R C35323C9 箭主界面.jpg
 D bg
 P 766D284F andanlandian.png
+P 424233AD chibang.png
 P 8F0C707B door0.png
 P 23107FA6 door1.png
+P 02041FD8 gui.png
+P 279A105E guichibang.png
 P D99251CA heroBlood.png
 P A653A0FF lanying.png
+P E678BFE4 qipaowen.png
 P 5FE5FDA4 renlankuang.png
 P 66D52362 renyan.png
 P DB4A2B49 rockerBall.png
 P 766F45B3 rockerBg.png
 P 67CFEC9F rollDir.png
+P D46812F9 tianshi.png
+P 61E5E0A4 tianshiying.png
 P D99251CA xuetiaodi.png
 P 6F98F189 xuetiaogang.png
 P A1D267A2 xuetiaoshang.png
@@ -61,11 +67,22 @@ P B9680947 vscroll$up.png
 P 7E990267 vscroll.png
 P E466EB1C vslider$bar.png
 P 2BFF7046 vslider.png
+D jiesuan
+P 2984BF02 baifen.png
+P B23FFB41 heipai.png
+P 568871FC lanbu.png
+R 4FDD97C8 shanglian.png
+P B5CEC959 xianglian.png
+P 0611C8BB youtiao.png
+P 78C46E2D zhanlipin.png
+P 66C30337 zuotiao.png
+R 2B9D8491 箭结算.jpg
 D main
 P 8FE16C88 anniubi.png
 P 3159A1FA anniudian.png
 P FBBDC073 baoxiang01.png
 P ADDEEA33 biaotihong.png
+P 31D94EFF biaotihuang.png
 P 43FA4528 biaotilan.png
 P 3DC653B9 bottom_1.png
 P 1980AB68 bottom_2.png
@@ -76,7 +93,7 @@ P FD2396C8 btn_huang.png
 P 9744F290 btn_lan.png
 P 110F91D5 btn_lv.png
 P 3086A902 btn_xin.png
-P FABE0781 clipshuzi.png
+P 1113F29B clipshuzi.png
 P 248C5986 dabiao.png
 P C3C6DE3B dazhao.png
 R 7781CAC0 erdao.png
