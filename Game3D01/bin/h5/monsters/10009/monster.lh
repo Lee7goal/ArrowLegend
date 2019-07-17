@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10008/Toon Plant Monster/FBX/Toon Plant Monster-Toon Plant Monster-Red-Toon Plant MonsterAvatar.lav",
+							"path":"Assets/10009/Toon Plant Monster/FBX/Toon Plant Monster-Toon Plant Monster-Red-Toon Plant MonsterAvatar.lav",
 							"linkSprites":{
 								"Breath":[
 									"Breath"
@@ -66,35 +66,35 @@
 								"states":[
 									{
 										"name":"Run",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Run-Run.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Run-Run.lani"
 									},
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Idle-Idle.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Idle-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Attack-Attack.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Attack-Attack.lani"
 									},
 									{
 										"name":"SkillStart",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillStart.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillStart.lani"
 									},
 									{
 										"name":"SkillEnd",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillEnd.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillEnd.lani"
 									},
 									{
 										"name":"SkillLoop",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillLoop.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Skill-SkillLoop.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@TakeDamage-TakeDamage.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@TakeDamage-TakeDamage.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10008/Toon Plant Monster/Animations/Toon Plant Monster@Die-Die.lani"
+										"clipPath":"Assets/10009/Toon Plant Monster/Animations/Toon Plant Monster@Die-Die.lani"
 									}
 								]
 							}
@@ -586,7 +586,7 @@
 							"sortingFudge":0,
 							"material":{
 								"type":"Laya.ShurikenParticleMaterial",
-								"path":"Assets/10008/Toon Plant Monster/Materials/FX-Breath.lmat"
+								"path":"Assets/10009/Toon Plant Monster/Materials/FX-Breath.lmat"
 							}
 						},
 						"components":[],
@@ -638,10 +638,10 @@
 							},
 							"materials":[
 								{
-									"path":"Assets/10008/Toon Plant Monster/Materials/Toon Plant Monster-Red.lmat"
+									"path":"Assets/10009/Toon Plant Monster/Materials/Toon Plant Monster-Red.lmat"
 								}
 							],
-							"meshPath":"Assets/10008/Toon Plant Monster/FBX/Toon Plant Monster-Toon Plant Monster.lm"
+							"meshPath":"Assets/10009/Toon Plant Monster/FBX/Toon Plant Monster-Toon Plant Monster.lm"
 						},
 						"components":[],
 						"child":[]
@@ -649,7 +649,7 @@
 					{
 						"type":"MeshSprite3D",
 						"props":{
-							"name":"guadia",
+							"name":"guadian",
 							"active":true,
 							"isStatic":false,
 							"layer":0,

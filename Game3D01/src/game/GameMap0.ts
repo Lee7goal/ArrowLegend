@@ -19,6 +19,10 @@ export default class GameMap0 extends Laya.Sprite {
     Fharr: GameHitBox[];//碰撞伤害组
 
     Flyharr: GameHitBox[];//飞行碰撞组
+    /**地刺 */
+    Thornarr:GameHitBox[];
+
+
 
 
 
@@ -44,6 +48,7 @@ export default class GameMap0 extends Laya.Sprite {
         this.Hharr = [];
         this.Fharr = [];
         this.Flyharr = [];
+        this.Thornarr = [];
 
         this.map = {};
         this.Amap = {};
@@ -96,6 +101,12 @@ export default class GameMap0 extends Laya.Sprite {
                         hb = new GameHitBox(GameBG.ww * 3, GameBG.ww);
                         hb.setXY(x - GameBG.ww, y);
                         this.Wharr.push(hb);
+                    }
+                    else if(GridType.isThorn(key))
+                    {
+                        hb = new GameHitBox(GameBG.ww * 3, GameBG.ww);
+                        hb.setXY(x - GameBG.ww, y);
+                        this.Thornarr.push(hb);
                     }
                 }
                 k++;
@@ -159,6 +170,7 @@ export default class GameMap0 extends Laya.Sprite {
         this.alpha = 1;
         this.addChild(this.ballistic);
         //this.addChild(this.laodings);
+        
 
         this.setDoor(false);
         

@@ -83,8 +83,9 @@ export default class Game{
     static door:Laya.Sprite3D;
     static openDoor():void
     {
+        Game.bg.setDoor(1);
         let v3 = GameBG.get3D(6, 9);
-        Game.door = Laya.loader.getRes("h5/effects/door/hero.lh");
+        Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/hero.lh"));
         Game.door.transform.translate(v3);
         Game.layer3d.addChild(Game.door);
         Game.map0.setDoor(true);
@@ -93,6 +94,7 @@ export default class Game{
     static closeDoor():void{
         Game.door && Game.door.removeSelf();
         Game.map0.setDoor(false);
+        Game.bg.setDoor(0);
     }
 
     static reset():void{

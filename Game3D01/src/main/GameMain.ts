@@ -10,6 +10,7 @@ import { FlyAndHitAi } from "../ai/FlyAndHitAi";
 import { MonsterAI1 } from "../game/GameAI";
 import MonsterType from "../game/MonsterType";
 import { FlyGameMove, PlaneGameMove, FixedGameMove } from "../game/GameMove";
+import SysBullet from "./sys/SysBullet";
 var REG: Function = Laya.ClassUtils.regClass;
     export default class GameMain{
         
@@ -29,6 +30,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         App.tableManager.register(SysChapter.NAME,SysChapter);
         App.tableManager.register(SysMap.NAME,SysMap);
         App.tableManager.register(SysEnemy.NAME,SysEnemy);
+        App.tableManager.register(SysBullet.NAME,SysBullet);
 
         App.tableManager.onParse(arr);
     }

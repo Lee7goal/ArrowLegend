@@ -16,6 +16,8 @@ export default class GameHitBox {
     private right_ :number  = 0;
     private bottom_:number  = 0;
 
+    public cdTime:number = 0;
+
     constructor(ww:number,hh:number){
         this.ww_ = ww;
         this.hh_ = hh;
