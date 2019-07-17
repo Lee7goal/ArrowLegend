@@ -1,73 +1,144 @@
+import Point = Laya.Point;
+import MaoLineTest from "./MaoLineTest";
+
+/** 线数据类 */
 export default class MaoLineData{
-    constructor(x0:Number , y0:Number , x1:Number , y1:Number)
-    {
-
-    }
-}
-/*
-package com.maoxiaolu.game.linetest
-{
-	import flash.display.Graphics;
-	import flash.geom.Point;
-	
-	
-	public class MaoLineData
-	{
-		public const p0:Point = new Point();
-		public const p1:Point = new Point();
+        private p0_:Point = new Point();
+		private p1_:Point = new Point();
 		
-		public function MaoLineData(x0:int , y0:Number , x1:Number , y1:Number)
+		constructor(x0:number , y0:number , x1:number , y1:number)
 		{
-			p0.x = x0;
-			p0.y = y0;			
-			p1.x = x1;
-			p1.y = y1;
+			this.p0_.x = x0;
+			this.p0_.y = y0;			
+			this.p1_.x = x1;
+			this.p1_.y = y1;
 		}
 		
-		public function reset(x0:int , y0:Number , x1:Number , y1:Number):void{
-			p0.x = x0;
-			p0.y = y0;			
-			p1.x = x1;
-			p1.y = y1;
+		public reset(x0:number , y0:number , x1:number , y1:number):void{
+			this.p0_.x = x0;
+			this.p0_.y = y0;			
+			this.p1_.x = x1;
+			this.p1_.y = y1;
 		}
 		
-		public function draw(g:Graphics):void{
-			g.moveTo(p0.x , p0.y );
-			g.lineTo(p1.x , p1.y );
+		public draw(g:Laya.Graphics,linecolor:string):void{
+            g.drawLine(this.p0_.x,this.p0_.y,this.p1_.x,this.p1_.y,linecolor);
+        }
+        
+        public get p0():Point{
+			return this.p0_;
+        }
+        
+        public get p1():Point{
+			return this.p1_;
 		}
 		
-		public function set x0(value:int):void{
-			this.p0.x = value;
+		public set x0(value:number){
+			this.p0_.x = value;
 		}
 		
-		public function get x0():int{
-			return this.p0.x;
+		public get x0():number{
+			return this.p0_.x;
 		}
 		
-		public function set y0(value:int):void{
-			this.p0.y = value;
+		public set y0(value:number){
+			this.p0_.y = value;
 		}
 		
-		public function get y0():int{
-			return this.p0.y;
+		public get y0():number{
+			return this.p0_.y;
 		}
 		
-		public function set x1(value:int):void{
-			this.p1.x = value;
+		public set x1(value:number){
+			this.p1_.x = value;
 		}
 		
-		public function get x1():int{
-			return this.p1.x;
+		public get x1():number{
+			return this.p1_.x;
 		}
 		
-		public function set y1(value:int):void{
-			this.p1.y = value;
+		public set y1(value:number){
+			this.p1_.y = value;
 		}
 		
-		public function get y1():int{
-			return this.p1.y;
-		}
-	}
-}
+		public get y1():number{
+			return this.p1_.y;
+        }
 
-*/
+        public get xlen():number{
+            return ( this.x0 - this.x1 );
+        }
+
+        public get ylen():number{
+            return ( this.y0 - this.y1 );
+        }
+
+        public getlen():number{
+            var xl = this.xlen;
+            var yl = this.ylen;
+            return Math.sqrt((xl*xl)+(yl*yl));
+        }
+
+        /**(x,y) = (-y,x)逆时针法线 但对于laya的-y轴来说，是顺时针*/
+        public getF0():MaoLineData{
+            var xl = this.xlen;
+            var yl = this.ylen;
+            return new MaoLineData(0,0,-1*yl,xl);
+        }
+
+        /**(x,y) = (y,-x)顺时针法线 但对于laya的-y轴来说，是逆时针*/
+        public getF1():MaoLineData{
+            var xl = this.xlen;
+            var yl = this.ylen;
+            return new MaoLineData(0,0,yl,-1*xl);
+		}
+		
+		/**
+		 * other 另一条线
+		 * 返回两线的交点 （x,y） null 无交点 */
+        public lineTest(other:MaoLineData):Point{
+            return MaoLineTest.simpleLineTestMao(this,other);
+		}
+		
+		/**返回线的角度 */
+		public atan2():number{
+			return Math.atan2( (this.y1 - this.y0) , (this.x1 - this.x0));
+		}
+
+		/**设置线的角度 */
+		public rad(rad:number):number{
+			var len = this.getlen();
+			this.p1.x = this.p0.x + (len * Math.cos(rad));
+			this.p1.y = this.p0.y + (len * Math.sin(rad));			
+			return rad;
+		}
+
+		/**得到反弹线 */
+		public rebound(line0:MaoLineData):MaoLineData{			
+			var linev = this;
+			var p = linev.lineTest(line0);//交点
+			if(!p){				
+				return null;
+			}
+
+			var v:MaoLineData = new MaoLineData(linev.x0,linev.y0,p.x,p.y);
+			var f0l = line0.getlen();
+			var n0x = line0.xlen / f0l;
+			var n0y = line0.ylen / f0l;
+
+			var nx = -(v.xlen*n0x+v.ylen*n0y)*n0x ; // n的x分量
+			var ny = -(v.xlen*n0x+v.ylen*n0y)*n0y ; // n的y分量
+	
+			var Tx = v.xlen + nx ; // T的x分量
+			var Ty = v.ylen + ny ; // T的y分量
+
+			//F = 2*T - S			
+			var Fx = 2*Tx - v.xlen ; // F的x分量
+			var Fy = 2*Ty - v.ylen ; // F的y分量
+			
+			v.reset(p.x,p.y,p.x+Fx,p.y+Fy);
+			return v;
+		}
+        
+       
+}
