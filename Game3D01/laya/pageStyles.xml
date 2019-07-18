@@ -11,4 +11,5 @@
    <item name="test/setting.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/equip.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/talent.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/BulletShadow.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

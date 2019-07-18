@@ -12,6 +12,7 @@ import SysEnemy from "../main/sys/SysEnemy";
 import SysBullet from "../main/sys/SysBullet";
 import { GameAI } from "./ai/GameAI";
 import { GameMove } from "./move/GameMove";
+import { ui } from "./../ui/layaMaxUI";
 
 export default class GamePro extends Laya.EventDispatcher {
     public curLen: number;
@@ -40,6 +41,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     private _bloodUI: Blood;
     private _footCircle: FootCircle;
+    private _bulletShadow:ui.test.BulletShadowUI;
     private rotationEulerY: number = 0;
     /**关键帧比例0.0-1.0 */
     private keyNum: number = -1;//关键帧比例0.0-1.0
@@ -50,6 +52,17 @@ export default class GamePro extends Laya.EventDispatcher {
         this.gamedata_ = new GameData();
         this.gamedata_.proType = proType_;
         this.rotationEulerY = 0;
+
+        if(this.gamedata_.proType == GameProType.MonstorArrow)
+        {
+            this._bulletShadow = new ui.test.BulletShadowUI();
+            Game.footLayer.addChild(this._bulletShadow);
+            this._bulletShadow.scale(0.5,0.5);
+        }
+    }
+
+    public removeShodow():void{
+        this._bulletShadow && this._bulletShadow.removeSelf();
     }
 
     public get bloodUI(): Blood {
@@ -207,6 +220,14 @@ export default class GamePro extends Laya.EventDispatcher {
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
 
+        if(this.gamedata_.proType == GameProType.RockGolem_Blue)
+        {
+            if(actionstr == "Idle")
+            {
+                console.log("怪的动作",actionstr);
+            }
+        }
+
         if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero) {
             setTimeout(() => {
                 let eff: Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/hero.lh");
@@ -359,6 +380,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
+        this._bulletShadow && this._bulletShadow.pos(this.hbox_.cx, this.hbox_.cy);
 
         //脚下的烟雾
         if (this.gamedata.proType == GameProType.Hero) {

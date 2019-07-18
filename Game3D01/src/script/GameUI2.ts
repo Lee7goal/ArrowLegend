@@ -134,7 +134,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         // var gpro = new GamePro(GameProType.RockGolem_Blue);
         // gpro.setSp3d(sp);
         // Game.e0_ = gpro;
-
+        var isHasBoss:boolean = false;
         var monster: GamePro;
         let k: number = 0;
         for (let j = 0; j < GameBG.hnum; j++) {
@@ -160,6 +160,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                         monster.setXY2DBox(GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
                         monster.startAi();
                         monster.setUI();
+                        if(!isHasBoss)
+                        {
+                            isHasBoss = monster.sysEnemy.isBoss == 1;
+                        }
                     }
                 }
                 k++;
@@ -170,7 +174,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
             Game.e0_ = monster;
         }
 
-        Game.bg.drawR(true);
+        Game.bg.drawR(isHasBoss);
 
         sp = Laya.loader.getRes("h5/bullets/20001/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
