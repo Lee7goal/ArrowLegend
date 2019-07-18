@@ -23,7 +23,7 @@ export default class BattleLoader {
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        this._configId = 100104;
+        // this._configId = 100104;
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
 
@@ -51,37 +51,27 @@ export default class BattleLoader {
         arr.push("h5/gong/hero.lh");
         arr.push("h5/hero/hero.lh");
 
-        //测试数据
-        for (var i = 10001; i <= 10018; i++)  {
-            let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, i);
-            arr.push("h5/monsters/" + sysEnemy.enemymode + "/monster.lh");
-            if (sysEnemy.bulletId > 0)  {
-                let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, sysEnemy.bulletId);
-                arr.push("h5/bullets/" + sysBullet.bulletMode + "/monster.lh");
+        //怪
+        let k: number = 0;
+        for (let j = 0; j < GameBG.hnum; j++) {
+            for (let i = 0; i < GameBG.wnum + 1; i++) {
+                let type: number = GameBG.arr0[k];
+                if (k < GameBG.arr0.length) {
+                    if (GridType.isMonster(type))  {
+                        let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
+                        arr.push("h5/monsters/"+sysEnemy.enemymode+"/monster.lh");
+                        if(sysEnemy.bulletId > 0)
+                        {
+                            let sysBullet:SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,sysEnemy.bulletId);
+                            arr.push("h5/bullets/"+sysBullet.bulletMode+"/monster.lh");
+                        }
+                    }
+                }
+                k++;
             }
         }
 
         arr.push("h5/bulletsEffect/" + '10002' + "/monster.lh");
-
-        //怪
-        // let k: number = 0;
-        // for (let j = 0; j < GameBG.hnum; j++) {
-        //     for (let i = 0; i < GameBG.wnum + 1; i++) {
-        //         let type: number = GameBG.arr0[k];
-        //         if (k < GameBG.arr0.length) {
-        //             if (GridType.isMonster(type))  {
-        //                 let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
-        //                 arr.push("h5/monsters/"+sysEnemy.enemymode+"/monster.lh");
-        //                 if(sysEnemy.bulletId > 0)
-        //                 {
-        //                     let sysBullet:SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,sysEnemy.bulletId);
-        //                     arr.push("h5/bullets/"+sysBullet.bulletMode+"/monster.lh");
-        //                 }
-        //             }
-        //         }
-        //         k++;
-        //     }
-        // }
 
         Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete))
     }

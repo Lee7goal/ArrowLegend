@@ -47,7 +47,7 @@
 						1
 					],
 					"isPerformanceMode":true,
-					"duration":0.4,
+					"duration":10,
 					"looping":false,
 					"prewarm":false,
 					"startDelayType":0,
@@ -55,9 +55,9 @@
 					"startDelayMin":0,
 					"startDelayMax":0,
 					"startLifetimeType":0,
-					"startLifetimeConstant":0.3,
+					"startLifetimeConstant":10,
 					"startLifetimeConstantMin":0,
-					"startLifetimeConstantMax":0.3,
+					"startLifetimeConstantMax":10,
 					"startLifetimeGradient":{
 						"startLifetimes":[]
 					},
@@ -142,7 +142,7 @@
 					"playOnAwake":true,
 					"maxParticles":100,
 					"autoRandomSeed":true,
-					"randomSeed":7.938275E+08,
+					"randomSeed":2.076094E+09,
 					"emission":{
 						"enable":true,
 						"emissionRate":50,

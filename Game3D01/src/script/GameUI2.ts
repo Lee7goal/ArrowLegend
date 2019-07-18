@@ -5,21 +5,20 @@ import Rocker from "../game/GameRocker";
 import GameMap0 from "../game/GameMap0";
 import GameHitBox from "../game/GameHitBox";
 import GamePro from "../game/GamePro";
-import { SimpleGameMove, ArrowGameMove, PlaneGameMove, FlyGameMove, FixedGameMove } from "../game/GameMove";
-import { HeroAI, HeroArrowAI, MonsterAI1 } from "../game/GameAI";
 import GridType from "../game/bg/GridType";
 import GameProType from "../game/GameProType";
 import FootRotateScript from "../game/controllerScript/FootRotateScript";
 import HeadTranslateScript from "../game/controllerScript/HeadTranslateScript";
 import GameExecut from "../game/GameExecut";
 import GameCameraNum from "../game/GameCameraNum";
-import { FlyAndHitAi } from "../ai/FlyAndHitAi";
 import SysEnemy from "../main/sys/SysEnemy";
 import App from "../core/App";
 import AttackType from "../game/AttackType";
 import MonsterType from "../game/MonsterType";
 import BattleLoader from "../main/scene/battle/BattleLoader";
 import BulletRotateScript from "../game/controllerScript/BulletRotateScript";
+import HeroAI from "../game/ai/HeroAI";
+import PlaneGameMove from "../game/move/PlaneGameMove";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -93,7 +92,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         gpro.setSp3d(sp);
 
         var ATT: any = this.getAttCla(sysEnemy.attackType);
-        var MONS: any = this.getMonsCla(sysEnemy.enemyType);
+        var MONS: any = this.getMonsCla(sysEnemy.moveType);
 
         gpro.setGameAi(new ATT(gpro));
         gpro.setGameMove(new MONS());
@@ -157,16 +156,10 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                         Game.layer3d.addChild(box)
                     }
                     else if (GridType.isMonster(type)) {
-                        if (!monster)  {
-                            type = 10007;
-                            // type = 10003;
-                            // type = 10011;
-                            monster = this.getMonster(type);
-                            monster.setXY2DBox(GameBG.ww * i, j * GameBG.ww);
-                            monster.startAi();
-                            monster.setUI();
-                        }
-
+                        monster = this.getMonster(type);
+                        monster.setXY2DBox(GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
+                        monster.startAi();
+                        monster.setUI();
                     }
                 }
                 k++;
@@ -177,7 +170,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
             Game.e0_ = monster;
         }
 
-        Game.bg.drawR();
+        Game.bg.drawR(true);
 
         sp = Laya.loader.getRes("h5/bullets/20001/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
