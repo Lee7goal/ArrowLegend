@@ -26,6 +26,15 @@ export module ui.test {
         }
     }
     REG("ui.test.BloodUIUI",BloodUIUI);
+    export class BulletShadowUI extends View {
+        public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Sprite","props":{"y":-19,"x":-19,"texture":"bg/douying.png"},"compId":3}],"loadList":["bg/douying.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(BulletShadowUI.uiView);
+        }
+    }
+    REG("ui.test.BulletShadowUI",BulletShadowUI);
     export class equipUI extends View {
 		public bg:Laya.Image;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1334,"centerY":0},"compId":2,"child":[{"type":"Box","props":{"height":1700,"centerY":0},"compId":21,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":20}]}]},{"type":"Label","props":{"width":200,"text":"装备","height":50,"fontSize":40,"color":"#40f108","centerY":0,"centerX":0,"bold":true,"align":"center"},"compId":19}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};

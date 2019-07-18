@@ -14,6 +14,9 @@ export default class MonsterShooting {
     public scd: number = 0;
     /**攻击CD*/
     public attackCd: number = 1200;
+
+    // public needTime:number = 0;
+
     /**下次攻击时间*/
     public st: number = 0;
     /**当前时间*/
@@ -54,14 +57,14 @@ export default class MonsterShooting {
         return gp;
     }
 
-    public short_arrow(r_: number, pro: GamePro, proType_: number) {
+    public short_arrow(r_: number, pro: GamePro, proType_: number,range:number = 0) {
         var bo = this.getBullet(proType_);
         bo.sp3d.transform.localPositionY = 0.1;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(this._sysBullet.bulletSpeed);
         bo.rotation(r_);
         bo.curLen = 0;
-        bo.moveLen = Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
+        bo.moveLen = range + Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
         (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
@@ -75,8 +78,7 @@ export default class MonsterShooting {
 
     public starAttack(pro: GamePro, acstr: string): boolean {
         this.pro = pro;
-        if (this.attackOk()) {
-            this.st = this.now + this.attackCd;
+        // if (this.attackOk()) {
             this.scd = 0;
             pro.play(acstr);
             // if (this.at > 0) {
@@ -85,8 +87,8 @@ export default class MonsterShooting {
                 this.ac0();
             // }
             return true;
-        }
-        return false;
+        // }
+        // return false;
     }
 
     public cancelAttack(): void {
