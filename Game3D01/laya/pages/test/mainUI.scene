@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":34,
+    "selectedBox":18,
+    "selecteID":21,
     "searchKey":"Scene",
     "props":{"width":750,"height":1334},
     "nodeParent":-1,
@@ -21,13 +21,14 @@
             "props":{"var":"topBox","top":0},
             "nodeParent":2,
             "label":"topBox",
-            "isOpen":null,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":34,
             "child":[
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,btn_xin",
                     "props":{"y":136,"x":691,"var":"btn_xin","stateNum":"1","skin":"main/btn_xin.png","anchorY":0.5,"anchorX":0.5},
@@ -41,6 +42,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,jinbishuliang",
                     "props":{"y":5,"x":370,"var":"jinbishuliang"},
@@ -53,6 +55,7 @@
                     "compId":7,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,di",
                             "props":{"y":6,"x":25,"var":"di","skin":"main/shukuang.png"},
@@ -67,6 +70,7 @@
                             "$HIDDEN":false
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,jinbi",
                             "props":{"var":"jinbi","skin":"main/jinbijia.png"},
@@ -80,9 +84,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,jinbishu",
-                            "props":{"y":15,"x":53,"width":111,"var":"jinbishu","value":"123","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"center"},
+                            "props":{"y":15,"x":53,"width":229,"var":"jinbishu","value":"123","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","scaleY":0.5,"scaleX":0.5,"height":51,"align":"center"},
                             "nodeParent":7,
                             "label":"jinbishu",
                             "isOpen":true,
@@ -95,6 +100,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,shandianshuliang",
                     "props":{"y":5,"x":183,"var":"shandianshuliang"},
@@ -107,6 +113,7 @@
                     "compId":8,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":6,"x":25,"skin":"main/shukuang.png"},
@@ -120,6 +127,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,jingyantiao",
                             "props":{"y":8,"x":26,"var":"jingyantiao","skin":"main/jindutiao.png"},
@@ -133,6 +141,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,shandian",
                             "props":{"y":1,"x":8,"var":"shandian","skin":"main/shandianjia.png"},
@@ -146,9 +155,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip",
-                            "props":{"y":49,"x":53,"width":111,"value":"12:00","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"center"},
+                            "props":{"y":49,"x":53,"width":218,"value":"12:00","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","scaleY":0.5,"scaleX":0.5,"height":51,"align":"center"},
                             "nodeParent":8,
                             "label":"FontClip",
                             "isDirectory":false,
@@ -160,9 +170,10 @@
                             "$HIDDEN":false
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,shandianshu",
-                            "props":{"y":15,"x":53,"width":111,"var":"shandianshu","value":"123","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"center"},
+                            "props":{"y":15,"x":53,"width":219,"var":"shandianshu","value":"123","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","scaleY":0.5,"scaleX":0.5,"height":51,"align":"center"},
                             "nodeParent":8,
                             "label":"shandianshu",
                             "isOpen":true,
@@ -174,6 +185,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":53,"x":106,"skin":"main/maohao.png"},
@@ -189,6 +201,7 @@
                     "$HIDDEN":false
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,jingyanshuliang",
                     "props":{"y":5,"var":"jingyanshuliang"},
@@ -201,6 +214,7 @@
                     "compId":12,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":6,"x":25,"skin":"main/shukuang.png"},
@@ -214,6 +228,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,jingyan",
                             "props":{"y":8,"x":27,"var":"jingyan","skin":"main/jindutiaolan.png"},
@@ -227,6 +242,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":-5,"x":0,"skin":"main/pai.png"},
@@ -240,9 +256,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,dengji",
-                            "props":{"y":14.5,"x":3,"width":51,"var":"dengji","value":"12","spaceX":-2,"skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"center"},
+                            "props":{"y":11,"x":12,"var":"dengji","value":"12","spaceX":-2,"skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","scaleY":0.5,"scaleX":0.5,"align":"center"},
                             "nodeParent":12,
                             "label":"dengji",
                             "isDirectory":false,
@@ -254,6 +271,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,shuijingshuliang",
                     "props":{"y":5,"x":553,"var":"shuijingshuliang"},
@@ -266,6 +284,7 @@
                     "compId":18,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":6,"x":25,"skin":"main/shukuang.png"},
@@ -279,6 +298,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,shuijing",
                             "props":{"var":"shuijing","skin":"main/zuanshijia.png"},
@@ -292,9 +312,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,shuijingshu",
-                            "props":{"y":15,"x":53,"width":111,"var":"shuijingshu","value":"123","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","height":23,"align":"center"},
+                            "props":{"y":15,"x":53,"width":228,"var":"shuijingshu","value":"123","skin":"main/clipshuzi.png","sheet":"0123 4567 89+-","scaleY":0.5,"scaleX":0.5,"height":51,"align":"center"},
                             "nodeParent":18,
                             "label":"shuijingshu",
                             "isDirectory":false,
