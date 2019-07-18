@@ -12,16 +12,16 @@
 				"depthTest":515
 			}
 		],
-		"name":"lvxue",
+		"name":"cloud_magic 1",
 		"alphaTest":false,
 		"renderQueue":3000,
 		"textures":[
 			{
 				"name":"texture",
-				"path":"../Textures/lvxue.png",
+				"path":"../Textures/cloud_magic 1.png",
 				"constructParams":[
-					16,
-					16,
+					512,
+					512,
 					1,
 					true
 				],
@@ -46,10 +46,10 @@
 			{
 				"name":"color",
 				"value":[
-					0.5735294,
-					0.5735294,
-					0.5735294,
-					0.5
+					0.5,
+					0.5,
+					0.5,
+					0.503
 				]
 			}
 		],
