@@ -27,7 +27,7 @@ export default class GameBG extends Laya.Sprite {
     //主角的碰撞方块尺寸
     static mw: number = GameBG.ww - GameBG.fw;
     //1/2 主角的碰撞方块尺寸
-    static mw2: number = 24;
+    static mw2: number = GameBG.mw / 2;
     //正交相机纵向尺寸
     static orthographicVerticalSize: number = GameBG.wnum * GameBG.height / GameBG.width;
     //2D地图
@@ -152,6 +152,7 @@ export default class GameBG extends Laya.Sprite {
 
     private _box: Sprite = new Sprite();
     private _top: Image = new Image();
+    private _bossImg:Image = new Image();
     private _bottom: Image = new Image();
     private _topShadow:Image = new Image();
     private _leftShadow:Image = new Image();
@@ -172,7 +173,7 @@ export default class GameBG extends Laya.Sprite {
         this.mySp.y = y - GameBG.mw2;
     }
 
-    public drawR(): void {
+    public drawR(hasBoss:boolean = false): void {
         var img: Image;
         var ww: number = GameBG.ww;
         var k: number = 0;
@@ -238,7 +239,7 @@ export default class GameBG extends Laya.Sprite {
                 }
                 else if(GridType.isFence(gType))
                 {
-                    shadow.skin = GameBG.BG_TYPE + '/lanying.png';
+                    shadow.skin = 'bg/lanying.png';
                     shadow.width = 200;
                     shadow.x = i * ww - 64;
                     shadow.y = j * ww + 50;
@@ -289,9 +290,12 @@ export default class GameBG extends Laya.Sprite {
 
         this._top.x = GameBG.ww2;
         this._top.skin = GameBG.BG_TYPE + "/top.png";
+        this._bossImg.skin = GameBG.BG_TYPE + "/bosstou.png";
         this._topShadow.y = 10 * GameBG.ww;
 
         this._top.addChild(this._door);
+        this._top.addChild(this._bossImg);
+        this._bossImg.visible = hasBoss;
         this._door.pos(281,418);
 
         Game.frontLayer.addChild(this._bottom);

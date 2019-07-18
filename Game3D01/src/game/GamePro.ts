@@ -3,8 +3,6 @@ import Sprite3D = Laya.Sprite3D;
 import Animator = Laya.Animator;
 import GameBG from "./GameBG";
 import Game from "./Game";
-import { GameMove } from "./GameMove";
-import { GameAI, HeroAI } from "./GameAI";
 import GameData from "./GameData";
 import HeroBlood from "./HeroBlood";
 import FootCircle from "./FootCircle";
@@ -12,15 +10,17 @@ import GameProType from "./GameProType";
 import Blood from "./Blood";
 import SysEnemy from "../main/sys/SysEnemy";
 import SysBullet from "../main/sys/SysBullet";
+import { GameAI } from "./ai/GameAI";
+import { GameMove } from "./move/GameMove";
 
 export default class GamePro extends Laya.EventDispatcher {
-    public curLen:number;
-    public moveLen:number;
-    public sysEnemy:SysEnemy;
-    public sysBullet:SysBullet;
+    public curLen: number;
+    public moveLen: number;
+    public sysEnemy: SysEnemy;
+    public sysBullet: SysBullet;
 
 
-    public hurtValue:number = 10;
+    public hurtValue: number = 10;
     //  id  :number;
     //  name:String;
     private gamedata_: GameData;
@@ -40,23 +40,23 @@ export default class GamePro extends Laya.EventDispatcher {
 
     private _bloodUI: Blood;
     private _footCircle: FootCircle;
-    private rotationEulerY:number = 0;
+    private rotationEulerY: number = 0;
     /**关键帧比例0.0-1.0 */
-    private keyNum:number = -1;//关键帧比例0.0-1.0
+    private keyNum: number = -1;//关键帧比例0.0-1.0
 
-    public flag:number = 0;
+    public flag: number = 0;
     constructor(proType_: number) {
         super();
         this.gamedata_ = new GameData();
-        this.gamedata_.proType = proType_;     
-        this.rotationEulerY = 0;   
+        this.gamedata_.proType = proType_;
+        this.rotationEulerY = 0;
     }
 
     public get bloodUI(): Blood {
         return this._bloodUI;
     }
 
-    public setKeyNum(n:number):void{
+    public setKeyNum(n: number): void {
         this.keyNum = n;
     }
 
@@ -91,7 +91,7 @@ export default class GamePro extends Laya.EventDispatcher {
         if (aniSprite3d) {
             this.ani_ = aniSprite3d.getComponent(Laya.Animator) as Animator;
         }
-        
+
         this.on(Game.Event_Hit, this, this.hit);
     }
 
@@ -235,11 +235,11 @@ export default class GamePro extends Laya.EventDispatcher {
         }
     }
 
-    private ac1():void{        
-        if(this.keyNum >=0 && this.normalizedTime>=this.keyNum){            
-            this.event(Game.Event_KeyNum,this.keyNum);
+    private ac1(): void {
+        if (this.keyNum >= 0 && this.normalizedTime >= this.keyNum) {
+            this.event(Game.Event_KeyNum, this.keyNum);
             this.keyNum = -1;
-        }        
+        }
     }
 
     public get normalizedTime(): number {
@@ -247,50 +247,49 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public rotation(n: number): void {
-        if(!n)
-        {
+        if (!n)  {
             return;
         }
         if (this.gamedata.hp <= 0) {
             return;
         }
-        
+
         this.facen3d_ = n;
         this.facen2d_ = (2 * Math.PI - n);
         var nn = Math.atan2(Math.sin(n) / Game.cameraCN.cos0, Math.cos(n));
-        nn = (  (nn + Math.PI / 2) / Math.PI * 180 )
+        nn = ((nn + Math.PI / 2) / Math.PI * 180)
 
-        var ey = Math.round(  nn );
-        if(ey>=360){
-          while(ey>=360){
-              ey-=360;
-          }  
+        var ey = Math.round(nn);
+        if (ey >= 360) {
+            while (ey >= 360) {
+                ey -= 360;
+            }
         }
-        else if(ey<0){
-            while(ey<0){
-                ey+=360;
+        else if (ey < 0) {
+            while (ey < 0) {
+                ey += 360;
             }
         }
 
-        if(this.gamedata_.rspeed<=0){//瞬间转身
+        if (this.gamedata_.rspeed <= 0) {//瞬间转身
             this.sp3d_.transform.localRotationEulerY = ey;
             this.rotationEulerY = this.sp3d_.transform.localRotationEulerY;
             return;
         }
 
-        
+
 
         //逐帧转身
-        if(this.rotationEulerY!=ey){
+        if (this.rotationEulerY != ey) {
             this.rotationEulerY = ey;
-            if(this.sp3d_.transform.localRotationEulerY>=360){
-                while(this.sp3d_.transform.localRotationEulerY>=360){
-                    this.sp3d_.transform.localRotationEulerY-=360;
-                }  
+            if (this.sp3d_.transform.localRotationEulerY >= 360) {
+                while (this.sp3d_.transform.localRotationEulerY >= 360) {
+                    this.sp3d_.transform.localRotationEulerY -= 360;
+                }
             }
-            else if(this.sp3d_.transform.localRotationEulerY<0){
-                while(this.sp3d_.transform.localRotationEulerY<0){
-                    this.sp3d_.transform.localRotationEulerY+=360;
+            else if (this.sp3d_.transform.localRotationEulerY < 0) {
+                while (this.sp3d_.transform.localRotationEulerY < 0) {
+                    this.sp3d_.transform.localRotationEulerY += 360;
                 }
             }
         }
@@ -298,13 +297,13 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public ai(): void {
         //按照达叔的视觉要求 修正人物跑步动作的播放速度
-        if(this.animator && this.animator.speed>0 && this.gamedata_.proType == GameProType.Hero  ){
-            if(this.acstr_ == GameAI.Run){
-                if(this.animator.speed == 1){
+        if (this.animator && this.animator.speed > 0 && this.gamedata_.proType == GameProType.Hero) {
+            if (this.acstr_ == GameAI.Run) {
+                if (this.animator.speed == 1) {
                     this.animator.speed = (this.speed_ / 3);
                 }
-            }else{
-                if(this.animator.speed != 1){
+            } else {
+                if (this.animator.speed != 1) {
                     this.animator.speed = 1;
                 }
             }
@@ -314,31 +313,31 @@ export default class GamePro extends Laya.EventDispatcher {
             this.gameAI.exeAI(this);
         }
 
-        if(this.rotationEulerY == this.sp3d_.transform.localRotationEulerY){
-             return;
+        if (this.rotationEulerY == this.sp3d_.transform.localRotationEulerY) {
+            return;
         }
 
         //用华达公式计算转向方向 并转动模型
         for (let i = 0; i < this.gamedata_.rspeed; i++) {
             //var n = this.sp3d_.transform.localRotationEulerY - this.rotationEulerY;
-            var n =  this.rotationEulerY - this.sp3d_.transform.localRotationEulerY;
-            if(n==0){
+            var n = this.rotationEulerY - this.sp3d_.transform.localRotationEulerY;
+            if (n == 0) {
                 break;
             }
-            else if( (n>0 && n<=180) || (n<-180)){
+            else if ((n > 0 && n <= 180) || (n < -180)) {
                 this.sp3d_.transform.localRotationEulerY += 1;
-            }else{
+            } else {
                 this.sp3d_.transform.localRotationEulerY -= 1;
             }
 
-            while(this.sp3d_.transform.localRotationEulerY>=360){
-                this.sp3d_.transform.localRotationEulerY-= 360;
+            while (this.sp3d_.transform.localRotationEulerY >= 360) {
+                this.sp3d_.transform.localRotationEulerY -= 360;
             }
-            while(this.sp3d_.transform.localRotationEulerY<0){
+            while (this.sp3d_.transform.localRotationEulerY < 0) {
                 this.sp3d_.transform.localRotationEulerY += 360;
             }
         }
-        
+
     }
 
 
@@ -364,14 +363,14 @@ export default class GamePro extends Laya.EventDispatcher {
         //脚下的烟雾
         if (this.gamedata.proType == GameProType.Hero) {
             if (Laya.Browser.now() - this.lastTime >= 300) {
-                var runSmog:RunSmog = RunSmog.create(this.hbox_.cx, this.hbox_.cy);
+                var runSmog: RunSmog = RunSmog.create(this.hbox_.cx, this.hbox_.cy);
                 Laya.Tween.to(runSmog, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [runSmog]));
                 this.lastTime = Laya.Browser.now();
             }
         }
     }
 
-    private onClear(runSmog:RunSmog): void {
+    private onClear(runSmog: RunSmog): void {
         RunSmog.recover(runSmog);
     }
 
@@ -424,7 +423,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
     }
 
-    
+
     public get gamedata(): GameData {
         return this.gamedata_;
     }
@@ -502,7 +501,7 @@ export default class GamePro extends Laya.EventDispatcher {
 }
 
 export class RunSmog extends Laya.Image {
-    static flag:string = "RunSmog"
+    static flag: string = "RunSmog"
     constructor() {
         super();
         this.skin = "bg/renyan.png";
@@ -511,18 +510,17 @@ export class RunSmog extends Laya.Image {
         this.anchorY = 0.5;
     }
 
-    static create(xx:number,yy:number):RunSmog
-    {
-        var smog:RunSmog = Laya.Pool.getItemByClass(RunSmog.flag,RunSmog);
-        smog.pos(xx,yy);
+    static create(xx: number, yy: number): RunSmog  {
+        var smog: RunSmog = Laya.Pool.getItemByClass(RunSmog.flag, RunSmog);
+        smog.pos(xx, yy);
         Game.footLayer.addChild(smog);
         return smog;
     }
 
-    static recover(smog:RunSmog):void{
+    static recover(smog: RunSmog): void {
         smog.removeSelf();
         smog.alpha = 1;
-        smog.scale(1,1);
-        Laya.Pool.recover(RunSmog.flag,smog);
+        smog.scale(1, 1);
+        Laya.Pool.recover(RunSmog.flag, smog);
     }
 }

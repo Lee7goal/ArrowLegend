@@ -5,7 +5,7 @@ export default class SysEnemy {
     constructor() { }
 
     public id:number = 0;
-    public enemyType:number = 0;
+    public moveType:number = 0;
     public attackType:number = 0;
     public zoomMode:number = 0;
     public enemyLevel:number = 0;
@@ -18,4 +18,7 @@ export default class SysEnemy {
     public bulletNum:number = 0;
     public bulletAngle:number = 0;
     public skillId:string = '';
+    public isBoss:number = 0;
+    public enemyType:number = 0;
+    public txt:string = '';
 }

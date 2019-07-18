@@ -1,10 +1,11 @@
-import { GameAI } from "../game/GameAI";
-import GamePro from "../game/GamePro";
-import GameHitBox from "../game/GameHitBox";
-import Game from "../game/Game";
-import GameBG from "../game/GameBG";
+import GamePro from "../GamePro";
+import { GameAI } from "./GameAI";
+import Game from "../Game";
+import GameHitBox from "../GameHitBox";
+import GameBG from "../GameBG";
 
-export class FlyAndHitAi extends GameAI {
+
+export default class FlyAndHitAi extends GameAI {
 
     private pro: GamePro;
     private st:number = 0;

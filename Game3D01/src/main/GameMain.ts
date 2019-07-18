@@ -6,11 +6,13 @@ import SysMap from "./sys/SysMap";
 import ZipLoader from "../core/utils/ZipLoader";
 import SysEnemy from "./sys/SysEnemy";
 import AttackType from "../game/AttackType";
-import { FlyAndHitAi } from "../ai/FlyAndHitAi";
-import { MonsterAI1 } from "../game/GameAI";
 import MonsterType from "../game/MonsterType";
-import { FlyGameMove, PlaneGameMove, FixedGameMove } from "../game/GameMove";
 import SysBullet from "./sys/SysBullet";
+import MonsterAI1 from "../game/ai/MonsterAI1";
+import FlyAndHitAi from "../game/ai/FlyAndHitAi";
+import FixedGameMove from "../game/move/FixedGameMove";
+import PlaneGameMove from "../game/move/PlaneGameMove";
+import FlyGameMove from "../game/move/FlyGameMove";
 var REG: Function = Laya.ClassUtils.regClass;
     export default class GameMain{
         
