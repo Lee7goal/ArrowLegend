@@ -5,14 +5,17 @@ import SysChapter from "./sys/SysChapter";
 import SysMap from "./sys/SysMap";
 import ZipLoader from "../core/utils/ZipLoader";
 import SysEnemy from "./sys/SysEnemy";
-import AttackType from "../game/AttackType";
-import MonsterType from "../game/MonsterType";
+import AttackType from "../game/ai/AttackType";
+import MoveType from "../game/move/MoveType";
 import SysBullet from "./sys/SysBullet";
 import MonsterAI1 from "../game/ai/MonsterAI1";
 import FlyAndHitAi from "../game/ai/FlyAndHitAi";
 import FixedGameMove from "../game/move/FixedGameMove";
 import PlaneGameMove from "../game/move/PlaneGameMove";
 import FlyGameMove from "../game/move/FlyGameMove";
+import SkillType from "../game/skill/SkillType";
+import SplitSkill from "../game/skill/SplitSkill";
+import SysSkill from "./sys/SysSkill";
 var REG: Function = Laya.ClassUtils.regClass;
     export default class GameMain{
         
@@ -33,6 +36,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         App.tableManager.register(SysMap.NAME,SysMap);
         App.tableManager.register(SysEnemy.NAME,SysEnemy);
         App.tableManager.register(SysBullet.NAME,SysBullet);
+        App.tableManager.register(SysSkill.NAME,SysSkill);
 
         App.tableManager.onParse(arr);
     }
@@ -41,10 +45,11 @@ var REG: Function = Laya.ClassUtils.regClass;
         //攻击类型
         REG(AttackType.TAG + AttackType.FLYHIT,FlyAndHitAi);
         REG(AttackType.TAG + AttackType.BULLET,MonsterAI1);
-        //怪物类型
-        REG(MonsterType.TAG + MonsterType.FLY,FlyGameMove);
-        REG(MonsterType.TAG + MonsterType.MOVE,PlaneGameMove);
-        REG(MonsterType.TAG + MonsterType.FIXED,FixedGameMove);
-        // REG(MonsterType.TAG + MonsterType.FIXED,MonsterAI1);//不动的
+        //移动类型
+        REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
+        REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);
+        REG(MoveType.TAG + MoveType.FIXED,FixedGameMove);
+        //技能
+        REG(SkillType.TAG + SkillType.SPLIT,SplitSkill);
     }
 }

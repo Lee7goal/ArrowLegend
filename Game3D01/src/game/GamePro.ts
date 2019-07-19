@@ -13,20 +13,25 @@ import SysBullet from "../main/sys/SysBullet";
 import { GameAI } from "./ai/GameAI";
 import { GameMove } from "./move/GameMove";
 import { ui } from "./../ui/layaMaxUI";
+import { BaseSkill } from "./skill/BaseSkill";
+import SplitSkill from "./skill/SplitSkill";
 
 export default class GamePro extends Laya.EventDispatcher {
+    public splitTimes:number;
+
     public curLen: number;
     public moveLen: number;
     public sysEnemy: SysEnemy;
     public sysBullet: SysBullet;
 
 
-    public hurtValue: number = 10;
+    public hurtValue: number = 50;
     //  id  :number;
     //  name:String;
     private gamedata_: GameData;
     private movef: GameMove;
     private gameAI: GameAI;
+    private skill:BaseSkill;
 
     private speed_: number = 6;
     private hbox_: GameHitBox;
@@ -47,9 +52,10 @@ export default class GamePro extends Laya.EventDispatcher {
     private keyNum: number = -1;//关键帧比例0.0-1.0
 
     public flag: number = 0;
-    constructor(proType_: number) {
+    constructor(proType_: number,hp:number = 600) {
         super();
         this.gamedata_ = new GameData();
+        this.gamedata_.hp = this.gamedata_.maxhp = hp;
         this.gamedata_.proType = proType_;
         this.rotationEulerY = 0;
 
@@ -92,6 +98,22 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public hurt(hurt: number): void {
         this._bloodUI && this._bloodUI.update(hurt);
+    }
+
+    die():void{
+        this.play(GameAI.Die);
+        this.stopAi();
+        this.sp3d.removeChild(Game.selectFoot);
+        this.sp3d.removeChild(Game.selectHead);
+        if (this.skill && this.skill instanceof SplitSkill)  {
+            this.skill.exeSkill(this);
+            this.skill = null;
+
+        }
+        if (Game.map0.Eharr.indexOf(this.hbox) >= 0) {
+            Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
+        }
+        this.sp3d.removeSelf();
     }
 
     public setSp3d(sp: Sprite3D): void {
@@ -181,6 +203,15 @@ export default class GamePro extends Laya.EventDispatcher {
         this.movef = gamemove;
     }
 
+    public setSkill(skill:BaseSkill){
+        this.skill = skill;
+    }
+
+    public getSkill():BaseSkill
+    {
+        return this.skill;
+    }
+
     public setGameAi(gameAI: GameAI): GameAI {
         this.gameAI = gameAI;
         return this.gameAI;
@@ -224,7 +255,7 @@ export default class GamePro extends Laya.EventDispatcher {
         {
             if(actionstr == "Idle")
             {
-                console.log("怪的动作",actionstr);
+                // console.log("怪的动作",actionstr);
             }
         }
 
@@ -317,6 +348,8 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public ai(): void {
+        this.ac1();
+
         //按照达叔的视觉要求 修正人物跑步动作的播放速度
         if (this.animator && this.animator.speed > 0 && this.gamedata_.proType == GameProType.Hero) {
             if (this.acstr_ == GameAI.Run) {

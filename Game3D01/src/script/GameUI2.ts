@@ -13,12 +13,14 @@ import GameExecut from "../game/GameExecut";
 import GameCameraNum from "../game/GameCameraNum";
 import SysEnemy from "../main/sys/SysEnemy";
 import App from "../core/App";
-import AttackType from "../game/AttackType";
-import MonsterType from "../game/MonsterType";
+import AttackType from "../game/ai/AttackType";
+import MoveType from "../game/move/MoveType";
 import BattleLoader from "../main/scene/battle/BattleLoader";
 import BulletRotateScript from "../game/controllerScript/BulletRotateScript";
 import HeroAI from "../game/ai/HeroAI";
 import PlaneGameMove from "../game/move/PlaneGameMove";
+import SkillType from "../game/skill/SkillType";
+import SplitSkill from "../game/skill/SplitSkill";
 export default class GameUI2 extends ui.test.TestSceneUI {
 
     constructor() {
@@ -76,43 +78,9 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         this.onComplete();
     }
 
-    getAttCla(type: number): any {
-        return Laya.ClassUtils.getClass(AttackType.TAG + type);
-    }
-
-    getMonsCla(type: number): any {
-        return Laya.ClassUtils.getClass(MonsterType.TAG + type);
-    }
-
-    getMonster(skinId: number): GamePro {
-        let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, skinId);
-        var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
-        var gpro = new GamePro(GameProType.RockGolem_Blue);
-        gpro.sysEnemy = sysEnemy;
-        gpro.setSp3d(sp);
-
-        var ATT: any = this.getAttCla(sysEnemy.attackType);
-        var MONS: any = this.getMonsCla(sysEnemy.moveType);
-
-        gpro.setGameAi(new ATT(gpro));
-        gpro.setGameMove(new MONS());
-
-        // gpro.setGameAi(new FlyAndHitAi(gpro));
-        // gpro.setGameMove(new FlyGameMove());
-
-        let tScale: number = sysEnemy.zoomMode / 100;
-        gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
-        Game.map0.Eharr.push(gpro.hbox);//加入敌人组
-        Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
-        Game.map0.addChild(gpro.sp2d);
-        Game.layer3d.addChild(sp);
-        return gpro;
-    }
-
     onComplete(): void {
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
-
 
         Game.closeDoor();
 
@@ -156,10 +124,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                         Game.layer3d.addChild(box)
                     }
                     else if (GridType.isMonster(type)) {
-                        monster = this.getMonster(type);
-                        monster.setXY2DBox(GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
-                        monster.startAi();
-                        monster.setUI();
+                        monster = Game.getMonster(type,GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
+                        monster.splitTimes = 1;
                         if(!isHasBoss)
                         {
                             isHasBoss = monster.sysEnemy.isBoss == 1;

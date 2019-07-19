@@ -24,6 +24,10 @@ export default class HeroAI extends GameAI {
         }
     }
 
+    onDie(key):void{
+        Game.executor && Game.executor.stop_();//全部停止
+    }
+
     
     hit(pro: GamePro) {
         if (Game.hero.acstr == GameAI.Idle) {
@@ -32,6 +36,8 @@ export default class HeroAI extends GameAI {
         Game.hero.hurt(pro.hurtValue);
         if (Game.hero.gamedata.hp <= 0) {
             this.stopAi();
+            Game.hero.setKeyNum(1);
+            Game.hero.once(Game.Event_KeyNum,this,this.onDie);
             Game.hero.play(GameAI.Die);
         }
 

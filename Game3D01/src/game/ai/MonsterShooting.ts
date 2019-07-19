@@ -44,6 +44,7 @@ export default class MonsterShooting {
         bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + this._sysBullet.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
         gp.setSp3d(bullet);
         gp.sysBullet = this._sysBullet;
+        gp.gamedata.bounce = this._sysBullet.ejectionNum;
         gp.setGameMove(new MonsterBulletMove());
         gp.setGameAi(new MonsterBulletAI(gp));
         bullet.getChildAt(0).addComponent(BulletRotateScript);
@@ -66,7 +67,6 @@ export default class MonsterShooting {
         bo.curLen = 0;
         bo.moveLen = range + Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
         (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
-        bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
     }

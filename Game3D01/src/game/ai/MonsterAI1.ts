@@ -6,6 +6,7 @@ import GamePro from "../GamePro";
 import GameProType from "../GameProType";
 import MonsterShooting from "./MonsterShooting";
 import MonsterBulletAI from "./MonsterBulletAI";
+import SplitSkill from "../skill/SplitSkill";
 
 //巡逻&攻击
 export default class MonsterAI1 extends GameAI {
@@ -58,7 +59,7 @@ export default class MonsterAI1 extends GameAI {
                 angle = angle / 2;
                 bulletNum = 15 + Math.ceil(Math.random() * 5);
                 this.aicd = 4500;
-                if (1 - Math.random() > 0.5)  {
+                if (1 - Math.random() > 0.5) {
                     for (let i = 0; i < bulletNum; i++) {
                         setTimeout(() => {
                             let flag: number = i % 2 == 0 ? 1 : -1;
@@ -90,19 +91,16 @@ export default class MonsterAI1 extends GameAI {
         this.pro.addSprite3DToChild("RigHeadGizmo", Game.selectHead)
         // this.pro.sp3d.addChild(Game.selectHead);
         if (this.pro.gamedata.hp <= 0) {
-            this.pro.play(GameAI.Die);
-            this.pro.stopAi();
-            this.pro.sp3d.removeChild(Game.selectFoot);
-            this.pro.sp3d.removeChild(Game.selectHead);
-            // this.pro.removeSprite3DToAvatarNode(Game.selectHead)
-            if (Game.map0.Eharr.indexOf(this.pro.hbox) >= 0) {
-                Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.pro.hbox), 1);
-            }
+            this.die();
         } else {
             if (this.pro.acstr == GameAI.Idle) {
                 this.pro.play(GameAI.TakeDamage);
             }
         }
+    }
+
+    die(): void {
+        this.pro.die();
     }
 
     private aiCount: number = Math.floor(Math.random() * 5);
@@ -124,8 +122,8 @@ export default class MonsterAI1 extends GameAI {
         if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) < GameBG.ww2) {
             if (now > this.collisionCd) {
                 if (Game.hero.hbox.linkPro_) {
-                    // Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
-                    pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
+                    Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
+                    // pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
                     this.collisionCd = now + 1000;
                 }
             }

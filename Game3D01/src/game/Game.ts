@@ -9,6 +9,14 @@ import GamePro from "./GamePro";
 import GameExecut from "./GameExecut";
 import GameCameraNum from "./GameCameraNum";
 import BattleLoader from "../main/scene/battle/BattleLoader";
+import SysEnemy from "../main/sys/SysEnemy";
+import App from "../core/App";
+import GameProType from "./GameProType";
+import AttackType from "./ai/AttackType";
+import MoveType from "./move/MoveType";
+import SkillType from "./skill/SkillType";
+import SysSkill from "../main/sys/SysSkill";
+import SplitSkill from "./skill/SplitSkill";
 
 export default class Game{
 
@@ -116,5 +124,51 @@ export default class Game{
 
     constructor(){
         //Laya.Scene3D
+    }
+
+    static getMonster(enemyId: number,xx:number,yy:number,mScale?:number,hp?:number): GamePro {
+        let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
+        let sysSkill:SysSkill;
+        var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+        if(!hp)
+        {
+            hp = sysEnemy.enemyHp;
+            if(sysEnemy.skillId > 0)
+            {
+                sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME,sysEnemy.skillId);
+                if(sysSkill.effectType == SkillType.SPLIT)
+                {
+                    hp = sysEnemy.enemyHp / sysSkill.effect1;
+                }
+            }
+        }
+        var gpro = new GamePro(GameProType.RockGolem_Blue,hp);
+        gpro.sysEnemy = sysEnemy;
+        gpro.setSp3d(sp);
+
+        var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.attackType);
+        var MONS: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
+        
+
+        gpro.setGameAi(new ATT(gpro));
+        gpro.setGameMove(new MONS());
+        if(sysSkill)
+        {
+            var SKILL:any = Laya.ClassUtils.getClass(SkillType.TAG + sysSkill.effectType);
+            gpro.setSkill(new SKILL());
+        }
+        
+        let tScale: number = sysEnemy.zoomMode / 100;
+        tScale = mScale ? mScale : tScale;
+        gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
+        Game.map0.Eharr.push(gpro.hbox);//加入敌人组
+        Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
+        Game.map0.addChild(gpro.sp2d);
+        Game.layer3d.addChild(sp);
+
+        gpro.setXY2DBox(xx,yy);
+        gpro.startAi();
+        gpro.setUI();
+        return gpro;
     }
 }
