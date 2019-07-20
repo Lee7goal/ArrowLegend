@@ -82,13 +82,13 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
 
+        let v3 = GameBG.get3D(6, 9);
+        Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
+        Game.door.transform.translate(v3);
+        Game.layer3d.addChild(Game.door);
         Game.closeDoor();
-
-        Game.selectFoot = Laya.loader.getRes("h5/selectEnemy/foot/hero.lh");
-        Game.selectFoot.addComponent(FootRotateScript);
-
-        Game.selectHead = Laya.loader.getRes("h5/selectEnemy/head/hero.lh");
-        Game.selectHead.addComponent(HeadTranslateScript);
+        Game.setSelectEffect();
+        
         //克隆墙的母体
         var aa = Laya.loader.getRes("h5/wall/wall.lh");
         Game.box = aa;
@@ -102,7 +102,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         // var gpro = new GamePro(GameProType.RockGolem_Blue);
         // gpro.setSp3d(sp);
         // Game.e0_ = gpro;
-        var isHasBoss:boolean = false;
+        var isHasBoss: boolean = false;
         var monster: GamePro;
         let k: number = 0;
         for (let j = 0; j < GameBG.hnum; j++) {
@@ -124,12 +124,13 @@ export default class GameUI2 extends ui.test.TestSceneUI {
                         Game.layer3d.addChild(box)
                     }
                     else if (GridType.isMonster(type)) {
-                        monster = Game.getMonster(type,GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
-                        monster.splitTimes = 1;
-                        if(!isHasBoss)
-                        {
-                            isHasBoss = monster.sysEnemy.isBoss == 1;
-                        }
+                        // if (!monster)  {
+                            monster = Game.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
+                            monster.splitTimes = 1;
+                            if (!isHasBoss)  {
+                                isHasBoss = monster.sysEnemy.isBoss == 1;
+                            }
+                        // }
                     }
                 }
                 k++;
@@ -142,7 +143,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
 
         Game.bg.drawR(isHasBoss);
 
-        sp = Laya.loader.getRes("h5/bullets/20001/monster.lh");
+        sp = Laya.loader.getRes("h5/bullets/20000/monster.lh");
         var gpro = new GamePro(GameProType.HeroArrow);
         gpro.setSp3d(sp);
         Game.a0 = gpro;
@@ -152,7 +153,7 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         //得到原始Sprite3D   
         sp = Laya.loader.getRes("h5/hero/hero.lh");
         Game.layer3d.addChild(sp);
-        Game.hero = new GamePro(GameProType.Hero);
+        Game.hero = new GamePro(GameProType.Hero, 1200);
         Game.hero.setSp3d(sp as Laya.Sprite3D);
 
         Game.ro = new Rocker();
@@ -180,6 +181,8 @@ export default class GameUI2 extends ui.test.TestSceneUI {
         Game.hero.rotation(90 / 180 * Math.PI);
         Game.hero.sp3d.transform.localPositionY = 15;
         Laya.Tween.to(Game.hero.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn, new Laya.Handler(this, this.onJumpDown));
+
+
 
         setTimeout(() => {
             Game.openDoor();

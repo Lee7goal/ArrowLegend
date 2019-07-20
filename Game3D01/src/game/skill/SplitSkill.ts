@@ -64,6 +64,6 @@ export default class SplitSkill extends BaseSkill {
         monster1.splitTimes = flag;
         let monster2: GamePro = Game.getMonster(monster.sysEnemy.id, col2 * GameBG.ww, row2 * GameBG.ww, 0.5, hp);
         monster2.splitTimes = flag;
-        Game.e0_ = monster2;
+        // Game.e0_ = monster2;
     }
 }

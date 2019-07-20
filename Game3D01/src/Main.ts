@@ -29,7 +29,7 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend07/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1907201900/";
 		}
 		
 

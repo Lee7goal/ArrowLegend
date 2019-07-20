@@ -26,7 +26,7 @@
 			{
 				"type":"ShuriKenParticle3D",
 				"props":{
-					"name":"CloudBurst",
+					"name":"CloudBurst (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -68,9 +68,9 @@
 						"startLifetimes":[]
 					},
 					"startSpeedType":0,
-					"startSpeedConstant":1,
+					"startSpeedConstant":2,
 					"startSpeedConstantMin":0,
-					"startSpeedConstantMax":1,
+					"startSpeedConstantMax":2,
 					"threeDStartSize":false,
 					"startSizeType":2,
 					"startSizeConstant":1.7,
@@ -142,7 +142,7 @@
 					"playOnAwake":true,
 					"maxParticles":1000,
 					"autoRandomSeed":true,
-					"randomSeed":4.281454E+09,
+					"randomSeed":3.000918E+09,
 					"emission":{
 						"enable":true,
 						"emissionRate":0,
@@ -158,14 +158,14 @@
 					"shape":{
 						"enable":true,
 						"shapeType":0,
-						"sphereRadius":0.01,
+						"sphereRadius":0.06,
 						"sphereEmitFromShell":true,
 						"sphereRandomDirection":0,
-						"hemiSphereRadius":0.01,
+						"hemiSphereRadius":0.06,
 						"hemiSphereEmitFromShell":false,
 						"hemiSphereRandomDirection":0,
 						"coneAngle":25,
-						"coneRadius":0.01,
+						"coneRadius":0.06,
 						"coneLength":5,
 						"coneEmitType":0,
 						"coneRandomDirection":0,
@@ -173,7 +173,7 @@
 						"boxY":1,
 						"boxZ":1,
 						"boxRandomDirection":0,
-						"circleRadius":0.01,
+						"circleRadius":0.06,
 						"circleArc":360,
 						"circleEmitFromEdge":false,
 						"circleRandomDirection":0
@@ -192,7 +192,7 @@
 								"alphas":[
 									{
 										"key":0,
-										"value":0
+										"value":1
 									},
 									{
 										"key":0.6505684,
@@ -215,17 +215,17 @@
 									{
 										"key":0.6528725,
 										"value":[
-											0.2588235,
-											0.2588235,
-											0.2588235
+											0.2941176,
+											0.2941176,
+											0.2941176
 										]
 									},
 									{
 										"key":1,
 										"value":[
-											0.2588235,
-											0.2588235,
-											0.2588235
+											0.2941176,
+											0.2941176,
+											0.2941176
 										]
 									}
 								]
@@ -246,7 +246,7 @@
 								"alphas":[
 									{
 										"key":0,
-										"value":0
+										"value":1
 									},
 									{
 										"key":0.6505684,
@@ -269,17 +269,17 @@
 									{
 										"key":0.6528725,
 										"value":[
-											0.2588235,
-											0.2588235,
-											0.2588235
+											0.2941176,
+											0.2941176,
+											0.2941176
 										]
 									},
 									{
 										"key":1,
 										"value":[
-											0.2588235,
-											0.2588235,
-											0.2588235
+											0.2941176,
+											0.2941176,
+											0.2941176
 										]
 									}
 								]
@@ -422,8 +422,8 @@
 							"constantMin":0,
 							"constantMax":0,
 							"constantSeparate":[
-								0,
-								0,
+								57.29578,
+								-57.29578,
 								0
 							],
 							"constantMinSeparate":[
@@ -432,8 +432,8 @@
 								0
 							],
 							"constantMaxSeparate":[
-								0,
-								0,
+								57.29578,
+								57.29578,
 								0
 							],
 							"gradient":{
@@ -449,28 +449,10 @@
 								]
 							},
 							"gradientX":{
-								"angularVelocitys":[
-									{
-										"key":0,
-										"value":57.29578
-									},
-									{
-										"key":1,
-										"value":57.29578
-									}
-								]
+								"angularVelocitys":[]
 							},
 							"gradientY":{
-								"angularVelocitys":[
-									{
-										"key":0,
-										"value":-57.29578
-									},
-									{
-										"key":1,
-										"value":-57.29578
-									}
-								]
+								"angularVelocitys":[]
 							},
 							"gradientZ":{
 								"angularVelocitys":[
@@ -512,11 +494,11 @@
 								"angularVelocitys":[
 									{
 										"key":0,
-										"value":-57.29578
+										"value":0
 									},
 									{
 										"key":1,
-										"value":-32.74045
+										"value":0
 									}
 								]
 							},
@@ -524,11 +506,11 @@
 								"angularVelocitys":[
 									{
 										"key":0,
-										"value":57.29578
+										"value":0
 									},
 									{
 										"key":1,
-										"value":32.11082
+										"value":0
 									}
 								]
 							},
@@ -536,11 +518,11 @@
 								"angularVelocitys":[
 									{
 										"key":0,
-										"value":-57.29578
+										"value":0
 									},
 									{
 										"key":1,
-										"value":-32.74045
+										"value":0
 									}
 								]
 							},
@@ -548,11 +530,11 @@
 								"angularVelocitys":[
 									{
 										"key":0,
-										"value":57.29578
+										"value":0
 									},
 									{
 										"key":1,
-										"value":32.11082
+										"value":0
 									}
 								]
 							},

@@ -4,6 +4,16 @@ import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
 export module ui.test {
+    export class BattleLoadingUI extends View {
+		public txt:Laya.Label;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"y":0,"x":0,"texture":"main/zhudi.jpg"},"compId":4},{"type":"Label","props":{"y":637,"x":329,"var":"txt","text":"50%","fontSize":60,"color":"#f6f0ef"},"compId":3}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(BattleLoadingUI.uiView);
+        }
+    }
+    REG("ui.test.BattleLoadingUI",BattleLoadingUI);
     export class Blood2UIUI extends View {
 		public bar:Laya.Sprite;
 		public txt:Laya.Label;
@@ -28,7 +38,8 @@ export module ui.test {
     }
     REG("ui.test.BloodUIUI",BloodUIUI);
     export class BulletShadowUI extends View {
-        public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Sprite","props":{"y":-19,"x":-19,"texture":"bg/douying.png"},"compId":3}],"loadList":["bg/douying.png"],"loadList3D":[]};
+		public img:Laya.Sprite;
+        public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Sprite","props":{"y":-19,"x":-19,"var":"img","texture":"bg/douying.png"},"compId":3}],"loadList":["bg/douying.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

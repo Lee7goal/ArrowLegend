@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"jianzidan",
+					"name":"bombball",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -37,14 +37,14 @@
 					],
 					"rotation":[
 						0,
-						-0.7071068,
 						0,
-						-0.7071068
+						0,
+						-1
 					],
 					"scale":[
-						2,
-						2,
-						2
+						3,
+						3,
+						3
 					]
 				},
 				"components":[],
@@ -78,7 +78,7 @@
 							{
 								"type":"MeshSprite3D",
 								"props":{
-									"name":"GameObject",
+									"name":"zhada",
 									"active":true,
 									"isStatic":false,
 									"layer":0,
@@ -98,11 +98,11 @@
 										1,
 										1
 									],
+									"meshPath":"Assets/zidanzhadan/FBX/zhada-hubert.lm",
 									"enableRender":true,
 									"materials":[
 										{
-											"type":"Laya.BlinnPhongMaterial",
-											"path":"Library/unity default resources.lmat"
+											"path":"Assets/zidanzhadan/Materials/zidanqiu.lmat"
 										}
 									]
 								},
@@ -110,40 +110,6 @@
 								"child":[]
 							}
 						]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"jian",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"meshPath":"Assets/jian/FBX/jian-pPlane1.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/jianzidan/Materials/jian.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
 					},
 					{
 						"type":"TrailSprite3D",
@@ -155,13 +121,13 @@
 							"position":[
 								0,
 								0,
-								0.176
+								-0.006666667
 							],
 							"rotation":[
 								0,
-								-1,
 								0,
-								0
+								0,
+								-1
 							],
 							"scale":[
 								0.3333333,
@@ -177,7 +143,13 @@
 									"time":0,
 									"inTangent":0,
 									"outTangent":0,
-									"value":0.2039993
+									"value":0.3084534
+								},
+								{
+									"time":0.00623703,
+									"inTangent":0,
+									"outTangent":0,
+									"value":0.3084534
 								},
 								{
 									"time":0.9971924,
@@ -198,41 +170,41 @@
 									{
 										"time":0,
 										"value":[
-											0.8676471,
-											0.8676471,
-											0.8676471
+											0.9632353,
+											0.9632353,
+											0.9632353
 										]
 									},
 									{
 										"time":0.2500038,
 										"value":[
-											0.75,
-											0.75,
-											0.75
+											0.8014706,
+											0.8014706,
+											0.8014706
 										]
 									},
 									{
 										"time":0.5000076,
 										"value":[
-											0.6323529,
-											0.6323529,
-											0.6323529
+											0.7058823,
+											0.7058823,
+											0.7058823
 										]
 									},
 									{
-										"time":0.7499962,
+										"time":0.6588235,
 										"value":[
-											0.4705882,
-											0.4705882,
-											0.4705882
+											0.5073529,
+											0.5073529,
+											0.5073529
 										]
 									},
 									{
 										"time":1,
 										"value":[
-											0.1470588,
-											0,
-											0
+											0.05882353,
+											0.05882353,
+											0.05882353
 										]
 									}
 								],
@@ -250,7 +222,7 @@
 										"value":1
 									},
 									{
-										"time":0.7499962,
+										"time":0.6764782,
 										"value":1
 									},
 									{
@@ -262,7 +234,7 @@
 							"materials":[
 								{
 									"type":"Laya.TrailMaterial",
-									"path":"Assets/jianzidan/Materials/FX-ArrowTrail 2.lmat"
+									"path":"Assets/zidanzhadan/Materials/FX-ArrowTrail.lmat"
 								}
 							]
 						},

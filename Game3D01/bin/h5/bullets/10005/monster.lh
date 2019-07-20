@@ -39,7 +39,7 @@
 						0.7071068,
 						0,
 						0,
-						-0.7071067
+						-0.7071068
 					],
 					"scale":[
 						1,
@@ -81,9 +81,9 @@
 							"startDelayMin":0,
 							"startDelayMax":0,
 							"startLifetimeType":0,
-							"startLifetimeConstant":0.2,
+							"startLifetimeConstant":1,
 							"startLifetimeConstantMin":0,
-							"startLifetimeConstantMax":0.2,
+							"startLifetimeConstantMax":1,
 							"startLifetimeGradient":{
 								"startLifetimes":[]
 							},
@@ -98,22 +98,22 @@
 							"startSpeedConstantMin":0,
 							"startSpeedConstantMax":0,
 							"threeDStartSize":false,
-							"startSizeType":2,
-							"startSizeConstant":0.4,
-							"startSizeConstantMin":0.2,
-							"startSizeConstantMax":0.4,
+							"startSizeType":0,
+							"startSizeConstant":0.5,
+							"startSizeConstantMin":0,
+							"startSizeConstantMax":0.5,
 							"startSizeConstantSeparate":[
-								0.4,
+								0.5,
 								1,
 								1
 							],
 							"startSizeConstantMinSeparate":[
-								0.2,
-								1,
-								1
+								0,
+								0,
+								0
 							],
 							"startSizeConstantMaxSeparate":[
-								0.4,
+								0.5,
 								1,
 								1
 							],
@@ -141,8 +141,8 @@
 							"startColorType":0,
 							"startColorConstant":[
 								1,
-								1,
-								1,
+								0.8125761,
+								0.6911765,
 								1
 							],
 							"startColorConstantMin":[
@@ -153,8 +153,8 @@
 							],
 							"startColorConstantMax":[
 								1,
-								1,
-								1,
+								0.8125761,
+								0.6911765,
 								1
 							],
 							"gravity":[
@@ -166,9 +166,9 @@
 							"simulationSpace":1,
 							"scaleMode":0,
 							"playOnAwake":true,
-							"maxParticles":1000,
+							"maxParticles":1,
 							"autoRandomSeed":true,
-							"randomSeed":2.738513E+09,
+							"randomSeed":1.779283E+09,
 							"emission":{
 								"enable":true,
 								"emissionRate":25,
@@ -198,161 +198,18 @@
 								"circleEmitFromEdge":false,
 								"circleRandomDirection":0
 							},
-							"sizeOverLifetime":{
-								"enable":true,
-								"size":{
-									"type":0,
-									"separateAxes":false,
-									"gradient":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":0.4888179,
-												"value":1
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
-									},
-									"gradientX":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":0.4888179,
-												"value":1
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
-									},
-									"gradientY":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":1
-											}
-										]
-									},
-									"gradientZ":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":1
-											}
-										]
-									},
-									"constantMin":0,
-									"constantMax":0,
-									"constantMinSeparate":[
-										0,
-										0,
-										0
-									],
-									"constantMaxSeparate":[
-										0,
-										0,
-										0
-									],
-									"gradientMin":{
-										"sizes":[]
-									},
-									"gradientMax":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":0.4888179,
-												"value":1
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
-									},
-									"gradientXMin":{
-										"sizes":[]
-									},
-									"gradientXMax":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":0.4888179,
-												"value":1
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
-									},
-									"gradientYMin":{
-										"sizes":[]
-									},
-									"gradientYMax":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":1
-											}
-										]
-									},
-									"gradientZMin":{
-										"sizes":[]
-									},
-									"gradientZMax":{
-										"sizes":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":1
-											}
-										]
-									}
-								}
-							},
 							"rotationOverLifetime":{
 								"enable":true,
 								"angularVelocity":{
-									"type":3,
+									"type":0,
 									"separateAxes":false,
-									"constant":0,
+									"constant":719.9999,
 									"constantMin":0,
-									"constantMax":0,
+									"constantMax":719.9999,
 									"constantSeparate":[
 										57.29578,
 										-57.29578,
-										0
+										-719.9999
 									],
 									"constantMinSeparate":[
 										0,
@@ -362,19 +219,10 @@
 									"constantMaxSeparate":[
 										57.29578,
 										57.29578,
-										0
+										719.9999
 									],
 									"gradient":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":719.9999
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientX":{
 										"angularVelocitys":[]
@@ -383,112 +231,31 @@
 										"angularVelocitys":[]
 									},
 									"gradientZ":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":-719.9999
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientMin":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":-719.9999
-											},
-											{
-												"key":1,
-												"value":15.82413
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientMax":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":719.9999
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientXMin":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientXMax":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientYMin":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientYMax":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":0
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientZMin":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":-719.9999
-											},
-											{
-												"key":1,
-												"value":15.82413
-											}
-										]
+										"angularVelocitys":[]
 									},
 									"gradientZMax":{
-										"angularVelocitys":[
-											{
-												"key":0,
-												"value":719.9999
-											},
-											{
-												"key":1,
-												"value":0
-											}
-										]
+										"angularVelocitys":[]
 									}
 								}
 							},
@@ -499,7 +266,7 @@
 							"sortingFudge":0,
 							"material":{
 								"type":"Laya.ShurikenParticleMaterial",
-								"path":"Assets/xiaoguaishouji/Materials/circle.lmat"
+								"path":"Assets/zidanlong/Materials/circle.lmat"
 							}
 						},
 						"components":[],
@@ -588,21 +355,21 @@
 									"startSpeedConstantMax":0.6,
 									"threeDStartSize":false,
 									"startSizeType":2,
-									"startSizeConstant":0.6,
-									"startSizeConstantMin":0.3,
-									"startSizeConstantMax":0.6,
+									"startSizeConstant":0.7,
+									"startSizeConstantMin":0.5,
+									"startSizeConstantMax":0.7,
 									"startSizeConstantSeparate":[
-										0.6,
+										0.7,
 										1,
 										1
 									],
 									"startSizeConstantMinSeparate":[
-										0.3,
+										0.5,
 										1,
 										1
 									],
 									"startSizeConstantMaxSeparate":[
-										0.6,
+										0.7,
 										1,
 										1
 									],
@@ -657,7 +424,7 @@
 									"playOnAwake":true,
 									"maxParticles":1000,
 									"autoRandomSeed":true,
-									"randomSeed":2.328006E+08,
+									"randomSeed":4.249153E+09,
 									"emission":{
 										"enable":true,
 										"emissionRate":25,
@@ -721,8 +488,8 @@
 														"key":0.501152,
 														"value":[
 															1,
-															0.854902,
-															0
+															0.9221165,
+															0.4632353
 														]
 													},
 													{
@@ -771,8 +538,8 @@
 														"key":0.501152,
 														"value":[
 															1,
-															0.854902,
-															0
+															0.9221165,
+															0.4632353
 														]
 													},
 													{
@@ -1153,7 +920,7 @@
 									"sortingFudge":0,
 									"material":{
 										"type":"Laya.ShurikenParticleMaterial",
-										"path":"Assets/Epic Toon FX/Materials/Misc/explosion_spritesheet_3x3.lmat"
+										"path":"Assets/zidanlong/Materials/explosion_spritesheet_3x3.lmat"
 									}
 								},
 								"components":[],
@@ -1278,7 +1045,7 @@
 									"playOnAwake":true,
 									"maxParticles":1000,
 									"autoRandomSeed":true,
-									"randomSeed":3.946958E+07,
+									"randomSeed":1.01587E+09,
 									"emission":{
 										"enable":true,
 										"emissionRate":15,
@@ -1619,7 +1386,7 @@
 									"sortingFudge":0,
 									"material":{
 										"type":"Laya.ShurikenParticleMaterial",
-										"path":"Assets/xiaoguaishouji/Materials/circle.lmat"
+										"path":"Assets/zidanlong/Materials/FX-ArrowTrail.lmat"
 									}
 								},
 								"components":[],
@@ -1744,7 +1511,7 @@
 									"playOnAwake":true,
 									"maxParticles":1000,
 									"autoRandomSeed":true,
-									"randomSeed":3.730903E+09,
+									"randomSeed":3.145211E+09,
 									"emission":{
 										"enable":true,
 										"emissionRate":24,
@@ -2128,7 +1895,7 @@
 									"sortingFudge":-1,
 									"material":{
 										"type":"Laya.ShurikenParticleMaterial",
-										"path":"Assets/xiaoguaishouji/Materials/glow.lmat"
+										"path":"Assets/zidanlong/Materials/glow.lmat"
 									}
 								},
 								"components":[],

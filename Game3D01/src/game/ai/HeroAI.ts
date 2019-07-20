@@ -40,14 +40,6 @@ export default class HeroAI extends GameAI {
             Game.hero.once(Game.Event_KeyNum,this,this.onDie);
             Game.hero.play(GameAI.Die);
         }
-
-        let hitEff:Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh"));
-        Game.layer3d.addChild(hitEff);
-        Game.hero.addSprite3DToAvatarNode("joint2",hitEff);
-        setTimeout(() => {
-            hitEff.removeSelf();
-        }, 500);
-
     }
 
     public starAi() {
@@ -57,7 +49,7 @@ export default class HeroAI extends GameAI {
 
         if (Game.map0.Eharr.length > 1) {
             Game.map0.Eharr.sort(this.sore0);
-            Game.e0_ = Game.map0.Eharr[0].linkPro_;
+            Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);
         this.shootin.at = 0.35;
@@ -122,7 +114,7 @@ export default class HeroAI extends GameAI {
                         var a: number = GameHitBox.faceTo3D(pro.hbox, ero);
                         var facen2d_ = (2 * Math.PI - a);
                         if (this.shootin.checkBallistic(facen2d_, Game.hero, ero.linkPro_)) {
-                            Game.e0_ = ero.linkPro_;
+                            Game.selectEnemy(ero.linkPro_);
                             pro.rotation(a);
                             return this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
                         }
@@ -130,7 +122,7 @@ export default class HeroAI extends GameAI {
 
                 }
             }
-            Game.e0_ = Game.map0.Eharr[0].linkPro_;
+            Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
             var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
             pro.rotation(a);
             this.shootin.starAttack(Game.hero, GameAI.NormalAttack);

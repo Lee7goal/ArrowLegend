@@ -26,13 +26,13 @@
 			{
 				"type":"ShuriKenParticle3D",
 				"props":{
-					"name":"xiaohongshui",
+					"name":"xiaohongshui (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						0,
-						0.21,
+						0,
 						0
 					],
 					"rotation":[
@@ -47,7 +47,7 @@
 						1
 					],
 					"isPerformanceMode":true,
-					"duration":0.2,
+					"duration":0.25,
 					"looping":false,
 					"prewarm":false,
 					"startDelayType":0,
@@ -55,9 +55,9 @@
 					"startDelayMin":0,
 					"startDelayMax":0,
 					"startLifetimeType":0,
-					"startLifetimeConstant":0.2,
+					"startLifetimeConstant":0.33,
 					"startLifetimeConstantMin":0,
-					"startLifetimeConstantMax":0.2,
+					"startLifetimeConstantMax":0.33,
 					"startLifetimeGradient":{
 						"startLifetimes":[]
 					},
@@ -73,21 +73,21 @@
 					"startSpeedConstantMax":4,
 					"threeDStartSize":false,
 					"startSizeType":2,
-					"startSizeConstant":0.3,
-					"startSizeConstantMin":0.4,
-					"startSizeConstantMax":0.3,
+					"startSizeConstant":0.2,
+					"startSizeConstantMin":0.43,
+					"startSizeConstantMax":0.2,
 					"startSizeConstantSeparate":[
-						0.3,
+						0.2,
 						1,
 						1
 					],
 					"startSizeConstantMinSeparate":[
-						0.4,
+						0.43,
 						1,
 						1
 					],
 					"startSizeConstantMaxSeparate":[
-						0.3,
+						0.2,
 						1,
 						1
 					],
@@ -142,7 +142,7 @@
 					"playOnAwake":true,
 					"maxParticles":30,
 					"autoRandomSeed":true,
-					"randomSeed":3.971394E+09,
+					"randomSeed":1.804871E+09,
 					"emission":{
 						"enable":true,
 						"emissionRate":30,
@@ -152,14 +152,14 @@
 					"shape":{
 						"enable":true,
 						"shapeType":7,
-						"sphereRadius":0.11,
+						"sphereRadius":0.42,
 						"sphereEmitFromShell":false,
 						"sphereRandomDirection":0,
-						"hemiSphereRadius":0.11,
+						"hemiSphereRadius":0.42,
 						"hemiSphereEmitFromShell":false,
 						"hemiSphereRandomDirection":0,
 						"coneAngle":25,
-						"coneRadius":0.11,
+						"coneRadius":0.42,
 						"coneLength":5,
 						"coneEmitType":7,
 						"coneRandomDirection":0,
@@ -167,7 +167,7 @@
 						"boxY":1,
 						"boxZ":1,
 						"boxRandomDirection":0,
-						"circleRadius":0.11,
+						"circleRadius":0.42,
 						"circleArc":360,
 						"circleEmitFromEdge":false,
 						"circleRandomDirection":0
@@ -193,8 +193,8 @@
 										"value":0.8784314
 									},
 									{
-										"key":0.7000076,
-										"value":0.772549
+										"key":0.4441138,
+										"value":0.6588235
 									},
 									{
 										"key":1,
@@ -243,8 +243,8 @@
 										"value":0.8784314
 									},
 									{
-										"key":0.7000076,
-										"value":0.772549
+										"key":0.4441138,
+										"value":0.6588235
 									},
 									{
 										"key":1,

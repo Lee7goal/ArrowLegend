@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"micro_dragon_fino_animated",
+					"name":"micro_dragon_mobile",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10023/_source/Models/micro_dragon_fino_animated-micro_dragon_fino_animated-micro_dragon_fino_animatedAvatar.lav",
+							"path":"Assets/10023/Models/micro_dragon_mobile-micro_dragon_mobile-micro_dragon_mobileAvatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[
@@ -62,35 +62,35 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Idle.lani"
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Attack.lani"
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Attack.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Die.lani"
-									},
-									{
-										"name":"TakeDamage",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-TakeDamage.lani"
-									},
-									{
-										"name":"Run",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Idle.lani"
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Die.lani"
 									},
 									{
 										"name":"SkillStart",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Idle.lani"
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Idle.lani"
 									},
 									{
 										"name":"SkillLoop",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Idle.lani"
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Idle.lani"
 									},
 									{
 										"name":"SkillEnd",
-										"clipPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-Idle.lani"
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Idle.lani"
+									},
+									{
+										"name":"Run",
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-Idle.lani"
+									},
+									{
+										"name":"TakeDamage",
+										"clipPath":"Assets/10023/Models/micro_dragon_mobile-TakeDamage.lani"
 									}
 								]
 							}
@@ -103,7 +103,7 @@
 					{
 						"type":"SkinnedMeshSprite3D",
 						"props":{
-							"name":"micro_dragon_fino_mesh",
+							"name":"micro_dragon",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
@@ -123,33 +123,33 @@
 								1,
 								1
 							],
-							"rootBone":"root_drag",
+							"rootBone":"micro_dragon_clean:root_drag",
 							"boundBox":{
 								"min":[
 									-0.9040771,
-									-0.1907552,
-									-1.138186
+									-0.1907551,
+									-1.135558
 								],
 								"max":[
-									0.9018101,
-									1.269226,
-									0.8019503
+									0.9018097,
+									1.269227,
+									0.7663103
 								]
 							},
 							"boundSphere":{
 								"center":[
-									-0.001133502,
-									0.5392356,
-									-0.1681178
+									-0.00113368,
+									0.5392357,
+									-0.1846239
 								],
-								"radius":1.513019
+								"radius":1.500823
 							},
 							"materials":[
 								{
-									"path":"Assets/10023/_source/Models/Materials/micro_dragon_fino_red.lmat"
+									"path":"Assets/10023/Materials/micro_dragon_col.lmat"
 								}
 							],
-							"meshPath":"Assets/10023/_source/Models/micro_dragon_fino_animated-micro_dragon_fino_mesh.lm"
+							"meshPath":"Assets/10023/Models/micro_dragon_mobile-micro_dragon.lm"
 						},
 						"components":[],
 						"child":[]
@@ -197,7 +197,7 @@
 							"layer":0,
 							"position":[
 								0,
-								0.981,
+								0.99,
 								0
 							],
 							"rotation":[

@@ -5,6 +5,7 @@ import SysMap from "../../sys/SysMap";
 import SysEnemy from "../../sys/SysEnemy";
 import GridType from "../../../game/bg/GridType";
 import SysBullet from "../../sys/SysBullet";
+import { ui } from "../../../ui/layaMaxUI";
 
 export default class BattleLoader {
     constructor() { }
@@ -12,18 +13,41 @@ export default class BattleLoader {
     private _mapId: number;
     public chaterId: number = 1;
     private _configId: number;
-    private _index: number = 0;
+    private _index: number = -1;
+
+    private _loading:ui.test.BattleLoadingUI;
+
+
+    public get index():number
+    {
+        return this._index;
+    }
+
     public get mapId(): number  {
         return this._mapId;
     }
 
     public load(): void  {
+
+        if(!this._loading)
+        {
+            this._loading = new ui.test.BattleLoadingUI();
+        }
+
+        App.layerManager.alertLayer.addChild(this._loading);
+        this._loading.txt.text = "0%";
+
+        this._index++;
+        if(this._index > 10)
+        {
+            this._index = 0;
+        }
         this._mapId = this.chaterId * 1000 + this._index;
         let sysMap: SysMap = SysMap.getData(this.chaterId, this._mapId);
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        this._configId = 101004;
+        // this._configId = 101005;
         console.log("当前地图",this._mapId,this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
@@ -41,14 +65,15 @@ export default class BattleLoader {
             "h5/mapConfig/" + this._configId + ".json",
             "h5/wall/wall.lh",
             "h5/zhalan/hero.lh",
-            "h5/selectEnemy/foot/hero.lh",
-            "h5/selectEnemy/head/hero.lh",
             "h5/gunEffect/hero.lh",
-            "h5/effects/door/hero.lh"
+            "h5/effects/foot/hero.lh",
+            "h5/effects/head/hero.lh",
+            "h5/effects/monsterDie/monster.lh",
+            "h5/effects/door/monster.lh"
         ];
         //主角
         arr.push("h5/bulletsEffect/20000/monster.lh");
-        arr.push("h5/bullets/20001/monster.lh");
+        arr.push("h5/bullets/20000/monster.lh");
         arr.push("h5/gong/hero.lh");
         arr.push("h5/hero/hero.lh");
 
@@ -65,6 +90,10 @@ export default class BattleLoader {
                         {
                             let sysBullet:SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,sysEnemy.bulletId);
                             arr.push("h5/bullets/"+sysBullet.bulletMode+"/monster.lh");
+                            if(sysBullet.boomEffect > 0)
+                            {
+                                arr.push("h5/bulletsEffect/"+sysBullet.boomEffect+"/monster.lh");
+                            }
                         }
                     }
                 }
@@ -72,13 +101,17 @@ export default class BattleLoader {
             }
         }
 
-        arr.push("h5/bulletsEffect/" + '10002' + "/monster.lh");
+        Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete),new Laya.Handler(this,this.onProgress))
+    }
 
-        Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete))
+    onProgress(value:number):void{
+        value = Math.ceil(value * 100);
+        value = Math.min(value,100);
+        this._loading.txt.text = value +"%";
     }
 
     onComplete(): void {
-        this._index++;
         Laya.Scene.open("test/TestScene.scene");
+        this._loading.removeSelf();
     }
 }

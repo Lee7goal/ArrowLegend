@@ -87,9 +87,6 @@ export default class MonsterAI1 extends GameAI {
 
     hit(pro: GamePro) {
         this.pro.hurt(pro.hurtValue);
-        this.pro.sp3d.addChild(Game.selectFoot);
-        this.pro.addSprite3DToChild("RigHeadGizmo", Game.selectHead)
-        // this.pro.sp3d.addChild(Game.selectHead);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         } else {

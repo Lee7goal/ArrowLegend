@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"Ghost_White",
+					"name":"micro_skeleton_tom_mobile",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,16 +42,16 @@
 						-1
 					],
 					"scale":[
-						75,
-						75,
-						75
+						1,
+						1,
+						1
 					]
 				},
 				"components":[
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10020/Models/Ghost_Lv1-Ghost_White-Ghost_Lv1Avatar.lav",
+							"path":"Assets/10020/Models/micro_skeleton_tom_mobile-micro_skeleton_tom_mobile-micro_skeleton_tom_mobileAvatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[
@@ -62,35 +62,35 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-Idle.lani"
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-Attack.lani"
-									},
-									{
-										"name":"Run",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-Run.lani"
-									},
-									{
-										"name":"SkillStart",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-SkillStart.lani"
-									},
-									{
-										"name":"SkillLoop",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-SkillLoop.lani"
-									},
-									{
-										"name":"SkillEnd",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-SkillEnd.lani"
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-Attack.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-Die.lani"
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-Die.lani"
+									},
+									{
+										"name":"Run",
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-Run.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10020/Models/Ghost_Lv1-TakeDamage.lani"
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-TakeDamage.lani"
+									},
+									{
+										"name":"SkillStart",
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-SkillStart.lani"
+									},
+									{
+										"name":"SkillLoop",
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-SkillLoop.lani"
+									},
+									{
+										"name":"SkillEnd",
+										"clipPath":"Assets/10020/Models/micro_skeleton_tom_mobile-SkillEnd.lani"
 									}
 								]
 							}
@@ -103,7 +103,7 @@
 					{
 						"type":"SkinnedMeshSprite3D",
 						"props":{
-							"name":"LV1",
+							"name":"micro_skeleton_tom",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
@@ -119,37 +119,37 @@
 								-1
 							],
 							"scale":[
-								0.9999999,
-								0.9999999,
-								0.9999999
+								1,
+								1,
+								1
 							],
-							"rootBone":"RootJoint",
+							"rootBone":"root_skel",
 							"boundBox":{
 								"min":[
-									-0.005422115,
-									-0.008997983,
-									-0.008459966
+									-0.755755,
+									0.07013369,
+									-0.529724
 								],
 								"max":[
-									0.01068982,
-									0.009095036,
-									0.008459973
+									0.755755,
+									1.189895,
+									0.5445241
 								]
 							},
 							"boundSphere":{
 								"center":[
-									0.002633851,
-									4.852656E-05,
-									3.72529E-09
+									0,
+									0.6300144,
+									0.007400006
 								],
-								"radius":0.01477528
+								"radius":1.083113
 							},
 							"materials":[
 								{
-									"path":"Assets/10020/Materials/Ghost/Ghost_White.lmat"
+									"path":"Assets/10020/Materials/micro_skeleton_diffuse.lmat"
 								}
 							],
-							"meshPath":"Assets/10020/Models/Ghost_Lv1-LV1.lm"
+							"meshPath":"Assets/10020/Models/micro_skeleton_tom_mobile-micro_skeleton_tom.lm"
 						},
 						"components":[],
 						"child":[]
@@ -163,7 +163,7 @@
 							"layer":0,
 							"position":[
 								0,
-								0.007,
+								0.6,
 								0
 							],
 							"rotation":[
@@ -173,9 +173,9 @@
 								-1
 							],
 							"scale":[
-								0.9999999,
-								0.9999999,
-								0.9999999
+								1,
+								1,
+								1
 							],
 							"enableRender":true,
 							"materials":[
@@ -197,7 +197,7 @@
 							"layer":0,
 							"position":[
 								0,
-								0,
+								0.971,
 								0
 							],
 							"rotation":[
@@ -207,9 +207,9 @@
 								-1
 							],
 							"scale":[
-								0.9999999,
-								0.9999999,
-								0.9999999
+								1,
+								1,
+								1
 							],
 							"enableRender":true,
 							"materials":[

@@ -20,7 +20,7 @@ export default class MonsterBulletMove extends GameMove {
             this.future.setVV(x0, y0, vx, vz);
 
             var ebh: GameHitBox;
-            if (pro.sysBullet.bulletEjection == 1)  {
+            if (pro.sysBullet.bulletEjection == 1) {
                 var hits = Game.map0.Aharr;
                 ebh = Game.map0.chechHit_arr(this.future, hits);
                 if (ebh) {
@@ -48,12 +48,8 @@ export default class MonsterBulletMove extends GameMove {
                 pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
                 return true;
             }
-            else  {
-                if (pro.gamedata.proType == GameProType.HeroArrow) {
-                    ebh = Game.map0.chechHit_arr(this.future, Game.map0.Eharr);
-                } else {
-                    ebh = Game.map0.chechHit_arr(this.future, Game.map0.Hharr);
-                }
+            else {
+                ebh = Game.map0.chechHit_arr(this.future, Game.map0.Hharr);
 
                 if (ebh) {
                     pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
@@ -65,8 +61,21 @@ export default class MonsterBulletMove extends GameMove {
                     this.hitEffect(pro);
                     return false;
                 }
+                ebh = Game.map0.chechHit_arr(this.future, Game.map0.Aharr);
+
+                if (ebh) {
+                    pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
+                    pro.setSpeed(0);
+                    if (ebh.linkPro_) {
+                        ebh.linkPro_.event(Game.Event_Hit, pro);
+                        pro.event(Game.Event_Hit, ebh.linkPro_);
+                    }
+                    this.hitEffect(pro);
+                    return false;
+                }
+                pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
+                return true;
             }
-            return true;
         }
         else {
             //抛物线
@@ -100,7 +109,7 @@ export default class MonsterBulletMove extends GameMove {
                 return false;
             }
 
-            if (pro.curLen == pro.moveLen)  {
+            if (pro.curLen == pro.moveLen) {
                 console.log("打空了");
                 this.hitEffect(pro);
                 return false;
@@ -110,15 +119,17 @@ export default class MonsterBulletMove extends GameMove {
         }
     }
 
-    private hitEffect(pro): void {
+    private hitEffect(pro: GamePro): void {
         pro.setSpeed(0);
-        let boomEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/10002/monster.lh"));
-        Game.layer3d.addChild(boomEff);
-        boomEff.transform.localPosition = pro.sp3d.transform.localPosition;
-        // boomEff.transform.localPositionY = 0;
-        setTimeout(() => {
-            boomEff.removeSelf();
-        }, 500);
+        if (pro.sysBullet.boomEffect > 0) {
+            let boomEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/" + pro.sysBullet.boomEffect + "/monster.lh"));
+            Game.layer3d.addChild(boomEff);
+            boomEff.transform.localPosition = pro.sp3d.transform.localPosition;
+            // boomEff.transform.localPositionY = 0;
+            setTimeout(() => {
+                boomEff.removeSelf();
+            }, 500);
+        }
     }
 }
 

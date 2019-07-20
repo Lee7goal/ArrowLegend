@@ -21,4 +21,5 @@ export default class SysEnemy {
     public isBoss:number = 0;
     public enemyType:number = 0;
     public txt:string = '';
+    public zoomShadow:number = 0;
 }
