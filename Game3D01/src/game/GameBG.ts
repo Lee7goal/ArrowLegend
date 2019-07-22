@@ -3,6 +3,8 @@ import GameConfig from "../GameConfig";
 import Sprite = Laya.Sprite;
 import Game from "./Game";
 import GridType from "./bg/GridType";
+import BitmapNumber from "../core/display/BitmapNumber";
+import App from "../core/App";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -46,6 +48,8 @@ export default class GameBG extends Laya.Sprite {
     static mcy: number;
 
     private static v3d: Laya.Vector3;
+
+    private doorNumber:BitmapNumber;
 
     static get3D(xx: number, yy: number): Laya.Vector3 {
         if (!GameBG.v3d) {
@@ -174,6 +178,7 @@ export default class GameBG extends Laya.Sprite {
     }
 
     public drawR(hasBoss:boolean = false): void {
+        this._box.removeChildren();
         var img: Image;
         var ww: number = GameBG.ww;
         var k: number = 0;
@@ -295,7 +300,14 @@ export default class GameBG extends Laya.Sprite {
 
         this._top.addChild(this._door);
         this._top.addChild(this._bossImg);
+
+        this.doorNumber = App.getFontClip(0.5);
+        this.doorNumber.value = "" + Game.battleLoader.index;
+        this.doorNumber.pos(380,390);
+        this._top.addChild(this.doorNumber);
+        
         this._bossImg.visible = hasBoss;
+        this.doorNumber.visible = !this._bossImg.visible && Game.battleLoader.index > 0;
         this._door.pos(281,418);
 
         Game.frontLayer.addChild(this._bottom);

@@ -2,7 +2,6 @@ import GamePro from "../GamePro";
 import { GameAI } from "./GameAI";
 
 export default class MonsterBulletAI extends GameAI {
-
     private pro: GamePro;
     constructor(pro: GamePro) {
         super();
@@ -26,10 +25,7 @@ export default class MonsterBulletAI extends GameAI {
     private i: number = 0;
     exeAI(pro: GamePro): boolean {
         if (!pro.move2D(pro.face2d))  {
-            this.pro.stopAi();
-            if (this.pro.sp3d.parent) {
-                this.pro.sp3d.parent.removeChild(this.pro.sp3d);
-            }
+            pro.die();
             return false;
         }
         // if (this.i == 0 && !pro.move2D(pro.face2d)) {

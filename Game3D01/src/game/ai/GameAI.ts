@@ -15,6 +15,8 @@ export abstract class GameAI {
     abstract stopAi();
     /**遭到攻击 */
     abstract hit(pro: GamePro);
+    die():void{};
+
 
     protected run_: boolean = false;
 }

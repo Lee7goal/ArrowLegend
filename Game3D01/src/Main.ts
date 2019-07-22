@@ -29,7 +29,7 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend07/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1907201900/";
 		}
 		
 
@@ -47,7 +47,6 @@ class Main {
 	}
 
 	private onHandler():void{
-		console.log(Laya.loader.getRes('bg/rockerBall.png'));
 		//加载IDE指定的场景
 		new GameMain();
 	}

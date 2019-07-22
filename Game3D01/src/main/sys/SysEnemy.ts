@@ -17,8 +17,9 @@ export default class SysEnemy {
     public enemySpeed:number = 0;
     public bulletNum:number = 0;
     public bulletAngle:number = 0;
-    public skillId:string = '';
+    public skillId:number = 0;
     public isBoss:number = 0;
     public enemyType:number = 0;
     public txt:string = '';
+    public zoomShadow:number = 0;
 }

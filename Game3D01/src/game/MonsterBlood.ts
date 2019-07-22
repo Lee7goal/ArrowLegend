@@ -18,6 +18,7 @@ export default class MonsterBlood extends ui.test.Blood2UIUI {
         this._rect.width = this.gameData.hp / this.gameData.maxhp * this.width;
         this._rect.height = 17;
         this.bar.scrollRect = this._rect;
+        this.txt.text = "" + this.gameData.hp;
     }
 
     public update(hurt:number):void
@@ -26,6 +27,8 @@ export default class MonsterBlood extends ui.test.Blood2UIUI {
         this.gameData.hp = Math.max(this.gameData.hp,0);
         this._rect.width = this.gameData.hp / this.gameData.maxhp * this.width;
         this.bar.scrollRect = this._rect;
+
+        this.txt.text = "" + this.gameData.hp;
 
         Laya.Tween.clearTween(this.shape);
         this.shape.graphics.clear();

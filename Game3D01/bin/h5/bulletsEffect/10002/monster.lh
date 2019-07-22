@@ -26,13 +26,13 @@
 			{
 				"type":"ShuriKenParticle3D",
 				"props":{
-					"name":"xiaohongshui",
+					"name":"xiaohongshui (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						0,
-						0.21,
+						0,
 						0
 					],
 					"rotation":[
@@ -67,10 +67,10 @@
 					"startLifetimeGradientMax":{
 						"startLifetimes":[]
 					},
-					"startSpeedType":1,
-					"startSpeedConstant":0,
+					"startSpeedType":0,
+					"startSpeedConstant":4,
 					"startSpeedConstantMin":0,
-					"startSpeedConstantMax":0,
+					"startSpeedConstantMax":4,
 					"threeDStartSize":false,
 					"startSizeType":2,
 					"startSizeConstant":0.2,
@@ -142,7 +142,7 @@
 					"playOnAwake":true,
 					"maxParticles":30,
 					"autoRandomSeed":true,
-					"randomSeed":3.533444E+09,
+					"randomSeed":1.804871E+09,
 					"emission":{
 						"enable":true,
 						"emissionRate":30,
@@ -193,8 +193,8 @@
 										"value":0.8784314
 									},
 									{
-										"key":0.7000076,
-										"value":0.772549
+										"key":0.4441138,
+										"value":0.6588235
 									},
 									{
 										"key":1,
@@ -243,8 +243,8 @@
 										"value":0.8784314
 									},
 									{
-										"key":0.7000076,
-										"value":0.772549
+										"key":0.4441138,
+										"value":0.6588235
 									},
 									{
 										"key":1,

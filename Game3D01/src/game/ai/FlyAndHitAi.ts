@@ -8,40 +8,43 @@ import GameBG from "../GameBG";
 export default class FlyAndHitAi extends GameAI {
 
     private pro: GamePro;
-    private st:number = 0;
-    private status:number = 0;
-    private collisionCd:number = 0;
+    private st: number = 0;
+    private status: number = 0;
+    private collisionCd: number = 0;
 
     exeAI(pro: GamePro): boolean {
+        if(!this.run_)
+        {
+            return false;
+        }
         var now = Game.executor.getWorldNow();
-        if(now < this.st){
-            if(GameHitBox.faceToLenth(this.pro.hbox ,Game.hero.hbox)>GameBG.ww2){
-                var a:number = GameHitBox.faceTo3D(this.pro.hbox ,Game.hero.hbox);
+        if (now < this.st) {
+            if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) > GameBG.ww2) {
+                var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
                 this.pro.rotation(a);
                 this.pro.move2D(this.pro.face2d);
             }
-            else{
-                if(now > this.collisionCd)
-                {
-                    if( Game.hero.hbox.linkPro_ ){
-                        // Game.hero.hbox.linkPro_.event(Game.Event_Hit,pro);
-                        pro.event(Game.Event_Hit,Game.hero.hbox.linkPro_);
-                        this.collisionCd = now +1000;
+            else {
+                if (now > this.collisionCd)  {
+                    if (Game.hero.hbox.linkPro_) {
+                        Game.hero.hbox.linkPro_.event(Game.Event_Hit,pro);
+                        // pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
+                        this.collisionCd = now + 1000;
                     }
                 }
             }
         }
-        else{
-            if(this.status==0){
-                if(this.pro.acstr!=GameAI.NormalAttack){
+        else {
+            if (this.status == 0) {
+                if (this.pro.acstr != GameAI.NormalAttack) {
                     this.pro.play(GameAI.NormalAttack);
                     this.status = 1;
                     //this.pro.setKeyNum(0.5);
                     return;
                 }
             }
-            else if(this.status==1){                              
-                if(this.pro.acstr!=GameAI.NormalAttack){
+            else if (this.status == 1) {
+                if (this.pro.acstr != GameAI.NormalAttack) {
                     this.pro.setSpeed(2);
                     this.pro.play(GameAI.Idle);
                     this.status = 0;
@@ -49,7 +52,7 @@ export default class FlyAndHitAi extends GameAI {
                     return;
                 }
             }
-            if( this.pro.normalizedTime >0.5 ){
+            if (this.pro.normalizedTime > 0.5) {
                 this.pro.setSpeed(10);
                 this.pro.move2D(this.pro.face2d);
             }
@@ -61,31 +64,32 @@ export default class FlyAndHitAi extends GameAI {
     }
 
     starAi() {
+        this.run_ = true;
         this.pro.play(GameAI.Idle);
         this.st = Game.executor.getWorldNow() + 3500;
         this.pro.setSpeed(2);
     }
 
-    stopAi(){
+    stopAi() {
         this.run_ = false;
     }
 
-    hit(pro:GamePro){
-        this.pro.hurt(10);
-        if(this.pro.gamedata.hp<=0){
-            this.pro.play(GameAI.Die);
-            this.pro.stopAi();
-            if(Game.map0.Eharr.indexOf( this.pro.hbox )>=0){
-                Game.map0.Eharr.splice( Game.map0.Eharr.indexOf( this.pro.hbox ) , 1 );
-            }
-        }else{
-            if(this.pro.acstr == GameAI.Idle){
+    hit(pro: GamePro) {
+        this.pro.hurt(this.pro.hurtValue);
+        if (this.pro.gamedata.hp <= 0) {
+            this.die();
+        } else {
+            if (this.pro.acstr == GameAI.Idle) {
                 this.pro.play(GameAI.TakeDamage);
             }
         }
     }
-    
-    constructor(pro: GamePro){
+
+    die(): void {
+        this.pro.die();
+    }
+
+    constructor(pro: GamePro) {
         super();
         this.pro = pro;
         // this.pro.sp3d.transform.localPositionY = 1;

@@ -4,7 +4,7 @@ import MainView from "./MainView";
 import WorldView from "./world/WorldView";
 import GameBG from "../../../game/GameBG";
 
-    export default class MainScene extends ui.test.mainSceneUI{
+    export default class MainScene extends Laya.Sprite{
     private mainUI:MainUI;
     private mainView:MainView;
     

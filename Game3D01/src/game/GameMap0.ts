@@ -23,7 +23,7 @@ export default class GameMap0 extends Laya.Sprite {
     Thornarr:GameHitBox[];
 
 
-
+    endRowNum:number = 0;
 
 
     private arrhb: GameHitBox;
@@ -148,6 +148,8 @@ export default class GameMap0 extends Laya.Sprite {
                 break;
             }
         }
+
+        this.endRowNum = j - 1;
 
         hb = new GameHitBox(GameBG.ww * (GameBG.wnum - 1), GameBG.ww);
         hb.setXY(GameBG.ww, GameBG.ww * (j + 0));//原先是加1

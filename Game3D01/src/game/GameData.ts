@@ -1,10 +1,10 @@
 export default class GameData{
     
-    public hp:number    = 600;
-    public maxhp:number = 600;
+    public hp:number;
+    public maxhp:number;
 
     /**反弹次数 */
-    public bounce:number  = 0;
+    public _bounce:number  = 0;
     /**单位类别 */
     private proType_:number = 0;
     /**伤害 */
@@ -16,11 +16,20 @@ export default class GameData{
     /**转身速度 （<=0 瞬间转身） */
     public  rspeed:number = 20;
 
+    public set bounce(v:number){
+        this._bounce = v;
+    }
+
+    public get bounce():number
+    {
+        return this._bounce;
+    }
+
     constructor(){}
 
-    public initData():void{
-        this.bounce = 0;
-    }
+    // public initData():void{
+    //     this.bounce = 0;
+    // }
 
     public set proType(pt:number){
         this.proType_ = pt;

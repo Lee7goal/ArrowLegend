@@ -3,9 +3,10 @@ import GameHitBox from "../GameHitBox";
 import GamePro from "../GamePro";
 import GameBG from "../GameBG";
 import { GameAI } from "./GameAI";
-import HeroArrowAI from "./HeroArrowAI";
 import ArrowGameMove from "../move/ArrowGameMove";
 import HeroArrowMove0 from "../move/HeroArrowMove0";
+import HeroBullet from "../player/HeroBullet";
+import HeroArrowAI from "./HeroArrowAI";
 
 /**射击器*/
 export default class Shooting {
@@ -47,7 +48,7 @@ export default class Shooting {
         return gp;
     }
 
-    public short_arrow(speed_: number, r_: number, pro: GamePro, proType_: number,dx:number,dy:number) {
+    public short_arrow0(speed_: number, r_: number, pro: GamePro, proType_: number,dx:number,dy:number) {
         var bo = this.getBullet(proType_);
         //bo.sp3d.transform.localPositionY = -1;
         bo.setXY2DBox(pro.hbox.x + dx, pro.hbox.y + dy);
@@ -56,7 +57,18 @@ export default class Shooting {
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
         Game.map0.addChild(bo.sp2d);
+    }
+
+    public short_arrow(speed_: number, r_: number, pro: GamePro) {
+        var bo = HeroBullet.getBullet();
+        // var bo = new HeroBullet();
+        bo.sp3d.transform.localPositionY = 0.1;
+        bo.setXY2D(pro.pos2.x, pro.pos2.z);
+        bo.setSpeed(speed_);
+        bo.rotation(r_);
+        bo.gamedata.bounce = pro.gamedata.bounce;
         bo.startAi();
+        Game.layer3d.addChild(bo.sp3d);
     }
 
     public attackOk(): boolean {

@@ -32,7 +32,7 @@
 					"layer":0,
 					"position":[
 						0,
-						0,
+						0.6,
 						0
 					],
 					"rotation":[
@@ -47,7 +47,7 @@
 						1
 					],
 					"isPerformanceMode":true,
-					"duration":10,
+					"duration":0.3,
 					"looping":false,
 					"prewarm":false,
 					"startDelayType":0,
@@ -55,9 +55,9 @@
 					"startDelayMin":0,
 					"startDelayMax":0,
 					"startLifetimeType":0,
-					"startLifetimeConstant":10,
+					"startLifetimeConstant":0.3,
 					"startLifetimeConstantMin":0,
-					"startLifetimeConstantMax":10,
+					"startLifetimeConstantMax":0.3,
 					"startLifetimeGradient":{
 						"startLifetimes":[]
 					},
@@ -67,10 +67,10 @@
 					"startLifetimeGradientMax":{
 						"startLifetimes":[]
 					},
-					"startSpeedType":1,
-					"startSpeedConstant":0,
+					"startSpeedType":0,
+					"startSpeedConstant":4,
 					"startSpeedConstantMin":0,
-					"startSpeedConstantMax":0,
+					"startSpeedConstantMax":4,
 					"threeDStartSize":false,
 					"startSizeType":2,
 					"startSizeConstant":0.1,
@@ -142,7 +142,7 @@
 					"playOnAwake":true,
 					"maxParticles":100,
 					"autoRandomSeed":true,
-					"randomSeed":2.076094E+09,
+					"randomSeed":1.017556E+09,
 					"emission":{
 						"enable":true,
 						"emissionRate":50,

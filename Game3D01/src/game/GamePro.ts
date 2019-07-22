@@ -12,20 +12,19 @@ import SysEnemy from "../main/sys/SysEnemy";
 import SysBullet from "../main/sys/SysBullet";
 import { GameAI } from "./ai/GameAI";
 import { GameMove } from "./move/GameMove";
+import { ui } from "./../ui/layaMaxUI";
+import { BaseSkill } from "./skill/BaseSkill";
+import SplitSkill from "./skill/SplitSkill";
 
 export default class GamePro extends Laya.EventDispatcher {
-    public curLen: number;
-    public moveLen: number;
-    public sysEnemy: SysEnemy;
-    public sysBullet: SysBullet;
 
-
-    public hurtValue: number = 10;
+    public hurtValue: number = 50;
     //  id  :number;
     //  name:String;
     private gamedata_: GameData;
     private movef: GameMove;
     private gameAI: GameAI;
+    private skill: BaseSkill;
 
     private speed_: number = 6;
     private hbox_: GameHitBox;
@@ -40,16 +39,37 @@ export default class GamePro extends Laya.EventDispatcher {
 
     private _bloodUI: Blood;
     private _footCircle: FootCircle;
+    public _bulletShadow: ui.test.BulletShadowUI;
     private rotationEulerY: number = 0;
     /**关键帧比例0.0-1.0 */
     private keyNum: number = -1;//关键帧比例0.0-1.0
-
-    public flag: number = 0;
-    constructor(proType_: number) {
+    constructor(proType_: number, hp: number = 600) {
         super();
         this.gamedata_ = new GameData();
+        this.gamedata_.hp = this.gamedata_.maxhp = hp;
         this.gamedata_.proType = proType_;
         this.rotationEulerY = 0;
+
+        // if (this.gamedata_.proType == GameProType.MonstorArrow || this.gamedata_.proType == GameProType.RockGolem_Blue)  {
+        //     this._bulletShadow = new ui.test.BulletShadowUI();
+        //     Game.footLayer.addChild(this._bulletShadow);
+        //     if (this.gamedata_.proType == GameProType.MonstorArrow)  {
+        //         this.setShadowSize(19);
+        //     }
+        //     else if(this.gamedata_.proType == GameProType.RockGolem_Blue)
+        //     {
+        //         // this._bulletShadow.scale(2, 2);
+        //     }
+        // }
+    }
+
+    public setShadowSize(ww:number):void
+    {
+        this._bulletShadow && this._bulletShadow.img.size(ww,ww);
+    }
+
+    public removeShodow(): void {
+        this._bulletShadow && this._bulletShadow.removeSelf();
     }
 
     public get bloodUI(): Blood {
@@ -60,7 +80,8 @@ export default class GamePro extends Laya.EventDispatcher {
         this.keyNum = n;
     }
 
-    public initBlood(): void {
+    public initBlood(hp:number): void {
+        this.gamedata.hp = this.gamedata.maxhp = hp;
         if (!this._bloodUI) {
             this._bloodUI = new Blood();
         }
@@ -79,6 +100,24 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public hurt(hurt: number): void {
         this._bloodUI && this._bloodUI.update(hurt);
+        if (this.gamedata_.proType == GameProType.Hero || this.gamedata_.proType == GameProType.RockGolem_Blue)  {
+            let hitEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh"));
+            this.addSprite3DToAvatarNode(this.gamedata_.proType == GameProType.Hero ? "joint2" : "guadian", hitEff);
+            setTimeout(() => {
+                hitEff.removeSelf();
+            }, 800);
+        }
+    }
+
+   
+
+    die(): void {
+        this.play(GameAI.Die);
+        this.stopAi();
+        this._bulletShadow && this._bulletShadow.removeSelf();
+        if (Game.map0.Eharr.indexOf(this.hbox) >= 0) {
+            Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
+        }
     }
 
     public setSp3d(sp: Sprite3D): void {
@@ -93,16 +132,6 @@ export default class GamePro extends Laya.EventDispatcher {
         }
 
         this.on(Game.Event_Hit, this, this.hit);
-    }
-
-    public setUI(): void {
-        if (this.gamedata.proType == GameProType.Hero) {
-            this.initBlood();
-            this.addFootCircle();
-        }
-        else if (this.gamedata.proType == GameProType.RockGolem_Blue) {
-            this.initBlood();
-        }
     }
 
     public get animator(): Animator {
@@ -168,6 +197,14 @@ export default class GamePro extends Laya.EventDispatcher {
         this.movef = gamemove;
     }
 
+    public setSkill(skill: BaseSkill) {
+        this.skill = skill;
+    }
+
+    public getSkill(): BaseSkill  {
+        return this.skill;
+    }
+
     public setGameAi(gameAI: GameAI): GameAI {
         this.gameAI = gameAI;
         return this.gameAI;
@@ -206,6 +243,12 @@ export default class GamePro extends Laya.EventDispatcher {
 
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
+
+        if (this.gamedata_.proType == GameProType.RockGolem_Blue)  {
+            if (actionstr == "Idle")  {
+                // console.log("怪的动作",actionstr);
+            }
+        }
 
         if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero) {
             setTimeout(() => {
@@ -247,7 +290,7 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public rotation(n: number): void {
-        if (!n)  {
+        if (!n) {
             return;
         }
         if (this.gamedata.hp <= 0) {
@@ -296,6 +339,8 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public ai(): void {
+        this.ac1();
+
         //按照达叔的视觉要求 修正人物跑步动作的播放速度
         if (this.animator && this.animator.speed > 0 && this.gamedata_.proType == GameProType.Hero) {
             if (this.acstr_ == GameAI.Run) {
@@ -359,6 +404,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
+        this._bulletShadow && this._bulletShadow.pos(this.hbox_.cx, this.hbox_.cy);
 
         //脚下的烟雾
         if (this.gamedata.proType == GameProType.Hero) {
@@ -510,7 +556,7 @@ export class RunSmog extends Laya.Image {
         this.anchorY = 0.5;
     }
 
-    static create(xx: number, yy: number): RunSmog  {
+    static create(xx: number, yy: number): RunSmog {
         var smog: RunSmog = Laya.Pool.getItemByClass(RunSmog.flag, RunSmog);
         smog.pos(xx, yy);
         Game.footLayer.addChild(smog);
