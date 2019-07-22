@@ -21,46 +21,6 @@ export default class GameShaderObj extends Laya.EventDispatcher {
         }
     }
 
-    public setShader(sp3d:Laya.Sprite3D):void{
-        //(this.dude.getChildAt(0).getChildAt(0) as Laya.SkinnedMeshSprite3D).skinnedMeshRenderer.sharedMaterials = this.s1;        
-        //console.log(sp3d.getChildAt(0) );
-        //console.log(sp3d.getChildAt(0).getChildAt(0) );
-        sp3d.transform.scale = new Laya.Vector3(4,4,4);
-
-        var ms  = sp3d.getChildAt(0).getChildAt(0) as Laya.MeshSprite3D;
-        this.ms = ms;
-        this.s1 = ms.meshRenderer.sharedMaterials;
-        this.s2 = [];
-        for (let i = 0; i < this.s1.length; i++) {
-            let cm:CustomMaterial = new CustomMaterial();
-            let bm = this.s1[i] as Laya.UnlitMaterial;
-            console.log(cm);
-            console.log(bm);            
-            //cm.diffuseTexture = bm._shaderValues.getData()[33];
-            console.log(bm._shaderValues.getData()[33].url);
-            Laya.Texture2D.load(bm._shaderValues.getData()[33].url, Laya.Handler.create(null, function(tex:Laya.Texture2D):void{
-                cm.diffuseTexture = tex;
-            }));
-            cm.marginalColor = new Laya.Vector3(1, 0.7, 0);
-            //Laya.Shader3D.propertyNameToID("texture2D");
-            //cm._shaderValues.setTexture(33,bm._shaderValues.getTexture(33));
-            //cm.diffuseTexture = bm._shaderValues.getTexture(CustomMaterial.DIFFUSETEXTURE);
-            //bm._shaderValues.getTexture()
-            this.s2.push(cm);
-        }
-        ms.meshRenderer.sharedMaterials = this.s2;
-        Laya.stage.frameLoop(5,this,this.ac);
-        
-    }
-
-    ac():void{
-        if(Math.random()>0.5){
-            this.ms.meshRenderer.sharedMaterials = this.s1;
-        }else{            
-            this.ms.meshRenderer.sharedMaterials = this.s2;
-        }
-    }
-
     private initShader():void {
         var attributeMap:Object = {
             'a_Position': Laya.VertexMesh.MESH_POSITION0, 

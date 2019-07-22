@@ -8,6 +8,7 @@ import MonsterShooting from "./MonsterShooting";
 import MonsterBulletAI from "./MonsterBulletAI";
 import SplitSkill from "../skill/SplitSkill";
 import Monster from "../player/Monster";
+import MonsterShader from "../player/MonsterShader";
 
 //巡逻&攻击
 export default class MonsterAI1 extends GameAI {
@@ -95,7 +96,17 @@ export default class MonsterAI1 extends GameAI {
                 this.pro.play(GameAI.TakeDamage);
             }
         }
+
+        var ms = <Monster>this.pro;        
+        if(MonsterShader.map[ms.sysEnemy.enemymode]){
+            var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
+            shader.setShader0(this.pro.sp3d,1);
+            var now = Game.executor.getWorldNow();
+            this.shaders = now + 250;
+        }
     }
+
+    private shaders:number = 0;
 
     die(): void {
         this.pro.die();
@@ -104,6 +115,17 @@ export default class MonsterAI1 extends GameAI {
     private aiCount: number = Math.floor(Math.random() * 5);
 
     exeAI(pro: GamePro): boolean {
+        var now = Game.executor.getWorldNow();
+
+        if(this.shaders>0 && now >= this.shaders){
+            this.shaders = 0;
+            var ms = <Monster>this.pro;        
+            if(MonsterShader.map[ms.sysEnemy.enemymode]){
+                var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
+                shader.setShader0(this.pro.sp3d,0);
+            }
+        }
+
         if (this.pro.gamedata.hp <= 0) {
             return;
         }
@@ -116,7 +138,7 @@ export default class MonsterAI1 extends GameAI {
             return;
         }
 
-        var now = Game.executor.getWorldNow();
+        
         if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) < GameBG.ww2) {
             if (now > this.collisionCd) {
                 if (Game.hero.hbox.linkPro_) {

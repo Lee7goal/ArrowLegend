@@ -1,8 +1,7 @@
-import { ui } from "./../ui/layaMaxUI";
-import GameConfig from "../GameConfig";
-import CustomMaterial from "../game/CustomMaterial";
+import CustomMaterial from "../../../game/CustomMaterial";
 
-export default class GameUI3 extends ui.test.TestSceneUI {
+
+export default class GameUI3 extends Laya.Sprite {
     private rotation_3d:Laya.Vector3 = new Laya.Vector3(0, 0.01, 0);
 
     s1:any;

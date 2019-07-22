@@ -10,6 +10,7 @@ import MoveType from "../move/MoveType";
 import AttackType from "../ai/AttackType";
 import App from "../../core/App";
 import SysSkill from "../../main/sys/SysSkill";
+import MonsterShader from "./MonsterShader";
 
 export default class Monster extends GamePro {
     static TAG:string = "Monster";
@@ -52,6 +53,16 @@ export default class Monster extends GamePro {
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
         let sysSkill: SysSkill;
         var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+        
+        // console.log(sysEnemy.enemymode);
+        // console.log(sp);
+        //sp._children.length
+        if( ! MonsterShader.map[sysEnemy.enemymode]){
+            //console.log(sysEnemy.enemymode ,"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
+            MonsterShader.map[sysEnemy.enemymode] = new MonsterShader(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+        }
+        
+
         if (!hp)  {
             hp = sysEnemy.enemyHp;
             if (sysEnemy.skillId > 0)  {
