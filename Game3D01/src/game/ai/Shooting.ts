@@ -5,6 +5,7 @@ import GameBG from "../GameBG";
 import { GameAI } from "./GameAI";
 import HeroArrowAI from "./HeroArrowAI";
 import ArrowGameMove from "../move/ArrowGameMove";
+import HeroArrowMove0 from "../move/HeroArrowMove0";
 
 /**射击器*/
 export default class Shooting {
@@ -14,6 +15,8 @@ export default class Shooting {
     public attackCd: number = 1200;
     /**下次攻击时间*/
     public st: number = 0;
+    /**上次攻击时间*/
+    public et: number = 0;
     /**当前时间*/
     public now: number = 0;
     /**攻击前摇时间*/
@@ -30,7 +33,8 @@ export default class Shooting {
             var bullet: Laya.Sprite3D;
             bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
             gp.setSp3d(bullet);
-            gp.setGameMove(new ArrowGameMove());
+            //gp.setGameMove(new ArrowGameMove());
+            gp.setGameMove(new HeroArrowMove0());
             gp.setGameAi(new HeroArrowAI(gp));
             // bullet.getChildAt(0).addComponent(BulletRotateScript);
             //Shooting.bulletCount++;
@@ -43,15 +47,15 @@ export default class Shooting {
         return gp;
     }
 
-    public short_arrow(speed_: number, r_: number, pro: GamePro, proType_: number) {
+    public short_arrow(speed_: number, r_: number, pro: GamePro, proType_: number,dx:number,dy:number) {
         var bo = this.getBullet(proType_);
-        bo.sp3d.transform.localPositionY = 0.1;
-        bo.setXY2D(pro.pos2.x, pro.pos2.z);
+        //bo.sp3d.transform.localPositionY = -1;
+        bo.setXY2DBox(pro.hbox.x + dx, pro.hbox.y + dy);
         bo.setSpeed(speed_);
         bo.rotation(r_);
-        // (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
+        Game.map0.addChild(bo.sp2d);
         bo.startAi();
     }
 
@@ -62,7 +66,7 @@ export default class Shooting {
 
     public starAttack(pro: GamePro, acstr: string): boolean {
         this.pro = pro;
-        if (this.attackOk()) {
+        if (this.attackOk()) {            
             this.st = this.now + this.attackCd;
             this.scd = 0;
             pro.play(acstr);
@@ -76,9 +80,10 @@ export default class Shooting {
         return false;
     }
 
-    public cancelAttack(): void {
-        Laya.stage.timer.clear(this, this.ac0);
+    public cancelAttack(): void {       
+        this.st = this.et;
         this.scd = 0;
+        Laya.stage.timer.clear(this, this.ac0);
     }
 
     private ac0(): void {
@@ -91,6 +96,7 @@ export default class Shooting {
             if (this.scd == 0) {
                 this.scd = 1;
                 this.pro.event(Game.Event_Short, null);
+                this.et = this.st;
             }
         }
     }

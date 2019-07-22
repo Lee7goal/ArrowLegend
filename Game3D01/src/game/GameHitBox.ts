@@ -1,4 +1,5 @@
 import GamePro from "./GamePro";
+import MaoLineData from "./MaoLineData";
 
 export default class GameHitBox {
 
@@ -154,6 +155,32 @@ export default class GameHitBox {
         var vx =  my.x - target.x ;
         var vy =  my.y - target.y ;
         return Math.sqrt(vx*vx + vy*vy);
+    }
+
+    public getLeft(l_:MaoLineData=null):MaoLineData{        
+        return this.getLine(this.left,this.top,this.left,this.bottom,l_);
+    }
+
+    public getRight(l_:MaoLineData=null):MaoLineData{        
+        return this.getLine(this.right,this.top,this.right,this.bottom,l_);
+    }
+
+    public getTop(l_:MaoLineData=null):MaoLineData{        
+        return this.getLine(this.left,this.top,this.right,this.top,l_);
+    }
+
+    public getBottom(l_:MaoLineData=null):MaoLineData{        
+        return this.getLine(this.left,this.bottom,this.right,this.bottom,l_);
+    }
+
+    private getLine(x0:number,y0:number,x1:number,y1:number,l_:MaoLineData):MaoLineData{
+        var l = l_;
+        if(!l){
+            l = new MaoLineData(x0,y0,x1,y1);
+        }else{
+            l.reset(x0,y0,x1,y1);
+        }        
+        return l;
     }
 }
 
