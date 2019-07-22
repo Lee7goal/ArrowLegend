@@ -7,6 +7,7 @@ import SysBullet from "../../main/sys/SysBullet";
 import App from "../../core/App";
 import MonsterBulletAI from "./MonsterBulletAI";
 import MonsterBulletMove from "../move/MonsterBulletMove";
+import MonsterBullet from "../player/MonsterBullet";
 
 /**怪射击器*/
 export default class MonsterShooting {
@@ -34,32 +35,9 @@ export default class MonsterShooting {
         }
     }
 
-    private getBullet(proType_: number): GamePro {
-
-        var gp: GamePro;
-        // if (Game.HeroArrows.length <= 0) {
-        gp = new GamePro(proType_);
-        gp.flag = Math.random();
-        var bullet: Laya.Sprite3D;
-        bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + this._sysBullet.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
-        gp.setSp3d(bullet);
-        gp.sysBullet = this._sysBullet;
-        gp.gamedata.bounce = this._sysBullet.ejectionNum;
-        gp.setGameMove(new MonsterBulletMove());
-        gp.setGameAi(new MonsterBulletAI(gp));
-        bullet.getChildAt(0).addComponent(BulletRotateScript);
-        //Shooting.bulletCount++;
-        //console.log("Shooting.bulletCount " , Shooting.bulletCount);
-        // } else {
-        //     gp = Game.HeroArrows.shift();
-        //     gp.gamedata.proType = proType_;
-        //     //gp.gamedata.rspeed = 0;
-        // }
-        return gp;
-    }
-
     public short_arrow(r_: number, pro: GamePro, proType_: number,range:number = 0) {
-        var bo = this.getBullet(proType_);
+        var bo = MonsterBullet.getBullet();
+        bo.setBubble(this._sysBullet);
         bo.sp3d.transform.localPositionY = 0.1;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(this._sysBullet.bulletSpeed);

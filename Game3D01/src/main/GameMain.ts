@@ -16,6 +16,7 @@ import FlyGameMove from "../game/move/FlyGameMove";
 import SkillType from "../game/skill/SkillType";
 import SplitSkill from "../game/skill/SplitSkill";
 import SysSkill from "./sys/SysSkill";
+import Game from "../game/Game";
 var REG: Function = Laya.ClassUtils.regClass;
     export default class GameMain{
         
@@ -28,8 +29,9 @@ var REG: Function = Laya.ClassUtils.regClass;
         this.initTable(arr);
         this.regClass();
         Laya.stage.addChild(App.layerManager);
-        GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
+        Game.scenneM.showMain();
     }
+    private _mainScene:MainScene;
 
     private initTable(arr: any[]):void{
         App.tableManager.register(SysChapter.NAME,SysChapter);

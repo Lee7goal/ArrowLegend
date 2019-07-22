@@ -47,7 +47,6 @@ class Main {
 	}
 
 	private onHandler():void{
-		console.log(Laya.loader.getRes('bg/rockerBall.png'));
 		//加载IDE指定的场景
 		new GameMain();
 	}

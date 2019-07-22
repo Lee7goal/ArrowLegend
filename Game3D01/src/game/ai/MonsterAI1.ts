@@ -7,10 +7,11 @@ import GameProType from "../GameProType";
 import MonsterShooting from "./MonsterShooting";
 import MonsterBulletAI from "./MonsterBulletAI";
 import SplitSkill from "../skill/SplitSkill";
+import Monster from "../player/Monster";
 
 //巡逻&攻击
 export default class MonsterAI1 extends GameAI {
-    private pro: GamePro;
+    private pro: Monster;
     private shooting: MonsterShooting = new MonsterShooting();
 
     private aicd = 0;
@@ -20,7 +21,7 @@ export default class MonsterAI1 extends GameAI {
 
 
 
-    constructor(pro: GamePro) {
+    constructor(pro: Monster) {
         super();
         this.pro = pro;
         this.pro.play(GameAI.Idle);

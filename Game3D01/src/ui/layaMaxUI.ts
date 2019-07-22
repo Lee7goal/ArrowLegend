@@ -66,14 +66,6 @@ export module ui.test {
         }
     }
     REG("ui.test.HeroFootUI",HeroFootUI);
-    export class mainSceneUI extends Scene {
-        constructor(){ super()}
-        createChildren():void {
-            super.createChildren();
-            this.loadScene("test/mainScene");
-        }
-    }
-    REG("ui.test.mainSceneUI",mainSceneUI);
     export class mainUIUI extends Scene {
 		public topBox:Laya.Box;
 		public btn_xin:Laya.Button;
@@ -141,14 +133,6 @@ export module ui.test {
         }
     }
     REG("ui.test.talentUI",talentUI);
-    export class TestSceneUI extends Scene {
-        constructor(){ super()}
-        createChildren():void {
-            super.createChildren();
-            this.loadScene("test/TestScene");
-        }
-    }
-    REG("ui.test.TestSceneUI",TestSceneUI);
     export class worldUI extends View {
 		public bg:Laya.Image;
 		public dao:Laya.Image;

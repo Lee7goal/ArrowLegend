@@ -19,6 +19,9 @@ import SysSkill from "../main/sys/SysSkill";
 import SplitSkill from "./skill/SplitSkill";
 import HeadTranslateScript from "./controllerScript/HeadTranslateScript";
 import FootRotateScript from "./controllerScript/FootRotateScript";
+import Monster from "./player/Monster";
+import Hero from "./player/Hero";
+import SceneManager from "../main/SceneManager";
 
 export default class Game {
 
@@ -41,7 +44,7 @@ export default class Game {
     static scene3d: Laya.Scene3D;
     //主英雄
     //static hero:Laya.Sprite3D;
-    static hero: GamePro;
+    static hero: Hero = new Hero();
     //主敌人    
     static e0_: GamePro;
 
@@ -77,6 +80,8 @@ export default class Game {
     static footLayer: Laya.Sprite = new Laya.Sprite();
     static bloodLayer: Laya.Sprite = new Laya.Sprite();
     static frontLayer: Laya.Sprite = new Laya.Sprite();
+
+    static scenneM:SceneManager = new SceneManager();
 
 
     /**脚底红圈 */
@@ -139,46 +144,50 @@ export default class Game {
         //Laya.Scene3D
     }
 
-    static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): GamePro {
-        let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
-        let sysSkill: SysSkill;
-        var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
-        if (!hp)  {
-            hp = sysEnemy.enemyHp;
-            if (sysEnemy.skillId > 0)  {
-                sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME, sysEnemy.skillId);
-                if (sysSkill.effectType == SkillType.SPLIT)  {
-                    hp = sysEnemy.enemyHp / sysSkill.effect1;
-                }
-            }
-        }
-        var gpro = new GamePro(GameProType.RockGolem_Blue, hp);
-        gpro.sysEnemy = sysEnemy;
-        gpro.setSp3d(sp);
+    // static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
+    //     let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
+    //     let sysSkill: SysSkill;
+    //     var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+    //     if (!hp)  {
+    //         hp = sysEnemy.enemyHp;
+    //         if (sysEnemy.skillId > 0)  {
+    //             sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME, sysEnemy.skillId);
+    //             if (sysSkill.effectType == SkillType.SPLIT)  {
+    //                 hp = sysEnemy.enemyHp / sysSkill.effect1;
+    //             }
+    //         }
+    //     }
+    //     var gpro = new Monster(hp);
+    //     gpro.sysEnemy = sysEnemy;
+    //     gpro.setSp3d(sp);
 
-        var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.attackType);
-        var MONS: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
+    //     if(sysEnemy.attackType > 0)
+    //     {
+    //         var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.attackType);
+    //         gpro.setGameAi(new ATT(gpro));
+    //     }
+    //     if(sysEnemy.moveType > 0)
+    //     {
+    //         var MONS: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
+    //         gpro.setGameMove(new MONS());
+    //     }
+    //     if (sysSkill)  {
+    //         var SKILL: any = Laya.ClassUtils.getClass(SkillType.TAG + sysSkill.effectType);
+    //         gpro.setSkill(new SKILL());
+    //     }
 
+    //     let tScale: number = sysEnemy.zoomMode / 100;
+    //     tScale = mScale ? mScale : tScale;
+    //     gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
+    //     Game.map0.Eharr.push(gpro.hbox);//加入敌人组
+    //     Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
+    //     Game.map0.addChild(gpro.sp2d);
+    //     Game.layer3d.addChild(sp);
+    //     gpro.setShadowSize(sysEnemy.zoomShadow);
 
-        gpro.setGameAi(new ATT(gpro));
-        gpro.setGameMove(new MONS());
-        if (sysSkill)  {
-            var SKILL: any = Laya.ClassUtils.getClass(SkillType.TAG + sysSkill.effectType);
-            gpro.setSkill(new SKILL());
-        }
-
-        let tScale: number = sysEnemy.zoomMode / 100;
-        tScale = mScale ? mScale : tScale;
-        gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
-        Game.map0.Eharr.push(gpro.hbox);//加入敌人组
-        Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
-        Game.map0.addChild(gpro.sp2d);
-        Game.layer3d.addChild(sp);
-        gpro.setShadowSize(sysEnemy.zoomShadow);
-
-        gpro.setXY2DBox(xx, yy);
-        gpro.startAi();
-        gpro.setUI();
-        return gpro;
-    }
+    //     gpro.setXY2DBox(xx, yy);
+    //     gpro.startAi();
+    //     gpro.setUI();
+    //     return gpro;
+    // }
 }

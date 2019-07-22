@@ -3,8 +3,8 @@ import GameHitBox from "../GameHitBox";
 import GamePro from "../GamePro";
 import GameBG from "../GameBG";
 import { GameAI } from "./GameAI";
-import HeroArrowAI from "./HeroArrowAI";
 import ArrowGameMove from "../move/ArrowGameMove";
+import HeroBullet from "../player/HeroBullet";
 
 /**射击器*/
 export default class Shooting {
@@ -22,37 +22,16 @@ export default class Shooting {
 
     private pro: GamePro;
 
-    private getBullet(proType_: number): GamePro {
-        var gp: GamePro;
-        if (Game.HeroArrows.length <= 0) {
-            gp = new GamePro(proType_);
-
-            var bullet: Laya.Sprite3D;
-            bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
-            gp.setSp3d(bullet);
-            gp.setGameMove(new ArrowGameMove());
-            gp.setGameAi(new HeroArrowAI(gp));
-            // bullet.getChildAt(0).addComponent(BulletRotateScript);
-            //Shooting.bulletCount++;
-            //console.log("Shooting.bulletCount " , Shooting.bulletCount);
-        } else {
-            gp = Game.HeroArrows.shift();
-            gp.gamedata.proType = proType_;
-            //gp.gamedata.rspeed = 0;
-        }
-        return gp;
-    }
-
-    public short_arrow(speed_: number, r_: number, pro: GamePro, proType_: number) {
-        var bo = this.getBullet(proType_);
+    public short_arrow(speed_: number, r_: number, pro: GamePro) {
+        var bo = HeroBullet.getBullet();
+        // var bo = new HeroBullet();
         bo.sp3d.transform.localPositionY = 0.1;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(speed_);
         bo.rotation(r_);
-        // (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
         bo.gamedata.bounce = pro.gamedata.bounce;
-        Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
+        Game.layer3d.addChild(bo.sp3d);
     }
 
     public attackOk(): boolean {

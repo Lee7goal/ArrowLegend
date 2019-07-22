@@ -1,5 +1,5 @@
-import GamePro from "../GamePro";
+import Monster from "../player/Monster";
 
 export abstract class BaseSkill {
-    exeSkill(monster:GamePro):void{}
+    exeSkill(monster:Monster):void{}
 }

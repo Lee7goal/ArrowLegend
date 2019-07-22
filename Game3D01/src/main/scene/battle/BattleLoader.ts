@@ -6,6 +6,8 @@ import SysEnemy from "../../sys/SysEnemy";
 import GridType from "../../../game/bg/GridType";
 import SysBullet from "../../sys/SysBullet";
 import { ui } from "../../../ui/layaMaxUI";
+import BattleScene from "./BattleScene";
+import Game from "../../../game/Game";
 
 export default class BattleLoader {
     constructor() { }
@@ -28,7 +30,7 @@ export default class BattleLoader {
     }
 
     public load(): void  {
-
+        Game.ro && Game.ro.removeSelf();
         if(!this._loading)
         {
             this._loading = new ui.test.BattleLoadingUI();
@@ -47,7 +49,7 @@ export default class BattleLoader {
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        // this._configId = 101005;
+        // this._configId = 100902;
         console.log("当前地图",this._mapId,this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
@@ -111,7 +113,8 @@ export default class BattleLoader {
     }
 
     onComplete(): void {
-        Laya.Scene.open("test/TestScene.scene");
+        Game.scenneM.showBattle();
+        Game.scenneM.battle.init();
         this._loading.removeSelf();
     }
 }

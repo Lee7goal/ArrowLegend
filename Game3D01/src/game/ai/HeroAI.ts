@@ -24,21 +24,10 @@ export default class HeroAI extends GameAI {
         }
     }
 
-    onDie(key):void{
-        Game.executor && Game.executor.stop_();//全部停止
-    }
-
-    
     hit(pro: GamePro) {
-        if (Game.hero.acstr == GameAI.Idle) {
-            // Game.hero.play(GameAI.TakeDamage);
-        }
         Game.hero.hurt(pro.hurtValue);
         if (Game.hero.gamedata.hp <= 0) {
-            this.stopAi();
-            Game.hero.setKeyNum(1);
-            Game.hero.once(Game.Event_KeyNum,this,this.onDie);
-            Game.hero.play(GameAI.Die);
+            Game.hero.die();
         }
     }
 
@@ -57,7 +46,7 @@ export default class HeroAI extends GameAI {
     }
 
     public short(): void {
-        this.shootin.short_arrow(40, Game.hero.face3d, Game.hero, GameProType.HeroArrow);
+        this.shootin.short_arrow(40, Game.hero.face3d, Game.hero);
         //this.short_arrow(40,Game.hero.face3d);        
         // this.short_arrow(40,Game.hero.face3d + Math.PI/6);
         // this.short_arrow(40,Game.hero.face3d - Math.PI/6);

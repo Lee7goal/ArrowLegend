@@ -178,6 +178,7 @@ export default class GameBG extends Laya.Sprite {
     }
 
     public drawR(hasBoss:boolean = false): void {
+        this._box.removeChildren();
         var img: Image;
         var ww: number = GameBG.ww;
         var k: number = 0;

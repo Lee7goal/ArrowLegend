@@ -43,6 +43,8 @@ export default class ArrowGameMove extends GameMove {
             if (pro.gamedata.bounce <= 0) {
                 pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
                 pro.setSpeed(0);
+                pro.die();
+                console.log("碰住地面了");
                 return false;
             }
             pro.gamedata.bounce--;

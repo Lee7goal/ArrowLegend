@@ -1,6 +1,6 @@
 import Sprite = Laya.Sprite;
 export default class LayerManager extends Sprite {
-    sceneLayer: Sprite = Laya.Scene.root;
+    sceneLayer: Sprite = new Sprite();
     panelLayer: Sprite = new Sprite();
     faceLayer: Sprite = new Sprite();
     alertLayer: Sprite = new Sprite();

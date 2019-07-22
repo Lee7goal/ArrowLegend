@@ -5,11 +5,12 @@ import GameBG from "../GameBG";
 import SysSkill from "../../main/sys/SysSkill";
 import App from "../../core/App";
 import SkillType from "./SkillType";
+import Monster from "../player/Monster";
 
 export default class SplitSkill extends BaseSkill {
 
     private isExe: boolean = false;
-    exeSkill(monster: GamePro): void {
+    exeSkill(monster: Monster): void {
         // if(this.isExe)
         // {
         //     return;
@@ -60,9 +61,9 @@ export default class SplitSkill extends BaseSkill {
         }
         let flag: number = monster.splitTimes + 1;
         let hp: number = monster.gamedata.maxhp / 2;
-        let monster1: GamePro = Game.getMonster(monster.sysEnemy.id, col1 * GameBG.ww, row1 * GameBG.ww, 0.5, hp);
+        let monster1: Monster = Monster.getMonster(monster.sysEnemy.id, col1 * GameBG.ww, row1 * GameBG.ww, 0.5, hp);
         monster1.splitTimes = flag;
-        let monster2: GamePro = Game.getMonster(monster.sysEnemy.id, col2 * GameBG.ww, row2 * GameBG.ww, 0.5, hp);
+        let monster2: Monster = Monster.getMonster(monster.sysEnemy.id, col2 * GameBG.ww, row2 * GameBG.ww, 0.5, hp);
         monster2.splitTimes = flag;
         // Game.e0_ = monster2;
     }

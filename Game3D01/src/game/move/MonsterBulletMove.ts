@@ -3,11 +3,12 @@ import GameHitBox from "../GameHitBox";
 import GameProType from "../GameProType";
 import GamePro from "../GamePro";
 import { GameMove } from "./GameMove";
+import MonsterBullet from "../player/MonsterBullet";
 
 export default class MonsterBulletMove extends GameMove {
 
     private future: GameHitBox = new GameHitBox(2, 2);
-    public move2d(n: number, pro: GamePro, speed: number): boolean {
+    public move2d(n: number, pro: MonsterBullet, speed: number): boolean {
         pro.setSpeed(speed);
         if (pro.speed <= 0) return;
 
@@ -119,7 +120,7 @@ export default class MonsterBulletMove extends GameMove {
         }
     }
 
-    private hitEffect(pro: GamePro): void {
+    private hitEffect(pro: MonsterBullet): void {
         pro.setSpeed(0);
         if (pro.sysBullet.boomEffect > 0) {
             let boomEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/" + pro.sysBullet.boomEffect + "/monster.lh"));

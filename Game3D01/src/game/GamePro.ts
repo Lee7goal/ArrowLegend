@@ -17,13 +17,6 @@ import { BaseSkill } from "./skill/BaseSkill";
 import SplitSkill from "./skill/SplitSkill";
 
 export default class GamePro extends Laya.EventDispatcher {
-    public splitTimes: number;
-
-    public curLen: number;
-    public moveLen: number;
-    public sysEnemy: SysEnemy;
-    public sysBullet: SysBullet;
-
 
     public hurtValue: number = 50;
     //  id  :number;
@@ -46,12 +39,10 @@ export default class GamePro extends Laya.EventDispatcher {
 
     private _bloodUI: Blood;
     private _footCircle: FootCircle;
-    private _bulletShadow: ui.test.BulletShadowUI;
+    public _bulletShadow: ui.test.BulletShadowUI;
     private rotationEulerY: number = 0;
     /**关键帧比例0.0-1.0 */
     private keyNum: number = -1;//关键帧比例0.0-1.0
-
-    public flag: number = 0;
     constructor(proType_: number, hp: number = 600) {
         super();
         this.gamedata_ = new GameData();
@@ -59,22 +50,22 @@ export default class GamePro extends Laya.EventDispatcher {
         this.gamedata_.proType = proType_;
         this.rotationEulerY = 0;
 
-        if (this.gamedata_.proType == GameProType.MonstorArrow || this.gamedata_.proType == GameProType.RockGolem_Blue)  {
-            this._bulletShadow = new ui.test.BulletShadowUI();
-            Game.footLayer.addChild(this._bulletShadow);
-            if (this.gamedata_.proType == GameProType.MonstorArrow)  {
-                this.setShadowSize(19);
-            }
-            else if(this.gamedata_.proType == GameProType.RockGolem_Blue)
-            {
-                // this._bulletShadow.scale(2, 2);
-            }
-        }
+        // if (this.gamedata_.proType == GameProType.MonstorArrow || this.gamedata_.proType == GameProType.RockGolem_Blue)  {
+        //     this._bulletShadow = new ui.test.BulletShadowUI();
+        //     Game.footLayer.addChild(this._bulletShadow);
+        //     if (this.gamedata_.proType == GameProType.MonstorArrow)  {
+        //         this.setShadowSize(19);
+        //     }
+        //     else if(this.gamedata_.proType == GameProType.RockGolem_Blue)
+        //     {
+        //         // this._bulletShadow.scale(2, 2);
+        //     }
+        // }
     }
 
     public setShadowSize(ww:number):void
     {
-        this._bulletShadow.img.size(ww,ww);
+        this._bulletShadow && this._bulletShadow.img.size(ww,ww);
     }
 
     public removeShodow(): void {
@@ -89,7 +80,8 @@ export default class GamePro extends Laya.EventDispatcher {
         this.keyNum = n;
     }
 
-    public initBlood(): void {
+    public initBlood(hp:number): void {
+        this.gamedata.hp = this.gamedata.maxhp = hp;
         if (!this._bloodUI) {
             this._bloodUI = new Blood();
         }
@@ -117,31 +109,12 @@ export default class GamePro extends Laya.EventDispatcher {
         }
     }
 
-    onDie(key):void
-    {
-        this.sp3d.removeSelf();
-        let dieEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/monsterDie/monster.lh"));
-        Game.layer3d.addChild(dieEff);
-        dieEff.transform.localPosition = this.sp3d.transform.localPosition;
-        setTimeout(() => {
-            dieEff.removeSelf();
-        }, 1000);
-    }
+   
 
     die(): void {
-        if(this.gamedata_.proType == GameProType.RockGolem_Blue)
-        {
-            Game.hero.setKeyNum(1);
-            Game.hero.once(Game.Event_KeyNum,this,this.onDie);
-        }
         this.play(GameAI.Die);
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        if (this.skill && this.skill instanceof SplitSkill) {
-            this.skill.exeSkill(this);
-            this.skill = null;
-
-        }
         if (Game.map0.Eharr.indexOf(this.hbox) >= 0) {
             Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
         }
@@ -159,16 +132,6 @@ export default class GamePro extends Laya.EventDispatcher {
         }
 
         this.on(Game.Event_Hit, this, this.hit);
-    }
-
-    public setUI(): void {
-        if (this.gamedata.proType == GameProType.Hero) {
-            this.initBlood();
-            this.addFootCircle();
-        }
-        else if (this.gamedata.proType == GameProType.RockGolem_Blue) {
-            this.initBlood();
-        }
     }
 
     public get animator(): Animator {
