@@ -96,7 +96,7 @@ export default class Monster extends GamePro {
         gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
-        Game.map0.addChild(gpro.sp2d);
+        //Game.map0.addChild(gpro.sp2d);
         Game.layer3d.addChild(sp);
         gpro.setShadowSize(sysEnemy.zoomShadow);
 

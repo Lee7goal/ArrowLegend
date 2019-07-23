@@ -56,7 +56,7 @@ export default class Shooting {
         bo.rotation(r_);
         bo.gamedata.bounce = pro.gamedata.bounce;
         Game.layer3d.addChild(bo.sp3d);
-        Game.map0.addChild(bo.sp2d);
+        //Game.map0.addChild(bo.sp2d);
     }
 
     public short_arrow(speed_: number, r_: number, pro: GamePro) {

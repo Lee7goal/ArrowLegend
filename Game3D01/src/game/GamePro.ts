@@ -225,9 +225,9 @@ export default class GamePro extends Laya.EventDispatcher {
     public get sp2d(): Laya.Sprite {
         if (!this.sp2d_) {
             this.sp2d_ = new Laya.Sprite();
-            this.sp2d.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, null, 0xfff000);
-            this.sp2d.x = this.hbox.x;
-            this.sp2d.y = this.hbox.y;
+            this.sp2d_.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, null, 0xfff000);
+            this.sp2d_.x = this.hbox.x;
+            this.sp2d_.y = this.hbox.y;
         }
         return this.sp2d_;
     }
