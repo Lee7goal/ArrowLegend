@@ -9,13 +9,19 @@ import SkillType from "../skill/SkillType";
 import MoveType from "../move/MoveType";
 import AttackType from "../ai/AttackType";
 import App from "../../core/App";
-import SysSkill from "../../main/sys/SysSkill";
+import JumpMove from "../move/JumpMove";
+import FlyGameMove from "../move/FlyGameMove";
+import SysBullet from "../../main/sys/SysBullet";
 
 export default class Monster extends GamePro {
     static TAG:string = "Monster";
 
     public splitTimes: number;
     public sysEnemy: SysEnemy;
+    public sysBullet:SysBullet;
+
+    public curLen: number;
+    public moveLen: number;
     constructor() {
         super(GameProType.RockGolem_Blue, 0);
         this._bulletShadow = new ui.test.BulletShadowUI();
@@ -50,14 +56,19 @@ export default class Monster extends GamePro {
 
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
-        let sysSkill: SysSkill;
         var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         if (!hp)  {
             hp = sysEnemy.enemyHp;
-            if (sysEnemy.skillId > 0)  {
-                sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME, sysEnemy.skillId);
-                if (sysSkill.effectType == SkillType.SPLIT)  {
-                    hp = sysEnemy.enemyHp / sysSkill.effect1;
+            if (sysEnemy.skillId.length > 0) {
+                var arr: string[] = sysEnemy.skillId.split(',');
+                for (var m = 0; m < arr.length; m++) {
+                    let id: number = Number(arr[m]);
+                    if (id > 0) {
+                        let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, id);
+                        if (sysBullet.bulletType == AttackType.SPLIT)  {
+                            hp = sysEnemy.enemyHp / sysBullet.splitNum;
+                        }
+                    }
                 }
             }
         }
@@ -65,19 +76,17 @@ export default class Monster extends GamePro {
         gpro.sysEnemy = sysEnemy;
         gpro.setSp3d(sp);
 
-        if(sysEnemy.attackType > 0)
+        if(sysEnemy.normalAttack > 0)
         {
-            var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.attackType);
+            let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, sysEnemy.normalAttack);
+            var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysBullet.bulletType);
+            gpro.sysBullet = sysBullet;
             gpro.setGameAi(new ATT(gpro));
         }
         if(sysEnemy.moveType > 0)
         {
             var MONS: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
             gpro.setGameMove(new MONS());
-        }
-        if (sysSkill)  {
-            var SKILL: any = Laya.ClassUtils.getClass(SkillType.TAG + sysSkill.effectType);
-            gpro.setSkill(new SKILL());
         }
 
         let tScale: number = sysEnemy.zoomMode / 100;

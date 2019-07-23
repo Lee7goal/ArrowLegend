@@ -392,7 +392,7 @@ export default class GamePro extends Laya.EventDispatcher {
         return this._pos2;
     }
 
-    private lastTime: number = 0;
+    
     public pos2To3d(): void {
         //2D转3D坐标 给主角模型
         this.sp3d_.transform.localPositionX = this._pos2.x / GameBG.ww;
@@ -405,19 +405,6 @@ export default class GamePro extends Laya.EventDispatcher {
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
         this._bulletShadow && this._bulletShadow.pos(this.hbox_.cx, this.hbox_.cy);
-
-        //脚下的烟雾
-        if (this.gamedata.proType == GameProType.Hero) {
-            if (Laya.Browser.now() - this.lastTime >= 300) {
-                var runSmog: RunSmog = RunSmog.create(this.hbox_.cx, this.hbox_.cy);
-                Laya.Tween.to(runSmog, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [runSmog]));
-                this.lastTime = Laya.Browser.now();
-            }
-        }
-    }
-
-    private onClear(runSmog: RunSmog): void {
-        RunSmog.recover(runSmog);
     }
 
     public get z(): number {
@@ -544,29 +531,4 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
      */
-}
-
-export class RunSmog extends Laya.Image {
-    static flag: string = "RunSmog"
-    constructor() {
-        super();
-        this.skin = "bg/renyan.png";
-        this.size(64, 64);
-        this.anchorX = 0.5;
-        this.anchorY = 0.5;
-    }
-
-    static create(xx: number, yy: number): RunSmog {
-        var smog: RunSmog = Laya.Pool.getItemByClass(RunSmog.flag, RunSmog);
-        smog.pos(xx, yy);
-        Game.footLayer.addChild(smog);
-        return smog;
-    }
-
-    static recover(smog: RunSmog): void {
-        smog.removeSelf();
-        smog.alpha = 1;
-        smog.scale(1, 1);
-        Laya.Pool.recover(RunSmog.flag, smog);
-    }
 }

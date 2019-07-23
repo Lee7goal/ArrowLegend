@@ -8,6 +8,9 @@ import MonsterShooting from "./MonsterShooting";
 import MonsterBulletAI from "./MonsterBulletAI";
 import SplitSkill from "../skill/SplitSkill";
 import Monster from "../player/Monster";
+import App from "../../core/App";
+import SysBullet from "../../main/sys/SysBullet";
+import AttackType from "./AttackType";
 
 //巡逻&攻击
 export default class MonsterAI1 extends GameAI {
@@ -16,6 +19,7 @@ export default class MonsterAI1 extends GameAI {
 
     private aicd = 0;
     private aist = 0;
+    private movecd = 0;
 
     private collisionCd: number = 0;
 
@@ -26,7 +30,7 @@ export default class MonsterAI1 extends GameAI {
         this.pro = pro;
         this.pro.play(GameAI.Idle);
         this.shooting.attackCd = pro.sysEnemy.enemySpeed;
-        this.shooting.setBullet(pro.sysEnemy.bulletId);
+        this.shooting._sysBullet = pro.sysBullet;
         this.shooting.at = 0.4;
         // this.aicd = this.shooting.attackCd;
         this.pro.on(Game.Event_Short, this, this.shootAc);
@@ -40,8 +44,8 @@ export default class MonsterAI1 extends GameAI {
         // this.shooting.needTime = this.shooting.attackCd;
         // this.shooting.st = this.shooting.now + this.shooting.needTime;
         this.aicd = this.shooting.attackCd + 100;
-        if (this.pro.sysEnemy.bulletId > 0) {
-            let bulletNum: number = this.pro.sysEnemy.bulletNum;
+        if (this.pro.sysBullet.bulletMode > 0) {
+            let bulletNum: number = this.pro.sysBullet.mixNum;
             if (bulletNum == 1) {
                 this.shooting.short_arrow(this.pro.face3d, this.pro, GameProType.MonstorArrow);
             }
@@ -56,7 +60,7 @@ export default class MonsterAI1 extends GameAI {
                 }
             }
             else {
-                let angle: number = this.pro.sysEnemy.bulletAngle;
+                let angle: number = this.pro.sysBullet.bulletAngle;
                 angle = angle / 2;
                 bulletNum = 15 + Math.ceil(Math.random() * 5);
                 this.aicd = 4500;
@@ -128,7 +132,7 @@ export default class MonsterAI1 extends GameAI {
         }
         else if (now >= this.aist) {
             //Laya.stage.timer.clear(this,this.go);
-            this.run_ = false;
+            // this.run_ = false;
             this.aiCount++;
             //if (this.aiCount % 5 != 0) {
             this.shooting.now = now;
@@ -147,12 +151,86 @@ export default class MonsterAI1 extends GameAI {
             //     this.aist = now + 2000 + (1000 * Math.random());
             // }
         }
+        if(this.isHasJump())
+        if (now > this.movecd) {
 
-        if (this.run_) {
-            this.pro.move2D(this.pro.face2d);
+            this.onJump();
+            this.movecd = now + this.shooting.attackCd;
+        }
+        else{
+            if(this.pro.move2D(this.pro.face2d))
+            {
+                
+            }
         }
 
         return false;
+    }
+
+    
+    private isHasJump():boolean
+    {
+        if (this.pro.sysEnemy.skillId.length > 0) {
+            var arr: string[] = this.pro.sysEnemy.skillId.split(',');
+            for (var m = 0; m < arr.length; m++) {
+                let id: number = Number(arr[m]);
+                if (id > 0) {
+                    let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, id);
+                    if (sysBullet.bulletType == AttackType.SPLIT)  {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+
+    private onJump():void
+    {
+        let mRow: number = Math.floor(this.pro.hbox.cy / GameBG.ww);
+        let mCol: number = Math.floor(this.pro.hbox.cx / GameBG.ww);
+
+        let range: number = 2;
+
+        let minCol = mCol - range;
+        minCol = Math.max(minCol, 1);
+        let maxCol = mCol + range;
+        maxCol = Math.min(maxCol, 11);
+
+        let minRow = mRow - range;
+        minRow = Math.max(minRow, 10);
+        minRow = mRow;
+        let maxRow = mRow + range;
+        maxRow = Math.min(maxRow, Game.map0.endRowNum);
+
+        var info: any = Game.map0.info;
+        console.log(mRow,mCol);
+        var arr: number[][] = [];
+        for (let i = minRow; i <= maxRow; i++) {
+            for (let j = minCol; j <= maxCol; j++) {
+                if(j == mRow && i == mCol)
+                {
+                    continue;
+                }
+                var key: number = info[i + "_" + j];
+                if (key != null && key == 0) {
+                    let aaa: number[] = [j,i];
+                    arr.push(aaa);
+                    console.log(j,i);
+                }
+            }
+        }
+        if (arr.length > 0)  {
+            var rand: number = Math.floor(arr.length * Math.random());
+            var toArr: number[] = arr[rand];
+            console.log("跳跃", toArr);
+            let toX = toArr[0] * GameBG.ww;
+            let toY = toArr[1] * GameBG.ww;
+
+            this.pro.curLen = 0;
+            this.pro.moveLen = Math.sqrt((this.pro.hbox.cy - toY) * (this.pro.hbox.cy - toY) + (this.pro.hbox.cx - toX) * (this.pro.hbox.cx - toX));
+        }
     }
 
     // private go():void{
@@ -160,6 +238,7 @@ export default class MonsterAI1 extends GameAI {
     // }
 
     starAi() {
+        this.run_ = true;
         this.shooting.now = Game.executor.getWorldNow();
         this.shooting.st = this.shooting.now + this.shooting.attackCd;
     }
