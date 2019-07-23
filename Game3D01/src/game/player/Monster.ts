@@ -12,6 +12,7 @@ import App from "../../core/App";
 import JumpMove from "../move/JumpMove";
 import FlyGameMove from "../move/FlyGameMove";
 import SysBullet from "../../main/sys/SysBullet";
+import MonsterShader from "./MonsterShader";
 
 export default class Monster extends GamePro {
     static TAG:string = "Monster";
@@ -57,6 +58,16 @@ export default class Monster extends GamePro {
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
         var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+        
+        // console.log(sysEnemy.enemymode);
+        // console.log(sp);
+        //sp._children.length
+        if( ! MonsterShader.map[sysEnemy.enemymode]){
+            //console.log(sysEnemy.enemymode ,"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
+            MonsterShader.map[sysEnemy.enemymode] = new MonsterShader(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+        }
+        
+
         if (!hp)  {
             hp = sysEnemy.enemyHp;
             if (sysEnemy.skillId.length > 0) {

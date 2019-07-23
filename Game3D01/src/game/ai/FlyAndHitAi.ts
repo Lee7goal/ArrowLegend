@@ -3,6 +3,8 @@ import { GameAI } from "./GameAI";
 import Game from "../Game";
 import GameHitBox from "../GameHitBox";
 import GameBG from "../GameBG";
+import Monster from "../player/Monster";
+import MonsterShader from "../player/MonsterShader";
 
 
 export default class FlyAndHitAi extends GameAI {
@@ -13,11 +15,22 @@ export default class FlyAndHitAi extends GameAI {
     private collisionCd: number = 0;
 
     exeAI(pro: GamePro): boolean {
+        var now = Game.executor.getWorldNow();
+
+        if(this.shaders>0 && now >= this.shaders){
+            this.shaders = 0;
+            var ms = <Monster>this.pro;        
+            if(MonsterShader.map[ms.sysEnemy.enemymode]){
+                var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
+                shader.setShader0(this.pro.sp3d,0);
+            }
+        }
+
         if(!this.run_)
         {
             return false;
         }
-        var now = Game.executor.getWorldNow();
+        
         if (now < this.st) {
             if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) > GameBG.ww2) {
                 var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
@@ -83,7 +96,17 @@ export default class FlyAndHitAi extends GameAI {
                 this.pro.play(GameAI.TakeDamage);
             }
         }
+
+        var ms = <Monster>this.pro;        
+        if(MonsterShader.map[ms.sysEnemy.enemymode]){
+            var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
+            shader.setShader0(this.pro.sp3d,1);
+            var now = Game.executor.getWorldNow();
+            this.shaders = now + 250;
+        }
     }
+
+    private shaders:number = 0;
 
     die(): void {
         this.pro.die();
