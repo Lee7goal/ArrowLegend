@@ -15,7 +15,6 @@ import GameProType from "./GameProType";
 import AttackType from "./ai/AttackType";
 import MoveType from "./move/MoveType";
 import SkillType from "./skill/SkillType";
-import SysSkill from "../main/sys/SysSkill";
 import SplitSkill from "./skill/SplitSkill";
 import HeadTranslateScript from "./controllerScript/HeadTranslateScript";
 import FootRotateScript from "./controllerScript/FootRotateScript";

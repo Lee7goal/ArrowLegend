@@ -15,8 +15,8 @@ import PlaneGameMove from "../game/move/PlaneGameMove";
 import FlyGameMove from "../game/move/FlyGameMove";
 import SkillType from "../game/skill/SkillType";
 import SplitSkill from "../game/skill/SplitSkill";
-import SysSkill from "./sys/SysSkill";
 import Game from "../game/Game";
+import JumpMove from "../game/move/JumpMove";
 var REG: Function = Laya.ClassUtils.regClass;
     export default class GameMain{
         
@@ -38,20 +38,21 @@ var REG: Function = Laya.ClassUtils.regClass;
         App.tableManager.register(SysMap.NAME,SysMap);
         App.tableManager.register(SysEnemy.NAME,SysEnemy);
         App.tableManager.register(SysBullet.NAME,SysBullet);
-        App.tableManager.register(SysSkill.NAME,SysSkill);
 
         App.tableManager.onParse(arr);
     }
 
     private regClass():void{
         //攻击类型
-        REG(AttackType.TAG + AttackType.FLYHIT,FlyAndHitAi);
-        REG(AttackType.TAG + AttackType.BULLET,MonsterAI1);
+        REG(AttackType.TAG + AttackType.NORMAL_BULLET,MonsterAI1);
+        REG(AttackType.TAG + AttackType.RANDOM_BULLET,MonsterAI1);
+        // REG(AttackType.TAG + AttackType.AOE,MonsterAI1);
+        REG(AttackType.TAG + AttackType.FLY_HIT,FlyAndHitAi);
+        REG(AttackType.TAG + AttackType.SPLIT,MonsterAI1);
         //移动类型
         REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
         REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);
         REG(MoveType.TAG + MoveType.FIXED,FixedGameMove);
-        //技能
-        REG(SkillType.TAG + SkillType.SPLIT,SplitSkill);
+        REG(MoveType.TAG + MoveType.JUMP,JumpMove);
     }
 }

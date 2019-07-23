@@ -7,4 +7,6 @@ export default class MoveType{
     static MOVE:number = 2;
     /**固定 */
     static FIXED:number = 3;
+    /**跳跃 */
+    static JUMP:number = 4;
 }

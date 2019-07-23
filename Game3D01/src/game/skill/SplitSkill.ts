@@ -2,7 +2,6 @@ import { BaseSkill } from "./BaseSkill";
 import GamePro from "../GamePro";
 import Game from "../Game";
 import GameBG from "../GameBG";
-import SysSkill from "../../main/sys/SysSkill";
 import App from "../../core/App";
 import SkillType from "./SkillType";
 import Monster from "../player/Monster";
@@ -17,14 +16,14 @@ export default class SplitSkill extends BaseSkill {
         // }
         // this.isExe = true;
 
-        if (monster.sysEnemy.skillId > 0)  {
-            let sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME, monster.sysEnemy.skillId);
-            if (sysSkill.effectType == SkillType.SPLIT)  {
-                if (monster.splitTimes >= sysSkill.effect1)  {
-                    return;
-                }
-            }
-        }
+        // if (monster.sysEnemy.skillId.length > 0)  {
+        //     let sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME, Number(monster.sysEnemy.skillId));
+        //     if (sysSkill.effectType == SkillType.SPLIT)  {
+        //         if (monster.splitTimes >= sysSkill.effect1)  {
+        //             return;
+        //         }
+        //     }
+        // }
 
         let mRow: number = Math.floor(monster.hbox.cy / GameBG.ww);
         let mCol: number = Math.floor(monster.hbox.cx / GameBG.ww);

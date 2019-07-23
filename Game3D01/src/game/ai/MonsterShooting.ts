@@ -28,12 +28,7 @@ export default class MonsterShooting {
 
     private pro: GamePro;
 
-    private _sysBullet: SysBullet;
-    public setBullet(bulletId: number): void {
-        if (bulletId > 0) {
-            this._sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, bulletId);
-        }
-    }
+    public _sysBullet: SysBullet;
 
     public short_arrow(r_: number, pro: GamePro, proType_: number,range:number = 0) {
         var bo = MonsterBullet.getBullet();
