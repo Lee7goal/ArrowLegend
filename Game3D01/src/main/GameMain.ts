@@ -13,8 +13,6 @@ import FlyAndHitAi from "../game/ai/FlyAndHitAi";
 import FixedGameMove from "../game/move/FixedGameMove";
 import PlaneGameMove from "../game/move/PlaneGameMove";
 import FlyGameMove from "../game/move/FlyGameMove";
-import SkillType from "../game/skill/SkillType";
-import SplitSkill from "../game/skill/SplitSkill";
 import Game from "../game/Game";
 import JumpMove from "../game/move/JumpMove";
 var REG: Function = Laya.ClassUtils.regClass;

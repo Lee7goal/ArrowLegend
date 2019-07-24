@@ -14,8 +14,6 @@ import App from "../core/App";
 import GameProType from "./GameProType";
 import AttackType from "./ai/AttackType";
 import MoveType from "./move/MoveType";
-import SkillType from "./skill/SkillType";
-import SplitSkill from "./skill/SplitSkill";
 import HeadTranslateScript from "./controllerScript/HeadTranslateScript";
 import FootRotateScript from "./controllerScript/FootRotateScript";
 import Monster from "./player/Monster";

@@ -47,7 +47,11 @@ export default class BattleLoader {
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
         // this._configId = 100701;//跳跃
-        this._configId = 101005;
+        // this._configId = 101005;//分裂
+        // this._configId = 101003;//食人花
+        // this._configId = 101004;//火龙
+        // this._configId = 100101;//撞击
+        //this._configId = 100104;//单个食人花
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }

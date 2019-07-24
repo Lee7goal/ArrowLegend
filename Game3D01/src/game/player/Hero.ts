@@ -5,6 +5,7 @@ import GameBG from "../GameBG";
 import PlaneGameMove from "../move/PlaneGameMove";
 import HeroAI from "../ai/HeroAI";
 import { GameAI } from "../ai/GameAI";
+import HitEffect from "../effect/HitEffect";
 
 export default class Hero extends GamePro {
     
@@ -32,16 +33,23 @@ export default class Hero extends GamePro {
 
         this.startAi();
 
+        this.gamedata.rspeed = 0;
         this.rotation(90 / 180 * Math.PI);
         this.sp3d.transform.localPositionY = 15;
-        Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 300, Laya.Ease.cubicIn, new Laya.Handler(this, this.onJumpDown));
+        Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
         setTimeout(() => {
             Game.openDoor();
         }, 3000);
     }
 
     private onJumpDown(): void {
+        this.gamedata.rspeed = 20;
         Game.executor.start();
+    }
+
+    public hurt(hurt: number): void {
+        super.hurt(hurt);
+        HitEffect.addEffect(this);
     }
 
     die(): void {

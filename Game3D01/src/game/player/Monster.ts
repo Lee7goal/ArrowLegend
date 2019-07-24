@@ -2,10 +2,8 @@ import GamePro from "../GamePro";
 import GameProType from "../GameProType";
 import SysEnemy from "../../main/sys/SysEnemy";
 import Game from "../Game";
-import SplitSkill from "../skill/SplitSkill";
 import { GameAI } from "../ai/GameAI";
 import { ui } from "./../../ui/layaMaxUI";
-import SkillType from "../skill/SkillType";
 import MoveType from "../move/MoveType";
 import AttackType from "../ai/AttackType";
 import App from "../../core/App";
@@ -13,6 +11,9 @@ import JumpMove from "../move/JumpMove";
 import FlyGameMove from "../move/FlyGameMove";
 import SysBullet from "../../main/sys/SysBullet";
 import MonsterShader from "./MonsterShader";
+import MonsterAI1 from "../ai/MonsterAI1";
+import HitEffect from "../effect/HitEffect";
+import DieEffect from "../effect/DieEffect";
 
 export default class Monster extends GamePro {
     static TAG:string = "Monster";
@@ -28,17 +29,18 @@ export default class Monster extends GamePro {
         this._bulletShadow = new ui.test.BulletShadowUI();
         Game.footLayer.addChild(this._bulletShadow);
     }
+
+    public hurt(hurt: number): void {
+        super.hurt(hurt);
+        HitEffect.addEffect(this);
+    }
+
     die(): void {
         Game.hero.setKeyNum(1);
         Game.hero.once(Game.Event_KeyNum, this, this.onDie);
         this.play(GameAI.Die);
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        if (this.getSkill() && this.getSkill() instanceof SplitSkill) {
-            this.getSkill().exeSkill(this);
-            this.setSkill(null);
-
-        }
         if (Game.map0.Eharr.indexOf(this.hbox) >= 0) {
             Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
         }
@@ -46,16 +48,12 @@ export default class Monster extends GamePro {
 
     onDie(key): void {
         this.sp3d.removeSelf();
-        let dieEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/monsterDie/monster.lh"));
-        Game.layer3d.addChild(dieEff);
-        dieEff.transform.localPosition = this.sp3d.transform.localPosition;
-        setTimeout(() => {
-            dieEff.removeSelf();
-        }, 1000);
         Laya.Pool.recover(Monster.TAG,this);
+        DieEffect.addEffect(this);
     }
 
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
+        console.log("当前的怪",enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
         var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         
@@ -70,7 +68,7 @@ export default class Monster extends GamePro {
 
         if (!hp)  {
             hp = sysEnemy.enemyHp;
-            if (sysEnemy.skillId.length > 0) {
+            if (sysEnemy.skillId != '0') {
                 var arr: string[] = sysEnemy.skillId.split(',');
                 for (var m = 0; m < arr.length; m++) {
                     let id: number = Number(arr[m]);
@@ -87,17 +85,14 @@ export default class Monster extends GamePro {
         gpro.sysEnemy = sysEnemy;
         gpro.setSp3d(sp);
 
-        if(sysEnemy.normalAttack > 0)
-        {
-            let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, sysEnemy.normalAttack);
-            var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysBullet.bulletType);
-            gpro.sysBullet = sysBullet;
-            gpro.setGameAi(new ATT(gpro));
-        }
+        let monsterAI:MonsterAI1 = new MonsterAI1();
+        monsterAI.init(gpro);
+        gpro.setGameAi(monsterAI);
+
         if(sysEnemy.moveType > 0)
         {
-            var MONS: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
-            gpro.setGameMove(new MONS());
+            var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
+            gpro.setGameMove(new MOVE());
         }
 
         let tScale: number = sysEnemy.zoomMode / 100;
@@ -110,8 +105,8 @@ export default class Monster extends GamePro {
         gpro.setShadowSize(sysEnemy.zoomShadow);
 
         gpro.setXY2DBox(xx, yy);
-        gpro.startAi();
         gpro.initBlood(hp);
+        gpro.startAi();
         return gpro;
     }
 }
