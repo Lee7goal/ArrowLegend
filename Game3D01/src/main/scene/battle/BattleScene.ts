@@ -16,11 +16,8 @@ import App from "../../../core/App";
 import AttackType from "../../../game/ai/AttackType";
 import MoveType from "../../../game/move/MoveType";
 import BattleLoader from "../../../main/scene/battle/BattleLoader";
-import BulletRotateScript from "../../../game/controllerScript/BulletRotateScript";
 import HeroAI from "../../../game/ai/HeroAI";
 import PlaneGameMove from "../../../game/move/PlaneGameMove";
-import SkillType from "../../../game/skill/SkillType";
-import SplitSkill from "../../../game/skill/SplitSkill";
 import Monster from "../../../game/player/Monster";
 import Hero from "../../../game/player/Hero";
 export default class BattleScene extends Laya.Sprite {
@@ -66,13 +63,13 @@ export default class BattleScene extends Laya.Sprite {
             Game.executor = new GameExecut();
         }
         Game.map0.drawMap();
-        this.addChild(Game.map0);
+        // this.addChild(Game.map0);
         Game.updateMap();
 
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
 
-        if (!Game.door)  {
+        if (!Game.door) {
             let v3 = GameBG.get3D(6, 9);
             Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
             Game.door.transform.translate(v3);
@@ -111,12 +108,12 @@ export default class BattleScene extends Laya.Sprite {
                         Game.layer3d.addChild(box)
                     }
                     else if (GridType.isMonster(type)) {
-                        // if (!monster)  {
-                        monster = Monster.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
-                        monster.splitTimes = 1;
-                        if (!isHasBoss) {
-                            isHasBoss = monster.sysEnemy.isBoss == 1;
-                        }
+                        // if (!monster) {
+                            monster = Monster.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
+                            monster.splitTimes = 1;
+                            if (!isHasBoss) {
+                                isHasBoss = monster.sysEnemy.isBoss == 1;
+                            }
                         // }
                     }
                 }

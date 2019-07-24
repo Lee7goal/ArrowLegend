@@ -13,18 +13,15 @@ import SysBullet from "../main/sys/SysBullet";
 import { GameAI } from "./ai/GameAI";
 import { GameMove } from "./move/GameMove";
 import { ui } from "./../ui/layaMaxUI";
-import { BaseSkill } from "./skill/BaseSkill";
-import SplitSkill from "./skill/SplitSkill";
 
 export default class GamePro extends Laya.EventDispatcher {
-
-    public hurtValue: number = 50;
+    public isDie:boolean;
+    public hurtValue: number = 1;
     //  id  :number;
     //  name:String;
     private gamedata_: GameData;
     private movef: GameMove;
     private gameAI: GameAI;
-    private skill: BaseSkill;
 
     private speed_: number = 6;
     private hbox_: GameHitBox;
@@ -49,18 +46,6 @@ export default class GamePro extends Laya.EventDispatcher {
         this.gamedata_.hp = this.gamedata_.maxhp = hp;
         this.gamedata_.proType = proType_;
         this.rotationEulerY = 0;
-
-        // if (this.gamedata_.proType == GameProType.MonstorArrow || this.gamedata_.proType == GameProType.RockGolem_Blue)  {
-        //     this._bulletShadow = new ui.test.BulletShadowUI();
-        //     Game.footLayer.addChild(this._bulletShadow);
-        //     if (this.gamedata_.proType == GameProType.MonstorArrow)  {
-        //         this.setShadowSize(19);
-        //     }
-        //     else if(this.gamedata_.proType == GameProType.RockGolem_Blue)
-        //     {
-        //         // this._bulletShadow.scale(2, 2);
-        //     }
-        // }
     }
 
     public setShadowSize(ww:number):void
@@ -87,7 +72,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         this._bloodUI.init(this.gamedata_);
         Game.bloodLayer.addChild(this._bloodUI);
-        this._bloodUI && this._bloodUI.pos(this.hbox_.cx + Game.map0.x, this.hbox_.cy + Game.map0.y - 90);
+        this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
     }
 
     public addFootCircle(): void {
@@ -95,18 +80,11 @@ export default class GamePro extends Laya.EventDispatcher {
             this._footCircle = new FootCircle();
         }
         Game.footLayer.addChild(this._footCircle);
-        this._footCircle && this._footCircle.pos(this.hbox_.cx + Game.map0.x, this.hbox_.cy + Game.map0.y);
+        this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
     }
 
     public hurt(hurt: number): void {
         this._bloodUI && this._bloodUI.update(hurt);
-        if (this.gamedata_.proType == GameProType.Hero || this.gamedata_.proType == GameProType.RockGolem_Blue)  {
-            let hitEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh"));
-            this.addSprite3DToAvatarNode(this.gamedata_.proType == GameProType.Hero ? "joint2" : "guadian", hitEff);
-            setTimeout(() => {
-                hitEff.removeSelf();
-            }, 800);
-        }
     }
 
    
@@ -197,14 +175,6 @@ export default class GamePro extends Laya.EventDispatcher {
         this.movef = gamemove;
     }
 
-    public setSkill(skill: BaseSkill) {
-        this.skill = skill;
-    }
-
-    public getSkill(): BaseSkill  {
-        return this.skill;
-    }
-
     public setGameAi(gameAI: GameAI): GameAI {
         this.gameAI = gameAI;
         return this.gameAI;
@@ -250,15 +220,15 @@ export default class GamePro extends Laya.EventDispatcher {
             }
         }
 
-        if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero) {
-            setTimeout(() => {
-                let eff: Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/hero.lh");
-                this.weapon.addChild(eff);
-                setTimeout(() => {
-                    eff.removeSelf();
-                }, 400);
-            }, 300);
-        }
+        // if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero) {
+        //     setTimeout(() => {
+        //         let eff: Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/hero.lh");
+        //         this.weapon.addChild(eff);
+        //         setTimeout(() => {
+        //             eff.removeSelf();
+        //         }, 400);
+        //     }, 300);
+        // }
 
         //this.ani_.speed = 1;
         //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
@@ -392,7 +362,7 @@ export default class GamePro extends Laya.EventDispatcher {
         return this._pos2;
     }
 
-    private lastTime: number = 0;
+    
     public pos2To3d(): void {
         //2D转3D坐标 给主角模型
         this.sp3d_.transform.localPositionX = this._pos2.x / GameBG.ww;
@@ -405,19 +375,6 @@ export default class GamePro extends Laya.EventDispatcher {
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
         this._bulletShadow && this._bulletShadow.pos(this.hbox_.cx, this.hbox_.cy);
-
-        //脚下的烟雾
-        if (this.gamedata.proType == GameProType.Hero) {
-            if (Laya.Browser.now() - this.lastTime >= 300) {
-                var runSmog: RunSmog = RunSmog.create(this.hbox_.cx, this.hbox_.cy);
-                Laya.Tween.to(runSmog, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [runSmog]));
-                this.lastTime = Laya.Browser.now();
-            }
-        }
-    }
-
-    private onClear(runSmog: RunSmog): void {
-        RunSmog.recover(runSmog);
     }
 
     public get z(): number {
@@ -544,29 +501,4 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
      */
-}
-
-export class RunSmog extends Laya.Image {
-    static flag: string = "RunSmog"
-    constructor() {
-        super();
-        this.skin = "bg/renyan.png";
-        this.size(64, 64);
-        this.anchorX = 0.5;
-        this.anchorY = 0.5;
-    }
-
-    static create(xx: number, yy: number): RunSmog {
-        var smog: RunSmog = Laya.Pool.getItemByClass(RunSmog.flag, RunSmog);
-        smog.pos(xx, yy);
-        Game.footLayer.addChild(smog);
-        return smog;
-    }
-
-    static recover(smog: RunSmog): void {
-        smog.removeSelf();
-        smog.alpha = 1;
-        smog.scale(1, 1);
-        Laya.Pool.recover(RunSmog.flag, smog);
-    }
 }

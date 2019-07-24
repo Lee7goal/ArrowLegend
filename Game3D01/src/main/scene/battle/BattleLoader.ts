@@ -17,22 +17,20 @@ export default class BattleLoader {
     private _configId: number;
     private _index: number = -1;
 
-    private _loading:ui.test.BattleLoadingUI;
+    private _loading: ui.test.BattleLoadingUI;
 
 
-    public get index():number
-    {
+    public get index(): number {
         return this._index;
     }
 
-    public get mapId(): number  {
+    public get mapId(): number {
         return this._mapId;
     }
 
-    public load(): void  {
+    public load(): void {
         Game.ro && Game.ro.removeSelf();
-        if(!this._loading)
-        {
+        if (!this._loading) {
             this._loading = new ui.test.BattleLoadingUI();
         }
 
@@ -40,8 +38,7 @@ export default class BattleLoader {
         this._loading.txt.text = "0%";
 
         this._index++;
-        if(this._index > 10)
-        {
+        if (this._index > 10) {
             this._index = 0;
         }
         this._mapId = this.chaterId * 1000 + this._index;
@@ -49,8 +46,13 @@ export default class BattleLoader {
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        // this._configId = 100902;
-        console.log("当前地图",this._mapId,this._configId);
+        // this._configId = 100701;//跳跃
+        // this._configId = 101005;//分裂
+        // this._configId = 101003;//食人花
+        // this._configId = 101004;//火龙
+        // this._configId = 100101;//撞击
+        //this._configId = 100104;//单个食人花
+        console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
 
@@ -85,16 +87,34 @@ export default class BattleLoader {
             for (let i = 0; i < GameBG.wnum + 1; i++) {
                 let type: number = GameBG.arr0[k];
                 if (k < GameBG.arr0.length) {
-                    if (GridType.isMonster(type))  {
-                        let sysEnemy:SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME,type);
-                        arr.push("h5/monsters/"+sysEnemy.enemymode+"/monster.lh");
-                        if(sysEnemy.bulletId > 0)
-                        {
-                            let sysBullet:SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME,sysEnemy.bulletId);
-                            arr.push("h5/bullets/"+sysBullet.bulletMode+"/monster.lh");
-                            if(sysBullet.boomEffect > 0)
-                            {
-                                arr.push("h5/bulletsEffect/"+sysBullet.boomEffect+"/monster.lh");
+                    if (GridType.isMonster(type)) {
+                        let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, type);
+                        arr.push("h5/monsters/" + sysEnemy.enemymode + "/monster.lh");
+                        //普攻
+                        if (sysEnemy.normalAttack > 0) {
+                            let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, sysEnemy.normalAttack);
+                            if (sysBullet.bulletMode > 0)  {
+                                arr.push("h5/bullets/" + sysBullet.bulletMode + "/monster.lh");
+                                if (sysBullet.boomEffect > 0) {
+                                    arr.push("h5/bulletsEffect/" + sysBullet.boomEffect + "/monster.lh");
+                                }
+                            }
+                        }
+                        //技能
+                        if (sysEnemy.skillId.length > 0 && sysEnemy.skillId != '0') {
+                            var skillarr: string[] = sysEnemy.skillId.split(',');
+                            for (var m = 0; m < skillarr.length; m++) {
+                                let id: number = Number(skillarr[m]);
+                                if (id > 0) {
+                                    let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, Number(id));
+                                    if (sysBullet.bulletMode > 0)  {
+                                        arr.push("h5/bullets/" + sysBullet.bulletMode + "/monster.lh");
+                                        if (sysBullet.boomEffect > 0) {
+                                            arr.push("h5/bulletsEffect/" + sysBullet.boomEffect + "/monster.lh");
+                                        }
+                                    }
+
+                                }
                             }
                         }
                     }
@@ -102,14 +122,14 @@ export default class BattleLoader {
                 k++;
             }
         }
-
-        Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete),new Laya.Handler(this,this.onProgress))
+        console.log('资源列表', arr);
+        Laya.loader.create(arr, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress))
     }
 
-    onProgress(value:number):void{
+    onProgress(value: number): void {
         value = Math.ceil(value * 100);
-        value = Math.min(value,100);
-        this._loading.txt.text = value +"%";
+        value = Math.min(value, 100);
+        this._loading.txt.text = value + "%";
     }
 
     onComplete(): void {

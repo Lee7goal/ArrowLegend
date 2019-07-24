@@ -166,6 +166,7 @@ export default class GameBG extends Laya.Sprite {
         GameBG.gameBG = this;
         this.mySp = new Sprite();
         this.mySp.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, 0x00ff00);
+        this.doorNumber = App.getFontClip(0.5);
     }
 
     public setZhuan(box: Laya.MeshSprite3D): any {
@@ -301,7 +302,7 @@ export default class GameBG extends Laya.Sprite {
         this._top.addChild(this._door);
         this._top.addChild(this._bossImg);
 
-        this.doorNumber = App.getFontClip(0.5);
+        
         this.doorNumber.value = "" + Game.battleLoader.index;
         this.doorNumber.pos(380,390);
         this._top.addChild(this.doorNumber);

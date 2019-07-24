@@ -4,6 +4,7 @@ import GameProType from "../GameProType";
 import GamePro from "../GamePro";
 import { GameMove } from "./GameMove";
 import MonsterBullet from "../player/MonsterBullet";
+import MonsterBulletBoomEffect from "../effect/BoomEffect";
 
 export default class MonsterBulletMove extends GameMove {
 
@@ -94,7 +95,7 @@ export default class MonsterBulletMove extends GameMove {
 
             if (heroBox.hit(heroBox, pro.hbox)) {
                 if (Game.hero) {
-                    console.log("打中我了");
+                    // console.log("打中我了");
                     Game.hero.event(Game.Event_Hit, pro);
                     pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
                     pro.setSpeed(0);
@@ -105,13 +106,13 @@ export default class MonsterBulletMove extends GameMove {
             var hits = Game.map0.Aharr;
             ebh = Game.map0.chechHit_arr(this.future, hits);
             if (ebh) {
-                console.log("打到东西了");
+                // console.log("打到东西了");
                 this.hitEffect(pro);
                 return false;
             }
 
             if (pro.curLen == pro.moveLen) {
-                console.log("打空了");
+                // console.log("打空了");
                 this.hitEffect(pro);
                 return false;
             }
@@ -123,13 +124,7 @@ export default class MonsterBulletMove extends GameMove {
     private hitEffect(pro: MonsterBullet): void {
         pro.setSpeed(0);
         if (pro.sysBullet.boomEffect > 0) {
-            let boomEff: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/" + pro.sysBullet.boomEffect + "/monster.lh"));
-            Game.layer3d.addChild(boomEff);
-            boomEff.transform.localPosition = pro.sp3d.transform.localPosition;
-            // boomEff.transform.localPositionY = 0;
-            setTimeout(() => {
-                boomEff.removeSelf();
-            }, 500);
+            MonsterBulletBoomEffect.getEffect(pro);
         }
     }
 }

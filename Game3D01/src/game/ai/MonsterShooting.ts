@@ -2,7 +2,6 @@ import GameHitBox from "../GameHitBox";
 import GamePro from "../GamePro";
 import GameBG from "../GameBG";
 import Game from "../Game";
-import BulletRotateScript from "../controllerScript/BulletRotateScript";
 import SysBullet from "../../main/sys/SysBullet";
 import App from "../../core/App";
 import MonsterBulletAI from "./MonsterBulletAI";
@@ -28,24 +27,20 @@ export default class MonsterShooting {
 
     private pro: GamePro;
 
-    private _sysBullet: SysBullet;
-    public setBullet(bulletId: number): void {
-        if (bulletId > 0) {
-            this._sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, bulletId);
-        }
-    }
+    public _sysBullet: SysBullet;
 
     public short_arrow(r_: number, pro: GamePro, proType_: number,range:number = 0) {
-        var bo = MonsterBullet.getBullet();
-        bo.setBubble(this._sysBullet);
+        var bo = MonsterBullet.getBullet(this._sysBullet);
+        bo.sp3d.transform.localPositionX = bo.sp3d.transform.localPositionY = bo.sp3d.transform.localPositionZ = 0;
         bo.sp3d.transform.localPositionY = 0.1;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
+        Game.layer3d.addChild(bo.sp3d);
         bo.setSpeed(this._sysBullet.bulletSpeed);
+        Game.bloodLayer.graphics.clear();
         bo.rotation(r_);
         bo.curLen = 0;
         bo.moveLen = range + Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
         (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
-        Game.layer3d.addChild(bo.sp3d);
         bo.startAi();
     }
 

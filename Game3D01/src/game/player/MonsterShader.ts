@@ -61,8 +61,8 @@ export default class MonsterShader extends GameShaderObj{
                     cm.diffuseTexture = tx;
                 }
             }
-            cm.marginalColor = new Laya.Vector3(1, 0.7, 0);
-            //cm.marginalColor = new Laya.Vector3(1, 1, 1);
+            //cm.marginalColor = new Laya.Vector3(1, 0.7, 0);
+            cm.marginalColor = new Laya.Vector3(1, 1, 1);
         }
     }
 

@@ -6,6 +6,7 @@ import GridType from "./bg/GridType";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
+    info:any = {};
     /** 半空碰撞组*/
     Aharr: GameHitBox[];//半空碰撞组
     /** 地面碰撞组*/
@@ -29,7 +30,7 @@ export default class GameMap0 extends Laya.Sprite {
     private arrhb: GameHitBox;
     public ballistic: Laya.Sprite;
     //public laodings:Laya.Sprite;
-    private map: any = {};
+    public map: any = {};
     private Amap: any = {};
     constructor() {
         super();
@@ -49,6 +50,7 @@ export default class GameMap0 extends Laya.Sprite {
         this.Fharr = [];
         this.Flyharr = [];
         this.Thornarr = [];
+        this.info = {};
 
         this.map = {};
         this.Amap = {};
@@ -80,6 +82,7 @@ export default class GameMap0 extends Laya.Sprite {
                 var y = j * ww;
                 let key: number = GameBG.arr0[k];
                 if (k < GameBG.arr0.length) {
+                    this.info[j + "_" + i] = key;
                     if (GridType.isWall(key)
                         || GridType.isRiverPoint(key)
                         || GridType.isRiverScale9Grid(key)
@@ -148,6 +151,7 @@ export default class GameMap0 extends Laya.Sprite {
                 break;
             }
         }
+
 
         this.endRowNum = j - 1;
 
