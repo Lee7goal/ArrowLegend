@@ -12,8 +12,8 @@ import FlyGameMove from "../move/FlyGameMove";
 import SysBullet from "../../main/sys/SysBullet";
 import MonsterShader from "./MonsterShader";
 import MonsterAI1 from "../ai/MonsterAI1";
-import HitEffect from "../effect/HitEffect";
 import DieEffect from "../effect/DieEffect";
+import HitEffect from "../effect/HitEffect";
 
 export default class Monster extends GamePro {
     static TAG:string = "Monster";
