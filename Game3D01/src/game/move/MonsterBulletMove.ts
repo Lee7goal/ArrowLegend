@@ -4,7 +4,7 @@ import GameProType from "../GameProType";
 import GamePro from "../GamePro";
 import { GameMove } from "./GameMove";
 import MonsterBullet from "../player/MonsterBullet";
-import MonsterBulletBoomEffect from "../effect/BoomEffect";
+import BoomEffect from "../effect/BoomEffect";
 
 export default class MonsterBulletMove extends GameMove {
 
@@ -124,7 +124,7 @@ export default class MonsterBulletMove extends GameMove {
     private hitEffect(pro: MonsterBullet): void {
         pro.setSpeed(0);
         if (pro.sysBullet.boomEffect > 0) {
-            MonsterBulletBoomEffect.getEffect(pro);
+            BoomEffect.getEffect(pro,pro.sysBullet.boomEffect);
         }
     }
 }

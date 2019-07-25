@@ -6,6 +6,7 @@ import GameProType from "../GameProType";
 export default class HitEffect{
     static TAG:string = "HitEffect";
 
+    public player:GamePro;
     public sp3d:Laya.Sprite3D;
     constructor() {
         this.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh"));
@@ -15,7 +16,9 @@ export default class HitEffect{
     static addEffect(player:GamePro):HitEffect
     {
         let effect:HitEffect = Laya.Pool.getItemByClass(HitEffect.TAG,HitEffect);
-        player.addSprite3DToAvatarNode(player.gamedata.proType == GameProType.Hero ? "joint2" : "guadian", effect.sp3d);
+        effect.player = player;
+        // effect.player.addSprite3DToAvatarNode(player.gamedata.proType == GameProType.Hero ? "joint2" : "guadian", effect.sp3d);
+        effect.player.sp3d.addChild(effect.sp3d);
         setTimeout(() => {
             effect.recover();
         }, 800);
@@ -24,7 +27,8 @@ export default class HitEffect{
 
     recover():void
     {
-        this.sp3d && this.sp3d.removeSelf();
+        // this.player.removeSprite3DToAvatarNode(this.sp3d);
+        this.player.sp3d.removeChild(this.sp3d);
         Laya.Pool.recover(HitEffect.TAG,this);
     }
 }

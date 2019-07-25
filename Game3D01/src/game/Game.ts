@@ -49,6 +49,7 @@ export default class Game {
         Game.e0_ = pro;
         Game.e0_.sp3d.addChild(Game.selectFoot);
         Game.e0_.addSprite3DToChild("RigHeadGizmo", Game.selectHead);
+        console.log("选中怪");
     }
 
     //主箭    

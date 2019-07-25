@@ -11,5 +11,7 @@ export default class AttackType{
     static FLY_HIT:number = 4;
     /**分裂 */
     static SPLIT:number = 5;
+    /**召唤 */
+    static CALL_MONSTER:number = 6;
 
 }

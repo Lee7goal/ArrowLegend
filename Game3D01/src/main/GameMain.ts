@@ -19,7 +19,7 @@ var REG: Function = Laya.ClassUtils.regClass;
     export default class GameMain{
         
     constructor(){
-        ZipLoader.load("res/tables.zip", new Laya.Handler(this, this.zipFun));
+        ZipLoader.load("h5/tables.zip", new Laya.Handler(this, this.zipFun));
     }
 
     private zipFun(arr: any[]):void{
@@ -42,11 +42,11 @@ var REG: Function = Laya.ClassUtils.regClass;
 
     private regClass():void{
         //攻击类型
-        REG(AttackType.TAG + AttackType.NORMAL_BULLET,MonsterAI1);
-        REG(AttackType.TAG + AttackType.RANDOM_BULLET,MonsterAI1);
+        // REG(AttackType.TAG + AttackType.NORMAL_BULLET,MonsterAI1);
+        // REG(AttackType.TAG + AttackType.RANDOM_BULLET,MonsterAI1);
         // REG(AttackType.TAG + AttackType.AOE,MonsterAI1);
-        REG(AttackType.TAG + AttackType.FLY_HIT,FlyAndHitAi);
-        REG(AttackType.TAG + AttackType.SPLIT,MonsterAI1);
+        // REG(AttackType.TAG + AttackType.FLY_HIT,FlyAndHitAi);
+        // REG(AttackType.TAG + AttackType.SPLIT,MonsterAI1);
         //移动类型
         REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
         REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);

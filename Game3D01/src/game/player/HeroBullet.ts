@@ -17,7 +17,7 @@ export default class HeroBullet extends GamePro {
         if(!this.sp3d)
         {
             this.setSp3d(Laya.Sprite3D.instantiate(Game.a0.sp3d));
-            // console.log("创建新的主角子弹");
+            console.log("创建新的主角子弹");
         }
     }
 
@@ -41,7 +41,7 @@ export default class HeroBullet extends GamePro {
         Laya.timer.frameOnce(20,this,()=>{
             this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
         })
-        Laya.timer.once(1000,this,()=>{
+        Laya.timer.once(2000,this,()=>{
             Laya.Pool.recover(HeroBullet.TAG,this);
         })
     }

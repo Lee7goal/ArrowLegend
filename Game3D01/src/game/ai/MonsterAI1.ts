@@ -13,6 +13,8 @@ import AttackType from "./AttackType";
 import MonsterShader from "../player/MonsterShader";
 import SysEnemy from "../../main/sys/SysEnemy";
 import MoveType from "../move/MoveType";
+import HitEffect from "../effect/HitEffect";
+import BoomEffect from "../effect/BoomEffect";
 
 //巡逻&攻击
 export default class MonsterAI1 extends GameAI {
@@ -37,11 +39,10 @@ export default class MonsterAI1 extends GameAI {
         this.pro = pro;
         this.pro.play(GameAI.Idle);
         this.sysEnemy = this.pro.sysEnemy;
-        if(this.sysEnemy.normalAttack > 0)
-        {
+        if (this.sysEnemy.normalAttack > 0)  {
             this.normalSb = App.tableManager.getDataByNameAndId(SysBullet.NAME, this.sysEnemy.normalAttack);
         }
-        else{
+        else {
             this.normalSb = null;
         }
         this.skillISbs = [];
@@ -192,6 +193,8 @@ export default class MonsterAI1 extends GameAI {
 
     private aiCount: number = Math.floor(Math.random() * 5);
 
+    private attackCD: number = 0;
+
     exeAI(pro: GamePro): boolean {
         var now = Game.executor.getWorldNow();
 
@@ -232,6 +235,7 @@ export default class MonsterAI1 extends GameAI {
             }
         }
 
+
         if (this.normalSb) {//普通攻击
             if (this.normalSb.bulletType == AttackType.FLY_HIT) {
                 this.shooting._sysBullet = null;
@@ -244,15 +248,28 @@ export default class MonsterAI1 extends GameAI {
             }
         }
 
+        let skillBullet: SysBullet;
         if (this.skillISbs.length > 0) {//技能攻击
             let rand: number = Math.floor(this.skillISbs.length * Math.random());
-            let skillBullet: SysBullet = this.skillISbs[rand];
+            skillBullet = this.skillISbs[rand];
             if (skillBullet.bulletType == AttackType.NORMAL_BULLET || skillBullet.bulletType == AttackType.RANDOM_BULLET) {
-                this.shooting._sysBullet = skillBullet;
+                this.shooting._sysBullet = skillBullet;//子弹
+            }
+            else if (skillBullet.bulletType == AttackType.AOE)  {
+                //AOE
+                this.shooting._sysBullet = null;
+            }
+            else if(skillBullet.bulletType == AttackType.CALL_MONSTER)
+            {
+
             }
             else {
                 this.shooting._sysBullet = null;
             }
+        }
+
+        if (skillBullet)  {
+            this.onCall(skillBullet);
         }
 
         if (this.pro.sysEnemy.moveType == MoveType.JUMP) {//跳跃
@@ -261,13 +278,20 @@ export default class MonsterAI1 extends GameAI {
                 this.jumpCD = now + this.pro.sysEnemy.enemySpeed;
             }
             else {
-                if (this.pro.move2D(this.pro.face2d))//跳到目标点立马开火
-                {
-                    // this.aist = 0;
+                if (this.pro.move2D(this.pro.face2d))  {
+                    //跳到目标点立马开火
                     if (now > this.jumpFireCD) {
-                        this.shootAc();
-                        this.jumpFireCD = now + this.pro.sysEnemy.enemySpeed;
+                        if (skillBullet && skillBullet.bulletType == AttackType.AOE)  {
+                            //AOE伤害
+                            this.onAoe(skillBullet);
+                        }
+                        else  {
+                            this.shootAc();
+                        }
+                        // this.jumpFireCD = now + this.pro.sysEnemy.enemySpeed;
+                        this.jumpFireCD = now + 2000;
                     }
+
                 }
             }
         }
@@ -292,6 +316,9 @@ export default class MonsterAI1 extends GameAI {
                     this.pro.move2D(this.pro.face2d);
                 }
             }
+        }
+        else  {
+            this.pro.move2D(this.pro.face2d);
         }
 
         return false;
@@ -324,6 +351,14 @@ export default class MonsterAI1 extends GameAI {
         }
     }
 
+    /**aoe */
+    private onAoe(bullet: SysBullet): void {
+        BoomEffect.getEffect(this.pro, bullet.boomEffect);
+        if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) <= bullet.attackAngle)  {
+            Game.hero.hbox.linkPro_.event(Game.Event_Hit, this.pro);
+        }
+    }
+
     /**开火 */
     private onFire(): void {
         var now = Game.executor.getWorldNow();
@@ -351,25 +386,47 @@ export default class MonsterAI1 extends GameAI {
         }
     }
 
+    private callCD: number = 0;
+    /**召唤 */
+    private onCall(bullet: SysBullet): void  {
+        var now = Game.executor.getWorldNow();
+        if (bullet.bulletType == AttackType.CALL_MONSTER)  {
+            if (bullet.callInfo != '0')  {
+                if (now > this.callCD)  {
+                    let callTime:number;
+                    let infoAry: string[] = bullet.callInfo.split('|');
+                    for (let i = 0; i < infoAry.length; i++)  {
+                        let info: string[] = infoAry[i].split(',');
+                        if (info.length == 3)  {
+                            let monsterId: number = Number(info[0]);
+                            let monsterNum: number = Number(info[1]);
+                            callTime = Number(info[2]);
+                            for (let k = 0; k < monsterNum; k++)  {
+                                let monster: Monster = Monster.getMonster(monsterId, this.pro.hbox.cx, this.pro.hbox.cy);
+                            }
+                        }
+                    }
+                    // this.callCD = now + this.pro.sysEnemy.enemySpeed;
+                    this.callCD = now + callTime;
+                }
+            }
+        }
+
+    }
+
     private splitCD: number = 0;
     /**死亡分裂 */
     private onDieSplit(): void {
         let mRow: number = Math.floor(this.pro.hbox.cy / GameBG.ww);
         let mCol: number = Math.floor(this.pro.hbox.cx / GameBG.ww);
-
         let row1: number;
         let col1: number;
-
         let row2: number;
         let col2: number;
-
         row1 = mRow;
         col1 = mCol + 1;
-
         row2 = mRow + 1;
         col2 = mCol;
-
-
         if (mRow <= 10) {
             row1 = 10;
             row2 = 11;
@@ -378,7 +435,6 @@ export default class MonsterAI1 extends GameAI {
             row1 = Game.map0.endRowNum;
             row2 = Game.map0.endRowNum - 1;
         }
-
         if (mCol <= 1) {
             col1 = 1;
             col2 = 2;
@@ -414,7 +470,7 @@ export default class MonsterAI1 extends GameAI {
         let minRow;
         let maxRow;
         let endRowNum = Game.map0.endRowNum - 1;
-        if ( Game.hero.hbox.y < this.pro.hbox.y) {//如果在主角下边就往上跳
+        if (Game.hero.hbox.y < this.pro.hbox.y) {//如果在主角下边就往上跳
             minRow = mRow - range;
             minRow = Math.max(minRow, 10);
             maxRow = mRow;

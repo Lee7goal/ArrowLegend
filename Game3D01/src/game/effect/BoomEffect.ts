@@ -1,35 +1,39 @@
 import MonsterBullet from "../player/MonsterBullet";
 import Game from "../Game";
+import GamePro from "../GamePro";
 
 export default class BoomEffect{
     static TAG:string = "BoomEffect";
 
-    public bullet:MonsterBullet;
+    public pro: GamePro;
+    public effectId:number = 0;
     public sp3d:Laya.Sprite3D;
     constructor() {
 
     }
 
-    static getEffect(bullet: MonsterBullet):BoomEffect
+    static getEffect(pro: GamePro,effectId:number):BoomEffect
     {
-        let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG + bullet.sysBullet.boomEffect,BoomEffect);
-        if(!effect.bullet || effect.bullet.sysBullet.boomEffect != bullet.sysBullet.boomEffect)
+        let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG + effectId,BoomEffect);
+        if(!effect.pro || effect.effectId != effectId)
         {
-            effect.bullet = bullet;
-            effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/" + bullet.sysBullet.boomEffect + "/monster.lh"));
+            effect.pro = pro;
+            effect.effectId = effectId;
+            effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/" + effectId + "/monster.lh"));
             // console.log("创建新的怪物子弹爆炸特效");
         }
-        effect.sp3d.transform.localPosition = bullet.sp3d.transform.localPosition;
+        effect.sp3d.transform.localPosition = pro.sp3d.transform.localPosition;
+        effect.sp3d.transform.localRotationEulerX = 45;
         Game.layer3d.addChild(effect.sp3d);
         setTimeout(() => {
             effect.recover();
-        }, 500);
+        }, 1000);
         return effect;
     }
 
     recover():void
     {
         this.sp3d && this.sp3d.removeSelf();
-        Laya.Pool.recover(BoomEffect.TAG + this.bullet.sysBullet.boomEffect,this)
+        Laya.Pool.recover(BoomEffect.TAG + this.effectId,this)
     }
 }

@@ -127,13 +127,14 @@ export default class GamePro extends Laya.EventDispatcher {
         this.addSprite3DToAvatarNode("joint14", this.weapon);
     }
 
-    public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): Sprite3D {
-        this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
-        return Game.layer3d.addChild(sprite3d) as Sprite3D;
+    public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): void {
+        var bool:boolean = this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
+        console.log("是否挂成功",bool,nodeName);
+        // return Game.layer3d.addChild(sprite3d) as Sprite3D;
     }
 
     public removeSprite3DToAvatarNode(s3d: Sprite3D): void {
-        this.ani_.unLinkSprite3DToAvatarNode(s3d);
+        this.ani_ && this.ani_.unLinkSprite3DToAvatarNode(s3d);
     }
 
     /**被攻击 */

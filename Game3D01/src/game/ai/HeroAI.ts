@@ -38,6 +38,9 @@ export default class HeroAI extends GameAI {
 
         if (Game.map0.Eharr.length > 1) {
             Game.map0.Eharr.sort(this.sore0);
+        }
+        if(Game.map0.Eharr.length > 0)
+        {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);

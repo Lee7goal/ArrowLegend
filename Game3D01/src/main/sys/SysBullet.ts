@@ -19,7 +19,7 @@ export default class SysBullet{
     public splitNum:number = 0;
     public triggerComparison:number = 0;
     public skilltarget:number = 0;
-    
-    
-    
+    public callInfo:string = '';
+    public damagePercent:number = 0;
+    public skillEffect1:number = 0;
 }
