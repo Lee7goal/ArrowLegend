@@ -19,7 +19,7 @@ export default class Hero extends GamePro {
         this.setSp3d(sp as Laya.Sprite3D);
 
         this.play("Idle");
-        Game.map0.addChild(this.sp2d);
+        //Game.map0.addChild(this.sp2d);
         this.setGameMove(new PlaneGameMove());
         this.setGameAi(new HeroAI());
         this.addWeapon();
