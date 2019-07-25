@@ -1,6 +1,7 @@
 D .
 R 39B957DA texture.png
-R C35323C9 箭主界面.jpg
+D battlestop
+P CA035B50 lvkuang.png
 D bg
 P 766D284F andanlandian.png
 P 424233AD chibang.png
@@ -10,6 +11,7 @@ P 8AB58526 douying.png
 P 02041FD8 gui.png
 P 279A105E guichibang.png
 P D99251CA heroBlood.png
+P EA200A72 huzi.png
 P A653A0FF lanying.png
 P E678BFE4 qipaowen.png
 P 5FE5FDA4 renlankuang.png
@@ -24,6 +26,7 @@ P 6F98F189 xuetiaogang.png
 P A1D267A2 xuetiaoshang.png
 P 4A625AC3 xuetiaoshanghong.png
 P 3A067C42 yingzi.png
+P 2621BE0E zhuanpan.png
 D comp
 P 9401CC40 blank.png
 P B03390E5 btn_close.png
@@ -90,6 +93,7 @@ P 1980AB68 bottom_2.png
 P 829E4ED0 bottom_3.png
 P 5B927E4E bottom_4.png
 P D3F91D58 bottom_5.png
+P 532C0AF7 btn_hong.png
 P FD2396C8 btn_huang.png
 P 9744F290 btn_lan.png
 P 110F91D5 btn_lv.png
@@ -106,6 +110,7 @@ R 6773E926 jiandi.jpg
 P 5B32D6B6 jinbijia.png
 P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
+P 937BCEA4 jujue.png
 P BD24BD02 JY1.png
 P 14B830A4 JY2.png
 P 0C458C41 JY3.png
@@ -113,10 +118,11 @@ P B43729DD JYtian.png
 P DF5BCAC2 kaishi.png
 P 3A3DCE15 maohao.png
 P CEC842FD pai.png
-P 97A73B98 PT1.png
+P 4920264D PT1.png
 P 20FD37CA PT2.png
 P 3DC18CEB PT3.png
 P 0178A633 PTtian.png
+P 2E86B207 qianding.png
 P D608ACC2 qidai.png
 P 05BA409C qidaizhuan.png
 P A88CEF17 shandianjia.png
@@ -173,6 +179,10 @@ P B42896EB 909.png
 P 8DF563AC border.png
 R FB9C419A bosstou.png
 R 2AC8AA19 bottom.png
+P 5FFCF3B7 clip_dianjushu.png
+P A4F3ACA8 clip_huoxing.png
+P 965E6CDF dianju.png
+P 48934066 dianjujia.png
 P F03F8DE3 shitouying.png
 R EE4C6FFD top.png
 D map_2
