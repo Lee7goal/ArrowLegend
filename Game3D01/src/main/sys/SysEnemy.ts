@@ -6,6 +6,7 @@ export default class SysEnemy {
 
     public id:number = 0;
     public moveType:number = 0;
+    public moveSpeed:number = 0;
     public zoomMode:number = 0;
     public zoomShadow:number = 0;
     public enemyHp:number = 0;
@@ -16,6 +17,7 @@ export default class SysEnemy {
     public skillId:string = '';
     public isBoss:number = 0;
     public enemymode:number = 0;
+    public enemyAi:number = 0;
     public txt:string = '';
     public enemyLevel:number = 0;
     

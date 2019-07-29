@@ -5,117 +5,66 @@ import GameHitBox from "../GameHitBox";
 import GameBG from "../GameBG";
 import Monster from "../player/Monster";
 import MonsterShader from "../player/MonsterShader";
+import BaseAI from "./BaseAi";
 
+/**飞行撞击ai */
+export default class FlyAndHitAi extends BaseAI {
 
-export default class FlyAndHitAi extends GameAI {
+    private status:number = 0;
+    private cd:number = 0;
 
-    private pro: GamePro;
-    private st: number = 0;
-    private status: number = 0;
-    private collisionCd: number = 0;
+    constructor(pro:Monster){
+        super(pro);
+        pro.sp3d.transform.localPositionY = 1;
+    }
 
     exeAI(pro: GamePro): boolean {
-        var now = Game.executor.getWorldNow();
-
-        if(this.shaders>0 && now >= this.shaders){
-            this.shaders = 0;
-            var ms = <Monster>this.pro;        
-            if(MonsterShader.map[ms.sysEnemy.enemymode]){
-                var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
-                shader.setShader0(this.pro.sp3d,0);
+        if(!this.run_)return;
+        super.exeAI(pro);
+        this.checkHeroCollision();
+        var sys = this.pro.sysEnemy;        
+        if(this.status==0 && this.now>=this.cd){
+            var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
+            this.pro.rotation(a);
+            //this.ms.setSpeed(8);
+            this.cd = this.now + 1000;
+            this.status = 1;
+            if (this.pro.acstr != GameAI.NormalAttack) {
+                this.pro.play(GameAI.NormalAttack);
             }
         }
-
-        if(!this.run_)
-        {
-            return false;
+        else if(this.status ==1 && this.now>=this.cd){
+            this.pro.setSpeed(sys.moveSpeed);
+            this.cd = this.now + sys.enemySpeed;
+            this.status = 0;
+            this.pro.play(GameAI.Run);
         }
-        
-        if (now < this.st) {
+
+        if(this.status==1){
+            if (this.pro.normalizedTime > 0.4) {
+                this.pro.setSpeed(10);
+                this.pro.move2D(this.pro.face2d);    
+            }else{
+                this.pro.setSpeed(1);
+                this.pro.move2D(this.pro.face2d + Math.PI);   
+            }           
+        }else{
             if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) > GameBG.ww2) {
-                var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
+                let a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
                 this.pro.rotation(a);
                 this.pro.move2D(this.pro.face2d);
             }
-            else {
-                if (now > this.collisionCd)  {
-                    if (Game.hero.hbox.linkPro_) {
-                        Game.hero.hbox.linkPro_.event(Game.Event_Hit,pro);
-                        // pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
-                        this.collisionCd = now + 1000;
-                    }
-                }
-            }
-        }
-        else {
-            if (this.status == 0) {
-                if (this.pro.acstr != GameAI.NormalAttack) {
-                    this.pro.play(GameAI.NormalAttack);
-                    this.status = 1;
-                    //this.pro.setKeyNum(0.5);
-                    return;
-                }
-            }
-            else if (this.status == 1) {
-                if (this.pro.acstr != GameAI.NormalAttack) {
-                    this.pro.setSpeed(2);
-                    this.pro.play(GameAI.Idle);
-                    this.status = 0;
-                    this.st = now + 3500;
-                    return;
-                }
-            }
-            if (this.pro.normalizedTime > 0.5) {
-                this.pro.setSpeed(10);
-                this.pro.move2D(this.pro.face2d);
-            }
         }
 
+        
 
-
-        return false;
     }
-
-    starAi() {
-        this.run_ = true;
-        this.pro.play(GameAI.Idle);
-        this.st = Game.executor.getWorldNow() + 3500;
-        this.pro.setSpeed(2);
-    }
-
-    stopAi() {
-        this.run_ = false;
-    }
-
+    
     hit(pro: GamePro) {
-        this.pro.hurt(this.pro.hurtValue);
-        if (this.pro.gamedata.hp <= 0) {
-            this.die();
-        } else {
-            if (this.pro.acstr == GameAI.Idle) {
-                this.pro.play(GameAI.TakeDamage);
-            }
-        }
-
-        var ms = <Monster>this.pro;        
-        if(MonsterShader.map[ms.sysEnemy.enemymode]){
-            var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
-            shader.setShader0(this.pro.sp3d,1);
-            var now = Game.executor.getWorldNow();
-            this.shaders = now + 250;
+        super.hit(pro);
+        if (this.pro.acstr == GameAI.Idle || this.pro.acstr == GameAI.Run) {
+            this.pro.play(GameAI.TakeDamage);
         }
     }
-
-    private shaders:number = 0;
-
-    die(): void {
-        this.pro.die();
-    }
-
-    constructor(pro: GamePro) {
-        super();
-        this.pro = pro;
-        // this.pro.sp3d.transform.localPositionY = 1;
-        // this.pro.sp3d.transform.scale = new Laya.Vector3(0.5,0.5,0.5);
-    }
+   
 }

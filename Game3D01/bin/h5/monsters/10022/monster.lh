@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10021/Models/micro_skeleton_tom_mobile-micro_skeleton_tom_mobile-micro_skeleton_tom_mobileAvatar.lav",
+							"path":"Assets/10022/Models/micro_skeleton_tom_mobile-micro_skeleton_tom_mobile-micro_skeleton_tom_mobileAvatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[
@@ -62,35 +62,35 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-Idle.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-Attack.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-Attack.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-Die.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-Die.lani"
 									},
 									{
 										"name":"Run",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-Run.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-Run.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-TakeDamage.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-TakeDamage.lani"
 									},
 									{
 										"name":"SkillStart",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-SkillStart.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-SkillStart.lani"
 									},
 									{
 										"name":"SkillLoop",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-SkillLoop.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-SkillLoop.lani"
 									},
 									{
 										"name":"SkillEnd",
-										"clipPath":"Assets/10021/Models/micro_skeleton_tom_mobile-SkillEnd.lani"
+										"clipPath":"Assets/10022/Models/micro_skeleton_tom_mobile-SkillEnd.lani"
 									}
 								]
 							}
@@ -146,10 +146,10 @@
 							},
 							"materials":[
 								{
-									"path":"Assets/10021/Materials/micro_skeleton_diffuse.lmat"
+									"path":"Assets/10022/Materials/micro_skeleton_diffuse.lmat"
 								}
 							],
-							"meshPath":"Assets/10021/Models/micro_skeleton_tom_mobile-micro_skeleton_tom.lm"
+							"meshPath":"Assets/10022/Models/micro_skeleton_tom_mobile-micro_skeleton_tom.lm"
 						},
 						"components":[],
 						"child":[]

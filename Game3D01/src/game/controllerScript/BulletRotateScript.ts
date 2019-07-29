@@ -24,7 +24,7 @@ export default class BulletRotateScript extends Laya.Script3D {
 	 * 覆写组件更新方法（相当于帧循环）
 	 */
         public onUpdate(): void {
-                // this.ball.transform.localRotationEulerY += 5;
+                this.ball.transform.localRotationEulerY += 5;
         }
 
         public onDisable() {

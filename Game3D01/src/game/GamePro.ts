@@ -215,24 +215,6 @@ export default class GamePro extends Laya.EventDispatcher {
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
 
-        if (this.gamedata_.proType == GameProType.RockGolem_Blue)  {
-            if (actionstr == "Idle")  {
-                // console.log("怪的动作",actionstr);
-            }
-        }
-
-        // if (actionstr == GameAI.NormalAttack && this.gamedata_.proType == GameProType.Hero) {
-        //     setTimeout(() => {
-        //         let eff: Laya.Sprite3D = Laya.loader.getRes("h5/gunEffect/hero.lh");
-        //         this.weapon.addChild(eff);
-        //         setTimeout(() => {
-        //             eff.removeSelf();
-        //         }, 400);
-        //     }, 300);
-        // }
-
-        //this.ani_.speed = 1;
-        //console.log( this.acstr , " : " , this.ani_.getCurrentAnimatorPlayState);
         if (this.acstr != GameAI.Run && this.acstr != GameAI.Idle && this.acstr != GameAI.Die) {
             Laya.stage.frameLoop(1, this, this.ac0);
         } else {
@@ -244,8 +226,21 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.normalizedTime >= 1) {
             var str = this.acstr_;
             Laya.stage.timer.clear(this, this.ac0);
-            this.play(GameAI.Idle);
             this.event(Game.Event_PlayStop, str);
+
+            //技能动作
+            if(str == GameAI.SkillStart)
+            {
+                this.play(GameAI.SkillLoop);
+            }
+            else if(str == GameAI.SkillLoop)
+            {
+                this.play(GameAI.SkillLoop);
+            }
+            else
+            {
+                this.play(GameAI.Idle);
+            }
         }
     }
 
@@ -316,7 +311,7 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.animator && this.animator.speed > 0 && this.gamedata_.proType == GameProType.Hero) {
             if (this.acstr_ == GameAI.Run) {
                 if (this.animator.speed == 1) {
-                    this.animator.speed = (this.speed_ / 3);
+                    this.animator.speed = (this.speed_ / 6);
                 }
             } else {
                 if (this.animator.speed != 1) {

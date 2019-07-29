@@ -49,7 +49,6 @@ export default class Game {
         Game.e0_ = pro;
         Game.e0_.sp3d.addChild(Game.selectFoot);
         Game.e0_.addSprite3DToChild("RigHeadGizmo", Game.selectHead);
-        console.log("选中怪");
     }
 
     //主箭    
@@ -136,6 +135,48 @@ export default class Game {
         if (Game.ro)  {
             Game.ro.destroy();
         }
+    }
+
+    static getRandPos(pro:GamePro):number[]
+    {
+        let mRow: number = Math.floor(pro.hbox.y / GameBG.ww);
+        let mCol: number = Math.floor(pro.hbox.x / GameBG.ww);
+
+        let range: number = 4;
+        let endRowNum = Game.map0.endRowNum - 1;
+
+        var info: any = Game.map0.info;
+        var arr: number[][] = [];
+        for (let i = mRow - range; i <= mRow + range; i++) {
+            if(i < 10 || i > endRowNum)
+            {
+                continue;
+            }
+            for (let j = mCol - range; j <= mCol + range; j++) {
+                if (j == mRow && i == mCol) {
+                    continue;
+                }
+                if(j < 1 || j > 11)
+                {
+                    continue;
+                }
+                var key: number = info[i + "_" + j];
+                if(key == null)
+                {
+                    continue;
+                }
+                if (key == 0) {
+                    let aaa: number[] = [j, i];
+                    arr.push(aaa);
+                }
+            }
+        }
+        var toArr: number[] = [];
+        if (arr.length > 0) {
+            var rand: number = Math.floor(arr.length * Math.random());
+            toArr = arr[rand];
+        }
+        return toArr;
     }
 
     constructor() {

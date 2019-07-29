@@ -37,9 +37,9 @@
 					],
 					"rotation":[
 						0,
-						-0.7071068,
+						-1,
 						0,
-						-0.7071068
+						0
 					],
 					"scale":[
 						2,
@@ -50,7 +50,7 @@
 				"components":[],
 				"child":[
 					{
-						"type":"Sprite3D",
+						"type":"MeshSprite3D",
 						"props":{
 							"name":"qiu",
 							"active":true,
@@ -71,6 +71,13 @@
 								1,
 								1,
 								1
+							],
+							"enableRender":true,
+							"materials":[
+								{
+									"type":"Laya.BlinnPhongMaterial",
+									"path":"Library/unity default resources.lmat"
+								}
 							]
 						},
 						"components":[],
@@ -108,42 +115,42 @@
 								},
 								"components":[],
 								"child":[]
+							},
+							{
+								"type":"MeshSprite3D",
+								"props":{
+									"name":"jian",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									],
+									"meshPath":"Assets/jian/FBX/jian-pPlane1.lm",
+									"enableRender":true,
+									"materials":[
+										{
+											"path":"Assets/jianzidan/Materials/jian.lmat"
+										}
+									]
+								},
+								"components":[],
+								"child":[]
 							}
 						]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"jian",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"meshPath":"Assets/jian/FBX/jian-pPlane1.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/jianzidan/Materials/jian.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
 					},
 					{
 						"type":"TrailSprite3D",

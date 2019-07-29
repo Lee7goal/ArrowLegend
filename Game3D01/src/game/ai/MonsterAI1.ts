@@ -15,6 +15,7 @@ import SysEnemy from "../../main/sys/SysEnemy";
 import MoveType from "../move/MoveType";
 import HitEffect from "../effect/HitEffect";
 import BoomEffect from "../effect/BoomEffect";
+import { ui } from "../../ui/layaMaxUI";
 
 //巡逻&攻击
 export default class MonsterAI1 extends GameAI {
@@ -57,13 +58,13 @@ export default class MonsterAI1 extends GameAI {
             }
         }
 
-        this.shooting.attackCd = pro.sysEnemy.enemySpeed;
+        this.shooting.shootCd = pro.sysEnemy.enemySpeed;
         // this.shooting._sysBullet = pro.sysBullet;
         this.shooting.at = 0.4;
         // this.aicd = this.shooting.attackCd;
         this.pro.on(Game.Event_Short, this, this.shootAc);
 
-        this.aicd = this.shooting.attackCd + 100;
+        this.aicd = this.shooting.shootCd + 100;
         this.aist = Game.executor.getWorldNow();
         this.pro.setSpeed(2);
     }
@@ -76,7 +77,7 @@ export default class MonsterAI1 extends GameAI {
         // console.log("当前的子弹id", curBullet.id);
         // this.shooting.needTime = this.shooting.attackCd;
         // this.shooting.st = this.shooting.now + this.shooting.needTime;
-        this.aicd = this.shooting.attackCd + 100;
+        this.aicd = this.shooting.shootCd + 100;
         let minNum: number = curBullet.mixNum;//最小数量
         let maxNum: number = curBullet.maxNum;//最大数量
         let bulletAngle: number = curBullet.bulletAngle;//射击角度
@@ -181,7 +182,7 @@ export default class MonsterAI1 extends GameAI {
     starAi() {
         this.run_ = true;
         this.shooting.now = Game.executor.getWorldNow();
-        this.shooting.st = this.shooting.now + this.shooting.attackCd;
+        this.shooting.st = this.shooting.now + this.shooting.shootCd;
         var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
         this.pro.rotation(a);
 
@@ -403,6 +404,13 @@ export default class MonsterAI1 extends GameAI {
                             callTime = Number(info[2]);
                             for (let k = 0; k < monsterNum; k++)  {
                                 let monster: Monster = Monster.getMonster(monsterId, this.pro.hbox.cx, this.pro.hbox.cy);
+
+                                let zhaohuan:ui.test.zhaohuanUI = new ui.test.zhaohuanUI();
+                                Game.bloodLayer.addChild(zhaohuan);
+                                zhaohuan.pos(this.pro.hbox.cx, this.pro.hbox.cy);
+                                setTimeout(() => {
+                                    zhaohuan.removeSelf();
+                                }, 1500);
                             }
                         }
                     }
@@ -413,6 +421,8 @@ export default class MonsterAI1 extends GameAI {
         }
 
     }
+
+    
 
     private splitCD: number = 0;
     /**死亡分裂 */

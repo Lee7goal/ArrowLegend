@@ -1,12 +1,11 @@
 {
-    "type":"Scene",
+    "type":"View",
     "selectedBox":2,
-    "selecteID":5,
-    "searchKey":"Scene",
+    "searchKey":"View",
     "props":{"sceneColor":"#000000"},
     "nodeParent":-1,
     "maxID":6,
-    "label":"Scene",
+    "label":"View",
     "isOpen":true,
     "isDirectory":true,
     "isAniNode":true,
@@ -309,7 +308,7 @@
                 }],
             "name":"ani1",
             "id":1,
-            "frameRate":24,
-            "action":0
+            "frameRate":60,
+            "action":1
         }]
 }

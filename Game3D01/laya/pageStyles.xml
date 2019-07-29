@@ -14,4 +14,5 @@
    <item name="test/BulletShadow.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/MonsterShadow.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/BattleLoading.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/zhaohuan.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

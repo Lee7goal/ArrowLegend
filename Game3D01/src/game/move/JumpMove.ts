@@ -20,8 +20,12 @@ export default class JumpMove extends GameMove {
         var vx = speed * Math.cos(n);
         var vz = speed * Math.sin(n);
         var dy = Math.sin((Math.PI * nn)) * 2;
-        monster.sp3d.transform.localPositionY = 0.1 + dy;
+        monster.sp3d.transform.localPositionY = 0.1 + dy * 2;
         monster.setXY2D(monster.pos2.x + vx, monster.pos2.z + vz);
+        if(monster.hbox.x == null || monster.hbox.y == null)
+        {
+            console.log("跳出问题了");
+        }
         return false;
     }
 }

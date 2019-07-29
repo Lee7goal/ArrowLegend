@@ -38,10 +38,10 @@ export default class HeroBullet extends GamePro {
         }
         this.isDie = true;
         this.stopAi();
-        Laya.timer.frameOnce(20,this,()=>{
+        Laya.timer.frameOnce(1,this,()=>{
             this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
         })
-        Laya.timer.once(2000,this,()=>{
+        Laya.timer.once(1000,this,()=>{
             Laya.Pool.recover(HeroBullet.TAG,this);
         })
     }

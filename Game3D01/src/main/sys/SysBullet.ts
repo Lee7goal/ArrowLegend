@@ -1,7 +1,9 @@
 export default class SysBullet{
     static NAME:string = 'sys_bullet.txt';
     public id:number = 0;
+    public nameTxt:string = '';
     public txt:string = '';
+    public bulletCd:number = 0;
     public bulletType:number = 0;
     public bulletMode:number = 0;
     public boomEffect:number = 0;
@@ -22,4 +24,5 @@ export default class SysBullet{
     public callInfo:string = '';
     public damagePercent:number = 0;
     public skillEffect1:number = 0;
+    public attackDistance:number = 0;
 }

@@ -10,6 +10,11 @@ export abstract class GameAI {
     static Die: string = "Die";
     static Run: string = "Run";
     static TakeDamage: string = "TakeDamage";
+
+    static SkillStart: string = "SkillStart";
+    static SkillLoop: string = "SkillLoop";
+    static SkillEnd: string = "SkillEnd";
+
     abstract exeAI(pro: GamePro): boolean;
     abstract starAi();
     abstract stopAi();

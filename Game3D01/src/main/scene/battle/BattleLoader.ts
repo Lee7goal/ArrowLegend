@@ -38,7 +38,7 @@ export default class BattleLoader {
         this._loading.txt.text = "0%";
 
         this._index++;
-        if (this._index > 10) {
+        if (this._index > 50) {
             this._index = 0;
         }
         this._mapId = this.chaterId * 1000 + this._index;
@@ -46,19 +46,22 @@ export default class BattleLoader {
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        // this._configId = 100701;//跳跃
         // this._configId = 101005;//分裂
         // this._configId = 101003;//蓝色树妖boss
         // this._configId = 101004;//火龙boss
         // this._configId = 100101;//撞击
-        //this._configId = 100104;//单个食人花
         // this._configId = 101001;//蓝色石头人boss
         // this._configId = 101002;//食人花boss
+        // this._configId = 101004;
+        // this._configId = 104101//炸弹人
+        // this._configId = 100703;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
 
     private arr: string[] = [];
+
+    public monsterId:number;
 
     private onLoadRes(): void {
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");
@@ -68,6 +71,9 @@ export default class BattleLoader {
         bgType = Math.max(bgType, 1);
         GameBG.BG_TYPE = "map_" + bgType;
         this.arr.length = 0;
+
+        // this.monsterId = 10014;
+        this.monsterId = 0;
 
         //公共资源
         this.arr = [
@@ -86,19 +92,27 @@ export default class BattleLoader {
         this.arr.push("h5/gong/hero.lh");
         this.arr.push("h5/hero/hero.lh");
 
-        //怪
-        let k: number = 0;
-        for (let j = 0; j < GameBG.hnum; j++) {
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
-                let type: number = GameBG.arr0[k];
-                if (k < GameBG.arr0.length) {
-                    if (GridType.isMonster(type)) {
-                        this.getMonsterRes(type);
+        if(this.monsterId <= 0)
+        {
+            //怪
+            let k: number = 0;
+            for (let j = 0; j < GameBG.hnum; j++) {
+                for (let i = 0; i < GameBG.wnum + 1; i++) {
+                    let type: number = GameBG.arr0[k];
+                    if (k < GameBG.arr0.length) {
+                        if (GridType.isMonster(type)) {
+                            this.getMonsterRes(type);
+                        }
                     }
+                    k++;
                 }
-                k++;
             }
         }
+        else
+        {
+            this.getMonsterRes(this.monsterId);
+        }
+        
         console.log('资源列表', this.arr);
         Laya.loader.create(this.arr, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress))
     }

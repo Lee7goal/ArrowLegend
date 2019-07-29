@@ -73,8 +73,8 @@
 										"clipPath":"Assets/10025/Models/micro_ghost_mobile-Die.lani"
 									},
 									{
-										"name":"ghost_toss_ball",
-										"clipPath":"Assets/10025/Models/micro_ghost_mobile-ghost_toss_ball.lani"
+										"name":"Idle",
+										"clipPath":"Assets/10025/Models/micro_ghost_mobile-Idle.lani"
 									},
 									{
 										"name":"Attack",

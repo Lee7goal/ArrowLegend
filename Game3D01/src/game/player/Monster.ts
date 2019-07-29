@@ -11,9 +11,18 @@ import JumpMove from "../move/JumpMove";
 import FlyGameMove from "../move/FlyGameMove";
 import SysBullet from "../../main/sys/SysBullet";
 import MonsterShader from "./MonsterShader";
-import MonsterAI1 from "../ai/MonsterAI1";
 import DieEffect from "../effect/DieEffect";
 import HitEffect from "../effect/HitEffect";
+import MonsterAI from "../ai/MonsterAI";
+import BaseAI from "../ai/BaseAi";
+import FlyAndHitAi from "../ai/FlyAndHitAi";
+import FlowerAI from "../ai/FlowerAI";
+import StoneAI from "../ai/StoneAI";
+import TreeAI from "../ai/TreeAI";
+import RandMoveAI from "../ai/RandMoveAI";
+import BounceRandomMoveAI from "../ai/BounceRandomMoveAI";
+import FollowAI from "../ai/FollowAI";
+import JumpFollowAI from "../ai/JumpFollowAI";
 
 export default class Monster extends GamePro {
     static TAG:string = "Monster";
@@ -24,10 +33,32 @@ export default class Monster extends GamePro {
 
     public curLen: number;
     public moveLen: number;
+    public aiType:number;
+
     constructor() {
         super(GameProType.RockGolem_Blue, 0);
         this._bulletShadow = new ui.test.BulletShadowUI();
         Game.footLayer.addChild(this._bulletShadow);
+    }
+    
+    init():void
+    {
+        let sysBullet:SysBullet;
+        if (this.sysEnemy.normalAttack > 0) {
+            sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, this.sysEnemy.normalAttack);
+            this.aiType = sysBullet.bulletType;
+        }
+
+        if (this.sysEnemy.skillId != '0') {
+            var arr: string[] = this.sysEnemy.skillId.split(',');
+            for (var m = 0; m < arr.length; m++) {
+                let id: number = Number(arr[m]);
+                if (id > 0) {
+                    sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, id);
+                    this.aiType = sysBullet.bulletType;
+                }
+            }
+        }
     }
 
     public hurt(hurt: number): void {
@@ -36,8 +67,8 @@ export default class Monster extends GamePro {
     }
 
     die(): void {
-        Game.hero.setKeyNum(1);
-        Game.hero.once(Game.Event_KeyNum, this, this.onDie);
+        this.setKeyNum(1);
+        this.once(Game.Event_KeyNum, this, this.onDie);
         this.play(GameAI.Die);
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
@@ -50,6 +81,11 @@ export default class Monster extends GamePro {
         this.sp3d.removeSelf();
         Laya.Pool.recover(Monster.TAG,this);
         DieEffect.addEffect(this);
+    }
+
+    playSkill():void
+    {
+
     }
 
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
@@ -82,12 +118,10 @@ export default class Monster extends GamePro {
             }
         }
         var gpro:Monster = Laya.Pool.getItemByClass(Monster.TAG,Monster);
+        gpro.curLen = gpro.moveLen = 0;
         gpro.sysEnemy = sysEnemy;
+        gpro.init();
         gpro.setSp3d(sp);
-
-        let monsterAI:MonsterAI1 = new MonsterAI1();
-        monsterAI.init(gpro);
-        gpro.setGameAi(monsterAI);
 
         if(sysEnemy.moveType > 0)
         {
@@ -106,6 +140,26 @@ export default class Monster extends GamePro {
 
         gpro.setXY2DBox(xx, yy);
         gpro.initBlood(hp);
+
+        var MonAI: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.enemyAi);
+        console.log("当前怪的AI",sysEnemy.id,sysEnemy.txt,sysEnemy.enemyAi,MonAI);
+        if(MonAI == null)
+        {
+            console.log('没有这个怪的AI',sysEnemy.id);
+        }
+        gpro.setGameAi(new MonAI(gpro));
+        //gpro.setGameAi(new BaseAI(<Monster>gpro));
+        // gpro.setGameAi(new FlyAndHitAi(gpro));
+        // gpro.setGameAi(new FlowerAI(gpro));
+        //gpro.setGameAi(new SplitAI(gpro));
+        // gpro.setGameAi(new StoneAI(gpro));
+        // gpro.setGameAi(new TreeAI(gpro));
+
+        // gpro.setGameAi(new RandMoveAI(gpro));
+        // gpro.setGameAi(new BounceRandomMoveAI(gpro));
+        // gpro.setGameAi(new FollowAI(gpro));
+        // gpro.setGameAi(new JumpFollowAI(gpro));
+
         gpro.startAi();
         return gpro;
     }

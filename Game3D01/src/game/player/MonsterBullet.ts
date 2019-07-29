@@ -28,7 +28,14 @@ export default class MonsterBullet extends GamePro {
             console.error('这个子弹有问题');
             return;
         }
-        Game.footLayer.addChild(this._bulletShadow);
+        if(sb.bulletMode == 10004 || sb.bulletMode == 10005)
+        {
+            this._bulletShadow && this._bulletShadow.removeSelf();
+        }
+        else{
+            Game.footLayer.addChild(this._bulletShadow);
+        }
+        
         if (this.sysBullet && this.sysBullet.bulletMode == sb.bulletMode)  {
             return;
         }
@@ -36,7 +43,7 @@ export default class MonsterBullet extends GamePro {
         var bullet: Laya.Sprite3D;
         bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
         this.setSp3d(bullet);
-        bullet.addComponent(BulletRotateScript);
+        bullet.addComponent(BulletRotateScript)
         this.gamedata.bounce = sb.ejectionNum;
         // console.log("创建新的怪物子弹");
     }
@@ -58,7 +65,7 @@ export default class MonsterBullet extends GamePro {
         this.moveLen = null;
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        Laya.timer.frameOnce(20, this, () => {
+        Laya.timer.frameOnce(1, this, () => {
             this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
         })
         Laya.timer.once(1000, this, () => {

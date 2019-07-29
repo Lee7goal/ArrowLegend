@@ -14,20 +14,24 @@ export default class HeroArrowAI extends GameAI {
 
     hit(pro: HeroBullet) {
         // this.i = 25;
-        this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
-        this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
-        this.pro.sp3d.transform.localRotationEulerY -= pro.sp3d.transform.localRotationEulerY;
-        pro.sp3d.addChild(this.pro.sp3d);
+        // this.pro.sp3d.transform.localPositionX -= pro.sp3d.transform.localPositionX;
+        // this.pro.sp3d.transform.localPositionZ -= pro.sp3d.transform.localPositionZ;
+        // this.pro.sp3d.transform.localRotationEulerY -= pro.sp3d.transform.localRotationEulerY;
+        // pro.sp3d.addChild(this.pro.sp3d);
+        this.pro.die();
     }
 
     private i: number = 0;
     exeAI(pro: HeroBullet): boolean {
-
+        if(pro.isDie)
+        {
+            return false;
+        }
         if (this.i == 0 && !pro.move2D(pro.face2d)) {
             this.i = 1;
             return false;
         }
-        this.pro.die();
+        
         if (this.i > 0) {
             this.i++;
             if (this.i > 30) {

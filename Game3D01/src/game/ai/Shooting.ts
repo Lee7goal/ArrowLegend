@@ -25,29 +25,6 @@ export default class Shooting {
     //private static bulletCount:number = 0;
 
     private pro: GamePro;
-
-    private getBullet(proType_: number): GamePro {
-        var gp: GamePro;
-        if (Game.HeroArrows.length <= 0) {
-            gp = new GamePro(proType_);
-
-            var bullet: Laya.Sprite3D;
-            bullet = (Laya.Sprite3D.instantiate(Game.a0.sp3d)) as Laya.Sprite3D;
-            gp.setSp3d(bullet);
-            //gp.setGameMove(new ArrowGameMove());
-            gp.setGameMove(new HeroArrowMove0());
-            gp.setGameAi(new HeroArrowAI(gp));
-            // bullet.getChildAt(0).addComponent(BulletRotateScript);
-            //Shooting.bulletCount++;
-            //console.log("Shooting.bulletCount " , Shooting.bulletCount);
-        } else {
-            gp = Game.HeroArrows.shift();
-            gp.gamedata.proType = proType_;
-            //gp.gamedata.rspeed = 0;
-        }
-        return gp;
-    }
-    
     public short_arrow(speed_: number, r_: number, pro: GamePro) {
         var bo = HeroBullet.getBullet();
         // var bo = new HeroBullet();

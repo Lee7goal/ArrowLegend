@@ -17,7 +17,6 @@ import AttackType from "../../../game/ai/AttackType";
 import MoveType from "../../../game/move/MoveType";
 import BattleLoader from "../../../main/scene/battle/BattleLoader";
 import HeroAI from "../../../game/ai/HeroAI";
-import PlaneGameMove from "../../../game/move/PlaneGameMove";
 import Monster from "../../../game/player/Monster";
 import Hero from "../../../game/player/Hero";
 export default class BattleScene extends Laya.Sprite {
@@ -108,13 +107,17 @@ export default class BattleScene extends Laya.Sprite {
                         Game.layer3d.addChild(box)
                     }
                     else if (GridType.isMonster(type)) {
-                        if (!monster) {
+                        // if (!monster) {
+                            if(Game.battleLoader.monsterId > 0)
+                            {
+                                type = Game.battleLoader.monsterId;
+                            }
                             monster = Monster.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
                             monster.splitTimes = 1;
                             if (!isHasBoss) {
                                 isHasBoss = monster.sysEnemy.isBoss == 1;
                             }
-                        }
+                        // }
                     }
                 }
                 k++;
