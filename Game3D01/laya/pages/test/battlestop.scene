@@ -1,12 +1,11 @@
 {
-    "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":8,
+    "selecteID":20,
     "searchKey":"Scene",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":18,
+    "maxID":21,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -15,63 +14,6 @@
     "compId":2,
     "child":[
         {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image,ji3",
-            "props":{"y":679,"x":499,"width":147,"var":"ji3","height":147},
-            "nodeParent":2,
-            "label":"ji3",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":14,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image,ji2",
-            "props":{"y":679,"x":302,"width":147,"var":"ji2","height":147},
-            "nodeParent":2,
-            "label":"ji2",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":13,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image,ji1",
-            "props":{"y":679,"x":104.5,"width":147,"var":"ji1","height":147},
-            "nodeParent":2,
-            "label":"ji1",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":11,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"y":667,"x":295,"skin":"battlestop/lvkuang.png"},
-            "nodeParent":2,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Image",
             "searchKey":"Image",
             "props":{"y":99,"x":12,"width":726,"skin":"main/biaotihuang.png","sizeGrid":"0,23,0,135","height":99},
@@ -85,7 +27,6 @@
                 ]
         },
         {
-            "x":15,
             "type":"Label",
             "searchKey":"Label,biaoti2",
             "props":{"y":130,"x":157,"var":"biaoti2","text":"本次冒险升到了3级！","fontSize":48,"color":"#000000","alpha":0.5,"align":"center"},
@@ -114,7 +55,6 @@
                 }]
         },
         {
-            "x":15,
             "type":"Label",
             "searchKey":"Label,baioti",
             "props":{"y":125.5,"x":157.65234375,"var":"baioti","text":"本次冒险升到了3级！","fontSize":48,"color":"#ffffff","align":"center"},
@@ -129,7 +69,6 @@
                 ]
         },
         {
-            "x":15,
             "type":"Label",
             "searchKey":"Label",
             "props":{"y":504,"x":185,"text":"请选择新的能力！","fontSize":48,"color":"#ffffff","align":"center"},
@@ -144,75 +83,44 @@
                 ]
         },
         {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"y":667,"x":98,"skin":"battlestop/lvkuang.png"},
+            "type":"UIView",
+            "source":"test/jinengkuang.scene",
+            "searchKey":"UIView,jineng1",
+            "props":{"y":642,"x":97,"var":"jineng1"},
             "nodeParent":2,
-            "label":"Image",
+            "label":"jineng1",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":9,
+            "compId":18,
             "child":[
                 ]
         },
         {
-            "x":15,
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"y":667,"x":492,"skin":"battlestop/lvkuang.png"},
+            "type":"UIView",
+            "source":"test/jinengkuang.scene",
+            "searchKey":"UIView,jineng2",
+            "props":{"y":642,"x":291,"var":"jineng2"},
             "nodeParent":2,
-            "label":"Image",
+            "label":"jineng2",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":10,
+            "compId":19,
             "child":[
                 ]
         },
         {
-            "x":15,
-            "type":"Label",
-            "searchKey":"Label,ji1ming",
-            "props":{"y":856,"x":104,"width":145,"var":"ji1ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},
+            "type":"UIView",
+            "source":"test/jinengkuang.scene",
+            "searchKey":"UIView,jineng3",
+            "props":{"y":642,"x":486,"var":"jineng3"},
             "nodeParent":2,
-            "label":"ji1ming",
-            "isOpen":true,
+            "label":"jineng3",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":15,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "searchKey":"Label,ji2ming",
-            "props":{"y":856,"x":300.5,"width":145,"var":"ji2ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},
-            "nodeParent":2,
-            "label":"ji2ming",
-            "isOpen":true,
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":16,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "searchKey":"Label,ji3ming",
-            "props":{"y":856,"x":499,"width":145,"var":"ji3ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},
-            "nodeParent":2,
-            "label":"ji3ming",
-            "isOpen":true,
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":17,
+            "compId":20,
             "child":[
                 ]
         }],

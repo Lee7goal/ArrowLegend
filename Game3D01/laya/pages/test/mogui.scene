@@ -5,7 +5,7 @@
     "searchKey":"Scene",
     "props":{"sceneColor":"#979797"},
     "nodeParent":-1,
-    "maxID":8,
+    "maxID":9,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -78,6 +78,20 @@
                     "compId":7,
                     "child":[
                         ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image,tan",
+                    "props":{"y":-199,"x":-102,"var":"tan","skin":"bg/tantan.jpg","scaleY":1.1,"scaleX":1.1},
+                    "nodeParent":4,
+                    "label":"tan",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":8,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
                 }]
         }],
     "animations":[
@@ -88,7 +102,7 @@
                     "keyframes":{
                         "y":[
                             {
-                                "value":0,
+                                "value":-105.5,
                                 "tweenMethod":"linearNone",
                                 "tween":true,
                                 "target":4,
@@ -96,7 +110,7 @@
                                 "index":0
                             },
                             {
-                                "value":-36,
+                                "value":-135,
                                 "tweenMethod":"linearNone",
                                 "tween":true,
                                 "target":4,
@@ -104,10 +118,11 @@
                                 "index":20
                             },
                             {
-                                "value":0,
+                                "value":-105.5,
                                 "tweenMethod":"linearNone",
                                 "tween":true,
                                 "target":4,
+                                "label":null,
                                 "key":"y",
                                 "index":40
                             }],
@@ -127,12 +142,41 @@
                                 "target":4,
                                 "key":"x",
                                 "index":20
+                            },
+                            {
+                                "value":0,
+                                "tweenMethod":"linearNone",
+                                "tween":true,
+                                "target":4,
+                                "label":null,
+                                "key":"x",
+                                "index":40
                             }]
                     }
                 },
                 {
                     "target":5,
                     "keyframes":{
+                        "y":[
+                            {
+                                "value":-61,
+                                "tweenMethod":"linearNone",
+                                "tween":true,
+                                "target":5,
+                                "label":null,
+                                "key":"y",
+                                "index":0
+                            }],
+                        "x":[
+                            {
+                                "value":89,
+                                "tweenMethod":"linearNone",
+                                "tween":true,
+                                "target":5,
+                                "label":null,
+                                "key":"x",
+                                "index":0
+                            }],
                         "rotation":[
                             {
                                 "value":0,
@@ -193,6 +237,15 @@
                 {
                     "target":3,
                     "keyframes":{
+                        "y":[
+                            {
+                                "value":0,
+                                "tweenMethod":"linearNone",
+                                "tween":true,
+                                "target":3,
+                                "key":"y",
+                                "index":0
+                            }],
                         "scaleY":[
                             {
                                 "value":1,

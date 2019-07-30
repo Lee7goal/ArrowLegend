@@ -67,7 +67,7 @@
                     "child":[
                         ]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -76,6 +76,7 @@
             "props":{"y":0,"x":0,"anchorY":0.65,"anchorX":0.3},
             "nodeParent":2,
             "label":"Box",
+            "isOpen":null,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
