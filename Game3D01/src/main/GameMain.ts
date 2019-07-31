@@ -33,6 +33,8 @@ import NPC_1003_view from "./scene/battle/npc/NPC_1003_view";
 import NPC_1001 from "./scene/battle/npc/NPC_1001";
 import NPC_1002 from "./scene/battle/npc/NPC_1002";
 import NPC_1003 from "./scene/battle/npc/NPC_1003";
+import PlaneGameMove from "../game/move/PlaneGameMove";
+import BackMove from "../game/move/BackMove";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -82,8 +84,9 @@ var REG: Function = Laya.ClassUtils.regClass;
         REG(AttackType.TAG + AIType.JUMP_FOLLOW,JumpFollowAI);
         //移动类型
         REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
-        REG(MoveType.TAG + MoveType.MOVE,MonsterMove);
+        REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);
         REG(MoveType.TAG + MoveType.FIXED,FixedGameMove);
         REG(MoveType.TAG + MoveType.JUMP,JumpMove);
+        REG(MoveType.TAG + MoveType.BACK,BackMove);
     }
 }

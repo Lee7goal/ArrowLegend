@@ -128,9 +128,9 @@ export default class Monster extends GamePro {
         if(sysEnemy.moveType > 0)
         {
             var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
-            //gpro.setGameMove(new MOVE());
+            gpro.setGameMove(new MOVE());
             //gpro.setGameMove(new PlaneGameMove());
-            gpro.setGameMove(new BackMove());
+            // gpro.setGameMove(new BackMove());
         }
 
         let tScale: number = sysEnemy.zoomMode / 100;
