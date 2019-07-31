@@ -60,6 +60,12 @@ export default class MonsterMove extends GameMove {
                 }
             }
             pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
+
+            if(!this.Blocking(pro,vx,vz)){
+                return false;
+            }
+
+
             return true;
         }
 

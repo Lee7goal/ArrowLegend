@@ -15,6 +15,10 @@ import { GameMove } from "./move/GameMove";
 import { ui } from "./../ui/layaMaxUI";
 
 export default class GamePro extends Laya.EventDispatcher {
+
+    /**无视阻挡! */
+    unBlocking:boolean = false;
+
     public isDie:boolean;
     public hurtValue: number = 1;
     //  id  :number;
@@ -29,9 +33,9 @@ export default class GamePro extends Laya.EventDispatcher {
     private _pos2: Laya.Vector3 = new Laya.Vector3(0, 0, 0);
     private sp3d_: Sprite3D;
     private ani_: Animator;
-    private moven2d_: number;
-    private facen2d_: number;
-    private facen3d_: number;
+    private moven2d_: number = 0;
+    private facen2d_: number = 0;
+    private facen3d_: number = 0;
     private acstr_: string = "";
 
     private _bloodUI: Blood;
@@ -174,6 +178,10 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public setGameMove(gamemove: GameMove) {
         this.movef = gamemove;
+    }
+
+    public getGameMove() {
+        return this.movef;
     }
 
     public setGameAi(gameAI: GameAI): GameAI {
@@ -380,7 +388,7 @@ export default class GamePro extends Laya.EventDispatcher {
     public move2D(n: number, hd: boolean = true): boolean {
         this.moven2d_ = n;
         if (this.movef) {
-            return this.movef.move2d(n, this, this.speed);
+            return this.movef.move2d(n, this, this.speed,false);
         }
         return false;
     }
@@ -389,6 +397,15 @@ export default class GamePro extends Laya.EventDispatcher {
         //2D移动计算
         this.pos2.x = xx;
         this.pos2.z = yy;
+        this.pos2To3d();
+    }
+
+    public setcXcY2DBox(xx: number, yy: number): void {
+        //2D移动计算
+        this.hbox_.setCenter(xx, yy);
+        //(this.pp.x-pro.hbox.ww/2-GameBG.mcx,this.pp.y-GameBG.mcy-pro.hbox.ww/2)
+        this.pos2.x = this.hbox_.x - GameBG.mcx;
+        this.pos2.z = this.hbox_.y - GameBG.mcy;
         this.pos2To3d();
     }
 

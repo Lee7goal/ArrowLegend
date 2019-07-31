@@ -3,18 +3,55 @@ import Monster from "../player/Monster";
 import GamePro from "../GamePro";
 import GameBG from "../GameBG";
 import Game from "../Game";
+import { GameAI } from "./GameAI";
 
 export default class RandMoveAI extends BaseAI {
     private cd:number = 0;
     private status:number = 0;
+
+    private static timdex:number = 0;
+
     constructor(pro: Monster) {
         super(pro);
         pro.setSpeed(this.sysEnemy.moveSpeed);
+        if(RandMoveAI.timdex>=4){
+            RandMoveAI.timdex = 0;
+        }
+        this.cd = Game.executor.getWorldNow() + RandMoveAI.timdex*2000;
+        RandMoveAI.timdex++;
     }
 
+    exeAI(pro: GamePro): boolean {
+        if(!this.run_)return;
+        super.exeAI(pro);
+        this.checkHeroCollision();
+
+        if(this.status == 0 && this.now >= this.cd)
+        {
+            
+            this.status = 1;
+            this.cd = this.now + this.sysEnemy.enemySpeed;
+            this.pro.rotation((Math.PI/8) * Math.floor(Math.random()*16) );
+            this.pro.play(GameAI.Run);
+        }
+        else if(this.status == 1 && this.now >= this.cd)
+        {   
+            
+            this.status = 0;
+            this.cd = this.now + this.sysEnemy.enemySpeed;
+            this.pro.play(GameAI.Idle);
+            
+        }
+
+        if(this.status == 1)
+        {
+            this.pro.move2D(this.pro.face2d);
+        }
+
+    }
     
 
-    exeAI(pro: GamePro): boolean {
+    exeAI0(pro: GamePro): boolean {
         if(!this.run_)return;
         super.exeAI(pro);
 

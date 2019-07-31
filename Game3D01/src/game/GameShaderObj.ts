@@ -105,7 +105,7 @@ export default class GameShaderObj extends Laya.EventDispatcher {
         vec3 normal=normalize(v_Normal);
         vec3 toEyeDir = normalize(u_CameraPos-v_PositionWorld);
         float Rim = 1.0 - max(0.0,dot(toEyeDir, normal));
-        vec3 Emissive = 20.0 * u_DirectionLight.Color * u_marginalColor * pow(Rim,3.0); 
+        vec3 Emissive = 15.0 * u_DirectionLight.Color * u_marginalColor * pow(Rim,3.0); 
         gl_FragColor = texture2D(u_texture, v_Texcoord) + vec4(Emissive,1.0);
         }`;
 

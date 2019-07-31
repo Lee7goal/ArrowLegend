@@ -22,6 +22,12 @@ export default class PlaneGameMove extends GameMove {
                 return false;
             }
         }
+
+        if(!this.Blocking(pro,vx,vz)){
+            return false;
+        }
+
+
         pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
         return true;
     }
