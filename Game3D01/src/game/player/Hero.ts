@@ -38,9 +38,13 @@ export default class Hero extends GamePro {
         this.rotation(90 / 180 * Math.PI);
         this.sp3d.transform.localPositionY = 15;
         Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
-        setTimeout(() => {
-            Game.openDoor();
-        }, 3000);
+
+        if(Game.battleLoader.mapId % 1000 == 0)
+        {
+            setTimeout(() => {
+                Game.openDoor();
+            }, 3000);
+        }
     }
 
     private onJumpDown(): void {

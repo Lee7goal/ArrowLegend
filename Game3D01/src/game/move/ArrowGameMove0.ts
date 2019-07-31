@@ -140,6 +140,7 @@ export default class ArrowGameMove0 extends GameMove {
                 
             }
             if(this.fcount<=0){
+                pro.die();
                 return false;
             }else{ 
                 this.fcount--;

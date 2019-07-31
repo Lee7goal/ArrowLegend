@@ -42,6 +42,12 @@ export default class Monster extends GamePro {
         this._bulletShadow = new ui.test.BulletShadowUI();
         Game.footLayer.addChild(this._bulletShadow);
     }
+
+    public setShadowSize(ww:number):void
+    {
+        super.setShadowSize(ww);
+        Game.footLayer.addChild(this._bulletShadow);
+    }
     
     init():void
     {
@@ -73,13 +79,20 @@ export default class Monster extends GamePro {
         this.once(Game.Event_KeyNum, this, this.onDie);
         this.play(GameAI.Die);
         this.stopAi();
-        this._bulletShadow && this._bulletShadow.removeSelf();
         if (Game.map0.Eharr.indexOf(this.hbox) >= 0) {
             Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
         }
+
+        setTimeout(() => {
+            if(Game.map0.Eharr.length == 0)
+            {
+                Game.openDoor();
+            }
+        }, 3000);
     }
 
     onDie(key): void {
+        this._bulletShadow && this._bulletShadow.removeSelf();
         this.sp3d.removeSelf();
         Laya.Pool.recover(Monster.TAG,this);
         DieEffect.addEffect(this);

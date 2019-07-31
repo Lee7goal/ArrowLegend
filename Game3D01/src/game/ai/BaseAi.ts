@@ -65,7 +65,7 @@ export default class BaseAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.hurt(1);
+        this.pro.hurt(this.pro.gamedata.maxhp * 0.5);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
@@ -108,7 +108,7 @@ export default class BaseAI extends GameAI {
 
     die():void
     {
-        super.die();
+        this.pro.die();
         this.splitSkill && this.splitSkill.exeSkill(this.now,this.pro);
     }
 }
