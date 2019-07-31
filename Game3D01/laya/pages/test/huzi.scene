@@ -1,13 +1,12 @@
 {
     "x":0,
-    "type":"Scene",
+    "type":"View",
     "selectedBox":2,
-    "selecteID":5,
-    "searchKey":"Scene",
+    "searchKey":"View",
     "props":{"sceneColor":"#a4a4a4"},
     "nodeParent":-1,
-    "maxID":6,
-    "label":"Scene",
+    "maxID":7,
+    "label":"View",
     "isOpen":true,
     "isDirectory":true,
     "isAniNode":true,
@@ -18,7 +17,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"y":225,"x":113,"skin":"bg/tianshiying.png","scaleY":0.8,"scaleX":0.8,"anchorY":0.5,"anchorX":0.5},
+            "props":{"y":0,"x":-51,"skin":"bg/tianshiying.png","scaleY":0.8,"scaleX":0.8,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"Image",
             "isOpen":true,
@@ -33,7 +32,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"y":37,"x":135,"skin":"bg/zhuanpan.png"},
+            "props":{"y":-188,"x":-29,"skin":"bg/zhuanpan.png"},
             "nodeParent":2,
             "label":"Image",
             "isDirectory":false,
@@ -47,15 +46,29 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"y":0,"x":0,"skin":"bg/huzi.png"},
+            "props":{"y":-225,"x":-164,"skin":"bg/huzi.png"},
             "nodeParent":2,
             "label":"Image",
-            "isDirectory":false,
+            "isOpen":null,
+            "isDirectory":true,
             "isAniNode":true,
-            "hasChild":false,
+            "hasChild":true,
             "compId":3,
             "child":[
-                ]
+                {
+                    "type":"Image",
+                    "searchKey":"Image,tan",
+                    "props":{"y":7,"x":15,"var":"tan","skin":"bg/tantan.jpg","scaleY":1.1,"scaleX":1.1},
+                    "nodeParent":3,
+                    "label":"tan",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":6,
+                    "child":[
+                        ],
+                    "$HIDDEN":true
+                }]
         }],
     "animations":[
         {
@@ -65,7 +78,7 @@
                     "keyframes":{
                         "y":[
                             {
-                                "value":0,
+                                "value":-232,
                                 "tweenMethod":"linearNone",
                                 "tween":true,
                                 "target":3,
@@ -73,7 +86,7 @@
                                 "index":0
                             },
                             {
-                                "value":-10,
+                                "value":-255,
                                 "tweenMethod":"linearNone",
                                 "tween":true,
                                 "target":3,
@@ -81,11 +94,30 @@
                                 "index":20
                             },
                             {
-                                "value":0,
+                                "value":-232,
                                 "tweenMethod":"linearNone",
                                 "tween":true,
                                 "target":3,
+                                "label":null,
                                 "key":"y",
+                                "index":40
+                            }],
+                        "x":[
+                            {
+                                "value":-162,
+                                "tweenMethod":"linearNone",
+                                "tween":true,
+                                "target":3,
+                                "key":"x",
+                                "index":0
+                            },
+                            {
+                                "value":-162,
+                                "tweenMethod":"linearNone",
+                                "tween":true,
+                                "target":3,
+                                "label":null,
+                                "key":"x",
                                 "index":40
                             }]
                     }
@@ -93,6 +125,6 @@
             "name":"ani1",
             "id":1,
             "frameRate":24,
-            "action":0
+            "action":2
         }]
 }

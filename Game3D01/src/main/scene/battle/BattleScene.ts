@@ -37,6 +37,8 @@ export default class BattleScene extends Laya.Sprite {
         Game.scene3d = scene;
         //血条层
         this.addChild(Game.bloodLayer);
+
+        this.addChild(Game.topLayer);
         //添加照相机
         var camera: Laya.Camera = (scene.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
         Game.cameraCN = new GameCameraNum(-45, 10);
@@ -54,6 +56,23 @@ export default class BattleScene extends Laya.Sprite {
         var directionLight: Laya.DirectionLight = scene.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
         directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
+
+        bg.on(Game.Event_NPC,this,this.showNpcView);
+    }
+
+    private npcView:Laya.View;
+    private showNpcView():void
+    {
+        let npcId:number = Game.bg.npcId;
+        if(npcId > 0)
+        {
+            let NPCVIEW = Laya.ClassUtils.getClass("NPCVIEW" + npcId);
+            if(NPCVIEW)
+            {
+                this.npcView = new NPCVIEW();
+                this.addChild(this.npcView);
+            }
+        }
     }
 
     init(): void {
@@ -62,7 +81,7 @@ export default class BattleScene extends Laya.Sprite {
             Game.executor = new GameExecut();
         }
         Game.map0.drawMap();
-        // this.addChild(Game.map0);
+        this.addChild(Game.map0);
         Game.updateMap();
 
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;

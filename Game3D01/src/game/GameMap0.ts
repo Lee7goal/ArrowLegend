@@ -32,6 +32,9 @@ export default class GameMap0 extends Laya.Sprite {
     //public laodings:Laya.Sprite;
     public map: any = {};
     private Amap: any = {};
+
+    private npcHitBox:GameHitBox;
+    
     constructor() {
         super();
         this.ballistic = new Laya.Sprite();
@@ -111,6 +114,11 @@ export default class GameMap0 extends Laya.Sprite {
                         hb.setXY(x - GameBG.ww, y);
                         this.Thornarr.push(hb);
                     }
+                    else if(GridType.isNpc(key))
+                    {
+                        this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww);
+                        this.npcHitBox.setXY(x - GameBG.ww * 5, y - GameBG.ww);
+                    }
                 }
                 k++;
             }
@@ -161,6 +169,12 @@ export default class GameMap0 extends Laya.Sprite {
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
 
+        //最后放npc
+        if(this.npcHitBox)
+        {
+            this.Wharr.push(this.npcHitBox);
+        }
+
         //传送门左侧
         hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww * 2);
         hb.setXY(0, GameBG.ww * 8);
@@ -176,10 +190,25 @@ export default class GameMap0 extends Laya.Sprite {
         this.alpha = 1;
         this.addChild(this.ballistic);
         //this.addChild(this.laodings);
-        
+
 
         this.setDoor(false);
         
+    }
+
+    clearNpc():void
+    {
+        this._isNpc = false;
+        if(this.npcHitBox)
+        {
+            this.Wharr.splice(this.Wharr.indexOf(this.npcHitBox),1);
+            this.npcHitBox = null;
+        }
+        this.graphics.clear();
+        for (let i = 0; i < this.Wharr.length; i++) {
+            var hb = this.Wharr[i];
+            this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
+        }
     }
 
     /**开关门 */
@@ -201,8 +230,9 @@ export default class GameMap0 extends Laya.Sprite {
     }
 
     private _isNext:boolean = false;
+    private _isNpc:boolean = false;
     public chechHit(gamepro: GamePro, vx: number, vy: number): boolean {
-        if(this._isNext)
+        if(this._isNext || this._isNpc)
         {
 
             return true;
@@ -217,6 +247,13 @@ export default class GameMap0 extends Laya.Sprite {
                 this._isNext = true;
                 console.log("传送下一关");
                 Game.battleLoader.load();
+                return true;
+            }
+            if(gamepro == Game.hero && ehb == Game.map0.npcHitBox && ehb.hit(ehb, fb))
+            {
+                this._isNpc = true;
+                console.log("碰到npc了");
+                Game.bg.event(Game.Event_NPC);
                 return true;
             }
             if (ehb.hit(ehb, fb)) {

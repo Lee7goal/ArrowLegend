@@ -60,4 +60,19 @@ export default class GridType {
         return type > 10000;
     }
 
+    public static isSawHeng(type:number):boolean
+    {
+        return type>=50 && type<60;
+    }
+
+    public static isSawZong(type:number):boolean
+    {
+        return type>=60 && type<70;
+    }
+
+    public static isNpc(type:number):boolean
+    {
+        return type == 1000 ||type == 1001 || type == 1002 || type == 1003;
+    }
+
 }

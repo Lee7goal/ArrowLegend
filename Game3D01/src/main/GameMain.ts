@@ -26,6 +26,13 @@ import BounceRandomMoveAI from "../game/ai/BounceRandomMoveAI";
 import MoveAndHitAi from "../game/ai/MoveAndHitAi";
 import FollowAI from "../game/ai/FollowAI";
 import JumpFollowAI from "../game/ai/JumpFollowAI";
+import { ui } from "./../ui/layaMaxUI";
+import NPC_1001_view from "./scene/battle/npc/NPC_1001_view";
+import NPC_1002_view from "./scene/battle/npc/NPC_1002_view";
+import NPC_1003_view from "./scene/battle/npc/NPC_1003_view";
+import NPC_1001 from "./scene/battle/npc/NPC_1001";
+import NPC_1002 from "./scene/battle/npc/NPC_1002";
+import NPC_1003 from "./scene/battle/npc/NPC_1003";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -54,15 +61,15 @@ var REG: Function = Laya.ClassUtils.regClass;
     }
 
     private regClass():void{
+        //NPC
+        REG("NPC1001",NPC_1001);
+        REG("NPC1002",NPC_1002);
+        REG("NPC1003",NPC_1003);
+
+        REG("NPCVIEW1001",NPC_1001_view);
+        REG("NPCVIEW1002",NPC_1002_view);
+        REG("NPCVIEW1003",NPC_1003_view);
         //攻击类型
-        // REG(AttackType.TAG + AttackType.NORMAL_BULLET,MonsterAI);
-        // REG(AttackType.TAG + AttackType.RANDOM_BULLET,MonsterAI);
-        // REG(AttackType.TAG + AttackType.FLY_HIT,MonsterAI);
-        // REG(AttackType.TAG + AttackType.AOE,MonsterAI);
-
-        // REG(AttackType.TAG + AttackType.SPLIT,SplitAI);
-        // REG(AttackType.TAG + AttackType.CALL_MONSTER,CallMonsterAI);
-
         REG(AttackType.TAG + AIType.NOTHAS,BaseAI);
         REG(AttackType.TAG + AIType.FLYHIT,FlyAndHitAi);
         REG(AttackType.TAG + AIType.BULLET,FlowerAI);

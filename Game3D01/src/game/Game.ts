@@ -29,6 +29,8 @@ export default class Game {
     static Event_Hit: string = "Game.Event_Hit";
     static Event_KeyNum: string = "Game.Event_KeyNum";
 
+    static Event_NPC:string = "Event_NPC";
+
     static AiArr: GamePro[] = [];
     static HeroArrows: GamePro[] = [];
     //3d层
@@ -77,6 +79,7 @@ export default class Game {
     static footLayer: Laya.Sprite = new Laya.Sprite();
     static bloodLayer: Laya.Sprite = new Laya.Sprite();
     static frontLayer: Laya.Sprite = new Laya.Sprite();
+    static topLayer:Laya.Sprite = new Laya.Sprite();
 
     static scenneM:SceneManager = new SceneManager();
 
@@ -96,6 +99,7 @@ export default class Game {
                 Game.bloodLayer.pos(Game.bg.x, Game.bg.y);
                 Game.frontLayer.pos(Game.bg.x, Game.bg.y);
                 Game.footLayer.pos(Game.bg.x, Game.bg.y);
+                Game.topLayer.pos(Game.bg.x, Game.bg.y);
                 Game.map0.pos(Game.bg.x, Game.bg.y);
             }
         }
@@ -131,6 +135,7 @@ export default class Game {
         Game.frontLayer.removeChildren();
         Game.footLayer.removeChildren();
         Game.layer3d.removeChildren();
+        Game.topLayer.removeChildren();
         Game.executor && Game.executor.stop_();
         if (Game.ro)  {
             Game.ro.destroy();

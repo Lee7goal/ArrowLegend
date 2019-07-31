@@ -5,6 +5,10 @@ import Game from "./Game";
 import GridType from "./bg/GridType";
 import BitmapNumber from "../core/display/BitmapNumber";
 import App from "../core/App";
+import Saw from "../main/scene/battle/saw/Saw";
+import NPC_1001 from "../main/scene/battle/npc/NPC_1001";
+import NPC_1002 from "../main/scene/battle/npc/NPC_1002";
+import NPC_1003 from "../main/scene/battle/npc/NPC_1003";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -161,6 +165,17 @@ export default class GameBG extends Laya.Sprite {
     private _topShadow:Image = new Image();
     private _leftShadow:Image = new Image();
     private _door:Image = new Image();
+
+    /**电锯 */
+    public saw:Saw = new Saw();
+
+    /**电锯信息 */
+    private _sawInfo:any = {};
+    private _sawInfoZong:any = {};
+    private _npcAni:Laya.View;
+
+    public npcId:number = 0;
+
     constructor() {
         super();
         GameBG.gameBG = this;
@@ -178,14 +193,28 @@ export default class GameBG extends Laya.Sprite {
         this.mySp.y = y - GameBG.mw2;
     }
 
-    public drawR(hasBoss:boolean = false): void {
+    public clear():void
+    {
         this._box.removeChildren();
+        this.saw.clear();
+
+        this._sawInfo = {};
+        this._sawInfoZong = {};
+
+        this.npcId = 0;
+        this._npcAni && this._npcAni.removeSelf();
+        this._npcAni = null;
+    }
+
+    public drawR(hasBoss:boolean = false): void {
         var img: Image;
         var ww: number = GameBG.ww;
         var k: number = 0;
         let sp: Sprite;
         let gType: number = 0;
         this.addChild(this._box);
+        this.addChild(this.saw);
+        
         for (let j = 0; j < GameBG.hnum; j++) {
             this.bgh += ww;
             for (let i = 0; i < GameBG.wnum + 1; i++) {
@@ -222,6 +251,52 @@ export default class GameBG extends Laya.Sprite {
                 else if(GridType.isFlower(gType))
                 {
                     grid.skin = GameBG.BG_TYPE + '/' + gType + '.png';
+                }
+                else if(GridType.isSawHeng(gType))//横锯子
+                {
+                    if(this._sawInfo[gType] == null)
+                    {
+                        let hengAry:Laya.Point[] = [];
+                        this._sawInfo[gType] = hengAry;
+                    }
+                    let p:Laya.Point = new Laya.Point(img.x,img.y);
+                    this._sawInfo[gType].push(p);
+                }
+                else if(GridType.isSawZong(gType))//纵锯子
+                {
+                    if(this._sawInfoZong[gType] == null)
+                    {
+                        let hengAry:Laya.Point[] = [];
+                        this._sawInfoZong[gType] = hengAry;
+                    }
+                    let p:Laya.Point = new Laya.Point(img.x,img.y);
+                    this._sawInfoZong[gType].push(p);
+                }
+                else if(GridType.isNpc(gType))
+                {
+                    if(gType == 1001)
+                    {
+                        //天使
+                        this.npcId = gType;
+                    }
+                    else if(gType == 1000)
+                    {
+                        //判断出哪个
+                        if(Math.random() >= 0.5)
+                        {
+                            this.npcId = 1002;
+                        }
+                        else{
+                            this.npcId = 1003;
+                        }
+                    }
+
+                    if(this.npcId > 0)
+                    {
+                        let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
+                        this._npcAni = new NPC();
+                        this._npcAni.pos(img.x + GameBG.ww2,img.y);
+                    }
                 }
                 img.addChild(grid);
                 k++;
@@ -264,6 +339,25 @@ export default class GameBG extends Laya.Sprite {
                 k++;
             }
         }
+
+        //横
+        for(let key in this._sawInfo)
+        {
+            let hengAry:Laya.Point[] = this._sawInfo[key];
+            let pos:Laya.Point = hengAry[0];
+            let ww:number = hengAry[1].x - hengAry[0].x + GameBG.ww;
+            this.saw.addBg(pos.x,pos.y,ww,1);
+        }
+        //纵
+        for(let key in this._sawInfoZong)
+        {
+            let zongAry:Laya.Point[] = this._sawInfoZong[key];
+            let pos:Laya.Point = zongAry[0];
+            let hh:number = zongAry[1].y - zongAry[0].y + GameBG.ww;
+            this.saw.addBg(pos.x,pos.y,hh,2);
+        }
+
+        this.saw.updateSaw();
 
         for (let j = 0; j < GameBG.hnum; j++) {
             if (j % 2 == 0) {
@@ -323,6 +417,23 @@ export default class GameBG extends Laya.Sprite {
         GameBG.cy = this.y;
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
+
+        if(this._npcAni)
+        {
+            Game.topLayer.addChild(this._npcAni);
+        }
+    }
+
+    public clearNpc():void
+    {
+        Laya.Tween.to(this._npcAni,{scaleX:0.3},200,null,null,100);
+        Laya.Tween.to(this._npcAni,{y:-100},300,Laya.Ease.circIn,new Laya.Handler(this,this.clearNpcCom),300);
+    }
+
+    private clearNpcCom():void
+    {
+        this._npcAni && this._npcAni.removeSelf();
+        Game.map0.clearNpc();
     }
 
     public setDoor(state:number):void{

@@ -15,7 +15,7 @@ export default class BattleLoader {
     private _mapId: number;
     public chaterId: number = 1;
     private _configId: number;
-    private _index: number = -1;
+    private _index: number = 4;
 
     private _loading: ui.test.BattleLoadingUI;
 
@@ -35,6 +35,7 @@ export default class BattleLoader {
         }
 
         App.layerManager.alertLayer.addChild(this._loading);
+        Game.bg && Game.bg.clear();
         this._loading.txt.text = "0%";
 
         this._index++;
@@ -54,7 +55,6 @@ export default class BattleLoader {
         // this._configId = 101002;//食人花boss
         // this._configId = 101004;
         // this._configId = 104101//炸弹人
-        // this._configId = 100703;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
@@ -114,7 +114,13 @@ export default class BattleLoader {
         }
         
         console.log('资源列表', this.arr);
-        Laya.loader.create(this.arr, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress))
+        Laya.loader.create(this.arr, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress));
+        Laya.loader.on(Laya.Event.PROGRESS,this,this.onP);
+    }
+
+    private onP(vv:number):void
+    {
+        console.log("进度",vv);
     }
 
     private getMonsterRes(id: number): void  {
