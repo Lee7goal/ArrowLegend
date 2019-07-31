@@ -3,6 +3,7 @@ import GameHitBox from "./GameHitBox";
 import Game from "./Game";
 import GamePro from "./GamePro";
 import GridType from "./bg/GridType";
+import MaoLineData from "./MaoLineData";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -232,6 +233,9 @@ export default class GameMap0 extends Laya.Sprite {
         fb.setRq(hb.x + vx, hb.y + vy, hb.ww, hb.hh);
         for (let i = 0; i < thbArr.length; i++) {
             let ehb = thbArr[i];
+            if(ehb == hb){
+                continue;
+            }
             if (ehb.hit(ehb, fb)) {
                 return true;
             }
@@ -249,6 +253,100 @@ export default class GameMap0 extends Laya.Sprite {
         }
         return null;
     }
+
+    public chechHit_arr_all(thb: GameHitBox, thbArr: GameHitBox[]): GameHitBox[] {
+        let arr:GameHitBox[] = null;
+        let ehb: GameHitBox = null;
+        for (let i = 0; i < thbArr.length; i++) {
+            ehb = thbArr[i];
+            if (ehb.hit(ehb, thb)) {
+                if(!arr)arr=[];
+                arr.push(ehb);
+
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * 返回 最近的 碰撞线、碰撞点、碰撞体
+     * @param vv 
+     * @param arr 
+     */
+    public getPointAndLine(vv:MaoLineData,arr:GameHitBox[]):any[]{
+        var ebh:GameHitBox;
+        var sp;
+        var ebs:any[] = [];
+        let l:MaoLineData;
+        for (let i = 0; i < arr.length; i++) {            
+            ebh = arr[i];
+
+            l = ebh.getBottom();
+            sp = vv.lineTest(l);            
+            if(sp){
+                ebs.push(sp);
+                ebs.push(l);
+                ebs.push(ebh);                
+            }
+
+            l = ebh.getTop();
+            sp = vv.lineTest(l);
+            if(sp){
+                ebs.push(sp);
+                ebs.push(l);
+                ebs.push(ebh);
+            }
+
+            l = ebh.getLeft();
+            sp = vv.lineTest(l);
+            if(sp){
+                ebs.push(sp);
+                ebs.push(l);
+                ebs.push(ebh);
+            }
+
+            l = ebh.getRight()
+            sp = vv.lineTest(l);
+            if(sp){
+                ebs.push(sp);
+                ebs.push(l);
+                ebs.push(ebh);
+            }
+        }
+        if(ebs.length<=0)return null;
+        if(ebs.length==3)return ebs;
+        var x0 = vv.x0;
+        var y0 = vv.y0;
+        var rs0 = null;
+        var rs1 = null;
+        var rs2 = null;
+        var len = -1;
+        for (let i = 0; i < ebs.length; i+=3) {
+            var p = ebs[i];            
+            var tlen = MaoLineData.len(x0,y0,p.x,p.y);
+            //var g = Game.map0.ballistic.graphics;
+            //g.drawCircle(p.x,p.y,5,0xff0000,0xff0000);
+            if(len==-1){
+                rs0 = p;
+                rs1 = ebs[i+1];
+                rs2 = ebs[i+2];
+                len = tlen;
+            }else if(tlen<len){
+                rs0 = p;
+                rs1 = ebs[i+1];
+                rs2 = ebs[i+2];
+                len = tlen;
+            }
+        }
+        ebs.length = 2;
+        ebs[0] = rs0;
+        ebs[1] = rs1;
+        ebs[2] = rs2;
+        return ebs;
+    }
+
+
+
 
     private fcount: number = 0;
     private sp: Laya.Point = new Laya.Point();

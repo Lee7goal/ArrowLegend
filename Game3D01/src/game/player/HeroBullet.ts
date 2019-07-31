@@ -3,11 +3,14 @@ import GameProType from "../GameProType";
 import Game from "../Game";
 import HeroArrowAI from "../ai/HeroArrowAI";
 import ArrowGameMove from "../move/ArrowGameMove";
+import ArrowGameMove0 from "../move/ArrowGameMove0";
 export default class HeroBullet extends GamePro {
     static TAG:string = 'HeroBullet';
     constructor() {
         super(GameProType.HeroArrow);
-        this.setGameMove(new ArrowGameMove());
+        //this.setGameMove(new ArrowGameMove());
+        //this.setGameAi(new HeroArrowAI(this));
+        this.setGameMove(new ArrowGameMove0());
         this.setGameAi(new HeroArrowAI(this));
     }
 
@@ -17,7 +20,7 @@ export default class HeroBullet extends GamePro {
         if(!this.sp3d)
         {
             this.setSp3d(Laya.Sprite3D.instantiate(Game.a0.sp3d));
-            console.log("创建新的主角子弹");
+            //console.log("创建新的主角子弹");
         }
     }
 

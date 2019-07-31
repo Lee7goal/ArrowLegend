@@ -46,7 +46,7 @@ export default class BattleLoader {
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        // this._configId = 101005;//分裂
+        this._configId = 101005;//分裂
         // this._configId = 101003;//蓝色树妖boss
         // this._configId = 101004;//火龙boss
         // this._configId = 100101;//撞击

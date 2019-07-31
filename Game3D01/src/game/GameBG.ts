@@ -30,6 +30,8 @@ export default class GameBG extends Laya.Sprite {
     static mw: number = GameBG.ww - GameBG.fw;
     //1/2 主角的碰撞方块尺寸
     static mw2: number = GameBG.mw / 2;
+    //1/4 主角的碰撞方块尺寸
+    static mw4: number = GameBG.mw / 4;
     //正交相机纵向尺寸
     static orthographicVerticalSize: number = GameBG.wnum * GameBG.height / GameBG.width;
     //2D地图

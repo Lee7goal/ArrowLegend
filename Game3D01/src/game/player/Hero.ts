@@ -11,6 +11,7 @@ export default class Hero extends GamePro {
     
     constructor() {
         super(GameProType.Hero, 0);
+        this.unBlocking = true;
     }
 
     init(): void  {
