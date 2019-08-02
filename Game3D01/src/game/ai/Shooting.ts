@@ -28,7 +28,7 @@ export default class Shooting {
     public short_arrow(speed_: number, r_: number, pro: GamePro) {
         var bo = HeroBullet.getBullet();
         // var bo = new HeroBullet();
-        bo.sp3d.transform.localPositionY = 0.1;
+        bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
         bo.setSpeed(speed_);
         bo.rotation(r_);

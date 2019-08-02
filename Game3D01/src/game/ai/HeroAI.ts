@@ -48,7 +48,7 @@ export default class HeroAI extends GameAI {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);
-        this.shootin.at = 0.2;
+        this.shootin.at = 0.5;
         this.shootin.now = Game.executor.getWorldNow();
     }
 

@@ -31,8 +31,10 @@ export default class DieEffect{
     {
         this.sp3d && this.sp3d.removeSelf();
         // Laya.Pool.recover(DieEffect.TAG,this);
-        if (Game.map0.Eharr.length == 0)  {
-            Game.openDoor();
-        }
+        setTimeout(() => {
+            if (Game.map0.Eharr.length == 0)  {
+                Game.openDoor();
+            }
+        }, 2000);
     }
 }

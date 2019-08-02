@@ -105,14 +105,14 @@ export default class BaseAI extends GameAI {
                     this.g2.playtime = 150;
                 }
             }
-        }
 
-        var ms = this.pro;
-        if (MonsterShader.map[ms.sysEnemy.enemymode]) {
-            var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
-            shader.setShader0(this.pro.sp3d, 1);
-            var now = Game.executor.getWorldNow();
-            this.shaders = now + 250;
+            var ms = this.pro;
+            if (MonsterShader.map[ms.sysEnemy.enemymode]) {
+                var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
+                shader.setShader0(this.pro.sp3d, 1);
+                var now = Game.executor.getWorldNow();
+                this.shaders = now + 250;
+            }
         }
     }
 
