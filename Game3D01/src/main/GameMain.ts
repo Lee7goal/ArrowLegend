@@ -8,7 +8,6 @@ import SysEnemy from "./sys/SysEnemy";
 import AttackType from "../game/ai/AttackType";
 import MoveType from "../game/move/MoveType";
 import SysBullet from "./sys/SysBullet";
-import MonsterAI1 from "../game/ai/MonsterAI1";
 import FlyAndHitAi from "../game/ai/FlyAndHitAi";
 import FixedGameMove from "../game/move/FixedGameMove";
 import FlyGameMove from "../game/move/FlyGameMove";
@@ -22,9 +21,7 @@ import StoneAI from "../game/ai/StoneAI";
 import TreeAI from "../game/ai/TreeAI";
 import MonsterMove from "../game/move/MonsterMove";
 import RandMoveAI from "../game/ai/RandMoveAI";
-import BounceRandomMoveAI from "../game/ai/BounceRandomMoveAI";
 import MoveAndHitAi from "../game/ai/MoveAndHitAi";
-import FollowAI from "../game/ai/FollowAI";
 import JumpFollowAI from "../game/ai/JumpFollowAI";
 import { ui } from "./../ui/layaMaxUI";
 import NPC_1001_view from "./scene/battle/npc/NPC_1001_view";
@@ -35,6 +32,11 @@ import NPC_1002 from "./scene/battle/npc/NPC_1002";
 import NPC_1003 from "./scene/battle/npc/NPC_1003";
 import PlaneGameMove from "../game/move/PlaneGameMove";
 import BackMove from "../game/move/BackMove";
+import ReboundAI from "../game/ai/ReboundAI";
+import GameScaleAnimator1 from "../game/ai/GameScaleAnimator1";
+import GameScaleAnimator3 from "../game/ai/GameScaleAnimator3";
+import GameScaleAnimator2 from "../game/ai/GameScaleAnimator2";
+import GameScaleAnimator4 from "../game/ai/GameScaleAnimator4";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -63,6 +65,11 @@ var REG: Function = Laya.ClassUtils.regClass;
     }
 
     private regClass():void{
+        //击退效果
+        REG("HIT_1",GameScaleAnimator1);
+        REG("HIT_2",GameScaleAnimator2);
+        REG("HIT_3",GameScaleAnimator3);
+        REG("HIT_4",GameScaleAnimator4);
         //NPC
         REG("NPC1001",NPC_1001);
         REG("NPC1002",NPC_1002);
@@ -78,9 +85,8 @@ var REG: Function = Laya.ClassUtils.regClass;
         REG(AttackType.TAG + AIType.STONE,StoneAI);
         REG(AttackType.TAG + AIType.TREE,TreeAI);
         REG(AttackType.TAG + AIType.RANDOM_MOVE,RandMoveAI);
-        REG(AttackType.TAG + AIType.BOUNCE_RANDOM_MOVE,BounceRandomMoveAI);
         REG(AttackType.TAG + AIType.MOVEHIT,MoveAndHitAi);
-        REG(AttackType.TAG + AIType.FOLLOW,FollowAI);
+        REG(AttackType.TAG + AIType.REBOUND,ReboundAI);
         REG(AttackType.TAG + AIType.JUMP_FOLLOW,JumpFollowAI);
         //移动类型
         REG(MoveType.TAG + MoveType.FLY,FlyGameMove);

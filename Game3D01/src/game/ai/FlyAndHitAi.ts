@@ -26,6 +26,7 @@ export default class FlyAndHitAi extends BaseAI {
 
         this.cd = Game.executor.getWorldNow() + FlyAndHitAi.timdex*2000;
         FlyAndHitAi.timdex++;
+        pro.setSpeed(1);
     }
 
     
@@ -66,7 +67,7 @@ export default class FlyAndHitAi extends BaseAI {
                 this.pro.setSpeed(1);
                 this.pro.move2D(this.pro.face2d + Math.PI);   
             }           
-        }else{
+        }else if(this.status == 0){
             this.traceHero();
         }
     }

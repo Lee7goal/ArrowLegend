@@ -10,6 +10,7 @@ import SysEnemy from "../../main/sys/SysEnemy";
 import App from "../../core/App";
 import AttackType from "./AttackType";
 import SplitSkill from "../skill/SplitSkill";
+import GameScaleAnimator from "./GameScaleAnimator";
 
 /**不动不攻击的ai */
 export default class BaseAI extends GameAI {
@@ -22,6 +23,9 @@ export default class BaseAI extends GameAI {
     protected collisionCd:number = 0;
 
     private splitSkill:SplitSkill;
+    private stiffTime:number;
+    private stiff:number = 500;
+    private g2:GameScaleAnimator;
 
     /**检测碰撞 */
     checkHeroCollision(): void {
@@ -49,11 +53,32 @@ export default class BaseAI extends GameAI {
     }
     
     exeAI(pro: GamePro): boolean {
+        if(this.pro.gamedata.hp <= 0)
+        {
+            return;
+        }
         if(!this.run_)return;
 
         this.now = Game.executor.getWorldNow();
         this.setShader();
+        this.hitEffect();
         return false;
+    }
+
+    hitEffect():void
+    {
+        if(this.g2){
+            this.g2.ai(<Monster>this.pro);
+        }
+
+        //  if(this.stiffTime!=0)
+        //  { 
+        //     if(this.now >= this.stiffTime + this.stiff){
+        //         this.stiffTime = 0;
+        //     }else{                
+        //         return;
+        //     }
+        // }
     }
 
     starAi() {
@@ -65,9 +90,21 @@ export default class BaseAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.hurt(this.pro.gamedata.maxhp * 0.5);
+        this.pro.hurt(this.pro.gamedata.maxhp / 4);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
+        }
+        else{
+            this.stiffTime = this.now;
+            if( this.g2 && this.g2.isOk()){//击退
+                var a: number = pro.face3d + Math.PI;
+                this.pro.rotation(a);
+                if(this.g2.starttime == 0 ){                        
+                    this.g2.starttime = this.now;//受击变形 击退
+                    this.g2.now = this.now;
+                    this.g2.playtime = 150;
+                }
+            }
         }
 
         var ms = this.pro;
@@ -104,11 +141,17 @@ export default class BaseAI extends GameAI {
                 }
             }
         }
+
+        if(this.sysEnemy.enemyBlack > 0)
+        {
+            let HIT:any = Laya.ClassUtils.getClass("HIT_" + this.sysEnemy.enemyBlack);
+            this.g2 = new HIT();
+        }
     }
 
     die():void
     {
-        this.pro.die();
         this.splitSkill && this.splitSkill.exeSkill(this.now,this.pro);
+        this.pro.die();
     }
 }

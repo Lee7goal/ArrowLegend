@@ -35,6 +35,11 @@ export default class Shooting {
         bo.gamedata.bounce = pro.gamedata.bounce;
         bo.startAi();
         Game.layer3d.addChild(bo.sp3d);
+
+        // setTimeout(() => {
+        //     let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>bo.sp3d.getChildAt(0).getChildAt(1);
+        //     trail.trailFilter.time = 0.2;
+        // }, 200);
     }
 
     public attackOk(): boolean {

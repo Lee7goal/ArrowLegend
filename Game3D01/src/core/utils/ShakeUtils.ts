@@ -22,7 +22,35 @@ export default class ShakeUtils {
         ShakeUtils.shake.exe(sp, time, moveLen);
     }
 
+    public static execute2(sp: Laya.Sprite, time: number, rotateNum: number): void {
+        ShakeUtils.shake.exe2(sp, time, rotateNum);
+    }
+
     public startTime: number;
+
+    private rotateNum:number;
+    public exe2(sp: Laya.Sprite, delay: number, rotateNum: number):void
+    {
+        this.flag = false;
+        this.rotateNum = rotateNum;
+        this.sp = sp;
+        Laya.timer.loop(delay, this, this.loopFun2);
+        this.now = 0;
+    }
+
+    private flag:boolean = false;
+    private loopFun2():void
+    {
+        if (this.rotateNum <= 0) {
+            Laya.timer.clear(this, this.loopFun2);
+            this.sp.rotation = 0;
+            this.sp = null;
+            return;
+        }
+        this.flag = !this.flag;
+        this.rotateNum--;
+        this.sp.rotation = this.rotateNum * (this.flag ? -1 : 1);
+    }
 
     public exe(sp: Laya.Sprite, time: number, moveLen: number): void {
         this.moveLen = moveLen;
@@ -77,4 +105,7 @@ export default class ShakeUtils {
         Laya.timer.clear(this, this.enterFun);
         this.nowIndex = 0;
     }
+
+
+
 }

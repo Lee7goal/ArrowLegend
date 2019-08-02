@@ -12,12 +12,10 @@ export default class AIType{
     static TREE:number = 5;
     /**随机移动 6*/
     static RANDOM_MOVE:number = 6;
-    /**随机移动会反弹 7*/
-    static BOUNCE_RANDOM_MOVE:number = 7;
     /**移动冲撞的 8*/
     static MOVEHIT:number = 8;
-    /**追人的 9*/
-    static FOLLOW:number = 9;
+    /**乱跑碰到东西反弹的 9*/
+    static REBOUND:number = 9;
     /**跳着追人的 10*/
     static JUMP_FOLLOW:number = 10;
 }

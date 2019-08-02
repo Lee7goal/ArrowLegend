@@ -4,10 +4,13 @@ import { GameAI } from "./GameAI";
 import GamePro from "../GamePro";
 import GameProType from "../GameProType";
 import Shooting from "./Shooting";
+import GameBG from "../GameBG";
 
 export default class HeroAI extends GameAI {
 
-    private shootin: Shooting = new Shooting();
+    static shoot:Shooting = new Shooting();
+
+    private shootin: Shooting = HeroAI.shoot;
 
     //private run_:boolean = false;
 
@@ -25,7 +28,8 @@ export default class HeroAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        Game.hero.hurt(pro.hurtValue);
+        // Game.hero.hurt(pro.hurtValue);
+        Game.hero.hurt(150);
         if (Game.hero.gamedata.hp <= 0) {
             Game.hero.die();
         }
@@ -44,12 +48,12 @@ export default class HeroAI extends GameAI {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);
-        this.shootin.at = 0.58;
+        this.shootin.at = 0.2;
         this.shootin.now = Game.executor.getWorldNow();
     }
 
     public short(): void {
-        this.shootin.short_arrow(40, Game.hero.face3d, Game.hero);
+        this.shootin.short_arrow(GameBG.ww, Game.hero.face3d, Game.hero);
         //this.short_arrow(40,Game.hero.face3d);        
         // this.short_arrow(40,Game.hero.face3d + Math.PI/6);
         // this.short_arrow(40,Game.hero.face3d - Math.PI/6);

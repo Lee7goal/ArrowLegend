@@ -32,7 +32,7 @@ import GameBG from "../../../game/GameBG";
 
         private _selectIndex:number = 2;
 
-        private opens:number[] = [0,1,-1,1,-1,1];
+        private opens:number[] = [0,-1,-1,1,-1,-1];
         constructor(){
             super();
             this.addChild(this.bgBox);

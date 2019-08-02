@@ -23,21 +23,21 @@ export default class HeadTranslateScript extends Laya.Script3D {
 	 * 覆写组件更新方法（相当于帧循环）
 	 */
 	public onUpdate():void {
-        if(this.flag)
-        {
-            this.box.transform.translate(new Laya.Vector3(0,-0.02,0),false)
-        }
-        else{
-            this.box.transform.translate(new Laya.Vector3(0,0.02,0),false)
-        }
-        if(this.box.transform.localPositionX >= -1)
-        {
-            this.flag = true;
-        }
-        else if(this.box.transform.localPositionX <= -1.5)
-        {
-            this.flag = false;
-        }
+        // if(this.flag)
+        // {
+        //     this.box.transform.translate(new Laya.Vector3(0,-0.02,0),false)
+        // }
+        // else{
+        //     this.box.transform.translate(new Laya.Vector3(0,0.02,0),false)
+        // }
+        // if(this.box.transform.localPositionX >= -1)
+        // {
+        //     this.flag = true;
+        // }
+        // else if(this.box.transform.localPositionX <= -1.5)
+        // {
+        //     this.flag = false;
+        // }
         
 	}
 	

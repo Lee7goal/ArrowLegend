@@ -29,21 +29,23 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/190729/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/190802/";
 		}
 		
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
-		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
+		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onConfigLoaded), Laya.ResourceVersion.FILENAME_VERSION);
 	}
 
 	onVersionLoaded(): void {
 		//激活大小图映射，加载小图的时候，如果发现小图在大图合集里面，则优先加载大图合集，而不是小图
-		Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
+		// Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
+		// new GameMain();
 	}
 
 	onConfigLoaded(): void {
-		Laya.loader.load(["res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
+		// new GameMain();
+		Laya.loader.load(["res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
 	}
 
 	private onHandler():void{

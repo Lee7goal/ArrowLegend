@@ -694,7 +694,7 @@
 					{
 						"type":"MeshSprite3D",
 						"props":{
-							"name":"guadia",
+							"name":"guadian",
 							"active":true,
 							"isStatic":false,
 							"layer":0,

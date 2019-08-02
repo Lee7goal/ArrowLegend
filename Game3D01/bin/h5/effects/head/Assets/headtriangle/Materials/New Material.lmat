@@ -5,18 +5,18 @@
 		"name":"New Material",
 		"renderStates":[
 			{
-				"cull":2,
-				"blend":1,
-				"srcBlend":770,
-				"dstBlend":771,
-				"depthWrite":false,
+				"cull":0,
+				"blend":0,
+				"srcBlend":1,
+				"dstBlend":0,
+				"depthWrite":true,
 				"depthTest":515
 			}
 		],
 		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.144,
-		"renderQueue":3000,
+		"renderQueue":2000,
 		"albedoIntensity":1,
 		"textures":[
 			{

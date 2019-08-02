@@ -3,7 +3,7 @@
 	"data":{
 		"type":"Sprite3D",
 		"props":{
-			"name":"hero",
+			"name":"monster",
 			"active":true,
 			"position":[
 				0,
@@ -31,15 +31,15 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						2.377,
-						0.0007206971,
+						-0.072,
+						1.57,
 						0
 					],
 					"rotation":[
 						0,
 						0,
-						0.7071068,
-						-0.7071068
+						0,
+						-1
 					],
 					"scale":[
 						2.384951,

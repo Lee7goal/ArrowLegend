@@ -5,6 +5,7 @@ import MaoLineData from "../MaoLineData";
 import GameBG from "../GameBG";
 import GameHitBox from "../GameHitBox";
 
+/***碰到东西反弹 */
 export default class BackMove extends GameMove {
 
     private future:GameHitBox = new GameHitBox(1,1);

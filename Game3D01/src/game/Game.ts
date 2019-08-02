@@ -19,8 +19,12 @@ import FootRotateScript from "./controllerScript/FootRotateScript";
 import Monster from "./player/Monster";
 import Hero from "./player/Hero";
 import SceneManager from "../main/SceneManager";
+import ShakeUtils from "../core/utils/ShakeUtils";
 
 export default class Game {
+
+    static monsterClones:Laya.Sprite3D[] = [];
+    static monsterResClones:Laya.Sprite3D[] = [];
 
     static cameraCN: GameCameraNum;
 
@@ -49,8 +53,19 @@ export default class Game {
 
     static selectEnemy(pro: GamePro): void {
         Game.e0_ = pro;
-        Game.e0_.sp3d.addChild(Game.selectFoot);
-        Game.e0_.addSprite3DToChild("RigHeadGizmo", Game.selectHead);
+        let curScale:number = (pro as Monster).sysEnemy.zoomMode / 100;
+        curScale = 1 / curScale;
+        if(Game.e0_.sp3d)
+        {
+            Game.e0_.sp3d.addChild(Game.selectFoot);
+            Game.e0_.addSprite3DToChild("guadian", Game.selectHead);
+            Game.selectHead.transform.localScale = new Laya.Vector3(curScale,curScale,curScale);
+            Game.selectFoot.transform.localScale = new Laya.Vector3(curScale,curScale,curScale);
+        }
+        else
+        {
+            console.log("克隆体没有了？");
+        }
     }
 
     //主箭    
@@ -106,13 +121,23 @@ export default class Game {
     }
 
     static door: Laya.Sprite3D;
+    static isOpen:boolean = false;
     static openDoor(): void  {
+        if(Game.isOpen)
+        {
+            return;
+        }
+        Game.isOpen = true;
         Game.bg.setDoor(1);
         Game.door.transform.localPositionX = 0;
         Game.map0.setDoor(true);
+        ShakeUtils.execute(Game.scenneM.battle,75,4);
+
+        Game.battleLoader.destroyMonsterRes();
     }
 
     static closeDoor(): void {
+        Game.isOpen = false;
         Game.door.transform.localPositionX = -20;
         Game.map0.setDoor(false);
         Game.bg.setDoor(0);
@@ -124,7 +149,7 @@ export default class Game {
             Game.selectFoot.addComponent(FootRotateScript);
         }
         if (!Game.selectHead)  {
-            Game.selectHead = Laya.loader.getRes("h5/effects/head/hero.lh");
+            Game.selectHead = Laya.loader.getRes("h5/effects/head/monster.lh");
             Game.selectHead.addComponent(HeadTranslateScript);
         }
     }

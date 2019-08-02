@@ -31,7 +31,11 @@ export default class ArrowGameMove0 extends GameMove {
 
          //move2d(n: number, pro: GamePro, speed: number): boolean{return false}
     public move2d(n: number, pro: GamePro, speed: number,hitStop:boolean): boolean {
-        if(speed==0)return;
+        if(pro.isDie)
+        {
+            return false;
+        }
+        if(speed==0)return false;
         if(this.fv!=null){
             //n= 2 * Math.PI - this.facen2d_ ;            
             pro.rotation(2*Math.PI - this.fv.atan2());
@@ -61,13 +65,13 @@ export default class ArrowGameMove0 extends GameMove {
         line.reset00(box.cx,box.cy);
         line.rad(n);        
         //line.draw(g,"#00ff00");
-
         var vv = this.vv;       
         box = this.future.setRq(line.x1-GameBG.mw4,line.y1-GameBG.mw4,GameBG.mw2,GameBG.mw2);//箭头的碰撞体
         var enemy = Game.map0.chechHit_arr(this.future, hits);
         if(enemy){
             enemy.linkPro_.event(Game.Event_Hit, pro);
             pro.event(Game.Event_Hit, enemy.linkPro_);
+            pro.die();
             return false;
         }
         //box.draw(g,"#ff0000");
@@ -81,6 +85,7 @@ export default class ArrowGameMove0 extends GameMove {
                 enemy = rs[2];
                 enemy.linkPro_.event(Game.Event_Hit, pro);
                 pro.event(Game.Event_Hit, enemy.linkPro_);
+                pro.die();
                 return false;
             }
         }
@@ -94,6 +99,7 @@ export default class ArrowGameMove0 extends GameMove {
                 enemy = rs[2];
                 enemy.linkPro_.event(Game.Event_Hit, pro);
                 pro.event(Game.Event_Hit, enemy.linkPro_);
+                pro.die();
                 return false;
             }
         }

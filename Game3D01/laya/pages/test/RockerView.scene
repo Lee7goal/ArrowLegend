@@ -2,7 +2,6 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":7,
     "searchKey":"View",
     "props":{"sceneColor":"#ffffff"},
     "nodeParent":-1,

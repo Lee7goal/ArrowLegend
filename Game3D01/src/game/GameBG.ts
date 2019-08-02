@@ -436,6 +436,7 @@ export default class GameBG extends Laya.Sprite {
     {
         this._npcAni && this._npcAni.removeSelf();
         Game.map0.clearNpc();
+        Game.openDoor();
     }
 
     public setDoor(state:number):void{

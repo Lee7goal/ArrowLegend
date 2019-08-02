@@ -38,7 +38,7 @@ export default class GamePro extends Laya.EventDispatcher {
     private facen3d_: number = 0;
     private acstr_: string = "";
 
-    private _bloodUI: Blood;
+    public _bloodUI: Blood;
     private _footCircle: FootCircle;
     public _bulletShadow: ui.test.BulletShadowUI;
     private rotationEulerY: number = 0;
@@ -76,7 +76,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         this._bloodUI.init(this.gamedata_);
         Game.bloodLayer.addChild(this._bloodUI);
-        this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
+        this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 120);
     }
 
     public addFootCircle(): void {
@@ -111,6 +111,7 @@ export default class GamePro extends Laya.EventDispatcher {
         let aniSprite3d = sp.getChildAt(0) as Sprite3D;
         if (aniSprite3d) {
             this.ani_ = aniSprite3d.getComponent(Laya.Animator) as Animator;
+            
         }
 
         this.on(Game.Event_Hit, this, this.hit);
@@ -213,6 +214,10 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public get sp3d(): Laya.Sprite3D {
         return this.sp3d_;
+    }
+
+    public dispos():void{
+        this.sp3d_ && this.sp3d_.removeSelf();
     }
 
     public play(actionstr: string): void {
@@ -321,7 +326,12 @@ export default class GamePro extends Laya.EventDispatcher {
                 if (this.animator.speed == 1) {
                     this.animator.speed = (this.speed_ / 6);
                 }
-            } else {
+            } 
+            // else if(this.acstr_ == GameAI.NormalAttack)
+            // {
+            //     this.animator.speed = 2;
+            // }
+            else {
                 if (this.animator.speed != 1) {
                     this.animator.speed = 1;
                 }
@@ -332,7 +342,12 @@ export default class GamePro extends Laya.EventDispatcher {
             this.gameAI.exeAI(this);
         }
 
-        if (this.rotationEulerY == this.sp3d_.transform.localRotationEulerY) {
+        if(this.sp3d_ == null)
+        {
+            return;
+        }
+
+        if (this.sp3d_ && this.rotationEulerY == this.sp3d_.transform.localRotationEulerY) {
             return;
         }
 
@@ -376,6 +391,11 @@ export default class GamePro extends Laya.EventDispatcher {
             this.sp2d_.x = this.hbox_.x;
             this.sp2d_.y = this.hbox_.y;
         }
+        this.updateUI();
+    }
+
+    updateUI():void
+    {
         this._bloodUI && this._bloodUI.pos(this.hbox_.cx, this.hbox_.cy - 90);
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
         this._bulletShadow && this._bulletShadow.pos(this.hbox_.cx, this.hbox_.cy);
@@ -420,6 +440,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public startAi(): void {
         //Laya.stage.frameLoop(1, this, this.ai);
+        // this.stopAi();
         if (this.gameAI) {
             this.gameAI.starAi();
             if (Game.AiArr.indexOf(this) < 0) {
@@ -435,7 +456,7 @@ export default class GamePro extends Laya.EventDispatcher {
         }
         var index: number = Game.AiArr.indexOf(this);
         if (index > -1) {
-            Game.AiArr.slice(index, 1);
+            Game.AiArr.splice(index, 1);
         }
     }
 

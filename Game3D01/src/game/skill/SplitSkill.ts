@@ -11,6 +11,7 @@ export default class SplitSkill extends BaseSkill {
     constructor(sys: SysBullet) { super(sys); }
 
     exeSkill(now: number, pro: Monster): boolean  {
+        this.pro = pro;
         if (pro.splitTimes < this.sysBullet.splitNum)
         {
             this.onDieSplit();
