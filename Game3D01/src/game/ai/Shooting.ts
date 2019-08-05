@@ -13,7 +13,7 @@ export default class Shooting {
     /**单次出手次数*/
     public scd: number = 0;
     /**攻击CD*/
-    public attackCd: number = 1200;
+    public attackCd: number = 650;
     /**下次攻击时间*/
     public st: number = 0;
     /**上次攻击时间*/
