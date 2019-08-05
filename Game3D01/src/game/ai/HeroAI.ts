@@ -56,7 +56,7 @@ export default class HeroAI extends GameAI {
     public short(): void {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
-        this.shootin.short_arrow(GameBG.ww, Game.hero.face3d, Game.hero);
+        this.shootin.short_arrow(GameBG.ww / 2, Game.hero.face3d, Game.hero);
         //this.short_arrow(40,Game.hero.face3d);        
         // this.short_arrow(40,Game.hero.face3d + Math.PI/6);
         // this.short_arrow(40,Game.hero.face3d - Math.PI/6);
