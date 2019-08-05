@@ -37,6 +37,7 @@ import GameScaleAnimator1 from "../game/ai/GameScaleAnimator1";
 import GameScaleAnimator3 from "../game/ai/GameScaleAnimator3";
 import GameScaleAnimator2 from "../game/ai/GameScaleAnimator2";
 import GameScaleAnimator4 from "../game/ai/GameScaleAnimator4";
+import HitType from "../game/ai/HitType";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -66,10 +67,10 @@ var REG: Function = Laya.ClassUtils.regClass;
 
     private regClass():void{
         //击退效果
-        REG("HIT_1",GameScaleAnimator1);
-        REG("HIT_2",GameScaleAnimator2);
-        REG("HIT_3",GameScaleAnimator3);
-        REG("HIT_4",GameScaleAnimator4);
+        REG("HIT_" + HitType.hit1,GameScaleAnimator1);
+        REG("HIT_" + HitType.hit2,GameScaleAnimator2);
+        REG("HIT_" + HitType.hit3,GameScaleAnimator3);
+        REG("HIT_"  + HitType.hit4,GameScaleAnimator4);
         //NPC
         REG("NPC1001",NPC_1001);
         REG("NPC1002",NPC_1002);
