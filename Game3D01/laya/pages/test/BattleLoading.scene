@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":6,
+    "selecteID":4,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":7,
+    "maxID":6,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -16,43 +16,30 @@
     "child":[
         {
             "x":15,
-            "type":"Box",
-            "searchKey":"Box",
-            "props":{"x":0,"height":1700,"centerY":0},
+            "type":"Image",
+            "searchKey":"Image",
+            "props":{"y":0,"x":0,"skin":"main/zhudi.jpg","height":1700},
             "nodeParent":2,
-            "label":"Box",
+            "label":"Image",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":6,
+            "compId":4,
             "child":[
                 {
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"skin":"main/zhudi.jpg"},
-                    "nodeParent":6,
+                    "props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},
+                    "nodeParent":4,
                     "label":"Image",
-                    "isOpen":false,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
-                    "compId":4,
+                    "hasChild":false,
+                    "compId":5,
                     "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},
-                            "nodeParent":4,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":5,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 }]
         },
         {

@@ -4,9 +4,23 @@ import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
 export module ui.test {
+    export class battleUI extends Dialog {
+		public lvBar:Laya.Box;
+		public jingyantiao:Laya.Image;
+		public zanting:Laya.Button;
+		public jinbishu:Laya.FontClip;
+		public shuzi:Laya.FontClip;
+        public static  uiView:any ={"type":"Dialog","props":{"width":750,"height":130},"compId":2,"child":[{"type":"Box","props":{"y":89,"x":85},"compId":11,"child":[{"type":"Image","props":{"width":545,"skin":"bg/jingyantiaodi.png","sizeGrid":"0,22,0,22","height":37},"compId":3},{"type":"Box","props":{"y":0,"x":0,"var":"lvBar"},"compId":12,"child":[{"type":"Image","props":{"width":545,"var":"jingyantiao","skin":"bg/jingyantiaoshang.png","sizeGrid":"0,18,0,14","height":37},"compId":4},{"type":"Image","props":{"width":542,"skin":"bg/jingyantiaoguang.png","sizeGrid":"0,23,0,16","height":37},"compId":5}]}]},{"type":"Button","props":{"y":47,"x":45,"var":"zanting","stateNum":1,"skin":"bg/btn_zhanting.png","anchorY":0.5,"anchorX":0.5},"compId":6},{"type":"Sprite","props":{"y":14,"x":591,"texture":"bg/qianshu.png"},"compId":7},{"type":"FontClip","props":{"y":30,"x":646,"width":160,"var":"jinbishu","value":"123","skin":"main/clipshuzi.png","sheet":"1234 5678 90-+","scaleY":0.6,"scaleX":0.6,"height":51,"align":"left"},"compId":8},{"type":"Sprite","props":{"y":55,"x":273,"texture":"bg/dengji.png"},"compId":9},{"type":"FontClip","props":{"y":59,"x":372,"width":109,"var":"shuzi","value":"23","skin":"main/clipshuzi.png","sheet":"1234 5678 90-+","height":51,"align":"left"},"compId":10}],"loadList":["bg/jingyantiaodi.png","bg/jingyantiaoshang.png","bg/jingyantiaoguang.png","bg/btn_zhanting.png","bg/qianshu.png","main/clipshuzi.png","bg/dengji.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(battleUI.uiView);
+        }
+    }
+    REG("ui.test.battleUI",battleUI);
     export class BattleLoadingUI extends View {
 		public txt:Laya.Label;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"x":0,"height":1700,"centerY":0},"compId":6,"child":[{"type":"Image","props":{"skin":"main/zhudi.jpg"},"compId":4,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":5}]}]},{"type":"Label","props":{"y":637,"x":329,"var":"txt","text":"50%","fontSize":60,"color":"#f6f0ef"},"compId":3}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"main/zhudi.jpg","height":1700},"compId":4,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":5}]},{"type":"Label","props":{"y":637,"x":329,"var":"txt","text":"50%","fontSize":60,"color":"#f6f0ef"},"compId":3}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -14,6 +28,19 @@ export module ui.test {
         }
     }
     REG("ui.test.BattleLoadingUI",BattleLoadingUI);
+    export class battlestop2UI extends View {
+		public baioti:Laya.Label;
+		public btnPlay:Laya.Button;
+		public btnSound:Laya.Button;
+		public btnHome:Laya.Button;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"alpha":0.6},"compId":24,"child":[{"type":"Rect","props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},"compId":25}]},{"type":"Box","props":{"x":0,"width":750,"height":1256,"centerY":0},"compId":23,"child":[{"type":"Image","props":{"y":205,"x":248,"skin":"bg/xianglian.png","scaleX":-1},"compId":3},{"type":"Image","props":{"y":204,"x":498,"skin":"bg/xianglian.png"},"compId":4},{"type":"Label","props":{"y":89,"x":323,"var":"baioti","text":"暂停","fontSize":50,"color":"#ffffff","align":"center"},"compId":5},{"type":"Label","props":{"y":192,"x":255,"width":239,"text":"已学会的能力","height":36,"fontSize":36,"color":"#ffffff","align":"center"},"compId":6},{"type":"Button","props":{"y":1099,"x":373,"width":296,"var":"btnPlay","stateNum":1,"skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},"compId":17,"child":[{"type":"Sprite","props":{"y":40,"x":125,"texture":"bg/sanjiao.png"},"compId":18}]},{"type":"Button","props":{"y":907,"x":198,"width":296,"var":"btnSound","stateNum":1,"skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},"compId":19,"child":[{"type":"Sprite","props":{"y":36,"x":104,"texture":"bg/zhanting.png"},"compId":20}]},{"type":"Button","props":{"y":907,"x":549,"width":296,"var":"btnHome","stateNum":1,"skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},"compId":21,"child":[{"type":"Sprite","props":{"y":38,"x":109,"texture":"bg/huijia.png"},"compId":22}]}]}],"loadList":["bg/xianglian.png","main/btn_huang.png","bg/sanjiao.png","bg/zhanting.png","bg/huijia.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(battlestop2UI.uiView);
+        }
+    }
+    REG("ui.test.battlestop2UI",battlestop2UI);
     export class Blood2UIUI extends View {
 		public bar:Laya.Sprite;
 		public txt:Laya.Label;
@@ -238,7 +265,7 @@ export module ui.test {
 		public ji1:Laya.Image;
 		public ji1ming:Laya.Label;
 		public ji2ming:Laya.Label;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"x":0,"alpha":0.6},"compId":23,"child":[{"type":"Rect","props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},"compId":24}]},{"type":"Box","props":{"centerY":0,"centerX":0},"compId":22,"child":[{"type":"Image","props":{"width":681,"skin":"main/biaotilan.png","sizeGrid":"0,23,0,125","height":99},"compId":4},{"type":"Label","props":{"y":31,"x":197,"var":"biaoti2","text":"你遇见了天使","fontSize":48,"color":"#000000","alpha":0.5,"align":"center"},"compId":5,"child":[{"type":"Script","props":{"y":1,"x":0,"strength":2,"runtime":"laya.effect.BlurFilterSetter"},"compId":7}]},{"type":"Label","props":{"y":25,"x":197,"var":"baioti","text":"你遇见了天使","fontSize":48,"color":"#ffffff","align":"center"},"compId":6},{"type":"tianshi","props":{"y":346,"x":341,"scaleY":0.8,"scaleX":0.8,"runtime":"ui.test.tianshiUI"},"compId":8},{"type":"Label","props":{"y":550,"x":77,"text":"请选择一项天使的馈赠！","fontSize":48,"color":"#ffffff","align":"center"},"compId":9},{"type":"Image","props":{"y":726,"x":411,"width":147,"var":"ji2","height":147},"compId":16},{"type":"Image","props":{"y":726,"x":114,"width":147,"var":"ji1","height":147},"compId":17},{"type":"Image","props":{"y":714,"x":405,"skin":"bg/lvkuang.png"},"compId":18},{"type":"Image","props":{"y":714,"x":109,"skin":"bg/lvkuang.png"},"compId":19},{"type":"Label","props":{"y":903,"x":115,"width":145,"var":"ji1ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},"compId":20},{"type":"Label","props":{"y":903,"x":410,"width":145,"var":"ji2ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},"compId":21}]}],"loadList":["main/biaotilan.png","bg/lvkuang.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"x":0,"alpha":0.6},"compId":23,"child":[{"type":"Rect","props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},"compId":24}]},{"type":"Box","props":{"centerY":0,"centerX":0},"compId":22,"child":[{"type":"Image","props":{"width":681,"skin":"main/biaotilan.png","sizeGrid":"0,23,0,125","height":99},"compId":4},{"type":"Label","props":{"y":31,"x":197,"var":"biaoti2","text":"你遇见了天使","fontSize":48,"color":"#000000","alpha":0.5,"align":"center"},"compId":5,"child":[{"type":"Script","props":{"y":1,"x":0,"strength":2,"runtime":"laya.effect.BlurFilterSetter"},"compId":7}]},{"type":"Label","props":{"y":25,"x":197,"var":"baioti","text":"你遇见了天使","fontSize":48,"color":"#ffffff","align":"center"},"compId":6},{"type":"tianshi","props":{"y":346,"x":341,"scaleY":0.8,"scaleX":0.8,"runtime":"ui.test.tianshiUI"},"compId":8},{"type":"Label","props":{"y":550,"x":77,"text":"请选择一项天使的馈赠！","fontSize":48,"color":"#ffffff","align":"center"},"compId":9},{"type":"Image","props":{"y":726,"x":411,"width":147,"var":"ji2","height":147},"compId":16},{"type":"Image","props":{"y":726,"x":114,"width":147,"var":"ji1","height":147},"compId":17},{"type":"Image","props":{"y":714,"x":405,"skin":"battlestop/lvkuang.png"},"compId":18},{"type":"Image","props":{"y":714,"x":109,"skin":"battlestop/lvkuang.png"},"compId":19},{"type":"Label","props":{"y":903,"x":115,"width":145,"var":"ji1ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},"compId":20},{"type":"Label","props":{"y":903,"x":410,"width":145,"var":"ji2ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},"compId":21}]}],"loadList":["main/biaotilan.png","battlestop/lvkuang.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

@@ -234,6 +234,33 @@
 						},
 						"components":[],
 						"child":[]
+					},
+					{
+						"type":"Sprite3D",
+						"props":{
+							"name":"Gua",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0.01,
+								-0.222
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							]
+						},
+						"components":[],
+						"child":[]
 					}
 				]
 			}

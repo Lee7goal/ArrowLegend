@@ -69,8 +69,9 @@ export default class GamePro extends Laya.EventDispatcher {
         this.keyNum = n;
     }
 
-    public initBlood(hp:number): void {
-        this.gamedata.hp = this.gamedata.maxhp = hp;
+    public initBlood(hp:number,maxhp:number): void {
+        this.gamedata.hp = hp;
+        this.gamedata.maxhp = maxhp;
         if (!this._bloodUI) {
             this._bloodUI = new Blood();
         }

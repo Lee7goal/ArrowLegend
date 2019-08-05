@@ -11,9 +11,15 @@ export default class Hero extends GamePro {
     
     constructor() {
         super(GameProType.Hero, 0);
+        this.reset();
         this.unBlocking = true;
         this.setGameMove(new PlaneGameMove());
         this.setGameAi(new HeroAI());
+    }
+
+    public reset():void
+    {
+        this.gamedata.hp = this.gamedata.maxhp = 2000;
     }
 
     init(): void  {
@@ -29,7 +35,7 @@ export default class Hero extends GamePro {
 
         this.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 2) * GameBG.ww);//原先是减1
 
-        this.initBlood(2000);
+        this.initBlood(this.gamedata.hp);
         this.addFootCircle();
 
         Game.map0.Hharr.push(this.hbox);
@@ -49,8 +55,9 @@ export default class Hero extends GamePro {
         }
     }
 
+    public isNew:boolean = true;
     public initBlood(hp:number): void {
-        super.initBlood(hp);
+        super.initBlood(hp,this.gamedata.maxhp);
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 120);
     }
 

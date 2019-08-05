@@ -69,7 +69,7 @@ export default class Saw extends Laya.Sprite {
 
     clear(): void {
         this.removeChildren();
-        this.hengAry.length = this.zongAry.length = 0;
+        this.hengAry.length = this.zongAry.length = this.hengJuAry.length = this.zongJuAry.length = 0;
     }
 }
 

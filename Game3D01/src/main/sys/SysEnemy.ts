@@ -20,5 +20,6 @@ export default class SysEnemy {
     public enemyAi:number = 0;
     public txt:string = '';
     public enemyLevel:number = 0;
+    public dropGold:number = 0;
     
 }

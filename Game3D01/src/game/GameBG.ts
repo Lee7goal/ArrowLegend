@@ -342,6 +342,8 @@ export default class GameBG extends Laya.Sprite {
             }
         }
 
+        this.saw.clear();
+
         //横
         for(let key in this._sawInfo)
         {
@@ -436,7 +438,8 @@ export default class GameBG extends Laya.Sprite {
     {
         this._npcAni && this._npcAni.removeSelf();
         Game.map0.clearNpc();
-        Game.openDoor();
+        this.npcId = 0;
+        // Game.openDoor();
     }
 
     public setDoor(state:number):void{

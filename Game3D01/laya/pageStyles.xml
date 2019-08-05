@@ -26,4 +26,6 @@
    <item name="test/tianshi_1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/mogui_1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/zhuanpan.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/battle.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/battlestop2.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

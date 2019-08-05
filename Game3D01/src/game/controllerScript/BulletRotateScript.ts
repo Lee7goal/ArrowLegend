@@ -1,3 +1,5 @@
+import Game from "../Game";
+
 export default class BulletRotateScript extends Laya.Script3D {
         private qiu: Laya.MeshSprite3D;
         private ball: Laya.MeshSprite3D;
@@ -24,6 +26,9 @@ export default class BulletRotateScript extends Laya.Script3D {
 	 * 覆写组件更新方法（相当于帧循环）
 	 */
         public onUpdate(): void {
+                if (!Game.executor.isRun)  {
+                        return;
+                }
                 this.ball.transform.localRotationEulerY += 5;
         }
 

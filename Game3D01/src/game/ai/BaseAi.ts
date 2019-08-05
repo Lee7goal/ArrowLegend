@@ -11,6 +11,7 @@ import App from "../../core/App";
 import AttackType from "./AttackType";
 import SplitSkill from "../skill/SplitSkill";
 import GameScaleAnimator from "./GameScaleAnimator";
+import CoinEffect from "../effect/CoinEffect";
 
 /**不动不攻击的ai */
 export default class BaseAI extends GameAI {
@@ -90,7 +91,7 @@ export default class BaseAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.hurt(this.pro.gamedata.maxhp / 4);
+        this.pro.hurt(this.pro.gamedata.maxhp / 2);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
@@ -151,6 +152,11 @@ export default class BaseAI extends GameAI {
 
     die():void
     {
+        let goldNum:number = this.sysEnemy.dropGold;
+        if(goldNum > 0)
+        {
+            CoinEffect.addEffect(this.pro,goldNum);
+        }
         this.splitSkill && this.splitSkill.exeSkill(this.now,this.pro);
         this.pro.die();
     }

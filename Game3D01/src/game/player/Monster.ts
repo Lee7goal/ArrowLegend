@@ -66,7 +66,7 @@ export default class Monster extends GamePro {
     }
 
     public initBlood(hp: number): void {
-        super.initBlood(hp);
+        super.initBlood(hp,hp);
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 90);
     }
 
