@@ -25,6 +25,10 @@ export default class BattleLoader {
         return this._index;
     }
 
+    public set index(v:number) {
+        this._index = v;
+    }
+
     public get mapId(): number {
         return this._mapId;
     }
@@ -88,7 +92,7 @@ export default class BattleLoader {
         // this._configId = 101002;//食人花boss
         // this._configId = 101004;
         // this._configId = 104101//炸弹人
-        // this._configId = 100603;
+        // this._configId = 101902;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
@@ -137,7 +141,9 @@ export default class BattleLoader {
         this.arr.push("h5/hero/hero.lh");
 
 
-        let res = "h5/effects/monsterDie/monster.lh";
+        let res = "h5/effects/monsterDie/monster.lh";//死亡特效
+        this.monsterRes[res] = res;
+        res = "h5/coins/monster.lh";//金币
         this.monsterRes[res] = res;
         if(this.monsterId <= 0)
         {

@@ -19,8 +19,11 @@ import BattleLoader from "../../../main/scene/battle/BattleLoader";
 import HeroAI from "../../../game/ai/HeroAI";
 import Monster from "../../../game/player/Monster";
 import Hero from "../../../game/player/Hero";
+import TopUI from "./TopUI";
+import PauseUI from "./PauseUI";
 export default class BattleScene extends Laya.Sprite {
 
+    private _top:TopUI;
     constructor() {
         super();
         var bg: GameBG = new GameBG();
@@ -58,6 +61,20 @@ export default class BattleScene extends Laya.Sprite {
         directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
 
         bg.on(Game.Event_NPC,this,this.showNpcView);
+
+        this._top = new TopUI();
+        this.addChild(this._top);
+    }
+
+    private _pauseUI:PauseUI;
+    private showPause():void
+    {
+        if(!this._pauseUI)
+        {
+            this._pauseUI = new PauseUI();
+        }
+        this.addChild(this._pauseUI);
+        Game.executor.stop_();
     }
 
     private npcView:Laya.View;
@@ -156,7 +173,7 @@ export default class BattleScene extends Laya.Sprite {
 
         Game.ro = new Rocker();
         Game.ro.resetPos();
-        Laya.stage.addChild(Game.ro);
+        this.addChild(Game.ro);
 
 
         Game.hero.init();
@@ -188,13 +205,28 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     md(eve: MouseEvent): void {
+
+        if(eve.target instanceof Laya.Button)
+        {
+            let btn:Laya.Button =  eve.target;
+            if(btn == this._top.zanting)
+            {
+                this.showPause();
+                return;
+            }
+        }
+        
+        if(this._pauseUI && this._pauseUI.parent)
+        {
+            return;
+        }
         Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.md);
         Laya.stage.on(Laya.Event.MOUSE_UP, this, this.up);
         let xx: number = Laya.stage.mouseX;
         let yy: number = Laya.stage.mouseY;
         Game.ro.x = xx;
         Game.ro.y = yy;
-        Laya.stage.addChild(Game.ro);
+        this.addChild(Game.ro);
         Laya.stage.frameLoop(1, this, this.moves);
 
         //Game.hero.stopAi();
