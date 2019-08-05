@@ -59,7 +59,6 @@ export default class TreeAI extends FlowerAI {
                     }
                     else {
                         if (this.now >= this.nextTime) {
-                            console.log("发射");
                             this.startAttack();
                             this.shootAc();
                             this.nextTime = this.now + this.shooting.shootCd;

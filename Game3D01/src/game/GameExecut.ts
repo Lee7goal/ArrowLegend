@@ -1,4 +1,5 @@
 import Game from "./Game";
+import Hero from "./player/Hero";
 
 export default class GameExecut extends Laya.EventDispatcher {
 
@@ -50,6 +51,14 @@ export default class GameExecut extends Laya.EventDispatcher {
         var arr = Game.AiArr;
         for (let i = 0; i < arr.length; i++) {
             arr[i].ai();
+        }
+
+        if(arr.length == 1 && Game.bg.npcId == 0)
+        {
+            if(arr[0] instanceof Hero)
+            {
+                Game.openDoor();
+            }
         }
 
         var farr = Game.map0.Fharr;

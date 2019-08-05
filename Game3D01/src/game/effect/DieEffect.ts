@@ -20,10 +20,9 @@ export default class DieEffect{
         let effect:DieEffect = new DieEffect();
         Game.layer3d.addChild(effect.sp3d);
         effect.sp3d.transform.localPosition = player.sp3d.transform.localPosition;
-        player.dispos();
         setTimeout(() => {
             effect.recover();
-        }, 1000);
+        }, 1500);
         return effect;
     }
 
@@ -31,10 +30,8 @@ export default class DieEffect{
     {
         this.sp3d && this.sp3d.removeSelf();
         // Laya.Pool.recover(DieEffect.TAG,this);
-        setTimeout(() => {
-            if (Game.map0.Eharr.length == 0)  {
-                Game.openDoor();
-            }
-        }, 2000);
+        // if (Game.map0.Eharr.length == 0)  {
+        //     Game.openDoor();
+        // }
     }
 }

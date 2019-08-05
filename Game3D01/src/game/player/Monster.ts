@@ -91,7 +91,7 @@ export default class Monster extends GamePro {
         Game.selectFoot.removeSelf();
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        this.sp3d.removeSelf();
+        this.sp3d && this.sp3d.removeSelf();
         // Laya.Pool.recover(Monster.TAG,this);
         DieEffect.addEffect(this);
     }
@@ -105,10 +105,14 @@ export default class Monster extends GamePro {
         // console.log(sysEnemy.enemymode);
         // console.log(sp);
         //sp._children.length
+        console.log("init shader");
+        let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {
             //console.log(sysEnemy.enemymode ,"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
             MonsterShader.map[sysEnemy.enemymode] = new MonsterShader(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         }
+        console.log("shader cost time",Game.executor.getWorldNow() - now);
+
 
 
         if (!hp) {

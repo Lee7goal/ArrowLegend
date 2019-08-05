@@ -28,7 +28,7 @@ export default class BoomEffect{
         effect.sp3d.transform.localRotationEulerX = 45;
         Game.layer3d.addChild(effect.sp3d);
 
-        pro.dispos();
+        pro.sp3d && pro.sp3d.removeSelf();
         setTimeout(() => {
             effect.recover();
         }, 1000);
@@ -38,7 +38,6 @@ export default class BoomEffect{
     recover():void
     {
         this.sp3d && this.sp3d.removeSelf();
-        this.sp3d = null;
         // Laya.Pool.recover(BoomEffect.TAG + this.effectId,this)
     }
 }

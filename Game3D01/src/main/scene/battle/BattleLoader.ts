@@ -55,10 +55,11 @@ export default class BattleLoader {
             Game.monsterResClones[i].destroy(true);//克隆体
         }
         Laya.Resource.destroyUnusedResources();
+        console.log("释放显存");
     }
 
     public load(): void {
-        // this.destroyMonsterRes();
+        this.destroyMonsterRes();
         Game.scenneM.battle && Game.scenneM.battle.up(null);
 
         Game.ro && Game.ro.removeSelf();

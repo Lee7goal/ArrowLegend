@@ -216,10 +216,6 @@ export default class GamePro extends Laya.EventDispatcher {
         return this.sp3d_;
     }
 
-    public dispos():void{
-        this.sp3d_ && this.sp3d_.removeSelf();
-    }
-
     public play(actionstr: string): void {
         if (this.acstr == GameAI.Die) {
             return;
@@ -340,6 +336,11 @@ export default class GamePro extends Laya.EventDispatcher {
 
         if (this.gameAI) {
             this.gameAI.exeAI(this);
+        }
+
+        if(this.isDie)
+        {
+            return;
         }
 
         if(this.sp3d_ == null)

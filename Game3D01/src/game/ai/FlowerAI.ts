@@ -35,7 +35,6 @@ export default class FlowerAI extends BaseAI {
         this.shooting.shootCd = this.sysEnemy.enemySpeed;
 
         if (curBullet.bulletType == 1) {//普通子弹
-            console.log("普通子弹", curBullet.bulletNum);
             this.shooting.shootCd = curBullet.bulletNum * this.sysEnemy.enemySpeed;
             if (bulletAngle != 360) {
                 if (minNum % 2 == 0) {

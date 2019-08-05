@@ -28,8 +28,9 @@ export default class HeroAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        // Game.hero.hurt(pro.hurtValue);
-        Game.hero.hurt(150);
+        if(Game.hero.gamedata.hp > 0){
+            Game.hero.hurt(150);
+        }
         if (Game.hero.gamedata.hp <= 0) {
             Game.hero.die();
         }

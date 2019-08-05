@@ -132,8 +132,6 @@ export default class Game {
         Game.door.transform.localPositionX = 0;
         Game.map0.setDoor(true);
         ShakeUtils.execute(Game.scenneM.battle,75,4);
-
-        Game.battleLoader.destroyMonsterRes();
     }
 
     static closeDoor(): void {

@@ -18,7 +18,7 @@ export default class MonsterShader extends GameShaderObj{
                 for (let j = 0; j < ssp._children.length; j++) {
                     if(ssp._children[j] instanceof Laya.SkinnedMeshSprite3D){
                         var sm = <Laya.SkinnedMeshSprite3D>ssp._children[j];
-                        console.log(sm.skinnedMeshRenderer.sharedMaterials);
+                        // console.log(sm.skinnedMeshRenderer.sharedMaterials);
                         //sm.skinnedMeshRenderer.sharedMaterials = [];
                         if(!this.spArr[i]){
                             this.spArr[i] = [];
@@ -67,6 +67,10 @@ export default class MonsterShader extends GameShaderObj{
 
     clearShader():void
     {
+        if(!this.sp)
+        {
+            return;
+        }
         for (let i = 0; i < 1; i++) {
             if( this.sp.getChildAt(i) instanceof Laya.Sprite3D ){
                 var ssp = ( <Laya.Sprite3D>this.sp.getChildAt(i) );
