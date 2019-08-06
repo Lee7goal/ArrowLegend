@@ -43,10 +43,8 @@ export default class GameMap0 extends Laya.Sprite {
         this.arrhb = new GameHitBox(2, 2);
     }
 
-    public drawMap(): void {
-        this._isNext = false;
-        let hb: GameHitBox = null;
-
+    reset():void
+    {
         this.Aharr = [];
         this.Wharr = [];
         this.Eharr = [];
@@ -59,6 +57,13 @@ export default class GameMap0 extends Laya.Sprite {
         this.map = {};
         this.Amap = {};
         this.graphics.clear();
+    }
+
+    public drawMap(): void {
+        this._isNext = false;
+        let hb: GameHitBox = null;
+
+       this.reset();
 
         hb = new GameHitBox(GameBG.ww * (GameBG.wnum + 1), GameBG.ww);
         hb.setXY(0, GameBG.ww * 7);

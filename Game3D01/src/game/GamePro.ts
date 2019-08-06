@@ -135,7 +135,6 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public addSprite3DToAvatarNode(nodeName: string, sprite3d: Sprite3D): void {
         var bool:boolean = this.ani_.linkSprite3DToAvatarNode(nodeName, sprite3d);
-        console.log("是否挂成功",bool,nodeName);
         // return Game.layer3d.addChild(sprite3d) as Sprite3D;
     }
 
@@ -160,6 +159,10 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public get acstr(): string {
         return this.acstr_;
+    }
+
+    public set acstr(s:string) {
+        this.acstr_ = s;
     }
 
     public get face2d(): number {
@@ -221,7 +224,6 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.acstr == GameAI.Die) {
             return;
         }
-
         this.acstr_ = actionstr;
         this.ani_.play(actionstr);
 

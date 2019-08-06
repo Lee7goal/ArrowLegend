@@ -12,7 +12,6 @@ export default class HeroAI extends GameAI {
 
     private shootin: Shooting = HeroAI.shoot;
 
-    //private run_:boolean = false;
 
     public set run(b: boolean) {
         if (this.run_ != b) {
@@ -33,8 +32,11 @@ export default class HeroAI extends GameAI {
         }
         if (Game.hero.gamedata.hp <= 0) {
             Game.hero.die();
+            this.run_ = false;
         }
     }
+
+
 
     public starAi() {
         if (Game.hero.gamedata.hp <= 0) {

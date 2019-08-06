@@ -13,16 +13,6 @@ import SysBullet from "../../main/sys/SysBullet";
 import MonsterShader from "./MonsterShader";
 import DieEffect from "../effect/DieEffect";
 import HitEffect from "../effect/HitEffect";
-// import MonsterAI from "../ai/MonsterAI";
-// import BaseAI from "../ai/BaseAi";
-// import FlyAndHitAi from "../ai/FlyAndHitAi";
-// import FlowerAI from "../ai/FlowerAI";
-// import StoneAI from "../ai/StoneAI";
-// import TreeAI from "../ai/TreeAI";
-// import RandMoveAI from "../ai/RandMoveAI";
-// import JumpFollowAI from "../ai/JumpFollowAI";
-// import PlaneGameMove from "../move/PlaneGameMove";
-// import BackMove from "../move/BackMove";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
@@ -102,18 +92,11 @@ export default class Monster extends GamePro {
         var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         Game.monsterResClones.push(sp);
 
-        // console.log(sysEnemy.enemymode);
-        // console.log(sp);
-        //sp._children.length
-        console.log("init shader");
         let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {
             //console.log(sysEnemy.enemymode ,"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
             MonsterShader.map[sysEnemy.enemymode] = new MonsterShader(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         }
-        console.log("shader cost time",Game.executor.getWorldNow() - now);
-
-
 
         if (!hp) {
             hp = sysEnemy.enemyHp;
@@ -140,8 +123,6 @@ export default class Monster extends GamePro {
         if (sysEnemy.moveType > 0)  {
             var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
             gpro.setGameMove(new MOVE());
-            //gpro.setGameMove(new PlaneGameMove());
-            // gpro.setGameMove(new BackMove());
         }
 
         let tScale: number = sysEnemy.zoomMode / 100;
@@ -162,18 +143,6 @@ export default class Monster extends GamePro {
             console.log('没有这个怪的AI', sysEnemy.id);
         }
         gpro.setGameAi(new MonAI(gpro));
-        //gpro.setGameAi(new BaseAI(<Monster>gpro));
-        // gpro.setGameAi(new FlyAndHitAi(gpro));
-        // gpro.setGameAi(new FlowerAI(gpro));
-        //gpro.setGameAi(new SplitAI(gpro));
-        // gpro.setGameAi(new StoneAI(gpro));
-        // gpro.setGameAi(new TreeAI(gpro));
-
-        // gpro.setGameAi(new RandMoveAI(gpro));
-        // gpro.setGameAi(new BounceRandomMoveAI(gpro));
-        // gpro.setGameAi(new FollowAI(gpro));
-        // gpro.setGameAi(new JumpFollowAI(gpro));
-
         gpro.startAi();
         return gpro;
     }

@@ -24,8 +24,8 @@ import CoinEffect from "./effect/CoinEffect";
 
 export default class Game {
 
-    static monsterClones:Laya.Sprite3D[] = [];
-    static monsterResClones:Laya.Sprite3D[] = [];
+    static monsterClones: Laya.Sprite3D[] = [];
+    static monsterResClones: Laya.Sprite3D[] = [];
 
     static cameraCN: GameCameraNum;
 
@@ -34,8 +34,8 @@ export default class Game {
     static Event_Hit: string = "Game.Event_Hit";
     static Event_KeyNum: string = "Game.Event_KeyNum";
 
-    static Event_NPC:string = "Event_NPC";
-    static Event_COINS:string = "Event_COINS";
+    static Event_NPC: string = "Event_NPC";
+    static Event_COINS: string = "Event_COINS";
 
     static AiArr: GamePro[] = [];
     static HeroArrows: GamePro[] = [];
@@ -55,17 +55,15 @@ export default class Game {
 
     static selectEnemy(pro: GamePro): void {
         Game.e0_ = pro;
-        let curScale:number = (pro as Monster).sysEnemy.zoomMode / 100;
+        let curScale: number = (pro as Monster).sysEnemy.zoomMode / 100;
         curScale = 1 / curScale;
-        if(Game.e0_.sp3d)
-        {
+        if (Game.e0_.sp3d)  {
             Game.e0_.sp3d.addChild(Game.selectFoot);
             Game.e0_.addSprite3DToChild("guadian", Game.selectHead);
-            Game.selectHead.transform.localScale = new Laya.Vector3(curScale,curScale,curScale);
-            Game.selectFoot.transform.localScale = new Laya.Vector3(curScale,curScale,curScale);
+            Game.selectHead.transform.localScale = new Laya.Vector3(curScale, curScale, curScale);
+            Game.selectFoot.transform.localScale = new Laya.Vector3(curScale, curScale, curScale);
         }
-        else
-        {
+        else  {
             console.log("克隆体没有了？");
         }
     }
@@ -96,9 +94,9 @@ export default class Game {
     static footLayer: Laya.Sprite = new Laya.Sprite();
     static bloodLayer: Laya.Sprite = new Laya.Sprite();
     static frontLayer: Laya.Sprite = new Laya.Sprite();
-    static topLayer:Laya.Sprite = new Laya.Sprite();
+    static topLayer: Laya.Sprite = new Laya.Sprite();
 
-    static scenneM:SceneManager = new SceneManager();
+    static scenneM: SceneManager = new SceneManager();
 
 
     /**脚底红圈 */
@@ -123,17 +121,16 @@ export default class Game {
     }
 
     static door: Laya.Sprite3D;
-    static isOpen:boolean = false;
-    static openDoor(): void  {
-        if(Game.isOpen)
-        {
+    static isOpen: boolean = false;
+    static openDoor(): void {
+        if (Game.isOpen)  {
             return;
         }
         Game.isOpen = true;
         Game.bg.setDoor(1);
         Game.door.transform.localPositionX = 0;
         Game.map0.setDoor(true);
-        ShakeUtils.execute(Game.scenneM.battle,75,4);
+        ShakeUtils.execute(Game.scenneM.battle, 75, 4);
         CoinEffect.fly();
     }
 
@@ -146,12 +143,19 @@ export default class Game {
 
     static setSelectEffect(): void {
         if (!Game.selectFoot) {
-            Game.selectFoot = Laya.loader.getRes("h5/effects/foot/hero.lh");
-            Game.selectFoot.addComponent(FootRotateScript);
+
         }
-        if (!Game.selectHead)  {
-            Game.selectHead = Laya.loader.getRes("h5/effects/head/monster.lh");
+        if (!Game.selectHead) {
+
+        }
+        Game.selectHead = Laya.loader.getRes("h5/effects/head/monster.lh");
+        if (!Game.selectHead.getComponent(HeadTranslateScript))  {
             Game.selectHead.addComponent(HeadTranslateScript);
+        }
+
+        Game.selectFoot = Laya.loader.getRes("h5/effects/foot/hero.lh");
+        if (!Game.selectFoot.getComponent(FootRotateScript))  {
+            Game.selectFoot.addComponent(FootRotateScript);
         }
     }
 
@@ -162,14 +166,17 @@ export default class Game {
         Game.footLayer.removeChildren();
         Game.layer3d.removeChildren();
         Game.topLayer.removeChildren();
+        Game.selectHead && Game.selectHead.removeSelf();
+        Game.selectFoot && Game.selectFoot.removeSelf();
+        Game.map0.reset();
+        Game.e0_ = null;
         Game.executor && Game.executor.stop_();
-        if (Game.ro)  {
+        if (Game.ro) {
             Game.ro.destroy();
         }
     }
 
-    static getRandPos(pro:GamePro):number[]
-    {
+    static getRandPos(pro: GamePro): number[]  {
         let mRow: number = Math.floor(pro.hbox.y / GameBG.ww);
         let mCol: number = Math.floor(pro.hbox.x / GameBG.ww);
 
@@ -179,21 +186,18 @@ export default class Game {
         var info: any = Game.map0.info;
         var arr: number[][] = [];
         for (let i = mRow - range; i <= mRow + range; i++) {
-            if(i < 10 || i > endRowNum)
-            {
+            if (i < 10 || i > endRowNum)  {
                 continue;
             }
             for (let j = mCol - range; j <= mCol + range; j++) {
                 if (j == mRow && i == mCol) {
                     continue;
                 }
-                if(j < 1 || j > 11)
-                {
+                if (j < 1 || j > 11)  {
                     continue;
                 }
                 var key: number = info[i + "_" + j];
-                if(key == null)
-                {
+                if (key == null)  {
                     continue;
                 }
                 if (key == 0) {
@@ -214,52 +218,5 @@ export default class Game {
         //Laya.Scene3D
     }
 
-    static coinsNum:number = 0;
-
-    // static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
-    //     let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
-    //     let sysSkill: SysSkill;
-    //     var sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
-    //     if (!hp)  {
-    //         hp = sysEnemy.enemyHp;
-    //         if (sysEnemy.skillId > 0)  {
-    //             sysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME, sysEnemy.skillId);
-    //             if (sysSkill.effectType == SkillType.SPLIT)  {
-    //                 hp = sysEnemy.enemyHp / sysSkill.effect1;
-    //             }
-    //         }
-    //     }
-    //     var gpro = new Monster(hp);
-    //     gpro.sysEnemy = sysEnemy;
-    //     gpro.setSp3d(sp);
-
-    //     if(sysEnemy.attackType > 0)
-    //     {
-    //         var ATT: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.attackType);
-    //         gpro.setGameAi(new ATT(gpro));
-    //     }
-    //     if(sysEnemy.moveType > 0)
-    //     {
-    //         var MONS: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
-    //         gpro.setGameMove(new MONS());
-    //     }
-    //     if (sysSkill)  {
-    //         var SKILL: any = Laya.ClassUtils.getClass(SkillType.TAG + sysSkill.effectType);
-    //         gpro.setSkill(new SKILL());
-    //     }
-
-    //     let tScale: number = sysEnemy.zoomMode / 100;
-    //     tScale = mScale ? mScale : tScale;
-    //     gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
-    //     Game.map0.Eharr.push(gpro.hbox);//加入敌人组
-    //     Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
-    //     Game.map0.addChild(gpro.sp2d);
-    //     Game.layer3d.addChild(sp);
-    //     gpro.setShadowSize(sysEnemy.zoomShadow);
-
-    //     gpro.setXY2DBox(xx, yy);
-    //     gpro.startAi();
-    //     gpro.setUI();
-    //     return gpro;
-    // }
+    static coinsNum: number = 0;
 }

@@ -2,11 +2,11 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":2,
-    "selecteID":10,
+    "selecteID":13,
     "searchKey":"Dialog",
     "props":{"width":750,"sceneColor":"#b0b0b0","height":130},
     "nodeParent":-1,
-    "maxID":13,
+    "maxID":14,
     "label":"Dialog",
     "isOpen":true,
     "isDirectory":true,
@@ -151,6 +151,20 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":10,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Sprite",
+            "searchKey":"Sprite",
+            "props":{"y":28.5,"x":597,"texture":"bg/dongjin.png","scaleY":0.8,"scaleX":0.8},
+            "nodeParent":2,
+            "label":"Sprite",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":13,
             "child":[
                 ]
         }],

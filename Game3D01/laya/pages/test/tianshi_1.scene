@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
-    "selecteID":22,
+    "selectedBox":22,
+    "selecteID":21,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#a4a0a0","height":1334},
     "nodeParent":-1,
@@ -50,13 +50,14 @@
             "props":{"centerY":0,"centerX":0},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":null,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":22,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"width":681,"skin":"main/biaotilan.png","sizeGrid":"0,23,0,125","height":99},
@@ -70,6 +71,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,biaoti2",
                     "props":{"y":31,"x":197,"var":"biaoti2","text":"你遇见了天使","fontSize":48,"color":"#000000","alpha":0.5,"align":"center"},
@@ -98,6 +100,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,baioti",
                     "props":{"y":25,"x":197,"var":"baioti","text":"你遇见了天使","fontSize":48,"color":"#ffffff","align":"center"},
@@ -112,6 +115,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"UIView",
                     "source":"test/tianshi.scene",
                     "searchKey":"UIView",
@@ -126,6 +130,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label",
                     "props":{"y":550,"x":77,"text":"请选择一项天使的馈赠！","fontSize":48,"color":"#ffffff","align":"center"},
@@ -140,6 +145,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,ji2",
                     "props":{"y":726,"x":411,"width":147,"var":"ji2","height":147},
@@ -153,6 +159,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,ji1",
                     "props":{"y":726,"x":114,"width":147,"var":"ji1","height":147},
@@ -166,9 +173,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":714,"x":405,"skin":"battlestop/lvkuang.png"},
+                    "props":{"y":714,"x":405,"skin":"bg/lvkuang.png"},
                     "nodeParent":22,
                     "label":"Image",
                     "isDirectory":false,
@@ -179,9 +187,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":714,"x":109,"skin":"battlestop/lvkuang.png"},
+                    "props":{"y":714,"x":109,"skin":"bg/lvkuang.png"},
                     "nodeParent":22,
                     "label":"Image",
                     "isDirectory":false,
@@ -192,6 +201,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,ji1ming",
                     "props":{"y":903,"x":115,"width":145,"var":"ji1ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},
@@ -206,6 +216,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,ji2ming",
                     "props":{"y":903,"x":410,"width":145,"var":"ji2ming","text":"墙壁反弹","height":30,"fontSize":30,"color":"#86b037","align":"center"},

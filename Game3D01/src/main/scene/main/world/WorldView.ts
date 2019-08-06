@@ -6,8 +6,8 @@ import Game from "../../../../game/Game";
         super();
         this.height = GameBG.height;
         this.btn_start.clickHandler = new Laya.Handler(this,this.onStart); 
-        this.baioti.text = "沃野草原";
-        this.biaoti2.text = "沃野草原";
+        this.baioti.text = "拉曼平原";
+        this.biaoti2.text = "拉曼平原";
     }
 
     private onStart():void

@@ -9,6 +9,7 @@ import { ui } from "../../../ui/layaMaxUI";
 import BattleScene from "./BattleScene";
 import Game from "../../../game/Game";
 import MonsterShader from "../../../game/player/MonsterShader";
+import CoinEffect from "../../../game/effect/CoinEffect";
 
 export default class BattleLoader {
     constructor() { }
@@ -58,6 +59,7 @@ export default class BattleLoader {
         for(let i = 0; i < Game.monsterResClones.length; i++){
             Game.monsterResClones[i].destroy(true);//克隆体
         }
+        Game.monsterResClones.length = 0;
         Laya.Resource.destroyUnusedResources();
         console.log("释放显存");
     }
@@ -97,7 +99,9 @@ export default class BattleLoader {
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
 
-    private arr: string[] = [];
+    private resAry: string[] = [];
+    private pubResAry:string[] = [];
+    private isLoadPub:boolean = false;
 
     /**当前关怪物需要的资源 */
     private monsterRes:any = {};
@@ -111,37 +115,28 @@ export default class BattleLoader {
         let bgType = map.bgType ? map.bgType : 1;
         bgType = Math.max(bgType, 1);
         GameBG.BG_TYPE = "map_" + bgType;
-
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
         
-
-        this.arr.length = 0;
+        this.resAry.length = 0;
         this.monsterId = 0;
         this.monsterRes = {};
+        let res:string;
 
         //公共资源
-        this.arr = [
-            "h5/wall/wall.lh",
-            "h5/zhalan/hero.lh",
-            // "h5/gunEffect/hero.lh",
-            "h5/effects/foot/hero.lh",
-            "h5/effects/head/monster.lh",
-            "h5/effects/door/monster.lh"
+        this.pubResAry = [
+            "h5/wall/wall.lh","h5/zhalan/hero.lh","h5/effects/foot/hero.lh","h5/effects/head/monster.lh","h5/effects/door/monster.lh",//3d背景
+            "res/atlas/bg.png","res/atlas/bg.atlas","res/atlas/"+GameBG.BG_TYPE+".png","res/atlas/"+GameBG.BG_TYPE+".atlas",//2d背景
+            "h5/bullets/20000/monster.lh","h5/bulletsEffect/20000/monster.lh","h5/hero/hero.lh"//主角
         ];
+        if(!this.isLoadPub)
+        {
+            this.resAry = this.resAry.concat(this.pubResAry);
+            // this.isLoadPub = true;//加载过就不再加载了
+        }
+        
 
-        this.arr.push("res/atlas/bg.png");
-        this.arr.push("res/atlas/bg.atlas");
-        this.arr.push("res/atlas/"+GameBG.BG_TYPE+".png");
-        this.arr.push("res/atlas/"+GameBG.BG_TYPE+".atlas");
-
-        //主角
-        this.arr.push("h5/bulletsEffect/20000/monster.lh");
-        this.arr.push("h5/bullets/20000/monster.lh");
-        this.arr.push("h5/gong/hero.lh");
-        this.arr.push("h5/hero/hero.lh");
-
-
-        let res = "h5/effects/monsterDie/monster.lh";//死亡特效
+        //怪的资源
+        res = "h5/effects/monsterDie/monster.lh";//死亡特效
         this.monsterRes[res] = res;
         res = "h5/coins/monster.lh";//金币
         this.monsterRes[res] = res;
@@ -170,13 +165,12 @@ export default class BattleLoader {
         {
             if(key != '')
             {
-                this.arr.push(key);
+                this.resAry.push(key);
             }
         }
         
-        console.log('资源列表', this.arr);
-        Laya.loader.create(this.arr, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress));
-        // Laya.loader.on(Laya.Event.PROGRESS,this,this.onP);
+        console.log('资源列表', this.resAry);
+        Laya.loader.create(this.resAry, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress));
     }
 
     private onP(vv:number):void
@@ -241,6 +235,7 @@ export default class BattleLoader {
     }
 
     onComplete(): void {
+        CoinEffect.coinsAry.length = 0;
         Game.scenneM.showBattle();
         Game.scenneM.battle.init();
         this._loading.removeSelf();

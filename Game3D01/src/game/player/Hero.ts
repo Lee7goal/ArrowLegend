@@ -23,15 +23,17 @@ export default class Hero extends GamePro {
     }
 
     init(): void  {
+        this.isDie = false;
+        this.setKeyNum(1);
+        this.acstr = "";
         let sp: Laya.Sprite3D = Laya.loader.getRes("h5/hero/hero.lh");
         Game.layer3d.addChild(sp);
         sp.transform.localScale = new Laya.Vector3(1.2,1.2,1.2);
         this.setSp3d(sp as Laya.Sprite3D);
 
         this.play("Idle");
-        //Game.map0.addChild(this.sp2d);
         
-        this.addWeapon();
+        // this.addWeapon();
 
         this.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 2) * GameBG.ww);//原先是减1
 
@@ -39,8 +41,6 @@ export default class Hero extends GamePro {
         this.addFootCircle();
 
         Game.map0.Hharr.push(this.hbox);
-
-        this.startAi();
 
         this.gamedata.rspeed = 0;
         this.rotation(90 / 180 * Math.PI);
@@ -69,7 +69,12 @@ export default class Hero extends GamePro {
 
     private onJumpDown(): void {
         this.gamedata.rspeed = 20;
+        // if (this.getGameAi()) {
+        //     (this.getGameAi() as HeroAI).resetRun();
+        // }
+        this.startAi();
         Game.executor.start();
+        
     }
 
     public hurt(hurt: number): void {
@@ -78,13 +83,18 @@ export default class Hero extends GamePro {
     }
 
     die(): void {
-        super.die();
-        this.stopAi();
-        Game.hero.setKeyNum(1);
-        Game.hero.once(Game.Event_KeyNum, this, this.onDie);
+        if(this.isDie)
+        {
+            return;
+        }
+        this.isDie = true;
+        this.setKeyNum(1);
+        this.once(Game.Event_KeyNum, this, this.onDie);
+        this.play(GameAI.Die);
     }
 
     onDie(key):void{
+        this.stopAi();
         Game.executor && Game.executor.stop_();//全部停止
     }
 
