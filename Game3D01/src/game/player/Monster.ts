@@ -13,6 +13,7 @@ import SysBullet from "../../main/sys/SysBullet";
 import MonsterShader from "./MonsterShader";
 import DieEffect from "../effect/DieEffect";
 import HitEffect from "../effect/HitEffect";
+import MonsterBoomEffect from "../effect/MonsterBoomEffect";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
@@ -64,6 +65,7 @@ export default class Monster extends GamePro {
         // hurt = 1;
         super.hurt(hurt);
         HitEffect.addEffect(this);
+        MonsterBoomEffect.addEffect(this);
     }
 
     die(): void {

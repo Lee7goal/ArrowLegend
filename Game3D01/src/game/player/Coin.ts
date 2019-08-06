@@ -5,10 +5,12 @@ import Monster from "./Monster";
 import { ui } from "./../../ui/layaMaxUI";
 import FootRotateScript from "../controllerScript/FootRotateScript";
 import GameBG from "../GameBG";
+import CoinsAI from "../ai/CoinsAI";
+import CoinsMove from "../move/CoinsMove";
 
 export default class Coin extends GamePro {
     constructor() {
-        super(0, 0);
+        super(0, 1);
 
         var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/monster.lh"));
         Game.monsterResClones.push(sp);
@@ -16,6 +18,11 @@ export default class Coin extends GamePro {
         // sp.transform.localRotationEulerY = 45;
         this.sp3d.addComponent(FootRotateScript);
         Game.layer3d.addChild(sp);
+
+        this.setSpeed(0);
+
+        this.setGameAi(new CoinsAI());
+        this.setGameMove(new CoinsMove());
     }
 
     public setPos(monster:Monster):void
@@ -46,11 +53,15 @@ export default class Coin extends GamePro {
     fly():void
     {
         this._bulletShadow && this._bulletShadow.removeSelf();
-        Laya.Tween.to(this.sp3d.transform,{localPositionX:Game.hero.sp3d.transform.localPositionX,localPositionZ:Game.hero.sp3d.transform.localPositionZ},500,Laya.Ease.circOut,new Laya.Handler(this,this.onFlyCom));
+        // Laya.Tween.to(this.sp3d.transform,{localPositionX:Game.hero.sp3d.transform.localPositionX,localPositionZ:Game.hero.sp3d.transform.localPositionZ},500,Laya.Ease.circOut,new Laya.Handler(this,this.onFlyCom));
+
+        this.setSpeed(40);
+        this.startAi();
     }
 
-    private onFlyCom():void
+    public stopAi():void
     {
+        super.stopAi();
         this.sp3d && this.sp3d.removeSelf();
         Laya.stage.event(Game.Event_COINS);
     }

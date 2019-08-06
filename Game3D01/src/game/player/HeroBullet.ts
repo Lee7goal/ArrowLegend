@@ -20,6 +20,7 @@ export default class HeroBullet extends GamePro {
         if(!this.sp3d)
         {
             this.setSp3d(Laya.Sprite3D.instantiate(Game.a0.sp3d));
+            // this.sp3d.addChild(Laya.loader.getRes("h5/bulletsHead/1001/monster.lh"));
             // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
             // trail.trailFilter.time = 0;
         }

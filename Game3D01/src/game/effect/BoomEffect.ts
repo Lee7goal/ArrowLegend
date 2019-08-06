@@ -2,6 +2,7 @@ import MonsterBullet from "../player/MonsterBullet";
 import Game from "../Game";
 import GamePro from "../GamePro";
 
+/**子弹爆炸特效 */
 export default class BoomEffect{
     static TAG:string = "BoomEffect";
 
@@ -25,13 +26,12 @@ export default class BoomEffect{
             // console.log("创建新的怪物子弹爆炸特效");
         }
         effect.sp3d.transform.localPosition = pro.sp3d.transform.localPosition;
-        effect.sp3d.transform.localRotationEulerX = 45;
         Game.layer3d.addChild(effect.sp3d);
 
-        pro.sp3d && pro.sp3d.removeSelf();
         setTimeout(() => {
             effect.recover();
-        }, 1000);
+            
+        }, 500);
         return effect;
     }
 

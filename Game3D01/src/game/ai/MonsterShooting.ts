@@ -8,6 +8,7 @@ import MonsterBulletAI from "./MonsterBulletAI";
 import MonsterBulletMove from "../move/MonsterBulletMove";
 import MonsterBullet from "../player/MonsterBullet";
 import { GameAI } from "./GameAI";
+import BulletRotateScript from "../controllerScript/BulletRotateScript";
 
 /**怪射击器*/
 export default class MonsterShooting {
@@ -39,14 +40,11 @@ export default class MonsterShooting {
         bo.rotation(r_);
         bo.curLen = 0;
         bo.moveLen = range + Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
-        (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
-
-        // let line:Laya.Sprite = new Laya.Sprite();
-        // line.graphics.drawLine(bo.hbox.cx,bo.hbox.cy,Game.hero.hbox.cx,Game.hero.hbox.cy,"#ff0000",6);
-        // Game.footLayer.addChild(line);
-        // setTimeout(() => {
-        //     line.removeSelf();
-        // }, 800);
+        if(this._sysBullet.id != 10 && this._sysBullet.id != 11)//处理弓箭的，弓箭就不转了
+        {
+            (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
+            bo.sp3d.addComponent(BulletRotateScript);
+        }
         bo.startAi();
     }
 

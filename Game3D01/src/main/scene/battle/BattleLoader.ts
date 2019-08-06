@@ -92,9 +92,8 @@ export default class BattleLoader {
         // this._configId = 100101;//撞击
         // this._configId = 101001;//蓝色石头人boss
         // this._configId = 101002;//食人花boss
-        // this._configId = 101004;
+        // this._configId = 101104;
         // this._configId = 104101//炸弹人
-        // this._configId = 101902;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
@@ -126,7 +125,7 @@ export default class BattleLoader {
         this.pubResAry = [
             "h5/wall/wall.lh","h5/zhalan/hero.lh","h5/effects/foot/hero.lh","h5/effects/head/monster.lh","h5/effects/door/monster.lh",//3d背景
             "res/atlas/bg.png","res/atlas/bg.atlas","res/atlas/"+GameBG.BG_TYPE+".png","res/atlas/"+GameBG.BG_TYPE+".atlas",//2d背景
-            "h5/bullets/20000/monster.lh","h5/bulletsEffect/20000/monster.lh","h5/hero/hero.lh"//主角
+            "h5/bulletsEffect/20000/monster.lh","h5/bullets/20000/monster.lh","h5/hero/hero.lh"//主角
         ];
         if(!this.isLoadPub)
         {
@@ -139,6 +138,8 @@ export default class BattleLoader {
         res = "h5/effects/monsterDie/monster.lh";//死亡特效
         this.monsterRes[res] = res;
         res = "h5/coins/monster.lh";//金币
+        this.monsterRes[res] = res;
+        res = "h5/effects/boom/monster.lh";//打到怪物身上的特效
         this.monsterRes[res] = res;
         if(this.monsterId <= 0)
         {

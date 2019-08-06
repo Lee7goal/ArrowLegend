@@ -45,7 +45,6 @@ export default class MonsterBullet extends GamePro {
         bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
         Game.monsterResClones.push(bullet);
         this.setSp3d(bullet);
-        bullet.addComponent(BulletRotateScript)
         this.gamedata.bounce = sb.ejectionNum;
         // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
         // trail.trailFilter.time = 0.1;
@@ -69,15 +68,6 @@ export default class MonsterBullet extends GamePro {
         this.moveLen = null;
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        // Laya.timer.frameOnce(1, this, () => {
-           
-        // })
-        // Laya.timer.once(1000, this, () => {
-            
-        // })
         this.sp3d && this.sp3d.removeSelf();
-        // this.dispos();
-        // this.sp3d.destroy();
-        // Laya.Pool.recover(MonsterBullet.TAG + this.sysBullet.bulletMode, this);
     }
 }

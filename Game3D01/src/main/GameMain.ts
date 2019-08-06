@@ -69,8 +69,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         //击退效果
         REG("HIT_" + HitType.hit1,GameScaleAnimator1);
         REG("HIT_" + HitType.hit2,GameScaleAnimator2);
-        REG("HIT_" + HitType.hit3,GameScaleAnimator3);
-        REG("HIT_"  + HitType.hit4,GameScaleAnimator4);
+        REG("HIT_"  + HitType.hit3,GameScaleAnimator4);
         //NPC
         REG("NPC1001",NPC_1001);
         REG("NPC1002",NPC_1002);
