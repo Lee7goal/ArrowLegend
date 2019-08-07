@@ -13,6 +13,7 @@ import SysBullet from "../main/sys/SysBullet";
 import { GameAI } from "./ai/GameAI";
 import { GameMove } from "./move/GameMove";
 import { ui } from "./../ui/layaMaxUI";
+import BloodEffect from "./effect/BloodEffect";
 
 export default class GamePro extends Laya.EventDispatcher {
 
@@ -90,6 +91,7 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public hurt(hurt: number): void {
         this._bloodUI && this._bloodUI.update(hurt);
+        BloodEffect.add(hurt,this._bloodUI);
     }
 
    
@@ -143,7 +145,7 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     /**被攻击 */
-    private hit(pro: any): void {
+    public hit(pro: any): void {
         // var a:GamePro = <GamePro>pro;
         // console.log("a " , a);
         if (this.gameAI) {

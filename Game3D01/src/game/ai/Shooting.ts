@@ -25,8 +25,8 @@ export default class Shooting {
     //private static bulletCount:number = 0;
 
     private pro: GamePro;
-    public short_arrow(speed_: number, r_: number, pro: GamePro) {
-        var bo = HeroBullet.getBullet();
+    public short_arrow(speed_: number, r_: number, pro: GamePro):HeroBullet {
+        let bo:HeroBullet = HeroBullet.getBullet();
         // var bo = new HeroBullet();
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
@@ -35,7 +35,7 @@ export default class Shooting {
         bo.gamedata.bounce = pro.gamedata.bounce;
         bo.startAi();
         Game.layer3d.addChild(bo.sp3d);
-
+        return bo;
         // setTimeout(() => {
         //     let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>bo.sp3d.getChildAt(0).getChildAt(1);
         //     trail.trailFilter.time = 0.2;

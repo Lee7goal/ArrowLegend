@@ -22,6 +22,10 @@ export default class TreeAI extends FlowerAI {
     }
 
     onExe(): void {
+        if(this.pro.isDie)
+        {
+            return;
+        }
         this.checkHeroCollision();
         this.jump();
     }

@@ -2,6 +2,7 @@ import MonsterBullet from "../player/MonsterBullet";
 import Game from "../Game";
 import GamePro from "../GamePro";
 import GameProType from "../GameProType";
+import CoinEffect from "./CoinEffect";
 
 export default class DieEffect{
     static TAG:string = "DieEffect";
@@ -22,7 +23,7 @@ export default class DieEffect{
         effect.sp3d.transform.localPosition = player.sp3d.transform.localPosition;
         setTimeout(() => {
             effect.recover();
-        }, 1500);
+        }, 1000);
         return effect;
     }
 
@@ -30,8 +31,8 @@ export default class DieEffect{
     {
         this.sp3d && this.sp3d.removeSelf();
         // Laya.Pool.recover(DieEffect.TAG,this);
-        // if (Game.map0.Eharr.length == 0)  {
-        //     Game.openDoor();
-        // }
+        if (Game.map0.Eharr.length == 0)  {
+            CoinEffect.fly();
+        }
     }
 }

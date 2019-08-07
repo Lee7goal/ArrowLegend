@@ -49,7 +49,6 @@ export default class HeroBullet extends GamePro {
         // Laya.timer.once(1000,this,()=>{
             
         // })
-
         this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
         // Laya.Pool.recover(HeroBullet.TAG,this);
     }

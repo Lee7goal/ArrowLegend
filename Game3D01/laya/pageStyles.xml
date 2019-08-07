@@ -28,4 +28,7 @@
    <item name="test/zhuanpan.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/battle.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/battlestop2.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/jiesuan.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/jiesuan_1.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/GameOver.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

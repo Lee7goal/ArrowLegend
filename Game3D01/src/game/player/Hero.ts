@@ -96,6 +96,8 @@ export default class Hero extends GamePro {
     onDie(key):void{
         this.stopAi();
         Game.executor && Game.executor.stop_();//全部停止
+
+        Laya.stage.event(Game.Event_MAIN_DIE);
     }
 
     private lastTime: number = 0;

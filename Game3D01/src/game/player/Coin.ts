@@ -23,6 +23,8 @@ export default class Coin extends GamePro {
 
         this.setGameAi(new CoinsAI());
         this.setGameMove(new CoinsMove());
+
+        this.startAi();
     }
 
     public setPos(monster:Monster):void
@@ -56,7 +58,7 @@ export default class Coin extends GamePro {
         // Laya.Tween.to(this.sp3d.transform,{localPositionX:Game.hero.sp3d.transform.localPositionX,localPositionZ:Game.hero.sp3d.transform.localPositionZ},500,Laya.Ease.circOut,new Laya.Handler(this,this.onFlyCom));
 
         this.setSpeed(40);
-        this.startAi();
+        // this.startAi();
     }
 
     public stopAi():void

@@ -38,6 +38,10 @@ export default class StoneAI extends FlowerAI {
 
     exeAI(pro: GamePro): boolean {
         if (!this.run_) return;
+        if(pro.isDie)
+        {
+            return;
+        }
         //super.exeAI(pro);
         this.setShader();
         this.now = Game.executor.getWorldNow(); 

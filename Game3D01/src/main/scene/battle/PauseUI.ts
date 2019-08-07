@@ -11,10 +11,7 @@ import Game from "../../../game/Game";
     private onHome():void
     {
         this.removeSelf();
-        Game.battleLoader.index = -1;
-        Game.hero.reset();
-        Game.battleLoader.destroyMonsterRes();
-        Game.scenneM.showMain();
+        Game.showMain();
     }
 
     private onSound():void

@@ -58,13 +58,37 @@ export default class HeroAI extends GameAI {
     public short(): void {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
-        this.shootin.short_arrow(GameBG.ww / 2, Game.hero.face3d, Game.hero);
-        //this.short_arrow(40,Game.hero.face3d);        
-        // this.short_arrow(40,Game.hero.face3d + Math.PI/6);
-        // this.short_arrow(40,Game.hero.face3d - Math.PI/6);
-        // this.short_arrow(40,Game.hero.face3d - Math.PI/2);
-        // this.short_arrow(40,Game.hero.face3d + Math.PI/2);
-        // this.short_arrow(40,Game.hero.face3d + Math.PI);
+        let moveSpeed:number = GameBG.ww / 2;
+        //正向箭+1
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + 10, Game.hero.pos2.z);
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x - 10, Game.hero.pos2.z);
+        
+        //背向箭
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero);
+
+        //斜向箭
+        let angle: number = 40;
+        let num:number = 3;
+        angle = angle / num;
+        let hudu: number = angle / 180 * Math.PI;
+        let count = Math.floor(num / 2);
+        this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
+        for (var i = 1; i <= count; i++) {
+            this.shootin.short_arrow(moveSpeed,Game.hero.face3d + hudu * i, Game.hero);
+            this.shootin.short_arrow(moveSpeed,Game.hero.face3d - hudu * i, Game.hero);
+        }
+
+        //两侧箭
+        // this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero);
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero);
+
+        //连续射击
+        // this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
+        // Laya.timer.frameOnce(5,this,()=>{
+        //     this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
+        // });
     }
 
     public stopAi() {

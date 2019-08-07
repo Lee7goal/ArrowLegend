@@ -21,9 +21,11 @@ import Monster from "../../../game/player/Monster";
 import Hero from "../../../game/player/Hero";
 import TopUI from "./TopUI";
 import PauseUI from "./PauseUI";
+import GameOverView from "./gameOver/GameOverView";
 export default class BattleScene extends Laya.Sprite {
 
     private _top:TopUI;
+    private _gameOver:GameOverView;
     constructor() {
         super();
         var bg: GameBG = new GameBG();
@@ -64,6 +66,16 @@ export default class BattleScene extends Laya.Sprite {
 
         this._top = new TopUI();
         this.addChild(this._top);
+        Laya.stage.on(Game.Event_MAIN_DIE,this,this.showDieView);
+    }
+
+    private showDieView():void
+    {
+        if(!this._gameOver)
+        {
+            this._gameOver = new GameOverView();
+        }
+        this.addChild(this._gameOver);
     }
 
     private _pauseUI:PauseUI;
@@ -220,6 +232,12 @@ export default class BattleScene extends Laya.Sprite {
         {
             return;
         }
+
+        if(this._gameOver && this._gameOver.parent)
+        {
+            return;
+        }
+
         Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.md);
         Laya.stage.on(Laya.Event.MOUSE_UP, this, this.up);
         let xx: number = Laya.stage.mouseX;

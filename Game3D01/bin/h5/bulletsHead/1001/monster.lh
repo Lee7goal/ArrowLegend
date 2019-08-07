@@ -24,16 +24,16 @@
 		},
 		"child":[
 			{
-				"type":"Sprite3D",
+				"type":"MeshSprite3D",
 				"props":{
-					"name":"duqiu",
+					"name":"pian",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						0,
-						0,
-						0
+						-0.003,
+						0.01053747,
+						0.047
 					],
 					"rotation":[
 						0,
@@ -42,82 +42,20 @@
 						-1
 					],
 					"scale":[
-						1,
-						1,
-						1
+						0.37852,
+						0.5584813,
+						2.51103
+					],
+					"meshPath":"Assets/jineng/FIREJIAN/FBX/pian-pPlane1.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/jineng/FIREJIAN/Materials/FX-ArrowTrail 3.lmat"
+						}
 					]
 				},
 				"components":[],
-				"child":[
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"pian",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								1,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0.7071068,
-								0,
-								-0.7071068
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"meshPath":"Assets/jineng/FIREBAll/FBX/pian-pPlane1.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/jineng/FIREBAll/Materials/shandian.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"pian (1)",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								-1,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0.7071068,
-								0,
-								-0.7071068
-							],
-							"scale":[
-								-1,
-								1,
-								-1
-							],
-							"meshPath":"Assets/jineng/FIREBAll/FBX/pian-pPlane1.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/jineng/FIREBAll/Materials/shandian.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
+				"child":[]
 			}
 		]
 	}

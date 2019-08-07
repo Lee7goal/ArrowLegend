@@ -21,6 +21,7 @@ import Hero from "./player/Hero";
 import SceneManager from "../main/SceneManager";
 import ShakeUtils from "../core/utils/ShakeUtils";
 import CoinEffect from "./effect/CoinEffect";
+import PlayerSkillManager from "./PlayerSkillManager";
 
 export default class Game {
 
@@ -29,6 +30,7 @@ export default class Game {
 
     static cameraCN: GameCameraNum;
 
+    static Event_MAIN_DIE:string = "Event_MAIN_DIE";
     static Event_PlayStop: string = "Game.Event_PlayStop";
     static Event_Short: string = "Game.Event_Short";
     static Event_Hit: string = "Game.Event_Hit";
@@ -36,6 +38,8 @@ export default class Game {
 
     static Event_NPC: string = "Event_NPC";
     static Event_COINS: string = "Event_COINS";
+
+    static skillManager:PlayerSkillManager = new PlayerSkillManager();
 
     static AiArr: GamePro[] = [];
     static HeroArrows: GamePro[] = [];
@@ -131,7 +135,6 @@ export default class Game {
         Game.door.transform.localPositionX = 0;
         Game.map0.setDoor(true);
         ShakeUtils.execute(Game.scenneM.battle, 75, 4);
-        CoinEffect.fly();
     }
 
     static closeDoor(): void {
@@ -219,4 +222,12 @@ export default class Game {
     }
 
     static coinsNum: number = 0;
+
+    static showMain():void
+    {
+        Game.battleLoader.index = -1;
+        Game.hero.reset();
+        Game.battleLoader.destroyMonsterRes();
+        Game.scenneM.showMain();
+    }
 }
