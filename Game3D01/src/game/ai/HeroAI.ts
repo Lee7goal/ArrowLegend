@@ -5,12 +5,15 @@ import GamePro from "../GamePro";
 import GameProType from "../GameProType";
 import Shooting from "./Shooting";
 import GameBG from "../GameBG";
+import MaoLineData from "../MaoLineData";
 
 export default class HeroAI extends GameAI {
 
     static shoot:Shooting = new Shooting();
 
     private shootin: Shooting = HeroAI.shoot;
+
+    private line:MaoLineData;
 
 
     public set run(b: boolean) {
@@ -59,25 +62,32 @@ export default class HeroAI extends GameAI {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
         let moveSpeed:number = GameBG.ww / 2;
-        //正向箭+1
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + 10, Game.hero.pos2.z);
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x - 10, Game.hero.pos2.z);
+
+
+        //正向箭+2 或者 默认箭
+        this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
         
-        //背向箭
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+        //正向箭+1
+        // if(!this.line)this.line = new MaoLineData(0,0,GameBG.mw2,0);
+        // this.line.rad(Game.hero.face2d + Math.PI/2);
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z+ this.line.y_len);
+        // this.line.rad(Game.hero.face2d - Math.PI/2);
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z+ this.line.y_len);
+                
+        //背向箭        
         // this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero);
 
         //斜向箭
-        let angle: number = 40;
-        let num:number = 3;
-        angle = angle / num;
-        let hudu: number = angle / 180 * Math.PI;
-        let count = Math.floor(num / 2);
-        this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
-        for (var i = 1; i <= count; i++) {
-            this.shootin.short_arrow(moveSpeed,Game.hero.face3d + hudu * i, Game.hero);
-            this.shootin.short_arrow(moveSpeed,Game.hero.face3d - hudu * i, Game.hero);
-        }
+        // let angle: number = 40;
+        // let num:number = 3;
+        // angle = angle / num;
+        // let hudu: number = angle / 180 * Math.PI;
+        // let count = Math.floor(num / 2);
+        //this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
+        // for (var i = 1; i <= count; i++) {
+        //     this.shootin.short_arrow(moveSpeed,Game.hero.face3d + hudu * i, Game.hero);
+        //     this.shootin.short_arrow(moveSpeed,Game.hero.face3d - hudu * i, Game.hero);
+        // }
 
         //两侧箭
         // this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
