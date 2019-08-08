@@ -38,6 +38,7 @@ import GameScaleAnimator3 from "../game/ai/GameScaleAnimator3";
 import GameScaleAnimator2 from "../game/ai/GameScaleAnimator2";
 import GameScaleAnimator4 from "../game/ai/GameScaleAnimator4";
 import HitType from "../game/ai/HitType";
+import SysLevel from "./sys/SysLevel";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -61,6 +62,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         App.tableManager.register(SysMap.NAME,SysMap);
         App.tableManager.register(SysEnemy.NAME,SysEnemy);
         App.tableManager.register(SysBullet.NAME,SysBullet);
+        App.tableManager.register(SysLevel.NAME,SysLevel);
 
         App.tableManager.onParse(arr);
     }

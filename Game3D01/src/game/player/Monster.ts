@@ -76,6 +76,9 @@ export default class Monster extends GamePro {
         if (Game.map0.Eharr.indexOf(this.hbox) >= 0) {
             Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
         }
+
+        Game.hero.playerData.exp += this.sysEnemy.dropExp;
+        Laya.stage.event(Game.Event_EXP);
     }
 
     onDie(key): void {

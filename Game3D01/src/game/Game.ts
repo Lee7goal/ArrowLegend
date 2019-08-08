@@ -38,6 +38,7 @@ export default class Game {
 
     static Event_NPC: string = "Event_NPC";
     static Event_COINS: string = "Event_COINS";
+    static Event_EXP:string = "Event_EXP";
 
     static skillManager:PlayerSkillManager = new PlayerSkillManager();
 

@@ -6,9 +6,11 @@ import PlaneGameMove from "../move/PlaneGameMove";
 import HeroAI from "../ai/HeroAI";
 import { GameAI } from "../ai/GameAI";
 import HitEffect from "../effect/HitEffect";
+import PlayerData from "../data/PlayerData";
 
 export default class Hero extends GamePro {
     
+    public playerData:PlayerData = new PlayerData();
     constructor() {
         super(GameProType.Hero, 0);
         this.reset();
