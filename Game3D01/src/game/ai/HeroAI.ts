@@ -20,7 +20,7 @@ export default class HeroAI extends GameAI {
 
     private line: MaoLineData;
 
-    private gi:GameInfrared;
+    //private gi:GameInfrared;
 
     public set run(b: boolean) {
         if (this.run_ != b) {
@@ -48,10 +48,7 @@ export default class HeroAI extends GameAI {
     
 
     public starAi() {
-        if(!this.gi){
-            this.gi = new GameInfrared(Game.hero,2);
-            this.gi.show = true;
-        }
+       
 
         if (Game.hero.gamedata.hp <= 0) {
             return;
@@ -170,7 +167,7 @@ export default class HeroAI extends GameAI {
     
 
     public exeAI(pro: GamePro): boolean {
-        this.gi.drawMoveline();
+        //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
         // this.rotateBullet();
         //地刺

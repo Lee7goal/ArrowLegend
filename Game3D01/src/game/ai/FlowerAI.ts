@@ -17,7 +17,6 @@ export default class FlowerAI extends BaseAI {
     protected nextTime: number = 0;
     constructor(pro: Monster) {
         super(pro);
-
         this.shooting.at = 0.4;
         this.pro.setSpeed(this.sysEnemy.moveSpeed);
         this.pro.on(Game.Event_Short, this, this.shootAc);
