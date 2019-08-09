@@ -5,6 +5,7 @@ import GamePro from "../GamePro";
 import { GameMove } from "./GameMove";
 import MaoLineData from "../MaoLineData";
 import GameBG from "../GameBG";
+import HeroBullet from "../player/HeroBullet";
 
 export default class ArrowGameMove0 extends GameMove {
 
@@ -16,27 +17,25 @@ export default class ArrowGameMove0 extends GameMove {
     private cos: number = 0;
     private sin: number = 0;
 
-    private arrowlen = GameBG.ww * 0.7
+    // private arrowlen = GameBG.ww * 0.7
+    private arrowlen = 10;
     /**箭的长度 */
     private line = new MaoLineData(0, 0, 0, this.arrowlen);
     /**运动的矢量 */
     private vv = new MaoLineData(0, 0, 0, 1);
-
-    /**反弹次数 */
-    private fcount: number = 2;
 
     /**反弹起点 */
     private fv: MaoLineData = null;
 
 
     //move2d(n: number, pro: GamePro, speed: number): boolean{return false}
-    public move2d(n: number, pro: GamePro, speed: number, hitStop: boolean): boolean {
+    public move2d(n: number, pro: HeroBullet, speed: number, hitStop: boolean): boolean {
         if (pro.isDie)  {
             return false;
         }
         if (speed == 0) return false;
 
-        let isChuantou: boolean = false;
+        let isChuantou: boolean = pro.isChuantou;
         if (this.fv != null) {
             //n= 2 * Math.PI - this.facen2d_ ;            
             pro.rotation(2 * Math.PI - this.fv.atan2());
@@ -158,14 +157,19 @@ export default class ArrowGameMove0 extends GameMove {
             //     this.fv = l;
             //     return true;
             // }
-            this.fcount--;
+            pro.fcount--;
             this.fv = l;
-            if (this.fcount <= 0) {
+            if (pro.fcount <= 0) {
                 pro.die();
                 return false;
             }
         }
         pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
+
+        if(Math.abs(pro.pos2.x) > 800 || Math.abs(pro.pos2.z) > 3000)//出了屏幕后销毁
+        {
+            pro.die();
+        }
 
         return true;
     }

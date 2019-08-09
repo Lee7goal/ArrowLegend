@@ -91,30 +91,30 @@ export default class BaseAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        this.pro.hurt(this.pro.gamedata.maxhp / 4);
-        // this.pro.hurt(1);
+        // this.pro.hurt(Game.hero.playerData.attackPower);
+        this.pro.hurt(this.pro.gamedata.maxhp);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
         else{
-            // this.stiffTime = this.now;
-            // if( this.g2 && this.g2.isOk()){//击退
-            //     var a: number = pro.face3d + Math.PI;
-            //     this.pro.rotation(a);
-            //     if(this.g2.starttime == 0 ){                        
-            //         this.g2.starttime = this.now;//受击变形 击退
-            //         this.g2.now = this.now;
-            //         this.g2.playtime = 300;
-            //     }
-            // }
+            this.stiffTime = this.now;
+            if( this.g2 && this.g2.isOk()){//击退
+                var a: number = pro.face3d + Math.PI;
+                this.pro.rotation(a);
+                if(this.g2.starttime == 0 ){                        
+                    this.g2.starttime = this.now;//受击变形 击退
+                    this.g2.now = this.now;
+                    this.g2.playtime = 300;
+                }
+            }
 
-            // var ms = this.pro;
-            // if (MonsterShader.map[ms.sysEnemy.enemymode]) {
-            //     var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
-            //     shader.setShader0(this.pro.sp3d, 1);
-            //     var now = Game.executor.getWorldNow();
-            //     this.shaders = now + 250;
-            // }
+            var ms = this.pro;
+            if (MonsterShader.map[ms.sysEnemy.enemymode]) {
+                var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];
+                shader.setShader0(this.pro.sp3d, 1);
+                var now = Game.executor.getWorldNow();
+                this.shaders = now + 250;
+            }
         }
     }
 

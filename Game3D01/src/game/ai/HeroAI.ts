@@ -8,6 +8,7 @@ import GameBG from "../GameBG";
 import MaoLineData from "../MaoLineData";
 import HeroBullet from "../player/HeroBullet";
 import BulletRotate from "../player/BulletRotate";
+import SysSkill from "../../main/sys/SysSkill";
 
 export default class HeroAI extends GameAI {
 
@@ -98,11 +99,24 @@ export default class HeroAI extends GameAI {
 
         this.onShoot();
 
-        if (Game.skillManager.isHas(1005))  {
-            //连续射击
-            Laya.timer.frameOnce(20, this, () => {
-                this.onShoot();
-            });
+        //连续射击
+        let skill1005:SysSkill = Game.skillManager.isHas(1005);
+        if (skill1005)  {
+            if(skill1005.curTimes == 1)
+            {
+                Laya.timer.frameOnce(15,this,()=>{
+                    this.onShoot();
+                })
+            }
+            else
+            {
+                Laya.timer.frameOnce(15,this,()=>{
+                    this.onShoot();
+                })
+                Laya.timer.frameOnce(30,this,()=>{
+                    this.onShoot();
+                })
+            }
         }
     }
 
@@ -112,29 +126,35 @@ export default class HeroAI extends GameAI {
 
         let skillLen: number = Game.skillManager.skillList.length;
 
-        if (Game.skillManager.isHas(1001))  {
-            //正向箭+1
+        //正向箭+1
+        let skill1001:SysSkill = Game.skillManager.isHas(1001);
+        if (skill1001)  {
             if (!this.line) this.line = new MaoLineData(0, 0, GameBG.mw2, 0);
             this.line.rad(Game.hero.face2d + Math.PI / 2);
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
             this.line.rad(Game.hero.face2d - Math.PI / 2);
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+
+            if(skill1001.curTimes >= 2)
+            {
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+            }
         }
         else
         {
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
         }
         
-
+        //背向箭
         if (Game.skillManager.isHas(1002))  {
-            //背向箭
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero);
         }
 
-        if (Game.skillManager.isHas(1003))  {
-            //斜向箭
-            let angle: number = 90;
-            let num: number = 2;
+        //斜向箭
+        let skill1003:SysSkill = Game.skillManager.isHas(1003);
+        if (skill1003)  {
+            let angle: number = skill1003.curTimes == 1 ? 90 : 120;
+            let num: number = 2 * skill1003.curTimes;
             angle = angle / num;
             let hudu: number = angle / 180 * Math.PI;
             let count = Math.floor(num / 2);
@@ -145,8 +165,8 @@ export default class HeroAI extends GameAI {
             }
         }
 
+        //两侧箭
         if (Game.skillManager.isHas(1004))  {
-            //两侧箭
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero);
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero);
         }

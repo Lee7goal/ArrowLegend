@@ -5,6 +5,11 @@ import HeroArrowAI from "../ai/HeroArrowAI";
 import ArrowGameMove0 from "../move/ArrowGameMove0";
 export default class HeroBullet extends GamePro {
     static TAG:string = 'HeroBullet';
+
+    /**是否穿透 */
+    isChuantou:boolean = false;
+    /**反弹次数 */
+    fcount: number = 0;
     constructor() {
         super(GameProType.HeroArrow);
         //this.setGameMove(new ArrowGameMove());
@@ -30,6 +35,8 @@ export default class HeroBullet extends GamePro {
         // bullet = Laya.Pool.getItemByClass(HeroBullet.TAG,HeroBullet);
         bullet.isDie = false;
         bullet.setBullet(id ? id : 20000);
+        bullet.isChuantou = Game.skillManager.isChuantou;//穿透
+        bullet.fcount =  Game.skillManager.bounceTimes;//反弹
         return bullet;
     }
 

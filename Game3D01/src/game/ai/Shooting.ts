@@ -11,8 +11,6 @@ import HeroArrowAI from "./HeroArrowAI";
 export default class Shooting {
     /**单次出手次数*/
     public scd: number = 0;
-    /**攻击CD*/
-    public attackCd: number = 650;
     /**下次攻击时间*/
     public st: number = 0;
     /**上次攻击时间*/
@@ -45,7 +43,7 @@ export default class Shooting {
     public starAttack(pro: GamePro, acstr: string): boolean {
         this.pro = pro;
         if (this.attackOk()) {            
-            this.st = this.now + this.attackCd;
+            this.st = this.now + Game.hero.playerData.attackSpeed;
             this.scd = 0;
             pro.play(acstr);
             if (this.at > 0) {

@@ -170,6 +170,8 @@ export default class Game {
     }
 
     static reset(): void {
+        Game.skillManager.skillList.length = 0;
+        Game.skillManager.addSkill();
         Game.state = 0;
         Game.isPopupSkill = 0;
         Game.AiArr.length = 0;

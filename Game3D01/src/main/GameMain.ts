@@ -42,6 +42,7 @@ import SysLevel from "./sys/SysLevel";
 import BloodEffect from "../game/effect/BloodEffect";
 import SysSkill from "./sys/SysSkill";
 import SysBuff from "./sys/SysBuff";
+import SysNpc from "./sys/SysNpc";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -69,6 +70,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         App.tableManager.register(SysLevel.NAME,SysLevel);
         App.tableManager.register(SysSkill.NAME,SysSkill);
         App.tableManager.register(SysBuff.NAME,SysBuff);
+        App.tableManager.register(SysNpc.NAME,SysNpc);
 
         App.tableManager.onParse(arr);
     }
