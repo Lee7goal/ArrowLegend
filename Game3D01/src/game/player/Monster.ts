@@ -125,6 +125,7 @@ export default class Monster extends GamePro {
         gpro.init();
         gpro.setSp3d(sp);
 
+
         if (sysEnemy.moveType > 0)  {
             var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
             gpro.setGameMove(new MOVE());

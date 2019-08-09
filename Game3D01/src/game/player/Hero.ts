@@ -19,6 +19,19 @@ export default class Hero extends GamePro {
         this.setGameAi(new HeroAI());
     }
 
+    addBlood(addValue:number):void
+    {
+        this.gamedata.hp = this.gamedata.hp + addValue;
+        this.gamedata.hp = Math.min(this.gamedata.hp,this.gamedata.maxhp);
+        this.initBlood(this.gamedata.hp);
+        console.log("回复血量");
+    }
+
+    private updateAttackSpeed():void
+    {
+        console.log("修改攻速");
+    }
+
     public reset():void
     {
         this.gamedata.hp = this.gamedata.maxhp = 2000;
@@ -55,6 +68,9 @@ export default class Hero extends GamePro {
                 Game.openDoor();
             }, 3000);
         }
+
+        Laya.stage.on(Game.Event_ADD_HP,this,this.addBlood);
+        Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED,this,this.updateAttackSpeed);
     }
 
     public isNew:boolean = true;

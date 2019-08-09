@@ -15,6 +15,7 @@ export default class Coin extends GamePro {
         var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/monster.lh"));
         Game.monsterResClones.push(sp);
         this.setSp3d(sp);
+        sp.transform.localScale = new Laya.Vector3(1.5,1.5,1.5);
         // sp.transform.localRotationEulerY = 45;
         this.sp3d.addComponent(FootRotateScript);
         Game.layer3d.addChild(sp);
@@ -30,7 +31,7 @@ export default class Coin extends GamePro {
     public setPos(monster:Monster):void
     {
         this.setXY2DBox(monster.hbox.cx, monster.hbox.cy);
-        this.sp3d.transform.localPositionY = 1;
+        this.sp3d.transform.localPositionY = 0.5;
         let rand:number =  Math.random();
         let deltaX:number = rand > 0.5 ? rand :-rand;
 
@@ -61,9 +62,9 @@ export default class Coin extends GamePro {
         // this.startAi();
     }
 
-    public stopAi():void
+    public clear():void
     {
-        super.stopAi();
+        this.stopAi();
         this.sp3d && this.sp3d.removeSelf();
         Laya.stage.event(Game.Event_COINS);
     }

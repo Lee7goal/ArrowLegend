@@ -1,12 +1,13 @@
 {
-    "type":"Scene",
+    "x":0,
+    "type":"View",
     "selectedBox":2,
-    "selecteID":20,
-    "searchKey":"Scene",
-    "props":{"width":750,"sceneColor":"#000000","height":1334},
+    "selecteID":21,
+    "searchKey":"View",
+    "props":{"width":750,"sceneColor":"#f3dede","height":1334},
     "nodeParent":-1,
-    "maxID":21,
-    "label":"Scene",
+    "maxID":30,
+    "label":"View",
     "isOpen":true,
     "isDirectory":true,
     "isAniNode":true,
@@ -14,115 +15,105 @@
     "compId":2,
     "child":[
         {
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"y":99,"x":12,"width":726,"skin":"main/biaotihuang.png","sizeGrid":"0,23,0,135","height":99},
+            "x":15,
+            "type":"Box",
+            "searchKey":"Box",
+            "props":{"alpha":0.6},
             "nodeParent":2,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":4,
-            "child":[
-                ]
-        },
-        {
-            "type":"Label",
-            "searchKey":"Label,biaoti2",
-            "props":{"y":130,"x":157,"var":"biaoti2","text":"本次冒险升到了3级！","fontSize":48,"color":"#000000","alpha":0.5,"align":"center"},
-            "nodeParent":2,
-            "label":"biaoti2",
+            "label":"Box",
             "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":5,
+            "compId":22,
             "child":[
                 {
-                    "type":"BlurFilterSetter",
-                    "switchAble":true,
-                    "searchKey":"BlurFilterSetter",
-                    "removeAble":true,
-                    "props":{"y":1,"x":0,"strength":2},
-                    "nodeParent":5,
-                    "label":"BlurFilterSetter",
+                    "type":"Rect",
+                    "searchKey":"Rect",
+                    "props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},
+                    "nodeParent":22,
+                    "label":"Rect",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":7,
+                    "compId":23,
+                    "child":[
+                        ]
+                }],
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "searchKey":"Box,viewBox",
+            "props":{"x":12,"var":"viewBox","height":762,"centerY":0},
+            "nodeParent":2,
+            "label":"viewBox",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":21,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"width":726,"skin":"main/biaotihuang.png","sizeGrid":"0,23,0,135","height":99},
+                    "nodeParent":21,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":4,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,baioti",
+                    "props":{"y":25.5,"x":135.65234375,"var":"baioti","text":"本次冒险升到了3级！","fontSize":48,"color":"#ffffff","align":"center"},
+                    "nodeParent":21,
+                    "label":"baioti",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":6,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label",
+                    "props":{"y":405,"x":173,"text":"请选择新的能力！","fontSize":48,"color":"#ffffff","align":"center"},
+                    "nodeParent":21,
+                    "label":"Label",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":8,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "searchKey":"Box,box",
+                    "props":{"y":514,"x":75,"var":"box"},
+                    "nodeParent":21,
+                    "label":"box",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":24,
                     "child":[
                         ]
                 }]
-        },
-        {
-            "type":"Label",
-            "searchKey":"Label,baioti",
-            "props":{"y":125.5,"x":157.65234375,"var":"baioti","text":"本次冒险升到了3级！","fontSize":48,"color":"#ffffff","align":"center"},
-            "nodeParent":2,
-            "label":"baioti",
-            "isOpen":true,
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":6,
-            "child":[
-                ]
-        },
-        {
-            "type":"Label",
-            "searchKey":"Label",
-            "props":{"y":504,"x":185,"text":"请选择新的能力！","fontSize":48,"color":"#ffffff","align":"center"},
-            "nodeParent":2,
-            "label":"Label",
-            "isOpen":true,
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":8,
-            "child":[
-                ]
-        },
-        {
-            "type":"UIView",
-            "source":"test/jinengkuang.scene",
-            "searchKey":"UIView,jineng1",
-            "props":{"y":642,"x":97,"var":"jineng1"},
-            "nodeParent":2,
-            "label":"jineng1",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":18,
-            "child":[
-                ]
-        },
-        {
-            "type":"UIView",
-            "source":"test/jinengkuang.scene",
-            "searchKey":"UIView,jineng2",
-            "props":{"y":642,"x":291,"var":"jineng2"},
-            "nodeParent":2,
-            "label":"jineng2",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":19,
-            "child":[
-                ]
-        },
-        {
-            "type":"UIView",
-            "source":"test/jinengkuang.scene",
-            "searchKey":"UIView,jineng3",
-            "props":{"y":642,"x":486,"var":"jineng3"},
-            "nodeParent":2,
-            "label":"jineng3",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":20,
-            "child":[
-                ]
         }],
     "animations":[
         {

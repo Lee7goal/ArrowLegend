@@ -1,6 +1,14 @@
-export default class SysSkil{
-    static NAME:string = 'sys_stageinfo.txt';
+export default class SysSkill{
+    static NAME:string = 'sys_roleskill.txt';
     constructor() { }
 
-    public id:number = 0;
+    id:number = 0;
+    skillName:string = '';
+    skillInfo:string = '';
+    skillType:number = 0;
+    triggerComparison:number = 0;
+    skilltarget:number = 0;
+    skillcondition:string = '';
+    damagePercent:number = 0;
+    skillEffect1:number = 0;
 }

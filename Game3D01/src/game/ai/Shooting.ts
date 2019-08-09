@@ -3,7 +3,6 @@ import GameHitBox from "../GameHitBox";
 import GamePro from "../GamePro";
 import GameBG from "../GameBG";
 import { GameAI } from "./GameAI";
-import ArrowGameMove from "../move/ArrowGameMove";
 import HeroArrowMove0 from "../move/HeroArrowMove0";
 import HeroBullet from "../player/HeroBullet";
 import HeroArrowAI from "./HeroArrowAI";
@@ -25,8 +24,8 @@ export default class Shooting {
     //private static bulletCount:number = 0;
 
     private pro: GamePro;
-    public short_arrow(speed_: number, r_: number, pro: GamePro):HeroBullet {
-        let bo:HeroBullet = HeroBullet.getBullet();
+    public short_arrow(speed_: number, r_: number, pro: GamePro,bulletId?:number):HeroBullet {
+        let bo:HeroBullet = HeroBullet.getBullet(bulletId);
         // var bo = new HeroBullet();
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
@@ -36,10 +35,6 @@ export default class Shooting {
         bo.startAi();
         Game.layer3d.addChild(bo.sp3d);
         return bo;
-        // setTimeout(() => {
-        //     let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>bo.sp3d.getChildAt(0).getChildAt(1);
-        //     trail.trailFilter.time = 0.2;
-        // }, 200);
     }
 
     public attackOk(): boolean {

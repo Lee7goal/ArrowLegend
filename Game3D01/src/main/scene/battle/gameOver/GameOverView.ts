@@ -26,6 +26,12 @@ export default class GameOverView extends ui.test.GameOverUI {
         this.bg.ani1.stop();
         this.info.visible = true;
     }
+
+    removeSelf():Laya.Node
+    {
+        Game.state = 0;
+        return super.removeSelf();
+    }
 }
 
 

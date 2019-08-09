@@ -23,6 +23,8 @@ import TopUI from "./TopUI";
 import PauseUI from "./PauseUI";
 import GameOverView from "./gameOver/GameOverView";
 import CustomShaderff00 from "../../../shader/CustomShaderff00";
+import SelectNewSkill from "./SelectNewSkill";
+import SysSkill from "../../sys/SysSkill";
 export default class BattleScene extends Laya.Sprite {
 
     private _top:TopUI;
@@ -67,7 +69,25 @@ export default class BattleScene extends Laya.Sprite {
 
         this._top = new TopUI();
         this.addChild(this._top);
+        this._top.updateCoins();
+        this._top.updateExp();
+        
+        this._top.zanting.clickHandler = new Laya.Handler(this,this.showPause);
+
+        Laya.stage.on(Game.Event_SELECT_NEWSKILL,this,this.onShowSelect);
         Laya.stage.on(Game.Event_MAIN_DIE,this,this.showDieView);
+    }
+
+    private _selectSkill:SelectNewSkill;
+    private onShowSelect(lv:number):void
+    {
+        if(!this._selectSkill)
+        {
+            this._selectSkill = new SelectNewSkill();
+        }
+        this.addChild(this._selectSkill);
+        Game.isPopupSkill = 1;
+        Game.state = 1;
     }
 
     private showDieView():void
@@ -77,6 +97,7 @@ export default class BattleScene extends Laya.Sprite {
             this._gameOver = new GameOverView();
         }
         this.addChild(this._gameOver);
+        Game.state = 1;
     }
 
     private _pauseUI:PauseUI;
@@ -88,6 +109,7 @@ export default class BattleScene extends Laya.Sprite {
         }
         this.addChild(this._pauseUI);
         Game.executor.stop_();
+        Game.state = 1;
     }
 
     private npcView:Laya.View;
@@ -102,6 +124,7 @@ export default class BattleScene extends Laya.Sprite {
                 this.npcView = new NPCVIEW();
                 this.addChild(this.npcView);
             }
+            Game.state = 1;
         }
     }
 
@@ -112,7 +135,7 @@ export default class BattleScene extends Laya.Sprite {
             CustomShaderff00.ff00;
         }
         Game.map0.drawMap();
-        this.addChild(Game.map0);
+        //this.addChild(Game.map0);
         Game.updateMap();
 
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
@@ -180,17 +203,24 @@ export default class BattleScene extends Laya.Sprite {
 
         Game.bg.drawR(isHasBoss);
 
-        sp = Laya.loader.getRes("h5/bullets/20000/monster.lh");
-        var gpro = new GamePro(GameProType.HeroArrow);
-        gpro.setSp3d(sp);
-        Game.a0 = gpro;
+        // sp = Laya.loader.getRes("h5/bullets/20000/monster.lh");
+        // var gpro = new GamePro(GameProType.HeroArrow);
+        // gpro.setSp3d(sp);
+        // Game.a0 = gpro;
 
         Game.ro = new Rocker();
         Game.ro.resetPos();
         this.addChild(Game.ro);
 
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
+
         // (<HeroAI>Game.hero.getGameAi()).run = false;
         Game.hero.init();
+        Game.hero.playerData.lastLevel = Game.hero.playerData.level;
         Game.bg.updateY();
 
 
@@ -219,23 +249,7 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     md(eve: MouseEvent): void {
-
-        if(eve.target instanceof Laya.Button)
-        {
-            let btn:Laya.Button =  eve.target;
-            if(btn == this._top.zanting)
-            {
-                this.showPause();
-                return;
-            }
-        }
-        
-        if(this._pauseUI && this._pauseUI.parent)
-        {
-            return;
-        }
-
-        if(this._gameOver && this._gameOver.parent)
+        if(Game.state > 0)
         {
             return;
         }
@@ -275,6 +289,10 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     moves(): void {
+        if(Game.state > 0)
+        {
+            return;
+        }
         let xx: number = Laya.stage.mouseX;
         let yy: number = Laya.stage.mouseY;
         let n: number;

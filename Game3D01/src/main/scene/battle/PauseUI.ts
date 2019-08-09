@@ -25,4 +25,10 @@ import Game from "../../../game/Game";
         this.removeSelf();
         Game.executor.start();
     }
+
+    removeSelf():Laya.Node
+    {
+        Game.state = 0;
+        return super.removeSelf();
+    }
 }

@@ -12,4 +12,10 @@ import Game from "../../../../game/Game";
         this.removeSelf();
         Game.bg.clearNpc();
     }
+
+    removeSelf():Laya.Node
+    {
+        Game.state = 0;
+        return super.removeSelf();
+    }
 }

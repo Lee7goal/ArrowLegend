@@ -55,6 +55,10 @@ export default class GameExecut extends Laya.EventDispatcher {
 
         if(arr.length == 1 && Game.bg.npcId == 0)
         {
+            if(Game.state == 0 && Game.hero.playerData.lastLevel != Game.hero.playerData.level && Game.isPopupSkill == 0)
+            {
+                Laya.stage.event(Game.Event_SELECT_NEWSKILL,Game.hero.playerData.level);
+            }
             if(arr[0] instanceof Hero)
             {
                 Game.openDoor();

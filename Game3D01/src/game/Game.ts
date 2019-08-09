@@ -24,6 +24,8 @@ import CoinEffect from "./effect/CoinEffect";
 import PlayerSkillManager from "./PlayerSkillManager";
 
 export default class Game {
+    static state:number = 0;
+    static isPopupSkill:number = 0;
 
     static monsterClones: Laya.Sprite3D[] = [];
     static monsterResClones: Laya.Sprite3D[] = [];
@@ -36,9 +38,13 @@ export default class Game {
     static Event_Hit: string = "Game.Event_Hit";
     static Event_KeyNum: string = "Game.Event_KeyNum";
 
+    static Event_ADD_HP: string = "Event_ADD_HP";
+    static Event_UPDATE_ATTACK_SPEED: string = "Event_UPDATE_ATTACK_SPEED";
+
     static Event_NPC: string = "Event_NPC";
     static Event_COINS: string = "Event_COINS";
     static Event_EXP:string = "Event_EXP";
+    static Event_SELECT_NEWSKILL:string = "Event_SELECT_NEWSKILL";
 
     static skillManager:PlayerSkillManager = new PlayerSkillManager();
 
@@ -164,6 +170,8 @@ export default class Game {
     }
 
     static reset(): void {
+        Game.state = 0;
+        Game.isPopupSkill = 0;
         Game.AiArr.length = 0;
         Game.bloodLayer.removeChildren();
         Game.frontLayer.removeChildren();
