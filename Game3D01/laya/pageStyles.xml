@@ -31,4 +31,6 @@
    <item name="test/jiesuan.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/jiesuan_1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/GameOver.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/battlestop.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/SkillGrid.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

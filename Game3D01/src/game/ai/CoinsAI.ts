@@ -22,11 +22,11 @@ export default class CoinsAI extends GameAI {
             return false;
         }
         var a: number = GameHitBox.faceTo3D(pro.hbox, Game.hero.hbox);
-        pro.rotation(a);
-        if(pro.move2D(pro.face2d))
+        if(pro.move2D(2 * Math.PI - a))
         {
-            this.stopAi();
-            pro.stopAi();
+            // this.stopAi();
+            pro.clear();
+            this.run_ = false;
         }
         return false;
     }

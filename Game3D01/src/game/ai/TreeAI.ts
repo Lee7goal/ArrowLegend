@@ -76,6 +76,10 @@ export default class TreeAI extends FlowerAI {
     }
 
     startAttack(): void {
+        if(this.pro.isDie)
+        {
+            return;
+        }
         this.shooting._sysBullet = null;
 
         if (this.normalSb) {//普通射击

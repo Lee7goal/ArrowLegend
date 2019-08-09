@@ -39,6 +39,9 @@ import GameScaleAnimator2 from "../game/ai/GameScaleAnimator2";
 import GameScaleAnimator4 from "../game/ai/GameScaleAnimator4";
 import HitType from "../game/ai/HitType";
 import SysLevel from "./sys/SysLevel";
+import BloodEffect from "../game/effect/BloodEffect";
+import SysSkill from "./sys/SysSkill";
+import SysBuff from "./sys/SysBuff";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -54,6 +57,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         this.regClass();
         Laya.stage.addChild(App.layerManager);
         Game.scenneM.showMain();
+        new BloodEffect();
     }
     private _mainScene:MainScene;
 
@@ -63,6 +67,8 @@ var REG: Function = Laya.ClassUtils.regClass;
         App.tableManager.register(SysEnemy.NAME,SysEnemy);
         App.tableManager.register(SysBullet.NAME,SysBullet);
         App.tableManager.register(SysLevel.NAME,SysLevel);
+        App.tableManager.register(SysSkill.NAME,SysSkill);
+        App.tableManager.register(SysBuff.NAME,SysBuff);
 
         App.tableManager.onParse(arr);
     }

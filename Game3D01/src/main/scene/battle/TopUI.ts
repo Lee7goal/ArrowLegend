@@ -5,9 +5,6 @@ import SysLevel from "../../sys/SysLevel";
     
     constructor() { 
         super();
-
-        this.updateExp();
-        this.updateCoins();
         Laya.stage.on(Game.Event_COINS,this,this.updateCoins);
         Laya.stage.on(Game.Event_EXP,this,this.updateExp);
     }
@@ -15,7 +12,7 @@ import SysLevel from "../../sys/SysLevel";
     updateExp():void
     {
         let lv:number = SysLevel.getLv(Game.hero.playerData.exp);
-
+        Game.hero.playerData.level = lv;
         let maxExp: number = SysLevel.getMaxExpByLv(lv);
         let curExpSum: number = SysLevel.getExpSum(lv - 1);
         let curExp: number = Game.hero.playerData.exp - curExpSum;
@@ -25,9 +22,15 @@ import SysLevel from "../../sys/SysLevel";
         this.shuzi.value = "" + lv;
     }
 
-    private updateCoins():void
+    updateCoins():void
     {
         Game.coinsNum++;
         this.jinbishu.value = "" + Game.coinsNum;
+    }
+
+    removeSelf():Laya.Node
+    {
+        Game.state = 0;
+        return super.removeSelf();
     }
 }

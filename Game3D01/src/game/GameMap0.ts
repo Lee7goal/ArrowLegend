@@ -116,8 +116,8 @@ export default class GameMap0 extends Laya.Sprite {
                     }
                     else if(GridType.isThorn(key))
                     {
-                        hb = new GameHitBox(GameBG.ww * 3, GameBG.ww);
-                        hb.setXY(x - GameBG.ww, y);
+                        hb = new GameHitBox(GameBG.ww, GameBG.ww);
+                        hb.setXY(x, y);
                         this.Thornarr.push(hb);
                     }
                     else if(GridType.isNpc(key))
@@ -225,6 +225,10 @@ export default class GameMap0 extends Laya.Sprite {
         this.graphics.clear();
         for (let i = 0; i < this.Wharr.length; i++) {
             var hb = this.Wharr[i];
+            this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
+        }
+        for (let i = 0; i < this.Thornarr.length; i++) {
+            var hb = this.Thornarr[i];
             this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
         }
     }

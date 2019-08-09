@@ -6,15 +6,16 @@ import GameProType from "../GameProType";
 import Shooting from "./Shooting";
 import GameBG from "../GameBG";
 import MaoLineData from "../MaoLineData";
+import HeroBullet from "../player/HeroBullet";
+import BulletRotate from "../player/BulletRotate";
 
 export default class HeroAI extends GameAI {
 
-    static shoot:Shooting = new Shooting();
+    static shoot: Shooting = new Shooting();
 
     private shootin: Shooting = HeroAI.shoot;
 
-    private line:MaoLineData;
-
+    private line: MaoLineData;
 
     public set run(b: boolean) {
         if (this.run_ != b) {
@@ -30,7 +31,7 @@ export default class HeroAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        if(Game.hero.gamedata.hp > 0){
+        if (Game.hero.gamedata.hp > 0) {
             Game.hero.hurt(150);
         }
         if (Game.hero.gamedata.hp <= 0) {
@@ -49,8 +50,7 @@ export default class HeroAI extends GameAI {
         if (Game.map0.Eharr.length > 1) {
             Game.map0.Eharr.sort(this.sore0);
         }
-        if(Game.map0.Eharr.length > 0)
-        {
+        if (Game.map0.Eharr.length > 0)  {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);
@@ -58,46 +58,98 @@ export default class HeroAI extends GameAI {
         this.shootin.now = Game.executor.getWorldNow();
     }
 
+
+    private b1: BulletRotate;
+    private b2: BulletRotate;
+
+    private skillIds: number[] = [20001, 20002, 20003];
+    private skillDic: any = {};
+    /**旋转 */
+    private rotateBullet(): void  {
+        let br: BulletRotate;
+        let hudu: number = Math.PI / this.skillIds.length;
+        let skillId: number;
+        for (let i = 0; i < this.skillIds.length; i++)  {
+            skillId = this.skillIds[i];
+            br = this.skillDic[skillId + "_1"];
+            if (!br)  {
+                this.skillDic[skillId + "_1"] = BulletRotate.getBullet(skillId);
+            }
+            br = this.skillDic[skillId + "_1"];
+            Game.layer3d.addChild(br.sp3d);
+            br.move2D(hudu * i);
+
+            br = this.skillDic[skillId + "_2"];
+            if (!br)  {
+                this.skillDic[skillId + "_2"] = BulletRotate.getBullet(skillId);
+            }
+            br = this.skillDic[skillId + "_2"];
+            Game.layer3d.addChild(br.sp3d);
+            br.move2D(Math.PI + hudu * i);
+        }
+
+    }
+
     public short(): void {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
-        let moveSpeed:number = GameBG.ww / 2;
-        //正向箭+2 或者 默认箭
+        let moveSpeed: number = GameBG.ww / 2;
         this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
-        
-        //正向箭+1
-        // if(!this.line)this.line = new MaoLineData(0,0,GameBG.mw2,0);
-        // this.line.rad(Game.hero.face2d + Math.PI/2);
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z+ this.line.y_len);
-        // this.line.rad(Game.hero.face2d - Math.PI/2);
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z+ this.line.y_len);
-                
-        //背向箭        
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero);
 
-        //斜向箭
-        // let angle: number = 40;
-        // let num:number = 3;
-        // angle = angle / num;
-        // let hudu: number = angle / 180 * Math.PI;
-        // let count = Math.floor(num / 2);
+        // this.onShoot();
 
-        //this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
-        // for (var i = 1; i <= count; i++) {
-        //     this.shootin.short_arrow(moveSpeed,Game.hero.face3d + hudu * i, Game.hero);
-        //     this.shootin.short_arrow(moveSpeed,Game.hero.face3d - hudu * i, Game.hero);
+        // if (Game.skillManager.isHas(1005))  {
+        //     //连续射击
+        //     Laya.timer.frameOnce(20, this, () => {
+        //         this.onShoot();
+        //     });
         // }
+    }
 
-        //两侧箭
-        // this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero);
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero);
+    private onShoot():void{
+        let moveSpeed: number = GameBG.ww / 2;
+        // moveSpeed = 4;
 
-        //连续射击
-        // this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
-        // Laya.timer.frameOnce(5,this,()=>{
-        //     this.shootin.short_arrow(moveSpeed,Game.hero.face3d, Game.hero);
-        // });
+        let skillLen: number = Game.skillManager.skillList.length;
+
+        if (Game.skillManager.isHas(1001))  {
+            //正向箭+1
+            if (!this.line) this.line = new MaoLineData(0, 0, GameBG.mw2, 0);
+            this.line.rad(Game.hero.face2d + Math.PI / 2);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+            this.line.rad(Game.hero.face2d - Math.PI / 2);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+        }
+        else
+        {
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+        }
+        
+
+        if (Game.skillManager.isHas(1002))  {
+            //背向箭
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero);
+        }
+
+        if (Game.skillManager.isHas(1003))  {
+            //斜向箭
+            let angle: number = 90;
+            let num: number = 2;
+            angle = angle / num;
+            let hudu: number = angle / 180 * Math.PI;
+            let count = Math.floor(num / 2);
+
+            for (var i = 1; i <= count; i++) {
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d + hudu * i, Game.hero);
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d - hudu * i, Game.hero);
+            }
+        }
+
+        if (Game.skillManager.isHas(1004))  {
+            //两侧箭
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero);
+        }
     }
 
     public stopAi() {
@@ -109,6 +161,7 @@ export default class HeroAI extends GameAI {
 
     public exeAI(pro: GamePro): boolean {
         var now = Game.executor.getWorldNow();
+        // this.rotateBullet();
         //地刺
         if (Game.map0.Thornarr.length > 0) {
             for (var i = 0; i < Game.map0.Thornarr.length; i++) {
@@ -160,7 +213,6 @@ export default class HeroAI extends GameAI {
             var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
             pro.rotation(a);
             this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
-
         }
         return true;
     }
@@ -185,7 +237,7 @@ export default class HeroAI extends GameAI {
             Game.hero.rotation(n);
             this.move2d(Game.ro.getA());
         } else {
-            
+
         }
     }
 }

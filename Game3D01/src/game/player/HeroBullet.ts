@@ -2,7 +2,6 @@ import GamePro from "../GamePro";
 import GameProType from "../GameProType";
 import Game from "../Game";
 import HeroArrowAI from "../ai/HeroArrowAI";
-import ArrowGameMove from "../move/ArrowGameMove";
 import ArrowGameMove0 from "../move/ArrowGameMove0";
 export default class HeroBullet extends GamePro {
     static TAG:string = 'HeroBullet';
@@ -15,23 +14,22 @@ export default class HeroBullet extends GamePro {
     }
 
     /**修改子弹 */
-    setBullet():void
+    setBullet(id:number):void
     {
         if(!this.sp3d)
         {
-            this.setSp3d(Laya.Sprite3D.instantiate(Game.a0.sp3d));
-            // this.sp3d.addChild(Laya.loader.getRes("h5/bulletsHead/1001/monster.lh"));
+            this.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/"+id+"/monster.lh")));
             // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
             // trail.trailFilter.time = 0;
         }
     }
 
-    static getBullet():HeroBullet
+    static getBullet(id:number):HeroBullet
     {
         let bullet:HeroBullet = new HeroBullet();
         // bullet = Laya.Pool.getItemByClass(HeroBullet.TAG,HeroBullet);
         bullet.isDie = false;
-        bullet.setBullet();
+        bullet.setBullet(id ? id : 20000);
         return bullet;
     }
 

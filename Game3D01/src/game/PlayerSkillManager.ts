@@ -1,23 +1,24 @@
-import SkillData from "./data/SkillData";
+
+import SysSkill from "../main/sys/SysSkill";
 
 export default class PlayerSkillManager {
     /**已经获得技能 */
-    private getedDic: any = {};
+    public skillList: SysSkill[] = [];
     constructor() { }
 
-    addSkill(data: SkillData): void {
-        this.getedDic[data.skillId] = data;
+    addSkill(data:SysSkill): void {
+        this.skillList.push(data);
     }
 
-    getSkills(): SkillData[]  {
-        let ary: SkillData[] = [];
-        for (let key in this.getedDic)  {
-            ary.push(this.getedDic[key]);
+    isHas(id:number):SysSkill
+    {
+        for(let i = 0 ; i < this.skillList.length; i++)
+        {
+            if(this.skillList[i].id == id)
+            {
+                return this.skillList[i];
+            }
         }
-        return ary;
-    }
-
-    resetSkill(): void  {
-        this.getedDic = {};
+        return null;
     }
 }

@@ -25,7 +25,7 @@ export default class FootRotateScript extends Laya.Script3D {
 		if (!Game.executor.isRun)  {
 			return;
 		}
-		this.box.transform.localRotationEulerY += 2;
+		this.box.transform.localRotationEulerY += 5;
 	}
 
 	public onDisable() {

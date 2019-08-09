@@ -78,6 +78,10 @@ export default class StoneAI extends FlowerAI {
 
     private normalAttack():void
     {
+        if(this.pro.isDie)
+        {
+            return;
+        }
         if(this.status == 0 && this.now >= this.nextTime)
         {
             this.pro.play(GameAI.Idle);

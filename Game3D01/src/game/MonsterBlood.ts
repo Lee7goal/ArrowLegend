@@ -8,6 +8,7 @@ export default class MonsterBlood extends ui.test.Blood2UIUI {
         super();
         this.shape = new Laya.Sprite();
         this.shape.y = this.bar.y + 2;
+        this.txt.visible = false;
     }
 
     private _rect:Laya.Rectangle = new Laya.Rectangle();
