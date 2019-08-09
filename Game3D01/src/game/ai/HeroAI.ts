@@ -6,6 +6,8 @@ import GameProType from "../GameProType";
 import Shooting from "./Shooting";
 import GameBG from "../GameBG";
 import MaoLineData from "../MaoLineData";
+import Line3d from "../../shader/line3d";
+import ArrowGameMove0 from "../move/ArrowGameMove0";
 
 export default class HeroAI extends GameAI {
 
@@ -39,9 +41,15 @@ export default class HeroAI extends GameAI {
         }
     }
 
-
+    l3d:ArrowGameMove0;
 
     public starAi() {
+        if(!this.l3d){
+            this.l3d = new ArrowGameMove0();
+        }
+        
+        
+
         if (Game.hero.gamedata.hp <= 0) {
             return;
         }
@@ -108,6 +116,15 @@ export default class HeroAI extends GameAI {
 
 
     public exeAI(pro: GamePro): boolean {
+        var hero = Game.hero;
+        let l = this.l3d.moveline(hero.face2d,hero.hbox.cx,hero.hbox.cy,true);
+        for(let i=0;i<2;i++){           
+            if(!l){
+                break;
+            }
+            l = this.l3d.moveline(l.atan2(),l.x0,l.y0,false);
+        }
+
         var now = Game.executor.getWorldNow();
         //地刺
         if (Game.map0.Thornarr.length > 0) {

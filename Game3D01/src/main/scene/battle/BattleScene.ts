@@ -22,6 +22,7 @@ import Hero from "../../../game/player/Hero";
 import TopUI from "./TopUI";
 import PauseUI from "./PauseUI";
 import GameOverView from "./gameOver/GameOverView";
+import CustomShaderff00 from "../../../shader/CustomShaderff00";
 export default class BattleScene extends Laya.Sprite {
 
     private _top:TopUI;
@@ -108,9 +109,10 @@ export default class BattleScene extends Laya.Sprite {
         Game.reset();
         if (!Game.executor) {
             Game.executor = new GameExecut();
+            CustomShaderff00.ff00;
         }
         Game.map0.drawMap();
-        // this.addChild(Game.map0);
+        this.addChild(Game.map0);
         Game.updateMap();
 
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;

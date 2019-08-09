@@ -2,9 +2,15 @@ import CustomMaterial from "./CustomMaterial";
 
 //GameShaderObj
 export default class GameShaderObj extends Laya.EventDispatcher {
+
+    private static init_:boolean = true;
+
     constructor(){
         super();
-        this.initShader();
+        if(GameShaderObj.init_){
+            this.initShader();
+            GameShaderObj.init_ = true;
+        }
     }
 
     private s1:Laya.BaseMaterial[];

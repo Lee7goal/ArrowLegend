@@ -38,8 +38,8 @@ export default class MaoLineData{
 			this.p1_.y = this.p0_.y + Math.sin(rad)*l;
 		}
 		
-		public draw(g:Laya.Graphics,linecolor:string):void{
-            g.drawLine(this.p0_.x,this.p0_.y,this.p1_.x,this.p1_.y,linecolor);
+		public draw(g:Laya.Graphics,linecolor:string,lw:number=1):void{
+            g.drawLine(this.p0_.x,this.p0_.y,this.p1_.x,this.p1_.y,linecolor,lw);
         }
         
         public get p0():Point{

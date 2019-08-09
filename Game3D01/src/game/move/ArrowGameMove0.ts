@@ -28,6 +28,50 @@ export default class ArrowGameMove0 extends GameMove {
     /**反弹起点 */
     private fv: MaoLineData = null;
 
+    public moveline(n: number,x0:number,y0:number,clearg:boolean):MaoLineData{
+        //console.log("n+++++++++++++",n);
+        var g = Game.map0.ballistic.graphics;
+        var vv = this.vv;
+        //var box;
+        if(g){
+            if(clearg)g.clear();
+            // var line = this.line;
+            // line.reset00(box.cx, box.cy);
+            // line.rad(n);
+
+            //计算地形的碰撞与反弹
+            var hits = Game.map0.Aharr;
+            //var hits = Game.map0.Wharr;
+            var vx: number = GameBG.ww * 20 * Math.cos(n);
+            var vz: number = GameBG.ww * 20 * Math.sin(n);
+            this.future.setVV(x0, y0, vx, vz);//箭头移动的碰撞体
+            //g.drawRect(this.future.left, this.future.top, this.future.ww, this.future.hh, null, 0xff0000);
+            var all = Game.map0.chechHit_arr_all(this.future, hits);
+            //console.log("all   ",all);
+            
+            if (all) {
+                vv.reset(x0,y0,x0+vx,y0+vz);
+                var rs = Game.map0.getPointAndLine(vv, all);
+                if (rs) {
+                    var p = <Laya.Point>rs[0];
+                    let l = <MaoLineData>rs[1];
+                    vv.reset(vv.x0, vv.y0, p.x, p.y);
+                    vv.draw(g,"#ff0000");
+
+                    l = vv.rebound(l);
+                    if (l) {
+                        return l;
+                    }
+                }
+            }
+            //vv.reset(line.x1, line.y1, line.x1 + vx, line.y1 + vz);
+            //vv.draw(g,"#ff0000");
+            //line.draw(g,"#ff0000");
+            //g.drawCircle(box.cx, box.cy, 30, 0xff0000, 0xff0000);
+            return null;
+        }        
+    }
+
 
     //move2d(n: number, pro: GamePro, speed: number): boolean{return false}
     public move2d(n: number, pro: GamePro, speed: number, hitStop: boolean): boolean {
@@ -56,7 +100,7 @@ export default class ArrowGameMove0 extends GameMove {
             this.cos = Math.cos(n);
             this.speed = speed;
         }
-        var g = Game.map0.ballistic.graphics;
+        //var g = Game.map0.ballistic.graphics;
         //g.clear();
         //计算与敌人的碰撞
         var hits = Game.map0.Eharr;
@@ -137,7 +181,7 @@ export default class ArrowGameMove0 extends GameMove {
                 var p = <Laya.Point>rs[0];
                 var l = <MaoLineData>rs[1];
                 vv.reset(vv.x0, vv.y0, p.x, p.y);
-                g.drawCircle(p.x, p.y, 10, null, 0xff0000);
+                //g.drawCircle(p.x, p.y, 10, null, 0xff0000);
                 //vv.draw(g,"#00FFFF");                
                 pro.setXY2D(pro.pos2.x + vv.x_len, pro.pos2.z + vv.y_len);
 
@@ -146,7 +190,7 @@ export default class ArrowGameMove0 extends GameMove {
                 l = vv.rebound(l);
                 if (l) {
                     l.resetlen(this.arrowlen);
-                    l.draw(g, "#ffffff");
+                    //l.draw(g, "#ffffff");
                 }
 
             }
