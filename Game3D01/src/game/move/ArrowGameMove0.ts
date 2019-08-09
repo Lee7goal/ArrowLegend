@@ -23,7 +23,7 @@ export default class ArrowGameMove0 extends GameMove {
     private vv = new MaoLineData(0, 0, 0, 1);
 
     /**反弹次数 */
-    private fcount: number = 0;
+    private fcount: number = 2;
 
     /**反弹起点 */
     private fv: MaoLineData = null;
@@ -71,7 +71,7 @@ export default class ArrowGameMove0 extends GameMove {
         if (enemy) {
             enemy.linkPro_.event(Game.Event_Hit, pro);
             if (!isChuantou)  {
-                pro.event(Game.Event_Hit, enemy.linkPro_);
+                // pro.event(Game.Event_Hit, enemy.linkPro_);
                 pro.die();
                 return false;
             }
@@ -87,7 +87,7 @@ export default class ArrowGameMove0 extends GameMove {
                 if (rs) {
                     enemy = rs[2];
                     enemy.linkPro_.event(Game.Event_Hit, pro);
-                    pro.event(Game.Event_Hit, enemy.linkPro_);
+                    // pro.event(Game.Event_Hit, enemy.linkPro_);
                     pro.die();
                     return false;
                 }
@@ -101,7 +101,7 @@ export default class ArrowGameMove0 extends GameMove {
                 if (rs) {
                     enemy = rs[2];
                     enemy.linkPro_.event(Game.Event_Hit, pro);
-                    pro.event(Game.Event_Hit, enemy.linkPro_);
+                    // pro.event(Game.Event_Hit, enemy.linkPro_);
                     pro.die();
                     return false;
                 }
@@ -150,72 +150,20 @@ export default class ArrowGameMove0 extends GameMove {
                 }
 
             }
+            // if (this.fcount <= 0) {
+            //     pro.die();
+            //     return false;
+            // } else {
+            //     this.fcount--;
+            //     this.fv = l;
+            //     return true;
+            // }
+            this.fcount--;
+            this.fv = l;
             if (this.fcount <= 0) {
                 pro.die();
                 return false;
-            } else {
-                this.fcount--;
-                this.fv = l;
-                return true;
             }
-        }
-        pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
-
-        return true;
-    }
-
-    public move2d0(n: number, pro: GamePro, speed: number, hitStop: boolean): boolean {
-        //pro.rotation(n);
-        pro.setSpeed(speed);
-        if (pro.speed <= 0) return;
-
-        var vx: number = pro.speed * Math.cos(n);
-        var vz: number = pro.speed * Math.sin(n);
-        var x0: number = pro.hbox.cx;
-        var y0: number = pro.hbox.cy;
-        this.future.setVV(x0, y0, vx, vz);
-
-        var ebh: GameHitBox;
-        if (pro.gamedata.proType == GameProType.HeroArrow) {
-            ebh = Game.map0.chechHit_arr(this.future, Game.map0.Eharr);
-        } else {
-            ebh = Game.map0.chechHit_arr(this.future, Game.map0.Hharr);
-        }
-
-        if (ebh) {
-            pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
-            pro.setSpeed(0);
-            if (ebh.linkPro_) {
-                ebh.linkPro_.event(Game.Event_Hit, pro);
-                pro.event(Game.Event_Hit, ebh.linkPro_);
-            }
-            return false;
-        }
-
-
-        var hits = Game.map0.Aharr;
-        ebh = Game.map0.chechHit_arr(this.future, hits);
-        if (ebh) {
-            if (pro.gamedata.bounce <= 0) {
-                pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
-                pro.setSpeed(0);
-                pro.die();
-                //console.log("碰住地面了");
-                return false;
-            }
-            pro.gamedata.bounce--;
-            if (!Game.map0.chechHit_arr(this.future.setVV(x0, y0, -1 * vx, vz), hits)) {
-                vx = -1 * vx;
-                //this.fcount++;
-            } else if (!Game.map0.chechHit_arr(this.future.setVV(x0, y0, vx, -1 * vz), hits)) {
-                vz = -1 * vz;
-                //this.fcount++;
-            } else {
-                return false;
-            }
-            //this.facen2d_ = (2*Math.PI - n);
-            n = 2 * Math.PI - Math.atan2(vz, vx);
-            pro.rotation(n);
         }
         pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
 

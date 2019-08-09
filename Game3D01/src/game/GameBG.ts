@@ -409,6 +409,8 @@ export default class GameBG extends Laya.Sprite {
         this.doorNumber.visible = !this._bossImg.visible && Game.battleLoader.index > 0;
         this._door.pos(281,418);
 
+        
+
         Game.frontLayer.addChild(this._bottom);
         this._bottom.x = GameBG.ww2;
         this._bottom.skin = GameBG.BG_TYPE + "/bottom.png";
@@ -421,7 +423,13 @@ export default class GameBG extends Laya.Sprite {
         GameBG.cy = this.y;
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
-
+        
+        // let redLine:Laya.Image = new Laya.Image();
+        // redLine.skin = "bg/hongtiao.png"
+        // Game.frontLayer.addChild(redLine);
+        // redLine.x = GameBG.ww * 5;
+        // redLine.y = GameBG.ww * 18;
+        // redLine.height = 500;
         if(this._npcAni)
         {
             Game.topLayer.addChild(this._npcAni);

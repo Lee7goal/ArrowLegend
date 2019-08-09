@@ -38,6 +38,9 @@ export default class Game {
     static Event_Hit: string = "Game.Event_Hit";
     static Event_KeyNum: string = "Game.Event_KeyNum";
 
+    static Event_ADD_HP: string = "Event_ADD_HP";
+    static Event_UPDATE_ATTACK_SPEED: string = "Event_UPDATE_ATTACK_SPEED";
+
     static Event_NPC: string = "Event_NPC";
     static Event_COINS: string = "Event_COINS";
     static Event_EXP:string = "Event_EXP";

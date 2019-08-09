@@ -93,17 +93,17 @@ export default class HeroAI extends GameAI {
     public short(): void {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
-        let moveSpeed: number = GameBG.ww / 2;
-        this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+        // let moveSpeed: number = GameBG.ww / 2;
+        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
 
-        // this.onShoot();
+        this.onShoot();
 
-        // if (Game.skillManager.isHas(1005))  {
-        //     //连续射击
-        //     Laya.timer.frameOnce(20, this, () => {
-        //         this.onShoot();
-        //     });
-        // }
+        if (Game.skillManager.isHas(1005))  {
+            //连续射击
+            Laya.timer.frameOnce(20, this, () => {
+                this.onShoot();
+            });
+        }
     }
 
     private onShoot():void{

@@ -464,6 +464,10 @@ export default class GamePro extends Laya.EventDispatcher {
         if (index > -1) {
             Game.AiArr.splice(index, 1);
         }
+        else
+        {
+            console.error("为什么没有这个");
+        }
     }
 
 

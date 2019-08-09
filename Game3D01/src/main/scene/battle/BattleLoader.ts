@@ -93,7 +93,7 @@ export default class BattleLoader {
         // this._configId = 100101;//撞击
         // this._configId = 101001;//蓝色石头人boss
         // this._configId = 101002;//食人花boss
-        // this._configId = 100804;
+        this._configId = 100108;
         // this._configId = 104101//炸弹人
 
         console.log("当前地图", this._mapId, this._configId);

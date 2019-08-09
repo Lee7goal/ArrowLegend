@@ -210,11 +210,11 @@ export default class BattleScene extends Laya.Sprite {
         Game.ro.resetPos();
         this.addChild(Game.ro);
 
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
 
         // (<HeroAI>Game.hero.getGameAi()).run = false;
         Game.hero.init();

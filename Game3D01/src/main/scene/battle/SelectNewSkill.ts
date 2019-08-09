@@ -23,6 +23,7 @@ import SkillGrid from "./SkillGrid";
     private onClick(e:Laya.Event):void
     {
         let grid:SkillGrid = e.currentTarget as SkillGrid;
+        Game.skillManager.addSkill(grid.sys);
         this.removeSelf();
     }
 
