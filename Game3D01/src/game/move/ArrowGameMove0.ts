@@ -27,6 +27,8 @@ export default class ArrowGameMove0 extends GameMove {
     /**反弹起点 */
     private fv: MaoLineData = null;
 
+ 
+
 
     //move2d(n: number, pro: GamePro, speed: number): boolean{return false}
     public move2d(n: number, pro: HeroBullet, speed: number, hitStop: boolean): boolean {
@@ -55,7 +57,7 @@ export default class ArrowGameMove0 extends GameMove {
             this.cos = Math.cos(n);
             this.speed = speed;
         }
-        var g = Game.map0.ballistic.graphics;
+        //var g = Game.map0.ballistic.graphics;
         //g.clear();
         //计算与敌人的碰撞
         var hits = Game.map0.Eharr;
@@ -136,7 +138,7 @@ export default class ArrowGameMove0 extends GameMove {
                 var p = <Laya.Point>rs[0];
                 var l = <MaoLineData>rs[1];
                 vv.reset(vv.x0, vv.y0, p.x, p.y);
-                g.drawCircle(p.x, p.y, 10, null, 0xff0000);
+                //g.drawCircle(p.x, p.y, 10, null, 0xff0000);
                 //vv.draw(g,"#00FFFF");                
                 pro.setXY2D(pro.pos2.x + vv.x_len, pro.pos2.z + vv.y_len);
 
@@ -145,7 +147,7 @@ export default class ArrowGameMove0 extends GameMove {
                 l = vv.rebound(l);
                 if (l) {
                     l.resetlen(this.arrowlen);
-                    l.draw(g, "#ffffff");
+                    //l.draw(g, "#ffffff");
                 }
 
             }

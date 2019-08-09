@@ -3,6 +3,7 @@ import MaoLineTest from "./MaoLineTest";
 
 /** 线数据类 */
 export default class MaoLineData{
+
         private p0_:Point = new Point();
 		private p1_:Point = new Point();
 		
@@ -38,8 +39,8 @@ export default class MaoLineData{
 			this.p1_.y = this.p0_.y + Math.sin(rad)*l;
 		}
 		
-		public draw(g:Laya.Graphics,linecolor:string):void{
-            g.drawLine(this.p0_.x,this.p0_.y,this.p1_.x,this.p1_.y,linecolor);
+		public draw(g:Laya.Graphics,linecolor:string,lw:number=1):void{
+            g.drawLine(this.p0_.x,this.p0_.y,this.p1_.x,this.p1_.y,linecolor,lw);
         }
         
         public get p0():Point{
@@ -128,6 +129,13 @@ export default class MaoLineData{
 			this.p1.x = this.p0.x + (len * Math.cos(rad));
 			this.p1.y = this.p0.y + (len * Math.sin(rad));			
 			return rad;
+		}
+
+		/**返回中心点 */
+		public getCenter():Laya.Point{
+			var rad = this.atan2();
+			var len = this.getlen() / 2;
+			return new Laya.Point( this.p0.x + (len * Math.cos(rad)) ,  this.p0.y + (len * Math.sin(rad)) );
 		}
 
 		/**得到反弹线 */

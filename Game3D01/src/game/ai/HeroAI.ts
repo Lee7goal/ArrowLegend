@@ -6,9 +6,12 @@ import GameProType from "../GameProType";
 import Shooting from "./Shooting";
 import GameBG from "../GameBG";
 import MaoLineData from "../MaoLineData";
+import Line3d from "../../shader/line3d";
+import ArrowGameMove0 from "../move/ArrowGameMove0";
 import HeroBullet from "../player/HeroBullet";
 import BulletRotate from "../player/BulletRotate";
 import SysSkill from "../../main/sys/SysSkill";
+import GameInfrared from "../GameInfrared";
 
 export default class HeroAI extends GameAI {
 
@@ -17,6 +20,8 @@ export default class HeroAI extends GameAI {
     private shootin: Shooting = HeroAI.shoot;
 
     private line: MaoLineData;
+
+    //private gi:GameInfrared;
 
     public set run(b: boolean) {
         if (this.run_ != b) {
@@ -41,9 +46,11 @@ export default class HeroAI extends GameAI {
         }
     }
 
-
+    
 
     public starAi() {
+       
+
         if (Game.hero.gamedata.hp <= 0) {
             return;
         }
@@ -177,9 +184,10 @@ export default class HeroAI extends GameAI {
         Game.hero.off(Game.Event_Short, this, this.short);
     }
 
-
+    
 
     public exeAI(pro: GamePro): boolean {
+        //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
         // this.rotateBullet();
         //地刺
