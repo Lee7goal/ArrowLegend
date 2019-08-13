@@ -7,10 +7,12 @@ import HeroAI from "../ai/HeroAI";
 import { GameAI } from "../ai/GameAI";
 import HitEffect from "../effect/HitEffect";
 import PlayerData from "../data/PlayerData";
+import SysSkill from "../../main/sys/SysSkill";
+import SysBuff from "../../main/sys/SysBuff";
+import App from "../../core/App";
 
 export default class Hero extends GamePro {
-    
-    public playerData:PlayerData = new PlayerData();
+    public playerData: PlayerData = new PlayerData();
     constructor() {
         super(GameProType.Hero, 0);
         this.reset();
@@ -19,35 +21,32 @@ export default class Hero extends GamePro {
         this.setGameAi(new HeroAI());
     }
 
-    addBlood(addValue:number):void
-    {
+    addBlood(addValue: number): void {
         this.gamedata.hp = this.gamedata.hp + addValue;
-        this.gamedata.hp = Math.min(this.gamedata.hp,this.gamedata.maxhp);
+        this.gamedata.hp = Math.min(this.gamedata.hp, this.gamedata.maxhp);
         this.initBlood(this.gamedata.hp);
         console.log("回复血量");
     }
 
-    private updateAttackSpeed():void
-    {
+    private updateAttackSpeed(): void {
         console.log("修改攻速");
     }
 
-    public reset():void
-    {
+    public reset(): void {
         this.gamedata.hp = this.gamedata.maxhp = 2000;
     }
 
-    init(): void  {
+    init(): void {
         this.isDie = false;
         this.setKeyNum(1);
         this.acstr = "";
         let sp: Laya.Sprite3D = Laya.loader.getRes("h5/hero/hero.lh");
         Game.layer3d.addChild(sp);
-        sp.transform.localScale = new Laya.Vector3(1.2,1.2,1.2);
+        sp.transform.localScale = new Laya.Vector3(1.2, 1.2, 1.2);
         this.setSp3d(sp as Laya.Sprite3D);
 
         this.play("Idle");
-        
+
         // this.addWeapon();
 
         this.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 2) * GameBG.ww);//原先是减1
@@ -62,25 +61,23 @@ export default class Hero extends GamePro {
         this.sp3d.transform.localPositionY = 15;
         Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
 
-        if(Game.battleLoader.mapId % 1000 == 0)
-        {
+        if (Game.battleLoader.mapId % 1000 == 0) {
             setTimeout(() => {
                 Game.openDoor();
             }, 3000);
         }
 
-        Laya.stage.on(Game.Event_ADD_HP,this,this.addBlood);
-        Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED,this,this.updateAttackSpeed);
+        Laya.stage.on(Game.Event_ADD_HP, this, this.addBlood);
+        Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED, this, this.updateAttackSpeed);
     }
 
-    public isNew:boolean = true;
-    public initBlood(hp:number): void {
-        super.initBlood(hp,this.gamedata.maxhp);
+    public isNew: boolean = true;
+    public initBlood(hp: number): void {
+        super.initBlood(hp, this.gamedata.maxhp);
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 120);
     }
 
-    updateUI():void
-    {
+    updateUI(): void {
         super.updateUI();
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 120);
     }
@@ -92,17 +89,40 @@ export default class Hero extends GamePro {
         // }
         this.startAi();
         Game.executor.start();
-        
+
     }
 
-    public hurt(hurt: number): void {
-        super.hurt(hurt);
-        HitEffect.addEffect(this);
+    public hurt(hurt: number, isCrit: boolean): void {
+        let isMiss:boolean = false;
+        let missSkill:SysSkill = Game.skillManager.isHas(5006)//闪避
+        if(missSkill)
+        {
+            let missBuff:SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME,missSkill.skillEffect1);
+            if (missBuff)  {
+                let missRate: number = missBuff.addMiss / 1000;
+                if ((1 - Math.random()) > missRate) {
+                    isMiss = true;
+                    console.log(missSkill.skillName);
+                }
+            }
+        }
+        if(!isMiss)
+        {
+            super.hurt(hurt, isCrit);
+            HitEffect.addEffect(this);
+        }
+
+        //愤怒
+        let angerSkill:SysSkill = Game.skillManager.isHas(3008);
+        if(angerSkill)
+        {
+            let rate:number = (this.gamedata.maxhp - this.gamedata.hp) / this.gamedata.maxhp;
+            this.playerData.baseAttackPower = Math.floor(Game.skillManager.addAttack() * (1 + rate));
+        }
     }
 
     die(): void {
-        if(this.isDie)
-        {
+        if (this.isDie) {
             return;
         }
         this.isDie = true;
@@ -111,15 +131,29 @@ export default class Hero extends GamePro {
         this.play(GameAI.Die);
     }
 
-    onDie(key):void{
-        this.stopAi();
-        Game.executor && Game.executor.stop_();//全部停止
-
-        Laya.stage.event(Game.Event_MAIN_DIE);
+    onDie(key): void {
+        let skill4005: SysSkill = Game.skillManager.isHas(4005);//复活
+        if (skill4005) {
+            setTimeout(() => {
+                Game.skillManager.removeSkill(4005);
+                this.isDie = false;
+                this.setKeyNum(1);
+                this.acstr = "";
+                let buff4005: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill4005.skillEffect1);
+                Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff4005.addHp / 1000));
+                this.play("Idle");
+            }, 800);
+            console.log(skill4005.skillName);
+        }
+        else {
+            this.stopAi();
+            Game.executor && Game.executor.stop_();//全部停止
+            Laya.stage.event(Game.Event_MAIN_DIE);
+        }
     }
 
     private lastTime: number = 0;
-    pos2To3d():void{
+    pos2To3d(): void {
         super.pos2To3d();
         //脚下的烟雾
         if (Laya.Browser.now() - this.lastTime >= 300) {

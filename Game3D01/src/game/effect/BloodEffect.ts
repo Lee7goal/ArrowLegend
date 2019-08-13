@@ -7,10 +7,13 @@ export default class BloodEffect{
     
     constructor() {}
 
-    static add(value:number,sprite:Blood):void
+    static add(value:number,sprite:Blood,isCrit:boolean):void
     {
-        console.log("扣血",value);
         let bitNum:BitmapNumber = App.getFontClip(0.1);
+        if(isCrit)
+        {
+            bitNum.filters = [new Laya.GlowFilter("#ff0000")];
+        }
         bitNum.value = "-" + value;
         let xx:number = -GameBG.ww * 0.5;
         bitNum.x = sprite.bloodCount * GameBG.ww;

@@ -15,6 +15,8 @@ import DieEffect from "../effect/DieEffect";
 import HitEffect from "../effect/HitEffect";
 import MonsterBoomEffect from "../effect/MonsterBoomEffect";
 import ArcherAI from "../ai/ArcherAI";
+import SysSkill from "../../main/sys/SysSkill";
+import SysBuff from "../../main/sys/SysBuff";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
@@ -33,12 +35,12 @@ export default class Monster extends GamePro {
         Game.footLayer.addChild(this._bulletShadow);
     }
 
-    public setShadowSize(ww: number): void  {
+    public setShadowSize(ww: number): void {
         super.setShadowSize(ww);
         Game.footLayer.addChild(this._bulletShadow);
     }
 
-    init(): void  {
+    init(): void {
         let sysBullet: SysBullet;
         if (this.sysEnemy.normalAttack > 0) {
             sysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, this.sysEnemy.normalAttack);
@@ -58,13 +60,13 @@ export default class Monster extends GamePro {
     }
 
     public initBlood(hp: number): void {
-        super.initBlood(hp,hp);
+        super.initBlood(hp, hp);
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 90);
     }
 
-    public hurt(hurt: number): void {
+    public hurt(hurt: number, isCrit: boolean): void {
         // hurt = 1;
-        super.hurt(hurt);
+        super.hurt(hurt, isCrit);
         HitEffect.addEffect(this);
         MonsterBoomEffect.addEffect(this);
     }
@@ -78,8 +80,25 @@ export default class Monster extends GamePro {
             Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
         }
 
-        Game.hero.playerData.exp += this.sysEnemy.dropExp;
-        Laya.stage.event(Game.Event_EXP);
+        if (this.sysEnemy.dropExp > 0)  {
+            let skill3001: SysSkill = Game.skillManager.isHas(3001);//聪明
+            let addNum: number = 0;
+            if (skill3001)  {
+                console.log(skill3001.skillName);
+                let buff3001: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill3001.skillEffect1);
+                addNum = Math.ceil(this.sysEnemy.dropExp * buff3001.addExp / 1000);
+            }
+            Game.hero.playerData.exp += this.sysEnemy.dropExp + addNum;
+            Laya.stage.event(Game.Event_EXP);
+        }
+
+        let skill4001: SysSkill = Game.skillManager.isHas(4001);//嗜血
+        if (skill4001)  {
+            let buff4001: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill4001.skillEffect1);
+            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff4001.addHp / 1000));
+            console.log(skill4001.skillName);
+        }
+
     }
 
     onDie(key): void {
@@ -127,7 +146,7 @@ export default class Monster extends GamePro {
         gpro.setSp3d(sp);
 
 
-        if (sysEnemy.moveType > 0)  {
+        if (sysEnemy.moveType > 0) {
             var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
             gpro.setGameMove(new MOVE());
         }
@@ -146,7 +165,7 @@ export default class Monster extends GamePro {
 
         var MonAI: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.enemyAi);
         console.log("当前怪的AI", sysEnemy.id, sysEnemy.txt, sysEnemy.enemyAi, MonAI);
-        if (MonAI == null)  {
+        if (MonAI == null) {
             console.log('没有这个怪的AI', sysEnemy.id);
         }
         gpro.setGameAi(new MonAI(gpro));

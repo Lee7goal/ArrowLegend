@@ -4,6 +4,7 @@ import Game from "./Game";
 import GamePro from "./GamePro";
 import GridType from "./bg/GridType";
 import MaoLineData from "./MaoLineData";
+import SysSkill from "../main/sys/SysSkill";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -104,6 +105,7 @@ export default class GameMap0 extends Laya.Sprite {
                             hb.setRq(hb.x, hb.y, x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
                         } else {
                             hb = new GameHitBox(GameBG.ww, GameBG.ww);
+                            hb.value = GridType.isWall(key) ? key : 9999;
                             hb.setXY(x, y);
                             this.Wharr.push(hb);
                             this.map[key] = hb;
@@ -111,6 +113,7 @@ export default class GameMap0 extends Laya.Sprite {
                     }
                     else if (GridType.isFence(key)) {
                         hb = new GameHitBox(GameBG.ww * 3, GameBG.ww);
+                        hb.value = key;
                         hb.setXY(x - GameBG.ww, y);
                         this.Wharr.push(hb);
                     }
@@ -247,24 +250,44 @@ export default class GameMap0 extends Laya.Sprite {
 
             return true;
         }
+        //穿墙
+        let chuanqiangSkill:SysSkill = Game.skillManager.isHas(5007);
+        //水上漂
+        let waterSkill:SysSkill = Game.skillManager.isHas(5008);
+
         var hb = gamepro.hbox;
         var fb = this.futureBox;
         fb.setRq(hb.x + vx, hb.y + vy, hb.ww, hb.hh);
         for (let i = 0; i < this.Wharr.length; i++) {
             let ehb = this.Wharr[i];
-            if(gamepro == Game.hero && i == 0 && ehb.hit(ehb, fb))
+            if(gamepro == Game.hero)
             {
-                this._isNext = true;
-                console.log("传送下一关");
-                Game.battleLoader.load();
-                return true;
-            }
-            if(gamepro == Game.hero && ehb == Game.map0.npcHitBox && ehb.hit(ehb, fb))
-            {
-                this._isNpc = true;
-                console.log("碰到npc了");
-                Game.bg.event(Game.Event_NPC);
-                return true;
+                if(i == 0 && ehb.hit(ehb, fb))
+                {
+                    this._isNext = true;
+                    console.log("传送下一关");
+                    Game.battleLoader.load();
+                    return true;
+                }
+                if(ehb == Game.map0.npcHitBox && ehb.hit(ehb, fb))
+                {
+                    this._isNpc = true;
+                    console.log("碰到npc了");
+                    Game.bg.event(Game.Event_NPC);
+                    return true;
+                }
+
+                if(chuanqiangSkill && (GridType.isWall(ehb.value) || GridType.isFence(ehb.value)))
+                {
+                    //穿墙术
+                    continue;
+                }
+                if(waterSkill && ehb.value == 9999)
+                {
+                    //水上漂
+                    continue;
+                }
+
             }
             if (ehb.hit(ehb, fb)) {
                 return true;

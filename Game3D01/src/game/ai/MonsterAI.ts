@@ -260,7 +260,7 @@ export default class MonsterAI extends GameAI {
 
     private shaders: number = 0;
     hit(pro: GamePro): void {
-        this.pro.hurt(pro.hurtValue);
+        this.pro.hurt(pro.hurtValue,false);
         // this.pro.hurt(1000);
         if (this.pro.gamedata.hp <= 0) {
             this.die();

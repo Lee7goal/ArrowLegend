@@ -19,7 +19,6 @@ import BaseAI from "../game/ai/BaseAi";
 import FlowerAI from "../game/ai/FlowerAI";
 import StoneAI from "../game/ai/StoneAI";
 import TreeAI from "../game/ai/TreeAI";
-import MonsterMove from "../game/move/MonsterMove";
 import RandMoveAI from "../game/ai/RandMoveAI";
 import MoveAndHitAi from "../game/ai/MoveAndHitAi";
 import JumpFollowAI from "../game/ai/JumpFollowAI";

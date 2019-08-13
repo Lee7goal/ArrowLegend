@@ -89,12 +89,11 @@ export default class GamePro extends Laya.EventDispatcher {
         this._footCircle && this._footCircle.pos(this.hbox_.cx, this.hbox_.cy);
     }
 
-    public hurt(hurt: number): void {
+    public hurt(hurt: number,isCrit:boolean): void {
         this._bloodUI && this._bloodUI.update(hurt);
-        BloodEffect.add(hurt,this._bloodUI);
+        hurt = Math.min(hurt,this.gamedata.hp);
+        BloodEffect.add(hurt,this._bloodUI,isCrit);
     }
-
-   
 
     die(): void {
         this.play(GameAI.Die);

@@ -30,7 +30,7 @@ export default class PlayerSkillManager {
         this.addHp();
     }
 
-    addAttack(): void  {
+    addAttack(): number  {
         let buff: SysBuff;
         Game.hero.playerData.baseAttackPower = 150;
         let sys3002: SysSkill = this.isHas(3002);
@@ -49,9 +49,10 @@ export default class PlayerSkillManager {
                 Game.hero.playerData.baseAttackPower += sys3003.curTimes * buff.addAttack;
             }
         }
+        return Game.hero.playerData.baseAttackPower;
     }
 
-    addAttackSpeed(): void  {
+    addAttackSpeed(): number  {
         let buff: SysBuff;
         Game.hero.playerData.attackSpeed = 650;
         let sys3004: SysSkill = this.isHas(3004);
@@ -81,6 +82,7 @@ export default class PlayerSkillManager {
                 Game.hero.playerData.attackSpeed = Game.hero.playerData.attackSpeed * (1 - rate);
             }
         }
+        return Game.hero.playerData.attackSpeed;
     }
 
     addHp(): void  {
@@ -94,5 +96,18 @@ export default class PlayerSkillManager {
             }
         }
         return null;
+    }
+
+    removeSkill(id: number):void
+    {
+        let sys:SysSkill = this.isHas(id);
+        if(sys)
+        {
+            let index:number = this.skillList.indexOf(sys);
+            if(index >= 0)
+            {
+                this.skillList.splice(index,1);
+            }
+        }
     }
 }

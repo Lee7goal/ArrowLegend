@@ -12,21 +12,23 @@ import AttackType from "./AttackType";
 import SplitSkill from "../skill/SplitSkill";
 import GameScaleAnimator from "./GameScaleAnimator";
 import CoinEffect from "../effect/CoinEffect";
+import SysSkill from "../../main/sys/SysSkill";
+import SysBuff from "../../main/sys/SysBuff";
 
 /**不动不攻击的ai */
 export default class BaseAI extends GameAI {
     protected normalSb: SysBullet;
     protected skillISbs: SysBullet[] = [];
     protected sysEnemy: SysEnemy;
-    protected pro:Monster;
-    protected now:number = 0;
-    private shaders:number = 0;
-    protected collisionCd:number = 0;
+    protected pro: Monster;
+    protected now: number = 0;
+    private shaders: number = 0;
+    protected collisionCd: number = 0;
 
-    private splitSkill:SplitSkill;
-    private stiffTime:number;
-    private stiff:number = 500;
-    private g2:GameScaleAnimator;
+    private splitSkill: SplitSkill;
+    private stiffTime: number;
+    private stiff: number = 500;
+    private g2: GameScaleAnimator;
 
     /**检测碰撞 */
     checkHeroCollision(): void {
@@ -40,9 +42,8 @@ export default class BaseAI extends GameAI {
             }
         }
     }
-    
-    setShader():void
-    {
+
+    setShader(): void {
         if (this.shaders > 0 && this.now >= this.shaders) {
             this.shaders = 0;
             var ms = this.pro;
@@ -52,13 +53,12 @@ export default class BaseAI extends GameAI {
             }
         }
     }
-    
+
     exeAI(pro: GamePro): boolean {
-        if(this.pro.gamedata.hp <= 0)
-        {
+        if (this.pro.gamedata.hp <= 0) {
             return;
         }
-        if(!this.run_)return;
+        if (!this.run_) return;
 
         this.now = Game.executor.getWorldNow();
         this.setShader();
@@ -66,9 +66,8 @@ export default class BaseAI extends GameAI {
         return false;
     }
 
-    hitEffect():void
-    {
-        if(this.g2){
+    hitEffect(): void {
+        if (this.g2) {
             this.g2.ai(<Monster>this.pro);
         }
 
@@ -90,19 +89,58 @@ export default class BaseAI extends GameAI {
         this.run_ = false;
     }
 
+    setCrit(pro: GamePro,id:number): boolean {
+        let critSkill: SysSkill = Game.skillManager.isHas(id);
+        if (critSkill) {
+            let critBuff: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, critSkill.skillEffect1);
+            if (critBuff)  {
+                let rate3006: number = critBuff.addCrit / 1000;
+                if ((1 - Math.random()) > rate3006) {
+                    pro.hurtValue = Math.floor(pro.hurtValue * 1.5 + pro.hurtValue * (critBuff.addHurt / 1000));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    setBoomHead():void
+    {
+        let dieSkill: SysSkill = Game.skillManager.isHas(1007);
+        if (dieSkill) {
+            let arr:string[] = dieSkill.skillcondition.split(",");
+            let hpRate:number = Number(arr[0]);
+            let rate:number = Number(arr[1]);
+            if(this.pro.gamedata.hp / this.pro.gamedata.maxhp < hpRate / 100)
+            {
+                if((1 - Math.random()) > rate / 100)
+                {
+                    this.pro.hurtValue = this.pro.gamedata.hp;
+                    console.log("爆头了");
+                }
+            }
+        }
+    }
+
     hit(pro: GamePro) {
-        // this.pro.hurt(Game.hero.playerData.attackPower);
-        this.pro.hurt(pro.hurtValue);
+        //暴击
+        let crit3006:boolean = this.setCrit(pro,3006);
+        let crit3007:boolean = this.setCrit(pro,3007);
+
+        //爆头 秒杀小怪
+        this.setBoomHead();
+
+        this.pro.hurt(pro.hurtValue,crit3006 || crit3007);
         // this.pro.hurt(pro.gamedata.maxhp * 0.5);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
-        else{
+        else {
             this.stiffTime = this.now;
-            if( this.g2 && this.g2.isOk()){//击退
+            if (this.g2 && this.g2.isOk()) {//击退
                 var a: number = pro.face3d + Math.PI;
                 this.pro.rotation(a);
-                if(this.g2.starttime == 0 ){                        
+                if (this.g2.starttime == 0) {
                     this.g2.starttime = this.now;//受击变形 击退
                     this.g2.now = this.now;
                     this.g2.playtime = 300;
@@ -119,7 +157,7 @@ export default class BaseAI extends GameAI {
         }
     }
 
-    constructor(ms:Monster){
+    constructor(ms: Monster) {
         super();
         this.pro = ms;
         this.sysEnemy = this.pro.sysEnemy;
@@ -137,29 +175,25 @@ export default class BaseAI extends GameAI {
                     let sysBullet: SysBullet = App.tableManager.getDataByNameAndId(SysBullet.NAME, id);
                     this.skillISbs.push(sysBullet);
 
-                    if(sysBullet.bulletType == AttackType.SPLIT)
-                    {
+                    if (sysBullet.bulletType == AttackType.SPLIT) {
                         this.splitSkill = new SplitSkill(sysBullet);
                     }
                 }
             }
         }
 
-        if(this.sysEnemy.enemyBlack > 0)
-        {
-            let HIT:any = Laya.ClassUtils.getClass("HIT_" + this.sysEnemy.enemyBlack);
+        if (this.sysEnemy.enemyBlack > 0) {
+            let HIT: any = Laya.ClassUtils.getClass("HIT_" + this.sysEnemy.enemyBlack);
             this.g2 = new HIT();
         }
     }
 
-    die():void
-    {
-        let goldNum:number = this.sysEnemy.dropGold;
-        if(goldNum > 0)
-        {
-            CoinEffect.addEffect(this.pro,goldNum);
+    die(): void {
+        let goldNum: number = this.sysEnemy.dropGold;
+        if (goldNum > 0) {
+            CoinEffect.addEffect(this.pro, goldNum);
         }
-        this.splitSkill && this.splitSkill.exeSkill(this.now,this.pro);
+        this.splitSkill && this.splitSkill.exeSkill(this.now, this.pro);
         this.pro.die();
     }
 }

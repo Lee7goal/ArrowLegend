@@ -83,8 +83,6 @@ import SenderHttp from "../../../net/SenderHttp";
         /**更新精力*/
         private updateEnergy():void
         {
-            console.log("ui剩余的时间",this._remainingTime,this.homeData.curEnergy);
-
             this.curClip.value = "" + this.homeData.curEnergy;
             this.maxClip.value = "" + this.homeData.maxEngergy;
             let value:number = this.homeData.curEnergy / this.homeData.maxEngergy;

@@ -12,6 +12,8 @@ import HeroBullet from "../player/HeroBullet";
 import BulletRotate from "../player/BulletRotate";
 import SysSkill from "../../main/sys/SysSkill";
 import GameInfrared from "../GameInfrared";
+import SysBuff from "../../main/sys/SysBuff";
+import App from "../../core/App";
 
 export default class HeroAI extends GameAI {
 
@@ -22,6 +24,9 @@ export default class HeroAI extends GameAI {
     private line: MaoLineData;
 
     //private gi:GameInfrared;
+
+    private wudiCD: number = 0;//无敌cd
+    private wudiTime: number = 0;//无敌时间
 
     public set run(b: boolean) {
         if (this.run_ != b) {
@@ -37,8 +42,21 @@ export default class HeroAI extends GameAI {
     }
 
     hit(pro: GamePro) {
+        let wudiSkill:SysSkill = Game.skillManager.isHas(5009);//无敌星星
+        if(wudiSkill)
+        {
+            let wudiBuff: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, wudiSkill.skillEffect1);
+            if(wudiBuff)
+            {
+                if (this.wudiTime > Game.executor.getWorldNow())  {
+                    console.log("无敌时间");
+                    return;
+                }
+            }
+        }
+
         if (Game.hero.gamedata.hp > 0) {
-            Game.hero.hurt(150);
+            Game.hero.hurt(150, false);
         }
         if (Game.hero.gamedata.hp <= 0) {
             Game.hero.die();
@@ -46,10 +64,10 @@ export default class HeroAI extends GameAI {
         }
     }
 
-    
+
 
     public starAi() {
-       
+
 
         if (Game.hero.gamedata.hp <= 0) {
             return;
@@ -58,7 +76,7 @@ export default class HeroAI extends GameAI {
         if (Game.map0.Eharr.length > 1) {
             Game.map0.Eharr.sort(this.sore0);
         }
-        if (Game.map0.Eharr.length > 0)  {
+        if (Game.map0.Eharr.length > 0) {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);
@@ -73,14 +91,14 @@ export default class HeroAI extends GameAI {
     private skillIds: number[] = [20001, 20002, 20003];
     private skillDic: any = {};
     /**旋转 */
-    private rotateBullet(): void  {
+    private rotateBullet(): void {
         let br: BulletRotate;
         let hudu: number = Math.PI / this.skillIds.length;
         let skillId: number;
-        for (let i = 0; i < this.skillIds.length; i++)  {
+        for (let i = 0; i < this.skillIds.length; i++) {
             skillId = this.skillIds[i];
             br = this.skillDic[skillId + "_1"];
-            if (!br)  {
+            if (!br) {
                 this.skillDic[skillId + "_1"] = BulletRotate.getBullet(skillId);
             }
             br = this.skillDic[skillId + "_1"];
@@ -88,7 +106,7 @@ export default class HeroAI extends GameAI {
             br.move2D(hudu * i);
 
             br = this.skillDic[skillId + "_2"];
-            if (!br)  {
+            if (!br) {
                 this.skillDic[skillId + "_2"] = BulletRotate.getBullet(skillId);
             }
             br = this.skillDic[skillId + "_2"];
@@ -102,67 +120,63 @@ export default class HeroAI extends GameAI {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
 
-        let basePower:number = Game.hero.playerData.baseAttackPower;
+        let basePower: number = Game.hero.playerData.baseAttackPower;
         // let moveSpeed: number = GameBG.ww / 2;
         // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
 
         this.onShoot(basePower);
 
         //连续射击
-        let skill1005:SysSkill = Game.skillManager.isHas(1005);
-        if (skill1005)  {
-            if(skill1005.curTimes == 1)
-            {
-                Laya.timer.frameOnce(15,this,()=>{
+        let skill1005: SysSkill = Game.skillManager.isHas(1005);
+        if (skill1005) {
+            if (skill1005.curTimes == 1)  {
+                Laya.timer.frameOnce(15, this, () => {
                     this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
             }
-            else
-            {
-                Laya.timer.frameOnce(15,this,()=>{
+            else  {
+                Laya.timer.frameOnce(15, this, () => {
                     this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
-                Laya.timer.frameOnce(30,this,()=>{
+                Laya.timer.frameOnce(30, this, () => {
                     this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
             }
         }
     }
 
-    private onShoot(basePower:number):void{
+    private onShoot(basePower: number): void {
         let moveSpeed: number = GameBG.ww / 2;
         // moveSpeed = 4;
 
         let skillLen: number = Game.skillManager.skillList.length;
 
         //正向箭+1
-        let skill1001:SysSkill = Game.skillManager.isHas(1001);
-        if (skill1001)  {
+        let skill1001: SysSkill = Game.skillManager.isHas(1001);
+        if (skill1001) {
             if (!this.line) this.line = new MaoLineData(0, 0, GameBG.mw2, 0);
             this.line.rad(Game.hero.face2d + Math.PI / 2);
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
             this.line.rad(Game.hero.face2d - Math.PI / 2);
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
 
-            if(skill1001.curTimes >= 2)
-            {
-                this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower * skill1001.damagePercent / 100);
+            if (skill1001.curTimes >= 2)  {
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower * skill1001.damagePercent / 100);
             }
         }
-        else
-        {
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower);
+        else  {
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower);
         }
-        
+
         //背向箭
-        let skill1002:SysSkill = Game.skillManager.isHas(1002);
-        if (skill1002)  {
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero,basePower * skill1002.damagePercent / 100);
+        let skill1002: SysSkill = Game.skillManager.isHas(1002);
+        if (skill1002) {
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero, basePower * skill1002.damagePercent / 100);
         }
 
         //斜向箭
-        let skill1003:SysSkill = Game.skillManager.isHas(1003);
-        if (skill1003)  {
+        let skill1003: SysSkill = Game.skillManager.isHas(1003);
+        if (skill1003) {
             let angle: number = skill1003.curTimes == 1 ? 90 : 120;
             let num: number = 2 * skill1003.curTimes;
             angle = angle / num;
@@ -170,16 +184,16 @@ export default class HeroAI extends GameAI {
             let count = Math.floor(num / 2);
 
             for (var i = 1; i <= count; i++) {
-                this.shootin.short_arrow(moveSpeed, Game.hero.face3d + hudu * i, Game.hero,basePower * skill1003.damagePercent / 100);
-                this.shootin.short_arrow(moveSpeed, Game.hero.face3d - hudu * i, Game.hero,basePower * skill1003.damagePercent / 100);
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d + hudu * i, Game.hero, basePower * skill1003.damagePercent / 100);
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d - hudu * i, Game.hero, basePower * skill1003.damagePercent / 100);
             }
         }
 
         //两侧箭
-        let skill1004:SysSkill = Game.skillManager.isHas(1004);
-        if (skill1004)  {
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero,basePower * skill1004.damagePercent / 100);
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero,basePower * skill1004.damagePercent / 100);
+        let skill1004: SysSkill = Game.skillManager.isHas(1004);
+        if (skill1004) {
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero, basePower * skill1004.damagePercent / 100);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero, basePower * skill1004.damagePercent / 100);
         }
     }
 
@@ -188,27 +202,45 @@ export default class HeroAI extends GameAI {
         Game.hero.off(Game.Event_Short, this, this.short);
     }
 
-    
-
     public exeAI(pro: GamePro): boolean {
         //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
+
+        let wudiSkill:SysSkill = Game.skillManager.isHas(5009);//无敌星星
+        if(wudiSkill)
+        {
+            let wudiBuff: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, wudiSkill.skillEffect1);
+            if(wudiBuff)
+            {   
+                if (now > this.wudiCD)  {
+                    this.wudiCD = now + wudiBuff.buffCD;
+                    this.wudiTime = now + wudiBuff.buffDot;
+                    console.log("接下来两秒的不受伤害");
+                }
+            }
+        }
+        
         // this.rotateBullet();
         //地刺
-        if (Game.map0.Thornarr.length > 0) {
-            for (var i = 0; i < Game.map0.Thornarr.length; i++) {
-                let thornBox: GameHitBox = Game.map0.Thornarr[i];
-                if (Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
-                    if (now > thornBox.cdTime) {
-                        if (Game.hero.hbox.linkPro_) {
-                            // Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
-                            pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
-                            thornBox.cdTime = now + 1000;
+        let chuanqiangSkill: SysSkill = Game.skillManager.isHas(5007);
+        if (!chuanqiangSkill)//有穿墙了可以过地刺
+        {
+            if (Game.map0.Thornarr.length > 0) {
+                for (var i = 0; i < Game.map0.Thornarr.length; i++) {
+                    let thornBox: GameHitBox = Game.map0.Thornarr[i];
+                    if (Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
+                        if (now > thornBox.cdTime) {
+                            if (Game.hero.hbox.linkPro_) {
+                                // Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
+                                pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
+                                thornBox.cdTime = now + 1000;
+                            }
                         }
                     }
                 }
             }
         }
+
         if (this.run_) {
             this.moves();
             return;

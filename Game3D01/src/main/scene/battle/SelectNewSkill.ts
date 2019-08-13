@@ -3,6 +3,7 @@ import Game from "../../../game/Game";
 import SkillGrid from "./SkillGrid";
 import SysSkill from "../../sys/SysSkill";
 import App from "../../../core/App";
+import SysBuff from "../../sys/SysBuff";
     export default class SelectNewSkill extends ui.test.battlestopUI {
     
     private grids:SkillSelector[] = [];
@@ -27,7 +28,16 @@ import App from "../../../core/App";
 
     private onClick(sys:SysSkill):void
     {
-        Game.skillManager.addSkill(sys);
+        console.log(sys.skillName);
+        if(sys.id == 4002 || sys.id == 4003 || sys.id == 4004)//加血的
+        {
+            let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
+            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff4002.addHp / 1000));
+        }
+        else
+        {
+            Game.skillManager.addSkill(sys);
+        }
         this.removeSelf();
     }
 

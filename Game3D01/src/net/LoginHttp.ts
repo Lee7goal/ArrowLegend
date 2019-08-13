@@ -9,7 +9,7 @@ import Session from "../main/Session";
 */
 export default class LoginHttp extends BaseHttp {
     
-    private jsCode: string = "ntx14711023";
+    private jsCode: string = "ntx147258";
     constructor(hand:Laya.Handler) {
         super(hand);
     }
