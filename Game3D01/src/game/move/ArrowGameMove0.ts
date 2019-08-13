@@ -28,8 +28,10 @@ export default class ArrowGameMove0 extends GameMove {
     /**反弹起点 */
     private fv: MaoLineData = null;
 
- 
+    /**弹射次数*/
+    private ii:number = 1;
 
+   
 
     //move2d(n: number, pro: GamePro, speed: number): boolean{return false}
     public move2d(n: number, pro: HeroBullet, speed: number, hitStop: boolean): boolean {
@@ -63,6 +65,21 @@ export default class ArrowGameMove0 extends GameMove {
         //g.clear();
         //计算与敌人的碰撞
         var hits = Game.map0.Eharr;
+        console.log("hits .len " , hits.length);
+        
+        if(pro.hit_blacklist){
+            var tem = [];
+            for (let i = 0; i < hits.length; i++) {
+                var e = hits[i];
+                if(!pro.checkBlackList(e)){
+                    tem.push(e)
+                }
+            }
+            hits = tem;
+            console.log("tem .len " , hits.length);
+        }
+
+
         var box = pro.hbox;
         var line = this.line;
         line.reset00(box.cx, box.cy);
@@ -71,17 +88,17 @@ export default class ArrowGameMove0 extends GameMove {
         var vv = this.vv;
         box = this.future.setRq(line.x1 - GameBG.mw4, line.y1 - GameBG.mw4, GameBG.mw2, GameBG.mw2);//箭头的碰撞体
         var enemy = Game.map0.chechHit_arr(this.future, hits);
-        if (enemy) {
-            enemy.linkPro_.event(Game.Event_Hit, pro);
-            if (!pro.chuantouSkill)  {
-                // pro.event(Game.Event_Hit, enemy.linkPro_);
-                pro.die();
+        if (enemy ) {
+            if(this.hitEnemy(enemy,pro)==0){
                 return false;
+            }
+            else{
+                return true;
             }
         }
         //box.draw(g,"#ff0000");
 
-        if (!pro.chuantouSkill)  {
+        //if (!pro.chuantouSkill)  {
             box = this.future.setVV(line.x0, line.y0, line.x_len, line.y_len);//箭体的碰撞体
             var all = Game.map0.chechHit_arr_all(this.future, hits);
             if (all) {
@@ -89,12 +106,16 @@ export default class ArrowGameMove0 extends GameMove {
                 var rs = Game.map0.getPointAndLine(vv, all);
                 if (rs) {
                     enemy = rs[2];
-                    enemy.linkPro_.event(Game.Event_Hit, pro);
-                    // pro.event(Game.Event_Hit, enemy.linkPro_);
-                    pro.die();
-                    return false;
+                    if (enemy ) {
+                        if(this.hitEnemy(enemy,pro)==0){
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    }
                 }
-            }
+           // }
 
             box = this.future.setVV(line.x1, line.y1, vx, vz);//箭头移动的碰撞体
             var all = Game.map0.chechHit_arr_all(this.future, hits);
@@ -103,10 +124,14 @@ export default class ArrowGameMove0 extends GameMove {
                 var rs = Game.map0.getPointAndLine(vv, all);
                 if (rs) {
                     enemy = rs[2];
-                    enemy.linkPro_.event(Game.Event_Hit, pro);
-                    // pro.event(Game.Event_Hit, enemy.linkPro_);
-                    pro.die();
-                    return false;
+                    if (enemy ) {
+                        if(this.hitEnemy(enemy,pro)==0){
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    }
                 }
             }
         }
@@ -177,5 +202,56 @@ export default class ArrowGameMove0 extends GameMove {
 
         return true;
     }
+
+    private he_:GameHitBox;
+
+    public sore0(g0: GameHitBox, g1: GameHitBox): number {
+        if(!this.he_)return 0;
+        return GameHitBox.faceToLenth(this.he_, g0) - GameHitBox.faceToLenth(this.he_, g1);
+    }
+
+    private hitEnemy(enemy:GameHitBox,pro:HeroBullet):number{            
+        enemy.linkPro_.event(Game.Event_Hit, pro);
+
+        if (pro.tansheSkill && this.ii>0){
+            if(!pro.hit_blacklist){
+                pro.hit_blacklist = [];            
+            }
+            pro.hit_blacklist.push(enemy);
+
+            this.ii--;
+            let arr = Game.map0.Eharr;
+            for (let i = 0; i < arr.length; i++) {
+                let e = arr[i];
+                if(e!=enemy){
+                    //pro.setcXcY2DBox(enemy.cx,enemy.cy);
+                    pro.setXY2D(enemy.linkPro_.pos2.x, enemy.linkPro_.pos2.z);
+
+                    var a: number = GameHitBox.faceTo3D(pro.hbox, e);
+                    pro.rotation(a);
+                    return 1;    
+                }
+            }
+
+            pro.die();
+            return 0;
+        }
+
+        if (!pro.chuantouSkill){
+
+            if(!pro.hit_blacklist){
+                pro.hit_blacklist = [];            
+            }
+            pro.hit_blacklist.push(enemy);
+
+            pro.die();
+            return 0;
+        }
+
+        pro.die();
+        return 0;
+    }
+
+    
 }
 

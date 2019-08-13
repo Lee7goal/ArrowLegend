@@ -17,6 +17,22 @@ import BloodEffect from "./effect/BloodEffect";
 
 export default class GamePro extends Laya.EventDispatcher {
 
+    /**碰撞检测黑名单，加入后不会再次检测 */
+    public hit_blacklist:any[];
+
+    public checkBlackList(ee:GameHitBox):boolean{
+        if(this.hit_blacklist){
+            let arr = this.hit_blacklist;
+            for (let i   = 0; i < arr.length; i++) {
+                let e = arr[i];
+                if(e==ee){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /**无视阻挡! */
     unBlocking:boolean = false;
 

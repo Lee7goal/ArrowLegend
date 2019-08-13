@@ -132,7 +132,13 @@ export default class GameHitBox {
         return this.right_;
     }
 
+    
+
     public hit(b0:GameHitBox , b1:GameHitBox):boolean{
+        // if( b0.checkBlackList(b1) || b1.checkBlackList(b0)){
+        //     return false;
+        // }
+
         return b0.x < b1.right &&
         b0.right > b1.x &&
         b0.y < b1.bottom &&

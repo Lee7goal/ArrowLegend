@@ -9,7 +9,7 @@ export default class HeroArrowAI0 extends GameAI {
 
     private pro: GamePro;
 
-    constructor(pro: GamePro) {
+    constructor(pro: GamePro) {//bullet.tansheSkill
         super();
         this.pro = pro;
     }
