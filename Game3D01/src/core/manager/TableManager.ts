@@ -49,7 +49,7 @@ export default class TableManager {
 			for (var k = 0; k < contentary.length; k++)  {
 				var propstr: string = String(contentary[k]).replace("\r", "");
 				var propary: any[] = propstr.split("\t");
-				console.log(propstr);
+				// console.log(propstr);
 				var clazz = new Cla();
 				for (var j = 0, len2 = propary.length; j < len2; j++) {
 					var now: Object = clazz[headary[j]];

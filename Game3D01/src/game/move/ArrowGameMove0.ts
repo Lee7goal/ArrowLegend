@@ -6,6 +6,7 @@ import { GameMove } from "./GameMove";
 import MaoLineData from "../MaoLineData";
 import GameBG from "../GameBG";
 import HeroBullet from "../player/HeroBullet";
+import SysSkill from "../../main/sys/SysSkill";
 
 export default class ArrowGameMove0 extends GameMove {
 
@@ -37,7 +38,7 @@ export default class ArrowGameMove0 extends GameMove {
         }
         if (speed == 0) return false;
 
-        let isChuantou: boolean = pro.isChuantou;
+        
         if (this.fv != null) {
             //n= 2 * Math.PI - this.facen2d_ ;            
             pro.rotation(2 * Math.PI - this.fv.atan2());
@@ -57,6 +58,7 @@ export default class ArrowGameMove0 extends GameMove {
             this.cos = Math.cos(n);
             this.speed = speed;
         }
+
         //var g = Game.map0.ballistic.graphics;
         //g.clear();
         //计算与敌人的碰撞
@@ -71,7 +73,7 @@ export default class ArrowGameMove0 extends GameMove {
         var enemy = Game.map0.chechHit_arr(this.future, hits);
         if (enemy) {
             enemy.linkPro_.event(Game.Event_Hit, pro);
-            if (!isChuantou)  {
+            if (!pro.chuantouSkill)  {
                 // pro.event(Game.Event_Hit, enemy.linkPro_);
                 pro.die();
                 return false;
@@ -79,7 +81,7 @@ export default class ArrowGameMove0 extends GameMove {
         }
         //box.draw(g,"#ff0000");
 
-        if (!isChuantou)  {
+        if (!pro.chuantouSkill)  {
             box = this.future.setVV(line.x0, line.y0, line.x_len, line.y_len);//箭体的碰撞体
             var all = Game.map0.chechHit_arr_all(this.future, hits);
             if (all) {

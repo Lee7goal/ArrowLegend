@@ -3,11 +3,14 @@ import GameProType from "../GameProType";
 import Game from "../Game";
 import HeroArrowAI from "../ai/HeroArrowAI";
 import ArrowGameMove0 from "../move/ArrowGameMove0";
+import SysSkill from "../../main/sys/SysSkill";
 export default class HeroBullet extends GamePro {
     static TAG:string = 'HeroBullet';
 
-    /**是否穿透 */
-    isChuantou:boolean = false;
+    
+    chuantouSkill:SysSkill;
+    fantanSkill:SysSkill;
+    tansheSkill:SysSkill;
     /**反弹次数 */
     fcount: number = 0;
     constructor() {
@@ -34,9 +37,11 @@ export default class HeroBullet extends GamePro {
         let bullet:HeroBullet = new HeroBullet();
         // bullet = Laya.Pool.getItemByClass(HeroBullet.TAG,HeroBullet);
         bullet.isDie = false;
-        bullet.setBullet(id ? id : 20000);
-        bullet.isChuantou = Game.skillManager.isChuantou;//穿透
-        bullet.fcount =  Game.skillManager.bounceTimes;//反弹
+        bullet.setBullet(id);
+        bullet.chuantouSkill = Game.skillManager.isHas(1006);//穿透
+        bullet.fantanSkill =  Game.skillManager.isHas(1008);//反弹
+        bullet.fcount = bullet.fantanSkill ? 2 : 0;
+        bullet.tansheSkill = Game.skillManager.isHas(1009);//弹射
         return bullet;
     }
 

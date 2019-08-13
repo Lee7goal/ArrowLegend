@@ -41,6 +41,7 @@ import App from "../../../core/App";
             let selector = this.grids[i];
             let rand:number = Math.floor(ary.length * Math.random());
             selector.setResult(ary[rand].id);
+            // selector.setResult(3004);
 
             setTimeout(() => {
                 selector.play();

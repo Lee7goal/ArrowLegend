@@ -14,6 +14,7 @@ import MonsterShader from "./MonsterShader";
 import DieEffect from "../effect/DieEffect";
 import HitEffect from "../effect/HitEffect";
 import MonsterBoomEffect from "../effect/MonsterBoomEffect";
+import ArcherAI from "../ai/ArcherAI";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
@@ -149,6 +150,7 @@ export default class Monster extends GamePro {
             console.log('没有这个怪的AI', sysEnemy.id);
         }
         gpro.setGameAi(new MonAI(gpro));
+        // gpro.setGameAi(new ArcherAI(gpro));
         gpro.startAi();
         return gpro;
     }

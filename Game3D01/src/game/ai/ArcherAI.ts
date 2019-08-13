@@ -16,7 +16,7 @@ export default class ArcherAI extends FlowerAI {
         super(pro);
          if(!this.gi){
              //这里要加入反弹次数
-            this.gi = new GameInfrared(Game.hero,1);
+            this.gi = new GameInfrared(pro,1);
             this.gi.show = false;
         }
     }
@@ -25,6 +25,10 @@ export default class ArcherAI extends FlowerAI {
     onExe():void
     {
 
+        if(this.pro.gamedata.hp <= 0)
+        {
+            return;
+        }
         this.checkHeroCollision();
         
         
@@ -40,14 +44,15 @@ export default class ArcherAI extends FlowerAI {
             this.status = 2;
             
             this.pro.play(GameAI.Idle);                        
-            var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
-            Game.hero.rotation(a);
+            var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
+            this.pro.rotation(a);
             this.gi.show = true;
             this.gi.drawMoveline();
         }
         else if(this.status == 2 && this.now >= this.nextTime){
             //射击前            
             //status=3 500毫秒 不转向
+            this.gi.show = false;
             this.nextTime = this.now + 500;
             this.status = 3;
         }
@@ -66,11 +71,20 @@ export default class ArcherAI extends FlowerAI {
         }
         else if(this.status == 2)
         {
-            var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
-            Game.hero.rotation(a);
+            var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
+            this.pro.rotation(a);
             this.gi.show = true;
             this.gi.drawMoveline();
         }
         
+    }
+
+    hit(pro: GamePro)
+    {
+        super.hit(pro);
+        if(this.pro.gamedata.hp <= 0)
+        {
+            this.gi.show = false;
+        }
     }
 }

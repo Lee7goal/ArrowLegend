@@ -21,7 +21,9 @@ export default class PlayerSkillManager {
                 this.skillList.push(data);
                 data.curTimes++;
             }
+            console.log(data.skillName,"添加技能");
         }
+       
 
         this.addAttack();
         this.addAttackSpeed();
@@ -30,12 +32,12 @@ export default class PlayerSkillManager {
 
     addAttack(): void  {
         let buff: SysBuff;
-        Game.hero.playerData.attackPower = 150;
+        Game.hero.playerData.baseAttackPower = 150;
         let sys3002: SysSkill = this.isHas(3002);
         if (sys3002)  {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3002.skillEffect1);
             if (buff)  {
-                Game.hero.playerData.attackPower += sys3002.curTimes * buff.addAttack;
+                Game.hero.playerData.baseAttackPower += sys3002.curTimes * buff.addAttack;
             }
         }
         buff = null;
@@ -44,7 +46,7 @@ export default class PlayerSkillManager {
         if (sys3003)  {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3003.skillEffect1);
             if (buff)  {
-                Game.hero.playerData.attackPower += sys3003.curTimes * buff.addAttack;
+                Game.hero.playerData.baseAttackPower += sys3003.curTimes * buff.addAttack;
             }
         }
     }
@@ -59,11 +61,12 @@ export default class PlayerSkillManager {
                 let rate:number = 1;
                 for(let i = 0 ; i < sys3004.curTimes; i++)
                 {
-                    rate = rate * (buff.addSpeed / 1000);
+                    Game.hero.playerData.attackSpeed = Game.hero.playerData.attackSpeed * (1 - buff.addSpeed / 1000);
                 }
-                Game.hero.playerData.attackSpeed = Game.hero.playerData.attackSpeed * (1 - rate);
+                
             }
         }
+
         buff = null;
 
         let sys3005: SysSkill = this.isHas(3005);
@@ -91,13 +94,5 @@ export default class PlayerSkillManager {
             }
         }
         return null;
-    }
-
-    get isChuantou(): boolean  {
-        return this.isHas(1006) != null
-    }
-
-    get bounceTimes(): number  {
-        return this.isHas(1008) != null ? 2 : 0;
     }
 }

@@ -49,9 +49,7 @@ export default class GameInfrared{
         }else{
             for (let i = 0; i < this.redLines.length; i++) {
                 var e = this.redLines[i];
-                if(e.parent){
-                    e.parent.removeChild(e);
-                }
+                e.removeSelf();
             }
         }
     }

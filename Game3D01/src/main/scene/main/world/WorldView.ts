@@ -1,6 +1,7 @@
 import { ui } from "../../../../ui/layaMaxUI";
 import GameBG from "../../../../game/GameBG";
 import Game from "../../../../game/Game";
+import GameEvent from "../../../GameEvent";
     export default class WorldView extends ui.test.worldUI {
     constructor() { 
         super();
@@ -10,8 +11,9 @@ import Game from "../../../../game/Game";
         this.biaoti2.text = "拉曼平原";
     }
 
+
     private onStart():void
     {
-        Game.battleLoader.load();
+        Laya.stage.event(GameEvent.START_BATTLE);
     }
 }

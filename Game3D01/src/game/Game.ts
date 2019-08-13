@@ -22,6 +22,7 @@ import SceneManager from "../main/SceneManager";
 import ShakeUtils from "../core/utils/ShakeUtils";
 import CoinEffect from "./effect/CoinEffect";
 import PlayerSkillManager from "./PlayerSkillManager";
+import MainUI from "../main/scene/main/MainUI";
 
 export default class Game {
     static state:number = 0;
@@ -170,8 +171,8 @@ export default class Game {
     }
 
     static reset(): void {
-        Game.skillManager.skillList.length = 0;
-        Game.skillManager.addSkill();
+        // Game.skillManager.skillList.length = 0;
+        // Game.skillManager.addSkill();
         Game.state = 0;
         Game.isPopupSkill = 0;
         Game.AiArr.length = 0;

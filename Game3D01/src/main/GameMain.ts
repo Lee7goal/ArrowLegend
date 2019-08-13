@@ -43,6 +43,7 @@ import BloodEffect from "../game/effect/BloodEffect";
 import SysSkill from "./sys/SysSkill";
 import SysBuff from "./sys/SysBuff";
 import SysNpc from "./sys/SysNpc";
+import ArcherAI from "../game/ai/ArcherAI";
 
 
 var REG: Function = Laya.ClassUtils.regClass;
@@ -98,6 +99,7 @@ var REG: Function = Laya.ClassUtils.regClass;
         REG(AttackType.TAG + AIType.MOVEHIT,MoveAndHitAi);
         REG(AttackType.TAG + AIType.REBOUND,ReboundAI);
         REG(AttackType.TAG + AIType.JUMP_FOLLOW,JumpFollowAI);
+        REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
         //移动类型
         REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
         REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);

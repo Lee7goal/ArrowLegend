@@ -10,7 +10,7 @@ export default class SysLevel{
     public static getMaxExpByLv(lv:number):number
     {
         var sys:SysLevel = App.tableManager.getDataByNameAndId(SysLevel.NAME,lv);
-        sys.roleExp = 20;
+        sys.roleExp = 8;
         return sys == null ? 0 : sys.roleExp;
     }
 
@@ -20,7 +20,7 @@ export default class SysLevel{
         for(var i = 1; i <= 60; i++)
         {
             var sys:SysLevel = App.tableManager.getDataByNameAndId(SysLevel.NAME,i);
-            sys.roleExp = 20;
+            sys.roleExp = 8;
             sum += sys.roleExp;
             if(exp < sum)
             {

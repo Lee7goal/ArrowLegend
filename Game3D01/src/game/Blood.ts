@@ -2,11 +2,14 @@ import HeroBlood from "./HeroBlood";
 import MonsterBlood from "./MonsterBlood";
 import GameData from "./GameData";
 import GameProType from "./GameProType";
+import BitmapNumber from "../core/display/BitmapNumber";
 
 export default class Blood extends Laya.Sprite {
     private ui:HeroBlood;
     private ui2:MonsterBlood;
     private _data:GameData;
+
+    public bloodCount:number = 0;
     constructor() { 
         super(); 
     }

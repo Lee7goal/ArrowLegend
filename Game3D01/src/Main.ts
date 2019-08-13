@@ -1,6 +1,10 @@
 import GameConfig from "./GameConfig";
 import GameBG from "./game/GameBG";
 import GameMain from "./main/GameMain";
+import {ui} from "./ui/layaMaxUI"
+import App from "./core/App";
+import LoginHttp from "./net/LoginHttp";
+import ReceiverHttp from "./net/ReceiverHttp";
 
 class Main {
 	constructor() {
@@ -29,7 +33,7 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/190805/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/190809/";
 		}
 		
 
@@ -44,13 +48,41 @@ class Main {
 	}
 
 	onConfigLoaded(): void {
+		this.loading = new ui.test.LoadingUI();
+		Laya.stage.addChild(this.loading);
+		this.loading.txt.text = "0%";
 		// new GameMain();
-		Laya.loader.load(["res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler));
+		Laya.loader.load(["h5/config.json","res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler),new Laya.Handler(this,this.onProgress));
 	}
 
+
+
+	private loading:ui.test.LoadingUI;
 	private onHandler():void{
-		//加载IDE指定的场景
+		let config = Laya.loader.getRes("h5/config.json");
+		console.log("config---",config);
+		App.platformId = config.platformId;
+		App.serverIP = config.platforms[App.platformId];
+
+		new LoginHttp(new Laya.Handler(this,this.onSuccess)).checkLogin();
+	}
+
+	private onSuccess(data):void
+	{
+		ReceiverHttp.create(new Laya.Handler(this,this.onReceive)).send();
+	}
+
+	
+    private onReceive(data):void
+    {
 		new GameMain();
+		this.loading.removeSelf();
+    }
+
+	private onProgress(value:number):void
+	{
+		value = value * 100;
+		this.loading.txt.text = "" + value.toFixed(0) + "%";
 	}
 }
 //激活启动类

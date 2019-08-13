@@ -101,10 +101,12 @@ export default class HeroAI extends GameAI {
     public short(): void {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);
+
+        let basePower:number = Game.hero.playerData.baseAttackPower;
         // let moveSpeed: number = GameBG.ww / 2;
         // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
 
-        this.onShoot();
+        this.onShoot(basePower);
 
         //连续射击
         let skill1005:SysSkill = Game.skillManager.isHas(1005);
@@ -112,22 +114,22 @@ export default class HeroAI extends GameAI {
             if(skill1005.curTimes == 1)
             {
                 Laya.timer.frameOnce(15,this,()=>{
-                    this.onShoot();
+                    this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
             }
             else
             {
                 Laya.timer.frameOnce(15,this,()=>{
-                    this.onShoot();
+                    this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
                 Laya.timer.frameOnce(30,this,()=>{
-                    this.onShoot();
+                    this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
             }
         }
     }
 
-    private onShoot():void{
+    private onShoot(basePower:number):void{
         let moveSpeed: number = GameBG.ww / 2;
         // moveSpeed = 4;
 
@@ -138,23 +140,24 @@ export default class HeroAI extends GameAI {
         if (skill1001)  {
             if (!this.line) this.line = new MaoLineData(0, 0, GameBG.mw2, 0);
             this.line.rad(Game.hero.face2d + Math.PI / 2);
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
             this.line.rad(Game.hero.face2d - Math.PI / 2);
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
 
             if(skill1001.curTimes >= 2)
             {
-                this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower * skill1001.damagePercent / 100);
             }
         }
         else
         {
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero,basePower);
         }
         
         //背向箭
-        if (Game.skillManager.isHas(1002))  {
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero);
+        let skill1002:SysSkill = Game.skillManager.isHas(1002);
+        if (skill1002)  {
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI, Game.hero,basePower * skill1002.damagePercent / 100);
         }
 
         //斜向箭
@@ -167,15 +170,16 @@ export default class HeroAI extends GameAI {
             let count = Math.floor(num / 2);
 
             for (var i = 1; i <= count; i++) {
-                this.shootin.short_arrow(moveSpeed, Game.hero.face3d + hudu * i, Game.hero);
-                this.shootin.short_arrow(moveSpeed, Game.hero.face3d - hudu * i, Game.hero);
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d + hudu * i, Game.hero,basePower * skill1003.damagePercent / 100);
+                this.shootin.short_arrow(moveSpeed, Game.hero.face3d - hudu * i, Game.hero,basePower * skill1003.damagePercent / 100);
             }
         }
 
         //两侧箭
-        if (Game.skillManager.isHas(1004))  {
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero);
-            this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero);
+        let skill1004:SysSkill = Game.skillManager.isHas(1004);
+        if (skill1004)  {
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d + Math.PI * 0.5, Game.hero,basePower * skill1004.damagePercent / 100);
+            this.shootin.short_arrow(moveSpeed, Game.hero.face3d - Math.PI * 0.5, Game.hero,basePower * skill1004.damagePercent / 100);
         }
     }
 

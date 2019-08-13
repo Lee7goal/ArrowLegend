@@ -92,7 +92,8 @@ export default class BaseAI extends GameAI {
 
     hit(pro: GamePro) {
         // this.pro.hurt(Game.hero.playerData.attackPower);
-        this.pro.hurt(this.pro.gamedata.maxhp);
+        this.pro.hurt(pro.hurtValue);
+        // this.pro.hurt(pro.gamedata.maxhp * 0.5);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }

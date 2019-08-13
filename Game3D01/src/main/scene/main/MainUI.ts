@@ -1,8 +1,23 @@
 import { ui } from "../../../ui/layaMaxUI";
 import ShakeUtils from "../../../core/utils/ShakeUtils";
 import GameBG from "../../../game/GameBG";
+import DateUtils from "../../../core/utils/DateUtils";
+import Game from "../../../game/Game";
+import DisplayUtils, { MaskObj } from "../../../core/utils/DisplayUtils";
+import FlyUpTips from "../../FlyUpTips";
+import HomeData from "../../../game/data/HomeData";
+import Session from "../../Session";
+import SenderHttp from "../../../net/SenderHttp";
     export default class MainUI extends ui.test.mainUIUI {
+        static TOTAL_TIME:number = 60;
+        static MAX_ENERGY:number = 20;
+
         private bottomUI:BottomUI;
+
+        private _remainingTime:number = 0;
+
+        private mo:MaskObj;
+        private homeData:HomeData;
         constructor(){
             super();
             this.height = GameBG.height;
@@ -11,6 +26,101 @@ import GameBG from "../../../game/GameBG";
             this.bottomUI.bottom = 0;
 
             this.mouseThrough = true;
+
+            this.timerClip.visible = false;
+            this.appEnergyClip.visible = false;
+
+            this.mo = new MaskObj(this.jingyantiao);
+            this.mo.value = 1;
+
+            this.homeData = Session.homeData;
+            if(Date.now() >= this.homeData.lastTime)
+            {
+                this._remainingTime = 0;
+            }
+            else
+            {
+                let deltaTime:number = Session.homeData.lastTime - Date.now();
+                let time:number = Math.floor(deltaTime / 1000);
+                this._remainingTime = Math.floor(time % MainUI.TOTAL_TIME);
+                if(this._remainingTime == 0)
+                {
+                    this._remainingTime = MainUI.TOTAL_TIME;
+                }
+            }
+            this.updateEnergy();
+        }
+
+        /**扣除体力 */
+        appEnergy():void
+        {
+            if(this.homeData.curEnergy < 5)
+            {
+                FlyUpTips.setTips("体力不足！");
+                return;
+            }
+            this.homeData.curEnergy -= 5;
+            this.appEnergyClip.visible = true;
+            this.appEnergyClip.value = "-" + 5;
+            Laya.Tween.to(this.appEnergyClip,{y: 100},300,null,new Laya.Handler(this,this.onStart));
+        }
+
+        private onStart():void{
+            this.appEnergyClip.visible = false;
+            this.appEnergyClip.y = 47;
+            
+
+            this._remainingTime = MainUI.TOTAL_TIME;
+            
+            this.updateEnergy();
+
+            this.homeData.lastTime = Date.now() + (this.homeData.totalEnergy - this.homeData.curEnergy) * MainUI.TOTAL_TIME * 1000;
+            Session.saveData();
+
+            Game.battleLoader.load();
+        }
+
+        /**更新精力*/
+        private updateEnergy():void
+        {
+            console.log("ui剩余的时间",this._remainingTime,this.homeData.curEnergy);
+
+            this.curClip.value = "" + this.homeData.curEnergy;
+            this.maxClip.value = "" + this.homeData.maxEngergy;
+            let value:number = this.homeData.curEnergy / this.homeData.maxEngergy;
+            value = Math.max(0.1,value);
+
+            DisplayUtils.updateBlood(this.mo, value, 100);
+
+            if(this.homeData.curEnergy < this.homeData.totalEnergy)
+            {
+                Laya.timer.clear(this,this.onLoop);
+                Laya.timer.loop(1000,this,this.onLoop);
+                this.onLoop();
+            }
+        }
+
+        /**倒计时*/
+        private onLoop():void
+        {
+            this.timerClip.visible = true;
+            this.timerClip.value = DateUtils.getFormatBySecond3(this._remainingTime);
+            this._remainingTime--;
+            if(this._remainingTime < 0)
+            {
+                this.homeData.curEnergy++;
+                if(this.homeData.curEnergy == this.homeData.totalEnergy)
+                {
+                    Laya.timer.clear(this,this.onLoop);
+                    this.timerClip.visible = false;
+                }
+                else
+                {
+                    this._remainingTime = MainUI.TOTAL_TIME;
+                    console.log("重置倒计时",this._remainingTime);
+                }
+                this.updateEnergy();
+            }
         }
 
         public get selectIndex():number

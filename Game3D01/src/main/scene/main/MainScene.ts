@@ -3,6 +3,8 @@ import MainUI from "./MainUI";
 import MainView from "./MainView";
 import WorldView from "./world/WorldView";
 import GameBG from "../../../game/GameBG";
+import GameEvent from "../../GameEvent";
+import Game from "../../../game/Game";
 
     export default class MainScene extends Laya.Sprite{
     private mainUI:MainUI;
@@ -22,6 +24,13 @@ import GameBG from "../../../game/GameBG";
 
         Laya.stage.on("switchView",this,this.switchView);
         this.switchView();
+
+        Laya.stage.on(GameEvent.START_BATTLE,this,this.onStartBattle);
+    }
+
+    private onStartBattle():void
+    {
+        this.mainUI.appEnergy();
     }
 
     private switchView():void{

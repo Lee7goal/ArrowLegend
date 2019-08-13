@@ -18,4 +18,6 @@ export default class AIType{
     static REBOUND:number = 9;
     /**跳着追人的 10*/
     static JUMP_FOLLOW:number = 10;
+     /**红线 11*/
+    static RED_LINE:number = 11;
 }
