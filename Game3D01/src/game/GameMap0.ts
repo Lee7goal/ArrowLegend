@@ -327,26 +327,21 @@ export default class GameMap0 extends Laya.Sprite {
         let arr:GameHitBox[] = null;
         let ehb: GameHitBox = null;
         for (let i = 0; i < thbArr.length; i++) {
-            ehb = thbArr[i];
+            ehb = thbArr[i];            
             if (ehb.hit(ehb, thb)) {
                 if(!arr)arr=[];
                 arr.push(ehb);
-
             }
         }
         return arr;
     }
 
-    /**
-     * 返回 最近的 碰撞线、碰撞点、碰撞体
-     * @param vv 
-     * @param arr 
-     */
-    public getPointAndLine(vv:MaoLineData,arr:GameHitBox[]):any[]{
-        var ebh:GameHitBox;
-        var sp;
+    /**找到所有的相交点、相交线、相交体 */
+    public lineTest(arr:GameHitBox[],vv:MaoLineData):any[]{
+        var ebh;
         var ebs:any[] = [];
         let l:MaoLineData;
+        var sp;
         for (let i = 0; i < arr.length; i++) {            
             ebh = arr[i];
 
@@ -382,6 +377,17 @@ export default class GameMap0 extends Laya.Sprite {
                 ebs.push(ebh);
             }
         }
+        return ebs;
+    }
+
+
+    /**
+     * 返回 最近的 碰撞线、碰撞点、碰撞体
+     * @param vv 
+     * @param arr 
+     */
+    public getPointAndLine(vv:MaoLineData,arr:GameHitBox[]):any[]{
+        var ebs = this.lineTest(arr,vv);
         if(ebs.length<=0)return null;
         if(ebs.length==3)return ebs;
         var x0 = vv.x0;
