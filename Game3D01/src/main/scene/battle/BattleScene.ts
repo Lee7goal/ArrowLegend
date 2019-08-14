@@ -25,6 +25,7 @@ import GameOverView from "./gameOver/GameOverView";
 import CustomShaderff00 from "../../../shader/CustomShaderff00";
 import SelectNewSkill from "./SelectNewSkill";
 import SysSkill from "../../sys/SysSkill";
+import Session from "../../Session";
 export default class BattleScene extends Laya.Sprite {
 
     private _top:TopUI;
@@ -129,6 +130,7 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     init(): void {
+        Session.saveData();
         Game.reset();
         if (!Game.executor) {
             Game.executor = new GameExecut();
@@ -218,7 +220,7 @@ export default class BattleScene extends Laya.Sprite {
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5007));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5008));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5009));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5009));
 
         // (<HeroAI>Game.hero.getGameAi()).run = false;
         Game.hero.init();

@@ -164,8 +164,5 @@ export default class FlowerAI extends BaseAI {
 
     hit(pro: GamePro) {
         super.hit(pro);
-        if (this.pro.acstr == GameAI.Idle || this.pro.acstr == GameAI.Run) {
-            this.pro.play(GameAI.TakeDamage);
-        }
     }
 }

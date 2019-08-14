@@ -1,109 +1,39 @@
+import ZipLoader from "../core/utils/ZipLoader";
 import App from "../core/App";
-import GameConfig from "../GameConfig";
-import MainScene from "./scene/main/MainScene";
+import Game from "../game/Game";
+import BloodEffect from "../game/effect/BloodEffect";
 import SysChapter from "./sys/SysChapter";
 import SysMap from "./sys/SysMap";
-import ZipLoader from "../core/utils/ZipLoader";
 import SysEnemy from "./sys/SysEnemy";
-import AttackType from "../game/ai/AttackType";
-import MoveType from "../game/move/MoveType";
 import SysBullet from "./sys/SysBullet";
-import FlyAndHitAi from "../game/ai/FlyAndHitAi";
-import FixedGameMove from "../game/move/FixedGameMove";
-import FlyGameMove from "../game/move/FlyGameMove";
-import Game from "../game/Game";
-import JumpMove from "../game/move/JumpMove";
-import MonsterAI from "../game/ai/MonsterAI";
-import AIType from "../game/ai/AIType";
-import BaseAI from "../game/ai/BaseAi";
-import FlowerAI from "../game/ai/FlowerAI";
-import StoneAI from "../game/ai/StoneAI";
-import TreeAI from "../game/ai/TreeAI";
-import RandMoveAI from "../game/ai/RandMoveAI";
-import MoveAndHitAi from "../game/ai/MoveAndHitAi";
-import JumpFollowAI from "../game/ai/JumpFollowAI";
-import { ui } from "./../ui/layaMaxUI";
-import NPC_1001_view from "./scene/battle/npc/NPC_1001_view";
-import NPC_1002_view from "./scene/battle/npc/NPC_1002_view";
-import NPC_1003_view from "./scene/battle/npc/NPC_1003_view";
-import NPC_1001 from "./scene/battle/npc/NPC_1001";
-import NPC_1002 from "./scene/battle/npc/NPC_1002";
-import NPC_1003 from "./scene/battle/npc/NPC_1003";
-import PlaneGameMove from "../game/move/PlaneGameMove";
-import BackMove from "../game/move/BackMove";
-import ReboundAI from "../game/ai/ReboundAI";
-import GameScaleAnimator1 from "../game/ai/GameScaleAnimator1";
-import GameScaleAnimator3 from "../game/ai/GameScaleAnimator3";
-import GameScaleAnimator2 from "../game/ai/GameScaleAnimator2";
-import GameScaleAnimator4 from "../game/ai/GameScaleAnimator4";
-import HitType from "../game/ai/HitType";
 import SysLevel from "./sys/SysLevel";
-import BloodEffect from "../game/effect/BloodEffect";
 import SysSkill from "./sys/SysSkill";
 import SysBuff from "./sys/SysBuff";
 import SysNpc from "./sys/SysNpc";
-import ArcherAI from "../game/ai/ArcherAI";
 
-
-var REG: Function = Laya.ClassUtils.regClass;
-    export default class GameMain{
-        
-    constructor(){
+export default class GameMain {
+    constructor() {
         ZipLoader.load("h5/tables.zip", new Laya.Handler(this, this.zipFun));
     }
 
-    private zipFun(arr: any[]):void{
+    private zipFun(arr: any[]): void {
         App.init();
         this.initTable(arr);
-        this.regClass();
         Laya.stage.addChild(App.layerManager);
         Game.scenneM.showMain();
         new BloodEffect();
     }
-    private _mainScene:MainScene;
 
-    private initTable(arr: any[]):void{
-        App.tableManager.register(SysChapter.NAME,SysChapter);
-        App.tableManager.register(SysMap.NAME,SysMap);
-        App.tableManager.register(SysEnemy.NAME,SysEnemy);
-        App.tableManager.register(SysBullet.NAME,SysBullet);
-        App.tableManager.register(SysLevel.NAME,SysLevel);
-        App.tableManager.register(SysSkill.NAME,SysSkill);
-        App.tableManager.register(SysBuff.NAME,SysBuff);
-        App.tableManager.register(SysNpc.NAME,SysNpc);
+    private initTable(arr: any[]): void {
+        App.tableManager.register(SysChapter.NAME, SysChapter);
+        App.tableManager.register(SysMap.NAME, SysMap);
+        App.tableManager.register(SysEnemy.NAME, SysEnemy);
+        App.tableManager.register(SysBullet.NAME, SysBullet);
+        App.tableManager.register(SysLevel.NAME, SysLevel);
+        App.tableManager.register(SysSkill.NAME, SysSkill);
+        App.tableManager.register(SysBuff.NAME, SysBuff);
+        App.tableManager.register(SysNpc.NAME, SysNpc);
 
         App.tableManager.onParse(arr);
-    }
-
-    private regClass():void{
-        //击退效果
-        REG("HIT_" + HitType.hit1,GameScaleAnimator1);
-        REG("HIT_" + HitType.hit2,GameScaleAnimator2);
-        REG("HIT_"  + HitType.hit3,GameScaleAnimator4);
-        //NPC
-        REG("NPC1001",NPC_1001);
-        REG("NPC1002",NPC_1002);
-        REG("NPC1003",NPC_1003);
-
-        REG("NPCVIEW1001",NPC_1001_view);
-        REG("NPCVIEW1002",NPC_1002_view);
-        REG("NPCVIEW1003",NPC_1003_view);
-        //攻击类型
-        REG(AttackType.TAG + AIType.NOTHAS,BaseAI);
-        REG(AttackType.TAG + AIType.FLYHIT,FlyAndHitAi);
-        REG(AttackType.TAG + AIType.BULLET,FlowerAI);
-        REG(AttackType.TAG + AIType.STONE,StoneAI);
-        REG(AttackType.TAG + AIType.TREE,TreeAI);
-        REG(AttackType.TAG + AIType.RANDOM_MOVE,RandMoveAI);
-        REG(AttackType.TAG + AIType.MOVEHIT,MoveAndHitAi);
-        REG(AttackType.TAG + AIType.REBOUND,ReboundAI);
-        REG(AttackType.TAG + AIType.JUMP_FOLLOW,JumpFollowAI);
-        REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
-        //移动类型
-        REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
-        REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);
-        REG(MoveType.TAG + MoveType.FIXED,FixedGameMove);
-        REG(MoveType.TAG + MoveType.JUMP,JumpMove);
-        REG(MoveType.TAG + MoveType.BACK,BackMove);
     }
 }

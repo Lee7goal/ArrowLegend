@@ -1,15 +1,16 @@
 import BaseHttp from "../core/net/BaseHttp";
 import App from "../core/App";
-import PlatformID from "./PlatformID";
 import ReceiverHttp from "./ReceiverHttp";
 import Session from "../main/Session";
+import PlatformID from "../platforms/PlatformID";
+import { BasePlatform } from "../platforms/BasePlatform";
 
 /*
 * name;
 */
 export default class LoginHttp extends BaseHttp {
     
-    private jsCode: string = "ntx147258";
+    private jsCode: string;
     constructor(hand:Laya.Handler) {
         super(hand);
     }
@@ -30,27 +31,11 @@ export default class LoginHttp extends BaseHttp {
     
 
     checkLogin(): void {
-        switch (App.platformId) {
-            case PlatformID.TEST:
-                this.send();
-                break;
-            case PlatformID.WX:
-                this.wxLogin();
-                break;
-        }
-    }
-
-    private wxLogin() {
-        Laya.Browser.window.wx.login(
-            {
-                success: (res) => {
-                    if (res.code) {
-                        this.jsCode = res.code;
-                        console.log("wx.login success" + this.jsCode);
-                        this.send();
-                    }
-                }
-            });
+        let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
+        new BP().login((code:string)=>{
+            this.jsCode = code;
+            this.send();
+        });
     }
 
 

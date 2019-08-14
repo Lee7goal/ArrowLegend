@@ -32,7 +32,8 @@ import SysBuff from "../../sys/SysBuff";
         if(sys.id == 4002 || sys.id == 4003 || sys.id == 4004)//加血的
         {
             let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
-            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff4002.addHp / 1000));
+            let changeValue:number = sys.id == 4003 ? buff4002.hpLimit : buff4002.addHp;
+            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * changeValue / 1000));
         }
         else
         {

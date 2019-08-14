@@ -3,4 +3,7 @@ export default class HomeData{
     curEnergy:number;
     maxEngergy:number;
     lastTime:number;
+    chapterId:number;
+    mapIndex:number;
+    level:number;
 }

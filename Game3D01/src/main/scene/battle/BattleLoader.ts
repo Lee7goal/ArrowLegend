@@ -10,14 +10,14 @@ import BattleScene from "./BattleScene";
 import Game from "../../../game/Game";
 import MonsterShader from "../../../game/player/MonsterShader";
 import CoinEffect from "../../../game/effect/CoinEffect";
+import Session from "../../Session";
 
 export default class BattleLoader {
     constructor() { }
 
     private _mapId: number;
-    public chaterId: number = 1;
     private _configId: number;
-    private _index: number = -1;
+    private _index: number = 0;
 
     private _loading: ui.test.BattleLoadingUI;
 
@@ -78,12 +78,11 @@ export default class BattleLoader {
         this._loading.txt.text = "0%";
         this._loading.bar.scrollRect = new Laya.Rectangle(0,0,1,this._loading.bar.height);
 
-        this._index++;
         if (this._index > 50) {
             this._index = 0;
         }
-        this._mapId = this.chaterId * 1000 + this._index;
-        let sysMap: SysMap = SysMap.getData(this.chaterId, this._mapId);
+        this._mapId = Session.homeData.chapterId * 1000 + this._index;
+        let sysMap: SysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;

@@ -1,6 +1,7 @@
 import HomeData from "../game/data/HomeData";
 import MainUI from "./scene/main/MainUI";
 import SenderHttp from "../net/SenderHttp";
+import Game from "../game/Game";
 
 export default class Session{
     static SKEY:string;
@@ -15,6 +16,9 @@ export default class Session{
         Session.gameData.maxEngergy = Session.homeData.maxEngergy;
         Session.gameData.lastTime = Session.homeData.lastTime;
         Session.gameData.totalEnergy = Session.homeData.totalEnergy;
+        Session.gameData.chapterId = Session.homeData.chapterId;
+        Session.gameData.mapIndex = Game.battleLoader.index;
+        Session.gameData.level = Session.homeData.level;
 
         SenderHttp.create().send();
     }
@@ -28,6 +32,9 @@ export default class Session{
             Session.homeData.maxEngergy = Session.gameData.maxEngergy;
             Session.homeData.lastTime = Session.gameData.lastTime;
             Session.homeData.curEnergy = Session.gameData.curEnergy;
+            Session.homeData.chapterId = Session.gameData.chapterId;
+            Session.homeData.mapIndex = Session.gameData.mapIndex;
+            Session.homeData.level = Session.gameData.level;
             if(Date.now() >= Session.homeData.lastTime)
             {
                 Session.homeData.curEnergy = Session.homeData.totalEnergy;
@@ -50,11 +57,17 @@ export default class Session{
             Session.homeData.maxEngergy = MainUI.MAX_ENERGY;
             Session.homeData.curEnergy = Session.homeData.totalEnergy;
             Session.homeData.lastTime = 0;
+            Session.homeData.chapterId = 1;
+            Session.homeData.mapIndex = 0;
+            Session.homeData.level = 1;
 
             Session.gameData.curEnergy = Session.homeData.curEnergy;
             Session.gameData.maxEngergy = Session.homeData.maxEngergy;
             Session.gameData.lastTime = Session.homeData.lastTime;
             Session.gameData.totalEnergy = Session.homeData.totalEnergy;
+            Session.gameData.chapterId = Session.homeData.chapterId;
+            Session.gameData.mapIndex = Session.homeData.mapIndex;
+            Session.gameData.level = Session.homeData.level;
         }
     }
 }

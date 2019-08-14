@@ -131,11 +131,14 @@ export default class BaseAI extends GameAI {
         this.setBoomHead();
 
         this.pro.hurt(pro.hurtValue,crit3006 || crit3007);
-        // this.pro.hurt(pro.gamedata.maxhp * 0.5);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
         else {
+            if (this.pro.acstr == GameAI.Idle || this.pro.acstr == GameAI.Run) {
+                this.pro.play(GameAI.TakeDamage);
+            }
+
             this.stiffTime = this.now;
             if (this.g2 && this.g2.isOk()) {//击退
                 var a: number = pro.face3d + Math.PI;

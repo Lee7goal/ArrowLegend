@@ -65,7 +65,6 @@ export default class ArrowGameMove0 extends GameMove {
         //g.clear();
         //计算与敌人的碰撞
         var hits = Game.map0.Eharr;
-        console.log("hits .len " , hits.length);
         
         if(pro.hit_blacklist){
             var tem = [];
@@ -76,7 +75,6 @@ export default class ArrowGameMove0 extends GameMove {
                 }
             }
             hits = tem;
-            console.log("tem .len " , hits.length);
         }
 
 

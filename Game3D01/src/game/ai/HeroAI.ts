@@ -215,7 +215,6 @@ export default class HeroAI extends GameAI {
                 if (now > this.wudiCD)  {
                     this.wudiCD = now + wudiBuff.buffCD;
                     this.wudiTime = now + wudiBuff.buffDot;
-                    console.log("接下来两秒的不受伤害");
                 }
             }
         }

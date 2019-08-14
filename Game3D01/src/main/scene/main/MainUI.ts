@@ -9,7 +9,7 @@ import HomeData from "../../../game/data/HomeData";
 import Session from "../../Session";
 import SenderHttp from "../../../net/SenderHttp";
     export default class MainUI extends ui.test.mainUIUI {
-        static TOTAL_TIME:number = 60;
+        static TOTAL_TIME:number = 10;
         static MAX_ENERGY:number = 20;
 
         private bottomUI:BottomUI;
@@ -49,6 +49,8 @@ import SenderHttp from "../../../net/SenderHttp";
                 }
             }
             this.updateEnergy();
+
+            this.dengji.value = "" + Session.homeData.level;
         }
 
         /**扣除体力 */
@@ -115,7 +117,6 @@ import SenderHttp from "../../../net/SenderHttp";
                 else
                 {
                     this._remainingTime = MainUI.TOTAL_TIME;
-                    console.log("重置倒计时",this._remainingTime);
                 }
                 this.updateEnergy();
             }

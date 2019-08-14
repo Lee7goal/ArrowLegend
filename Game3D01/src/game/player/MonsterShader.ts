@@ -106,7 +106,6 @@ export default class MonsterShader extends GameShaderObj{
                             sm.skinnedMeshRenderer.sharedMaterials = this.spArr[i][j];
                         }else{
                             sm.skinnedMeshRenderer.sharedMaterials = this.cpArr[i][j];
-                            //sm.skinnedMeshRenderer.sharedMaterials = [];
                         }
                     }
                 }

@@ -23,6 +23,7 @@ import ShakeUtils from "../core/utils/ShakeUtils";
 import CoinEffect from "./effect/CoinEffect";
 import PlayerSkillManager from "./PlayerSkillManager";
 import MainUI from "../main/scene/main/MainUI";
+import Session from "../main/Session";
 
 export default class Game {
     static state:number = 0;
@@ -45,6 +46,7 @@ export default class Game {
     static Event_NPC: string = "Event_NPC";
     static Event_COINS: string = "Event_COINS";
     static Event_EXP:string = "Event_EXP";
+    static Event_LEVEL:string = "Event_LEVEL";
     static Event_SELECT_NEWSKILL:string = "Event_SELECT_NEWSKILL";
 
     static skillManager:PlayerSkillManager = new PlayerSkillManager();
@@ -138,6 +140,7 @@ export default class Game {
         if (Game.isOpen)  {
             return;
         }
+        Game.battleLoader.index++;
         Game.isOpen = true;
         Game.bg.setDoor(1);
         Game.door.transform.localPositionX = 0;
@@ -171,8 +174,6 @@ export default class Game {
     }
 
     static reset(): void {
-        // Game.skillManager.skillList.length = 0;
-        // Game.skillManager.addSkill();
         Game.state = 0;
         Game.isPopupSkill = 0;
         Game.AiArr.length = 0;
@@ -237,7 +238,8 @@ export default class Game {
 
     static showMain():void
     {
-        Game.battleLoader.index = -1;
+        Game.skillManager.skillList.length = 0;
+        Game.battleLoader.index = 0;
         Game.hero.reset();
         Game.battleLoader.destroyMonsterRes();
         Game.scenneM.showMain();

@@ -106,9 +106,12 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public hurt(hurt: number,isCrit:boolean): void {
+        let showHurt:number = Math.min(hurt,this.gamedata.hp);
         this._bloodUI && this._bloodUI.update(hurt);
-        hurt = Math.min(hurt,this.gamedata.hp);
-        BloodEffect.add(hurt,this._bloodUI,isCrit);
+        if(showHurt > 0)
+        {
+            BloodEffect.add(showHurt,this._bloodUI,isCrit);
+        }
     }
 
     die(): void {

@@ -142,6 +142,7 @@ export default class Hero extends GamePro {
                 let buff4005: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill4005.skillEffect1);
                 Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff4005.addHp / 1000));
                 this.play("Idle");
+                Game.skillManager.skillList.length = 0;
             }, 800);
             console.log(skill4005.skillName);
         }
