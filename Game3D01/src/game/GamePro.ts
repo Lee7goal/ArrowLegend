@@ -37,7 +37,7 @@ export default class GamePro extends Laya.EventDispatcher {
     unBlocking:boolean = false;
 
     public isDie:boolean;
-    public hurtValue: number = 1;
+    public hurtValue: number = 0;
     //  id  :number;
     //  name:String;
     private gamedata_: GameData;

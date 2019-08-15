@@ -4,7 +4,6 @@ import Game from "../Game";
 import GameHitBox from "../GameHitBox";
 import GameBG from "../GameBG";
 import Monster from "../player/Monster";
-import MonsterShader from "../player/MonsterShader";
 import BaseAI from "./BaseAi";
 
 /**飞行撞击ai */

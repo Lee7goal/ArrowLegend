@@ -1,8 +1,10 @@
 import { BasePlatform } from "./BasePlatform";
+import Game from "../game/Game";
 
 export default class WXPlatform extends BasePlatform {
     constructor() { super(); }
 
+    private tag:number = 0;
     checkUpdate(): void  {
         console.log("检查更新");
         Laya.Browser.window.wx.setKeepScreenOn({
@@ -63,9 +65,26 @@ export default class WXPlatform extends BasePlatform {
     onShare(callback): void  {
         Laya.Browser.window.wx.shareAppMessage({
             title: "来吧，pk一下吧！",
+            query:"key=reborn",
             imageUrl: "https://img.kuwan511.com/farmGame/share.jpg",
             destWidth: 500,
             destHeight: 400
+        });
+        this.tag = 
+        Laya.Browser.window.wx.onShow(res => {
+            console.log("onShow",this.tag);
+            if(this.tag == 1000)
+            {
+                Game.hero.reborn();
+                Laya.Browser.window.wx.offShow();
+                Laya.Browser.window.wx.offHide();
+                this.tag = -1;
+            }
+        });
+
+        Laya.Browser.window.wx.onHide(res => {
+            this.tag = 1000;
+            console.log("onHide");
         });
     }
 }

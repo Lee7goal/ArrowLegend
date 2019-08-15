@@ -1,4 +1,5 @@
 import { BasePlatform } from "./BasePlatform";
+import Game from "../game/Game";
 
 export default class TestPlatform extends BasePlatform{
     checkUpdate():void
@@ -8,11 +9,12 @@ export default class TestPlatform extends BasePlatform{
 
     login(callback):void
     {
-        callback && callback("tengfei");
+        callback && callback("fdadfafda");
     }
 
     onShare(callback):void
     {
-
+        callback && callback();
+        Game.hero.reborn();
     }
 }

@@ -33,7 +33,7 @@ export default class Hero extends GamePro {
     }
 
     public reset(): void {
-        this.gamedata.hp = this.gamedata.maxhp = 2000;
+        this.gamedata.hp = this.gamedata.maxhp = 600;
     }
 
     init(): void {
@@ -58,8 +58,9 @@ export default class Hero extends GamePro {
 
         this.gamedata.rspeed = 0;
         this.rotation(90 / 180 * Math.PI);
-        this.sp3d.transform.localPositionY = 15;
-        Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
+        // this.sp3d.transform.localPositionY = 15;
+        // Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
+        this.onJumpDown();
 
         if (Game.battleLoader.mapId % 1000 == 0) {
             setTimeout(() => {
@@ -87,9 +88,11 @@ export default class Hero extends GamePro {
         // if (this.getGameAi()) {
         //     (this.getGameAi() as HeroAI).resetRun();
         // }
-        this.startAi();
         Game.executor.start();
 
+        // setTimeout(() => {
+        this.startAi();
+        // }, 1150);
     }
 
     public hurt(hurt: number, isCrit: boolean): void {
@@ -131,18 +134,24 @@ export default class Hero extends GamePro {
         this.play(GameAI.Die);
     }
 
+    reborn():void
+    {
+        Game.skillManager.removeSkill(4005);
+        this.isDie = false;
+        this.setKeyNum(1);
+        this.acstr = "";
+        Game.hero.reset();
+        Game.hero.initBlood(Game.hero.gamedata.hp);
+        this.play("Idle");
+        this.startAi();
+        Game.executor &&Game.executor.start();
+    }
+
     onDie(key): void {
         let skill4005: SysSkill = Game.skillManager.isHas(4005);//复活
         if (skill4005) {
             setTimeout(() => {
-                Game.skillManager.removeSkill(4005);
-                this.isDie = false;
-                this.setKeyNum(1);
-                this.acstr = "";
-                let buff4005: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill4005.skillEffect1);
-                Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff4005.addHp / 1000));
-                this.play("Idle");
-                Game.skillManager.skillList.length = 0;
+                this.reborn();
             }, 800);
             console.log(skill4005.skillName);
         }

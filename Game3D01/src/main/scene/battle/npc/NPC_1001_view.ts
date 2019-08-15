@@ -5,6 +5,7 @@ import SkillGrid from "../SkillGrid";
 import SysSkill from "../../../sys/SysSkill";
 import SysNpc from "../../../sys/SysNpc";
 import App from "../../../../core/App";
+import SysBuff from "../../../sys/SysBuff";
     export default class NPC_1001_view extends ui.test.tianshi_1UI {
     
     private selector:SkillSelector;
@@ -46,9 +47,14 @@ import App from "../../../../core/App";
         this.removeSelf();
     }
 
-    private onClick(sys:SysSkill):void
+    private onClick(e:Laya.Event):void
     {
-        Game.skillManager.addSkill(sys);
+        let grid:SkillGrid = e.target as SkillGrid;
+        let sys:SysSkill = grid.sys;
+        let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
+        let changeValue:number = sys.id == 4003 ? buff4002.hpLimit : buff4002.addHp;
+        Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * changeValue / 1000));
+
         Game.bg.clearNpc();
         this.removeSelf();
     }

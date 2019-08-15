@@ -131,14 +131,17 @@ export default class BaseAI extends GameAI {
         this.setBoomHead();
 
         this.pro.hurt(pro.hurtValue,crit3006 || crit3007);
+        // this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
         else {
-            if (this.pro.acstr == GameAI.Idle || this.pro.acstr == GameAI.Run) {
-                this.pro.play(GameAI.TakeDamage);
+            if(this.sysEnemy.enemyAi != 0)
+            {
+                if (this.pro.acstr == GameAI.Idle || this.pro.acstr == GameAI.Run) {
+                    this.pro.play(GameAI.TakeDamage);
+                }
             }
-
             this.stiffTime = this.now;
             if (this.g2 && this.g2.isOk()) {//击退
                 var a: number = pro.face3d + Math.PI;
@@ -150,6 +153,7 @@ export default class BaseAI extends GameAI {
                 }
             }
 
+            //这里卡
             var ms = this.pro;
             if (MonsterShader.map[ms.sysEnemy.enemymode]) {
                 var shader = <MonsterShader>MonsterShader.map[ms.sysEnemy.enemymode];

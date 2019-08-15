@@ -65,7 +65,7 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/190809/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908151500/";
 		}
 		
 
@@ -112,7 +112,7 @@ class Main {
 	
     private onReceive(data):void
     {
-		new GameMain();
+		new GameMain();Laya.Shader3D
 		this.loading.removeSelf();
     }
 

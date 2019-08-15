@@ -66,6 +66,7 @@ export default class Coin extends GamePro {
     {
         this.stopAi();
         this.sp3d && this.sp3d.removeSelf();
+        Game.coinsNum++;
         Laya.stage.event(Game.Event_COINS);
     }
 }

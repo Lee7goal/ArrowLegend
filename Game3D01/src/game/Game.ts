@@ -26,6 +26,7 @@ import MainUI from "../main/scene/main/MainUI";
 import Session from "../main/Session";
 
 export default class Game {
+    static isReborned:boolean = false;
     static state:number = 0;
     static isPopupSkill:number = 0;
 
@@ -240,6 +241,7 @@ export default class Game {
     {
         Game.skillManager.skillList.length = 0;
         Game.battleLoader.index = 0;
+        Game.isReborned = false;
         Game.hero.reset();
         Game.battleLoader.destroyMonsterRes();
         Game.scenneM.showMain();

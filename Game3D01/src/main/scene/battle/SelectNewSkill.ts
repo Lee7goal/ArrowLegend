@@ -4,6 +4,7 @@ import SkillGrid from "./SkillGrid";
 import SysSkill from "../../sys/SysSkill";
 import App from "../../../core/App";
 import SysBuff from "../../sys/SysBuff";
+import SysNpc from "../../sys/SysNpc";
     export default class SelectNewSkill extends ui.test.battlestopUI {
     
     private grids:SkillSelector[] = [];
@@ -46,17 +47,18 @@ import SysBuff from "../../sys/SysBuff";
     {
         this.baioti.text = "本次冒险升到了" + Game.hero.playerData.level + "级";
 
-        let ary:SysSkill[] = App.tableManager.getTable(SysSkill.NAME);
+        let sys:SysNpc = App.tableManager.getDataByNameAndId(SysNpc.NAME,1004);
+        let ary:string[] = sys.skillRandom.split(",");
         for(let i = 0; i < 3; i++)
         {
             let selector = this.grids[i];
-            let rand:number = Math.floor(ary.length * Math.random());
-            selector.setResult(ary[rand].id);
-            // selector.setResult(3004);
+            let rand = Math.floor(Math.random() * ary.length);
+            selector.setResult(Number(ary[rand]));
+            ary.splice(rand,1);
 
             setTimeout(() => {
                 selector.play();
-            }, i * 50);
+            }, i * 250);
         }
     }
 
@@ -105,6 +107,6 @@ export class SkillSelector extends Laya.Box
 
     play():void
     {
-        Laya.Tween.to(this._content,{y: -8 * 190},800,Laya.Ease.circOut,null,300);
+        Laya.Tween.to(this._content,{y: -8 * 190},500,Laya.Ease.circOut,null);
     }
 }

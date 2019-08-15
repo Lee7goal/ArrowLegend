@@ -187,7 +187,7 @@ export module ui.test {
     REG("ui.test.jiesuan_1UI",jiesuan_1UI);
     export class LoadingUI extends Scene {
 		public txt:Laya.Label;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#9c9797","alpha":0.6},"compId":3,"child":[{"type":"Rect","props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},"compId":4}]},{"type":"Box","props":{"width":750,"height":1334,"centerY":0},"compId":5,"child":[{"type":"Sprite","props":{"texture":"loading/fei.jpg"},"compId":6},{"type":"Label","props":{"y":647,"width":750,"var":"txt","text":"10%","height":40,"fontSize":36,"bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/fei.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700},"compId":3,"child":[{"type":"Sprite","props":{"texture":"loading/fei.jpg","height":1700},"compId":6}]},{"type":"Box","props":{"width":750,"height":100,"bottom":200},"compId":5,"child":[{"type":"Label","props":{"width":750,"var":"txt","text":"10%","height":40,"fontSize":36,"bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/fei.jpg"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -251,6 +251,17 @@ export module ui.test {
         }
     }
     REG("ui.test.mogui_1UI",mogui_1UI);
+    export class ReborthUI extends View {
+		public rebornBtn:Laya.Button;
+		public closeBtn:Laya.Button;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"alpha":0.6},"compId":3,"child":[{"type":"Rect","props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},"compId":4}]},{"type":"Box","props":{"x":0,"width":750,"height":600,"centerY":0},"compId":6,"child":[{"type":"Label","props":{"x":334,"text":"复活","height":80,"fontSize":60,"color":"#ffffff","bold":true},"compId":5},{"type":"Button","props":{"y":474,"x":255,"width":240,"var":"rebornBtn","stateNum":1,"skin":"main/btn_huang.png","height":100},"compId":7,"child":[{"type":"Label","props":{"y":20,"x":40,"text":"免费复活","fontSize":40,"color":"#ffffff","bold":true},"compId":8}]},{"type":"Button","props":{"y":0,"x":632,"var":"closeBtn","stateNum":1,"skin":"main/btn_guanbi.png","label":"label"},"compId":11}]}],"loadList":["main/btn_huang.png","main/btn_guanbi.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(ReborthUI.uiView);
+        }
+    }
+    REG("ui.test.ReborthUI",ReborthUI);
     export class RockerViewUI extends View {
 		public sp:Laya.Sprite;
 		public dir:Laya.Box;

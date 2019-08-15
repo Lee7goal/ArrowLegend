@@ -24,7 +24,6 @@ import SysLevel from "../../sys/SysLevel";
 
     updateCoins():void
     {
-        Game.coinsNum++;
         this.jinbishu.value = "" + Game.coinsNum;
     }
 

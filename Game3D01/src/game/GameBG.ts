@@ -293,6 +293,8 @@ export default class GameBG extends Laya.Sprite {
                         }
                     }
 
+                    this.npcId = 1001;
+
                     if(this.npcId > 0)
                     {
                         let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);

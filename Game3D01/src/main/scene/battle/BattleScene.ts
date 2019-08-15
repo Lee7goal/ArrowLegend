@@ -26,10 +26,12 @@ import CustomShaderff00 from "../../../shader/CustomShaderff00";
 import SelectNewSkill from "./SelectNewSkill";
 import SysSkill from "../../sys/SysSkill";
 import Session from "../../Session";
+import RebornView from "./gameOver/RebornView";
 export default class BattleScene extends Laya.Sprite {
 
-    private _top:TopUI;
-    private _gameOver:GameOverView;
+    private _top: TopUI;
+    private _gameOver: GameOverView;
+    private _rebornView: RebornView;
     constructor() {
         super();
         var bg: GameBG = new GameBG();
@@ -66,24 +68,23 @@ export default class BattleScene extends Laya.Sprite {
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
         directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
 
-        bg.on(Game.Event_NPC,this,this.showNpcView);
+        bg.on(Game.Event_NPC, this, this.showNpcView);
 
         this._top = new TopUI();
         this.addChild(this._top);
         this._top.updateCoins();
         this._top.updateExp();
-        
-        this._top.zanting.clickHandler = new Laya.Handler(this,this.showPause);
 
-        Laya.stage.on(Game.Event_SELECT_NEWSKILL,this,this.onShowSelect);
-        Laya.stage.on(Game.Event_MAIN_DIE,this,this.showDieView);
+        this._top.zanting.clickHandler = new Laya.Handler(this, this.showPause);
+
+        Laya.stage.on(Game.Event_SELECT_NEWSKILL, this, this.onShowSelect);
+        Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
     }
 
-    private _selectSkill:SelectNewSkill;
-    private onShowSelect(lv:number):void
-    {
-        if(!this._selectSkill)
-        {
+    private _selectSkill: SelectNewSkill;
+    private onShowSelect(lv: number): void  {
+        this.up(null);
+        if (!this._selectSkill)  {
             this._selectSkill = new SelectNewSkill();
         }
         this.addChild(this._selectSkill);
@@ -91,21 +92,35 @@ export default class BattleScene extends Laya.Sprite {
         Game.state = 1;
     }
 
-    private showDieView():void
-    {
-        if(!this._gameOver)
-        {
+    private onOver(): void  {
+        if (!this._gameOver)  {
             this._gameOver = new GameOverView();
         }
         this.addChild(this._gameOver);
         Game.state = 1;
     }
 
-    private _pauseUI:PauseUI;
-    private showPause():void
-    {
-        if(!this._pauseUI)
-        {
+    private onReborn(): void  {
+        if (!this._rebornView)  {
+            this._rebornView = new RebornView();
+        }
+        this.addChild(this._rebornView);
+        Game.state = 1;
+        Game.isReborned = true;
+    }
+
+    private showDieView1(): void  {
+        if (Game.isReborned)  {
+            this.onOver();
+        }
+        else {
+            this.onReborn();
+        }
+    }
+
+    private _pauseUI: PauseUI;
+    private showPause(): void  {
+        if (!this._pauseUI)  {
             this._pauseUI = new PauseUI();
         }
         this.addChild(this._pauseUI);
@@ -113,15 +128,12 @@ export default class BattleScene extends Laya.Sprite {
         Game.state = 1;
     }
 
-    private npcView:Laya.View;
-    private showNpcView():void
-    {
-        let npcId:number = Game.bg.npcId;
-        if(npcId > 0)
-        {
+    private npcView: Laya.View;
+    private showNpcView(): void  {
+        let npcId: number = Game.bg.npcId;
+        if (npcId > 0)  {
             let NPCVIEW = Laya.ClassUtils.getClass("NPCVIEW" + npcId);
-            if(NPCVIEW)
-            {
+            if (NPCVIEW)  {
                 this.npcView = new NPCVIEW();
                 this.addChild(this.npcView);
             }
@@ -183,15 +195,14 @@ export default class BattleScene extends Laya.Sprite {
                     }
                     else if (GridType.isMonster(type)) {
                         // if (!monster) {
-                            if(Game.battleLoader.monsterId > 0)
-                            {
-                                type = Game.battleLoader.monsterId;
-                            }
-                            monster = Monster.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
-                            monster.splitTimes = 1;
-                            if (!isHasBoss) {
-                                isHasBoss = monster.sysEnemy.isBoss == 1;
-                            }
+                        if (Game.battleLoader.monsterId > 0)  {
+                            type = Game.battleLoader.monsterId;
+                        }
+                        monster = Monster.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
+                        monster.splitTimes = 1;
+                        if (!isHasBoss) {
+                            isHasBoss = monster.sysEnemy.isBoss == 1;
+                        }
                         // }
                     }
                 }
@@ -231,13 +242,11 @@ export default class BattleScene extends Laya.Sprite {
         Laya.MouseManager.multiTouchEnabled = false;
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
 
-        Laya.stage.on(Laya.Event.KEY_PRESS,this,this.onOpenDoor);
+        Laya.stage.on(Laya.Event.KEY_PRESS, this, this.onOpenDoor);
     }
 
-    private onOpenDoor(e:Laya.Event):void
-    {
-        if(e.nativeEvent.keyCode == 111)
-        {
+    private onOpenDoor(e: Laya.Event): void  {
+        if (e.nativeEvent.keyCode == 111)  {
             Game.openDoor();
         }
     }
@@ -253,8 +262,7 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     md(eve: MouseEvent): void {
-        if(Game.state > 0)
-        {
+        if (Game.state > 0)  {
             return;
         }
 
@@ -293,8 +301,7 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     moves(): void {
-        if(Game.state > 0)
-        {
+        if (Game.state > 0)  {
             return;
         }
         let xx: number = Laya.stage.mouseX;

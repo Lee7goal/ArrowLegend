@@ -17,6 +17,7 @@ import MonsterBoomEffect from "../effect/MonsterBoomEffect";
 import ArcherAI from "../ai/ArcherAI";
 import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
+import BaseAI from "../ai/BaseAi";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
@@ -65,10 +66,9 @@ export default class Monster extends GamePro {
     }
 
     public hurt(hurt: number, isCrit: boolean): void {
-        // hurt = 1;
         super.hurt(hurt, isCrit);
         HitEffect.addEffect(this);
-        MonsterBoomEffect.addEffect(this);
+        MonsterBoomEffect.addEffect(this);//这里卡
     }
 
     die(): void {
@@ -114,13 +114,14 @@ export default class Monster extends GamePro {
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
         console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
+        sysEnemy.dropExp = 4;
         var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         Game.monsterResClones.push(sp);
 
         let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {
             //console.log(sysEnemy.enemymode ,"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
-            MonsterShader.map[sysEnemy.enemymode] = new MonsterShader(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+             MonsterShader.map[sysEnemy.enemymode] = new MonsterShader(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         }
 
         if (!hp) {
@@ -157,7 +158,7 @@ export default class Monster extends GamePro {
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
         //Game.map0.addChild(gpro.sp2d);
-        Game.layer3d.addChild(sp);
+        
         gpro.setShadowSize(sysEnemy.zoomShadow);
 
         gpro.setXY2DBox(xx, yy);
@@ -170,7 +171,17 @@ export default class Monster extends GamePro {
         }
         gpro.setGameAi(new MonAI(gpro));
         // gpro.setGameAi(new ArcherAI(gpro));
-        gpro.startAi();
+        
+        // let gp:GamePro = new GamePro(0,0);
+        // gpro.getGameAi().hit(gp);
+        // gpro._bulletShadow.visible = false;
+        // gpro.bloodUI.visible = false;
+        // setTimeout(() => {
+            gpro.startAi();
+            Game.layer3d.addChild(sp);
+        //     gpro._bulletShadow.visible = true;
+        //     gpro.bloodUI.visible = true;
+        // }, 1100);
         return gpro;
     }
 }

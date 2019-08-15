@@ -2,6 +2,8 @@ import BitmapNumber from "../../core/display/BitmapNumber";
 import App from "../../core/App";
 import GameBG from "../GameBG";
 import Blood from "../Blood";
+import ShakeUtils from "../../core/utils/ShakeUtils";
+import Game from "../Game";
 
 export default class BloodEffect{
     
@@ -12,7 +14,7 @@ export default class BloodEffect{
         let bitNum:BitmapNumber = App.getFontClip(0.1);
         if(isCrit)
         {
-            bitNum.filters = [new Laya.GlowFilter("#ff0000")];
+            ShakeUtils.execute(Game.scenneM.battle, 75, 4);
         }
         bitNum.value = "-" + value;
         let xx:number = -GameBG.ww * 0.5;

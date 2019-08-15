@@ -25,7 +25,7 @@ export default class Session{
 
     static parseData(str:string):void
     {
-        if(str != "")
+        if(str != "" && str != "0" )
         {
             Session.gameData = JSON.parse(str);
             Session.homeData.totalEnergy = Session.gameData.totalEnergy;

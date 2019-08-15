@@ -9,7 +9,7 @@ import HomeData from "../../../game/data/HomeData";
 import Session from "../../Session";
 import SenderHttp from "../../../net/SenderHttp";
     export default class MainUI extends ui.test.mainUIUI {
-        static TOTAL_TIME:number = 10;
+        static TOTAL_TIME:number = 12 * 60;
         static MAX_ENERGY:number = 20;
 
         private bottomUI:BottomUI;
