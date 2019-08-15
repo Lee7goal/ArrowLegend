@@ -17,6 +17,6 @@ export default class App{
 
     static getFontClip(tScale:number = 1,skin?:string,sheet?:string):BitmapNumber
     {
-        return new BitmapNumber(skin ? skin : "main/clipshuzi.png",sheet ? sheet : "1234 5678 90-+",tScale ? tScale : 1)
+        return new BitmapNumber(skin ? skin : "main/clipshuzi.png",sheet ? sheet : "123456 7890-+ /:cdef",tScale ? tScale : 1)
     }
 }

@@ -65,39 +65,43 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908151500/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908151856/";
+			Laya.MiniAdpter.nativefiles = ["loading/fei.jpg"];
 		}
 		
-
-		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
-		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onConfigLoaded), Laya.ResourceVersion.FILENAME_VERSION);
+		this._initView = new ui.test.initViewUI();
+		Laya.stage.addChild(this._initView);
+		this._initView.initTxt.text = "0%";
+		Laya.loader.load(["h5/config.json","loading/fei.jpg"],new Laya.Handler(this,this.onInitCom),new Laya.Handler(this,this.onInitProgress));
 	}
 
-	onVersionLoaded(): void {
-		//激活大小图映射，加载小图的时候，如果发现小图在大图合集里面，则优先加载大图合集，而不是小图
-		// Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
-		// new GameMain();
+	private _initView:ui.test.initViewUI;
+
+	private onInitProgress(value:number):void
+	{
+		value = value * 100;
+		this._initView.initTxt.text = "" + value.toFixed(0) + "%";
 	}
 
-	onConfigLoaded(): void {
-		this.loading = new ui.test.LoadingUI();
-		Laya.stage.addChild(this.loading);
-		this.loading.txt.text = "0%";
-		// new GameMain();
-		Laya.loader.load(["h5/config.json","res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler),new Laya.Handler(this,this.onProgress));
-	}
+	private onInitCom():void
+	{
+		this.regClass();
 
+		this._initView.removeSelf();
 
-
-	private loading:ui.test.LoadingUI;
-	private onHandler():void{
 		let config = Laya.loader.getRes("h5/config.json");
 		console.log("config---",config);
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
 
-		this.regClass();
+		this.loading = new ui.test.LoadingUI();
+		Laya.stage.addChild(this.loading);
+		this.loading.txt.text = "0%";
+		Laya.loader.load(["res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler),new Laya.Handler(this,this.onProgress));
+	}
 
+	private loading:ui.test.LoadingUI;
+	private onHandler():void{
 		let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
 		new BP().checkUpdate();
 
@@ -112,7 +116,7 @@ class Main {
 	
     private onReceive(data):void
     {
-		new GameMain();Laya.Shader3D
+		new GameMain();
 		this.loading.removeSelf();
     }
 

@@ -83,6 +83,10 @@ export default class BattleScene extends Laya.Sprite {
 
     private _selectSkill: SelectNewSkill;
     private onShowSelect(lv: number): void  {
+        if(lv > 10)
+        {
+            return;
+        }
         this.up(null);
         if (!this._selectSkill)  {
             this._selectSkill = new SelectNewSkill();

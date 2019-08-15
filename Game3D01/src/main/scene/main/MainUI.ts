@@ -85,8 +85,7 @@ import SenderHttp from "../../../net/SenderHttp";
         /**更新精力*/
         private updateEnergy():void
         {
-            this.curClip.value = "" + this.homeData.curEnergy;
-            this.maxClip.value = "" + this.homeData.maxEngergy;
+            this.tiliClip.value = this.homeData.curEnergy + "/" + this.homeData.maxEngergy;
             let value:number = this.homeData.curEnergy / this.homeData.maxEngergy;
             value = Math.max(0.1,value);
 

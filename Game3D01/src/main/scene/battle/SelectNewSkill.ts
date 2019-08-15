@@ -47,15 +47,10 @@ import SysNpc from "../../sys/SysNpc";
     {
         this.baioti.text = "本次冒险升到了" + Game.hero.playerData.level + "级";
 
-        let sys:SysNpc = App.tableManager.getDataByNameAndId(SysNpc.NAME,1004);
-        let ary:string[] = sys.skillRandom.split(",");
         for(let i = 0; i < 3; i++)
         {
             let selector = this.grids[i];
-            let rand = Math.floor(Math.random() * ary.length);
-            selector.setResult(Number(ary[rand]));
-            ary.splice(rand,1);
-
+            selector.setResult(Game.skillManager.getRandomSkillByNpcId(1004));
             setTimeout(() => {
                 selector.play();
             }, i * 250);

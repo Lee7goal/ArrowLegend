@@ -9,7 +9,7 @@ export default class TestPlatform extends BasePlatform{
 
     login(callback):void
     {
-        callback && callback("fdadfafda");
+        callback && callback("opwtfdsaffdasfdasfdsfffdsrd");
     }
 
     onShare(callback):void

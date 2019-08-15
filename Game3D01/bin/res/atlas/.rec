@@ -1,9 +1,4 @@
 D .
-R B9019BE6 jingyantiaodi.png
-R 82BC20A jingyantiaoshang.png
-R 39B957DA texture.png
-D battlestop
-P CA035B50 lvkuang.png
 D bg
 P 9A207A73 501.png
 P 6DE11A04 502.png
@@ -62,16 +57,16 @@ P CAC1414F zhuan_qianyi.png
 P 8BE62C21 zhuan_xixue.png
 P 2621BE0E zhuanpan.png
 P 13E68A98 zhuanpan2.png
+D icons
 D jiesuan
 P 2984BF02 baifen.png
 P B23FFB41 heipai.png
 P 568871FC lanbu.png
-R 4FDD97C8 shanglian.png
+P 4FDD97C8 shanglian.png
 P B5CEC959 xianglian.png
 P 0611C8BB youtiao.png
 P 78C46E2D zhanlipin.png
 P 66C30337 zuotiao.png
-R 2B9D8491 箭结算.jpg
 D loading
 R F00D59C9 fei.jpg
 D main
@@ -92,19 +87,21 @@ P FD2396C8 btn_huang.png
 P 9744F290 btn_lan.png
 P 110F91D5 btn_lv.png
 P 3086A902 btn_xin.png
-P 1113F29B clipshuzi.png
+P 533E8A4A clipshuzi.png
 P 248C5986 dabiao.png
 P C3C6DE3B dazhao.png
 P 6E600239 diban.png
-R 7781CAC0 erdao.png
-R BC23220B guang1.png
-R DDF4E1DD guang2.png
+P 7781CAC0 erdao.png
+P BC23220B guang1.png
+P DDF4E1DD guang2.png
 P F211986B guangdian.png
 P 375AA97B haibo.png
-R 6773E926 jiandi.jpg
+P 6773E926 jiandi.jpg
 P 5B32D6B6 jinbijia.png
 P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
+P B9019BE6 jingyantiaodi.png
+P 082BC20A jingyantiaoshang.png
 P 937BCEA4 jujue.png
 P BD24BD02 JY1.png
 P 14B830A4 JY2.png
@@ -130,13 +127,13 @@ P 204792AB SS2.png
 P 5F05E166 SS3.png
 P BFA5A81B SStian.png
 P FB648920 suo.png
-R 12032A58 tiandi.jpg
+P 12032A58 tiandi.jpg
 P 1143AE08 tianfu.png
 P EB6FAE7B toujian.png
 P 55BD7B17 wenhao.png
 P 5166B8D7 xiaobiao.png
-R 5A7DAF7D yidao.png
-R 218DADB9 zhudi.jpg
+P 5A7DAF7D yidao.png
+P 218DADB9 zhudi.jpg
 P 5C4CEC9C zuanshijia.png
 D map_1
 P 48FD5DFF 10.png
@@ -172,10 +169,10 @@ P AA12C123 907.png
 P 9AE7E372 908.png
 P B42896EB 909.png
 P 8DF563AC border.png
-R FB9C419A bosstou.png
-R 2AC8AA19 bottom.png
+P FB9C419A bosstou.png
+P 2AC8AA19 bottom.png
 P F03F8DE3 shitouying.png
-R EE4C6FFD top.png
+P EE4C6FFD top.png
 D map_2
 P 640C6CFC 10.png
 P BB1C45F7 100.png
@@ -207,10 +204,10 @@ P A5380236 907.png
 P C3CCA0EC 908.png
 P A122F0CE 909.png
 P F0C8A06C border.png
-R 005ADE87 bosstou.png
-R ED2CAE1F bottom.png
+P 005ADE87 bosstou.png
+P ED2CAE1F bottom.png
 P 5E816280 shitouying.png
-R DE130FDD top.png
+P DE130FDD top.png
 D map_3
 P 852D900F 10.png
 P D81BF945 100.png
@@ -234,11 +231,51 @@ P A6F1F085 404.png
 P C6D31CA6 500.png
 P 346C251D 804.png
 P B8E82614 border.png
-R B713B4F5 bosstou.png
-R 4FB661B7 bottom.png
+P B713B4F5 bosstou.png
+P 4FB661B7 bottom.png
 P 41DF23DB shitouying.png
-R 9D89FA1A top.png
+P 9D89FA1A top.png
 D zhaohuan
 P 1285490D guangzhu.png
 P 998DC129 yuandi.png
 P 25900889 yun.png
+D icons/skill
+P 988BC719 1001.jpg
+P ACFFE349 1002.jpg
+P A56D5D08 1003.jpg
+P AF53E6D9 1004.jpg
+P 8DB8EFD4 1005.jpg
+P 3890DCAE 1006.jpg
+P 525C0001 1007.jpg
+P E5B8CC73 1008.jpg
+P 680D197D 1009.jpg
+P 3B5D530B 2001.jpg
+P 1F267F73 2002.jpg
+P BA0B9793 2003.jpg
+P 720AA4F1 2004.jpg
+P 9F706B5F 2005.jpg
+P 9B0AE0D8 2006.jpg
+P 82060995 2007.jpg
+P C9275338 2008.jpg
+P F6ED9311 3001.jpg
+P 7F3A6030 3002.jpg
+P F824FC77 3003.jpg
+P A8F29EA8 3004.jpg
+P A8F29EA8 3005.jpg
+P 6C1CA883 3006.jpg
+P 3BAFD442 3007.jpg
+P 6D818391 3008.jpg
+P 50E60A1E 4001.jpg
+P F4CEAEBB 4002.jpg
+P 1D53DC53 4003.jpg
+P 622528E2 4004.jpg
+P AF3EB6EE 4005.jpg
+P E1A75B4C 5001.jpg
+P FE86D03B 5002.jpg
+P DE450E0B 5003.jpg
+P E6D3D3C1 5004.jpg
+P 04530E04 5005.jpg
+P 7A7F781C 5006.jpg
+P 0FD026D7 5007.jpg
+P CDF63F19 5008.jpg
+P 8063B022 5009.jpg

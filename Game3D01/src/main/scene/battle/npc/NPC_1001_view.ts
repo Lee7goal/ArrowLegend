@@ -13,8 +13,6 @@ import SysBuff from "../../../sys/SysBuff";
 
     constructor() { 
         super(); 
-        this.on(Laya.Event.CLICK,this,this.onClick);
-
         this.selector = new SkillSelector([1001,1002,2001,2003,2006,3001,3002,3005,4001]);
         this.selector.clickHandler = new Laya.Handler(this,this.onClick);
         this.box1.addChild(this.selector);
@@ -29,9 +27,8 @@ import SysBuff from "../../../sys/SysBuff";
     private onDis():void
     {
         let sysNpc:SysNpc = App.tableManager.getDataByNameAndId(SysNpc.NAME,1001);
-        let randAry:string[] = sysNpc.skillRandom.split(",");
-        let rand:number = Math.floor(randAry.length * Math.random());
-        this.selector.setResult(Number(randAry[rand]));
+        this.selector.setResult(Game.skillManager.getRandomSkillByNpcId(1001));
+        
         setTimeout(() => {
             this.selector.play();
         }, 50);
@@ -42,18 +39,33 @@ import SysBuff from "../../../sys/SysBuff";
     private onClick2(e:Laya.Event):void
     {
         let grid:SkillGrid = e.currentTarget as SkillGrid;
-        Game.skillManager.addSkill(grid.sys);
+
+        if(grid.sys.id == 4002 || grid.sys.id == 4003 || grid.sys.id == 4004)//加血的
+        {
+            let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, grid.sys.skillEffect1);
+            let changeValue:number = grid.sys.id == 4003 ? buff4002.hpLimit : buff4002.addHp;
+            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * changeValue / 1000));
+        }
+        else
+        {
+            Game.skillManager.addSkill(grid.sys);
+        }
         Game.bg.clearNpc();
         this.removeSelf();
     }
 
-    private onClick(e:Laya.Event):void
+    private onClick(sys:SysSkill):void
     {
-        let grid:SkillGrid = e.target as SkillGrid;
-        let sys:SysSkill = grid.sys;
-        let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
-        let changeValue:number = sys.id == 4003 ? buff4002.hpLimit : buff4002.addHp;
-        Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * changeValue / 1000));
+        if(sys.id == 4002 || sys.id == 4003 || sys.id == 4004)//加血的
+        {
+            let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
+            let changeValue:number = sys.id == 4003 ? buff4002.hpLimit : buff4002.addHp;
+            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * changeValue / 1000));
+        }
+        else
+        {
+            Game.skillManager.addSkill(sys);
+        }
 
         Game.bg.clearNpc();
         this.removeSelf();

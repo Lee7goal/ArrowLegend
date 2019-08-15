@@ -14,6 +14,7 @@ import SysNpc from "./sys/SysNpc";
 export default class GameMain {
     constructor() {
         ZipLoader.load("h5/tables.zip", new Laya.Handler(this, this.zipFun));
+        Laya.loader.load(["res/atlas/icons/skill.atlas"],new Laya.Handler(this,this.onCom));
     }
 
     private zipFun(arr: any[]): void {
@@ -22,6 +23,11 @@ export default class GameMain {
         Laya.stage.addChild(App.layerManager);
         Game.scenneM.showMain();
         new BloodEffect();
+    }
+
+    private onCom():void
+    {
+        console.log("技能图标加载完毕");
     }
 
     private initTable(arr: any[]): void {

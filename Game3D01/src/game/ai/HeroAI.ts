@@ -48,7 +48,7 @@ export default class HeroAI extends GameAI {
             let wudiBuff: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, wudiSkill.skillEffect1);
             if(wudiBuff)
             {
-                if (this.wudiTime > Game.executor.getWorldNow())  {
+                if (this.wudiTime < Game.executor.getWorldNow())  {
                     console.log("无敌时间");
                     return;
                 }
@@ -214,7 +214,18 @@ export default class HeroAI extends GameAI {
             {   
                 if (now > this.wudiCD)  {
                     this.wudiCD = now + wudiBuff.buffCD;
-                    this.wudiTime = now + wudiBuff.buffDot;
+                    if(now > this.wudiTime)
+                    {
+                        this.wudiTime = now + wudiBuff.buffDot;
+                    }
+                }
+                if(now < this.wudiTime)
+                {
+                    Game.hero.setWudi(true);
+                }
+                else
+                {
+                    Game.hero.setWudi(false);
                 }
             }
         }

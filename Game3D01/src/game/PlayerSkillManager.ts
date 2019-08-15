@@ -3,6 +3,7 @@ import SysSkill from "../main/sys/SysSkill";
 import Game from "./Game";
 import SysBuff from "../main/sys/SysBuff";
 import App from "../core/App";
+import SysNpc from "../main/sys/SysNpc";
 
 export default class PlayerSkillManager {
     /**已经获得技能 */
@@ -27,7 +28,6 @@ export default class PlayerSkillManager {
 
         this.addAttack();
         this.addAttackSpeed();
-        this.addHp();
     }
 
     addAttack(): number  {
@@ -85,10 +85,6 @@ export default class PlayerSkillManager {
         return Game.hero.playerData.attackSpeed;
     }
 
-    addHp(): void  {
-
-    }
-
     isHas(id: number): SysSkill  {
         for (let i = 0; i < this.skillList.length; i++)  {
             if (this.skillList[i].id == id)  {
@@ -109,5 +105,31 @@ export default class PlayerSkillManager {
                 this.skillList.splice(index,1);
             }
         }
+    }
+
+
+    getRandomSkillByNpcId(npcId:number):number
+    {
+        let sysNpc:SysNpc = App.tableManager.getDataByNameAndId(SysNpc.NAME,npcId);
+        let ary:string[] = sysNpc.skillRandom.split(",");
+
+        
+        for(let i = 0; i < this.skillList.length; i++)
+        {
+            let sys: SysSkill = this.skillList[i];
+            if (sys)  {
+                if (sys.curTimes >= sys.upperLimit)  {
+                    let flag:number = ary.indexOf(sys.id + "");
+                    if(flag != -1)
+                    {
+                        ary.splice(flag,1);
+                    }
+                }
+            }
+        }
+        
+        let rand = Math.floor(Math.random() * ary.length);
+
+        return Number(ary[rand]);
     }
 }

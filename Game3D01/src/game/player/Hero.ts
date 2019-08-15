@@ -10,6 +10,7 @@ import PlayerData from "../data/PlayerData";
 import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
+import WudiRotateScript from "../controllerScript/WudiRotateScript";
 
 export default class Hero extends GamePro {
     public playerData: PlayerData = new PlayerData();
@@ -34,6 +35,32 @@ export default class Hero extends GamePro {
 
     public reset(): void {
         this.gamedata.hp = this.gamedata.maxhp = 600;
+        this.playerData.exp = 0;
+    }
+
+    private wudi:Laya.Sprite3D;
+    private isWudi:boolean = false;
+    setWudi(bool:boolean):void
+    {
+        if(this.isWudi == bool)
+        {
+            return;
+        }
+        this.isWudi = bool;
+        if(bool)
+        {
+            if(!this.wudi)
+            {
+                this.wudi = Laya.loader.getRes("h5/effects/wudi/monster.lh");
+                this.wudi.transform.localPositionY = -0.5;
+                this.wudi.addComponent(WudiRotateScript);
+            }
+            this.sp3d.addChild(this.wudi);
+        }
+        else
+        {
+            this.wudi && this.wudi.removeSelf();
+        }
     }
 
     init(): void {
