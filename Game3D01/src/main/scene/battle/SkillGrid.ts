@@ -12,7 +12,6 @@ export default class SkillGrid extends ui.test.SkillGridUI {
 
     update(skillId:number):void
     {
-        console.log("技能----------",skillId);
         this.sys = App.tableManager.getDataByNameAndId(SysSkill.NAME,skillId);
         this.txt.text = this.sys.skillName;
         let t:Laya.Texture = Laya.loader.getRes('icons/skill/' + this.sys.id + ".jpg");

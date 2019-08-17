@@ -100,6 +100,11 @@ export class SkillSelector extends Laya.Box
         this._content.y = 0;
     }
 
+    getCurSys():SysSkill
+    {
+        return this.gridList[8].sys;
+    }
+
     play():void
     {
         Laya.Tween.to(this._content,{y: -8 * 190},500,Laya.Ease.circOut,null);

@@ -269,7 +269,7 @@ export default class GameMap0 extends Laya.Sprite {
                     Game.battleLoader.load();
                     return true;
                 }
-                if(ehb == Game.map0.npcHitBox && ehb.hit(ehb, fb))
+                if(ehb == Game.map0.npcHitBox && ehb.hit(ehb, fb) && Game.bg._npcAni)
                 {
                     this._isNpc = true;
                     console.log("碰到npc了");

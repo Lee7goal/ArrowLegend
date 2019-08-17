@@ -44,6 +44,12 @@ export default class StoneAI extends FlowerAI {
         }
         //super.exeAI(pro);
         this.setShader();
+
+        if(this.pro.isIce)
+        {
+            return;
+        }
+        
         this.now = Game.executor.getWorldNow(); 
         if(this.now >= this.nextTime){
             this.onExe2(this.now);

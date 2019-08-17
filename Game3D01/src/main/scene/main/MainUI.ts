@@ -12,6 +12,8 @@ import SenderHttp from "../../../net/SenderHttp";
         static TOTAL_TIME:number = 12 * 60;
         static MAX_ENERGY:number = 20;
 
+        static xiaohao:number = 2;
+
         private bottomUI:BottomUI;
 
         private _remainingTime:number = 0;
@@ -56,14 +58,14 @@ import SenderHttp from "../../../net/SenderHttp";
         /**扣除体力 */
         appEnergy():void
         {
-            if(this.homeData.curEnergy < 5)
+            if(this.homeData.curEnergy < MainUI.xiaohao)
             {
                 FlyUpTips.setTips("体力不足！");
                 return;
             }
-            this.homeData.curEnergy -= 5;
+            this.homeData.curEnergy -= MainUI.xiaohao;
             this.appEnergyClip.visible = true;
-            this.appEnergyClip.value = "-" + 5;
+            this.appEnergyClip.value = "-" + MainUI.xiaohao;
             Laya.Tween.to(this.appEnergyClip,{y: 100},300,null,new Laya.Handler(this,this.onStart));
         }
 

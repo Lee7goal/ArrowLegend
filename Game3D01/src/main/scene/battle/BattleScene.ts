@@ -72,6 +72,7 @@ export default class BattleScene extends Laya.Sprite {
 
         this._top = new TopUI();
         this.addChild(this._top);
+        this._top.y = 86;
         this._top.updateCoins();
         this._top.updateExp();
 
@@ -79,6 +80,20 @@ export default class BattleScene extends Laya.Sprite {
 
         Laya.stage.on(Game.Event_SELECT_NEWSKILL, this, this.onShowSelect);
         Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
+
+        this.on(Laya.Event.UNDISPLAY,this,this.unDis);
+    }
+
+    private unDis():void
+    {
+        Game.map0.Eharr.length = 0;
+        for(let i = 0; i < Game.AiArr.length;i++)
+        {
+            if(Game.AiArr[i] != Game.hero)
+            {
+                Game.AiArr[i].stopAi();
+            }
+        }
     }
 
     private _selectSkill: SelectNewSkill;
@@ -235,7 +250,7 @@ export default class BattleScene extends Laya.Sprite {
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5007));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5008));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5009));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,2003));
 
         // (<HeroAI>Game.hero.getGameAi()).run = false;
         Game.hero.init();

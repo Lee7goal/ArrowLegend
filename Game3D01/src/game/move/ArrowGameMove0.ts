@@ -185,6 +185,12 @@ export default class ArrowGameMove0 extends GameMove {
             //     return true;
             // }
             pro.fcount--;
+
+            if(pro.fantanSkill)//反弹
+            {
+                pro.hurtValue = Math.floor(pro.hurtValue * pro.fantanSkill.damagePercent / 100);
+            }
+
             this.fv = l;
             if (pro.fcount <= 0) {
                 pro.die();
@@ -218,6 +224,15 @@ export default class ArrowGameMove0 extends GameMove {
             pro.hit_blacklist.push(enemy);
 
             this.ii--;
+
+            if(pro.tansheSkill)//弹射
+            {
+                pro.hurtValue = Math.floor(pro.hurtValue * pro.tansheSkill.damagePercent / 100);
+            }
+            else if(pro.chuantouSkill)//穿透
+            {
+                pro.hurtValue = Math.floor(pro.hurtValue * pro.chuantouSkill.damagePercent / 100)
+            }
             let arr = Game.map0.Eharr;
             for (let i = 0; i < arr.length; i++) {
                 let e = arr[i];

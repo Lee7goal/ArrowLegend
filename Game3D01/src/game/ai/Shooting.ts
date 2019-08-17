@@ -6,6 +6,8 @@ import { GameAI } from "./GameAI";
 import HeroArrowMove0 from "../move/HeroArrowMove0";
 import HeroBullet from "../player/HeroBullet";
 import HeroArrowAI from "./HeroArrowAI";
+import SysSkill from "../../main/sys/SysSkill";
+import App from "../../core/App";
 
 /**射击器*/
 export default class Shooting {
@@ -25,21 +27,13 @@ export default class Shooting {
     public short_arrow(speed_: number, r_: number, pro: GamePro,attackPower:number,bulletId:number = 20000):HeroBullet {
         let bo:HeroBullet = HeroBullet.getBullet(bulletId);
 
-        if(bo.tansheSkill)//弹射
+        for(let i = 0; i < bo.buffAry.length; i++)
         {
-            attackPower = Math.floor(attackPower * bo.tansheSkill.damagePercent / 100);
-        }
-        else if(bo.chuantouSkill)//穿透
-        {
-            attackPower = Math.floor(attackPower * bo.chuantouSkill.damagePercent / 100)
+            let sys:SysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME,bo.buffAry[i]);
+            attackPower = attackPower * sys.damagePercent / 100;
         }
 
-        if(bo.fantanSkill)//反弹的
-        {
-            attackPower = Math.floor(attackPower * bo.fantanSkill.damagePercent / 100)
-        }
-
-        bo.hurtValue = Math.ceil(attackPower);
+        bo.hurtValue = Math.floor(attackPower);
         // var bo = new HeroBullet();
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);

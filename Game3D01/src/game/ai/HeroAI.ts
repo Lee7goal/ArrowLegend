@@ -14,6 +14,7 @@ import SysSkill from "../../main/sys/SysSkill";
 import GameInfrared from "../GameInfrared";
 import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
+import WudiBuff from "../skill/player/WudiBuff";
 
 export default class HeroAI extends GameAI {
 
@@ -23,10 +24,13 @@ export default class HeroAI extends GameAI {
 
     private line: MaoLineData;
 
-    //private gi:GameInfrared;
+    private wudiBuff:WudiBuff;
 
-    private wudiCD: number = 0;//无敌cd
-    private wudiTime: number = 0;//无敌时间
+    constructor()
+    {
+        super();
+        this.wudiBuff = new WudiBuff();
+    }
 
     public set run(b: boolean) {
         if (this.run_ != b) {
@@ -42,17 +46,9 @@ export default class HeroAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        let wudiSkill:SysSkill = Game.skillManager.isHas(5009);//无敌星星
-        if(wudiSkill)
+        if(Game.hero.isWudi)
         {
-            let wudiBuff: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, wudiSkill.skillEffect1);
-            if(wudiBuff)
-            {
-                if (this.wudiTime < Game.executor.getWorldNow())  {
-                    console.log("无敌时间");
-                    return;
-                }
-            }
+            return;
         }
 
         if (Game.hero.gamedata.hp > 0) {
@@ -206,29 +202,14 @@ export default class HeroAI extends GameAI {
         //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
 
-        let wudiSkill:SysSkill = Game.skillManager.isHas(5009);//无敌星星
-        if(wudiSkill)
+        if(Game.hero.isIce)
         {
-            let wudiBuff: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, wudiSkill.skillEffect1);
-            if(wudiBuff)
-            {   
-                if (now > this.wudiCD)  {
-                    this.wudiCD = now + wudiBuff.buffCD;
-                    if(now > this.wudiTime)
-                    {
-                        this.wudiTime = now + wudiBuff.buffDot;
-                    }
-                }
-                if(now < this.wudiTime)
-                {
-                    Game.hero.setWudi(true);
-                }
-                else
-                {
-                    Game.hero.setWudi(false);
-                }
-            }
+            return;
         }
+
+        //无敌星星
+        this.wudiBuff.exe(now);
+        
         
         // this.rotateBullet();
         //地刺

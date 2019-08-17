@@ -174,7 +174,7 @@ export default class GameBG extends Laya.Sprite {
     /**电锯信息 */
     private _sawInfo:any = {};
     private _sawInfoZong:any = {};
-    private _npcAni:Laya.View;
+    public _npcAni:Laya.View;
 
     public npcId:number = 0;
 
@@ -183,7 +183,7 @@ export default class GameBG extends Laya.Sprite {
         GameBG.gameBG = this;
         this.mySp = new Sprite();
         this.mySp.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, 0x00ff00);
-        this.doorNumber = App.getFontClip(0.5);
+        this.doorNumber = App.getFontClip(0.3);
     }
 
     public setZhuan(box: Laya.MeshSprite3D): any {
@@ -208,6 +208,7 @@ export default class GameBG extends Laya.Sprite {
         this._npcAni = null;
     }
 
+    private npcP:Laya.Point = new Laya.Point();
     public drawR(hasBoss:boolean = false): void {
         var img: Image;
         var ww: number = GameBG.ww;
@@ -276,31 +277,14 @@ export default class GameBG extends Laya.Sprite {
                 }
                 else if(GridType.isNpc(gType))
                 {
-                    if(gType == 1001)
-                    {
-                        //天使
-                        this.npcId = gType;
-                    }
-                    else if(gType == 1000)
-                    {
-                        //判断出哪个
-                        if(Math.random() >= 0.5)
-                        {
-                            this.npcId = 1002;
-                        }
-                        else{
-                            this.npcId = 1003;
-                        }
-                    }
-
-                    this.npcId = 1001;
-
-                    if(this.npcId > 0)
+                    this.npcId = gType;
+                    if(this.npcId == 1001)
                     {
                         let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
                         this._npcAni = new NPC();
-                        this._npcAni.pos(img.x + GameBG.ww2,img.y);
                     }
+                    this.npcP.x = img.x + GameBG.ww2;
+                    this.npcP.y = img.y;
                 }
                 img.addChild(grid);
                 k++;
@@ -432,16 +416,53 @@ export default class GameBG extends Laya.Sprite {
         // redLine.x = GameBG.ww * 5;
         // redLine.y = GameBG.ww * 18;
         // redLine.height = 500;
+        this.showNpc();
+    }
+
+    private showNpc():void
+    {
         if(this._npcAni)
         {
             Game.topLayer.addChild(this._npcAni);
+            this._npcAni.pos(this.npcP.x,this.npcP.y - 800);
+
+            Laya.Tween.to(this._npcAni,{y:this.npcP.y},300,Laya.Ease.circIn);
+        }
+    }
+
+    /**检测出现哪个npc  恶魔和胡子 */
+    checkNpc():void
+    {
+        if(this.npcId == 1000)
+        {
+            this.npcId = 0;
+            let lossRate:number = Game.hero.lossBlood();
+            if(lossRate <= 0)
+            {
+                this.npcId = 1002;//恶魔
+            }
+            else if(lossRate <= 0.1)
+            {
+                this.npcId = 1002;//恶魔
+            }
+            else
+            {
+                // this.npcId = 1003;//胡子
+            }
+        }
+
+        if(this.npcId > 0)
+        {
+            let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
+            this._npcAni = new NPC();
+            this.showNpc();
         }
     }
 
     public clearNpc():void
     {
         Laya.Tween.to(this._npcAni,{scaleX:0.3},200,null,null,100);
-        Laya.Tween.to(this._npcAni,{y:-100},300,Laya.Ease.circIn,new Laya.Handler(this,this.clearNpcCom),300);
+        Laya.Tween.to(this._npcAni,{y:-300},300,Laya.Ease.circIn,new Laya.Handler(this,this.clearNpcCom),300);
     }
 
     private clearNpcCom():void
@@ -449,6 +470,7 @@ export default class GameBG extends Laya.Sprite {
         this._npcAni && this._npcAni.removeSelf();
         Game.map0.clearNpc();
         this.npcId = 0;
+        this._npcAni = null;
         // Game.openDoor();
     }
 
