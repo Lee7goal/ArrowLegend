@@ -22,6 +22,7 @@ export default class SplitSkill extends BaseSkill {
 
     /**死亡分裂 */
     private onDieSplit(): void {
+        console.log("分裂");
         let mRow: number = Math.floor(this.pro.hbox.cy / GameBG.ww);
         let mCol: number = Math.floor(this.pro.hbox.cx / GameBG.ww);
         let row1: number;

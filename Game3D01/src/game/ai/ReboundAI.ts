@@ -21,6 +21,11 @@ export default class ReboundAI extends BaseAI{
         if(!this.run_)return;
         super.exeAI(pro);
         this.checkHeroCollision();
+
+        if(this.pro.isIce)
+        {
+            return;
+        }
         if(this.status == 0){
             this.status = 1;
             this.pro.rotation(Math.PI/180 * 135);

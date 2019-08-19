@@ -14,6 +14,8 @@ import GameScaleAnimator from "./GameScaleAnimator";
 import CoinEffect from "../effect/CoinEffect";
 import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
+import FireBuff from "../skill/player/FireBuff";
+import HeroBullet from "../player/HeroBullet";
 
 /**不动不攻击的ai */
 export default class BaseAI extends GameAI {
@@ -32,6 +34,10 @@ export default class BaseAI extends GameAI {
 
     /**检测碰撞 */
     checkHeroCollision(): void {
+        if(this.pro.gamedata.hp <= 0)
+        {
+            return;
+        }
         var now = Game.executor.getWorldNow();
         if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) < GameBG.ww2) {
             if (now > this.collisionCd) {
@@ -55,15 +61,22 @@ export default class BaseAI extends GameAI {
     }
 
     exeAI(pro: GamePro): boolean {
+
         if (this.pro.gamedata.hp <= 0) {
             return;
         }
         if (!this.run_) return;
-
         this.now = Game.executor.getWorldNow();
+        
+        this.exeBuffer();
         this.setShader();
         this.hitEffect();
         return false;
+    }
+
+    exeBuffer():void
+    {
+        Game.buffM.exe(this.now);
     }
 
     hitEffect(): void {
@@ -122,7 +135,7 @@ export default class BaseAI extends GameAI {
         }
     }
 
-    hit(pro: GamePro) {
+    hit(pro: GamePro,isBuff:boolean = false) {
         //暴击
         let crit3006:boolean = this.setCrit(pro,3006);
         let crit3007:boolean = this.setCrit(pro,3007);
@@ -130,8 +143,24 @@ export default class BaseAI extends GameAI {
         //爆头 秒杀小怪
         this.setBoomHead();
 
+        //buff
+        if((pro as HeroBullet).buffAry.length > 0)
+        {
+            for(let i = 0; i < (pro as HeroBullet).buffAry.length; i++)
+            {
+                let buffId:number = (pro as HeroBullet).buffAry[i];
+                if(this.pro.buffAry.indexOf(buffId) == -1)
+                {
+                    console.log("添加buff");
+                    Game.buffM.addBuff((pro as HeroBullet).buffAry[i],this.pro,pro as HeroBullet);
+                    this.pro.buffAry.push(buffId);
+                }
+                
+            }
+        }
+
         this.pro.hurt(pro.hurtValue,crit3006 || crit3007);
-        // this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007);
+        // this.pro.hurt(1,crit3006 || crit3007,isBuff);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
@@ -142,14 +171,18 @@ export default class BaseAI extends GameAI {
                     this.pro.play(GameAI.TakeDamage);
                 }
             }
+            if(isBuff)
+            {
+                return;
+            }
             this.stiffTime = this.now;
-            if (this.g2 && this.g2.isOk()) {//击退
+            if (this.g2 && this.g2.isOk() && !this.pro.unBlocking) {//击退
                 var a: number = pro.face3d + Math.PI;
                 this.pro.rotation(a);
                 if (this.g2.starttime == 0) {
                     this.g2.starttime = this.now;//受击变形 击退
                     this.g2.now = this.now;
-                    this.g2.playtime = 300;
+                    this.g2.playtime = 200;
                 }
             }
 

@@ -36,7 +36,10 @@ export default class FlyAndHitAi extends BaseAI {
         this.checkHeroCollision();
         var sys = this.pro.sysEnemy;
         
-        
+        if(this.pro.isIce)
+        {
+            return;
+        }
 
         if(this.status==0 && this.now>=this.cd){
             var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);

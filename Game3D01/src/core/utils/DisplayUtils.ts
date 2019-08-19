@@ -11,9 +11,9 @@ export default class DisplayUtils{
         target.scrollRect = new Laya.Rectangle(0,0,value * target.width,target.height);
     }
 
-    public static updateBlood(mo:MaskObj,vv:number,delay:number = 500):void
+    public static updateBlood(mo:MaskObj,vv:number,delay:number = 500,wait:number = 100):void
     {
-        Laya.Tween.to(mo,{value:vv},delay);
+        Laya.Tween.to(mo,{value:vv},delay,null,null,wait);
     }
 }
 

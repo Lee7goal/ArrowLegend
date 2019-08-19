@@ -26,6 +26,11 @@ export default class RandMoveAI extends BaseAI {
         super.exeAI(pro);
         this.checkHeroCollision();
 
+        if(this.pro.isIce)
+        {
+            return;
+        }
+
         if(this.status == 0 && this.now >= this.cd)
         {
             

@@ -11,6 +11,9 @@ export default class HeroBullet extends GamePro {
     chuantouSkill:SysSkill;
     fantanSkill:SysSkill;
     tansheSkill:SysSkill;
+
+    buffAry:number[] = [];
+
     /**反弹次数 */
     fcount: number = 0;
     constructor() {
@@ -32,6 +35,7 @@ export default class HeroBullet extends GamePro {
         }
     }
 
+
     static getBullet(id:number):HeroBullet
     {
         let bullet:HeroBullet = new HeroBullet();
@@ -42,6 +46,15 @@ export default class HeroBullet extends GamePro {
         bullet.fantanSkill =  Game.skillManager.isHas(1008);//反弹
         bullet.fcount = bullet.fantanSkill ? 2 : 0;
         bullet.tansheSkill = Game.skillManager.isHas(1009);//弹射
+
+        let arr:number[] = [2001,2002,2003,5001,5002,5003];//火焰
+        for(let i = 0; i < arr.length; i++)
+        {
+            if(Game.skillManager.isHas(arr[i]))
+            {
+                bullet.buffAry.push(arr[i]);
+            }
+        }
         return bullet;
     }
 

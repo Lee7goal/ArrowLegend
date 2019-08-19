@@ -37,6 +37,9 @@ import JumpMove from "./game/move/JumpMove";
 import BackMove from "./game/move/BackMove";
 import TestPlatform from "./platforms/TestPlatform";
 import WXPlatform from "./platforms/WXPlatform";
+import BuffID from "./game/buff/BuffID";
+import FireBuff from "./game/skill/player/FireBuff";
+import IceBuff from "./game/skill/player/IceBuff";
 
 class Main {
 	constructor() {
@@ -65,9 +68,20 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908151856/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908172000/";
 			Laya.MiniAdpter.nativefiles = ["loading/fei.jpg"];
+
+			Laya.Browser.window.wx.getSystemInfo({
+				success (res) {
+					let model = res.model;
+					console.log("model");
+					if (model.search('iPhone X') != -1){
+						
+					}
+				}
+			  });
 		}
+
 		
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
@@ -159,7 +173,20 @@ class Main {
         REG(MoveType.TAG + MoveType.BACK,BackMove);
         //平台
         REG("p" + PlatformID.TEST,TestPlatform);
-        REG("p" + PlatformID.WX,WXPlatform);
+		REG("p" + PlatformID.WX,WXPlatform);
+
+		//buff
+		//火焰
+		REG("BUFF" + BuffID.FIRE_2001,FireBuff);
+		REG("BUFF" + BuffID.FIRE_5001,FireBuff);
+		//淬毒
+		REG("BUFF" + BuffID.DU_2002,FireBuff);
+		REG("BUFF" + BuffID.DU_5002,FireBuff);
+		//冰冻
+		REG("BUFF" + BuffID.ICE_2003,IceBuff);
+		REG("BUFF" + BuffID.ICE_5003,IceBuff);
+
+
     }
 }
 //激活启动类

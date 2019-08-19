@@ -22,6 +22,8 @@ import BaseAI from "../ai/BaseAi";
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
 
+    buffAry:number[] = [];
+
     public splitTimes: number;
     public sysEnemy: SysEnemy;
     public sysBullet: SysBullet;
@@ -34,6 +36,26 @@ export default class Monster extends GamePro {
         super(GameProType.RockGolem_Blue, 0);
         this._bulletShadow = new ui.test.BulletShadowUI();
         Game.footLayer.addChild(this._bulletShadow);
+    }
+
+    onCie():void
+    {
+        this.isIce = true;
+        this.animator.speed = 0;
+    }
+
+    offCie():void
+    {
+        this.isIce = false;
+        this.animator.speed = 1;
+    }
+
+    public startAi(): void {
+        super.startAi();
+    }
+
+    public stopAi(): void {
+        super.stopAi();
     }
 
     public setShadowSize(ww: number): void {
@@ -65,8 +87,12 @@ export default class Monster extends GamePro {
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 90);
     }
 
-    public hurt(hurt: number, isCrit: boolean): void {
+    public hurt(hurt: number, isCrit: boolean,isBuff:boolean = false): void {
         super.hurt(hurt, isCrit);
+        if(isBuff)
+        {
+            return;
+        }
         HitEffect.addEffect(this);
         MonsterBoomEffect.addEffect(this);//这里卡
     }
@@ -91,7 +117,6 @@ export default class Monster extends GamePro {
                     addNum = Math.ceil(this.sysEnemy.dropExp * buff3001.addExp / 1000);
                 }
                 Game.hero.playerData.exp += this.sysEnemy.dropExp + addNum;
-                Laya.stage.event(Game.Event_EXP);
             }
         }
 
@@ -117,7 +142,6 @@ export default class Monster extends GamePro {
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
         console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
-        sysEnemy.dropExp = 4;
         var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
         Game.monsterResClones.push(sp);
 
@@ -185,6 +209,7 @@ export default class Monster extends GamePro {
         //     gpro._bulletShadow.visible = true;
         //     gpro.bloodUI.visible = true;
         // }, 1100);
+        console.log("ai的长度",Game.AiArr.length);
         return gpro;
     }
 }

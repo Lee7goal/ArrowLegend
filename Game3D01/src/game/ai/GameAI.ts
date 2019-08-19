@@ -19,7 +19,7 @@ export abstract class GameAI {
     abstract starAi();
     abstract stopAi();
     /**遭到攻击 */
-    abstract hit(pro: GamePro);
+    abstract hit(pro: GamePro,isBuff:boolean);
     die():void{};
 
     

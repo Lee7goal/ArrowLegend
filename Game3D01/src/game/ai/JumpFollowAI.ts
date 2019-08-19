@@ -40,6 +40,10 @@ export default class JumpFollowAI extends FlowerAI {
     exeAI(pro: GamePro): boolean {
         if (!this.run_) return;
         //super.exeAI(pro);
+        if(this.pro.isIce)
+        {
+            return;
+        }
         this.setShader();
         this.now = Game.executor.getWorldNow(); 
         if(this.now >= this.nextTime){

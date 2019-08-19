@@ -20,6 +20,10 @@ export default class MoveAndHitAi extends BaseAI {
         if(!this.run_)return;
         super.exeAI(pro);
         this.checkHeroCollision();
+        if(this.pro.isIce)
+        {
+            return;
+        }
         var sys = this.pro.sysEnemy;        
         if(this.status==0 && this.now>=this.cd){
             var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);

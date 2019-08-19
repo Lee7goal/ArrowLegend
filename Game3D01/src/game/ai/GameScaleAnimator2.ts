@@ -10,7 +10,7 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
 
     constructor(){
         super();
-        this.movelen   = GameBG.ww;
+        this.movelen   = GameBG.ww * 2.5;
         this.futureBox = new GameHitBox(1, 1);
         this.sp = new Laya.Point(0,0);
     }
@@ -20,7 +20,15 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
         var vx = ww * Math.cos(this.rad);
         var vy = ww * Math.sin(this.rad);
 
-        this.futureBox.setXY(this.sp.x + vx, this.sp.y + vy);
+        let nextX:number = this.sp.x + vx;
+        let nextY:number = this.sp.y + vy
+
+        if(nextX >= (GameBG.width - GameBG.ww2) || nextX <= GameBG.ww2 || nextY >= ((Game.map0.endRowNum - 1) * GameBG.ww) || nextY <= 10 * GameBG.ww)
+        {
+            return;
+        }
+
+        this.futureBox.setXY(nextX, nextY);
         var hits = Game.map0.Wharr;
         if( !Game.map0.chechHit_arr(this.futureBox,hits) ){
             this.ms.setXY2DBox(this.futureBox.x,this.futureBox.y);

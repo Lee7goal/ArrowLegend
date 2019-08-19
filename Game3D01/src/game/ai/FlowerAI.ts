@@ -172,6 +172,11 @@ export default class FlowerAI extends BaseAI {
     {
         this.checkHeroCollision();
 
+        if(this.pro.isIce)
+        {
+            return;
+        }
+
         if(this.status == 0 && this.now >= this.nextTime)
         {
             this.pro.play(GameAI.Idle);

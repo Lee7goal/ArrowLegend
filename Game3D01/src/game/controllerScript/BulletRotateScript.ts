@@ -29,7 +29,7 @@ export default class BulletRotateScript extends Laya.Script3D {
                 if (!Game.executor.isRun)  {
                         return;
                 }
-                // this.ball.transform.localRotationEulerY += 5;
+                this.ball.transform.localRotationEulerY += 5;
         }
 
         public onDisable() {

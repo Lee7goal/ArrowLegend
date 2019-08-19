@@ -17,6 +17,8 @@ import BloodEffect from "./effect/BloodEffect";
 
 export default class GamePro extends Laya.EventDispatcher {
 
+    isIce:boolean = false;
+
     /**碰撞检测黑名单，加入后不会再次检测 */
     public hit_blacklist:any[];
 
@@ -110,7 +112,7 @@ export default class GamePro extends Laya.EventDispatcher {
         this._bloodUI && this._bloodUI.update(hurt);
         if(showHurt > 0)
         {
-            BloodEffect.add(showHurt,this._bloodUI,isCrit);
+            BloodEffect.add("-"+showHurt,this._bloodUI,isCrit,isCrit ? "main/redFont.png" : "main/clipshuzi.png");
         }
     }
 
@@ -163,11 +165,11 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     /**被攻击 */
-    public hit(pro: any): void {
+    public hit(pro: any,isBuff:boolean = false): void {
         // var a:GamePro = <GamePro>pro;
         // console.log("a " , a);
         if (this.gameAI) {
-            this.gameAI.hit(pro);
+            this.gameAI.hit(pro,isBuff);
         }
     }
 
@@ -430,6 +432,10 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public move2D(n: number, hd: boolean = true): boolean {
+        if(this.isIce)
+        {
+            return;
+        }
         this.moven2d_ = n;
         if (this.movef) {
             return this.movef.move2d(n, this, this.speed,false);

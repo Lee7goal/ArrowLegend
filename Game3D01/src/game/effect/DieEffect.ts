@@ -33,6 +33,7 @@ export default class DieEffect{
         // Laya.Pool.recover(DieEffect.TAG,this);
         if (Game.map0.Eharr.length == 0)  {
             CoinEffect.fly();
+            Laya.stage.event(Game.Event_EXP);
         }
     }
 }

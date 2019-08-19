@@ -24,6 +24,7 @@ import CoinEffect from "./effect/CoinEffect";
 import PlayerSkillManager from "./PlayerSkillManager";
 import MainUI from "../main/scene/main/MainUI";
 import Session from "../main/Session";
+import BuffManager from "./buff/BuffManager";
 
 export default class Game {
     static isReborned:boolean = false;
@@ -112,6 +113,7 @@ export default class Game {
     static topLayer: Laya.Sprite = new Laya.Sprite();
 
     static scenneM: SceneManager = new SceneManager();
+    static buffM:BuffManager = new BuffManager();
 
 
     /**脚底红圈 */
@@ -157,27 +159,30 @@ export default class Game {
     }
 
     static setSelectEffect(): void {
-        if (!Game.selectFoot) {
-
-        }
         if (!Game.selectHead) {
+            Game.selectHead = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/head/monster.lh"));
 
-        }
-        Game.selectHead = Laya.loader.getRes("h5/effects/head/monster.lh");
-        if (!Game.selectHead.getComponent(HeadTranslateScript))  {
             Game.selectHead.addComponent(HeadTranslateScript);
         }
-
-        Game.selectFoot = Laya.loader.getRes("h5/effects/foot/hero.lh");
-        if (!Game.selectFoot.getComponent(FootRotateScript))  {
+        if (!Game.selectFoot) {
+            Game.selectFoot = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/foot/hero.lh"));
             Game.selectFoot.addComponent(FootRotateScript);
         }
+        
+        // if (!Game.selectHead.getComponent(HeadTranslateScript))  {
+        //     Game.selectHead.addComponent(HeadTranslateScript);
+        // }
+
+        // Game.selectFoot = Laya.loader.getRes("h5/effects/foot/hero.lh");
+        // if (!Game.selectFoot.getComponent(FootRotateScript))  {
+        //     Game.selectFoot.addComponent(FootRotateScript);
+        // }
     }
 
     static reset(): void {
         Game.state = 0;
         Game.isPopupSkill = 0;
-        Game.AiArr.length = 0;
+        // Game.AiArr.length = 1;
         Game.bloodLayer.removeChildren();
         Game.frontLayer.removeChildren();
         Game.footLayer.removeChildren();
@@ -243,6 +248,8 @@ export default class Game {
         Game.battleLoader.index = 0;
         Game.isReborned = false;
         Game.hero.reset();
+        Game.hero.resetAI();
+        Game.hero.playerData.exp = 0;
         Game.battleLoader.destroyMonsterRes();
         Game.scenneM.showMain();
     }

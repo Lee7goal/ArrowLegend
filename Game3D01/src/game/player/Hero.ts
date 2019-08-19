@@ -11,6 +11,7 @@ import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
 import WudiRotateScript from "../controllerScript/WudiRotateScript";
+import BloodEffect from "../effect/BloodEffect";
 
 export default class Hero extends GamePro {
     public playerData: PlayerData = new PlayerData();
@@ -22,11 +23,27 @@ export default class Hero extends GamePro {
         this.setGameAi(new HeroAI());
     }
 
+    lossBlood():number
+    {
+        return (this.gamedata.maxhp - this.gamedata.hp) / this.gamedata.maxhp;
+    }
+
+    changeMaxBlood():void
+    {
+        this.gamedata.maxhp = Math.floor(this.gamedata.maxhp * 0.8);
+        if(this.gamedata.hp >= this.gamedata.maxhp)
+        {
+            this.gamedata.hp = this.gamedata.maxhp;
+        }
+        this.initBlood(this.gamedata.hp);
+    }
+
     addBlood(addValue: number): void {
         this.gamedata.hp = this.gamedata.hp + addValue;
         this.gamedata.hp = Math.min(this.gamedata.hp, this.gamedata.maxhp);
         this.initBlood(this.gamedata.hp);
-        console.log("回复血量");
+
+        BloodEffect.add("+" + addValue,this._bloodUI,false,"main/greenFont.png");
     }
 
     private updateAttackSpeed(): void {
@@ -35,11 +52,15 @@ export default class Hero extends GamePro {
 
     public reset(): void {
         this.gamedata.hp = this.gamedata.maxhp = 600;
-        this.playerData.exp = 0;
+    }
+
+    resetAI():void
+    {
+        (this.getGameAi() as HeroAI).run = false;
     }
 
     private wudi:Laya.Sprite3D;
-    private isWudi:boolean = false;
+    public isWudi:boolean = false;
     setWudi(bool:boolean):void
     {
         if(this.isWudi == bool)
@@ -185,6 +206,7 @@ export default class Hero extends GamePro {
         else {
             this.stopAi();
             Game.executor && Game.executor.stop_();//全部停止
+            console.log("全部暂停");
             Laya.stage.event(Game.Event_MAIN_DIE);
         }
     }

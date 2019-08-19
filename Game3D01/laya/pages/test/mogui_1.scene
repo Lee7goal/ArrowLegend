@@ -50,16 +50,17 @@
             "props":{"centerY":0,"centerX":0},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":null,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":19,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"x":-0.5,"width":681,"skin":"main/biaotihong.png","sizeGrid":"0,23,0,125","height":99},
+                    "props":{"y":0,"x":34,"width":681,"skin":"main/biaotihong.png","sizeGrid":"0,23,0,125","height":99},
                     "nodeParent":19,
                     "label":"Image",
                     "isDirectory":false,
@@ -70,6 +71,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,biaoti2",
                     "props":{"y":31,"x":196.5,"var":"biaoti2","text":"你遇见了恶魔","fontSize":48,"color":"#000000","alpha":0.5,"align":"center"},
@@ -98,6 +100,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,baioti",
                     "props":{"y":25,"x":196.5,"var":"baioti","text":"你遇见了恶魔","fontSize":48,"color":"#ffffff","align":"center"},
@@ -112,6 +115,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"UIView",
                     "source":"test/mogui.scene",
                     "searchKey":"UIView",
@@ -126,9 +130,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label",
-                    "props":{"y":433,"x":115.5,"text":"是否与魔鬼签订契约？","fontSize":48,"color":"#ffffff","align":"center"},
+                    "props":{"y":433,"x":135,"text":"是否与魔鬼签订契约？","fontSize":48,"color":"#ffffff","align":"center"},
                     "nodeParent":19,
                     "label":"Label",
                     "isOpen":true,
@@ -140,11 +145,12 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
-                    "searchKey":"Label,shengming",
-                    "props":{"y":520,"x":156.5,"var":"shengming","text":"失去274生命上限","fontSize":48,"color":"#ffffff","align":"center"},
+                    "searchKey":"Label,txt",
+                    "props":{"y":520,"x":190,"var":"txt","text":"失去274生命上限","fontSize":48,"color":"#ffffff","align":"center"},
                     "nodeParent":19,
-                    "label":"shengming",
+                    "label":"txt",
                     "isOpen":true,
                     "isDirectory":false,
                     "isAniNode":true,
@@ -154,23 +160,10 @@
                         ]
                 },
                 {
-                    "type":"Label",
-                    "searchKey":"Label",
-                    "props":{"y":723,"x":144.5,"text":"获得技能：","fontSize":48,"color":"#ffffff","align":"center"},
-                    "nodeParent":19,
-                    "label":"Label",
-                    "isOpen":true,
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":10,
-                    "child":[
-                        ]
-                },
-                {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,tisheng",
-                    "props":{"y":726,"x":352.5,"var":"tisheng","text":"攻速提升","fontSize":48,"color":"#ffffff","align":"center"},
+                    "props":{"y":726,"width":750,"var":"tisheng","text":"攻速提升","fontSize":48,"color":"#ffffff","align":"center"},
                     "nodeParent":19,
                     "label":"tisheng",
                     "isOpen":true,
@@ -182,9 +175,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"y":568,"x":266.5,"texture":"main/PT1.png"},
+                    "props":{"y":568,"x":297,"texture":"main/PT1.png"},
                     "nodeParent":19,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -195,11 +189,12 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
-                    "searchKey":"Image,ji3",
-                    "props":{"y":807,"x":266.5,"width":147,"var":"ji3","height":147},
+                    "searchKey":"Image,skillBox",
+                    "props":{"y":808,"x":301.5,"width":147,"var":"skillBox","height":147},
                     "nodeParent":19,
-                    "label":"ji3",
+                    "label":"skillBox",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -208,22 +203,10 @@
                         ]
                 },
                 {
-                    "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"y":796,"x":260.5,"skin":"battlestop/lvkuang.png"},
-                    "nodeParent":19,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":14,
-                    "child":[
-                        ]
-                },
-                {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,btn_lv",
-                    "props":{"y":1096,"x":497.5,"width":204,"var":"btn_lv","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,22,0,23","height":91,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":1096,"x":546,"width":204,"var":"btn_lv","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,22,0,23","height":91,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":19,
                     "label":"btn_lv",
                     "isOpen":true,
@@ -233,6 +216,7 @@
                     "compId":15,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":17,"x":69,"skin":"main/qianding.png"},
@@ -247,9 +231,10 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,btn_hong",
-                    "props":{"y":1096,"x":199.5,"width":204,"var":"btn_hong","stateNum":"1","skin":"main/btn_hong.png","sizeGrid":"0,22,0,23","height":91,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":1096,"x":212,"width":204,"var":"btn_hong","stateNum":"1","skin":"main/btn_hong.png","sizeGrid":"0,22,0,23","height":91,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":19,
                     "label":"btn_hong",
                     "isOpen":true,
@@ -259,6 +244,7 @@
                     "compId":16,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":19,"x":64,"skin":"main/jujue.png"},

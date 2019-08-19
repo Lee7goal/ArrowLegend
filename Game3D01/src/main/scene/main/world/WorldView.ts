@@ -6,11 +6,13 @@ import SysChapter from "../../../sys/SysChapter";
 import App from "../../../../core/App";
 import Session from "../../../Session";
 import SysMap from "../../../sys/SysMap";
+import MainUI from "../MainUI";
     export default class WorldView extends ui.test.worldUI {
     constructor() { 
         super();
         this.height = GameBG.height;
         this.btn_start.clickHandler = new Laya.Handler(this,this.onStart); 
+        this.jinbishu.value = "" + MainUI.xiaohao;
 
         this.on(Laya.Event.DISPLAY,this,this.onDis);
     }
