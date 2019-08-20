@@ -154,7 +154,7 @@ export default class BattleScene extends Laya.Sprite {
             CustomShaderff00.ff00;
         }
         Game.map0.drawMap();
-        this.addChild(Game.map0);
+        // this.addChild(Game.map0);
         Game.updateMap();
 
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
