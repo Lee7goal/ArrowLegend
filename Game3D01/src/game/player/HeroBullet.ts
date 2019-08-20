@@ -29,7 +29,8 @@ setBullet(id:number):void
     {
         if(!this.sp3d)
         {
-            this.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/"+id+"/monster.lh")));
+            // this.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/"+id+"/monster.lh")));
+            this.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/tuoweijian/monster.lh")));//拖尾箭
             // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
             // trail.trailFilter.time = 0;
         }

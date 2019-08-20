@@ -48,7 +48,8 @@ export default class HeroAI extends GameAI {
         }
 
         if (Game.hero.gamedata.hp > 0) {
-            Game.hero.hurt(150, false);
+            console.log("猪脚的伤害",pro.hurtValue)
+            Game.hero.hurt(pro.hurtValue, false);
         }
         if (Game.hero.gamedata.hp <= 0) {
             Game.hero.die();
@@ -213,11 +214,8 @@ export default class HeroAI extends GameAI {
                     let thornBox: GameHitBox = Game.map0.Thornarr[i];
                     if (Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
                         if (now > thornBox.cdTime) {
-                            if (Game.hero.hbox.linkPro_) {
-                                // Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
-                                pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
-                                thornBox.cdTime = now + 1000;
-                            }
+                            pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
+                            thornBox.cdTime = now + 1000;
                         }
                     }
                 }

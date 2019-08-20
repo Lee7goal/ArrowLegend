@@ -106,6 +106,7 @@ export default class BattleLoader {
             "res/atlas/map_3.png", "res/atlas/map_3.atlas",
             "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas",
             "h5/bullets/5001/monster.lh",
+            "h5/bullets/tuoweijian/monster.lh",
             "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh", "h5/effects/wudi/monster.lh",//3d背景
             "h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
