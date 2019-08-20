@@ -40,6 +40,7 @@ export default class ArrowGameMove0 extends GameMove {
         }
         if (speed == 0) return false;
 
+        console.log("移动");
         
         if (this.fv != null) {
             //n= 2 * Math.PI - this.facen2d_ ;            

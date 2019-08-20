@@ -20,8 +20,8 @@ export default class HeroBullet extends GamePro {
         super(GameProType.HeroArrow);
         //this.setGameMove(new ArrowGameMove());
         //this.setGameAi(new HeroArrowAI(this));
-        this.setGameMove(new ArrowGameMove0());
-        this.setGameAi(new HeroArrowAI(this));
+        // this.oninit();
+        
     }
 
     /**修改子弹 */
@@ -39,8 +39,10 @@ setBullet(id:number):void
 
     static getBullet(id:number):HeroBullet
     {
-        let bullet:HeroBullet = new HeroBullet();
-        // let bullet:HeroBullet  = Laya.Pool.getItemByClass(HeroBullet.TAG,HeroBullet);
+        // let bullet:HeroBullet = new HeroBullet();
+        let bullet:HeroBullet  = Laya.Pool.getItemByClass(HeroBullet.TAG,HeroBullet);
+        bullet.setGameMove(new ArrowGameMove0());
+        bullet.setGameAi(new HeroArrowAI(bullet));
         bullet.isDie = false;
         bullet.setBullet(id);
         bullet.chuantouSkill = Game.skillManager.isHas(1006);//穿透
@@ -67,6 +69,7 @@ setBullet(id:number):void
         }
         this.isDie = true;
         this.stopAi();
+        this.setSpeed(0);
         // Laya.timer.frameOnce(30,this,()=>{
             
         // })
@@ -74,6 +77,6 @@ setBullet(id:number):void
             
         // })
         this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
-        // Laya.Pool.recover(HeroBullet.TAG,this);
+        Laya.Pool.recover(HeroBullet.TAG,this);
     }
 }
