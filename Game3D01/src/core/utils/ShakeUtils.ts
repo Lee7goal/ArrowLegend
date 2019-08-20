@@ -57,6 +57,7 @@ export default class ShakeUtils {
         this.time = time;
         this.sp = sp;
         this.startPo.setTo(sp.x, sp.y);
+        Laya.timer.clear(this, this.loopFun);
         Laya.timer.frameLoop(1, this, this.loopFun);
         this.startTime = Laya.Browser.now();
         this.now = 0;

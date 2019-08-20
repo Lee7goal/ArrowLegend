@@ -29,7 +29,7 @@ export default class CoinEffect{
             setTimeout(() => {
                 let coin:Coin = CoinEffect.coinsAry.shift();
                 coin && coin.fly();
-            }, 50 * i);
+            }, 10 * i);
          }
      }
 }

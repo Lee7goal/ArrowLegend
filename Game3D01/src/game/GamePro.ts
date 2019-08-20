@@ -17,6 +17,10 @@ import BloodEffect from "./effect/BloodEffect";
 
 export default class GamePro extends Laya.EventDispatcher {
 
+    buffAry:number[] = [];
+    /**当前的缩放系数 */
+    tScale:number = 1;
+
     isIce:boolean = false;
 
     /**碰撞检测黑名单，加入后不会再次检测 */
@@ -108,11 +112,10 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public hurt(hurt: number,isCrit:boolean): void {
-        let showHurt:number = Math.min(hurt,this.gamedata.hp);
         this._bloodUI && this._bloodUI.update(hurt);
-        if(showHurt > 0)
+        if(hurt > 0)
         {
-            BloodEffect.add("-"+showHurt,this._bloodUI,isCrit,isCrit ? "main/redFont.png" : "main/clipshuzi.png");
+            BloodEffect.add("-"+hurt,this._bloodUI,isCrit,isCrit ? "main/redFont.png" : "main/clipshuzi.png");
         }
     }
 

@@ -14,7 +14,7 @@ export default class BloodEffect{
         let bitNum:BitmapNumber = App.getFontClip(0.05,skin);
         if(isCrit)
         {
-            ShakeUtils.execute(Game.scenneM.battle, 75, 4);
+            Game.shakeBattle();
         }
         bitNum.value = value;
         let xx:number = -GameBG.ww2 + Math.random() * GameBG.ww;

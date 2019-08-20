@@ -4,6 +4,7 @@ import Game from "./Game";
 import SysBuff from "../main/sys/SysBuff";
 import App from "../core/App";
 import SysNpc from "../main/sys/SysNpc";
+import BuffID from "./buff/BuffID";
 
 export default class PlayerSkillManager {
     /**已经获得技能 */
@@ -25,6 +26,10 @@ export default class PlayerSkillManager {
             console.log(data.skillName,"添加技能");
         }
        
+        if(data.id == BuffID.WUDI_5009)
+        {
+            Game.hero.addBuff(BuffID.WUDI_5009);
+        }
 
         this.addAttack();
         this.addAttackSpeed();

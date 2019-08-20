@@ -28,7 +28,7 @@ export default class ReboundAI extends BaseAI{
         }
         if(this.status == 0){
             this.status = 1;
-            this.pro.rotation(Math.PI/180 * 135);
+            this.pro.rotation(Math.PI/180 * 360 * Math.random());
             this.pro.play(GameAI.Run);
             // this.pro.setXY2DBox(this.pro.hbox.x + GameBG.ww,this.pro.hbox.y);
         }

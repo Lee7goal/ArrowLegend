@@ -73,27 +73,11 @@ export default class BattleScene extends Laya.Sprite {
         this._top = new TopUI();
         this.addChild(this._top);
         this._top.y = 86;
-        this._top.updateCoins();
-        this._top.updateExp();
 
         this._top.zanting.clickHandler = new Laya.Handler(this, this.showPause);
 
         Laya.stage.on(Game.Event_SELECT_NEWSKILL, this, this.onShowSelect);
         Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
-
-        this.on(Laya.Event.UNDISPLAY,this,this.unDis);
-    }
-
-    private unDis():void
-    {
-        Game.map0.Eharr.length = 0;
-        for(let i = 0; i < Game.AiArr.length;i++)
-        {
-            if(Game.AiArr[i] != Game.hero)
-            {
-                Game.AiArr[i].stopAi();
-            }
-        }
     }
 
     private _selectSkill: SelectNewSkill;
@@ -163,12 +147,14 @@ export default class BattleScene extends Laya.Sprite {
     init(): void {
         Session.saveData();
         Game.reset();
+        this._top.updateCoins();
+        this._top.updateExp();
         if (!Game.executor) {
             Game.executor = new GameExecut();
             CustomShaderff00.ff00;
         }
         Game.map0.drawMap();
-        //this.addChild(Game.map0);
+        this.addChild(Game.map0);
         Game.updateMap();
 
         GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
@@ -250,7 +236,7 @@ export default class BattleScene extends Laya.Sprite {
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5007));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5008));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,2003));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5009));
 
         // (<HeroAI>Game.hero.getGameAi()).run = false;
         Game.hero.init();

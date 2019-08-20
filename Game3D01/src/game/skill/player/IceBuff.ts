@@ -17,37 +17,44 @@ export default class IceBuff extends PlayerBuff{
         this.buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, this.skill.skillEffect1);
     }
 
+    
     public exe(now: number): void  {
+        let nt = now - this.startTime;
+        nt = nt / this.buff.buffCD;
 
-        if(this.to.gamedata.hp <= 0)
-        {
+        if(nt >= 1)
+        { 
+            console.log("移除冰冻buff");
             Game.buffM.removeBuff(this);
-            if(this.skill.skilltarget == 2)
-            {
-                let buffIndex:number = (this.to as Monster).buffAry.indexOf(this.skill.id); 
-                if(buffIndex != -1)
-                {
-                    (this.to as Monster).buffAry.splice(buffIndex,1);
-                }
-            }
+            return;
         }
-        
 
-        if (now > this.skillCD) {
-            this.skillCD = now + this.buff.buffCD;
-            this.chixuCD = now + this.buff.buffDot;
-            (this.to as Monster).onCie();
-            if(this.buff.damagePercent > 0)
-            {
-                if(this.skill.skilltarget == 2)
-                {
-                    this.bullet.hurtValue = Math.floor(this.hurtValue * this.buff.damagePercent / 100);
-                    this.to.hit(this.bullet,true);
-                }
-            }       
-        }
-        else if (now > this.chixuCD) {     
+        let nt2 = now - this.startTime;
+        nt2 = nt2 / this.buff.buffDot;
+        if(nt2 >= 1)
+        {
             (this.to as Monster).offCie();
         }
+        this.onCie();
+        
+    }
+
+    private isExe:boolean = false;
+    private onCie():void
+    {
+        if(this.isExe)
+        {
+            return;
+        }
+        this.isExe = true;
+        (this.to as Monster).onCie();
+        if(this.buff.damagePercent > 0)
+        {
+            if(this.skill.skilltarget == 2)
+            {
+                this.bullet.hurtValue = Math.floor(this.hurtValue * this.buff.damagePercent / 100);
+                this.to.hit(this.bullet,true);
+            }
+        } 
     }
 }

@@ -14,7 +14,6 @@ import SysSkill from "../../main/sys/SysSkill";
 import GameInfrared from "../GameInfrared";
 import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
-import WudiBuff from "../skill/player/WudiBuff";
 
 export default class HeroAI extends GameAI {
 
@@ -24,12 +23,9 @@ export default class HeroAI extends GameAI {
 
     private line: MaoLineData;
 
-    private wudiBuff:WudiBuff;
-
     constructor()
     {
         super();
-        this.wudiBuff = new WudiBuff();
     }
 
     public set run(b: boolean) {
@@ -61,7 +57,6 @@ export default class HeroAI extends GameAI {
     }
 
 
-
     public starAi() {
 
 
@@ -84,7 +79,7 @@ export default class HeroAI extends GameAI {
     private b1: BulletRotate;
     private b2: BulletRotate;
 
-    private skillIds: number[] = [20001, 20002, 20003];
+    private skillIds: number[] = [];//20001
     private skillDic: any = {};
     /**旋转 */
     private rotateBullet(): void {
@@ -143,7 +138,7 @@ export default class HeroAI extends GameAI {
 
     private onShoot(basePower: number): void {
         let moveSpeed: number = GameBG.ww / 2;
-        // moveSpeed = 4;
+        // moveSpeed = 2;
 
         let skillLen: number = Game.skillManager.skillList.length;
 
@@ -206,12 +201,9 @@ export default class HeroAI extends GameAI {
         {
             return;
         }
-
-        //无敌星星
-        this.wudiBuff.exe(now);
+  
         
-        
-        // this.rotateBullet();
+        this.rotateBullet();
         //地刺
         let chuanqiangSkill: SysSkill = Game.skillManager.isHas(5007);
         if (!chuanqiangSkill)//有穿墙了可以过地刺

@@ -22,8 +22,6 @@ import BaseAI from "../ai/BaseAi";
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
 
-    buffAry:number[] = [];
-
     public splitTimes: number;
     public sysEnemy: SysEnemy;
     public sysBullet: SysBullet;
@@ -40,14 +38,20 @@ export default class Monster extends GamePro {
 
     onCie():void
     {
-        this.isIce = true;
-        this.animator.speed = 0;
+        if(!this.isIce)
+        {
+            this.isIce = true;
+            this.animator.speed = 0;
+        }
     }
 
     offCie():void
     {
-        this.isIce = false;
-        this.animator.speed = 1;
+        if(this.isIce)
+        {
+            this.isIce = false;
+            this.animator.speed = 1;
+        }
     }
 
     public startAi(): void {
@@ -181,6 +185,7 @@ export default class Monster extends GamePro {
 
         let tScale: number = sysEnemy.zoomMode / 100;
         tScale = mScale ? mScale : tScale;
+        gpro.tScale = tScale;
         gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组

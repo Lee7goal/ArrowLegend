@@ -8,6 +8,7 @@ import FlyUpTips from "../../FlyUpTips";
 import HomeData from "../../../game/data/HomeData";
 import Session from "../../Session";
 import SenderHttp from "../../../net/SenderHttp";
+import App from "../../../core/App";
     export default class MainUI extends ui.test.mainUIUI {
         static TOTAL_TIME:number = 12 * 60;
         static MAX_ENERGY:number = 20;
@@ -53,6 +54,8 @@ import SenderHttp from "../../../net/SenderHttp";
             this.updateEnergy();
 
             this.dengji.value = "" + Session.homeData.level;
+
+            this.y = App.top;
         }
 
         /**扣除体力 */

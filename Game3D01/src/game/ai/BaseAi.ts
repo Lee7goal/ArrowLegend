@@ -68,15 +68,9 @@ export default class BaseAI extends GameAI {
         if (!this.run_) return;
         this.now = Game.executor.getWorldNow();
         
-        this.exeBuffer();
         this.setShader();
         this.hitEffect();
         return false;
-    }
-
-    exeBuffer():void
-    {
-        Game.buffM.exe(this.now);
     }
 
     hitEffect(): void {
@@ -151,7 +145,6 @@ export default class BaseAI extends GameAI {
                 let buffId:number = (pro as HeroBullet).buffAry[i];
                 if(this.pro.buffAry.indexOf(buffId) == -1)
                 {
-                    console.log("添加buff");
                     Game.buffM.addBuff((pro as HeroBullet).buffAry[i],this.pro,pro as HeroBullet);
                     this.pro.buffAry.push(buffId);
                 }
@@ -159,8 +152,8 @@ export default class BaseAI extends GameAI {
             }
         }
 
-        this.pro.hurt(pro.hurtValue,crit3006 || crit3007);
-        // this.pro.hurt(1,crit3006 || crit3007,isBuff);
+        this.pro.hurt(pro.hurtValue,crit3006 || crit3007,isBuff);
+        // this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
@@ -177,8 +170,12 @@ export default class BaseAI extends GameAI {
             }
             this.stiffTime = this.now;
             if (this.g2 && this.g2.isOk() && !this.pro.unBlocking) {//击退
-                var a: number = pro.face3d + Math.PI;
-                this.pro.rotation(a);
+                if(this.sysEnemy.moveType != 5)//不是碰墙反弹的
+                {
+                    var a: number = pro.face3d + Math.PI;
+                    this.pro.rotation(a);
+                }
+                
                 if (this.g2.starttime == 0) {
                     this.g2.starttime = this.now;//受击变形 击退
                     this.g2.now = this.now;

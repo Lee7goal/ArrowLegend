@@ -4,6 +4,6 @@ export default class PlayerData{
     exp:number = 0;
     level:number;
     lastLevel:number;
-    baseAttackPower:number = 150;
+    baseAttackPower:number = 200;
     attackSpeed:number = 650;
 }

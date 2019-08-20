@@ -1,4 +1,6 @@
 export default class BuffID{
+    static WUDI_5009:number = 5009;
+
     static FIRE_2001:number = 2001;
     static FIRE_5001:number = 5001;
 

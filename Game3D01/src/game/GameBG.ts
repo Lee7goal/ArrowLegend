@@ -403,7 +403,7 @@ export default class GameBG extends Laya.Sprite {
         this._bottom.y = (GameBG.MAP_ROW + 11 - 3) * GameBG.ww - GameBG.ww * 0.1;
         this._bottom.height = 1000;
 
-        this.x = 0 - GameBG.ww2;
+        this.x = -GameBG.ww2;
         this.y = (Laya.stage.height - (GameBG.hnum * GameBG.ww)) / 2
         GameBG.cx = this.x;
         GameBG.cy = this.y;
@@ -448,6 +448,7 @@ export default class GameBG extends Laya.Sprite {
             else
             {
                 // this.npcId = 1003;//胡子
+                this.npcId = 1001;//胡子没做，先用天使
             }
         }
 

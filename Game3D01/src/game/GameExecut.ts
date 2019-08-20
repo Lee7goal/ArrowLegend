@@ -83,6 +83,8 @@ export default class GameExecut extends Laya.EventDispatcher {
                 }
             }
         }
+
+        Game.buffM.exe(this.getWorldNow());
     }
 
 }

@@ -37,7 +37,7 @@ export default class NPC_1002_view extends ui.test.mogui_1UI {
 
     private onEgree():void
     {
-        Game.hero.changeMaxBlood();
+        Game.hero.changeMaxBlood(-0.2);
         Game.skillManager.addSkill(this.selector.getCurSys());
         this.removeSelf();
     }

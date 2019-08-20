@@ -5,8 +5,8 @@ import App from "../../../core/App";
 import GamePro from "../../GamePro";
 
 export default class PlayerBuff {
-    protected skill: SysSkill;
-    protected buff: SysBuff;
+    skill: SysSkill;
+    buff: SysBuff;
 
     protected skillCD: number = 0;
     public chixuCD: number = 0;

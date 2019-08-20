@@ -23,6 +23,19 @@ export default class MonsterBulletMove extends GameMove {
 
             var ebh: GameHitBox;
             if (pro.sysBullet.bulletEjection == 1) {
+                ebh = Game.map0.chechHit_arr(this.future, Game.map0.Hharr);
+
+                if (ebh) {
+                    pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
+                    pro.setSpeed(0);
+                    if (ebh.linkPro_) {
+                        ebh.linkPro_.event(Game.Event_Hit, pro);
+                        pro.event(Game.Event_Hit, ebh.linkPro_);
+                    }
+                    this.hitEffect(pro);
+                    return false;
+                }
+
                 var hits = Game.map0.Aharr;
                 ebh = Game.map0.chechHit_arr(this.future, hits);
                 if (ebh) {

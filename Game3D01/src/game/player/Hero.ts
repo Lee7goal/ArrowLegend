@@ -23,14 +23,42 @@ export default class Hero extends GamePro {
         this.setGameAi(new HeroAI());
     }
 
+    addBuff(buffId:number):void
+    {
+        if(this.buffAry.indexOf(buffId) == -1)
+        {
+            Game.buffM.addBuff(buffId,this);
+            this.buffAry.push(buffId);
+        }
+    }
+
     lossBlood():number
     {
         return (this.gamedata.maxhp - this.gamedata.hp) / this.gamedata.maxhp;
     }
 
-    changeMaxBlood():void
+    changeBlood(sys:SysSkill):boolean
     {
-        this.gamedata.maxhp = Math.floor(this.gamedata.maxhp * 0.8);
+        let buff:SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
+        if(buff)
+        {
+            if(sys.id == 4002 || sys.id == 4004)//加血的
+            {
+                this.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff.addHp / 1000));
+                return true;
+            }
+            else if(sys.id == 4003)
+            {
+                this.changeMaxBlood(buff.hpLimit / 1000);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    changeMaxBlood(changeValue:number):void
+    {
+        this.gamedata.maxhp = Math.floor(this.gamedata.maxhp * (1 + changeValue));
         if(this.gamedata.hp >= this.gamedata.maxhp)
         {
             this.gamedata.hp = this.gamedata.maxhp;
@@ -52,6 +80,7 @@ export default class Hero extends GamePro {
 
     public reset(): void {
         this.gamedata.hp = this.gamedata.maxhp = 600;
+        this.buffAry.length = 0;
     }
 
     resetAI():void
@@ -110,11 +139,11 @@ export default class Hero extends GamePro {
         // Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
         this.onJumpDown();
 
-        if (Game.battleLoader.mapId % 1000 == 0) {
-            setTimeout(() => {
-                Game.openDoor();
-            }, 3000);
-        }
+        // if (Game.battleLoader.mapId % 1000 == 0) {
+        //     setTimeout(() => {
+        //         Game.openDoor();
+        //     }, 3000);
+        // }
 
         Laya.stage.on(Game.Event_ADD_HP, this, this.addBlood);
         Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED, this, this.updateAttackSpeed);
@@ -136,10 +165,12 @@ export default class Hero extends GamePro {
         // if (this.getGameAi()) {
         //     (this.getGameAi() as HeroAI).resetRun();
         // }
+        this.startAi();
         Game.executor.start();
 
         // setTimeout(() => {
-        this.startAi();
+        
+        console.log("主角调下来",Game.AiArr.length);
         // }, 1150);
     }
 

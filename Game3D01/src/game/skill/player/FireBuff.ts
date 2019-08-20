@@ -22,14 +22,6 @@ export default class FireBuff extends PlayerBuff{
         {
             console.log("移除火焰buff");
             Game.buffM.removeBuff(this);
-            if(this.skill.skilltarget == 2)
-            {
-                let buffIndex:number = (this.to as Monster).buffAry.indexOf(this.skill.id); 
-                if(buffIndex != -1)
-                {
-                    (this.to as Monster).buffAry.splice(buffIndex,1);
-                }
-            }
             return;
         }
         if (now > this.nextTime) {

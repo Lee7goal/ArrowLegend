@@ -10,6 +10,7 @@ import { BasePlatform } from "./platforms/BasePlatform";
 import HitType from "./game/ai/HitType";
 import GameScaleAnimator1 from "./game/ai/GameScaleAnimator1";
 import GameScaleAnimator2 from "./game/ai/GameScaleAnimator2";
+import GameScaleAnimator3 from "./game/ai/GameScaleAnimator3";
 import GameScaleAnimator4 from "./game/ai/GameScaleAnimator4";
 import NPC_1001 from "./main/scene/battle/npc/NPC_1001";
 import NPC_1002 from "./main/scene/battle/npc/NPC_1002";
@@ -40,6 +41,8 @@ import WXPlatform from "./platforms/WXPlatform";
 import BuffID from "./game/buff/BuffID";
 import FireBuff from "./game/skill/player/FireBuff";
 import IceBuff from "./game/skill/player/IceBuff";
+import Game from "./game/Game";
+import WudiBuff from "./game/skill/player/WudiBuff";
 
 class Main {
 	constructor() {
@@ -64,11 +67,11 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		// if (GameConfig.stat) Laya.Stat.show();
+		if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908172000/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908192004/";
 			Laya.MiniAdpter.nativefiles = ["loading/fei.jpg"];
 
 			Laya.Browser.window.wx.getSystemInfo({
@@ -76,7 +79,7 @@ class Main {
 					let model = res.model;
 					console.log("model");
 					if (model.search('iPhone X') != -1){
-						
+						App.top = 90;
 					}
 				}
 			  });
@@ -132,6 +135,8 @@ class Main {
     {
 		new GameMain();
 		this.loading.removeSelf();
+
+		Game.battleLoader.loadPubRes();
     }
 
 	private onProgress(value:number):void
@@ -145,7 +150,8 @@ class Main {
         //击退效果
         REG("HIT_" + HitType.hit1,GameScaleAnimator1);
         REG("HIT_" + HitType.hit2,GameScaleAnimator2);
-        REG("HIT_"  + HitType.hit3,GameScaleAnimator4);
+		REG("HIT_"  + HitType.hit3,GameScaleAnimator4);
+		REG("HIT_"  + HitType.hit4,GameScaleAnimator3);
         //NPC
         REG("NPC1001",NPC_1001);
         REG("NPC1002",NPC_1002);
@@ -176,6 +182,8 @@ class Main {
 		REG("p" + PlatformID.WX,WXPlatform);
 
 		//buff
+		//无敌
+		REG("BUFF" + BuffID.WUDI_5009,WudiBuff);
 		//火焰
 		REG("BUFF" + BuffID.FIRE_2001,FireBuff);
 		REG("BUFF" + BuffID.FIRE_5001,FireBuff);

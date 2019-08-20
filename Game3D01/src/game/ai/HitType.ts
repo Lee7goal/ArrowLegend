@@ -5,4 +5,6 @@ export default class HitType{
     static hit2:number = 2;
     /**左右晃 */
     static hit3:number = 3;
+    /**打扁 */
+    static hit4:number = 4;
 }

@@ -126,7 +126,7 @@ export default class GameMap0 extends Laya.Sprite {
                     else if(GridType.isNpc(key))
                     {
                         this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww);
-                        this.npcHitBox.setXY(x - GameBG.ww * 5, y - GameBG.ww);
+                        this.npcHitBox.setXY(x - GameBG.ww * 5, y);
                     }
                 }
                 k++;

@@ -30,13 +30,7 @@ import SysNpc from "../../sys/SysNpc";
     private onClick(sys:SysSkill):void
     {
         console.log(sys.skillName);
-        if(sys.id == 4002 || sys.id == 4003 || sys.id == 4004)//加血的
-        {
-            let buff4002: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys.skillEffect1);
-            let changeValue:number = sys.id == 4003 ? buff4002.hpLimit : buff4002.addHp;
-            Game.hero.addBlood(Math.floor(Game.hero.gamedata.maxhp * changeValue / 1000));
-        }
-        else
+        if(!Game.hero.changeBlood(sys))
         {
             Game.skillManager.addSkill(sys);
         }

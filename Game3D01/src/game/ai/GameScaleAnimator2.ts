@@ -17,22 +17,34 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
 
     move(nt:number){
         var ww = this.movelen * nt;
-        var vx = ww * Math.cos(this.rad);
-        var vy = ww * Math.sin(this.rad);
-
-        let nextX:number = this.sp.x + vx;
-        let nextY:number = this.sp.y + vy
-
-        if(nextX >= (GameBG.width - GameBG.ww2) || nextX <= GameBG.ww2 || nextY >= ((Game.map0.endRowNum - 1) * GameBG.ww) || nextY <= 10 * GameBG.ww)
+        let ww2 = 0;
+        let i = 0;
+        while(i < 10)
         {
-            return;
-        }
+            ww2 += ww / 10;
+            var vx = ww2 * Math.cos(this.rad);
+            var vy = ww2 * Math.sin(this.rad);
 
-        this.futureBox.setXY(nextX, nextY);
-        var hits = Game.map0.Wharr;
-        if( !Game.map0.chechHit_arr(this.futureBox,hits) ){
-            this.ms.setXY2DBox(this.futureBox.x,this.futureBox.y);
+            let nextX:number = this.sp.x + vx;
+            let nextY:number = this.sp.y + vy
+
+            if(nextX >= (GameBG.width - GameBG.ww2) || nextX <= GameBG.ww2 || nextY >= ((Game.map0.endRowNum - 1) * GameBG.ww) || nextY <= 10 * GameBG.ww)
+            {
+                return;
+            }
+
+            this.futureBox.setXY(nextX, nextY);
+            var hits = Game.map0.Wharr;
+            if( !Game.map0.chechHit_arr(this.futureBox,hits) ){
+                this.ms.setXY2DBox(this.futureBox.x,this.futureBox.y);
+            }
+            else
+            {
+                return;
+            }
+            i++;
         }
+        
     }
 
     zoom(nt:number,zoom:number,ms:Monster){
@@ -56,7 +68,7 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
         if(this.starttime!=0)
          {  
             var now = Game.executor.getWorldNow(); 
-            var zoom = ms.sysEnemy.zoomMode/100;          
+            var zoom = ms.tScale;          
             if(now >= this.starttime + this.playtime){
                 ms.sp3d.transform.localScaleZ = zoom;
                 ms.sp3d.transform.localScaleX = zoom;

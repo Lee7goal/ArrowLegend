@@ -73,7 +73,7 @@ export default class Game {
         Game.e0_ = pro;
         let curScale: number = (pro as Monster).sysEnemy.zoomMode / 100;
         curScale = 1 / curScale;
-        if (Game.e0_.sp3d)  {
+        if (Game.e0_.sp3d && Game.e0_.sp3d.transform)  {
             Game.e0_.sp3d.addChild(Game.selectFoot);
             Game.e0_.addSprite3DToChild("guadian", Game.selectHead);
             Game.selectHead.transform.localScale = new Laya.Vector3(curScale, curScale, curScale);
@@ -148,6 +148,13 @@ export default class Game {
         Game.bg.setDoor(1);
         Game.door.transform.localPositionX = 0;
         Game.map0.setDoor(true);
+        Game.shakeBattle();
+        Game.battleLoader.destroyMonsterRes();
+    }
+
+    static shakeBattle():void
+    {
+        Game.scenneM.battle.pos(0,0);
         ShakeUtils.execute(Game.scenneM.battle, 75, 4);
     }
 
@@ -244,6 +251,9 @@ export default class Game {
 
     static showMain():void
     {
+        Game.coinsNum = 0;
+        Game.selectFoot && Game.selectFoot.removeSelf();
+        Game.selectHead && Game.selectHead.removeSelf();
         Game.skillManager.skillList.length = 0;
         Game.battleLoader.index = 0;
         Game.isReborned = false;
@@ -252,5 +262,8 @@ export default class Game {
         Game.hero.playerData.exp = 0;
         Game.battleLoader.destroyMonsterRes();
         Game.scenneM.showMain();
+
+        Game.map0.Eharr.length = 0;
+        Game.AiArr.length = 0;
     }
 }

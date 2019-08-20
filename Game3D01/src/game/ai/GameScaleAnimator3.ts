@@ -47,7 +47,7 @@ export default class GameScaleAnimator3 extends GameScaleAnimator{
         if(this.starttime!=0)
          {  
             var now = Game.executor.getWorldNow(); 
-            var zoom = ms.sysEnemy.zoomMode/100;          
+            var zoom = ms.tScale;          
             if(now >= this.starttime + this.playtime){
                 ms.sp3d.transform.localScaleZ = zoom;
                 ms.sp3d.transform.localScaleX = zoom;
@@ -64,7 +64,7 @@ export default class GameScaleAnimator3 extends GameScaleAnimator{
                 }
                 let nt = now - this.starttime;
                 nt = nt/this.playtime;
-                this.move(nt);
+                // this.move(nt);
                 this.zoom(nt,zoom,ms);
             }
          }

@@ -170,4 +170,10 @@ export default class FlowerAI extends BaseAI {
     hit(pro: GamePro) {
         super.hit(pro);
     }
+
+    die():void
+    {
+        super.die();
+        this.shooting && this.shooting.cancelAttack();
+    }
 }

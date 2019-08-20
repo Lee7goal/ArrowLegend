@@ -26,7 +26,7 @@ export default class BattleLoader {
         return this._index;
     }
 
-    public set index(v:number) {
+    public set index(v: number) {
         this._index = v;
     }
 
@@ -34,29 +34,25 @@ export default class BattleLoader {
         return this._mapId;
     }
 
-    public destroyMonsterRes():void
-    {
-        for(let key in MonsterShader.map)
-        {
-            let shader:MonsterShader = MonsterShader.map[key];
-            if(shader)
-            {
+    public destroyMonsterRes(): void  {
+        for (let key in MonsterShader.map)  {
+            let shader: MonsterShader = MonsterShader.map[key];
+            if (shader)  {
                 shader.clearShader();
                 delete MonsterShader.map[key];
             }
         }
-        for(let key in this.monsterRes)//母体
+        for (let key in this.monsterRes)//母体
         {
-            if(key != '')
-            {
-                let sp:Laya.Sprite3D = Laya.loader.getRes(key);
-                if(sp)
-                {
+            if (key != '')  {
+                let sp: Laya.Sprite3D = Laya.loader.getRes(key);
+                if (sp)  {
                     sp.destroy(true);
                 }
             }
+            Laya.loader.clearRes(key);
         }
-        for(let i = 0; i < Game.monsterResClones.length; i++){
+        for (let i = 0; i < Game.monsterResClones.length; i++) {
             Game.monsterResClones[i].destroy(true);//克隆体
         }
         Game.monsterResClones.length = 0;
@@ -65,7 +61,6 @@ export default class BattleLoader {
     }
 
     public load(): void {
-        this.destroyMonsterRes();
         Game.scenneM.battle && Game.scenneM.battle.up(null);
 
         Game.ro && Game.ro.removeSelf();
@@ -76,7 +71,7 @@ export default class BattleLoader {
         App.layerManager.alertLayer.addChild(this._loading);
         Game.bg && Game.bg.clear();
         this._loading.txt.text = "0%";
-        this._loading.bar.scrollRect = new Laya.Rectangle(0,0,1,this._loading.bar.height);
+        this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, 1, this._loading.bar.height);
 
         if (this._index > 50) {
             this._index = 0;
@@ -86,27 +81,36 @@ export default class BattleLoader {
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
-        // this._configId = 101005;//分裂
-        // this._configId = 101003;//蓝色树妖boss
-        // this._configId = 101004;//火龙boss
-        // this._configId = 100101;//撞击
-        // this._configId = 101001;//蓝色石头人boss
-        // this._configId = 101002;//食人花boss
-        // this._configId = 100108;
-        // this._configId = 104101//炸弹人
+        // this._configId = 101001;
 
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
 
     private resAry: string[] = [];
-    private pubResAry:string[] = [];
-    private isLoadPub:boolean = false;
+    private pubResAry: string[] = [];
+    private isLoadPub: boolean = false;
 
     /**当前关怪物需要的资源 */
-    private monsterRes:any = {};
+    private monsterRes: any = {};
 
-    public monsterId:number;
+    public monsterId: number = 0;
+
+    public loadPubRes(): void  {
+        //公共资源
+        let pubRes = [
+            "res/atlas/icons/skill.png", "res/atlas/icons/skill.atlas",
+            "res/atlas/bg.png", "res/atlas/bg.atlas",
+            "res/atlas/map_1.png", "res/atlas/map_1.atlas",
+            "res/atlas/map_2.png", "res/atlas/map_2.atlas",
+            "res/atlas/map_3.png", "res/atlas/map_3.atlas",
+            "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas",
+            "h5/bullets/5001/monster.lh",
+            "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh", "h5/effects/wudi/monster.lh",//3d背景
+            "h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
+        ];
+        Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub));
+    }
 
     private onLoadRes(): void {
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");
@@ -116,26 +120,28 @@ export default class BattleLoader {
         bgType = Math.max(bgType, 1);
         GameBG.BG_TYPE = "map_" + bgType;
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
-        
+
         this.resAry.length = 0;
-        this.monsterId = 0;
+        // this.monsterId = 10001;
         this.monsterRes = {};
-        let res:string;
+        let res: string;
 
-        //公共资源
-        this.pubResAry = [
-            "h5/wall/wall.lh","h5/zhalan/hero.lh","h5/effects/foot/hero.lh","h5/effects/head/monster.lh","h5/effects/door/monster.lh","h5/effects/wudi/monster.lh",//3d背景
-            "res/atlas/bg.png","res/atlas/bg.atlas","res/atlas/"+GameBG.BG_TYPE+".png","res/atlas/"+GameBG.BG_TYPE+".atlas",//2d背景
-            "res/atlas/jiesuan.png","res/atlas/jiesuan.atlas",//战斗结算
+        // //公共资源
+        // this.pubResAry = [
+        //     "res/atlas/bg.png","res/atlas/bg.atlas",
+        //     "res/atlas/map_1.png","res/atlas/map_1.atlas",//2d背景
+        //     "res/atlas/map_2.png","res/atlas/map_2.atlas",//2d背景
+        //     "res/atlas/map_3.png","res/atlas/map_3.atlas",//2d背景
+        //     "res/atlas/jiesuan.png","res/atlas/jiesuan.atlas",
+        //     "h5/wall/wall.lh","h5/zhalan/hero.lh","h5/effects/foot/hero.lh","h5/effects/head/monster.lh","h5/effects/door/monster.lh","h5/effects/wudi/monster.lh",//3d背景
+        //     "h5/bulletsEffect/20000/monster.lh","h5/bullets/20000/monster.lh","h5/hero/hero.lh"//主角
+        // ];
 
-            // "h5/bullets/20001/monster.lh","h5/bullets/20002/monster.lh","h5/bullets/20003/monster.lh",//转的
-            "h5/bulletsEffect/20000/monster.lh","h5/bullets/20000/monster.lh","h5/hero/hero.lh"//主角
-        ];
-        if(!this.isLoadPub)
-        {
-            this.resAry = this.resAry.concat(this.pubResAry);
-            // this.isLoadPub = true;//加载过就不再加载了
-        }
+        // if(!this.isLoadPub)
+        // {
+        //     this.resAry = this.resAry.concat(this.pubResAry);
+        //     // this.isLoadPub = true;//加载过就不再加载了
+        // }
 
         //怪的资源
         res = "h5/effects/monsterDie/monster.lh";//死亡特效
@@ -144,8 +150,7 @@ export default class BattleLoader {
         this.monsterRes[res] = res;
         res = "h5/effects/boom/monster.lh";//打到怪物身上的特效
         this.monsterRes[res] = res;
-        if(this.monsterId <= 0)
-        {
+        if (this.monsterId <= 0)  {
             //怪
             let k: number = 0;
             for (let j = 0; j < GameBG.hnum; j++) {
@@ -160,30 +165,27 @@ export default class BattleLoader {
                 }
             }
         }
-        else
-        {
+        else  {
             this.getMonsterRes(this.monsterId);
         }
 
-        for(let key in this.monsterRes)
-        {
-            if(key != '')
-            {
+        for (let key in this.monsterRes)  {
+            if (key != '')  {
                 this.resAry.push(key);
             }
         }
-        
+
+        this._isMonsterLoaded = false;
         console.log('资源列表', this.resAry);
         Laya.loader.create(this.resAry, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress));
     }
 
-    private onP(vv:number):void
-    {
-        console.log("进度",vv);
+    private onP(vv: number): void  {
+        console.log("进度", vv);
     }
 
-    private getMonsterRes(id: number): void  {
-        let res:string = '';
+    private getMonsterRes(id: number): void {
+        let res: string = '';
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, id);
         res = "h5/monsters/" + sysEnemy.enemymode + "/monster.lh";
         this.monsterRes[res] = res;
@@ -216,7 +218,7 @@ export default class BattleLoader {
                         this.monsterRes[res] = res;
                     }
 
-                    if (sysBullet.callInfo != '0')  {
+                    if (sysBullet.callInfo != '0') {
                         //召唤信息
                         let infoAry: string[] = sysBullet.callInfo.split('|');
                         for (let i = 0; i < infoAry.length; i++) {
@@ -232,22 +234,31 @@ export default class BattleLoader {
         }
     }
 
-    onProgress(value: number): void {
+    private onProgress(value: number): void {
         value = Math.ceil(value * 100);
         value = Math.min(value, 100);
         this._loading.txt.text = value + "%";
-        this._loading.bar.scrollRect = new Laya.Rectangle(0,0,this._loading.bar.width * value / 100,this._loading.bar.height);
+        this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, this._loading.bar.width * value / 100, this._loading.bar.height);
     }
 
-    onComplete(): void {
-        CoinEffect.coinsAry.length = 0;
-        Game.scenneM.showBattle();
-        Game.scenneM.battle.init();
-        this._loading.removeSelf();
+    private _isPubLoaded: boolean = false;
+    private onCompletePub(): void  {
+        console.log("战斗资源提前加载完毕");
+        this._isPubLoaded = true;
     }
 
-    removeLoading():void
-    {
-        
+    private _isMonsterLoaded: boolean = false;
+    private onComplete(): void {
+        this._isMonsterLoaded = true;
+        this.allCom();
+    }
+
+    private allCom(): void  {
+        if (this._isPubLoaded && this._isMonsterLoaded)  {
+            CoinEffect.coinsAry.length = 0;
+            Game.scenneM.showBattle();
+            Game.scenneM.battle.init();
+            this._loading.removeSelf();
+        }
     }
 }
