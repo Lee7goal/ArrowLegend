@@ -27,6 +27,8 @@ import SelectNewSkill from "./SelectNewSkill";
 import SysSkill from "../../sys/SysSkill";
 import Session from "../../Session";
 import RebornView from "./gameOver/RebornView";
+import GameRube from "./GameRube";
+import GameFence from "./GameFence";
 export default class BattleScene extends Laya.Sprite {
 
     private _top: TopUI;
@@ -145,6 +147,9 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     init(): void {
+        GameRube.recover();
+        GameFence.recover();
+
         Session.saveData();
         Game.reset();
         this._top.updateCoins();
@@ -186,17 +191,10 @@ export default class BattleScene extends Laya.Sprite {
                 let type: number = GameBG.arr0[k];
                 if (k < GameBG.arr0.length) {
                     if ((GridType.isWall(type) || (type == 1))) {
-                        let v3 = GameBG.get3D(i, j);
-                        let box: Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.box);
-                        box.transform.scale = Game.cameraCN.boxscale0;
-                        box.transform.translate(v3);
-                        Game.layer3d.addChild(box)
+                        GameRube.getOne(GameBG.get3D(i, j));//墙
                     }
                     else if (GridType.isFence(type)) {
-                        let v3 = GameBG.get3D(i, j);
-                        let box: Laya.Sprite3D = Laya.Sprite3D.instantiate(Game.fence);
-                        box.transform.translate(v3);
-                        Game.layer3d.addChild(box)
+                        GameFence.getOne(GameBG.get3D(i, j));//栅栏
                     }
                     else if (GridType.isMonster(type)) {
                         // if (!monster) {
@@ -236,7 +234,7 @@ export default class BattleScene extends Laya.Sprite {
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5007));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5008));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,5009));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,2001));
 
         // (<HeroAI>Game.hero.getGameAi()).run = false;
         Game.hero.init();
@@ -252,7 +250,9 @@ export default class BattleScene extends Laya.Sprite {
 
     private onOpenDoor(e: Laya.Event): void  {
         if (e.nativeEvent.keyCode == 111)  {
-            Game.openDoor();
+            // Game.openDoor();
+            Game.hero.busi = true;
+            console.log("不死族");
         }
     }
 

@@ -17,7 +17,13 @@ export default class Session{
         Session.gameData.lastTime = Session.homeData.lastTime;
         Session.gameData.totalEnergy = Session.homeData.totalEnergy;
         Session.gameData.chapterId = Session.homeData.chapterId;
-        Session.gameData.mapIndex = Game.battleLoader.index;
+        if(Game.battleLoader.index > Session.gameData.mapIndex)
+        {
+            Session.gameData.mapIndex = Game.battleLoader.index;
+        }
+
+        Session.gameData.coins = Game.coinsNum;
+        
         Session.gameData.level = Session.homeData.level;
 
         SenderHttp.create().send();
@@ -35,6 +41,7 @@ export default class Session{
             Session.homeData.chapterId = Session.gameData.chapterId;
             Session.homeData.mapIndex = Session.gameData.mapIndex;
             Session.homeData.level = Session.gameData.level;
+            Session.homeData.coins = Session.gameData.coins;
             if(Date.now() >= Session.homeData.lastTime)
             {
                 Session.homeData.curEnergy = Session.homeData.totalEnergy;
@@ -60,6 +67,7 @@ export default class Session{
             Session.homeData.chapterId = 1;
             Session.homeData.mapIndex = 0;
             Session.homeData.level = 1;
+            Session.homeData.coins = 0;
 
             Session.gameData.curEnergy = Session.homeData.curEnergy;
             Session.gameData.maxEngergy = Session.homeData.maxEngergy;
@@ -68,6 +76,7 @@ export default class Session{
             Session.gameData.chapterId = Session.homeData.chapterId;
             Session.gameData.mapIndex = Session.homeData.mapIndex;
             Session.gameData.level = Session.homeData.level;
+            Session.gameData.level = Session.homeData.coins;
         }
     }
 }

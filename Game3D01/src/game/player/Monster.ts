@@ -139,7 +139,7 @@ export default class Monster extends GamePro {
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
         this.sp3d && this.sp3d.removeSelf();
-        // Laya.Pool.recover(Monster.TAG,this);
+        Laya.Pool.recover(Monster.TAG,this);
         DieEffect.addEffect(this);
     }
 
@@ -170,8 +170,8 @@ export default class Monster extends GamePro {
                 }
             }
         }
-        // var gpro:Monster = Laya.Pool.getItemByClass(Monster.TAG,Monster);
-        var gpro: Monster = new Monster();
+        var gpro:Monster = Laya.Pool.getItemByClass(Monster.TAG,Monster);
+        // var gpro: Monster = new Monster();
         gpro.curLen = gpro.moveLen = 0;
         gpro.sysEnemy = sysEnemy;
         gpro.init();

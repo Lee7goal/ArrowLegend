@@ -26,7 +26,7 @@ export default class ArrowGameMove0 extends GameMove {
     private vv = new MaoLineData(0, 0, 0, 1);
 
     /**反弹起点 */
-    private fv: MaoLineData = null;
+    fv: MaoLineData = null;
 
     /**弹射次数*/
     private ii:number = 1;
@@ -39,8 +39,6 @@ export default class ArrowGameMove0 extends GameMove {
             return false;
         }
         if (speed == 0) return false;
-
-        console.log("移动");
         
         if (this.fv != null) {
             //n= 2 * Math.PI - this.facen2d_ ;            
@@ -215,7 +213,7 @@ export default class ArrowGameMove0 extends GameMove {
         return GameHitBox.faceToLenth(this.he_, g0) - GameHitBox.faceToLenth(this.he_, g1);
     }
 
-    private hitEnemy(enemy:GameHitBox,pro:HeroBullet):number{            
+    private hitEnemy(enemy:GameHitBox,pro:HeroBullet):number{
         enemy.linkPro_.event(Game.Event_Hit, pro);
 
         if (pro.tansheSkill && this.ii>0){

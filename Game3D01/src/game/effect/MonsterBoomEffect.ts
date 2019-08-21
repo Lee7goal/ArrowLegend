@@ -4,6 +4,7 @@ import GamePro from "../GamePro";
 
 /**打到怪物身上的特效 */
 export default class MonsterBoomEffect{
+    static TAG:string = "MonsterBoomEffect";
     public sp3d:Laya.Sprite3D;
     public player:GamePro;
     constructor() {
@@ -13,8 +14,8 @@ export default class MonsterBoomEffect{
 
     static addEffect(pro: GamePro):MonsterBoomEffect
     {
-        // let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG + effectId,BoomEffect);
-        let effect:MonsterBoomEffect = new MonsterBoomEffect();
+        let effect:MonsterBoomEffect = Laya.Pool.getItemByClass(MonsterBoomEffect.TAG,MonsterBoomEffect);
+        // let effect:MonsterBoomEffect = new MonsterBoomEffect();
         effect.player = pro;
         effect.player.sp3d.addChild(effect.sp3d);
 
@@ -27,6 +28,6 @@ export default class MonsterBoomEffect{
     recover():void
     {
         this.sp3d && this.sp3d.removeSelf();
-        // Laya.Pool.recover(BoomEffect.TAG + this.effectId,this)
+        Laya.Pool.recover(MonsterBoomEffect.TAG,this);
     }
 }

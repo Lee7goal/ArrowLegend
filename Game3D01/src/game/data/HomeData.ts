@@ -6,4 +6,5 @@ export default class HomeData{
     chapterId:number;
     mapIndex:number;
     level:number;
+    coins:number;
 }

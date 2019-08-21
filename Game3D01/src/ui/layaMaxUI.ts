@@ -18,17 +18,6 @@ export module ui.test {
         }
     }
     REG("ui.test.battleUI",battleUI);
-    export class BattleLoadingUI extends View {
-		public bar:Laya.Image;
-		public txt:Laya.Label;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"main/zhudi.jpg","height":1700,"alpha":1},"compId":4,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":5}]},{"type":"Image","props":{"y":1179,"x":75,"width":600,"skin":"main/jingyantiaodi.png","sizeGrid":"10,16,10,16"},"compId":6},{"type":"Image","props":{"y":1178.5,"x":75,"width":600,"var":"bar","skin":"main/jingyantiaoshang.png","sizeGrid":"10,16,10,16"},"compId":7},{"type":"Label","props":{"y":1174.5,"x":344,"var":"txt","text":"50%","fontSize":36,"color":"#f6f0ef"},"compId":3}],"loadList":["main/zhudi.jpg","main/jingyantiaodi.png","main/jingyantiaoshang.png"],"loadList3D":[]};
-        constructor(){ super()}
-        createChildren():void {
-            super.createChildren();
-            this.createView(BattleLoadingUI.uiView);
-        }
-    }
-    REG("ui.test.BattleLoadingUI",BattleLoadingUI);
     export class battlestopUI extends View {
 		public viewBox:Laya.Box;
 		public baioti:Laya.Label;
@@ -196,8 +185,9 @@ export module ui.test {
     }
     REG("ui.test.jiesuan_1UI",jiesuan_1UI);
     export class LoadingUI extends Scene {
+		public clip:Laya.Clip;
 		public txt:Laya.Label;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700},"compId":3,"child":[{"type":"Sprite","props":{"texture":"loading/fei.jpg","height":1700},"compId":6}]},{"type":"Box","props":{"width":750,"height":100,"bottom":200},"compId":5,"child":[{"type":"Label","props":{"width":750,"var":"txt","text":"10%","height":40,"fontSize":36,"bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/fei.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#ffffff"},"compId":3},{"type":"Box","props":{"width":156,"scaleY":1.5,"scaleX":1.5,"height":156,"centerY":0,"centerX":0},"compId":5,"child":[{"type":"Clip","props":{"y":0,"x":0,"var":"clip","skin":"loading/loadingClip.png","clipY":4,"clipX":4,"autoPlay":true},"compId":10},{"type":"Label","props":{"y":58,"x":0,"width":156,"var":"txt","text":"10%","height":40,"fontSize":36,"color":"#b7b7b7","bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/loadingClip.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

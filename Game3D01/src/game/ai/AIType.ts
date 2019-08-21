@@ -8,6 +8,8 @@ export default class AIType{
     static BULLET:number = 2;
     /**石头人ai 召唤 和 旋风斩 3*/
     static STONE:number = 3;
+    /**小石头人 */
+    static SHITOUREN:number = 4;
     /**树跳的 5*/
     static TREE:number = 5;
     /**随机移动 6*/

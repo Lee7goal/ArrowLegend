@@ -21,6 +21,8 @@ export default class Hero extends GamePro {
         this.unBlocking = true;
         this.setGameMove(new PlaneGameMove());
         this.setGameAi(new HeroAI());
+
+        // this.busi = true;
     }
 
     addBuff(buffId:number):void
@@ -101,7 +103,7 @@ export default class Hero extends GamePro {
         {
             if(!this.wudi)
             {
-                this.wudi = Laya.loader.getRes("h5/effects/wudi/monster.lh");
+                this.wudi = Laya.loader.getRes("h5/effects/skill/5009/monster.lh");
                 this.wudi.transform.localPositionY = -0.5;
                 this.wudi.addComponent(WudiRotateScript);
             }
@@ -174,7 +176,13 @@ export default class Hero extends GamePro {
         // }, 1150);
     }
 
+    busi:boolean = false;
+
     public hurt(hurt: number, isCrit: boolean): void {
+        if(this.busi)
+        {
+            return;
+        }
         let isMiss:boolean = false;
         let missSkill:SysSkill = Game.skillManager.isHas(5006)//闪避
         if(missSkill)

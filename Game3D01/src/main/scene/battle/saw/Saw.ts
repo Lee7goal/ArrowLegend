@@ -17,7 +17,7 @@ export default class Saw extends Laya.Sprite {
 
     constructor() {
         super();
-        this.pro.hurtValue = 10;
+        this.pro.hurtValue = 150;
     }
 
     addBg(xx: number, yy: number, vv: number, type: number): void {

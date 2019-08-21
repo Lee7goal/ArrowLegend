@@ -5,7 +5,6 @@ import Game from "../Game";
 import SysBullet from "../../main/sys/SysBullet";
 import App from "../../core/App";
 import MonsterBulletAI from "./MonsterBulletAI";
-import MonsterBulletMove from "../move/MonsterBulletMove";
 import MonsterBullet from "../player/MonsterBullet";
 import { GameAI } from "./GameAI";
 import BulletRotateScript from "../controllerScript/BulletRotateScript";
@@ -39,6 +38,7 @@ export default class MonsterShooting {
         Game.bloodLayer.graphics.clear();
         bo.rotation(r_);
         bo.curLen = 0;
+        bo.hurtValue = pro.hurtValue;
         bo.moveLen = range + Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
         if(this._sysBullet.id != 10 && this._sysBullet.id != 11)//处理弓箭的，弓箭就不转了
         {

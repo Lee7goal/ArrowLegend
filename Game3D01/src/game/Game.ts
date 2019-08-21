@@ -150,6 +150,7 @@ export default class Game {
         Game.map0.setDoor(true);
         Game.shakeBattle();
         Game.battleLoader.destroyMonsterRes();
+        Session.saveData();
     }
 
     static shakeBattle():void
@@ -254,7 +255,7 @@ export default class Game {
         Game.coinsNum = 0;
         Game.selectFoot && Game.selectFoot.removeSelf();
         Game.selectHead && Game.selectHead.removeSelf();
-        Game.skillManager.skillList.length = 0;
+        Game.skillManager.clear();
         Game.battleLoader.index = 0;
         Game.isReborned = false;
         Game.hero.reset();

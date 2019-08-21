@@ -29,6 +29,7 @@ export default class MonsterBulletMove extends GameMove {
                     pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
                     pro.setSpeed(0);
                     if (ebh.linkPro_) {
+                        pro.hurtValue = 150;
                         ebh.linkPro_.event(Game.Event_Hit, pro);
                         pro.event(Game.Event_Hit, ebh.linkPro_);
                     }
@@ -70,6 +71,7 @@ export default class MonsterBulletMove extends GameMove {
                     pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
                     pro.setSpeed(0);
                     if (ebh.linkPro_) {
+                        pro.hurtValue = 150;
                         ebh.linkPro_.event(Game.Event_Hit, pro);
                         pro.event(Game.Event_Hit, ebh.linkPro_);
                     }
@@ -82,6 +84,7 @@ export default class MonsterBulletMove extends GameMove {
                     pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
                     pro.setSpeed(0);
                     if (ebh.linkPro_) {
+                        pro.hurtValue = 150;
                         ebh.linkPro_.event(Game.Event_Hit, pro);
                         pro.event(Game.Event_Hit, ebh.linkPro_);
                     }
@@ -109,6 +112,7 @@ export default class MonsterBulletMove extends GameMove {
             if (heroBox.hit(heroBox, pro.hbox)) {
                 if (Game.hero) {
                     // console.log("打中我了");
+                    pro.hurtValue = 150;
                     Game.hero.event(Game.Event_Hit, pro);
                     pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
                     pro.setSpeed(0);

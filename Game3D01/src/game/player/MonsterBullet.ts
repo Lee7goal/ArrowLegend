@@ -37,23 +37,27 @@ export default class MonsterBullet extends GamePro {
             Game.footLayer.addChild(this._bulletShadow);
         }
         
-        if (this.sysBullet && this.sysBullet.bulletMode == sb.bulletMode)  {
-            return;
-        }
+        // if (this.sysBullet && this.sysBullet.bulletMode == sb.bulletMode)  {
+        //     return;
+        // }
         this.sysBullet = sb;
         var bullet: Laya.Sprite3D;
         bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
-        Game.monsterResClones.push(bullet);
+        // Game.monsterResClones.push(bullet);
         this.setSp3d(bullet);
         this.gamedata.bounce = sb.ejectionNum;
-        // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
-        // trail.trailFilter.time = 0.1;
+        // Laya.timer.frameLoop(5,this,()=>{
+        //     let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
+        //     trail.trailFilter.time = 0.3;
+        // })
+        
         // console.log("创建新的怪物子弹");
     }
 
     static getBullet(sb: SysBullet): MonsterBullet {
-        let bullet: MonsterBullet = new MonsterBullet();
-        // bullet = Laya.Pool.getItemByClass(MonsterBullet.TAG + sb.bulletMode, MonsterBullet);
+        // let bullet: MonsterBullet = new MonsterBullet();
+        // let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG + sb.bulletMode, MonsterBullet);
+        let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG, MonsterBullet);
         bullet.isDie = false;
         bullet.setBubble(sb);
         return bullet;
@@ -68,6 +72,13 @@ export default class MonsterBullet extends GamePro {
         this.moveLen = null;
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        this.sp3d && this.sp3d.removeSelf();
+        // this.sp3d && this.sp3d.removeSelf();
+        // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
+        // trail.trailFilter.time = 0;
+        this.sp3d.transform.localPositionY = -500;
+        this.sp3d.transform.localPositionZ = -500;
+
+        // Laya.Pool.recover(MonsterBullet.TAG + this.sysBullet.bulletMode,this);
+        Laya.Pool.recover(MonsterBullet.TAG,this);
     }
 }

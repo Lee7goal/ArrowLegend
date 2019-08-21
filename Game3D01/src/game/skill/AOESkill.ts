@@ -37,6 +37,7 @@ export default class AOESkill extends BaseSkill {
         pro.curLen = pro.moveLen = 0;
         BoomEffect.getEffect(pro, this.sysBullet.boomEffect);
         if (GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox) <= this.sysBullet.attackAngle) {
+            pro.hurtValue = pro.sysEnemy.enemyAttack;
             Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);
         }
     }

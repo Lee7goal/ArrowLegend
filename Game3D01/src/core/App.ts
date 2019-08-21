@@ -17,8 +17,4 @@ export default class App{
         App.tableManager = new TableManager();
     }
 
-    static getFontClip(tScale:number = 1,skin:string = "main/clipshuzi.png",sheet?:string):BitmapNumber
-    {
-        return new BitmapNumber(skin,sheet ? sheet : "123456 7890-+ /:cdef",tScale ? tScale : 1)
-    }
 }

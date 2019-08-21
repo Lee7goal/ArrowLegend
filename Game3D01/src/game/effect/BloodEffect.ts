@@ -11,7 +11,7 @@ export default class BloodEffect{
 
     static add(value:string,sprite:Blood,isCrit:boolean,skin:string):void
     {
-        let bitNum:BitmapNumber = App.getFontClip(0.05,skin);
+        let bitNum:BitmapNumber = BitmapNumber.getFontClip(0.05,skin);
         if(isCrit)
         {
             Game.shakeBattle();
@@ -25,7 +25,7 @@ export default class BloodEffect{
         
         Laya.Tween.to(bitNum,{y:yy-50,scaleX:0.2,scaleY:0.2},200,Laya.Ease.circOut);
         setTimeout(() => {
-            bitNum.removeSelf();
+            bitNum.recover();
         }, 400);
     }
 }

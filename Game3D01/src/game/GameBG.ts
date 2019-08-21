@@ -183,7 +183,7 @@ export default class GameBG extends Laya.Sprite {
         GameBG.gameBG = this;
         this.mySp = new Sprite();
         this.mySp.graphics.drawRect(0, 0, GameBG.mw, GameBG.mw, 0x00ff00);
-        this.doorNumber = App.getFontClip(0.3);
+        this.doorNumber = BitmapNumber.getFontClip(0.3);
     }
 
     public setZhuan(box: Laya.MeshSprite3D): any {

@@ -43,6 +43,7 @@ import FireBuff from "./game/skill/player/FireBuff";
 import IceBuff from "./game/skill/player/IceBuff";
 import Game from "./game/Game";
 import WudiBuff from "./game/skill/player/WudiBuff";
+import ShitouAI from "./game/ai/ShitouAI";
 
 class Main {
 	constructor() {
@@ -71,8 +72,8 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/1908192004/";
-			Laya.MiniAdpter.nativefiles = ["loading/fei.jpg"];
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/190821/";
+			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png"];
 
 			Laya.Browser.window.wx.getSystemInfo({
 				success (res) {
@@ -89,7 +90,7 @@ class Main {
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
-		Laya.loader.load(["h5/config.json","loading/fei.jpg"],new Laya.Handler(this,this.onInitCom),new Laya.Handler(this,this.onInitProgress));
+		Laya.loader.load(["h5/config.json","loading/loadingClip.png"],new Laya.Handler(this,this.onInitCom),new Laya.Handler(this,this.onInitProgress));
 	}
 
 	private _initView:ui.test.initViewUI;
@@ -113,6 +114,7 @@ class Main {
 
 		this.loading = new ui.test.LoadingUI();
 		Laya.stage.addChild(this.loading);
+		// this.loading.clip.play();
 		this.loading.txt.text = "0%";
 		Laya.loader.load(["res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler),new Laya.Handler(this,this.onProgress));
 	}
@@ -135,6 +137,7 @@ class Main {
     {
 		new GameMain();
 		this.loading.removeSelf();
+		// this.loading.clip.stop();
 
 		Game.battleLoader.loadPubRes();
     }
@@ -164,13 +167,15 @@ class Main {
         REG(AttackType.TAG + AIType.NOTHAS,BaseAI);
         REG(AttackType.TAG + AIType.FLYHIT,FlyAndHitAi);
         REG(AttackType.TAG + AIType.BULLET,FlowerAI);
-        REG(AttackType.TAG + AIType.STONE,StoneAI);
+		REG(AttackType.TAG + AIType.STONE,StoneAI);
+		REG(AttackType.TAG + AIType.SHITOUREN,ShitouAI);
         REG(AttackType.TAG + AIType.TREE,TreeAI);
         REG(AttackType.TAG + AIType.RANDOM_MOVE,RandMoveAI);
         REG(AttackType.TAG + AIType.MOVEHIT,MoveAndHitAi);
         REG(AttackType.TAG + AIType.REBOUND,ReboundAI);
         REG(AttackType.TAG + AIType.JUMP_FOLLOW,JumpFollowAI);
-        REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
+		REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
+		REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
         //移动类型
         REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
         REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);

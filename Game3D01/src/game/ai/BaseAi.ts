@@ -42,6 +42,7 @@ export default class BaseAI extends GameAI {
         if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) < GameBG.ww2) {
             if (now > this.collisionCd) {
                 if (Game.hero.hbox.linkPro_) {
+                    this.pro.hurtValue = 150;
                     Game.hero.hbox.linkPro_.event(Game.Event_Hit, this.pro);
                     this.collisionCd = now + 2000;
                 }
@@ -67,7 +68,7 @@ export default class BaseAI extends GameAI {
         }
         if (!this.run_) return;
         this.now = Game.executor.getWorldNow();
-        
+
         this.setShader();
         this.hitEffect();
         return false;
@@ -130,6 +131,10 @@ export default class BaseAI extends GameAI {
     }
 
     hit(pro: GamePro,isBuff:boolean = false) {
+        if(this.pro.gamedata.hp <= 0)
+        {
+            return;
+        }
         //暴击
         let crit3006:boolean = this.setCrit(pro,3006);
         let crit3007:boolean = this.setCrit(pro,3007);
@@ -151,9 +156,8 @@ export default class BaseAI extends GameAI {
                 
             }
         }
-
-        this.pro.hurt(pro.hurtValue,crit3006 || crit3007,isBuff);
-        // this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
+        // this.pro.hurt(1,crit3006 || crit3007,isBuff);
+        this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }

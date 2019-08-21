@@ -9,6 +9,7 @@ import CoinsAI from "../ai/CoinsAI";
 import CoinsMove from "../move/CoinsMove";
 
 export default class Coin extends GamePro {
+    static TAG:string = "Coin";
     constructor() {
         super(0, 1);
 
@@ -26,6 +27,11 @@ export default class Coin extends GamePro {
         this.setGameMove(new CoinsMove());
 
         this.startAi();
+    }
+
+    static getOne():Coin{
+        let coin:Coin = Laya.Pool.getItemByClass(Coin.TAG,Coin);
+        return coin;
     }
 
     public setPos(monster:Monster):void
@@ -64,9 +70,12 @@ export default class Coin extends GamePro {
 
     public clear():void
     {
+        this._bulletShadow && this._bulletShadow.removeSelf();
         this.stopAi();
         this.sp3d && this.sp3d.removeSelf();
         Game.coinsNum++;
         Laya.stage.event(Game.Event_COINS);
+
+        Laya.Pool.recover(Coin.TAG,this);
     }
 }

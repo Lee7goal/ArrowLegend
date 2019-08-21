@@ -48,7 +48,6 @@ export default class HeroAI extends GameAI {
         }
 
         if (Game.hero.gamedata.hp > 0) {
-            console.log("猪脚的伤害",pro.hurtValue)
             Game.hero.hurt(pro.hurtValue, false);
         }
         if (Game.hero.gamedata.hp <= 0) {
@@ -80,15 +79,16 @@ export default class HeroAI extends GameAI {
     private b1: BulletRotate;
     private b2: BulletRotate;
 
-    private skillIds: number[] = [];//20001
+    
     private skillDic: any = {};
     /**旋转 */
     private rotateBullet(): void {
+        let skillIds =  Game.skillManager.getRotateSkills();
         let br: BulletRotate;
-        let hudu: number = Math.PI / this.skillIds.length;
+        let hudu: number = Math.PI /skillIds.length;
         let skillId: number;
-        for (let i = 0; i < this.skillIds.length; i++) {
-            skillId = this.skillIds[i];
+        for (let i = 0; i < skillIds.length; i++) {
+            skillId = skillIds[i];
             br = this.skillDic[skillId + "_1"];
             if (!br) {
                 this.skillDic[skillId + "_1"] = BulletRotate.getBullet(skillId);

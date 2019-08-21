@@ -14,7 +14,7 @@ export default class CoinEffect{
          for(let i = 0; i < goldNum; i++)
          {
             setTimeout(() => {
-                let coin:Coin = new Coin();
+                let coin:Coin = Coin.getOne();
                 coin.setPos(monster)
                 CoinEffect.coinsAry.push(coin);
             }, i * 50);
@@ -26,10 +26,11 @@ export default class CoinEffect{
         let len:number = CoinEffect.coinsAry.length;
          for(let i = 0; i < len; i++)
          {
-            setTimeout(() => {
-                let coin:Coin = CoinEffect.coinsAry.shift();
-                coin && coin.fly();
-            }, 10 * i);
+            let coin:Coin = CoinEffect.coinsAry.shift();
+            coin && coin.fly();
+            // setTimeout(() => {
+                
+            // }, 10 * i);
          }
      }
 }
