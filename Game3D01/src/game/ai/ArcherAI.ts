@@ -16,9 +16,16 @@ export default class ArcherAI extends FlowerAI {
         super(pro);
          if(!this.gi){
              //这里要加入反弹次数
-            this.gi = new GameInfrared(pro,1);
+            var i = pro.sysBullet.ejectionNum + 1;
+            if(i<1)i=1;
+            this.gi = new GameInfrared(pro,i);
             this.gi.show = false;
         }
+    }
+
+    public faceToHero(){
+        //射击前不在追踪英雄
+        return;
     }
 
 
@@ -34,6 +41,7 @@ export default class ArcherAI extends FlowerAI {
         
         if(this.status == 0 && this.now >= this.nextTime){
             //status=1 走1.5秒
+            this.pro.rotation((Math.PI/4) * Math.ceil(Math.random()*8));
             this.nextTime = this.now + 1500;
             this.status = 1;
             this.pro.play(GameAI.Run);
