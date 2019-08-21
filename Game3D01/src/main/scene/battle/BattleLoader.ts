@@ -143,7 +143,7 @@ export default class BattleLoader {
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
 
         this.resAry.length = 0;
-        // this.monsterId = 10089;
+        this.monsterId = 10074;
         this.monsterRes = {};
         let res: string;
 

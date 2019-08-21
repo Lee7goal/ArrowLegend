@@ -44,6 +44,7 @@ import IceBuff from "./game/skill/player/IceBuff";
 import Game from "./game/Game";
 import WudiBuff from "./game/skill/player/WudiBuff";
 import ShitouAI from "./game/ai/ShitouAI";
+import FlyGameMove2 from "./game/move/FlyGameMove2";
 
 class Main {
 	constructor() {
@@ -177,11 +178,12 @@ class Main {
 		REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
 		REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
         //移动类型
-        REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
+		REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
         REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);
         REG(MoveType.TAG + MoveType.FIXED,FixedGameMove);
         REG(MoveType.TAG + MoveType.JUMP,JumpMove);
-        REG(MoveType.TAG + MoveType.BACK,BackMove);
+		REG(MoveType.TAG + MoveType.BACK,BackMove);
+		REG(MoveType.TAG + MoveType.BOOM,FlyGameMove2);
         //平台
         REG("p" + PlatformID.TEST,TestPlatform);
 		REG("p" + PlatformID.WX,WXPlatform);

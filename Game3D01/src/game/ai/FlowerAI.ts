@@ -15,11 +15,15 @@ import GameHitBox from "../GameHitBox";
 export default class FlowerAI extends BaseAI {
     protected shooting: MonsterShooting = new MonsterShooting();
     protected nextTime: number = 0;
+
+    
     constructor(pro: Monster) {
         super(pro);
         this.shooting.at = 0.4;
         this.pro.setSpeed(this.sysEnemy.moveSpeed);
         this.pro.on(Game.Event_Short, this, this.shootAc);
+
+        this.nextTime = Game.executor.getWorldNow() + Math.floor(Math.random() * 2000);
     }
 
     shootAc(): void {
@@ -148,7 +152,7 @@ export default class FlowerAI extends BaseAI {
         {
             this.pro.play(GameAI.Idle);
             this.nextTime = this.now + this.sysEnemy.enemySpeed;
-            this.nextTime = this.now + 1500;
+            // this.nextTime = this.now + 1500;
             var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
             this.pro.rotation(a);
             this.status = 1;
