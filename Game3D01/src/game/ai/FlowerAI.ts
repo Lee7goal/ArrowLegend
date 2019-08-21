@@ -114,17 +114,20 @@ export default class FlowerAI extends BaseAI {
 
         if (this.shooting._sysBullet) {
             if (this.now >= this.nextTime) {
-                var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
-                this.pro.rotation(a);
+                this.faceToHero();
                 this.shooting.starAttack(this.pro, GameAI.NormalAttack);
             }
         }
 
         if (this.now >= this.nextTime) {
-            var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
-            this.pro.rotation(a);
+            this.faceToHero();
             this.nextTime = this.now + this.sysEnemy.enemySpeed;
         }   
+    }
+
+    public faceToHero(){
+        var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
+        this.pro.rotation(a);
     }
 
     exeAI(pro: GamePro): boolean {
