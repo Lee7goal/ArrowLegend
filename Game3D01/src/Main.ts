@@ -1,7 +1,7 @@
 import GameConfig from "./GameConfig";
 import GameBG from "./game/GameBG";
 import GameMain from "./main/GameMain";
-import {ui} from "./ui/layaMaxUI"
+import { ui } from "./ui/layaMaxUI"
 import App from "./core/App";
 import LoginHttp from "./net/LoginHttp";
 import ReceiverHttp from "./net/ReceiverHttp";
@@ -48,11 +48,6 @@ import FlyGameMove2 from "./game/move/FlyGameMove2";
 
 class Main {
 	constructor() {
-		//根据IDE设置初始化引擎	
-		if (Laya.Browser.window.wx) {
-			var win = Laya.Browser.window.wx.getSystemInfoSync();
-			GameBG.height = GameBG.width / win.windowWidth * win.windowHeight;
-		}	
 		if (window["Laya3D"]) Laya3D.init(GameBG.width, GameBG.height);
 		else Laya.init(GameBG.width, GameBG.height, Laya["WebGL"]);
 		Laya["Physics"] && Laya["Physics"].enable();
@@ -73,43 +68,41 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/08212017/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + App.resVer + "/";
 			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png"];
 
 			Laya.Browser.window.wx.getSystemInfo({
-				success (res) {
+				success(res) {
 					let model = res.model;
-					console.log("model");
-					if (model.search('iPhone X') != -1){
+					if (model.search('iPhone X') != -1) {
 						App.top = 90;
 					}
+					GameBG.height = GameBG.width / res.windowWidth * res.windowHeight;
 				}
-			  });
+			});
 		}
 
-		
+
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
-		Laya.loader.load(["h5/config.json","loading/loadingClip.png"],new Laya.Handler(this,this.onInitCom),new Laya.Handler(this,this.onInitProgress));
+		Laya.loader.load(["h5/config.json", "loading/loadingClip.png"], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 	}
 
-	private _initView:ui.test.initViewUI;
+	private _initView: ui.test.initViewUI;
 
-	private onInitProgress(value:number):void
-	{
+	private onInitProgress(value: number): void {
 		value = value * 100;
 		this._initView.initTxt.text = "" + value.toFixed(0) + "%";
 	}
 
-	private onInitCom():void
-	{
+	private onInitCom(): void {
 		this.regClass();
 
 		this._initView.removeSelf();
 
 		let config = Laya.loader.getRes("h5/config.json");
-		console.log("config---",config);
+		console.log("config---", config);
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
 
@@ -117,92 +110,92 @@ class Main {
 		Laya.stage.addChild(this.loading);
 		// this.loading.clip.play();
 		this.loading.txt.text = "0%";
-		Laya.loader.load(["res/atlas/main.png","res/atlas/main.atlas"],new Laya.Handler(this,this.onHandler),new Laya.Handler(this,this.onProgress));
+		Laya.loader.load([
+			{ url: "res/atlas/main.png", type: Laya.Loader.IMAGE },
+			{ url: "res/atlas/main1.png", type: Laya.Loader.IMAGE },
+			{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
+			{ url: "h5/tables.zip", type: Laya.Loader.BUFFER },
+		], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
 	}
 
-	private loading:ui.test.LoadingUI;
-	private onHandler():void{
+	private loading: ui.test.LoadingUI;
+	private onHandler(): void {
 		let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
 		new BP().checkUpdate();
 
-		new LoginHttp(new Laya.Handler(this,this.onSuccess)).checkLogin();
+		new LoginHttp(new Laya.Handler(this, this.onSuccess)).checkLogin();
 	}
 
-	private onSuccess(data):void
-	{
-		ReceiverHttp.create(new Laya.Handler(this,this.onReceive)).send();
+	private onSuccess(data): void {
+		ReceiverHttp.create(new Laya.Handler(this, this.onReceive)).send();
 	}
 
-	
-    private onReceive(data):void
-    {
+
+	private onReceive(data): void {
 		new GameMain();
 		this.loading.removeSelf();
 		// this.loading.clip.stop();
+	}
 
-		Game.battleLoader.loadPubRes();
-    }
-
-	private onProgress(value:number):void
-	{
+	private onProgress(value: number): void {
 		value = value * 100;
 		this.loading.txt.text = "" + value.toFixed(0) + "%";
 	}
 
-	private regClass():void{
+	private regClass(): void {
 		var REG: Function = Laya.ClassUtils.regClass;
-        //击退效果
-        REG("HIT_" + HitType.hit1,GameScaleAnimator1);
-        REG("HIT_" + HitType.hit2,GameScaleAnimator2);
-		REG("HIT_"  + HitType.hit3,GameScaleAnimator4);
-		REG("HIT_"  + HitType.hit4,GameScaleAnimator3);
-        //NPC
-        REG("NPC1001",NPC_1001);
-        REG("NPC1002",NPC_1002);
-        REG("NPC1003",NPC_1003);
+		//击退效果
+		REG("HIT_" + HitType.hit1, GameScaleAnimator1);
+		REG("HIT_" + HitType.hit2, GameScaleAnimator2);
+		REG("HIT_" + HitType.hit3, GameScaleAnimator4);
+		REG("HIT_" + HitType.hit4, GameScaleAnimator3);
+		//NPC
+		REG("NPC1001", NPC_1001);
+		REG("NPC1002", NPC_1002);
+		REG("NPC1003", NPC_1003);
 
-        REG("NPCVIEW1001",NPC_1001_view);
-        REG("NPCVIEW1002",NPC_1002_view);
-        REG("NPCVIEW1003",NPC_1003_view);
-        //攻击类型
-        REG(AttackType.TAG + AIType.NOTHAS,BaseAI);
-        REG(AttackType.TAG + AIType.FLYHIT,FlyAndHitAi);
-        REG(AttackType.TAG + AIType.BULLET,FlowerAI);
-		REG(AttackType.TAG + AIType.STONE,StoneAI);
-		REG(AttackType.TAG + AIType.SHITOUREN,ShitouAI);
-        REG(AttackType.TAG + AIType.TREE,TreeAI);
-        REG(AttackType.TAG + AIType.RANDOM_MOVE,RandMoveAI);
-        REG(AttackType.TAG + AIType.MOVEHIT,MoveAndHitAi);
-        REG(AttackType.TAG + AIType.REBOUND,ReboundAI);
-        REG(AttackType.TAG + AIType.JUMP_FOLLOW,JumpFollowAI);
-		REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
-		REG(AttackType.TAG + AIType.RED_LINE,ArcherAI);
-        //移动类型
-		REG(MoveType.TAG + MoveType.FLY,FlyGameMove);
-        REG(MoveType.TAG + MoveType.MOVE,PlaneGameMove);
-        REG(MoveType.TAG + MoveType.FIXED,FixedGameMove);
-        REG(MoveType.TAG + MoveType.JUMP,JumpMove);
-		REG(MoveType.TAG + MoveType.BACK,BackMove);
-		REG(MoveType.TAG + MoveType.BOOM,FlyGameMove2);
-        //平台
-        REG("p" + PlatformID.TEST,TestPlatform);
-		REG("p" + PlatformID.WX,WXPlatform);
+		REG("NPCVIEW1001", NPC_1001_view);
+		REG("NPCVIEW1002", NPC_1002_view);
+		REG("NPCVIEW1003", NPC_1003_view);
+		//攻击类型
+		REG(AttackType.TAG + AIType.NOTHAS, BaseAI);
+		REG(AttackType.TAG + AIType.FLYHIT, FlyAndHitAi);
+		REG(AttackType.TAG + AIType.BULLET, FlowerAI);
+		REG(AttackType.TAG + AIType.STONE, StoneAI);
+		REG(AttackType.TAG + AIType.SHITOUREN, ShitouAI);
+		REG(AttackType.TAG + AIType.TREE, TreeAI);
+		REG(AttackType.TAG + AIType.RANDOM_MOVE, RandMoveAI);
+		REG(AttackType.TAG + AIType.MOVEHIT, MoveAndHitAi);
+		REG(AttackType.TAG + AIType.REBOUND, ReboundAI);
+		REG(AttackType.TAG + AIType.JUMP_FOLLOW, JumpFollowAI);
+		REG(AttackType.TAG + AIType.RED_LINE, ArcherAI);
+		REG(AttackType.TAG + AIType.RED_LINE, ArcherAI);
+		//移动类型
+		REG(MoveType.TAG + MoveType.FLY, FlyGameMove);
+		REG(MoveType.TAG + MoveType.MOVE, PlaneGameMove);
+		REG(MoveType.TAG + MoveType.FIXED, FixedGameMove);
+		REG(MoveType.TAG + MoveType.JUMP, JumpMove);
+		REG(MoveType.TAG + MoveType.BACK, BackMove);
+		REG(MoveType.TAG + MoveType.BOOM, FlyGameMove2);
+		//平台
+		REG("p" + PlatformID.TEST, TestPlatform);
+		REG("p" + PlatformID.WX, WXPlatform);
 
 		//buff
 		//无敌
-		REG("BUFF" + BuffID.WUDI_5009,WudiBuff);
+		REG("BUFF" + BuffID.WUDI_5009, WudiBuff);
 		//火焰
-		REG("BUFF" + BuffID.FIRE_2001,FireBuff);
-		REG("BUFF" + BuffID.FIRE_5001,FireBuff);
+		REG("BUFF" + BuffID.FIRE_2001, FireBuff);
+		REG("BUFF" + BuffID.FIRE_5001, FireBuff);
 		//淬毒
-		REG("BUFF" + BuffID.DU_2002,FireBuff);
-		REG("BUFF" + BuffID.DU_5002,FireBuff);
+		REG("BUFF" + BuffID.DU_2002, FireBuff);
+		REG("BUFF" + BuffID.DU_5002, FireBuff);
 		//冰冻
-		REG("BUFF" + BuffID.ICE_2003,IceBuff);
-		REG("BUFF" + BuffID.ICE_5003,IceBuff);
+		REG("BUFF" + BuffID.ICE_2003, IceBuff);
+		REG("BUFF" + BuffID.ICE_5003, IceBuff);
 
 
-    }
+	}
 }
 //激活启动类
 new Main();

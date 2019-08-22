@@ -19,7 +19,8 @@ export default class ZipLoader {
         Laya.loader.load(fileName, new Handler(this, this.zipFun), null, Loader.BUFFER);
     }
 
-    public zipFun(ab: ArrayBuffer): void {
+    public zipFun(ab: ArrayBuffer, handler: Handler): void {
+        this.handler = handler;
         Laya.Browser.window.JSZip.loadAsync(ab).then((jszip)=> {
             this.analysisFun(jszip);
         });

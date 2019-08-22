@@ -5,11 +5,13 @@ import WorldView from "./world/WorldView";
 import GameBG from "../../../game/GameBG";
 import GameEvent from "../../GameEvent";
 import Game from "../../../game/Game";
+import App from "../../../core/App";
 
     export default class MainScene extends Laya.Sprite{
     private mainUI:MainUI;
     private mainView:MainView;
     
+    private verLabel:Laya.Label = new Laya.Label();
     constructor() { 
         super(); 
         this.height = GameBG.height;
@@ -21,6 +23,13 @@ import Game from "../../../game/Game";
         this.mainUI = new MainUI();
         this.addChild(this.mainView);
         this.addChild(this.mainUI);
+
+        this.addChild(this.verLabel);
+        this.verLabel.fontSize = 16;
+        this.verLabel.color = "#ffffff";
+        // this.verLabel.bold = true;
+        this.verLabel.text = "version:" + App.resVer;
+
 
         Laya.stage.on("switchView",this,this.switchView);
         this.switchView();

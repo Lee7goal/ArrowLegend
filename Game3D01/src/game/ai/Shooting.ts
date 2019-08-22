@@ -33,6 +33,7 @@ export default class Shooting {
         }
 
         bo.hurtValue = Math.floor(attackPower);
+        console.log("伤害",bo.hurtValue);
         // var bo = new HeroBullet();
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);

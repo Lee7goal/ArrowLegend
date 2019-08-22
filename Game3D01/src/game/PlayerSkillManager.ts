@@ -63,7 +63,7 @@ export default class PlayerSkillManager {
 
     addAttack(): number {
         let buff: SysBuff;
-        Game.hero.playerData.baseAttackPower = 150;
+        Game.hero.playerData.baseAttackPower = 200;
         let sys3002: SysSkill = this.isHas(3002);
         if (sys3002) {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3002.skillEffect1);

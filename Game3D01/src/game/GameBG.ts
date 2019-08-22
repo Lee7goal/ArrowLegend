@@ -210,6 +210,7 @@ export default class GameBG extends Laya.Sprite {
 
     private npcP:Laya.Point = new Laya.Point();
     public drawR(hasBoss:boolean = false): void {
+        this.npcId = 0;
         var img: Image;
         var ww: number = GameBG.ww;
         var k: number = 0;

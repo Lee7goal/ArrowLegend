@@ -1,7 +1,6 @@
 import ZipLoader from "../core/utils/ZipLoader";
 import App from "../core/App";
 import Game from "../game/Game";
-import BloodEffect from "../game/effect/BloodEffect";
 import SysChapter from "./sys/SysChapter";
 import SysMap from "./sys/SysMap";
 import SysEnemy from "./sys/SysEnemy";
@@ -13,7 +12,8 @@ import SysNpc from "./sys/SysNpc";
 
 export default class GameMain {
     constructor() {
-        ZipLoader.load("h5/tables.zip", new Laya.Handler(this, this.zipFun));
+        // ZipLoader.load("h5/tables.zip", new Laya.Handler(this, this.zipFun));
+        ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"),new Laya.Handler(this, this.zipFun));
     }
 
     private zipFun(arr: any[]): void {
@@ -21,7 +21,8 @@ export default class GameMain {
         this.initTable(arr);
         Laya.stage.addChild(App.layerManager);
         Game.scenneM.showMain();
-        new BloodEffect();
+
+        Game.battleLoader.loadPubRes();
     }
 
     private initTable(arr: any[]): void {

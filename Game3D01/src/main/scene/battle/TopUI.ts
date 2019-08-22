@@ -10,7 +10,7 @@ import App from "../../../core/App";
         Laya.stage.on(Game.Event_COINS,this,this.updateCoins);
         Laya.stage.on(Game.Event_EXP,this,this.updateExp);
 
-        this.y = App.top + 30;
+        this.y = App.top + 60;
     }
 
     private lastWidth:number = 0;

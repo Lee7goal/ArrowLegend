@@ -187,7 +187,7 @@ export module ui.test {
     export class LoadingUI extends Scene {
 		public clip:Laya.Clip;
 		public txt:Laya.Label;
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#ffffff"},"compId":3},{"type":"Box","props":{"width":156,"scaleY":1.5,"scaleX":1.5,"height":156,"centerY":0,"centerX":0},"compId":5,"child":[{"type":"Clip","props":{"y":0,"x":0,"var":"clip","skin":"loading/loadingClip.png","clipY":4,"clipX":4,"autoPlay":true},"compId":10},{"type":"Label","props":{"y":58,"x":0,"width":156,"var":"txt","text":"10%","height":40,"fontSize":36,"color":"#b7b7b7","bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/loadingClip.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#ffffff"},"compId":3},{"type":"Box","props":{"width":156,"scaleY":1.5,"scaleX":1.5,"height":156,"centerY":0,"centerX":0},"compId":5,"child":[{"type":"Clip","props":{"y":0,"x":0,"var":"clip","skin":"loading/loadingClip.png","interval":150,"clipY":4,"clipX":4,"autoPlay":true},"compId":10},{"type":"Label","props":{"y":58,"x":0,"width":156,"var":"txt","text":"10%","height":40,"fontSize":36,"color":"#b7b7b7","bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/loadingClip.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

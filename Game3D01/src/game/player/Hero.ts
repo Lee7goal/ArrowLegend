@@ -60,6 +60,10 @@ export default class Hero extends GamePro {
 
     changeMaxBlood(changeValue:number):void
     {
+        if(changeValue > 0)
+        {
+            this.gamedata.hp = this.gamedata.hp + Math.floor(this.gamedata.maxhp * changeValue);
+        }
         this.gamedata.maxhp = Math.floor(this.gamedata.maxhp * (1 + changeValue));
         if(this.gamedata.hp >= this.gamedata.maxhp)
         {
