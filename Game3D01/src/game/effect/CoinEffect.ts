@@ -13,10 +13,11 @@ export default class CoinEffect{
      {
          for(let i = 0; i < goldNum; i++)
          {
+            let coin:Coin = Coin.getOne();
+            coin.setPos(monster,2 * Math.PI / goldNum * i);
+            CoinEffect.coinsAry.push(coin);
             setTimeout(() => {
-                let coin:Coin = Coin.getOne();
-                coin.setPos(monster)
-                CoinEffect.coinsAry.push(coin);
+                
             }, i * 50);
          }
      }

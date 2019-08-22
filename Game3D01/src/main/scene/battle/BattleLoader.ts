@@ -60,20 +60,19 @@ export default class BattleLoader {
             }
             Laya.loader.clearRes(key);
         }
-        for (let i = 0; i < Game.monsterResClones.length; i++) {
-            Game.monsterResClones[i].destroy(true);//克隆体
-        }
-        Game.monsterResClones.length = 0;
-        Laya.Resource.destroyUnusedResources();
-        console.log("释放显存");
-    }
 
-    public load(): void {
         //清除对象池
         let tagArr:string[] = [BoomEffect.TAG,DieEffect.TAG,HitEffect.TAG,MonsterBoomEffect.TAG,Coin.TAG,Monster.TAG];
         for(let i = 0; i < tagArr.length; i++)
         {   
             let arr = Laya.Pool.getPoolBySign(tagArr[i]);
+
+            for(let j = 0; j < arr.length;j++)
+            {
+                let sp3d:Laya.Sprite3D = arr[j].sp3d;
+                sp3d && sp3d.destroy(true);
+            }
+
             if(arr.length > 0)
             {
                 Laya.Pool.clearBySign(tagArr[i]);
@@ -83,6 +82,12 @@ export default class BattleLoader {
         }
 
 
+        Game.monsterResClones.length = 0;
+        Laya.Resource.destroyUnusedResources();
+        console.log("释放显存");
+    }
+
+    public load(): void {
         Game.scenneM.battle && Game.scenneM.battle.up(null);
 
         Game.ro && Game.ro.removeSelf();
@@ -98,12 +103,14 @@ export default class BattleLoader {
         if (this._index > 50) {
             this._index = 0;
         }
+        // this._index = 10;
         this._mapId = Session.homeData.chapterId * 1000 + this._index;
         let sysMap: SysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
         let configArr: string[] = sysMap.stageGroup.split(',');
         let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
         this._configId = configId;
         // this._configId = 101001;//火龙
+        // this._configId = 101104;
 
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
@@ -130,7 +137,7 @@ export default class BattleLoader {
             "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh",//3d背景
             "h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
-        Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub));
+        Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub),new Laya.Handler(this,this.onProgress));
     }
 
     private onLoadRes(): void {
@@ -143,7 +150,7 @@ export default class BattleLoader {
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
 
         this.resAry.length = 0;
-        // this.monsterId = 10074;
+        // this.monsterId = 10090;
         this.monsterRes = {};
         let res: string;
 
@@ -255,6 +262,10 @@ export default class BattleLoader {
     }
 
     private onProgress(value: number): void {
+        if(!this._loading)
+        {
+            return;
+        }
         value = Math.ceil(value * 100);
         value = Math.min(value, 100);
         this._loading.txt.text = value + "%";

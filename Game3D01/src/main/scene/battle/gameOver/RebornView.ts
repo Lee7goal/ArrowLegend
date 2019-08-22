@@ -5,6 +5,13 @@ import App from "../../../../core/App";
     constructor() { super(); 
         this.closeBtn.clickHandler = new Laya.Handler(this,this.onClose);
         this.rebornBtn.clickHandler = new Laya.Handler(this,this.onReborn);
+
+        this.on(Laya.Event.DISPLAY,this,this.onDis);
+    }
+
+    private onDis():void
+    {
+        this.txt.text = "" + Game.rebornTimes;
     }
 
     private onClose():void
@@ -16,8 +23,9 @@ import App from "../../../../core/App";
     private onReborn():void
     {
         this.removeSelf();
-        let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
-        new BP().onShare();
+        Game.hero.reborn();
+        // let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
+        // new BP().onShare();
     }
 
     removeSelf():Laya.Node

@@ -74,7 +74,6 @@ export default class BattleScene extends Laya.Sprite {
 
         this._top = new TopUI();
         this.addChild(this._top);
-        this._top.y = 86;
 
         this._top.zanting.clickHandler = new Laya.Handler(this, this.showPause);
 
@@ -111,14 +110,15 @@ export default class BattleScene extends Laya.Sprite {
         }
         this.addChild(this._rebornView);
         Game.state = 1;
-        Game.isReborned = true;
     }
 
     private showDieView1(): void  {
-        if (Game.isReborned)  {
+        if(Game.rebornTimes <= 0)
+        {
             this.onOver();
         }
-        else {
+        else
+        {
             this.onReborn();
         }
     }

@@ -27,9 +27,10 @@ import Session from "../main/Session";
 import BuffManager from "./buff/BuffManager";
 
 export default class Game {
-    static isReborned:boolean = false;
     static state:number = 0;
     static isPopupSkill:number = 0;
+
+    static rebornTimes:number = 2;
 
     static monsterClones: Laya.Sprite3D[] = [];
     static monsterResClones: Laya.Sprite3D[] = [];
@@ -257,7 +258,7 @@ export default class Game {
         Game.selectHead && Game.selectHead.removeSelf();
         Game.skillManager.clear();
         Game.battleLoader.index = 0;
-        Game.isReborned = false;
+        Game.rebornTimes = 2;
         Game.hero.reset();
         Game.hero.resetAI();
         Game.hero.playerData.exp = 0;

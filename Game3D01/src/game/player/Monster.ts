@@ -98,7 +98,7 @@ export default class Monster extends GamePro {
             return;
         }
         HitEffect.addEffect(this);
-        MonsterBoomEffect.addEffect(this);//这里卡
+        MonsterBoomEffect.addEffect(this,this.tScale);
     }
 
     die(): void {
@@ -147,7 +147,7 @@ export default class Monster extends GamePro {
         console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
         var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
-        Game.monsterResClones.push(sp);
+        // Game.monsterResClones.push(sp);
 
         let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {

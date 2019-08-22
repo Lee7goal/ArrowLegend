@@ -55,7 +55,7 @@ import App from "../../../core/App";
 
             this.dengji.value = "" + Session.homeData.level;
 
-            this.y = App.top;
+            this.topBox.y = App.top;
         }
 
         /**扣除体力 */

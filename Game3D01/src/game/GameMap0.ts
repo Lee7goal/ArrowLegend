@@ -61,6 +61,7 @@ export default class GameMap0 extends Laya.Sprite {
     }
 
     public drawMap(): void {
+        this.npcHitBox = null;
         this._isNext = false;
         let hb: GameHitBox = null;
 

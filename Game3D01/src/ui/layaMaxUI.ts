@@ -252,7 +252,8 @@ export module ui.test {
     export class ReborthUI extends View {
 		public rebornBtn:Laya.Button;
 		public closeBtn:Laya.Button;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"alpha":0.6},"compId":3,"child":[{"type":"Rect","props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},"compId":4}]},{"type":"Box","props":{"x":0,"width":750,"height":600,"centerY":0},"compId":6,"child":[{"type":"Label","props":{"x":334,"text":"复活","height":80,"fontSize":60,"color":"#ffffff","bold":true},"compId":5},{"type":"Button","props":{"y":474,"x":255,"width":240,"var":"rebornBtn","stateNum":1,"skin":"main/btn_huang.png","height":100},"compId":7,"child":[{"type":"Label","props":{"y":20,"x":40,"text":"免费复活","fontSize":40,"color":"#ffffff","bold":true},"compId":8}]},{"type":"Button","props":{"y":0,"x":632,"var":"closeBtn","stateNum":1,"skin":"main/btn_guanbi.png","label":"label"},"compId":11}]}],"loadList":["main/btn_huang.png","main/btn_guanbi.png"],"loadList3D":[]};
+		public txt:Laya.Label;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#000000","alpha":0.75},"compId":3},{"type":"Box","props":{"x":0,"width":750,"height":600,"centerY":0},"compId":6,"child":[{"type":"Sprite","props":{"y":59,"x":177,"texture":"main/fuhuodi.png"},"compId":12},{"type":"Button","props":{"y":450,"x":279,"width":240,"var":"rebornBtn","stateNum":1,"skin":"main/btn_fuhuo.png","scaleY":0.8,"scaleX":0.8,"height":100},"compId":7},{"type":"Button","props":{"y":92,"x":504,"var":"closeBtn","stateNum":1,"skin":"main/btn_guanbi.png"},"compId":11},{"type":"Label","props":{"y":280,"x":269,"width":167,"text":"剩余次数：","height":40,"fontSize":36,"color":"#f3e9e9","align":"center"},"compId":13},{"type":"Label","props":{"y":280.5,"x":436,"width":45,"var":"txt","text":"2","height":40,"fontSize":36,"color":"#f3e9e9","align":"left"},"compId":14}]}],"loadList":["main/fuhuodi.png","main/btn_fuhuo.png","main/btn_guanbi.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -315,7 +316,7 @@ export module ui.test {
     export class SkillGridUI extends View {
 		public imgBox:Laya.Box;
 		public txt:Laya.Label;
-        public static  uiView:any ={"type":"View","props":{"width":160,"height":189},"compId":2,"child":[{"type":"Box","props":{"y":9,"x":7,"width":147,"var":"imgBox","height":147},"compId":6},{"type":"Sprite","props":{"texture":"bg/lvkuang.png"},"compId":3},{"type":"Label","props":{"y":167,"width":160,"var":"txt","height":20,"fontSize":18,"color":"#67e72b","align":"center"},"compId":4}],"loadList":["bg/lvkuang.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":160,"height":220},"compId":2,"child":[{"type":"Box","props":{"y":9,"x":7,"width":147,"var":"imgBox","height":147},"compId":6},{"type":"Sprite","props":{"texture":"bg/lvkuang.png"},"compId":3},{"type":"Label","props":{"y":190,"x":0.5,"width":160,"var":"txt","text":"汉字","height":30,"fontSize":30,"color":"#ffffff","align":"center"},"compId":4}],"loadList":["bg/lvkuang.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

@@ -1,4 +1,3 @@
-import MonsterBullet from "../player/MonsterBullet";
 import Game from "../Game";
 import GamePro from "../GamePro";
 
@@ -9,15 +8,17 @@ export default class MonsterBoomEffect{
     public player:GamePro;
     constructor() {
         this.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/boom/monster.lh"));
-        Game.monsterResClones.push(this.sp3d);
+        // Game.monsterResClones.push(this.sp3d);
     }
 
-    static addEffect(pro: GamePro):MonsterBoomEffect
+    static addEffect(pro: GamePro,tScale:number = 1):MonsterBoomEffect
     {
         let effect:MonsterBoomEffect = Laya.Pool.getItemByClass(MonsterBoomEffect.TAG,MonsterBoomEffect);
         // let effect:MonsterBoomEffect = new MonsterBoomEffect();
         effect.player = pro;
-        effect.player.sp3d.addChild(effect.sp3d);
+        effect.sp3d.transform.localPosition = pro.sp3d.transform.localPosition;
+        Game.layer3d.addChild(effect.sp3d);
+        effect.sp3d.transform.localScale = new Laya.Vector3(tScale,tScale,tScale);
 
         setTimeout(() => {
             effect.recover();

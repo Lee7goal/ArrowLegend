@@ -22,6 +22,7 @@ export default class MonsterBullet extends GamePro {
         this._bulletShadow = new ui.test.BulletShadowUI();
         Game.footLayer.addChild(this._bulletShadow);
         this.setShadowSize(19);
+        // console.log("创建怪的子弹");
     }
 
     setBubble(sb: SysBullet): void {
@@ -37,21 +38,23 @@ export default class MonsterBullet extends GamePro {
             Game.footLayer.addChild(this._bulletShadow);
         }
         
-        // if (this.sysBullet && this.sysBullet.bulletMode == sb.bulletMode)  {
-        //     return;
-        // }
+        if (this.sysBullet && this.sysBullet.bulletMode == sb.bulletMode)  {
+            return;
+        }
         this.sysBullet = sb;
         var bullet: Laya.Sprite3D;
         bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
         // Game.monsterResClones.push(bullet);
         this.setSp3d(bullet);
+        // this.sp3d.addComponent(BulletRotateScript);
         this.gamedata.bounce = sb.ejectionNum;
+        
         // Laya.timer.frameLoop(5,this,()=>{
         //     let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
         //     trail.trailFilter.time = 0.3;
         // })
         
-        // console.log("创建新的怪物子弹");
+        console.log("创建新的怪物子弹");
     }
 
     static getBullet(sb: SysBullet): MonsterBullet {
@@ -60,6 +63,11 @@ export default class MonsterBullet extends GamePro {
         let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG, MonsterBullet);
         bullet.isDie = false;
         bullet.setBubble(sb);
+        // if(bullet.sysBullet.id != 10 && bullet.sysBullet.id != 11)//处理弓箭的，弓箭就不转了
+        // {
+        //     (bullet.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bullet.sp3d.transform.localRotationEulerY;
+            
+        // }
         return bullet;
     }
 

@@ -3,7 +3,7 @@ import TableManager from "./manager/TableManager";
 import BitmapNumber from "./display/BitmapNumber";
 
 export default class App{
-    static top:number = 0;
+    static top:number = 10;
 
     static isTest:number;
     static serverIP:string;

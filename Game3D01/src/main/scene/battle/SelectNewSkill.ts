@@ -22,7 +22,7 @@ import SysNpc from "../../sys/SysNpc";
             let selector = new SkillSelector(this.ids[i]);
             selector.clickHandler = new Laya.Handler(this,this.onClick);
             this.viewBox.addChild(selector);
-            selector.pos(this.box.x + 200 * i,this.box.y);
+            selector.pos(this.box.x + 220 * i,this.box.y);
             this.grids.push(selector);
         }
     }
@@ -72,14 +72,14 @@ export class SkillSelector extends Laya.Box
             let grid:SkillGrid = new SkillGrid();
             this._content.addChild(grid);
             grid.update(ids[i]);
-            grid.y = 190 * i;
+            grid.y = grid.height * i;
             this.gridList.push(grid);
             if(i == 8)
             {
                 grid.on(Laya.Event.CLICK,this,this.onClick);
             }
         }
-        this.scrollRect = new Laya.Rectangle(0,0,160,190);
+        this.scrollRect = new Laya.Rectangle(0,0,160,220);
     }
 
     private onClick(e:Laya.Event):void
@@ -101,6 +101,6 @@ export class SkillSelector extends Laya.Box
 
     play():void
     {
-        Laya.Tween.to(this._content,{y: -8 * 190},500,Laya.Ease.circOut,null);
+        Laya.Tween.to(this._content,{y: -8 * 220},500,Laya.Ease.circOut,null);
     }
 }

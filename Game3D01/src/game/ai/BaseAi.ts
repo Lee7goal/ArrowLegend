@@ -158,7 +158,7 @@ export default class BaseAI extends GameAI {
         }
 
         this.pro.hurt(pro.hurtValue,crit3006 || crit3007,isBuff);
-        // this.pro.hurt(1,crit3006 || crit3007,isBuff);
+        // this.pro.hurt(pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }

@@ -107,7 +107,7 @@ export default class HeroAI extends GameAI {
         }
 
     }
-
+    
     public short(): void {
         var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
         Game.hero.rotation(a);

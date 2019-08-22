@@ -22,7 +22,7 @@ export default class CoinsAI extends GameAI {
             return false;
         }
         var a: number = GameHitBox.faceTo3D(pro.hbox, Game.hero.hbox);
-        if(pro.move2D(2 * Math.PI - a))
+        if(pro.move2D(pro.face2d))
         {
             // this.stopAi();
             pro.clear();

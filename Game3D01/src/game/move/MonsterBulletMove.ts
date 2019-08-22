@@ -13,6 +13,12 @@ export default class MonsterBulletMove extends GameMove {
         pro.setSpeed(speed);
         if (pro.speed <= 0) return;
 
+        if(Math.abs(pro.pos2.x) > 800 || Math.abs(pro.pos2.z) > 3000)//出了屏幕后销毁
+        {
+            pro.die();
+            return;
+        }
+
         if (pro.sysBullet.bulletBlock == 1) {
             //直线
             var vx: number = pro.speed * Math.cos(n);
@@ -97,6 +103,7 @@ export default class MonsterBulletMove extends GameMove {
         }
         else {
             //抛物线
+            // console.log("抛物线得",pro.curLen,pro.moveLen);
             var heroBox: GameHitBox = Game.hero.hbox;
             pro.curLen += speed;
             if (pro.curLen >= pro.moveLen) {
@@ -120,13 +127,13 @@ export default class MonsterBulletMove extends GameMove {
                 return false;
             }
 
-            var hits = Game.map0.Aharr;
-            ebh = Game.map0.chechHit_arr(this.future, hits);
-            if (ebh) {
-                // console.log("打到东西了");
-                this.hitEffect(pro);
-                return false;
-            }
+            // var hits = Game.map0.Aharr;
+            // ebh = Game.map0.chechHit_arr(pro.hbox, hits);
+            // if (ebh && ebh.value == -1) {
+            //     console.log("打到东西了",ebh.linkPro_);
+            //     this.hitEffect(pro);
+            //     return false;
+            // }
 
             if (pro.curLen == pro.moveLen) {
                 // console.log("打空了");
@@ -139,6 +146,7 @@ export default class MonsterBulletMove extends GameMove {
     }
 
     private hitEffect(pro: MonsterBullet): void {
+        // console.trace("===========================================");
         pro.setSpeed(0);
         if (pro.sysBullet.boomEffect > 0) {
             BoomEffect.getEffect(pro,pro.sysBullet.boomEffect);

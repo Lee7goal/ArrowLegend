@@ -16,7 +16,7 @@ export default class ArcherAI extends FlowerAI {
         super(pro);
          if(!this.gi){
              //这里要加入反弹次数
-            var i = pro.sysBullet.ejectionNum + 1;
+            var i = this.normalSb.ejectionNum + 1;
             if(i<1)i=1;
             this.gi = new GameInfrared(pro,i);
             this.gi.show = false;

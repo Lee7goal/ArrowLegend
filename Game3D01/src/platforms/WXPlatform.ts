@@ -6,7 +6,20 @@ export default class WXPlatform extends BasePlatform {
 
     private tag:number = 0;
     checkUpdate(): void  {
-        console.log("检查更新");
+        //右上角转发
+        Laya.Browser.window.wx.showShareMenu();
+        var id = 'mss05Kw6QeiJbN73G30yFA' // 通过 MP 系统审核的图片编号
+        var url = 'https://mmocgame.qpic.cn/wechatgame/myCE4RvnnlWbLMDCe1kBOVfEy4RuicNqB65G9yDzdvib1zNFpniajf0xJxm4ewoRtAl/0' // 通过 MP 系统审核的图片地址
+
+        Laya.Browser.window.wx.onShareAppMessage(function () {
+        return {
+            title: '魔界流浪的弓术大师',
+            imageUrlId: id,
+            imageUrl: url
+        }
+        })
+
+        
         Laya.Browser.window.wx.setKeepScreenOn({
             keepScreenOn: true
         });
@@ -65,12 +78,11 @@ export default class WXPlatform extends BasePlatform {
     onShare(callback): void  {
         Laya.Browser.window.wx.shareAppMessage({
             title: "来吧，pk一下吧！",
-            query:"key=reborn",
-            imageUrl: "https://img.kuwan511.com/farmGame/share.jpg",
+            imageUrl: "https://img.kuwan511.com/arrowLegend/share.jpg",
             destWidth: 500,
             destHeight: 400
         });
-        this.tag = 
+        
         Laya.Browser.window.wx.onShow(res => {
             console.log("onShow",this.tag);
             if(this.tag == 1000)

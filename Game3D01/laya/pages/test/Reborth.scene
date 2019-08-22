@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":7,
-    "selecteID":8,
+    "selectedBox":2,
+    "selecteID":3,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":12,
+    "maxID":15,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -18,28 +18,16 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box",
-            "props":{"alpha":0.6},
+            "props":{"width":750,"height":1700,"bgColor":"#000000","alpha":0.75},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":false,
-            "isDirectory":true,
+            "isOpen":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":3,
             "child":[
-                {
-                    "type":"Rect",
-                    "searchKey":"Rect",
-                    "props":{"width":750,"lineWidth":1,"height":1700,"fillColor":"#000000"},
-                    "nodeParent":3,
-                    "label":"Rect",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":4,
-                    "child":[
-                        ]
-                }],
+                ],
             "$HIDDEN":false
         },
         {
@@ -57,15 +45,15 @@
             "child":[
                 {
                     "x":30,
-                    "type":"Label",
-                    "searchKey":"Label",
-                    "props":{"x":334,"text":"复活","height":80,"fontSize":60,"color":"#ffffff","bold":true},
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":59,"x":177,"texture":"main/fuhuodi.png"},
                     "nodeParent":6,
-                    "label":"Label",
+                    "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":5,
+                    "compId":12,
                     "child":[
                         ]
                 },
@@ -73,41 +61,56 @@
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,rebornBtn",
-                    "props":{"y":474,"x":255,"width":240,"var":"rebornBtn","stateNum":"1","skin":"main/btn_huang.png","height":100},
+                    "props":{"y":450,"x":279,"width":240,"var":"rebornBtn","stateNum":"1","skin":"main/btn_fuhuo.png","scaleY":0.8,"scaleX":0.8,"height":100},
                     "nodeParent":6,
                     "label":"rebornBtn",
                     "isOpen":true,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
+                    "hasChild":false,
                     "compId":7,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":20,"x":40,"text":"免费复活","fontSize":40,"color":"#ffffff","bold":true},
-                            "nodeParent":7,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":8,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 },
                 {
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,closeBtn",
-                    "props":{"y":0,"x":632,"var":"closeBtn","stateNum":"1","skin":"main/btn_guanbi.png","label":"label"},
+                    "props":{"y":92,"x":504,"var":"closeBtn","stateNum":"1","skin":"main/btn_guanbi.png"},
                     "nodeParent":6,
                     "label":"closeBtn",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":11,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label",
+                    "props":{"y":280,"x":269,"width":167,"text":"剩余次数：","height":40,"fontSize":36,"color":"#f3e9e9","align":"center"},
+                    "nodeParent":6,
+                    "label":"Label",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":13,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,txt",
+                    "props":{"y":280.5,"x":436,"width":45,"var":"txt","text":"2","height":40,"fontSize":36,"color":"#f3e9e9","align":"left"},
+                    "nodeParent":6,
+                    "label":"txt",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":14,
                     "child":[
                         ]
                 }]

@@ -223,6 +223,7 @@ export default class Hero extends GamePro {
 
     reborn():void
     {
+        Game.rebornTimes--;
         Game.skillManager.removeSkill(4005);
         this.isDie = false;
         this.setKeyNum(1);
