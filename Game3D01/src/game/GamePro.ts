@@ -350,7 +350,11 @@ export default class GamePro extends Laya.EventDispatcher {
                 if (this.animator.speed == 1) {
                     this.animator.speed = (this.speed_ / 6);
                 }
-            } 
+            }            
+            if (this.acstr_ == GameAI.NormalAttack) {
+                this.animator.speed = 2; 
+                //this.animator.addState(new Laya.AnimationState());
+            }
             // else if(this.acstr_ == GameAI.NormalAttack)
             // {
             //     this.animator.speed = 2;
@@ -432,6 +436,10 @@ export default class GamePro extends Laya.EventDispatcher {
 
     public get z(): number {
         return this.sp3d_.transform.localPositionZ;
+    }
+
+    public get x(): number {
+        return this.sp3d_.transform.localPositionX;
     }
 
     public move2D(n: number, hd: boolean = true): boolean {

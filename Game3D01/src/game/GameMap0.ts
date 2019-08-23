@@ -74,17 +74,19 @@ export default class GameMap0 extends Laya.Sprite {
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
 
-        hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
-        hb.setXY(0, GameBG.ww * 2);
-        this.Wharr.push(hb);
-        this.Aharr.push(hb);
-        this.Flyharr.push(hb);
+        if(Game.BigMapMode==0){//如果不是大地图模式
+            hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
+            hb.setXY(0, GameBG.ww * 2);
+            this.Wharr.push(hb);
+            this.Aharr.push(hb);
+            this.Flyharr.push(hb);
 
-        hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
-        hb.setXY(GameBG.ww * GameBG.wnum, GameBG.ww * 2);
-        this.Wharr.push(hb);
-        this.Aharr.push(hb);
-        this.Flyharr.push(hb);
+            hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
+            hb.setXY(GameBG.ww * GameBG.wnum, GameBG.ww * 2);
+            this.Wharr.push(hb);
+            this.Aharr.push(hb);
+            this.Flyharr.push(hb);
+        }
 
         var k: number = 0;
         for (var j = 0; j < GameBG.hnum; j++) {

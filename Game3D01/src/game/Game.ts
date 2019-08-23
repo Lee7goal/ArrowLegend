@@ -30,6 +30,9 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
+    static TestShooting = 1;
+    static BigMapMode = 0;
+
     static state:number = 0;
     static isPopupSkill:number = 0;
 

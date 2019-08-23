@@ -129,7 +129,9 @@ export default class Hero extends GamePro {
         this.acstr = "";
         let sp: Laya.Sprite3D = Laya.loader.getRes("h5/hero/hero.lh");
         Game.layer3d.addChild(sp);
-        sp.transform.localScale = new Laya.Vector3(1.2, 1.2, 1.2);
+        //var scale = 1.2;
+        var scale = 1.4;
+        sp.transform.localScale = new Laya.Vector3(scale, scale, scale);
         this.setSp3d(sp as Laya.Sprite3D);
 
         this.play("Idle");

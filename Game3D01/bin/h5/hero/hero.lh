@@ -3,7 +3,7 @@
 	"data":{
 		"type":"Sprite3D",
 		"props":{
-			"name":"hero",
+			"name":"Demo",
 			"active":true,
 			"position":[
 				0,
@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"daiji (2)",
+					"name":"Lady Pirate(Clone)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,24 +42,17 @@
 						-1
 					],
 					"scale":[
-						1,
-						1,
-						1
+						1.166569,
+						1.166569,
+						1.166569
 					]
 				},
 				"components":[
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/xinren/Animations/daiji-daiji (2)-daijiAvatar.lav",
-							"linkSprites":{
-								"polySurface101":[
-									"polySurface101"
-								],
-								"polySurface95":[
-									"polySurface95"
-								]
-							}
+							"path":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Lady Pirate(Clone)-Lady PirateAvatar.lav",
+							"linkSprites":{}
 						},
 						"layers":[
 							{
@@ -69,19 +62,35 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/xinren/Animations/daiji-Idle.lani"
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Idle.lani"
+									},
+									{
+										"name":"Attack1",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Attack1.lani"
+									},
+									{
+										"name":"Show",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Show.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/xinren/Animations/gongji-Attack.lani"
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Attack.lani"
+									},
+									{
+										"name":"Attack2",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Attack2.lani"
+									},
+									{
+										"name":"Jump",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Jmp.lani"
 									},
 									{
 										"name":"Run",
-										"clipPath":"Assets/xinren/Animations/pao-Run.lani"
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Run.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/xinren/Animations/siwang-Die.lani"
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-D.lani"
 									}
 								]
 							}
@@ -92,77 +101,9 @@
 				],
 				"child":[
 					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"polySurface101",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0.0118511,
-								0.007067217,
-								-0.1232601
-							],
-							"rotation":[
-								-0.05652387,
-								0.006505253,
-								-0.005157372,
-								-0.9983668
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"meshPath":"Assets/xinren/Animations/daiji-polySurface101.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/xinren/Materials/base_hero_hands.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"polySurface95",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0.1543896,
-								0.5786477,
-								0.2391743
-							],
-							"rotation":[
-								0.6920182,
-								0.3888618,
-								-0.08334474,
-								-0.6024541
-							],
-							"scale":[
-								0.7748365,
-								0.7748365,
-								0.7748367
-							],
-							"meshPath":"Assets/xinren/Animations/daiji-polySurface95.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/xinren/Materials/base_hero_hands.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					},
-					{
 						"type":"SkinnedMeshSprite3D",
 						"props":{
-							"name":"polySurface109",
+							"name":"102700_hdnw_npc_mo_0",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
@@ -172,43 +113,43 @@
 								0
 							],
 							"rotation":[
-								0,
+								-2.18557E-08,
 								0,
 								0,
 								-1
 							],
 							"scale":[
-								1,
-								1,
-								1
+								0.9999999,
+								0.9999999,
+								0.9999999
 							],
-							"rootBone":"joint1",
+							"rootBone":"Bip001 Pelvis",
 							"boundBox":{
 								"min":[
-									-0.7733704,
-									-0.5243278,
-									-0.4091292
+									-0.6550906,
+									-0.3556834,
+									-0.4910732
 								],
 								"max":[
-									1.062532,
-									0.6269488,
-									0.4844906
+									0.7094851,
+									0.2891786,
+									0.4017645
 								]
 							},
 							"boundSphere":{
 								"center":[
-									0.144581,
-									0.05131054,
-									0.03768069
+									0.02719721,
+									-0.03325242,
+									-0.04465438
 								],
-								"radius":1.172021
+								"radius":0.8767943
 							},
 							"materials":[
 								{
-									"path":"Assets/xinren/Materials/base_hero_hands.lmat"
+									"path":"Assets/MeshSmith/Fantasy1/Lady Pirate/Material/102710_hdnw_npc_d_512.lmat"
 								}
 							],
-							"meshPath":"Assets/xinren/Animations/daiji-polySurface109.lm"
+							"meshPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-102700_hdnw_npc_mo_0.lm"
 						},
 						"components":[],
 						"child":[]
