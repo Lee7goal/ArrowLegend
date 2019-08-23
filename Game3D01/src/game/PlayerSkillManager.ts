@@ -16,6 +16,17 @@ export default class PlayerSkillManager {
     /**已经获得技能 */
     public skillList: SysSkill[] = [];
 
+    get skills():string
+    {
+        let ss:string = "";
+        for(let i = 0; i < this.skillList.length; i++)
+        {
+            ss += "," + this.skillList[i].id + "_" + this.skillList[i].curTimes
+        }
+        ss = ss.substring(1,ss.length - 1);
+        return ss;
+    }
+
     arrowHeadId: number = 0;
 
     skinsHeads: number[] = [2001, 2002, 2003, 2004];

@@ -22,7 +22,7 @@ export default class BattleLoader {
     constructor() { }
 
     private _mapId: number;
-    private _configId: number;
+    _configId: number;
     private _index: number = 0;
 
     private _loading: ui.test.LoadingUI;
@@ -87,7 +87,11 @@ export default class BattleLoader {
         console.log("释放显存");
     }
 
-    public load(): void {
+    /**退出再进来数据 */
+    continueRes:any;
+
+    public load(res?:any): void {
+        this.continueRes = res;
         Game.scenneM.battle && Game.scenneM.battle.up(null);
 
         Game.ro && Game.ro.removeSelf();
@@ -98,19 +102,25 @@ export default class BattleLoader {
         App.layerManager.alertLayer.addChild(this._loading);
         Game.bg && Game.bg.clear();
         this._loading.txt.text = "0%";
-        // this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, 1, this._loading.bar.height);
 
-        if (this._index > 50) {
-            this._index = 0;
+        if(this.continueRes)
+        {
+            this._mapId = this.continueRes.mapId;
+            this._index  = this.continueRes.index;
+            this._configId = this.continueRes.configId;
+            Game.battleCoins = this.continueRes.coins;
         }
-        // this._index = 10;
-        this._mapId = Session.homeData.chapterId * 1000 + this._index;
-        let sysMap: SysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
-        let configArr: string[] = sysMap.stageGroup.split(',');
-        let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
-        this._configId = configId;
-        // this._configId = 101001;//火龙
-        // this._configId = 101104;
+        else
+        {
+            if (this._index > 50) {
+                this._index = 0;
+            }
+            this._mapId = Session.homeData.chapterId * 1000 + this._index;
+            let sysMap: SysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
+            let configArr: string[] = sysMap.stageGroup.split(',');
+            let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
+            this._configId = configId;
+        }
 
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
@@ -135,7 +145,7 @@ export default class BattleLoader {
             "res/atlas/map_3.png", "res/atlas/map_3.atlas",
             "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas",
             "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh",//3d背景
-            "h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
+            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
         Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub),new Laya.Handler(this,this.onProgress));
     }
@@ -150,9 +160,14 @@ export default class BattleLoader {
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
 
         this.resAry.length = 0;
-        // this.monsterId = 10090;
         this.monsterRes = {};
         let res: string;
+
+        if(this.continueRes)
+        {
+            this.onComplete();
+            return;
+        }
 
         if (this.monsterId <= 0)  {
             //怪

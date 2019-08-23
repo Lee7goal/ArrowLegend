@@ -22,8 +22,8 @@ export default class Session{
             Session.gameData.mapIndex = Game.battleLoader.index;
         }
 
-        Session.gameData.coins = Game.coinsNum;
-        
+        Session.gameData.coins += Game.addCoins;
+        Session.homeData.coins = Session.gameData.coins;
         Session.gameData.level = Session.homeData.level;
 
         SenderHttp.create().send();
@@ -76,7 +76,7 @@ export default class Session{
             Session.gameData.chapterId = Session.homeData.chapterId;
             Session.gameData.mapIndex = Session.homeData.mapIndex;
             Session.gameData.level = Session.homeData.level;
-            Session.gameData.level = Session.homeData.coins;
+            Session.gameData.coins = Session.homeData.coins;
         }
     }
 }

@@ -36,6 +36,12 @@ import App from "../../../core/App";
             this.mo = new MaskObj(this.jingyantiao);
             this.mo.value = 1;
 
+            this.topBox.y = App.top;
+            this.on(Laya.Event.DISPLAY,this,this.onDis);
+        }
+
+        private onDis():void
+        {
             this.homeData = Session.homeData;
             if(Date.now() >= this.homeData.lastTime)
             {
@@ -55,7 +61,8 @@ import App from "../../../core/App";
 
             this.dengji.value = "" + Session.homeData.level;
 
-            this.topBox.y = App.top;
+            this.coinClip.value = "" + Session.homeData.coins;
+            console.log("金币数",Session.homeData.coins);
         }
 
         /**扣除体力 */

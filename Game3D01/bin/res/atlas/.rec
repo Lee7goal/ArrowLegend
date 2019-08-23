@@ -11,7 +11,6 @@ P A4F3ACA8 clip_huoxing.png
 P 5642B893 dengji.png
 P 965E6CDF dianju.png
 P 48934066 dianjujia.png
-P 8B9EDA91 dongjin.png
 P 8F0C707B door0.png
 P 23107FA6 door1.png
 P 8AB58526 douying.png
@@ -70,9 +69,9 @@ P 66C30337 zuotiao.png
 D loading
 R 874EF654 loadingClip.png
 D main
-P 8FE16C88 anniubi.png
 P 3159A1FA anniudian.png
 P FBBDC073 baoxiang01.png
+P 2DDABC23 biaoti.png
 P ADDEEA33 biaotihong.png
 P 31D94EFF biaotihuang.png
 P 43FA4528 biaotilan.png
@@ -92,15 +91,16 @@ P 533E8A4A clipshuzi.png
 P 248C5986 dabiao.png
 P C3C6DE3B dazhao.png
 P 6E600239 diban.png
+P 8B9EDA91 dongjin.png
 P 7781CAC0 erdao.png
 P 0753DE3D fuhuodi.png
+P 35ABD0AD fuhuodi2.png
 P 3AF7A488 greenFont.png
 P BC23220B guang1.png
 P DDF4E1DD guang2.png
 P F211986B guangdian.png
 P 375AA97B haibo.png
 P 6773E926 jiandi.jpg
-P 5B32D6B6 jinbijia.png
 P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
 P B9019BE6 jingyantiaodi.png
@@ -120,6 +120,8 @@ P 0178A633 PTtian.png
 P 2E86B207 qianding.png
 P D608ACC2 qidai.png
 P 05BA409C qidaizhuan.png
+P 92C4F8F3 queding.png
+P 4070A1DA quxiao.png
 P 7912E984 redFont.png
 P A88CEF17 shandianjia.png
 P DB7D6C33 shengji.png

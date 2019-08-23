@@ -64,7 +64,7 @@ export default class GameExecut extends Laya.EventDispatcher {
             }
 
             if (arr[0] instanceof Hero)  {
-                if (Game.bg.npcId == 1000)  {
+                if (Game.bg.npcId > 0)  {
                     Game.bg.checkNpc();
                 }
             }

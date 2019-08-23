@@ -9,6 +9,7 @@ import Saw from "../main/scene/battle/saw/Saw";
 import NPC_1001 from "../main/scene/battle/npc/NPC_1001";
 import NPC_1002 from "../main/scene/battle/npc/NPC_1002";
 import NPC_1003 from "../main/scene/battle/npc/NPC_1003";
+import GameHitBox from "./GameHitBox";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -279,11 +280,11 @@ export default class GameBG extends Laya.Sprite {
                 else if(GridType.isNpc(gType))
                 {
                     this.npcId = gType;
-                    if(this.npcId == 1001)
-                    {
-                        let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
-                        this._npcAni = new NPC();
-                    }
+                    // if(this.npcId == 1001)
+                    // {
+                    //     let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
+                    //     this._npcAni = new NPC();
+                    // }
                     this.npcP.x = img.x + GameBG.ww2;
                     this.npcP.y = img.y;
                 }
@@ -417,7 +418,7 @@ export default class GameBG extends Laya.Sprite {
         // redLine.x = GameBG.ww * 5;
         // redLine.y = GameBG.ww * 18;
         // redLine.height = 500;
-        this.showNpc();
+        // this.showNpc();
     }
 
     private showNpc():void
@@ -428,12 +429,19 @@ export default class GameBG extends Laya.Sprite {
             this._npcAni.pos(this.npcP.x,this.npcP.y - 800);
 
             Laya.Tween.to(this._npcAni,{y:this.npcP.y},300,Laya.Ease.circIn);
+
+            Game.bg.event(Game.Event_NPC);
         }
     }
 
     /**检测出现哪个npc  恶魔和胡子 */
     checkNpc():void
     {
+        if(!Game.map0.checkNpc())
+        {
+            return;
+        }
+        Game.scenneM.battle.up(null);
         if(this.npcId == 1000)
         {
             this.npcId = 0;

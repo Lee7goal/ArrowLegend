@@ -9,7 +9,8 @@ export default class TestPlatform extends BasePlatform{
 
     login(callback):void
     {
-        callback && callback("" + Date.now());
+        // callback && callback("" + Date.now());
+        callback && callback("20190fdafdafdastrergsdffdasfsdaewfdfda823");
     }
 
     onShare(callback):void

@@ -1,5 +1,6 @@
 import { ui } from "./../../../../ui/layaMaxUI";
 import Game from "../../../../game/Game";
+import Session from "../../../Session";
 export default class GameOverView extends ui.test.GameOverUI {
     constructor() {
         super();
@@ -16,10 +17,14 @@ export default class GameOverView extends ui.test.GameOverUI {
 
     private onDis():void
     {
+        Game.addCoins = Game.battleCoins;
         this.info.visible = false;
         this.bg.ani1.play(0,false);
 
         this.info.cengshu.value = "" + Game.battleLoader.index;
+
+        Session.saveData();
+        Game.addCoins = 0;
     }
 
     private onCom(): void  {

@@ -35,7 +35,8 @@ export default class GameMap0 extends Laya.Sprite {
     public map: any = {};
     private Amap: any = {};
 
-    private npcHitBox:GameHitBox;
+    /**npc的碰撞盒 */
+    npcHitBox:GameHitBox;
     
     constructor() {
         super();
@@ -126,8 +127,8 @@ export default class GameMap0 extends Laya.Sprite {
                     }
                     else if(GridType.isNpc(key))
                     {
-                        this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww);
-                        this.npcHitBox.setXY(x - GameBG.ww * 5, y);
+                        this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww * 4);
+                        this.npcHitBox.setXY(x - GameBG.ww * 5, y - GameBG.ww * 3);
                     }
                 }
                 k++;
@@ -180,10 +181,10 @@ export default class GameMap0 extends Laya.Sprite {
         this.Flyharr.push(hb);
 
         //最后放npc
-        if(this.npcHitBox)
-        {
-            this.Wharr.push(this.npcHitBox);
-        }
+        // if(this.npcHitBox)
+        // {
+        //     this.Wharr.push(this.npcHitBox);
+        // }
 
         //传送门左侧
         hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww * 2);
@@ -209,16 +210,29 @@ export default class GameMap0 extends Laya.Sprite {
     clearNpc():void
     {
         this._isNpc = false;
-        if(this.npcHitBox)
-        {
-            this.Wharr.splice(this.Wharr.indexOf(this.npcHitBox),1);
-            this.npcHitBox = null;
-        }
+        // if(this.npcHitBox)
+        // {
+        //     this.Wharr.splice(this.Wharr.indexOf(this.npcHitBox),1);
+            
+        // }
+        this.npcHitBox = null;
         this.graphics.clear();
         for (let i = 0; i < this.Wharr.length; i++) {
             var hb = this.Wharr[i];
             this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
         }
+    }
+
+    checkNpc():boolean
+    {
+        let bool:boolean = false;
+        if(this.npcHitBox && Game.hero.hbox.hit(Game.hero.hbox,this.npcHitBox))
+        {
+            bool = true;
+            this._isNpc = true;
+            this.npcHitBox = null;
+        }
+        return bool;
     }
 
     /**开关门 */
@@ -246,7 +260,7 @@ export default class GameMap0 extends Laya.Sprite {
     private _isNext:boolean = false;
     private _isNpc:boolean = false;
     public chechHit(gamepro: GamePro, vx: number, vy: number): boolean {
-        if(this._isNext || this._isNpc)
+        if(this._isNext)
         {
 
             return true;
@@ -270,14 +284,6 @@ export default class GameMap0 extends Laya.Sprite {
                     Game.battleLoader.load();
                     return true;
                 }
-                if(ehb == Game.map0.npcHitBox && ehb.hit(ehb, fb) && Game.bg._npcAni)
-                {
-                    this._isNpc = true;
-                    console.log("碰到npc了");
-                    Game.bg.event(Game.Event_NPC);
-                    return true;
-                }
-
                 if(chuanqiangSkill && (GridType.isWall(ehb.value) || GridType.isFence(ehb.value)))
                 {
                     //穿墙术

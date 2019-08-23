@@ -25,6 +25,9 @@ import PlayerSkillManager from "./PlayerSkillManager";
 import MainUI from "../main/scene/main/MainUI";
 import Session from "../main/Session";
 import BuffManager from "./buff/BuffManager";
+import GameAlert from "../main/GameAlert";
+import { BaseCookie } from "../gameCookie/BaseCookie";
+import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
     static state:number = 0;
@@ -138,12 +141,25 @@ export default class Game {
         }
     }
 
+    static cookie:BaseCookie;
+
     static door: Laya.Sprite3D;
     static isOpen: boolean = false;
     static openDoor(): void {
         if (Game.isOpen)  {
             return;
         }
+
+        Game.cookie.setCookie(CookieKey.CURRENT_BATTLE,{
+            "mapId":Game.battleLoader.mapId,
+            "index":Game.battleLoader.index,
+            "configId":Game.battleLoader._configId,
+            "curhp":Game.hero.gamedata.hp,
+            "maxhp":Game.hero.gamedata.maxhp,
+            "skills":Game.skillManager.skills,
+            "coins":Game.battleCoins
+        });
+
         Game.battleLoader.index++;
         Game.isOpen = true;
         Game.bg.setDoor(1);
@@ -249,11 +265,19 @@ export default class Game {
         //Laya.Scene3D
     }
 
-    static coinsNum: number = 0;
+    static alert:GameAlert;
+
+    /**战斗中的金币 */
+    static battleCoins: number = 0;
+
+    /**结算时候加的金币 */
+    static addCoins:number = 0;
 
     static showMain():void
     {
-        Game.coinsNum = 0;
+        Game.cookie.removeCookie(CookieKey.CURRENT_BATTLE);
+        
+        Game.battleCoins = 0;
         Game.selectFoot && Game.selectFoot.removeSelf();
         Game.selectHead && Game.selectHead.removeSelf();
         Game.skillManager.clear();

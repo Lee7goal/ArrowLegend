@@ -65,7 +65,7 @@ import App from "../../../core/App";
 
     updateCoins():void
     {
-        this.jinbishu.value = "" + Game.coinsNum;
+        this.jinbishu.value = "" + Game.battleCoins;
     }
 
     removeSelf():Laya.Node

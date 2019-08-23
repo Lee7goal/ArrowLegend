@@ -45,6 +45,9 @@ import Game from "./game/Game";
 import WudiBuff from "./game/skill/player/WudiBuff";
 import ShitouAI from "./game/ai/ShitouAI";
 import FlyGameMove2 from "./game/move/FlyGameMove2";
+import TestCookie from "./gameCookie/TestCookie";
+import WXCookie from "./gameCookie/WXCookie";
+import { BaseCookie } from "./gameCookie/BaseCookie";
 
 class Main {
 	constructor() {
@@ -105,6 +108,20 @@ class Main {
 		console.log("config---", config);
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
+
+
+		// wx.clearStorage()
+
+		let bc:BaseCookie;
+		if(App.platformId == PlatformID.TEST)
+		{
+			bc = new TestCookie();
+		}
+		else if(App.platformId == PlatformID.WX)
+		{
+			bc = new WXCookie();
+		}
+		Game.cookie = bc;
 
 		this.loading = new ui.test.LoadingUI();
 		Laya.stage.addChild(this.loading);

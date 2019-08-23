@@ -17,7 +17,8 @@ import App from "../../../../core/App";
     private onClose():void
     {
         this.removeSelf();
-        Game.showMain();
+        Game.rebornTimes = 0;
+        Laya.stage.event(Game.Event_MAIN_DIE);
     }
 
     private onReborn():void

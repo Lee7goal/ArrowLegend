@@ -107,9 +107,13 @@ export default class Hero extends GamePro {
         {
             if(!this.wudi)
             {
-                this.wudi = Laya.loader.getRes("h5/effects/skill/5009/monster.lh");
-                this.wudi.transform.localPositionY = -0.5;
-                this.wudi.addComponent(WudiRotateScript);
+                let sp:Laya.Sprite3D = Laya.loader.getRes("h5/bullets/skill/5009/monster.lh");
+                if(sp)
+                {
+                    this.wudi = sp;
+                    this.wudi.transform.localPositionY = -0.5;
+                    this.wudi.addComponent(WudiRotateScript);
+                }
             }
             this.sp3d.addChild(this.wudi);
         }
@@ -225,8 +229,10 @@ export default class Hero extends GamePro {
         this.play(GameAI.Die);
     }
 
+    rebornTime:number;
     reborn():void
     {
+
         Game.rebornTimes--;
         Game.skillManager.removeSkill(4005);
         this.isDie = false;
@@ -237,6 +243,11 @@ export default class Hero extends GamePro {
         this.play("Idle");
         this.startAi();
         Game.executor &&Game.executor.start();
+
+        this.setWudi(true);
+        setTimeout(() => {
+            this.setWudi(false);
+        }, 2000);
     }
 
     onDie(key): void {

@@ -10,15 +10,20 @@ import Game from "../../../game/Game";
 
     private onHome():void
     {
-        this.removeSelf();
+        Game.alert.onShow("确定返回主页吗?",new Laya.Handler(this,this.onGo),null,"本局将不会产生任何收益。")
+    }
+
+    private onGo():void
+    {
+        Game.addCoins = 0;
         Game.showMain();
+        this.removeSelf();
     }
 
     private onSound():void
     {
 
     }
-
 
     private onBattle():void
     {
