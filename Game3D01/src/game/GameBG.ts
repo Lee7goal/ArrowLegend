@@ -514,12 +514,27 @@ export default class GameBG extends Laya.Sprite {
 
     public updateY(): void {
         var bgy: number = GameBG.cy - Game.hero.pos2.z;
+        var u:boolean = false;
         if (bgy <= 0 && bgy >= Laya.stage.height - Game.bg.getBgh()) {
             //移动2D背景板
             Game.bg.y = bgy;
             //摄像机跟随主角
             Game.camera.transform.localPositionZ = Game.cameraCN.z + Game.hero.z;
+            u = true;
+        }
+
+        if(Game.BigMapMode==1){//如果是大地图模式
+            var bgx: number = GameBG.cx - Game.hero.pos2.x;
+            if (bgx <= 15*GameBG.ww-GameBG.ww2 && bgx >= -15*GameBG.ww-GameBG.ww2 ) {
+                Game.camera.transform.localPositionX = Game.hero.x;
+                Game.bg.x = bgx;            
+                u = true;
+            }
+        }
+
+        if(u){
             Game.updateMap();
         }
+
     }
 }

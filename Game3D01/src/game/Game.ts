@@ -27,6 +27,9 @@ import Session from "../main/Session";
 import BuffManager from "./buff/BuffManager";
 
 export default class Game {
+    static TestShooting = 1;
+    static BigMapMode = 0;
+
     static state:number = 0;
     static isPopupSkill:number = 0;
 

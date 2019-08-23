@@ -109,8 +109,10 @@ export default class HeroAI extends GameAI {
     }
     
     public short(): void {
-        var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
-        Game.hero.rotation(a);
+        if(Game.e0_){
+            var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
+            Game.hero.rotation(a);
+        }
 
         let basePower: number = Game.hero.playerData.baseAttackPower;
         // let moveSpeed: number = GameBG.ww / 2;
@@ -257,6 +259,9 @@ export default class HeroAI extends GameAI {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
             var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
             pro.rotation(a);
+            this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
+        }
+        else if(Game.TestShooting==1 && this.shootin.attackOk()){
             this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
         }
         return true;
