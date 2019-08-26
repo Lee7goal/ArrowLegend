@@ -48,6 +48,13 @@ export default class HeroBullet extends GamePro {
         let bullet: HeroBullet = Laya.Pool.getItemByClass(HeroBullet.TAG, HeroBullet);
         bullet.hit_blacklist = null;
         (bullet.getGameMove() as ArrowGameMove0).fv = null;
+        (bullet.getGameMove() as ArrowGameMove0).ii = 1;
+        bullet.chuantouSkill = null;
+        bullet.fantanSkill = null;
+        bullet.fcount = 0;
+        bullet.tansheSkill = null;
+        bullet.buffAry.length = 0;
+
         bullet.isDie = false;
         bullet.setBullet(id);
         bullet.chuantouSkill = Game.skillManager.isHas(1006);//穿透

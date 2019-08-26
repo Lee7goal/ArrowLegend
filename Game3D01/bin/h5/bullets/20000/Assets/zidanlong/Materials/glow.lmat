@@ -1,24 +1,24 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.TrailMaterial",
+		"type":"Laya.ShurikenParticleMaterial",
 		"renderStates":[
 			{
 				"cull":0,
 				"blend":1,
 				"srcBlend":770,
-				"dstBlend":771,
+				"dstBlend":1,
 				"depthWrite":false,
 				"depthTest":515
 			}
 		],
-		"name":"FX-ArrowTrail 2",
+		"name":"glow",
 		"alphaTest":false,
 		"renderQueue":3000,
 		"textures":[
 			{
 				"name":"texture",
-				"path":"../Textures/jianwei.png",
+				"path":"../Textures/glow.png",
 				"constructParams":[
 					512,
 					512,
@@ -46,13 +46,15 @@
 			{
 				"name":"color",
 				"value":[
-					1,
-					1,
-					1,
-					0.3921569
+					0.5,
+					0.5,
+					0.5,
+					0.5
 				]
 			}
 		],
-		"defines":[]
+		"defines":[
+			"ADDTIVEFOG"
+		]
 	}
 }

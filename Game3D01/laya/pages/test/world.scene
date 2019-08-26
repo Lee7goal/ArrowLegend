@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":22,
-    "selecteID":5,
+    "selectedBox":2,
+    "selecteID":22,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334,"centerY":0},
     "nodeParent":-1,
-    "maxID":23,
+    "maxID":24,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -31,30 +31,16 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,bg",
-                    "props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},
+                    "props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},
                     "nodeParent":20,
                     "label":"bg",
                     "isOpen":true,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
+                    "hasChild":false,
                     "compId":3,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":1223,"skin":"main/zhudi.jpg"},
-                            "nodeParent":3,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":19,
-                            "child":[
-                                ],
-                            "$LOCKED":false
-                        }],
+                        ],
                     "$LOCKED":false
                 }],
             "$LOCKED":false,
@@ -63,10 +49,10 @@
         {
             "x":15,
             "type":"Box",
-            "searchKey":"Box",
-            "props":{"x":24,"centerY":0},
+            "searchKey":"Box,box",
+            "props":{"x":24,"var":"box","centerY":0},
             "nodeParent":2,
-            "label":"Box",
+            "label":"box",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
@@ -75,23 +61,9 @@
             "child":[
                 {
                     "x":30,
-                    "type":"SkeletonPlayer",
-                    "searchKey":"SkeletonPlayer",
-                    "props":{"y":476,"x":322,"url":"main/shuiwen.sk"},
-                    "nodeParent":22,
-                    "label":"SkeletonPlayer",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":5,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,dao",
-                    "props":{"y":155,"var":"dao","skin":"main/yidao.png"},
+                    "props":{"y":150,"x":128.5,"visible":false,"var":"dao","skin":"main/yidao.png"},
                     "nodeParent":22,
                     "label":"dao",
                     "isDirectory":false,
@@ -105,7 +77,7 @@
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,btn_start",
-                    "props":{"y":880,"x":342,"width":367,"var":"btn_start","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,25,0,21","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":880,"x":342,"width":367,"var":"btn_start","stateNum":"1","skin":"main/kaishi.png","height":157,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":22,
                     "label":"btn_start",
                     "isOpen":true,
@@ -118,7 +90,7 @@
                             "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":88,"x":133,"skin":"main/anniudian.png"},
+                            "props":{"y":-40,"x":121,"visible":false,"skin":"main/anniudian.png"},
                             "nodeParent":6,
                             "label":"Image",
                             "isOpen":true,
@@ -128,55 +100,13 @@
                             "compId":7,
                             "child":[
                                 ]
-                        },
-                        {
-                            "x":45,
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":18.5,"x":134,"skin":"main/kaishi.png"},
-                            "nodeParent":6,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":8,
-                            "child":[
-                                ]
                         }]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "searchKey":"Image,baoxiang",
-                    "props":{"y":642,"x":200,"var":"baoxiang","skin":"main/baoxiang01.png"},
-                    "nodeParent":22,
-                    "label":"baoxiang",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":10,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":717,"x":172,"texture":"main/haibo.png"},
-                    "nodeParent":22,
-                    "label":"Sprite",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":11,
-                    "child":[
-                        ]
                 },
                 {
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label,guanwenzi",
-                    "props":{"y":686,"x":310,"var":"guanwenzi","text":"通过关卡1-10","fontSize":30,"color":"#ffffff"},
+                    "props":{"y":686,"x":310,"var":"guanwenzi","fontSize":30,"color":"#ffffff"},
                     "nodeParent":22,
                     "label":"guanwenzi",
                     "isDirectory":false,
@@ -250,7 +180,7 @@
                     "x":30,
                     "type":"FontClip",
                     "searchKey":"FontClip,jinbishu",
-                    "props":{"y":887,"x":327,"width":113,"var":"jinbishu","value":"5","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":98,"align":"left"},
+                    "props":{"y":757,"x":319,"width":113,"visible":false,"var":"jinbishu","value":"5","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":98,"align":"left"},
                     "nodeParent":22,
                     "label":"jinbishu",
                     "isDirectory":false,
@@ -259,6 +189,46 @@
                     "compId":18,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "searchKey":"Box",
+                    "props":{"y":671,"x":-90.5,"visible":false},
+                    "nodeParent":22,
+                    "label":"Box",
+                    "isOpen":null,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":23,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "searchKey":"Image,baoxiang",
+                            "props":{"x":28.5,"var":"baoxiang","skin":"main/baoxiang01.png"},
+                            "nodeParent":23,
+                            "label":"baoxiang",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":10,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":126,"x":0.5,"texture":"main/haibo.png"},
+                            "nodeParent":23,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":11,
+                            "child":[
+                                ]
+                        }]
                 }]
         }],
     "animations":[

@@ -33,7 +33,6 @@ export default class Shooting {
         }
 
         bo.hurtValue = Math.floor(attackPower);
-        console.log("伤害",bo.hurtValue);
         // var bo = new HeroBullet();
         bo.sp3d.transform.localPositionY = 0.8;
         bo.setXY2D(pro.pos2.x, pro.pos2.z);
@@ -50,12 +49,14 @@ export default class Shooting {
         return this.now >= this.st;
     }
 
+    private curAttack:string;
     public starAttack(pro: GamePro, acstr: string): boolean {
         this.pro = pro;
+        this.curAttack = acstr
         if (this.attackOk()) {            
             this.st = this.now + Game.hero.playerData.attackSpeed;
             this.scd = 0;
-            pro.play(acstr);
+            this.pro.play(acstr);
             if (this.at > 0) {
                 Laya.stage.timer.frameLoop(this.at, this, this.ac0);
             } else {
@@ -81,7 +82,7 @@ export default class Shooting {
             }
             if (this.scd == 0) {
                 this.scd = 1;
-                this.pro.event(Game.Event_Short, null);
+                this.pro.event(Game.Event_Short, this.curAttack);
                 this.et = this.st;
             }
         }

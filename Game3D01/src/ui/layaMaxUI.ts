@@ -276,10 +276,10 @@ export module ui.test {
     }
     REG("ui.test.ReborthUI",ReborthUI);
     export class RockerViewUI extends View {
-		public sp:Laya.Sprite;
+		public sp:Laya.Image;
 		public dir:Laya.Box;
-		public sp0:Laya.Sprite;
-        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"width":304,"var":"sp","texture":"bg/rockerBg.png","pivotY":152,"pivotX":152,"height":304},"compId":3},{"type":"Box","props":{"y":0,"x":0,"width":304,"var":"dir","pivotY":152,"pivotX":152,"height":304},"compId":7,"child":[{"type":"Sprite","props":{"y":-9,"x":26.5,"texture":"bg/rollDir.png"},"compId":5}]},{"type":"Sprite","props":{"width":251,"var":"sp0","texture":"bg/rockerBall.png","pivotY":126,"pivotX":126,"height":251},"compId":4}],"loadList":["bg/rockerBg.png","bg/rollDir.png","bg/rockerBall.png"],"loadList3D":[]};
+		public sp0:Laya.Image;
+        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Image","props":{"var":"sp","skin":"bg/rockerBg.png","anchorY":0.5,"anchorX":0.5},"compId":3},{"type":"Box","props":{"width":304,"var":"dir","height":304,"anchorY":0.5,"anchorX":0.5},"compId":7,"child":[{"type":"Sprite","props":{"y":26,"x":26.5,"texture":"bg/rollDir.png"},"compId":5}]},{"type":"Image","props":{"var":"sp0","skin":"bg/rockerBall.png","rotation":0,"anchorY":0.5,"anchorX":0.5},"compId":4}],"loadList":["bg/rockerBg.png","bg/rollDir.png","bg/rockerBall.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -375,15 +375,16 @@ export module ui.test {
     REG("ui.test.tianshi_1UI",tianshi_1UI);
     export class worldUI extends View {
 		public bg:Laya.Image;
+		public box:Laya.Box;
 		public dao:Laya.Image;
 		public btn_start:Laya.Button;
-		public baoxiang:Laya.Image;
 		public guanwenzi:Laya.Label;
 		public biaoti2:Laya.Label;
 		public baioti:Laya.Label;
 		public zuigao:Laya.Label;
 		public jinbishu:Laya.FontClip;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334,"centerY":0},"compId":2,"child":[{"type":"Box","props":{"x":0,"height":1700,"centerY":0},"compId":20,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":3,"child":[{"type":"Image","props":{"y":1223,"skin":"main/zhudi.jpg"},"compId":19}]}]},{"type":"Box","props":{"x":24,"centerY":0},"compId":22,"child":[{"type":"SkeletonPlayer","props":{"y":476,"x":322,"url":"main/shuiwen.sk","runtime":"laya.ani.bone.Skeleton"},"compId":5},{"type":"Image","props":{"y":155,"var":"dao","skin":"main/yidao.png"},"compId":4},{"type":"Button","props":{"y":880,"x":342,"width":367,"var":"btn_start","stateNum":1,"skin":"main/btn_huang.png","sizeGrid":"0,25,0,21","height":157,"anchorY":0.5,"anchorX":0.5},"compId":6,"child":[{"type":"Image","props":{"y":88,"x":133,"skin":"main/anniudian.png"},"compId":7},{"type":"Image","props":{"y":18.5,"x":134,"skin":"main/kaishi.png"},"compId":8}]},{"type":"Image","props":{"y":642,"x":200,"var":"baoxiang","skin":"main/baoxiang01.png"},"compId":10},{"type":"Sprite","props":{"y":717,"x":172,"texture":"main/haibo.png"},"compId":11},{"type":"Label","props":{"y":686,"x":310,"var":"guanwenzi","text":"通过关卡1-10","fontSize":30,"color":"#ffffff"},"compId":12},{"type":"Label","props":{"y":8,"x":239,"var":"biaoti2","text":"我也草原","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},"compId":14,"child":[{"type":"Script","props":{"y":3,"x":0,"strength":2,"runtime":"laya.effect.BlurFilterSetter"},"compId":15}]},{"type":"Label","props":{"y":0,"x":235,"var":"baioti","text":"我也草原","fontSize":60,"color":"#ffffff","align":"center"},"compId":13},{"type":"Label","props":{"y":74,"x":250,"var":"zuigao","text":"最高层数：9/50","fontSize":30,"color":"#ffffff"},"compId":16},{"type":"FontClip","props":{"y":887,"x":327,"width":113,"var":"jinbishu","value":"5","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":98,"align":"left"},"compId":18}]}],"loadList":["main/zhudi.jpg","main/shuiwen.sk","main/yidao.png","main/btn_huang.png","main/anniudian.png","main/kaishi.png","main/baoxiang01.png","main/haibo.png","main/clipshuzi.png"],"loadList3D":[]};
+		public baoxiang:Laya.Image;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334,"centerY":0},"compId":2,"child":[{"type":"Box","props":{"x":0,"height":1700,"centerY":0},"compId":20,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":3}]},{"type":"Box","props":{"x":24,"var":"box","centerY":0},"compId":22,"child":[{"type":"Image","props":{"y":150,"x":128.5,"visible":false,"var":"dao","skin":"main/yidao.png"},"compId":4},{"type":"Button","props":{"y":880,"x":342,"width":367,"var":"btn_start","stateNum":1,"skin":"main/kaishi.png","height":157,"anchorY":0.5,"anchorX":0.5},"compId":6,"child":[{"type":"Image","props":{"y":-40,"x":121,"visible":false,"skin":"main/anniudian.png"},"compId":7}]},{"type":"Label","props":{"y":686,"x":310,"var":"guanwenzi","fontSize":30,"color":"#ffffff"},"compId":12},{"type":"Label","props":{"y":8,"x":239,"var":"biaoti2","text":"我也草原","fontSize":60,"color":"#000000","alpha":0.5,"align":"center"},"compId":14,"child":[{"type":"Script","props":{"y":3,"x":0,"strength":2,"runtime":"laya.effect.BlurFilterSetter"},"compId":15}]},{"type":"Label","props":{"y":0,"x":235,"var":"baioti","text":"我也草原","fontSize":60,"color":"#ffffff","align":"center"},"compId":13},{"type":"Label","props":{"y":74,"x":250,"var":"zuigao","text":"最高层数：9/50","fontSize":30,"color":"#ffffff"},"compId":16},{"type":"FontClip","props":{"y":757,"x":319,"width":113,"visible":false,"var":"jinbishu","value":"5","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":98,"align":"left"},"compId":18},{"type":"Box","props":{"y":671,"x":-90.5,"visible":false},"compId":23,"child":[{"type":"Image","props":{"x":28.5,"var":"baoxiang","skin":"main/baoxiang01.png"},"compId":10},{"type":"Sprite","props":{"y":126,"x":0.5,"texture":"main/haibo.png"},"compId":11}]}]}],"loadList":["main/zhudi.jpg","main/yidao.png","main/kaishi.png","main/anniudian.png","main/clipshuzi.png","main/baoxiang01.png","main/haibo.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

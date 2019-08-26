@@ -103,6 +103,8 @@ export default class BattleLoader {
         Game.bg && Game.bg.clear();
         this._loading.txt.text = "0%";
 
+        this._index = 9;
+
         if(this.continueRes)
         {
             this._mapId = this.continueRes.mapId;
@@ -145,7 +147,7 @@ export default class BattleLoader {
             "res/atlas/map_3.png", "res/atlas/map_3.atlas",
             "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas",
             "h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh",//3d背景
-            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
+            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角 "h5/bulletsEffect/20000/monster.lh",
         ];
         Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub),new Laya.Handler(this,this.onProgress));
     }

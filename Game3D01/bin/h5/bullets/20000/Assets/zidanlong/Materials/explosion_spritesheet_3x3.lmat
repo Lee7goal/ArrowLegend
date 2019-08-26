@@ -1,30 +1,27 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.UnlitMaterial",
-		"name":"jian",
+		"type":"Laya.ShurikenParticleMaterial",
 		"renderStates":[
 			{
 				"cull":0,
-				"blend":0,
-				"srcBlend":1,
-				"dstBlend":0,
-				"depthWrite":true,
+				"blend":1,
+				"srcBlend":770,
+				"dstBlend":771,
+				"depthWrite":false,
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
-		"alphaTest":true,
-		"alphaTestValue":0.5,
-		"renderQueue":2450,
-		"albedoIntensity":1.06,
+		"name":"explosion_spritesheet_3x3",
+		"alphaTest":false,
+		"renderQueue":3000,
 		"textures":[
 			{
-				"name":"albedoTexture",
-				"path":"../Textures/jian.png",
+				"name":"texture",
+				"path":"../Textures/explosion_spritesheet_3x3.png",
 				"constructParams":[
-					8,
-					64,
+					1024,
+					1024,
 					1,
 					true
 				],
@@ -47,12 +44,12 @@
 				]
 			},
 			{
-				"name":"albedoColor",
+				"name":"color",
 				"value":[
-					1,
-					1,
-					1,
-					1
+					0.5,
+					0.5,
+					0.5,
+					0.5
 				]
 			}
 		],

@@ -2,10 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
+    "selecteID":4,
     "searchKey":"View",
-    "props":{"sceneColor":"#ffffff"},
+    "props":{"sceneColor":"#f3e9e9"},
     "nodeParent":-1,
-    "maxID":8,
+    "maxID":9,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -15,9 +16,9 @@
     "child":[
         {
             "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite,sp",
-            "props":{"width":304,"var":"sp","texture":"bg/rockerBg.png","pivotY":152,"pivotX":152,"height":304},
+            "type":"Image",
+            "searchKey":"Image,sp",
+            "props":{"var":"sp","skin":"bg/rockerBg.png","anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"sp",
             "isDirectory":false,
@@ -25,13 +26,14 @@
             "hasChild":false,
             "compId":3,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
             "type":"Box",
             "searchKey":"Box,dir",
-            "props":{"y":0,"x":0,"width":304,"var":"dir","pivotY":152,"pivotX":152,"height":304},
+            "props":{"width":304,"var":"dir","height":304,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"dir",
             "isOpen":false,
@@ -43,9 +45,10 @@
                 {
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"y":-9,"x":26.5,"texture":"bg/rollDir.png"},
+                    "props":{"y":26,"x":26.5,"texture":"bg/rollDir.png"},
                     "nodeParent":7,
                     "label":"Sprite",
+                    "isOpen":true,
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -56,9 +59,9 @@
         },
         {
             "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite,sp0",
-            "props":{"width":251,"var":"sp0","texture":"bg/rockerBall.png","pivotY":126,"pivotX":126,"height":251},
+            "type":"Image",
+            "searchKey":"Image,sp0",
+            "props":{"var":"sp0","skin":"bg/rockerBall.png","rotation":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"sp0",
             "isDirectory":false,

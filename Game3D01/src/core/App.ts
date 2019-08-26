@@ -3,7 +3,6 @@ import TableManager from "./manager/TableManager";
 import BitmapNumber from "./display/BitmapNumber";
 
 export default class App{
-    static resVer:string = "20190822";
     static top:number = 10;
 
 

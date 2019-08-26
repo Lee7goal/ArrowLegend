@@ -29,7 +29,7 @@ export default class ArrowGameMove0 extends GameMove {
     fv: MaoLineData = null;
 
     /**弹射次数*/
-    private ii:number = 1;
+    ii:number = 1;
 
    
 

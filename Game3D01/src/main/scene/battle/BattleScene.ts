@@ -224,7 +224,7 @@ export default class BattleScene extends Laya.Sprite {
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1009));
 
         if (Game.battleLoader.continueRes)  {
             Game.hero.gamedata.hp = Game.battleLoader.continueRes.curhp;
@@ -235,10 +235,13 @@ export default class BattleScene extends Laya.Sprite {
                 let arr:string [] = skills.split(",");
                 for(let i = 0; i < arr.length; i++)
                 {
-                    let info:string[] = arr["_"];
-                    let sysSkill:SysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME,Number(info[0]));
-                    sysSkill.curTimes = Number(info[1]);
-                    Game.skillManager.addSkill(sysSkill);
+                    let info:string[] = arr[i].split("_");
+                    if(info.length == 2)
+                    {
+                        let sysSkill:SysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME,Number(info[0]));
+                        sysSkill.curTimes = Number(info[1]);
+                        Game.skillManager.addSkill(sysSkill);
+                    }
                 }
             }
         }

@@ -30,7 +30,9 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static TestShooting = 1;
+    static resVer:string = "08261625";
+    
+    static TestShooting = 0;
     static BigMapMode = 0;
 
     static state:number = 0;

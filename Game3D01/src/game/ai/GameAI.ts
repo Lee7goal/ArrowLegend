@@ -2,6 +2,8 @@ import GamePro from "../GamePro";
 
 
 export abstract class GameAI {
+    /**近战 */
+    static closeCombat: string = "Attack1";
     static NormalAttack: string = "Attack";
     // static JumpAttack:string = "JumpAttack";
     // static ArrowAttack:string = "Attack";

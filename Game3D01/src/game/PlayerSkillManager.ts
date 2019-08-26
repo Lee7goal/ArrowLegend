@@ -23,7 +23,7 @@ export default class PlayerSkillManager {
         {
             ss += "," + this.skillList[i].id + "_" + this.skillList[i].curTimes
         }
-        ss = ss.substring(1,ss.length - 1);
+        ss = ss.substring(1);
         return ss;
     }
 

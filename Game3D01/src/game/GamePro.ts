@@ -351,7 +351,7 @@ export default class GamePro extends Laya.EventDispatcher {
                     this.animator.speed = (this.speed_ / 6);
                 }
             }            
-            if (this.acstr_ == GameAI.NormalAttack) {
+            if (this.acstr_ == GameAI.NormalAttack || this.acstr_ == GameAI.closeCombat) {
                 this.animator.speed = 2; 
                 //this.animator.addState(new Laya.AnimationState());
             }

@@ -71,7 +71,7 @@ class Main {
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
-			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + App.resVer + "/";
+			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
 			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png"];
 
 			Laya.Browser.window.wx.getSystemInfo({

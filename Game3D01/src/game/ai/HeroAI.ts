@@ -23,9 +23,11 @@ export default class HeroAI extends GameAI {
 
     private line: MaoLineData;
 
-    constructor()
-    {
+    private diciPro:GamePro;
+    constructor()  {
         super();
+        this.diciPro = new GamePro(8,0);
+        this.diciPro.hurtValue = 150;
     }
 
     public set run(b: boolean) {
@@ -42,8 +44,7 @@ export default class HeroAI extends GameAI {
     }
 
     hit(pro: GamePro) {
-        if(Game.hero.isWudi)
-        {
+        if (Game.hero.isWudi)  {
             return;
         }
 
@@ -79,13 +80,13 @@ export default class HeroAI extends GameAI {
     private b1: BulletRotate;
     private b2: BulletRotate;
 
-    
+
     private skillDic: any = {};
     /**旋转 */
     private rotateBullet(): void {
-        let skillIds =  Game.skillManager.getRotateSkills();
+        let skillIds = Game.skillManager.getRotateSkills();
         let br: BulletRotate;
-        let hudu: number = Math.PI /skillIds.length;
+        let hudu: number = Math.PI / skillIds.length;
         let skillId: number;
         for (let i = 0; i < skillIds.length; i++) {
             skillId = skillIds[i];
@@ -107,11 +108,21 @@ export default class HeroAI extends GameAI {
         }
 
     }
-    
-    public short(): void {
-        if(Game.e0_){
+
+    public short(ac:string): void {
+        if (Game.e0_) {
             var a: number = GameHitBox.faceTo3D(Game.hero.hbox, Game.e0_.hbox);
             Game.hero.rotation(a);
+        }
+
+        if(ac == GameAI.closeCombat)
+        {
+            if(Game.e0_)
+            {
+                Game.hero.hurtValue = 234;
+                Game.e0_.hbox.linkPro_.event(Game.Event_Hit, Game.hero);
+            }
+            return;
         }
 
         let basePower: number = Game.hero.playerData.baseAttackPower;
@@ -123,12 +134,12 @@ export default class HeroAI extends GameAI {
         //连续射击
         let skill1005: SysSkill = Game.skillManager.isHas(1005);
         if (skill1005) {
-            if (skill1005.curTimes == 1)  {
+            if (skill1005.curTimes == 1) {
                 Laya.timer.frameOnce(15, this, () => {
                     this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
             }
-            else  {
+            else {
                 Laya.timer.frameOnce(15, this, () => {
                     this.onShoot(basePower * skill1005.damagePercent / 100);
                 })
@@ -154,11 +165,11 @@ export default class HeroAI extends GameAI {
             this.line.rad(Game.hero.face2d - Math.PI / 2);
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower * skill1001.damagePercent / 100).setXY2D(Game.hero.pos2.x + this.line.x_len, Game.hero.pos2.z + this.line.y_len);
 
-            if (skill1001.curTimes >= 2)  {
+            if (skill1001.curTimes >= 2) {
                 this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower * skill1001.damagePercent / 100);
             }
         }
-        else  {
+        else {
             this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero, basePower);
         }
 
@@ -196,16 +207,17 @@ export default class HeroAI extends GameAI {
         Game.hero.off(Game.Event_Short, this, this.short);
     }
 
+    
+
     public exeAI(pro: GamePro): boolean {
         //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
 
-        if(Game.hero.isIce)
-        {
+        if (Game.hero.isIce)  {
             return;
         }
-  
-        
+
+
         this.rotateBullet();
         //地刺
         let chuanqiangSkill: SysSkill = Game.skillManager.isHas(5007);
@@ -216,7 +228,7 @@ export default class HeroAI extends GameAI {
                     let thornBox: GameHitBox = Game.map0.Thornarr[i];
                     if (Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
                         if (now > thornBox.cdTime) {
-                            pro.event(Game.Event_Hit, Game.hero.hbox.linkPro_);
+                            pro.event(Game.Event_Hit, this.diciPro);
                             thornBox.cdTime = now + 1000;
                         }
                     }
@@ -229,42 +241,60 @@ export default class HeroAI extends GameAI {
             return;
         }
 
-        if (Game.map0.Eharr.length > 0 && this.shootin.attackOk()) {
+        if (Game.map0.Eharr.length > 0) {
 
-            //Game.e0_ = Game.map0.Eharr[0].linkPro_;
-            var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
-            var facen2d_ = (2 * Math.PI - a);
-            if (Game.e0_.gamedata.hp > 0 && this.shootin.checkBallistic(facen2d_, Game.hero, Game.e0_)) {
-                pro.rotation(a);
-                return this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
-            }
-
-            if (Game.map0.Eharr.length > 1) {
-                Game.map0.Eharr.sort(this.sore0);
-                var arr = Game.map0.Eharr;
-                for (let i = 0; i < arr.length; i++) {
-                    var ero = arr[i];
-                    if (ero.linkPro_ != Game.e0_) {
-                        var a: number = GameHitBox.faceTo3D(pro.hbox, ero);
-                        var facen2d_ = (2 * Math.PI - a);
-                        if (this.shootin.checkBallistic(facen2d_, Game.hero, ero.linkPro_)) {
-                            Game.selectEnemy(ero.linkPro_);
-                            pro.rotation(a);
-                            return this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
-                        }
-                    }
-
+            if (this.shootin.attackOk())  {
+                var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
+                var facen2d_ = (2 * Math.PI - a);
+                if (Game.e0_.gamedata.hp > 0 && this.shootin.checkBallistic(facen2d_, Game.hero, Game.e0_)) {
+                    pro.rotation(a);
+                    return this.starAttack();
                 }
+
+                if (Game.map0.Eharr.length > 1) {
+                    Game.map0.Eharr.sort(this.sore0);
+                    var arr = Game.map0.Eharr;
+                    for (let i = 0; i < arr.length; i++) {
+                        var ero = arr[i];
+                        if (ero.linkPro_ != Game.e0_) {
+                            var a: number = GameHitBox.faceTo3D(pro.hbox, ero);
+                            var facen2d_ = (2 * Math.PI - a);
+                            if (this.shootin.checkBallistic(facen2d_, Game.hero, ero.linkPro_)) {
+                                Game.selectEnemy(ero.linkPro_);
+                                pro.rotation(a);
+                                return this.starAttack();
+                            }
+                        }
+
+                    }
+                }
+                Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
+                var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
+                pro.rotation(a);
+                this.starAttack();
             }
-            Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
-            var a: number = GameHitBox.faceTo3D(pro.hbox, Game.e0_.hbox);
-            pro.rotation(a);
-            this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
         }
-        else if(Game.TestShooting==1 && this.shootin.attackOk()){
-            this.shootin.starAttack(Game.hero, GameAI.NormalAttack);
+        else if (Game.TestShooting == 1 && this.shootin.attackOk()) {
+            this.starAttack();
         }
         return true;
+    }
+
+    private starAttack():boolean
+    {
+        let isCloseCombat:boolean = GameHitBox.faceToLenth(Game.hero.hbox,Game.e0_.hbox) <= GameBG.ww * Math.sqrt(1.5 * 1.5);
+        let ac:string = "";
+        if(isCloseCombat)
+        {
+            ac = GameAI.closeCombat;
+            console.log("近战");
+        }
+        else
+        {
+            ac = GameAI.NormalAttack;
+            console.log("远程");
+        }
+        return this.shootin.starAttack(Game.hero, ac);
     }
 
     public sore0(g0: GameHitBox, g1: GameHitBox): number {
