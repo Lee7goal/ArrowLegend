@@ -9,27 +9,49 @@ import HomeData from "../../../game/data/HomeData";
 import Session from "../../Session";
 import SenderHttp from "../../../net/SenderHttp";
 import App from "../../../core/App";
-    export default class MainUI extends ui.test.mainUIUI {
+    export default class MainUI extends Laya.Box {
+        private topUI:TopUI;
+        private bottomUI:BottomUI;
+
+        
+        constructor(){
+            super();
+            this.height = GameBG.height;
+
+            this.topUI = new TopUI();
+            this.addChild(this.topUI);
+            this.topUI.visible = false;
+
+            this.bottomUI = new BottomUI();
+            this.addChild(this.bottomUI);
+            this.bottomUI.bottom = 0;
+
+            this.mouseThrough = true;
+        }
+
+        public appEnergy():void
+        {
+            this.topUI.appEnergy();
+        }
+
+        public get selectIndex():number
+        {
+            return this.bottomUI.selectIndex;
+        }
+    }
+
+    export class TopUI extends ui.test.mainUIUI
+    {
         static TOTAL_TIME:number = 12 * 60;
         static MAX_ENERGY:number = 20;
 
         static xiaohao:number = 2;
-
-        private bottomUI:BottomUI;
-
         private _remainingTime:number = 0;
 
         private mo:MaskObj;
         private homeData:HomeData;
         constructor(){
             super();
-            this.height = GameBG.height;
-            this.bottomUI = new BottomUI();
-            this.addChild(this.bottomUI);
-            this.bottomUI.bottom = 0;
-
-            this.mouseThrough = true;
-
             this.timerClip.visible = false;
             this.appEnergyClip.visible = false;
 
@@ -51,10 +73,10 @@ import App from "../../../core/App";
             {
                 let deltaTime:number = Session.homeData.lastTime - Date.now();
                 let time:number = Math.floor(deltaTime / 1000);
-                this._remainingTime = Math.floor(time % MainUI.TOTAL_TIME);
+                this._remainingTime = Math.floor(time % TopUI.TOTAL_TIME);
                 if(this._remainingTime == 0)
                 {
-                    this._remainingTime = MainUI.TOTAL_TIME;
+                    this._remainingTime = TopUI.TOTAL_TIME;
                 }
             }
             this.updateEnergy();
@@ -68,14 +90,14 @@ import App from "../../../core/App";
         /**扣除体力 */
         appEnergy():void
         {
-            if(this.homeData.curEnergy < MainUI.xiaohao)
+            if(this.homeData.curEnergy < TopUI.xiaohao)
             {
                 FlyUpTips.setTips("体力不足！");
                 return;
             }
-            this.homeData.curEnergy -= MainUI.xiaohao;
+            this.homeData.curEnergy -= TopUI.xiaohao;
             this.appEnergyClip.visible = true;
-            this.appEnergyClip.value = "-" + MainUI.xiaohao;
+            this.appEnergyClip.value = "-" + TopUI.xiaohao;
             Laya.Tween.to(this.appEnergyClip,{y: 100},300,null,new Laya.Handler(this,this.onStart));
         }
 
@@ -84,11 +106,11 @@ import App from "../../../core/App";
             this.appEnergyClip.y = 47;
             
 
-            this._remainingTime = MainUI.TOTAL_TIME;
+            this._remainingTime = TopUI.TOTAL_TIME;
             
             this.updateEnergy();
 
-            this.homeData.lastTime = Date.now() + (this.homeData.totalEnergy - this.homeData.curEnergy) * MainUI.TOTAL_TIME * 1000;
+            this.homeData.lastTime = Date.now() + (this.homeData.totalEnergy - this.homeData.curEnergy) * TopUI.TOTAL_TIME * 1000;
             Session.saveData();
 
             Game.battleLoader.load();
@@ -127,15 +149,10 @@ import App from "../../../core/App";
                 }
                 else
                 {
-                    this._remainingTime = MainUI.TOTAL_TIME;
+                    this._remainingTime = TopUI.TOTAL_TIME;
                 }
                 this.updateEnergy();
             }
-        }
-
-        public get selectIndex():number
-        {
-            return this.bottomUI.selectIndex;
         }
     }
 
@@ -152,7 +169,7 @@ import App from "../../../core/App";
 
         private _selectIndex:number = 2;
 
-        private opens:number[] = [0,-1,-1,1,-1,-1];
+        private opens:number[] = [0,1,1,1,1,1];
         constructor(){
             super();
             this.addChild(this.bgBox);
@@ -173,7 +190,7 @@ import App from "../../../core/App";
                 {
                     btn.stateNum = 2;
                     btn.width = 108;
-                    btn.skin = 'main/bottom_' + i + '.png';
+                    btn.skin = 'main/bottom_btn_' + i + '.png';
                 }
                 else{
                     btn.stateNum = 1;

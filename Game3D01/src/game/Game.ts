@@ -31,9 +31,9 @@ import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
     static resVer:string = "08261625";
-    
+
     static TestShooting = 0;
-    static BigMapMode = 0;
+    static BigMapMode = 1;
 
     static state:number = 0;
     static isPopupSkill:number = 0;
@@ -100,8 +100,6 @@ export default class Game {
     static bg: GameBG;
     //贴图材质
     static material_blinn: Laya.BlinnPhongMaterial;
-    //墙块
-    static box: Laya.Sprite3D;
 
     //栅栏
     static fence: Laya.Sprite3D;
@@ -154,7 +152,7 @@ export default class Game {
         if (Game.isOpen)  {
             return;
         }
-
+        console.log("开门");
         Game.cookie.setCookie(CookieKey.CURRENT_BATTLE,{
             "mapId":Game.battleLoader.mapId,
             "index":Game.battleLoader.index,
@@ -164,15 +162,16 @@ export default class Game {
             "skills":Game.skillManager.skills,
             "coins":Game.battleCoins
         });
-
-        Game.battleLoader.index++;
         Game.isOpen = true;
+        Game.battleLoader.index++;
         Game.bg.setDoor(1);
-        Game.door.transform.localPositionX = 0;
+        Game.door.transform.localPositionX = -50;
         Game.map0.setDoor(true);
         Game.shakeBattle();
         Game.battleLoader.destroyMonsterRes();
         Session.saveData();
+
+        // Game.battleLoader.load();
     }
 
     static shakeBattle():void
@@ -182,8 +181,9 @@ export default class Game {
     }
 
     static closeDoor(): void {
+        console.log("关门====================");
         Game.isOpen = false;
-        Game.door.transform.localPositionX = -20;
+        Game.door.transform.localPositionX = -50;
         Game.map0.setDoor(false);
         Game.bg.setDoor(0);
     }

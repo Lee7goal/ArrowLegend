@@ -8,6 +8,11 @@ export default class SysMap {
     public stageId:number = 0;
     public stageGroup:string = '';
 
+    public numEnemy:number = 0;
+    public mixEnemy:number = 0;
+    public maxEnemy:number = 0;
+    public enemyGroup:string = '';
+
 
     static getData(chaterId:number,mapId:number):SysMap
     {

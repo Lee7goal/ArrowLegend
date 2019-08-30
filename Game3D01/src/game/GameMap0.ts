@@ -37,6 +37,9 @@ export default class GameMap0 extends Laya.Sprite {
 
     /**npc的碰撞盒 */
     npcHitBox:GameHitBox;
+
+    /**门的碰撞盒 */
+    doorHitBox:GameHitBox;
     
     constructor() {
         super();
@@ -68,34 +71,54 @@ export default class GameMap0 extends Laya.Sprite {
 
        this.reset();
 
-        hb = new GameHitBox(GameBG.ww * (GameBG.wnum + 1), GameBG.ww);
-        hb.setXY(0, GameBG.ww * 7);
+        hb = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww);
+        hb.setXY(0, GameBG.ww * 2);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
 
-        if(Game.BigMapMode==0){//如果不是大地图模式
-            hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
-            hb.setXY(0, GameBG.ww * 2);
-            this.Wharr.push(hb);
-            this.Aharr.push(hb);
-            this.Flyharr.push(hb);
+        hb = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww);
+        hb.setXY(0, GameBG.ww * (GameBG.MAP_ROW - 2));
+        this.Wharr.push(hb);
+        this.Aharr.push(hb);
+        this.Flyharr.push(hb);
 
-            hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
-            hb.setXY(GameBG.ww * GameBG.wnum, GameBG.ww * 2);
-            this.Wharr.push(hb);
-            this.Aharr.push(hb);
-            this.Flyharr.push(hb);
-        }
+        hb = new GameHitBox(GameBG.ww, GameBG.ww * GameBG.MAP_ROW);
+        hb.setXY(GameBG.ww, 0);
+        this.Wharr.push(hb);
+        this.Aharr.push(hb);
+        this.Flyharr.push(hb);
+
+        hb = new GameHitBox(GameBG.ww, GameBG.ww * GameBG.MAP_ROW);
+        hb.setXY(GameBG.ww * (GameBG.MAP_COL - 2), 0);
+        this.Wharr.push(hb);
+        this.Aharr.push(hb);
+        this.Flyharr.push(hb);
+
+        // if(Game.BigMapMode==0){//如果不是大地图模式
+        //     hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
+        //     hb.setXY(0, GameBG.ww * 2);
+        //     this.Wharr.push(hb);
+        //     this.Aharr.push(hb);
+        //     this.Flyharr.push(hb);
+
+        //     hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
+        //     hb.setXY(GameBG.ww * GameBG.wnum, GameBG.ww * 2);
+        //     this.Wharr.push(hb);
+        //     this.Aharr.push(hb);
+        //     this.Flyharr.push(hb);
+        // }
+
+        
 
         var k: number = 0;
-        for (var j = 0; j < GameBG.hnum; j++) {
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
+        for (var j = 0; j < GameBG.MAP_ROW; j++) {
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
                 var ww = GameBG.ww;
                 var x = i * ww;//- (ww/2);
                 var y = j * ww;
                 let key: number = GameBG.arr0[k];
-                if (k < GameBG.arr0.length) {
+                // if (k < GameBG.arr0.length) {
                     this.info[j + "_" + i] = key;
                     if (GridType.isWall(key)
                         || GridType.isRiverPoint(key)
@@ -132,21 +155,27 @@ export default class GameMap0 extends Laya.Sprite {
                         this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww * 4);
                         this.npcHitBox.setXY(x - GameBG.ww * 5, y - GameBG.ww * 3);
                     }
-                }
+
+                    if(j == GameBG.MAP_ROW2 && i == GameBG.MAP_COL2)
+                    {
+                        this.doorHitBox = new GameHitBox(GameBG.ww * 4, GameBG.ww * 4);
+                        this.doorHitBox.setXY(x, y);
+                    }
+                // }
                 k++;
             }
-            if (k >= GameBG.arr0.length) {
-                break;
-            }
+            // if (k >= GameBG.arr0.length) {
+            //     break;
+            // }
         }
 
         k = 0;
-        for (var j = 0; j < GameBG.hnum; j++) {
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
+        for (var j = 0; j < GameBG.MAP_ROW; j++) {
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
                 var ww = GameBG.ww;
                 var x = i * ww;//- (ww/2);
                 var y = j * ww;
-                if (k < GameBG.arr0.length) {
+                // if (k < GameBG.arr0.length) {
                     let key = GameBG.arr0[k];
                     if (GridType.isWall(GameBG.arr0[k])) {
                         if (this.Amap[key]) {
@@ -165,22 +194,22 @@ export default class GameMap0 extends Laya.Sprite {
                         this.Aharr.push(hb);
                     }
 
-                }
+                // }
                 k++;
             }
-            if (k >= GameBG.arr0.length) {
-                break;
-            }
+            // if (k >= GameBG.arr0.length) {
+            //     break;
+            // }
         }
 
 
-        this.endRowNum = j - 1;
+        // this.endRowNum = j - 1;
 
-        hb = new GameHitBox(GameBG.ww * (GameBG.wnum - 1), GameBG.ww);
-        hb.setXY(GameBG.ww, GameBG.ww * (j + 0));//原先是加1
-        this.Wharr.push(hb);
-        this.Aharr.push(hb);
-        this.Flyharr.push(hb);
+        // hb = new GameHitBox(GameBG.ww * (GameBG.wnum - 1), GameBG.ww);
+        // hb.setXY(GameBG.ww, GameBG.ww * (j + 0));//原先是加1
+        // this.Wharr.push(hb);
+        // this.Aharr.push(hb);
+        // this.Flyharr.push(hb);
 
         //最后放npc
         // if(this.npcHitBox)
@@ -189,17 +218,17 @@ export default class GameMap0 extends Laya.Sprite {
         // }
 
         //传送门左侧
-        hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww * 2);
-        hb.setXY(0, GameBG.ww * 8);
-        this.Wharr.push(hb);
-        this.Aharr.push(hb);
-        this.Flyharr.push(hb);
+        // hb = new GameHitBox(GameBG.ww * (5+3), GameBG.ww * 2);
+        // hb.setXY(0, GameBG.ww * 8);
+        // this.Wharr.push(hb);
+        // this.Aharr.push(hb);
+        // this.Flyharr.push(hb);
         //传送门右侧
-        hb = new GameHitBox(GameBG.ww * 5, GameBG.ww * 2);
-        hb.setXY(GameBG.ww * 8, GameBG.ww * 8);
-        this.Wharr.push(hb);
-        this.Aharr.push(hb);
-        this.Flyharr.push(hb);
+        // hb = new GameHitBox(GameBG.ww * 5, GameBG.ww * 2);
+        // hb.setXY(GameBG.ww * 8, GameBG.ww * 8);
+        // this.Wharr.push(hb);
+        // this.Aharr.push(hb);
+        // this.Flyharr.push(hb);
         this.alpha = 1;
         this.addChild(this.ballistic);
         //this.addChild(this.laodings);
@@ -237,11 +266,27 @@ export default class GameMap0 extends Laya.Sprite {
         return bool;
     }
 
+    checkDoor():boolean
+    {
+        if(Game.battleLoader.index > 2)
+        {
+            return false;
+        }
+        let bool:boolean = false;
+        if(this.doorHitBox && Game.hero.hbox.hit(Game.hero.hbox,this.doorHitBox))
+        {
+            bool = true;
+            this.doorHitBox = null;
+            Game.battleLoader.load();
+        }
+        return bool;
+    }
+
     /**开关门 */
     public setDoor(isOpen:boolean):void{
-        let num:number = isOpen ? 0 : 3;
-        this.Wharr[this.Wharr.length - 2].setRq(0,GameBG.ww * 8,GameBG.ww * (5 + num), GameBG.ww * 2);
-        this.Wharr[this.Wharr.length - 2].setRq(0,GameBG.ww * 8,GameBG.ww * (5 + num), GameBG.ww * 2);
+        // let num:number = isOpen ? 0 : 3;
+        // this.Wharr[this.Wharr.length - 2].setRq(0,GameBG.ww * 8,GameBG.ww * (5 + num), GameBG.ww * 2);
+        // this.Wharr[this.Wharr.length - 2].setRq(0,GameBG.ww * 8,GameBG.ww * (5 + num), GameBG.ww * 2);
         this.graphics.clear();
         for (let i = 0; i < this.Wharr.length; i++) {
             var hb = this.Wharr[i];
@@ -281,10 +326,10 @@ export default class GameMap0 extends Laya.Sprite {
             {
                 if(i == 0 && ehb.hit(ehb, fb))
                 {
-                    this._isNext = true;
-                    console.log("传送下一关");
-                    Game.battleLoader.load();
-                    return true;
+                    // this._isNext = true;
+                    // console.log("传送下一关");
+                    // Game.battleLoader.load();
+                    // return true;
                 }
                 if(chuanqiangSkill && (GridType.isWall(ehb.value) || GridType.isFence(ehb.value)))
                 {

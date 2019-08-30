@@ -13,11 +13,11 @@ export default class MonsterBulletMove extends GameMove {
         pro.setSpeed(speed);
         if (pro.speed <= 0) return;
 
-        if(Math.abs(pro.pos2.x) > 800 || Math.abs(pro.pos2.z) > 3000)//出了屏幕后销毁
-        {
-            pro.die();
-            return;
-        }
+        // if(Math.abs(pro.pos2.x) > 800 || Math.abs(pro.pos2.z) > 3000)//出了屏幕后销毁
+        // {
+        //     pro.die();
+        //     return;
+        // }
 
         if (pro.sysBullet.bulletBlock == 1) {
             //直线

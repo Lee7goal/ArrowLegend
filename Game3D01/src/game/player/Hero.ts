@@ -138,7 +138,8 @@ export default class Hero extends GamePro {
 
         // this.addWeapon();
 
-        this.setXY2DBox(GameBG.ww * 6, (GameBG.arr0.length / 13 - 2) * GameBG.ww);//原先是减1
+        // this.setXY2DBox(GameBG.MAP_COL * GameBG.ww * 0.5, GameBG.MAP_ROW * GameBG.ww * 0.5);
+        this.setXY2DBox(GameBG.MAP_COL * GameBG.ww * 0.5, GameBG.MAP_ROW * GameBG.ww * 0.5);
 
         this.initBlood(this.gamedata.hp);
         this.addFootCircle();
@@ -159,6 +160,8 @@ export default class Hero extends GamePro {
 
         Laya.stage.on(Game.Event_ADD_HP, this, this.addBlood);
         Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED, this, this.updateAttackSpeed);
+
+        this.updateUI();
     }
 
     public isNew: boolean = true;
@@ -170,6 +173,7 @@ export default class Hero extends GamePro {
     updateUI(): void {
         super.updateUI();
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 120);
+        this._footCircle && this._footCircle.pos(this.hbox.cx, this.hbox.cy);
     }
 
     private onJumpDown(): void {
@@ -179,7 +183,6 @@ export default class Hero extends GamePro {
         // }
         this.startAi();
         Game.executor.start();
-
         // setTimeout(() => {
         
         console.log("主角调下来",Game.AiArr.length);

@@ -62,7 +62,7 @@ export default class GamePro extends Laya.EventDispatcher {
     private acstr_: string = "";
 
     public _bloodUI: Blood;
-    private _footCircle: FootCircle;
+    public _footCircle: FootCircle;
     public _bulletShadow: ui.test.BulletShadowUI;
     private rotationEulerY: number = 0;
     /**关键帧比例0.0-1.0 */

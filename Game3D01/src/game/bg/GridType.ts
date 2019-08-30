@@ -42,8 +42,15 @@ export default class GridType {
 
     public static isWall(type:Number):boolean
     {
-        return type>=600 && type<700;
+        return type>=600 && type<650;
     }
+
+    public static isTong(type:Number):boolean
+    {
+        return type>=650 && type<700;
+    }
+
+
     /**是否是栅栏 */
     public static isFence(type:Number):boolean
     {

@@ -6,7 +6,7 @@ export default class GameRube{
 
     static arr:GameRube[] = [];
     constructor() {
-        this.box = Laya.Sprite3D.instantiate(Game.box);
+        this.box = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/wall/wall.lh"));
         this.box.transform.scale = Game.cameraCN.boxscale0;
     }
 

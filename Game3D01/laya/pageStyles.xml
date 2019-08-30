@@ -38,4 +38,5 @@
    <item name="test/initView.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/goHome.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/alert.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/worldCell.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

@@ -57,7 +57,7 @@ class Main {
 		Laya["DebugPanel"] && Laya["DebugPanel"].enable();
 		//Laya.stage.scaleMode = GameConfig.scaleMode;
 		//console.log(Laya.Stage.SCALE_FIXED_WIDTH);
-		Laya.stage.bgColor = "#ffffff";
+		Laya.stage.bgColor = "#000000";
 		Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_WIDTH;
 		//Laya.stage.screenMode = GameConfig.screenMode;
 		Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;
@@ -127,11 +127,12 @@ class Main {
 		Laya.stage.addChild(this.loading);
 		// this.loading.clip.play();
 		this.loading.txt.text = "0%";
-		Laya.loader.load([
+		Laya.loader.create([
 			{ url: "res/atlas/main.png", type: Laya.Loader.IMAGE },
 			{ url: "res/atlas/main1.png", type: Laya.Loader.IMAGE },
 			{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
 			{ url: "h5/tables.zip", type: Laya.Loader.BUFFER },
+			{ url: "h5/heroview/hero.lh", type: "HIERARCHY"},
 		], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
 	}
 

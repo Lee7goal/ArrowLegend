@@ -1,5 +1,5 @@
 import HomeData from "../game/data/HomeData";
-import MainUI from "./scene/main/MainUI";
+import MainUI, { TopUI } from "./scene/main/MainUI";
 import SenderHttp from "../net/SenderHttp";
 import Game from "../game/Game";
 
@@ -50,7 +50,7 @@ export default class Session{
             {
                 let deltaTime:number = Session.homeData.lastTime - Date.now();
                 let time:number = Math.floor(deltaTime / 1000);
-                let delta:number = Math.ceil(time / MainUI.TOTAL_TIME);
+                let delta:number = Math.ceil(time / TopUI.TOTAL_TIME);
                 Session.homeData.curEnergy = Session.homeData.totalEnergy - delta;
 
                 console.log("Session剩余的时间",time,Session.homeData.curEnergy);
@@ -60,8 +60,8 @@ export default class Session{
         {
             Session.gameData = {};
 
-            Session.homeData.totalEnergy = MainUI.MAX_ENERGY;
-            Session.homeData.maxEngergy = MainUI.MAX_ENERGY;
+            Session.homeData.totalEnergy = TopUI.MAX_ENERGY;
+            Session.homeData.maxEngergy = TopUI.MAX_ENERGY;
             Session.homeData.curEnergy = Session.homeData.totalEnergy;
             Session.homeData.lastTime = 0;
             Session.homeData.chapterId = 1;

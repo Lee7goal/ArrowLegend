@@ -143,6 +143,16 @@ export default class Monster extends GamePro {
         DieEffect.addEffect(this);
     }
 
+    clear():void
+    {
+        Game.selectHead.removeSelf();
+        Game.selectFoot.removeSelf();
+        this.stopAi();
+        this._bulletShadow && this._bulletShadow.removeSelf();
+        this.sp3d && this.sp3d.removeSelf();
+        Laya.Pool.recover(Monster.TAG,this);
+    }
+
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
         console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
@@ -183,7 +193,6 @@ export default class Monster extends GamePro {
             var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
             gpro.setGameMove(new MOVE());
         }
-
         let tScale: number = sysEnemy.zoomMode / 100;
         tScale = mScale ? mScale : tScale;
         gpro.tScale = tScale;

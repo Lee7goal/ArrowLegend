@@ -14,7 +14,20 @@ import GameHitBox from "./GameHitBox";
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
     static BG_TYPE:string;
+
     static MAP_ROW: number;
+    static MAP_COL: number;
+
+
+    static MAP_ROW2: number;
+    static MAP_COL2: number;
+
+    static bgId:number;
+    static bgWW:number;
+    static bgHH:number;
+    static bgCellWidth:number;
+
+
     /**地图恒星格子数*/
     static wnum: number = 12;
     /**地图纵向格子数*/
@@ -45,10 +58,6 @@ export default class GameBG extends Laya.Sprite {
     static cx: number;
     //地图居中坐标y
     static cy: number;
-    //地图居中格子i
-    static ci: number = 6;
-    //地图居中格子j
-    static cj: number = 24;
     //主角中心坐标
     static mcx: number;
     //主角中心坐标
@@ -62,75 +71,17 @@ export default class GameBG extends Laya.Sprite {
         if (!GameBG.v3d) {
             GameBG.v3d = new Laya.Vector3(0, 0, 0);
         }
-        GameBG.v3d.x = (xx - GameBG.ci);
-        GameBG.v3d.z = (yy - GameBG.cj) / Game.cameraCN.cos0;
+        GameBG.v3d.x = (xx - 6);
+        let rowNum:number = GameBG.bgHH / GameBG.ww / 2;
+        let delta:number = GameBG.bgHH % GameBG.ww;
+        delta = delta / GameBG.ww;
+        GameBG.v3d.z = (yy - rowNum + 0.5) / Game.cameraCN.cos0;
         return GameBG.v3d;
     }
 
     static arrsp: Sprite[] = [];
 
-    // static arr0:number[] = [
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,2,2,0,0,0,0,0,0,0,3,3,0,
-    //     0,4,0,0,0,0,0,0,0,0,0,5,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,   
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,0,0,0,0,0,0,0,0,0,0,0,0,
-    //     0,6,0,0,0,0,0,0,0,0,0,7,0,
-    //     0,8,8,0,0,0,0,0,0,0,9,9,0        
-    // ];
-
     static arr0: number[] = [];
-
-    static arr: number[] = [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0,
-        0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 7, 1, 1, 1, 1, 1, 7, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 8, 0, 0, 5, 0, 0, 9, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 10, 1, 0, 0, 0, 0, 0, 0, 0, 11, 1, 0,
-        0, 1, 10, 0, 0, 0, 0, 0, 0, 0, 1, 11, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ];
-
-    static arr1: number[] = [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ];
 
     private bgh: number = 0;
 
@@ -219,19 +170,40 @@ export default class GameBG extends Laya.Sprite {
         let gType: number = 0;
         this.addChild(this._box);
         this.addChild(this.saw);
+
+        for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
+            for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
+                var sprite:Laya.Image = new Laya.Image();
+                sprite.skin = "h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg";
+                this._box.addChild(sprite);
+                sprite.pos(i * GameBG.bgCellWidth,j * GameBG.bgCellWidth);
+            }
+        }
         
-        for (let j = 0; j < GameBG.hnum; j++) {
+        let index2:number = 0;
+        for (let j = 0; j < GameBG.MAP_ROW; j++) {
             this.bgh += ww;
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
-                if (k > GameBG.arr0.length)  {
-                    continue;
-                }
+            if(GameBG.MAP_ROW % 2 == 0)
+            {
+                index2++;
+            }
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
+
                 gType = GameBG.arr0[k];
                 img = new Image();
-                img.skin = (k % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
+                // img.alpha = 0.3;
+                // img.skin = (index2 % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
                 this._box.addChild(img);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
+                index2++;
+                // let label:Laya.Label = new Laya.Label();
+                // label.size(ww,ww);
+                // img.addChild(label);
+                // label.align = "center";
+                // label.valign = "middle";
+                // label.borderColor = "#0000ff";
+                // label.text = j + "," + i;
 
 
                 // if(i==GameBG.ci && j==GameBG.cj){
@@ -294,16 +266,23 @@ export default class GameBG extends Laya.Sprite {
         }
 
         var k = 0;
-        for (let j = 0; j < GameBG.hnum; j++) {
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
-                if (k > GameBG.arr0.length)  {
-                    continue;
-                }
+        for (let j = 0; j < GameBG.MAP_ROW; j++) {
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
+                // if (k > GameBG.arr0.length)  {
+                //     continue;
+                // }
                 gType = GameBG.arr0[k];
                 var shadow:Laya.Image = new Laya.Image();
                 if((GridType.isWall(gType) || (gType == 1)))
                 {
                     shadow.skin = GameBG.BG_TYPE + '/shitouying.png';
+                    shadow.x = i * ww;
+                    shadow.y = j * ww;
+                    this._box.addChild(shadow);
+                }
+                else if((GridType.isTong(gType) || (gType == 2)))
+                {
+                    shadow.skin = GameBG.BG_TYPE + '/tongying.png';
                     shadow.x = i * ww;
                     shadow.y = j * ww;
                     this._box.addChild(shadow);
@@ -351,66 +330,71 @@ export default class GameBG extends Laya.Sprite {
 
         this.saw.updateSaw();
 
-        for (let j = 0; j < GameBG.hnum; j++) {
-            if (j % 2 == 0) {
-                var left: Image = new Image();
-                Game.frontLayer.addChild(left);
-                left.skin = GameBG.BG_TYPE + "/border.png";
-                left.x = 0;
-                left.y = Math.floor(j / 2) * 128 - 1;
-                left.mouseEnabled = false;
+        // for (let j = 0; j < GameBG.hnum; j++) {
+        //     if (j % 2 == 0) {
+        //         var left: Image = new Image();
+        //         Game.frontLayer.addChild(left);
+        //         left.skin = GameBG.BG_TYPE + "/border.png";
+        //         left.x = 0;
+        //         left.y = Math.floor(j / 2) * 128 - 1;
+        //         left.mouseEnabled = false;
 
-                var right: Image = new Image();
-                Game.frontLayer.addChild(right);
-                right.skin = GameBG.BG_TYPE + "/border.png";
-                right.x = 0 + GameBG.wnum * ww;
-                right.y = Math.floor(j / 2) * 128 - 1;
-                right.mouseEnabled = false;
-            }
-        }
+        //         var right: Image = new Image();
+        //         Game.frontLayer.addChild(right);
+        //         right.skin = GameBG.BG_TYPE + "/border.png";
+        //         right.x = 0 + GameBG.wnum * ww;
+        //         right.y = Math.floor(j / 2) * 128 - 1;
+        //         right.mouseEnabled = false;
+        //     }
+        // }
 
-        this._topShadow.skin = "bg/yingzi.png";
-        this._topShadow.width = GameBG.ww * (GameBG.wnum + 1);
-        this._leftShadow.skin = "bg/yingzi.png";
-        this._leftShadow.height = GameBG.ww * GameBG.hnum - 10 * GameBG.ww;
-        this._leftShadow.y = GameBG.ww * 10 + 28;
-        this._leftShadow.x = GameBG.ww - 10;
-        // Game.frontLayer.alpha = 0
-        Game.frontLayer.addChild(this._topShadow);
-        Game.frontLayer.addChild(this._leftShadow);
-        Game.frontLayer.addChild(this._top);
+        // this._topShadow.skin = "bg/yingzi.png";
+        // this._topShadow.width = GameBG.ww * (GameBG.wnum + 1);
+        // this._leftShadow.skin = "bg/yingzi.png";
+        // this._leftShadow.height = GameBG.ww * GameBG.hnum - 10 * GameBG.ww;
+        // this._leftShadow.y = GameBG.ww * 10 + 28;
+        // this._leftShadow.x = GameBG.ww - 10;
+        // Game.frontLayer.addChild(this._topShadow);
+        // Game.frontLayer.addChild(this._leftShadow);
+        // Game.frontLayer.addChild(this._top);
 
-        this._top.x = GameBG.ww2;
-        this._top.skin = GameBG.BG_TYPE + "/top.png";
-        this._bossImg.skin = GameBG.BG_TYPE + "/bosstou.png";
-        this._topShadow.y = 10 * GameBG.ww;
+        // this._top.x = GameBG.ww2;
+        // this._top.skin = GameBG.BG_TYPE + "/top.png";
+        // this._bossImg.skin = GameBG.BG_TYPE + "/bosstou.png";
+        // this._topShadow.y = 10 * GameBG.ww;
 
-        this._top.addChild(this._door);
-        this._top.addChild(this._bossImg);
-
-        
-        this.doorNumber.value = "" + Game.battleLoader.index;
-        this.doorNumber.pos(380,390);
-        this._top.addChild(this.doorNumber);
-        
-        this._bossImg.visible = hasBoss;
-        this.doorNumber.visible = !this._bossImg.visible && Game.battleLoader.index > 0;
-        this._door.pos(281,418);
+        this._box.addChild(this._door);
+        this._door.pos(GameBG.MAP_COL2 * GameBG.ww,GameBG.MAP_ROW2 * GameBG.ww);
+        this._door.skin = 'bg/door.png';
+        // this._top.addChild(this._bossImg);
 
         
+        // this.doorNumber.value = "" + Game.battleLoader.index;
+        // this.doorNumber.pos(380,390);
+        // this._top.addChild(this.doorNumber);
+        
+        // this._bossImg.visible = hasBoss;
+        // this.doorNumber.visible = !this._bossImg.visible && Game.battleLoader.index > 0;
+        // this._door.pos(281,418);
 
-        Game.frontLayer.addChild(this._bottom);
-        this._bottom.x = GameBG.ww2;
-        this._bottom.skin = GameBG.BG_TYPE + "/bottom.png";
-        this._bottom.y = (GameBG.MAP_ROW + 11 - 3) * GameBG.ww - GameBG.ww * 0.1;
-        this._bottom.height = 1000;
+        
 
+        // Game.frontLayer.addChild(this._bottom);
+        // this._bottom.x = GameBG.ww2;
+        // this._bottom.skin = GameBG.BG_TYPE + "/bottom.png";
+        // this._bottom.y = (GameBG.MAP_ROW + 11 - 3) * GameBG.ww - GameBG.ww * 0.1;
+        // this._bottom.height = 1000;
+
+        //this.x = (Laya.stage.width - GameBG.MAP_COL * GameBG.ww) * 0.5;
         this.x = -GameBG.ww2;
-        this.y = (Laya.stage.height - (GameBG.hnum * GameBG.ww)) / 2
+        this.y = (Laya.stage.height -GameBG.bgHH) * 0.5;
         GameBG.cx = this.x;
         GameBG.cy = this.y;
-        GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
-        GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
+        // GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
+        // GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
+
+        // GameBG.mcx = (GameBG.MAP_COL * GameBG.ww) / 2;
+        // GameBG.mcy = (GameBG.MAP_ROW * GameBG.ww) / 2;
         
         // let redLine:Laya.Image = new Laya.Image();
         // redLine.skin = "bg/hongtiao.png"
@@ -485,45 +469,13 @@ export default class GameBG extends Laya.Sprite {
     }
 
     public setDoor(state:number):void{
-        this._door.skin = 'bg/door' + state + '.png';
-    }
-
-    public drawR0(): void {
-        var img: Image;
-        var k: number = 0;
-        var ww: number = GameBG.ww;
-        //GameBG.orthographicVerticalSize
-        var sp: Sprite;
-        for (let j = 0; j < GameBG.hnum; j++) {
-            this.bgh += ww;
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
-                img = new Image();
-                img.skin = (k % 2 == 0) ? "comp/g256h.jpg" : "comp/g256l.jpg";
-                this.addChild(img);
-                img.x = i * ww - (ww / 2);
-                img.y = j * ww;
-
-                //console.log(i,j);
-                if (k < GameBG.arr.length && GameBG.arr[k] == 1) {
-                    sp = new Sprite();
-                    sp.graphics.drawRect(0, 0, GameBG.ww, GameBG.ww, 0xff0000);
-                    sp.x = i * ww - (ww / 2);
-                    sp.y = j * ww;
-                    this.addChild(sp);
-                    this.sp = sp;
-                    GameBG.arrsp.push(sp);
-                }
-                k++;
-            }
-        }
-        this.addChild(this.mySp);
-        // this.bgh = Laya.stage.height - this.bgh;
+        this._door.visible = state == 1;
     }
 
     public updateY(): void {
         var bgy: number = GameBG.cy - Game.hero.pos2.z;
         var u:boolean = false;
-        if (bgy <= 0 && bgy >= Laya.stage.height - Game.bg.getBgh()) {
+        if (bgy <= 0 && bgy >= Laya.stage.height - GameBG.bgHH) {
             //移动2D背景板
             Game.bg.y = bgy;
             //摄像机跟随主角
@@ -531,18 +483,17 @@ export default class GameBG extends Laya.Sprite {
             u = true;
         }
 
-        if(Game.BigMapMode==1){//如果是大地图模式
-            var bgx: number = GameBG.cx - Game.hero.pos2.x;
-            if (bgx <= 15*GameBG.ww-GameBG.ww2 && bgx >= -15*GameBG.ww-GameBG.ww2 ) {
-                Game.camera.transform.localPositionX = Game.hero.x;
-                Game.bg.x = bgx;            
-                u = true;
-            }
+        var bgx: number = GameBG.cx - Game.hero.pos2.x;
+        if (bgx <= -GameBG.ww2 && bgx >= (Laya.stage.width - GameBG.bgWW) + GameBG.ww2) {
+            Game.camera.transform.localPositionX = Game.hero.x;
+            Game.bg.x = bgx;
+            u = true;
         }
 
         if(u){
-            Game.updateMap();
+            
         }
+        Game.updateMap();
 
     }
 }

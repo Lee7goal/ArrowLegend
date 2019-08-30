@@ -53,18 +53,33 @@ export default class GameExecut extends Laya.EventDispatcher {
             arr[i].ai();
         }
 
-        if (arr.length == 1)  {
-            if (Game.bg.npcId == 0)  {
-                if (Game.state == 0 && Game.hero.playerData.lastLevel != Game.hero.playerData.level && Game.isPopupSkill == 0)  {
+        if (arr.length == 1) {
+            if (Game.bg.npcId == 0) {
+                if (Game.state == 0 && Game.hero.playerData.lastLevel != Game.hero.playerData.level && Game.isPopupSkill == 0) {
                     Laya.stage.event(Game.Event_SELECT_NEWSKILL, Game.hero.playerData.level);
                 }
-                if (arr[0] instanceof Hero)  {
+                if (arr[0] instanceof Hero) {
                     Game.openDoor();
+                    Game.map0.checkDoor();
+                    
+                    // if (Game.battleLoader.sysMap)  {
+                    //     if (Game.battleLoader.curBoTimes < Game.battleLoader.maxBoTimes)  {
+                    //         Game.battleLoader.curBoTimes++;
+                    //         Game.scenneM.battle.createMonster();
+                            
+                    //         console.log("========创建怪========");
+                    //     }
+                    //     else  {
+                    //         //
+                    //         console.log("========下一关========");
+                            
+                    //     }
+                    // }
                 }
             }
 
-            if (arr[0] instanceof Hero)  {
-                if (Game.bg.npcId > 0)  {
+            if (arr[0] instanceof Hero) {
+                if (Game.bg.npcId > 0) {
                     Game.bg.checkNpc();
                 }
             }
