@@ -14,6 +14,10 @@ import WudiRotateScript from "../controllerScript/WudiRotateScript";
 import BloodEffect from "../effect/BloodEffect";
 
 export default class Hero extends GamePro {
+
+    static bornX:number;
+    static bornY:number;
+
     public playerData: PlayerData = new PlayerData();
     constructor() {
         super(GameProType.Hero, 0);
@@ -139,7 +143,7 @@ export default class Hero extends GamePro {
         // this.addWeapon();
 
         // this.setXY2DBox(GameBG.MAP_COL * GameBG.ww * 0.5, GameBG.MAP_ROW * GameBG.ww * 0.5);
-        this.setXY2DBox(GameBG.MAP_COL * GameBG.ww * 0.5, GameBG.MAP_ROW * GameBG.ww * 0.5);
+        this.setXY2DBox(Hero.bornX, Hero.bornY);
 
         this.initBlood(this.gamedata.hp);
         this.addFootCircle();

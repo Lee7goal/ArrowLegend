@@ -5,6 +5,7 @@ import GamePro from "./GamePro";
 import GridType from "./bg/GridType";
 import MaoLineData from "./MaoLineData";
 import SysSkill from "../main/sys/SysSkill";
+import Hero from "./player/Hero";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -121,22 +122,28 @@ export default class GameMap0 extends Laya.Sprite {
                 // if (k < GameBG.arr0.length) {
                     this.info[j + "_" + i] = key;
                     if (GridType.isWall(key)
-                        || GridType.isRiverPoint(key)
-                        || GridType.isRiverScale9Grid(key)
-                        || GridType.isRiverScale9Grid2(key)
-                        || GridType.isRiverRow(key)
-                        || GridType.isRiverCol(key)
-                        || GridType.isRiverPoint(key)) {
+                        || GridType.isTong(key)) {
                         if (this.map[key]) {
                             hb = this.map[key];
                             hb.setRq(hb.x, hb.y, x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
                         } else {
                             hb = new GameHitBox(GameBG.ww, GameBG.ww);
-                            hb.value = GridType.isWall(key) ? key : 9999;
+                            hb.value = key;
                             hb.setXY(x, y);
                             this.Wharr.push(hb);
                             this.map[key] = hb;
                         }
+                    }
+                    else if(GridType.isRiverPoint(key)
+                    || GridType.isRiverScale9Grid(key)
+                    || GridType.isRiverScale9Grid2(key)
+                    || GridType.isRiverRow(key)
+                    || GridType.isRiverCol(key)
+                    || GridType.isRiverPoint(key))
+                    {
+                        hb = new GameHitBox(GameBG.ww, GameBG.ww);
+                        hb.setXY(x, y);
+                        this.Wharr.push(hb);
                     }
                     else if (GridType.isFence(key)) {
                         hb = new GameHitBox(GameBG.ww * 3, GameBG.ww);
@@ -156,10 +163,15 @@ export default class GameMap0 extends Laya.Sprite {
                         this.npcHitBox.setXY(x - GameBG.ww * 5, y - GameBG.ww * 3);
                     }
 
-                    if(j == GameBG.MAP_ROW2 && i == GameBG.MAP_COL2)
+                    if(key == 9999)
                     {
-                        this.doorHitBox = new GameHitBox(GameBG.ww * 4, GameBG.ww * 4);
+                        this.doorHitBox = new GameHitBox(GameBG.ww, GameBG.ww);
                         this.doorHitBox.setXY(x, y);
+                    }
+                    else if(key == 8888)
+                    {
+                        Hero.bornX = x;
+                        Hero.bornY = y;
                     }
                 // }
                 k++;
@@ -268,10 +280,6 @@ export default class GameMap0 extends Laya.Sprite {
 
     checkDoor():boolean
     {
-        if(Game.battleLoader.index > 2)
-        {
-            return false;
-        }
         let bool:boolean = false;
         if(this.doorHitBox && Game.hero.hbox.hit(Game.hero.hbox,this.doorHitBox))
         {
@@ -336,7 +344,7 @@ export default class GameMap0 extends Laya.Sprite {
                     //穿墙术
                     continue;
                 }
-                if(waterSkill && ehb.value == 9999)
+                if(waterSkill && ehb.value == 7777)
                 {
                     //水上漂
                     continue;

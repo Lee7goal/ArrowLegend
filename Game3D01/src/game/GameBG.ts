@@ -202,8 +202,11 @@ export default class GameBG extends Laya.Sprite {
                 // img.addChild(label);
                 // label.align = "center";
                 // label.valign = "middle";
-                // label.borderColor = "#0000ff";
                 // label.text = j + "," + i;
+                // if(gType > 0)
+                // {
+                //     label.text = "" + gType;
+                // }
 
 
                 // if(i==GameBG.ci && j==GameBG.cj){
@@ -260,6 +263,14 @@ export default class GameBG extends Laya.Sprite {
                     this.npcP.x = img.x + GameBG.ww2;
                     this.npcP.y = img.y;
                 }
+
+                if(gType == 9999)
+                {
+                    this._box.addChild(this._door);
+                    this._door.pos(img.x,img.y);
+                    this._door.skin = 'bg/door.png';
+                }
+
                 img.addChild(grid);
                 k++;
             }
@@ -363,9 +374,7 @@ export default class GameBG extends Laya.Sprite {
         // this._bossImg.skin = GameBG.BG_TYPE + "/bosstou.png";
         // this._topShadow.y = 10 * GameBG.ww;
 
-        this._box.addChild(this._door);
-        this._door.pos(GameBG.MAP_COL2 * GameBG.ww,GameBG.MAP_ROW2 * GameBG.ww);
-        this._door.skin = 'bg/door.png';
+        
         // this._top.addChild(this._bossImg);
 
         

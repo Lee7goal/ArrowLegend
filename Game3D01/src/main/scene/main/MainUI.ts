@@ -167,7 +167,9 @@ import App from "../../../core/App";
         private ww1:number = 127;
         private ww2:number = 242;
 
-        private _selectIndex:number = 2;
+        private _selectIndex:number = 0;
+
+        private btnskins:string[] = ["","world","zhuangbei","shangdian","tianfu","shezhi"];
 
         private opens:number[] = [0,1,1,1,1,1];
         constructor(){
@@ -190,7 +192,8 @@ import App from "../../../core/App";
                 {
                     btn.stateNum = 2;
                     btn.width = 108;
-                    btn.skin = 'main/bottom_btn_' + i + '.png';
+                    btn.skin = 'main/' + this.btnskins[i] + '.png';
+                    console.log("按钮的皮肤",btn.skin);
                 }
                 else{
                     btn.stateNum = 1;
