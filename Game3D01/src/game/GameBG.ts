@@ -10,6 +10,7 @@ import NPC_1001 from "../main/scene/battle/npc/NPC_1001";
 import NPC_1002 from "../main/scene/battle/npc/NPC_1002";
 import NPC_1003 from "../main/scene/battle/npc/NPC_1003";
 import GameHitBox from "./GameHitBox";
+import Hero from "./player/Hero";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -197,16 +198,16 @@ export default class GameBG extends Laya.Sprite {
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
                 index2++;
-                // let label:Laya.Label = new Laya.Label();
-                // label.size(ww,ww);
-                // img.addChild(label);
-                // label.align = "center";
-                // label.valign = "middle";
-                // label.text = j + "," + i;
-                // if(gType > 0)
-                // {
-                //     label.text = "" + gType;
-                // }
+                let label:Laya.Label = new Laya.Label();
+                label.size(ww,ww);
+                img.addChild(label);
+                label.align = "center";
+                label.valign = "middle";
+                label.text = j + "," + i;
+                if(gType > 0)
+                {
+                    label.text = "" + gType;
+                }
 
 
                 // if(i==GameBG.ci && j==GameBG.cj){
@@ -267,9 +268,15 @@ export default class GameBG extends Laya.Sprite {
                 if(gType == 9999)
                 {
                     this._box.addChild(this._door);
-                    this._door.pos(img.x,img.y);
+                    this._door.pos(img.x - GameBG.ww2,img.y - GameBG.ww2);
                     this._door.skin = 'bg/door.png';
                 }
+                else if(gType == 8888)
+                {
+                    Hero.bornX = img.x;
+                    Hero.bornY = img.y;
+                }
+                // }
 
                 img.addChild(grid);
                 k++;
@@ -490,7 +497,17 @@ export default class GameBG extends Laya.Sprite {
             //摄像机跟随主角
             Game.camera.transform.localPositionZ = Game.cameraCN.z + Game.hero.z;
             u = true;
+            console.log("更新y");
         }
+        // else if(bgy < Laya.stage.height - GameBG.bgHH){
+        //     Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Laya.stage.height +  GameBG.bgHH);
+        //     console.log("更新y===================");
+        // }
+        // else
+        // {
+        //     Game.camera.transform.localPositionZ = Game.cameraCN.z +  GameBG.cy;
+        //     console.log("更新y=fdsfdfdsgfd");
+        // }
 
         var bgx: number = GameBG.cx - Game.hero.pos2.x;
         if (bgx <= -GameBG.ww2 && bgx >= (Laya.stage.width - GameBG.bgWW) + GameBG.ww2) {

@@ -423,6 +423,7 @@ export default class GamePro extends Laya.EventDispatcher {
         if (this.sp2d_) {
             this.sp2d_.x = this.hbox_.x;
             this.sp2d_.y = this.hbox_.y;
+            Game.footLayer.addChild(this.sp2d_);
         }
         this.updateUI();
     }

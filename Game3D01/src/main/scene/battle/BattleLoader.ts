@@ -117,8 +117,8 @@ export default class BattleLoader {
         }
         else
         {
-            if (this._index > 50) {
-                this._index = 0;
+            if (this._index > 10) {
+                this._index = 1;
             }
             this._mapId = Session.homeData.chapterId * 1000 + this._index;
             this.sysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
@@ -129,6 +129,7 @@ export default class BattleLoader {
             let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
             this._configId = configId;
         }
+        // this._configId = 100301
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }

@@ -165,7 +165,8 @@ export default class Game {
         Game.isOpen = true;
         Game.battleLoader.index++;
         Game.bg.setDoor(1);
-        Game.door.transform.localPositionX = -50;
+        // Game.door.transform.localPositionX = 0;
+        Game.layer3d.addChild(Game.door);
         Game.map0.setDoor(true);
         Game.shakeBattle();
         Game.battleLoader.destroyMonsterRes();
@@ -183,7 +184,8 @@ export default class Game {
     static closeDoor(): void {
         console.log("关门====================");
         Game.isOpen = false;
-        Game.door.transform.localPositionX = -50;
+        // Game.door.transform.localPositionX = -500;
+        Game.door && Game.door.removeSelf();
         Game.map0.setDoor(false);
         Game.bg.setDoor(0);
     }
@@ -286,7 +288,7 @@ export default class Game {
         Game.selectFoot && Game.selectFoot.removeSelf();
         Game.selectHead && Game.selectHead.removeSelf();
         Game.skillManager.clear();
-        Game.battleLoader.index = 0;
+        Game.battleLoader.index = 1;
         Game.rebornTimes = 2;
         Game.hero.reset();
         Game.hero.resetAI();

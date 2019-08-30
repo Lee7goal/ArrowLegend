@@ -19,7 +19,7 @@ export default class MainView extends Laya.Box {
     private initUI(): void {
         this.content = new Laya.Box();
         this.addChild(this.content);
-        this.views = [new WorldView(),new ShopView(), new EquipView(),  new TalentView(), new SettingView()];
+        this.views = [new WorldView(),new ShopView(), new EquipView(), new TalentView(), new SettingView()];
     }
 
     private curIndex: number;

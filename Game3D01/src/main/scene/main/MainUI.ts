@@ -168,22 +168,20 @@ import App from "../../../core/App";
 
         private _selectIndex:number = 0;
 
-        private btnskins:string[] = ["","world","zhuangbei","shangdian","tianfu","shezhi"];
-
-        private opens:number[] = [0,1,1,1,1,1];
+        private opens:number[] = [1,-1,-1,-1,-1];
         constructor(){
             super();
             this.addChild(this.bgBox);
             this.curBg.skin = 'main/dazhao.png';
             this.addChild(this.curBg);
             this.addChild(this.btnBox);
-            for(let i = 1; i < 6; i++)
+            for(let i = 0; i < 5; i++)
             {
                 let bg:Laya.Image = new Laya.Image();
                 bg.skin = 'main/xiaobiao.png';
                 bg.width = this.ww1;
                 this.bgBox.addChild(bg);
-                bg.x = (i - 1) * bg.width;
+                bg.x = i * bg.width;
                 this.bgs.push(bg);
                 let btn:Laya.Button = new Laya.Button();
                 btn.tag = this.opens[i];
@@ -191,7 +189,7 @@ import App from "../../../core/App";
                 {
                     btn.stateNum = 2;
                     btn.width = 108;
-                    btn.skin = 'main/' + this.btnskins[i] + '.png';
+                    btn.skin = 'main/btn_' + i + '.png';
                     console.log("按钮的皮肤",btn.skin);
                 }
                 else{

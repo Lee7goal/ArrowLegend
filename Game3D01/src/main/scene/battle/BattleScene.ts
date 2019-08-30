@@ -147,6 +147,8 @@ export default class BattleScene extends Laya.Sprite {
 
     private nullGridList:Laya.Point[] = [];
     init(): void {
+        // Game.camera.transform.localPositionZ = 0;
+        // Game.camera.transform.localPositionX = 0;
         GameRube.recover();
         GameFence.recover();
 
@@ -159,8 +161,8 @@ export default class BattleScene extends Laya.Sprite {
             CustomShaderff00.ff00;
         }
         Game.map0.drawMap();
-        // this.addChild(Game.map0);
-        Game.updateMap();
+        this.addChild(Game.map0);
+        
 
         // GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
         // GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
@@ -168,14 +170,7 @@ export default class BattleScene extends Laya.Sprite {
         GameBG.mcx = 13 * GameBG.ww /2   - GameBG.mw2;
         GameBG.mcy = GameBG.bgHH *0.5 - GameBG.mw2;
 
-        if (!Game.door) {
-            let v3 = GameBG.get3D(6, 9);
-            Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
-            Game.door.transform.translate(v3);
-        }
-        Game.layer3d.addChild(Game.door);
-        Game.door.transform.localPositionX = -50;
-        Game.closeDoor();
+        
         Game.setSelectEffect();
 
 
@@ -214,14 +209,26 @@ export default class BattleScene extends Laya.Sprite {
                         // }
                     }
 
-                    if(type == 0)
+                    if(type == 9999)
                     {
-                        this.nullGridList.push(new Laya.Point(GameBG.ww * i,j * GameBG.ww));
+                        let v3 = GameBG.get3D(i,j);
+                        if (!Game.door) {
+                            
+                        }
+                        Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
+                        Game.door.transform.translate(v3);
                     }
+
+                    // if(type == 0)
+                    // {
+                    //     this.nullGridList.push(new Laya.Point(GameBG.ww * i,j * GameBG.ww));
+                    // }
                 // }
                 k++;
             }
         }
+
+        Game.closeDoor();
 
         if (monster) {
             Game.e0_ = monster;

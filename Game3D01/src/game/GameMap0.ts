@@ -165,15 +165,9 @@ export default class GameMap0 extends Laya.Sprite {
 
                     if(key == 9999)
                     {
-                        this.doorHitBox = new GameHitBox(GameBG.ww, GameBG.ww);
-                        this.doorHitBox.setXY(x, y);
+                        this.doorHitBox = new GameHitBox(GameBG.ww * 2, GameBG.ww * 2);
+                        this.doorHitBox.setXY(x - GameBG.ww2, y - GameBG.ww2);
                     }
-                    else if(key == 8888)
-                    {
-                        Hero.bornX = x;
-                        Hero.bornY = y;
-                    }
-                // }
                 k++;
             }
             // if (k >= GameBG.arr0.length) {
