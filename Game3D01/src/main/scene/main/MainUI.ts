@@ -20,7 +20,6 @@ import App from "../../../core/App";
 
             this.topUI = new TopUI();
             this.addChild(this.topUI);
-            this.topUI.visible = false;
 
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);
@@ -58,7 +57,7 @@ import App from "../../../core/App";
             this.mo = new MaskObj(this.jingyantiao);
             this.mo.value = 1;
 
-            this.topBox.y = App.top;
+            // this.topBox.y = App.top;
             this.on(Laya.Event.DISPLAY,this,this.onDis);
         }
 

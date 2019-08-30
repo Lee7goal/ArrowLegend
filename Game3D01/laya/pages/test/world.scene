@@ -49,7 +49,7 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box,box",
-            "props":{"x":33,"width":684,"var":"box","height":1000},
+            "props":{"y":110,"x":33,"width":684,"var":"box","height":1000},
             "nodeParent":2,
             "label":"box",
             "isDirectory":false,

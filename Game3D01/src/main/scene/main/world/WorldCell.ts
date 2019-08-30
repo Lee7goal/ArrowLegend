@@ -5,6 +5,7 @@ export default class WorldCell extends ui.test.worldCellUI {
     constructor() { 
         super(); 
         this.mapBtn.clickHandler = new Laya.Handler(this,this.onClick);
+        this.suo.visible = false;
     }
 
     private onClick():void
@@ -14,7 +15,7 @@ export default class WorldCell extends ui.test.worldCellUI {
 
     update(sysChapter:SysChapter):void
     {
-        this.titleTxt.text = sysChapter.name;
+        // this.titleTxt.text = sysChapter.name;
     }
 
 }
