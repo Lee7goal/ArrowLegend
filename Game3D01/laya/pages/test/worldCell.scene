@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":3,
+    "selecteID":27,
     "searchKey":"View",
-    "props":{"width":684,"sceneColor":"#000000","height":668},
+    "props":{"width":750,"sceneColor":"#000000","height":708},
     "nodeParent":-1,
-    "maxID":7,
+    "maxID":28,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -18,7 +18,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"y":0,"x":246,"skin":"main/biaotihong.png"},
+            "props":{"y":27,"x":178,"skin":"main/changhong.png"},
             "nodeParent":2,
             "label":"Image",
             "isDirectory":false,
@@ -30,23 +30,9 @@
         },
         {
             "x":15,
-            "type":"Label",
-            "searchKey":"Label,titleTxt",
-            "props":{"y":32,"x":247,"width":189,"var":"titleTxt","text":"关卡名","height":36,"fontSize":36,"color":"#f6ecec","align":"center"},
-            "nodeParent":2,
-            "label":"titleTxt",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":5,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Button",
             "searchKey":"Button,mapBtn",
-            "props":{"y":136,"var":"mapBtn","stateNum":"1","skin":"main/erdao.png"},
+            "props":{"y":204,"x":33.5,"var":"mapBtn","stateNum":"1","skin":"main/erdao.png"},
             "nodeParent":2,
             "label":"mapBtn",
             "isDirectory":false,
@@ -60,7 +46,7 @@
             "x":15,
             "type":"Label",
             "searchKey":"Label,cengshuTxt",
-            "props":{"y":50,"x":437,"width":245,"var":"cengshuTxt","text":"最高层数","height":36,"fontSize":36,"color":"#f6ecec","align":"left"},
+            "props":{"y":108,"x":250,"width":245,"var":"cengshuTxt","text":"最高层数","height":36,"fontSize":36,"color":"#f6ecec","align":"center"},
             "nodeParent":2,
             "label":"cengshuTxt",
             "isDirectory":false,
@@ -69,6 +55,229 @@
             "compId":6,
             "child":[
                 ]
+        },
+        {
+            "x":15,
+            "type":"Sprite",
+            "searchKey":"Sprite,titleTxt",
+            "props":{"y":35,"x":306,"var":"titleTxt","texture":"main/shamolvzhou.png"},
+            "nodeParent":2,
+            "label":"titleTxt",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":7,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Sprite",
+            "searchKey":"Sprite,suo",
+            "props":{"y":372.5,"x":336.5,"var":"suo","texture":"main/suo2.png"},
+            "nodeParent":2,
+            "label":"suo",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":8,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "searchKey":"Box",
+            "props":{"y":702,"x":2.5},
+            "nodeParent":2,
+            "label":"Box",
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":27,
+            "child":[
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":-0.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":10,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":53.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":12,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":105.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":13,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":157.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":14,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":216.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":15,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":272.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":16,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":324.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":17,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":376.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":18,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":430.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":19,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":488.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":20,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":540.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":21,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":592.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":22,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":651.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":23,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":707.5,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":24,
+                    "child":[
+                        ]
+                }]
         }],
     "animations":[
         {
