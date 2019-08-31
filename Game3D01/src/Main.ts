@@ -15,9 +15,9 @@ import GameScaleAnimator4 from "./game/ai/GameScaleAnimator4";
 import NPC_1001 from "./main/scene/battle/npc/NPC_1001";
 import NPC_1002 from "./main/scene/battle/npc/NPC_1002";
 import NPC_1003 from "./main/scene/battle/npc/NPC_1003";
-import NPC_1001_view from "./main/scene/battle/npc/NPC_1001_view";
-import NPC_1002_view from "./main/scene/battle/npc/NPC_1002_view";
-import NPC_1003_view from "./main/scene/battle/npc/NPC_1003_view";
+// import NPC_1001_view from "./main/scene/battle/npc/NPC_1001_view";
+// import NPC_1002_view from "./main/scene/battle/npc/NPC_1002_view";
+// import NPC_1003_view from "./main/scene/battle/npc/NPC_1003_view";
 import AttackType from "./game/ai/AttackType";
 import AIType from "./game/ai/AIType";
 import BaseAI from "./game/ai/BaseAi";
@@ -166,13 +166,13 @@ class Main {
 		REG("HIT_" + HitType.hit3, GameScaleAnimator4);
 		REG("HIT_" + HitType.hit4, GameScaleAnimator3);
 		//NPC
-		REG("NPC1001", NPC_1001);
-		REG("NPC1002", NPC_1002);
-		REG("NPC1003", NPC_1003);
+		// REG("NPC1001", NPC_1001);
+		// REG("NPC1002", NPC_1002);
+		// REG("NPC1003", NPC_1003);
 
-		REG("NPCVIEW1001", NPC_1001_view);
-		REG("NPCVIEW1002", NPC_1002_view);
-		REG("NPCVIEW1003", NPC_1003_view);
+		// REG("NPCVIEW1001", NPC_1001_view);
+		// REG("NPCVIEW1002", NPC_1002_view);
+		// REG("NPCVIEW1003", NPC_1003_view);
 		//攻击类型
 		REG(AttackType.TAG + AIType.NOTHAS, BaseAI);
 		REG(AttackType.TAG + AIType.FLYHIT, FlyAndHitAi);

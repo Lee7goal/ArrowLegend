@@ -175,8 +175,11 @@ export default class GameBG extends Laya.Sprite {
         for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
             for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
                 var sprite:Laya.Image = new Laya.Image();
-                sprite.skin = "h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg";
                 this._box.addChild(sprite);
+                sprite.skin = "h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg";
+                // let tt:Laya.Texture = Laya.loader.getRes("h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg");
+                // console.log("地图",tt);
+                // sprite.texture = tt;
                 sprite.pos(i * GameBG.bgCellWidth,j * GameBG.bgCellWidth);
             }
         }
@@ -198,16 +201,16 @@ export default class GameBG extends Laya.Sprite {
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
                 index2++;
-                let label:Laya.Label = new Laya.Label();
-                label.size(ww,ww);
-                img.addChild(label);
-                label.align = "center";
-                label.valign = "middle";
-                label.text = j + "," + i;
-                if(gType > 0)
-                {
-                    label.text = "" + gType;
-                }
+                // let label:Laya.Label = new Laya.Label();
+                // label.size(ww,ww);
+                // img.addChild(label);
+                // label.align = "center";
+                // label.valign = "middle";
+                // label.text = j + "," + i;
+                // if(gType > 0)
+                // {
+                //     label.text = "" + gType;
+                // }
 
 
                 // if(i==GameBG.ci && j==GameBG.cj){
@@ -497,23 +500,35 @@ export default class GameBG extends Laya.Sprite {
             //摄像机跟随主角
             Game.camera.transform.localPositionZ = Game.cameraCN.z + Game.hero.z;
             u = true;
-            console.log("更新y");
+            console.log("更新y",bgy,Game.camera.transform.localPositionZ);
         }
-        // else if(bgy < Laya.stage.height - GameBG.bgHH){
-        //     Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Laya.stage.height +  GameBG.bgHH);
-        //     console.log("更新y===================");
-        // }
-        // else
-        // {
-        //     Game.camera.transform.localPositionZ = Game.cameraCN.z +  GameBG.cy;
-        //     console.log("更新y=fdsfdfdsgfd");
-        // }
+        else if(bgy < Laya.stage.height - GameBG.bgHH){
+            //Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Laya.stage.height +  GameBG.bgHH);
+            console.log("更新y===================");
+            Game.bg.y = Laya.stage.height - GameBG.bgHH;
+            Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
+        }
+        else
+        {
+            //Game.camera.transform.localPositionZ = Game.cameraCN.z +  GameBG.cy;
+            Game.bg.y = 0;
+            Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
+            console.log("更新y=fdsfdfdsgfd");
+        }
 
         var bgx: number = GameBG.cx - Game.hero.pos2.x;
         if (bgx <= -GameBG.ww2 && bgx >= (Laya.stage.width - GameBG.bgWW) + GameBG.ww2) {
             Game.camera.transform.localPositionX = Game.hero.x;
             Game.bg.x = bgx;
             u = true;
+        }
+        else if(bgx > -GameBG.ww2 ){
+            Game.bg.x = -GameBG.ww2;
+            Game.camera.transform.localPositionX = (GameBG.cx  -Game.bg.x)/GameBG.ww;
+        }
+        else{
+            Game.bg.x = (Laya.stage.width - GameBG.bgWW) + GameBG.ww2;
+            Game.camera.transform.localPositionX = (GameBG.cx  -Game.bg.x)/GameBG.ww;
         }
 
         if(u){

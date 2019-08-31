@@ -29,7 +29,6 @@ import App from "../../../core/App";
         this.verLabel.color = "#ffffff";
         // this.verLabel.bold = true;
         this.verLabel.text = "version:" + Game.resVer;
-        this.verLabel.text = "";
 
 
         Laya.stage.on("switchView",this,this.switchView);

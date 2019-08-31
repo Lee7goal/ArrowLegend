@@ -84,6 +84,7 @@ export default class BattleScene extends Laya.Sprite {
     }
 
     private _selectSkill: SelectNewSkill;
+    /**技能选择 */
     private onShowSelect(lv: number): void {
         if (lv > 10)  {
             return;
@@ -161,7 +162,7 @@ export default class BattleScene extends Laya.Sprite {
             CustomShaderff00.ff00;
         }
         Game.map0.drawMap();
-        this.addChild(Game.map0);
+        // this.addChild(Game.map0);
         
 
         // GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;

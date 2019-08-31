@@ -146,10 +146,10 @@ export default class Hero extends GamePro {
         this.pos2.x = this.pos2.z = 0;
         this.sp3d.transform.localPositionX = 0;
         this.sp3d.transform.localPositionY = 0;
-        // console.log("出生位置",Hero.bornX,Hero.bornY)
-        // this.setXY2DBox(Hero.bornX, Hero.bornY);
+        console.log("出生位置",Hero.bornX,Hero.bornY)
+        this.setXY2DBox(Hero.bornX, Hero.bornY);
 
-        this.setXY2DBox(10 * GameBG.ww * 0.5, GameBG.MAP_ROW * GameBG.ww * 0.5);
+        // this.setXY2DBox(GameBG.MAP_COL * GameBG.ww * 0.5, GameBG.MAP_ROW * GameBG.ww * 0.5);
 
         this.initBlood(this.gamedata.hp);
         this.addFootCircle();

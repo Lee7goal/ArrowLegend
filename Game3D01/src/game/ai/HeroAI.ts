@@ -282,7 +282,7 @@ export default class HeroAI extends GameAI {
 
     private starAttack():boolean
     {
-        let isCloseCombat:boolean = GameHitBox.faceToLenth(Game.hero.hbox,Game.e0_.hbox) <= GameBG.ww * Math.sqrt(1.5 * 1.5);
+        let isCloseCombat:boolean = GameHitBox.faceToLenth(Game.hero.hbox,Game.e0_.hbox) <= GameBG.ww*3;//GameBG.ww * Math.sqrt(1.5 * 1.5);
         let ac:string = "";
         if(isCloseCombat)
         {

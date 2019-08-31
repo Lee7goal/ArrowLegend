@@ -33,7 +33,7 @@ P C5032B85 lvkuang.png
 R EF83E9C8 mogui.scene
 P 9FF2060E qianshu.png
 P E678BFE4 qipaowen.png
-P 5FE5FDA4 renlankuang.png
+P AFF0FC23 renlankuang.png
 P 66D52362 renyan.png
 P DFF9EE63 rockerBall.png
 P 81B51E22 rockerBg.png
@@ -73,6 +73,7 @@ P 66C30337 zuotiao.png
 D loading
 R 874EF654 loadingClip.png
 D main
+P 6B073E82 action.png
 P 3159A1FA anniudian.png
 P 2DDABC23 biaoti.png
 P 9FAB6C72 biaotifuhuo.png
@@ -99,25 +100,29 @@ P 8E95C78E diandian.png
 P 6E600239 diban.png
 P 081D1B14 dongjin.png
 P 7781CAC0 erdao.png
-P 0753DE3D fuhuodi.png
 P 9347A667 fuhuodi2.jpg
 P 3AF7A488 greenFont.png
 P F211986B guangdian.png
 P 375AA97B haibo.png
+P 53735F2D jianhei.png
 P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
 P B223512E jingyantiaodi.png
 P 5607F0AF jingyantiaoshang.png
 P 937BCEA4 jujue.png
 P B43729DD JYtian.png
+P 61A644DA kapai.png
+P F78AF3A9 kawen.png
 P 3A3DCE15 maohao.png
 P 0178A633 PTtian.png
+P DF0111DA qing.png
 P 92C4F8F3 queding.png
 P 4070A1DA quxiao.png
 P 7912E984 redFont.png
 P AD7FCD1D shamolvzhou.png
 P A88CEF17 shandianjia.png
 P DB7D6C33 shengji.png
+P 492175B9 shuaxin.png
 P 5C9A5072 shukuang.png
 P BFA5A81B SStian.png
 P FB648920 suo.png

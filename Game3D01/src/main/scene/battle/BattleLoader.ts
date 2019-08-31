@@ -129,7 +129,7 @@ export default class BattleLoader {
             let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
             this._configId = configId;
         }
-        // this._configId = 100301
+        // this._configId = 100801
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
@@ -149,11 +149,11 @@ export default class BattleLoader {
             "res/atlas/icons/skill.png", "res/atlas/icons/skill.atlas",
             "res/atlas/bg.png", "res/atlas/bg.atlas",
             "res/atlas/map_1.png", "res/atlas/map_1.atlas",
-            "res/atlas/map_2.png", "res/atlas/map_2.atlas",
-            "res/atlas/map_3.png", "res/atlas/map_3.atlas",
+            // "res/atlas/map_2.png", "res/atlas/map_2.atlas",
+            // "res/atlas/map_3.png", "res/atlas/map_3.atlas",
             "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas",
             "h5/tong/wall.lh","h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh",//3d背景
-            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角 "h5/bulletsEffect/20000/monster.lh",
+            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
         Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub),new Laya.Handler(this,this.onProgress));
     }
@@ -183,6 +183,12 @@ export default class BattleLoader {
         this.resAry.length = 0;
         this.monsterRes = {};
         let res: string;
+
+        // for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
+        //     for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
+        //         this.resAry.push("h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg");
+        //     }
+        // }
 
         if(this.continueRes)
         {

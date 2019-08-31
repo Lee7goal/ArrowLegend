@@ -17,6 +17,7 @@ import App from "../../../core/App";
         constructor(){
             super();
             this.height = GameBG.height;
+            this.width = 750;
 
             this.topUI = new TopUI();
             this.addChild(this.topUI);
@@ -24,6 +25,14 @@ import App from "../../../core/App";
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);
             this.bottomUI.bottom = 0;
+
+            let img:Laya.Image = new Laya.Image();
+            img.skin = "main/jianhei.png";
+            this.addChild(img);
+            img.width = 800;
+            img.anchorX = 0.5;
+            img.y = this.bottomUI.y - 93;
+            img.x = 375;
 
             this.mouseThrough = true;
         }

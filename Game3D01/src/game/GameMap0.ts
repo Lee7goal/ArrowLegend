@@ -183,7 +183,7 @@ export default class GameMap0 extends Laya.Sprite {
                 var y = j * ww;
                 // if (k < GameBG.arr0.length) {
                     let key = GameBG.arr0[k];
-                    if (GridType.isWall(GameBG.arr0[k])) {
+                    if (GridType.isWall(GameBG.arr0[k]) || GridType.isTong(GameBG.arr0[k])) {
                         if (this.Amap[key]) {
                             hb = this.Amap[key];
                             hb.setVV(hb.x, hb.y, x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
