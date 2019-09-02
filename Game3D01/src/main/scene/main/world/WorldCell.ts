@@ -27,21 +27,22 @@ export default class WorldCell extends ui.test.worldCellUI {
 
     update(sysChapter:SysChapter):void
     {
-        this.suo.visible = Session.homeData.chapterId < sysChapter.id;
+        this.suo.visible = Session.gameData.chapterId < sysChapter.id;
         this.mapBtn.gray = this.suo.visible;
         this.cengshuTxt.text = "";
         if(!this.suo.visible)
         {
-            let maxCeng:number =  SysMap.getTotal(Session.homeData.chapterId);
-            if(sysChapter.id == Session.homeData.chapterId)
+            let maxCeng:number =  SysMap.getTotal(Session.gameData.chapterId);
+            if(sysChapter.id == Session.gameData.chapterId)
             {
-                this.cengshuTxt.text = "最高层数:" + Session.homeData.mapIndex + "/" + maxCeng;
+                this.cengshuTxt.text = "最高层数:" + Session.gameData.mapIndex + "/" + maxCeng;
             }
             else
             {
                 this.cengshuTxt.text = "最高层数:" + maxCeng + "/" + maxCeng;
             }
         }
+        console.log("刷新大关卡");
     }
 
 }

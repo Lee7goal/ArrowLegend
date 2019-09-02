@@ -178,14 +178,12 @@ import App from "../../../core/App";
         private bgs:Laya.Image[] = [];
         private btns:Laya.Button[] = [];
 
-        private ww1:number = 127;
-        private ww2:number = 242;
-
         private _selectIndex:number = 0;
 
         private opens:number[] = [1,1,1,1,1];
         constructor(){
             super();
+            this.size(750,122);
             this.addChild(this.bgBox);
             this.curBg.skin = 'main/dazhao.png';
             this.addChild(this.curBg);
@@ -194,33 +192,37 @@ import App from "../../../core/App";
             {
                 let bg:Laya.Image = new Laya.Image();
                 bg.skin = 'main/xiaobiao.png';
-                bg.width = this.ww1;
+                bg.width = 127;
+                bg.height = 122;
                 this.bgBox.addChild(bg);
                 bg.x = i * bg.width;
                 this.bgs.push(bg);
                 let btn:Laya.Button = new Laya.Button();
+                
                 btn.tag = this.opens[i];
                 if(this.opens[i] == 1)
                 {
                     btn.stateNum = 2;
-                    btn.width = 165;
-                    btn.width = 170;
-                    btn.scale(0.8,0.8);
-                    btn.anchorX = 0.5;
+                    btn.width = 132;
+                    btn.height = 136;
                     btn.skin = 'main/btn_' + i + '.png';
+                    btn.y = bg.y + 40;
                 }
                 else{
                     btn.stateNum = 1;
                     btn.width = 38;
+                    btn.height = 55;
                     btn.skin = 'main/suo.png';
+                    btn.y = bg.y + 61;
+                    btn.scale(1.2,1.2);
                 }
-                
                 this.btnBox.addChild(btn);
-                btn.x = bg.x + (bg.width) * 0.5;
+                btn.anchorX = 0.5;
+                btn.anchorY = 0.5;
+                btn.x = bg.x + 63;
                 btn.clickHandler = new Laya.Handler(this,this.onClick,[btn]);
                 this.btns.push(btn);
             }
-            this.btnBox.bottom = 35;
             this.onClick(this.btns[this._selectIndex],10);
         }
 
@@ -228,7 +230,11 @@ import App from "../../../core/App";
         {
             if(clickBtn.tag == -1)
             {
+                clickBtn.mouseEnabled = false;
                 ShakeUtils.execute(clickBtn,300,2);
+                setTimeout(() => {
+                    clickBtn.mouseEnabled = true;
+                }, 300);
                 return;
             }
             var ww:number = 0;
@@ -237,22 +243,19 @@ import App from "../../../core/App";
             {
                 let btn:Laya.Button = this.btns[i];
                 let bg:Laya.Image = this.bgs[i];
-                bg.skin = 'main/xiaobiao.png';
-                bg.width = this.ww1;
+                bg.width = 127;
                 btn.selected = false;
-                btn.y = btn.tag == -1 ? 25 : 0;
                 if(btn == clickBtn)
                 {
-                    btn.y = -25;
                     btn.selected = true;
                     bg.skin = 'main/dabiao.png';
-                    bg.width = this.ww2;
+                    bg.width = 242;
                     this._selectIndex = i;
                     tmp = bg;
                 }
                 bg.x = ww;
                 ww += bg.width;
-                btn.x = bg.x + (bg.width) * 0.5;
+                btn.x = bg.x + bg.width * 0.5;
             }
             Laya.Tween.to(this.curBg,{x:tmp.x},delay,Laya.Ease.cubicInOut);
             Laya.stage.event("switchView");

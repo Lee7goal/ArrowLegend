@@ -31,7 +31,7 @@ export default class SkillGrid extends ui.test.SkillGridUI {
         this.sys = App.tableManager.getDataByNameAndId(SysSkill.NAME,skillId);
         this.txt.text = this.sys.skillName;
         this.shuoming.text = this.sys.skillInfo;
-        this.img.skin = 'icons/skill/' + this.sys.id + ".jpg";
+        this.img.skin = 'icons/skill/' + this.sys.id + ".png";
 
         Laya.Tween.to(this.parent,{scaleX:1},150);
     }

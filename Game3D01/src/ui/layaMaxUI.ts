@@ -102,6 +102,16 @@ export module ui.test {
         }
     }
     REG("ui.test.BulletShadowUI",BulletShadowUI);
+    export class chengjiuUI extends View {
+		public bg:Laya.Image;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"height":1700},"compId":24,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":26},{"type":"Sprite","props":{"y":109,"x":0,"texture":"main/zhudi2.png"},"compId":27}]},{"type":"Box","props":{"width":750,"height":1334,"centerY":0},"compId":25}],"loadList":["main/zhudi.jpg","main/zhudi2.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(chengjiuUI.uiView);
+        }
+    }
+    REG("ui.test.chengjiuUI",chengjiuUI);
     export class dianjuUI extends View {
 		public heng:Laya.Box;
 		public huoxing:Laya.Clip;
@@ -209,6 +219,41 @@ export module ui.test {
         }
     }
     REG("ui.test.jiesuan_1UI",jiesuan_1UI);
+    export class jueseUI extends View {
+		public bg:Laya.Image;
+		public shengming:Laya.Image;
+		public tiao:Laya.Image;
+		public xueshu:Laya.FontClip;
+		public gongji:Laya.Image;
+		public tiao2:Laya.Image;
+		public gongshu:Laya.FontClip;
+		public shengmingniu:Laya.Button;
+		public qianshu:Laya.FontClip;
+		public gongjiniu:Laya.Button;
+		public qianshu2:Laya.FontClip;
+		public jinengtubiao:Laya.Image;
+		public jinengming:Laya.Label;
+		public zuo:Laya.Button;
+		public you:Laya.Button;
+		public xuan:Laya.Image;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":1,"child":[{"type":"Box","props":{"height":1700},"compId":46,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":47},{"type":"Sprite","props":{"y":109,"x":0,"texture":"main/zhudi2.png"},"compId":48}]},{"type":"Box","props":{"width":750,"height":1334,"centerY":0},"compId":49,"child":[{"type":"Image","props":{"y":117,"x":-1075,"skin":"main/zhudi2.png"},"compId":6},{"type":"Image","props":{"y":911,"width":435,"skin":"juese/juese_zi.png","sizeGrid":"0,16,0,15","height":305},"compId":31},{"type":"Image","props":{"y":911,"x":434,"width":316,"skin":"juese/juese_lan.png","sizeGrid":"0,16,0,15","height":305},"compId":30},{"type":"Image","props":{"y":791,"x":25,"var":"shengming","skin":"juese/juese_di.png"},"compId":21,"child":[{"type":"Image","props":{"y":92,"x":41,"skin":"juese/juese_jiaxue.png"},"compId":9},{"type":"Image","props":{"y":63,"x":123,"skin":"juese/juese_sheng.png"},"compId":10},{"type":"Image","props":{"y":184,"x":15,"skin":"juese/juese_tiaoxia.png"},"compId":12},{"type":"Image","props":{"y":184,"x":15,"var":"tiao","skin":"juese/juese_tiaoshang.png"},"compId":13},{"type":"FontClip","props":{"y":224,"x":15,"width":754,"var":"xueshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},"compId":14},{"type":"Label","props":{"y":5,"x":54,"width":74,"text":"生命","height":39,"fontSize":36,"color":"#ffffff","align":"left"},"compId":22}]},{"type":"Image","props":{"y":791,"x":227,"var":"gongji","skin":"juese/juese_di.png"},"compId":23,"child":[{"type":"Image","props":{"y":92,"x":41,"skin":"juese/juese_jiagong.png"},"compId":24},{"type":"Image","props":{"y":63,"x":123,"skin":"juese/juese_sheng.png"},"compId":25},{"type":"Image","props":{"y":184,"x":15,"skin":"juese/juese_tiaoxia.png"},"compId":26},{"type":"Image","props":{"y":184,"x":15,"var":"tiao2","skin":"juese/juese_tiaoshang.png"},"compId":27},{"type":"FontClip","props":{"y":224,"x":15,"width":754,"var":"gongshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},"compId":28},{"type":"Label","props":{"y":5,"x":54,"width":74,"text":"攻击","height":39,"fontSize":36,"color":"#ffffff","align":"left"},"compId":29}]},{"type":"Button","props":{"y":1084,"x":24,"width":182,"var":"shengmingniu","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91},"compId":32,"child":[{"type":"FontClip","props":{"y":30,"x":34,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},"compId":33},{"type":"Image","props":{"y":24,"x":113,"skin":"main/dongjin.png"},"compId":34}]},{"type":"Button","props":{"y":1085,"x":225,"width":182,"var":"gongjiniu","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91},"compId":35,"child":[{"type":"FontClip","props":{"y":30,"x":34,"width":386,"var":"qianshu2","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},"compId":36},{"type":"Image","props":{"y":24,"x":113,"skin":"main/dongjin.png"},"compId":37}]},{"type":"Image","props":{"y":791,"x":510,"width":175,"skin":"juese/juese_hei.png","sizeGrid":"23,70,19,34","height":367,"alpha":0.5},"compId":38},{"type":"Image","props":{"y":994,"x":511,"skin":"juese/juesekuai.png"},"compId":40},{"type":"Image","props":{"y":836,"x":509,"width":177,"var":"jinengtubiao","skin":"main/kawen.png","height":177},"compId":39},{"type":"Label","props":{"y":797,"x":529,"width":133,"var":"jinengming","text":"技能名字","height":33,"fontSize":30,"color":"#f3e9e9","align":"center"},"compId":41},{"type":"Label","props":{"y":1039,"x":518,"wordWrap":true,"width":157,"text":"技能说明技能说明技能说明技能说明技能说明","height":114,"fontSize":24,"color":"#f3e9e9","align":"center"},"compId":42},{"type":"Button","props":{"y":455,"x":119,"var":"zuo","stateNum":1,"skin":"main/btn_zuo.png","anchorY":0.5,"anchorX":0.5},"compId":43},{"type":"Button","props":{"y":456,"x":641,"width":63,"var":"you","stateNum":1,"skin":"main/btn_zuo.png","scaleX":-1,"anchorY":0.5,"anchorX":0.5},"compId":44},{"type":"Image","props":{"y":662,"x":248,"var":"xuan","skin":"juese/juese_yixuanze.png"},"compId":45}]},{"type":"juese_1","props":{"y":117,"x":251,"runtime":"ui.test.juese_1UI"},"compId":50}],"loadList":["main/zhudi.jpg","main/zhudi2.png","juese/juese_zi.png","juese/juese_lan.png","juese/juese_di.png","juese/juese_jiaxue.png","juese/juese_sheng.png","juese/juese_tiaoxia.png","juese/juese_tiaoshang.png","main/clipshuzi.png","juese/juese_jiagong.png","main/btn_lv.png","main/dongjin.png","juese/juese_hei.png","juese/juesekuai.png","main/kawen.png","main/btn_zuo.png","juese/juese_yixuanze.png","test/juese_1.ui"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(jueseUI.uiView);
+        }
+    }
+    REG("ui.test.jueseUI",jueseUI);
+    export class juese_1UI extends View {
+		public ren:Laya.Box;
+        public static  uiView:any ={"type":"View","props":{"width":265,"height":540},"compId":1,"child":[{"type":"Box","props":{"y":5,"width":265,"var":"ren"},"compId":7,"child":[{"type":"Image","props":{"y":436,"skin":"ren/ying.png"},"compId":9},{"type":"Image","props":{"y":5,"x":-110,"skin":"ren/juese1.png"},"compId":8}]}],"loadList":["ren/ying.png","ren/juese1.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(juese_1UI.uiView);
+        }
+    }
+    REG("ui.test.juese_1UI",juese_1UI);
     export class LoadingUI extends Scene {
 		public clip:Laya.Clip;
 		public txt:Laya.Label;
@@ -311,7 +356,7 @@ export module ui.test {
     REG("ui.test.SawZongUI",SawZongUI);
     export class settingUI extends View {
 		public bg:Laya.Image;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334,"centerY":0},"compId":2,"child":[{"type":"Box","props":{"height":1700,"centerY":0},"compId":20,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":22,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":23}]}]},{"type":"Label","props":{"width":200,"text":"装备","height":50,"fontSize":40,"color":"#40f108","centerY":0,"centerX":0,"bold":true,"align":"center"},"compId":21}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"height":1700},"compId":24,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":25},{"type":"Sprite","props":{"y":109,"x":0,"texture":"main/zhudi2.png"},"compId":26}]},{"type":"Box","props":{"width":750,"height":1334,"centerY":0},"compId":27}],"loadList":["main/zhudi.jpg","main/zhudi2.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -319,16 +364,6 @@ export module ui.test {
         }
     }
     REG("ui.test.settingUI",settingUI);
-    export class shopUI extends View {
-		public bg:Laya.Image;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334,"centerY":0},"compId":2,"child":[{"type":"Box","props":{"height":1700,"centerY":0},"compId":20,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":22,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":23}]}]},{"type":"Label","props":{"width":200,"text":"装备","height":50,"fontSize":40,"color":"#40f108","centerY":0,"centerX":0,"bold":true,"align":"center"},"compId":21}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
-        constructor(){ super()}
-        createChildren():void {
-            super.createChildren();
-            this.createView(shopUI.uiView);
-        }
-    }
-    REG("ui.test.shopUI",shopUI);
     export class SkillGridUI extends View {
 		public txt:Laya.Label;
 		public imgBox:Laya.Box;
@@ -344,7 +379,7 @@ export module ui.test {
     REG("ui.test.SkillGridUI",SkillGridUI);
     export class talentUI extends View {
 		public bg:Laya.Image;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334,"centerY":0},"compId":2,"child":[{"type":"Box","props":{"height":1700,"centerY":0},"compId":20,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg"},"compId":22,"child":[{"type":"Image","props":{"y":1223,"x":0,"skin":"main/zhudi.jpg"},"compId":23}]}]},{"type":"Label","props":{"width":200,"text":"天赋","height":50,"fontSize":40,"color":"#40f108","centerY":0,"centerX":0,"bold":true,"align":"center"},"compId":21}],"loadList":["main/zhudi.jpg"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"height":1700},"compId":25,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":27},{"type":"Sprite","props":{"y":109,"x":0,"texture":"main/zhudi2.png"},"compId":28}]},{"type":"Box","props":{"width":750,"height":1334,"centerY":0},"compId":26}],"loadList":["main/zhudi.jpg","main/zhudi2.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

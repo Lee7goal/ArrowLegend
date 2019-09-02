@@ -58,7 +58,7 @@ export default class BattleLoader {
                     sp.destroy(true);
                 }
             }
-            Laya.loader.clearRes(key);
+            // Laya.loader.clearRes(key);
         }
 
         //清除对象池

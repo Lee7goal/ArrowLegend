@@ -1,10 +1,10 @@
 import WorldView from "./world/WorldView";
-import ShopView from "./shop/ShopView";
-import EquipView from "./equip/EquipView";
+import AchievementsView from "./achievements/AchievementsView";
 import SettingView from "./setting/SettingView";
 import TalentView from "./talent/TalentView";
 import GameConfig from "../../../GameConfig";
 import GameBG from "../../../game/GameBG";
+import RoleView from "./role/RoleView";
 export default class MainView extends Laya.Box {
 
     private content: Laya.Box;
@@ -19,7 +19,7 @@ export default class MainView extends Laya.Box {
     private initUI(): void {
         this.content = new Laya.Box();
         this.addChild(this.content);
-        this.views = [new WorldView(),new ShopView(), new EquipView(), new TalentView(), new SettingView()];
+        this.views = [new WorldView(),new RoleView(), new AchievementsView(), new TalentView(), new SettingView()];
     }
 
     private curIndex: number;
