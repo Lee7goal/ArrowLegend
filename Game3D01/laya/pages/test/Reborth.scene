@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":6,
-    "selecteID":7,
+    "selectedBox":2,
+    "selecteID":6,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":18,
+    "maxID":36,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -34,20 +34,19 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box",
-            "props":{"x":0,"width":750,"height":600,"centerY":0},
+            "props":{"width":750,"height":506,"centerY":-2,"centerX":3},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":6,
             "child":[
                 {
-                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"y":59,"x":177,"texture":"main/fuhuodi2.jpg"},
+                    "props":{"y":59,"x":75,"width":600,"texture":"main/fuhuodi2.jpg","height":400},
                     "nodeParent":6,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -58,7 +57,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":205,"x":205,"width":339,"skin":"main/tishilan.png","sizeGrid":"12,16,11,16","height":170},
@@ -72,7 +70,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,rebornBtn",
                     "props":{"y":460,"x":374,"width":240,"var":"rebornBtn","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"height":100,"anchorY":0.5,"anchorX":0.5},
@@ -85,7 +82,6 @@
                     "compId":7,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":29,"x":89,"skin":"main/queding.png"},
@@ -100,10 +96,9 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,closeBtn",
-                    "props":{"y":82,"x":508,"var":"closeBtn","stateNum":"1","skin":"main/btn_guanbi.png"},
+                    "props":{"y":68,"x":614,"var":"closeBtn","stateNum":"1","skin":"main/btn_guanbi.png"},
                     "nodeParent":6,
                     "label":"closeBtn",
                     "isDirectory":false,
@@ -114,7 +109,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "searchKey":"Label",
                     "props":{"y":270,"x":273,"width":167,"text":"剩余次数：","height":40,"fontSize":36,"color":"#000000","align":"center"},
@@ -128,7 +122,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,txt",
                     "props":{"y":270,"x":440,"width":45,"var":"txt","text":"2","height":40,"fontSize":36,"color":"#000000","align":"left"},
@@ -142,10 +135,9 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":77,"x":331,"skin":"main/biaotifuhuo.png"},
+                    "props":{"y":65,"x":331,"skin":"main/biaotifuhuo.png"},
                     "nodeParent":6,
                     "label":"Image",
                     "isDirectory":false,
@@ -154,7 +146,8 @@
                     "compId":15,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         }],
     "animations":[
         {
