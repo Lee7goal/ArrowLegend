@@ -172,9 +172,9 @@ import App from "../../../core/App";
 
     export class BottomUI extends Laya.Box
     {
-        private bgBox:Laya.Sprite = new Laya.Sprite();
+        private bgBox:Laya.Box = new Laya.Box();
         private curBg:Laya.Image = new Laya.Image();
-        private btnBox:Laya.Sprite = new Laya.Sprite();
+        private btnBox:Laya.Box = new Laya.Box();
         private bgs:Laya.Image[] = [];
         private btns:Laya.Button[] = [];
 
@@ -183,7 +183,7 @@ import App from "../../../core/App";
 
         private _selectIndex:number = 0;
 
-        private opens:number[] = [1,-1,-1,-1,-1];
+        private opens:number[] = [1,1,1,1,1];
         constructor(){
             super();
             this.addChild(this.bgBox);
@@ -203,9 +203,11 @@ import App from "../../../core/App";
                 if(this.opens[i] == 1)
                 {
                     btn.stateNum = 2;
-                    btn.width = 108;
+                    btn.width = 165;
+                    btn.width = 170;
+                    btn.scale(0.8,0.8);
+                    btn.anchorX = 0.5;
                     btn.skin = 'main/btn_' + i + '.png';
-                    console.log("按钮的皮肤",btn.skin);
                 }
                 else{
                     btn.stateNum = 1;
@@ -214,11 +216,11 @@ import App from "../../../core/App";
                 }
                 
                 this.btnBox.addChild(btn);
-                btn.x = bg.x + (bg.width - btn.width) * 0.5;
+                btn.x = bg.x + (bg.width) * 0.5;
                 btn.clickHandler = new Laya.Handler(this,this.onClick,[btn]);
                 this.btns.push(btn);
             }
-
+            this.btnBox.bottom = 35;
             this.onClick(this.btns[this._selectIndex],10);
         }
 
@@ -250,7 +252,7 @@ import App from "../../../core/App";
                 }
                 bg.x = ww;
                 ww += bg.width;
-                btn.x = bg.x + (bg.width - btn.width) * 0.5;
+                btn.x = bg.x + (bg.width) * 0.5;
             }
             Laya.Tween.to(this.curBg,{x:tmp.x},delay,Laya.Ease.cubicInOut);
             Laya.stage.event("switchView");
