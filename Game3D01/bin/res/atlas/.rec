@@ -1,4 +1,5 @@
 D .
+R EC370872 chengjiu.jpg
 R 86BADE2C juejue.jpg
 D bg
 P 1DEC2F55 501.png
@@ -60,6 +61,11 @@ P CAC1414F zhuan_qianyi.png
 P 8BE62C21 zhuan_xixue.png
 P 2621BE0E zhuanpan.png
 P 13E68A98 zhuanpan2.png
+D chengjiu
+P A557AC2B chengjiupai.png
+P EA8335C7 chengjiupai2.png
+P D2BFD404 lingquzi.png
+P 3E2AD869 xiao.png
 D icons
 D jiesuan
 P 2984BF02 baifen.png
@@ -95,8 +101,8 @@ P 9C38CA79 biaotilan.png
 P 900027E8 biaotitishi.png
 P 225E0130 btn_0.png
 P 54CB6CD5 btn_1.png
-P 07EB4C2D btn_2.png
-P 2E767910 btn_3.png
+P 2E767910 btn_2.png
+P 07EB4C2D btn_3.png
 P D9999E83 btn_4.png
 P 812A6012 btn_fuhuo.png
 P 2B1B6A7B btn_guanbi.png

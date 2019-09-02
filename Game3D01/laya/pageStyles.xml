@@ -43,4 +43,6 @@
    <item name="game/homePage.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/juese_1.ui" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/juese.ui" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/chengjiu_1.ui" props="" ifExport="内嵌模式" aName=""/>
+   <item name="game/viewbg.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

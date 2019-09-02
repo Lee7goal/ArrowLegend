@@ -147,9 +147,10 @@ class Main {
 			Laya.loader.create([
 				{ url: "res/atlas/main.png", type: Laya.Loader.IMAGE },
 				{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/juse.png", type: Laya.Loader.IMAGE },
-				{ url: "res/atlas/juse.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/shengli.png", type: Laya.Loader.IMAGE },
+				{ url: "res/atlas/juese.png", type: Laya.Loader.IMAGE },
+				{ url: "res/atlas/juese.atlas", type: Laya.Loader.ATLAS },
+				{ url: "res/atlas/chengjiu.png", type: Laya.Loader.IMAGE },
+				{ url: "res/atlas/chengjiu.atlas", type: Laya.Loader.ATLAS },
 				{ url: "res/atlas/shengli.atlas", type: Laya.Loader.ATLAS },
 				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
 			], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
