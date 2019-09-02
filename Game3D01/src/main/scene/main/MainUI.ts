@@ -24,7 +24,7 @@ import App from "../../../core/App";
 
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);
-            this.bottomUI.bottom = 0;
+            this.bottomUI.bottom = -2;
 
             let img:Laya.Image = new Laya.Image();
             img.skin = "main/jianhei.png";
@@ -33,6 +33,8 @@ import App from "../../../core/App";
             img.anchorX = 0.5;
             img.y = this.bottomUI.y - 93;
             img.x = 375;
+
+            this.addChild(this.bottomUI);
 
             this.mouseThrough = true;
         }
@@ -66,6 +68,10 @@ import App from "../../../core/App";
             this.mo = new MaskObj(this.jingyantiao);
             this.mo.value = 1;
 
+            this.headImg.skin = Game.userHeadUrl;
+            this.nameTxt.text = Game.userName;
+
+            this.verTxt.text = "version:" + Game.resVer;
             // this.topBox.y = App.top;
             this.on(Laya.Event.DISPLAY,this,this.onDis);
         }

@@ -6,7 +6,7 @@
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":710},
     "nodeParent":-1,
-    "maxID":28,
+    "maxID":29,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -88,19 +88,20 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box",
-            "props":{"y":702,"x":0.5},
+            "props":{"y":702,"x":5,"width":739},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":null,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":27,
             "child":[
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":-0.5,"texture":"main/xuxian.png"},
+                    "props":{"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -111,9 +112,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":53.5,"texture":"main/xuxian.png"},
+                    "props":{"x":50,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -124,9 +126,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":105.5,"texture":"main/xuxian.png"},
+                    "props":{"x":100,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -137,9 +140,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":157.5,"texture":"main/xuxian.png"},
+                    "props":{"x":150,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -150,9 +154,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":216.5,"texture":"main/xuxian.png"},
+                    "props":{"x":200,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -163,9 +168,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":272.5,"texture":"main/xuxian.png"},
+                    "props":{"x":250,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -176,9 +182,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":324.5,"texture":"main/xuxian.png"},
+                    "props":{"x":300,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -189,9 +196,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":376.5,"texture":"main/xuxian.png"},
+                    "props":{"x":350,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -202,9 +210,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":430.5,"texture":"main/xuxian.png"},
+                    "props":{"x":400,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -215,9 +224,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":488.5,"texture":"main/xuxian.png"},
+                    "props":{"x":450,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -228,9 +238,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":540.5,"texture":"main/xuxian.png"},
+                    "props":{"x":500,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -241,9 +252,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":592.5,"texture":"main/xuxian.png"},
+                    "props":{"x":550,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -254,9 +266,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":651.5,"texture":"main/xuxian.png"},
+                    "props":{"x":600,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -267,15 +280,30 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":707.5,"texture":"main/xuxian.png"},
+                    "props":{"x":650,"texture":"main/xuxian.png"},
                     "nodeParent":27,
                     "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":24,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"x":700,"texture":"main/xuxian.png"},
+                    "nodeParent":27,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":28,
                     "child":[
                         ]
                 }]

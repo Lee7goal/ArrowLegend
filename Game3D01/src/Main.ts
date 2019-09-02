@@ -99,18 +99,25 @@ class Main {
 		this._initView.initTxt.text = "" + value.toFixed(0) + "%";
 	}
 
+	private homePage:ui.game.homePageUI;
+
 	private onInitCom(): void {
 		this.regClass();
 
-		this._initView.removeSelf();
+		// this._initView.initTxt.text = "";
 
 		let config = Laya.loader.getRes("h5/config.json");
 		console.log("config---", config);
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
+		
+		if(!this.homePage)
+		{
+			this.homePage = new ui.game.homePageUI();
+		}
+		Laya.stage.addChild(this.homePage);
 
-
-		// wx.clearStorage()
+		// // wx.clearStorage()
 
 		let bc:BaseCookie;
 		if(App.platformId == PlatformID.TEST)
@@ -123,15 +130,28 @@ class Main {
 		}
 		Game.cookie = bc;
 
-		this.loading = new ui.test.LoadingUI();
-		Laya.stage.addChild(this.loading);
-		// this.loading.clip.play();
-		this.loading.txt.text = "0%";
-		Laya.loader.create([
-			{ url: "res/atlas/main.png", type: Laya.Loader.IMAGE },
-			{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
-			{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
-		], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
+		this.authSetting();
+	}
+
+	private authSetting():void
+	{
+		this._initView && this._initView.removeSelf();
+		
+		let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
+		new BP().getUserInfo(()=>{
+			this.homePage && this.homePage.removeSelf();
+			this.loading = new ui.test.LoadingUI();
+			Laya.stage.addChild(this.loading);
+			// this.loading.clip.play();
+			this.loading.txt.text = "0%";
+			Laya.loader.create([
+				{ url: "res/atlas/main.png", type: Laya.Loader.IMAGE },
+				{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
+				// { url: "res/atlas/shengli.png", type: Laya.Loader.IMAGE },
+				{ url: "res/atlas/shengli.atlas", type: Laya.Loader.ATLAS },
+				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
+			], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
+		});
 	}
 
 	private loading: ui.test.LoadingUI;

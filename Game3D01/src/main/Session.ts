@@ -20,6 +20,7 @@ export default class Session{
         if(Game.battleLoader.index > Session.gameData.mapIndex)
         {
             Session.gameData.mapIndex = Game.battleLoader.index;
+            console.log("存储最高层数",Session.gameData.mapIndex);
         }
 
         Session.gameData.coins += Game.addCoins;

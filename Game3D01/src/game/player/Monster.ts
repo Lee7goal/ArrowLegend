@@ -18,6 +18,7 @@ import ArcherAI from "../ai/ArcherAI";
 import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
 import BaseAI from "../ai/BaseAi";
+import GameBG from "../GameBG";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster";
@@ -65,6 +66,12 @@ export default class Monster extends GamePro {
     public setShadowSize(ww: number): void {
         super.setShadowSize(ww);
         Game.footLayer.addChild(this._bulletShadow);
+    }
+
+    updateUI():void
+    {
+        super.updateUI();
+        this._bulletShadow && this._bulletShadow.pos(this.hbox.cx - (this._bulletShadow.img.width - GameBG.mw) * 0.5, this.hbox.cy - (this._bulletShadow.img.height - GameBG.mw) * 0.5);
     }
 
     init(): void {
@@ -211,7 +218,9 @@ export default class Monster extends GamePro {
         if (MonAI == null) {
             console.log('没有这个怪的AI', sysEnemy.id);
         }
+
         gpro.setGameAi(new MonAI(gpro));
+
         // gpro.setGameAi(new ArcherAI(gpro));
         
         // let gp:GamePro = new GamePro(0,0);

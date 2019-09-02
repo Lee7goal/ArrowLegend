@@ -32,6 +32,9 @@ import CookieKey from "../gameCookie/CookieKey";
 export default class Game {
     static resVer:string = "0831";
 
+    static userHeadUrl:string = "";
+    static userName:string = "";
+
     static TestShooting = 0;
     static BigMapMode = 1;
 

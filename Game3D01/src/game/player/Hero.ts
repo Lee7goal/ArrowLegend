@@ -241,7 +241,9 @@ export default class Hero extends GamePro {
         this.isDie = true;
         this.setKeyNum(1);
         this.once(Game.Event_KeyNum, this, this.onDie);
-        this.play(GameAI.Die);
+        setTimeout(() => {
+            this.play(GameAI.Die); 
+        }, 300);
     }
 
     rebornTime:number;
