@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":51,
+    "selecteID":49,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#c6abab","height":1334},
     "nodeParent":-1,
@@ -46,7 +46,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":911,"width":435,"skin":"juese/juese_zi.png","sizeGrid":"0,16,0,15","height":305},
+                    "props":{"y":911,"x":0,"width":461,"skin":"juese/juese_zi.png","sizeGrid":"0,16,0,15","height":305},
                     "nodeParent":49,
                     "label":"Image",
                     "isDirectory":false,
@@ -60,7 +60,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":911,"x":434,"width":316,"skin":"juese/juese_lan.png","sizeGrid":"0,16,0,15","height":305},
+                    "props":{"y":911,"x":461,"width":289,"skin":"juese/juese_lan.png","sizeGrid":"0,16,0,15","height":305},
                     "nodeParent":49,
                     "label":"Image",
                     "isDirectory":false,
@@ -77,13 +77,14 @@
                     "props":{"y":791,"x":25,"var":"shengming","skin":"juese/juese_di.png"},
                     "nodeParent":49,
                     "label":"shengming",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":21,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":92,"x":41,"skin":"juese/juese_jiaxue.png"},
@@ -97,9 +98,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":63,"x":123,"skin":"juese/juese_sheng.png"},
+                            "props":{"y":63,"x":123,"skin":"main/juese_sheng.png"},
                             "nodeParent":21,
                             "label":"Image",
                             "isDirectory":false,
@@ -110,6 +112,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":184,"x":15,"skin":"juese/juese_tiaoxia.png"},
@@ -123,9 +126,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,tiao",
-                            "props":{"y":184,"x":15,"var":"tiao","skin":"juese/juese_tiaoshang.png"},
+                            "props":{"y":184,"x":15,"var":"tiao","skin":"main/juese_tiaoshang.png"},
                             "nodeParent":21,
                             "label":"tiao",
                             "isDirectory":false,
@@ -136,6 +140,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,xueshu",
                             "props":{"y":224,"x":15,"width":754,"var":"xueshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},
@@ -149,6 +154,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
                             "props":{"y":5,"x":54,"width":74,"text":"生命","height":39,"fontSize":36,"color":"#ffffff","align":"left"},
@@ -169,13 +175,14 @@
                     "props":{"y":791,"x":227,"var":"gongji","skin":"juese/juese_di.png"},
                     "nodeParent":49,
                     "label":"gongji",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":23,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":92,"x":41,"skin":"juese/juese_jiagong.png"},
@@ -189,9 +196,10 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":63,"x":123,"skin":"juese/juese_sheng.png"},
+                            "props":{"y":63,"x":123,"skin":"main/juese_sheng.png"},
                             "nodeParent":23,
                             "label":"Image",
                             "isDirectory":false,
@@ -202,6 +210,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":184,"x":15,"skin":"juese/juese_tiaoxia.png"},
@@ -215,6 +224,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,tiao2",
                             "props":{"y":184,"x":15,"var":"tiao2","skin":"juese/juese_tiaoshang.png"},
@@ -229,6 +239,7 @@
                             "$HIDDEN":false
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,gongshu",
                             "props":{"y":224,"x":15,"width":754,"var":"gongshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},
@@ -242,6 +253,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
                             "props":{"y":5,"x":54,"width":74,"text":"攻击","height":39,"fontSize":36,"color":"#ffffff","align":"left"},
