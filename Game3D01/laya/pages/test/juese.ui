@@ -6,7 +6,7 @@
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#c6abab","height":1334},
     "nodeParent":-1,
-    "maxID":52,
+    "maxID":58,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -274,13 +274,14 @@
                     "props":{"y":1084,"x":24,"width":182,"var":"shengmingniu","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91},
                     "nodeParent":49,
                     "label":"shengmingniu",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":32,
                     "child":[
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,qianshu",
                             "props":{"y":30,"x":34,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},
@@ -294,6 +295,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":24,"x":113,"skin":"main/dongjin.png"},
@@ -449,9 +451,24 @@
                 },
                 {
                     "x":30,
+                    "type":"UIView",
+                    "source":"test/juese_1.ui",
+                    "searchKey":"UIView",
+                    "props":{"y":117,"x":251},
+                    "nodeParent":49,
+                    "label":"UIView",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":50,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,xuan",
-                    "props":{"y":662,"x":248,"var":"xuan","skin":"juese/juese_yixuanze.png"},
+                    "props":{"y":571,"x":246,"var":"xuan","skin":"juese/juese_yixuanze.png"},
                     "nodeParent":49,
                     "label":"xuan",
                     "isDirectory":false,
@@ -463,16 +480,71 @@
                 },
                 {
                     "x":30,
-                    "type":"UIView",
-                    "source":"test/juese_1.ui",
-                    "searchKey":"UIView",
-                    "props":{"y":117,"x":251},
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":687,"x":72,"width":592,"skin":"juese/juese_hei.png","sizeGrid":"15,26,22,22","height":69,"alpha":0.5},
                     "nodeParent":49,
-                    "label":"UIView",
+                    "label":"Image",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":50,
+                    "compId":53,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":684,"x":99,"texture":"juese/juese_jiaxue.png"},
+                    "nodeParent":49,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":54,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":686,"x":400,"texture":"juese/juese_jiagong.png"},
+                    "nodeParent":49,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":55,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"FontClip",
+                    "searchKey":"FontClip,shengmingshu",
+                    "props":{"y":707,"x":205,"width":461,"var":"shengmingshu","value":"12990","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.3,"scaleX":0.3,"height":115,"align":"left"},
+                    "nodeParent":49,
+                    "label":"shengmingshu",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":56,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"FontClip",
+                    "searchKey":"FontClip,gongjishu",
+                    "props":{"y":702.5,"x":496,"width":461,"var":"gongjishu","value":"12990","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.3,"scaleX":0.3,"height":115,"align":"left"},
+                    "nodeParent":49,
+                    "label":"gongjishu",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":57,
                     "child":[
                         ]
                 }]
