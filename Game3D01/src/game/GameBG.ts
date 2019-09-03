@@ -172,17 +172,23 @@ export default class GameBG extends Laya.Sprite {
         this.addChild(this._box);
         this.addChild(this.saw);
 
-        for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
-            for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
-                var sprite:Laya.Image = new Laya.Image();
-                this._box.addChild(sprite);
-                sprite.skin = "h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg";
-                // let tt:Laya.Texture = Laya.loader.getRes("h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg");
-                // console.log("地图",tt);
-                // sprite.texture = tt;
-                sprite.pos(i * GameBG.bgCellWidth,j * GameBG.bgCellWidth);
-            }
-        }
+        var sprite:Laya.Image = new Laya.Image();
+        this._box.addChild(sprite);
+        sprite.texture = Laya.loader.getRes("h5/mapbg/1001.jpg");
+        sprite.sizeGrid = "584,711,51,72";
+        sprite.size(GameBG.bgWW,GameBG.bgHH);
+
+        // for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
+        //     for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
+        //         var sprite:Laya.Image = new Laya.Image();
+        //         this._box.addChild(sprite);
+        //         sprite.skin = "h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg";
+        //         // let tt:Laya.Texture = Laya.loader.getRes("h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg");
+        //         // console.log("地图",tt);
+        //         // sprite.texture = tt;
+        //         sprite.pos(i * GameBG.bgCellWidth,j * GameBG.bgCellWidth);
+        //     }
+        // }
         
         let index2:number = 0;
         for (let j = 0; j < GameBG.MAP_ROW; j++) {

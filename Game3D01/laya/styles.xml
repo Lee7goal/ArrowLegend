@@ -21,4 +21,5 @@
    <item name="map_3/bosstou.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="map_3/bottom.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="map_3/top.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="ren" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
 </res>

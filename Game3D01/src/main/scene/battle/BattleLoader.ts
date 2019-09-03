@@ -24,9 +24,22 @@ export default class BattleLoader {
     constructor() { }
 
     private _mapId: number;
-    _configId: number;
     private _index: number = 1;
-
+    private resAry: string[] = [];
+    private pubResAry: string[] = [];
+    private isLoadPub: boolean = false;
+    private _isHeroLoaded: boolean = false;
+    private _isMonsterLoaded: boolean = false;
+     /**当前关怪物需要的资源 */
+     private monsterRes: any = {};
+    _configId: number;
+    monsterId: number = 0;
+    /**退出再进来数据 */
+    continueRes:any;
+    monsterGroup:string[];
+    curBoTimes:number = 0;
+    maxBoTimes:number = 0;
+    sysMap: SysMap;
     private _loading: ui.test.LoadingUI;
 
 
@@ -87,14 +100,7 @@ export default class BattleLoader {
         console.log("释放显存");
     }
 
-    /**退出再进来数据 */
-    continueRes:any;
-
-    monsterGroup:string[];
-    curBoTimes:number = 0;
-    maxBoTimes:number = 0;
-    sysMap: SysMap
-
+    
     public load(res?:any): void {
         this.continueRes = res;
         Game.scenneM.battle && Game.scenneM.battle.up(null);
@@ -134,28 +140,31 @@ export default class BattleLoader {
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
     }
 
-    private resAry: string[] = [];
-    private pubResAry: string[] = [];
-    private isLoadPub: boolean = false;
-
-    /**当前关怪物需要的资源 */
-    private monsterRes: any = {};
-
-    public monsterId: number = 0;
-
-    public loadPubRes(): void  {
-        //公共资源
-        let pubRes = [
+    public preload():void
+    {
+        let arr:string[] = [
+            "h5/mapbg/1001.jpg",
             "res/atlas/icons/skill.png", "res/atlas/icons/skill.atlas",
             "res/atlas/bg.png", "res/atlas/bg.atlas",
             "res/atlas/map_1.png", "res/atlas/map_1.atlas",
-            // "res/atlas/map_2.png", "res/atlas/map_2.atlas",
-            // "res/atlas/map_3.png", "res/atlas/map_3.atlas",
-            "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas",
+            "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas"
+        ];
+        Laya.loader.load(arr,Laya.Handler.create(this,this.onComplete2d));
+    }
+
+    private onComplete2d():void
+    {
+        console.log("2D资源加载完毕");
+        this.loadHeroRes();
+    }
+
+    private loadHeroRes(): void  {
+        //公共资源
+        let pubRes = [
             "h5/tong/wall.lh","h5/wall/wall.lh", "h5/zhalan/hero.lh", "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh", "h5/effects/door/monster.lh",//3d背景
             "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
-        Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompletePub),new Laya.Handler(this,this.onProgress));
+        Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompleteHero),new Laya.Handler(this,this.onProgress));
     }
 
     private onLoadRes(): void {
@@ -192,7 +201,7 @@ export default class BattleLoader {
 
         if(this.continueRes)
         {
-            this.onComplete();
+            this.onCompleteMonster();
             return;
         }
 
@@ -247,11 +256,11 @@ export default class BattleLoader {
         console.log('资源列表', this.resAry);
         if(this.resAry.length > 0)
         {
-            Laya.loader.create(this.resAry, Laya.Handler.create(this, this.onComplete), new Laya.Handler(this, this.onProgress));
+            Laya.loader.create(this.resAry, Laya.Handler.create(this, this.onCompleteMonster), new Laya.Handler(this, this.onProgress));
         }
         else
         {
-            this.onComplete();
+            this.onCompleteMonster();
         }
     }
 
@@ -321,21 +330,23 @@ export default class BattleLoader {
         // this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, this._loading.bar.width * value / 100, this._loading.bar.height);
     }
 
-    private _isPubLoaded: boolean = false;
-    private onCompletePub(): void  {
-        console.log("战斗资源提前加载完毕");
-        this._isPubLoaded = true;
-        this.allCom();
+    
+    private onCompleteHero(): void  {
+        console.log("主角所需资源加载完毕");
+        this._isHeroLoaded = true;
+        this.allLoadCom();
     }
 
-    private _isMonsterLoaded: boolean = false;
-    private onComplete(): void {
+    
+    private onCompleteMonster(): void {
+        console.log("怪物所需资源加载完毕");
         this._isMonsterLoaded = true;
-        this.allCom();
+        this.allLoadCom();
     }
 
-    private allCom(): void  {
-        if (this._isPubLoaded && this._isMonsterLoaded)  {
+    private allLoadCom(): void  {
+        if (this._isHeroLoaded && this._isMonsterLoaded)  {
+            console.log("所有资源都加载完毕");
             CoinEffect.coinsAry.length = 0;
             Game.scenneM.showBattle();
             Game.scenneM.battle.init();

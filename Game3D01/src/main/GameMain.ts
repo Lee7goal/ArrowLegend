@@ -26,7 +26,7 @@ export default class GameMain {
         
         Game.scenneM.showMain();
 
-        Game.battleLoader.loadPubRes();
+        Game.battleLoader.preload();
 
         Game.cookie.getCookie(CookieKey.CURRENT_BATTLE,(res)=>{
             if(res)
