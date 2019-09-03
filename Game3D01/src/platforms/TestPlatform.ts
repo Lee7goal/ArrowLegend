@@ -9,8 +9,8 @@ export default class TestPlatform extends BasePlatform{
 
     login(callback):void
     {
-        // callback && callback("" + Date.now());
-        callback && callback("getUsegetUsgerI123nforInfo");
+        callback && callback("" + Date.now());
+        // callback && callback("getUsegetUsgfdafdaerI123nforInfo");
     }
 
     getUserInfo(callback):void

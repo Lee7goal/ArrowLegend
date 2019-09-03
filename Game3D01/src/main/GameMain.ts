@@ -14,7 +14,7 @@ import CookieKey from "../gameCookie/CookieKey";
 
 export default class GameMain {
     constructor() {
-        ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"),new Laya.Handler(this, this.zipFun));
+        ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"), new Laya.Handler(this, this.zipFun));
     }
 
     private zipFun(arr: any[]): void {
@@ -23,29 +23,43 @@ export default class GameMain {
         this.initTable(arr);
         Laya.stage.addChild(App.layerManager);
 
+        Game.cookie.getCookie(CookieKey.MUSIC_SWITCH, (res) => {
+            if (res == null)  {
+                res = 1;
+                Game.cookie.setCookie(CookieKey.MUSIC_SWITCH,res);
+            }
+            App.soundManager.setMusicVolume(res);
+        });
+
+        Game.cookie.getCookie(CookieKey.SOUND_SWITCH, (res) => {
+            if (res == null)  {
+                res = 1;
+                Game.cookie.setCookie(CookieKey.SOUND_SWITCH,res);
+            }
+            App.soundManager.setSoundVolume(res);
+        });
+
+
         Game.alert = new GameAlert();
-        
+
         Game.scenneM.showMain();
 
         Game.battleLoader.preload();
 
-        Game.cookie.getCookie(CookieKey.CURRENT_BATTLE,(res)=>{
-            if(res)
-            {
-                Game.alert.onShow("是否继续未完成的战斗?",new Laya.Handler(this,this.onContinue,[res]),new Laya.Handler(this,this.onCancel));
+        Game.cookie.getCookie(CookieKey.CURRENT_BATTLE, (res) => {
+            if (res)  {
+                Game.alert.onShow("是否继续未完成的战斗?", new Laya.Handler(this, this.onContinue, [res]), new Laya.Handler(this, this.onCancel));
             }
         });
     }
 
-    private onCancel():void
-    {
+    private onCancel(): void  {
         Game.cookie.removeCookie(CookieKey.CURRENT_BATTLE);
     }
 
-    private onContinue(res):void
-    {
+    private onContinue(res): void  {
         Game.battleLoader.load(res);
-        console.log("继续战斗",res);
+        console.log("继续战斗", res);
     }
 
     private initTable(arr: any[]): void {

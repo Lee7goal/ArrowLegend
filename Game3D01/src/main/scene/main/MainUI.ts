@@ -71,7 +71,6 @@ import App from "../../../core/App";
             this.headImg.skin = Game.userHeadUrl;
             this.nameTxt.text = Game.userName;
 
-            this.verTxt.text = "version:" + Game.resVer;
             // this.topBox.y = App.top;
             this.on(Laya.Event.DISPLAY,this,this.onDis);
         }

@@ -44,7 +44,7 @@ import WorldCell from "./WorldCell";
         this.addChild(this.list);
         this.list.itemRender = WorldCell;
         this.list.repeatX = 1;
-        this.list.repeatY = 3;
+        this.list.repeatY = 2;
         this.list.vScrollBarSkin = "";
         // this.list.selectEnable = true;
         this.list.renderHandler = new Laya.Handler(this, this.updateItem);

@@ -30,7 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "09031453";
+    static resVer:string = "09031947";
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -43,8 +43,8 @@ export default class Game {
 
     static rebornTimes:number = 2;
 
-    static monsterClones: Laya.Sprite3D[] = [];
-    static monsterResClones: Laya.Sprite3D[] = [];
+    
+    // static monsterResClones: Laya.Sprite3D[] = [];
 
     static cameraCN: GameCameraNum;
 
@@ -168,8 +168,10 @@ export default class Game {
         Game.isOpen = true;
         Game.battleLoader.index++;
         Game.bg.setDoor(1);
-        // Game.door.transform.localPositionX = 0;
         Game.layer3d.addChild(Game.door);
+        // Game.door.transform.localPositionY = 0;
+        console.log("门的位置",Game.door.transform.localPositionX,Game.door.transform.localPositionY,Game.door.transform.localPositionZ);
+        // Game.door.active = true;
         Game.map0.setDoor(true);
         Game.shakeBattle();
         Game.battleLoader.destroyMonsterRes();
@@ -187,7 +189,7 @@ export default class Game {
     static closeDoor(): void {
         console.log("关门====================");
         Game.isOpen = false;
-        // Game.door.transform.localPositionX = -500;
+        // Game.door.transform.localPositionY = -500;
         Game.door && Game.door.removeSelf();
         Game.map0.setDoor(false);
         Game.bg.setDoor(0);
@@ -301,5 +303,26 @@ export default class Game {
 
         Game.map0.Eharr.length = 0;
         Game.AiArr.length = 0;
+    }
+
+
+    static playMusic(str:string):void
+    {
+        Game.cookie.getCookie(CookieKey.MUSIC_SWITCH,(res)=>{
+            if(res == 1)
+            {
+                App.soundManager.play(str,true);
+            }
+        });
+    }
+
+    static playSound(str:string):void
+    {
+        Game.cookie.getCookie(CookieKey.SOUND_SWITCH,(res)=>{
+            if(res == 1)
+            {
+                App.soundManager.play(str);
+            }
+        });
     }
 }

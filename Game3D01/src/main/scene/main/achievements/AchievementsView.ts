@@ -9,7 +9,7 @@ import AcheievementCell from "./AcheievementCell";
         this.addChild(this.list);
         this.list.itemRender = AcheievementCell;
         this.list.repeatX = 1;
-        this.list.repeatY = 3;
+        this.list.repeatY = 4;
         this.list.vScrollBarSkin = "";
         // this.list.selectEnable = true;
         this.list.renderHandler = new Laya.Handler(this, this.updateItem);

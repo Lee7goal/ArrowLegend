@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
-    "selecteID":30,
+    "selectedBox":37,
+    "selecteID":40,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
@@ -130,11 +130,11 @@
             "child":[
                 {
                     "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite,kai",
-                    "props":{"y":19,"x":241,"var":"kai","texture":"shezhi/kai.png"},
+                    "type":"Image",
+                    "searchKey":"Image,soundImg",
+                    "props":{"y":19,"x":241,"var":"soundImg","skin":"shezhi/kai.png"},
                     "nodeParent":36,
-                    "label":"kai",
+                    "label":"soundImg",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -158,11 +158,11 @@
             "child":[
                 {
                     "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite,kaiguan2",
-                    "props":{"y":21,"x":240,"var":"kaiguan2","texture":"shezhi/kai.png"},
+                    "type":"Image",
+                    "searchKey":"Image,musicImg",
+                    "props":{"y":21,"x":240,"var":"musicImg","skin":"shezhi/kai.png"},
                     "nodeParent":37,
-                    "label":"kaiguan2",
+                    "label":"musicImg",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,

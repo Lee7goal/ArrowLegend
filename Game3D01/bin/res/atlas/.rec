@@ -86,7 +86,7 @@ P 9CF797EA juese_yixuanze.png
 P 123B6FB5 juese_zi.png
 P FE0517C5 juesekuai.png
 D loading
-R 874EF654 loadingClip.png
+P 874EF654 loadingClip.png
 D main
 P 6B073E82 action.png
 P 3159A1FA anniudian.png
@@ -156,8 +156,8 @@ P 55BD7B17 wenhao.png
 P E04B84BA xiaobiao.png
 P AC5FFFB6 xiegang.png
 P 14D95B02 xuxian.png
-P 7D383505 zhudi.jpg
-R A3609115 zhudi2.png
+S 7D383505 zhudi.jpg
+S A3609115 zhudi2.png
 P 5C4CEC9C zuanshijia.png
 D map_1
 P 82F6D2FF 100.png
@@ -258,7 +258,7 @@ P D6F6405B dunpai.png
 P 4ACE790F guangzhuan1.png
 P B568FF28 haojiao.png
 P 8A010280 qi.png
-R DB9A69A9 shenglibu.png
+P DB9A69A9 shenglibu.png
 D shezhi
 P A5EFA7DA guan.png
 P 24194B29 jianti.png
@@ -272,7 +272,7 @@ P A20B20D6 dang.jpg
 P 68AA09BE icon1.jpg
 P 49BBB525 lvtiao.png
 P 87DF6142 pan.png
-R 29C80021 tiandi.png
+P 29C80021 tiandi.png
 D zhaohuan
 P 1285490D guangzhu.png
 P 998DC129 yuandi.png

@@ -213,12 +213,17 @@ export default class BattleScene extends Laya.Sprite {
                     if(type == 9999)
                     {
                         let v3 = GameBG.get3D(i,j);
-                        if (!Game.door) {
-                            
-                        }
                         Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
+                        // if(!Game.door)
+                        // {
+                            // Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
+                            
+                        // }
+                        // Game.monsterResClones.push(Game.door);
                         Game.door.transform.translate(v3);
+                        
                     }
+
 
                     // if(type == 0)
                     // {

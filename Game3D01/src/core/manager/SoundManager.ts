@@ -6,13 +6,18 @@ export default class SoundManager{
     constructor(){
     }
 
-    public setVolume(value:number):void
+    public setMusicVolume(value:number):void
     {
         Laya.SoundManager.setMusicVolume(value);
+        
+    }
+
+    public setSoundVolume(value:number):void
+    {
         Laya.SoundManager.setSoundVolume(value);
     }
 
-
+    
     public soundName:string;
     public isMusic:boolean;
     public play(soundName:string,isMusic:boolean = false):void
