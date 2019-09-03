@@ -288,6 +288,7 @@ export default class Hero extends GamePro {
         super.pos2To3d();
         //脚下的烟雾
         if (Laya.Browser.now() - this.lastTime >= 300) {
+            // App.soundManager.play("fx_move.wav");
             var runSmog: RunSmog = RunSmog.create(this.hbox.cx, this.hbox.cy);
             Laya.Tween.to(runSmog, { scaleX: 0, scaleY: 0, alpha: 0 }, 600, null, new Laya.Handler(this, this.onClear, [runSmog]));
             this.lastTime = Laya.Browser.now();

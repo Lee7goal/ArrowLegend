@@ -7,3 +7,4 @@ if ((typeof swan !== 'undefined') && (typeof swanGlobal !== 'undefined')) {
 }
 window.loadLib = require;
 require("index.js");
+window.JSZip = require("jszip.min.js");

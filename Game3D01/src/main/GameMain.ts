@@ -19,6 +19,7 @@ export default class GameMain {
 
     private zipFun(arr: any[]): void {
         App.init();
+        App.soundManager.pre = "h5/sounds/";
         this.initTable(arr);
         Laya.stage.addChild(App.layerManager);
 

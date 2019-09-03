@@ -1,6 +1,6 @@
 D .
-R EC370872 chengjiu.jpg
-R 86BADE2C juejue.jpg
+R 79D1E803 tianfu.jpg
+R 342044CE 设置.jpg
 D bg
 P 1DEC2F55 501.png
 P AAC7A5B6 501_1.png
@@ -81,12 +81,11 @@ P C01251DC juese_di.png
 P 60794AED juese_hei.png
 P 6C19EF86 juese_jiagong.png
 P 635C7395 juese_jiaxue.png
-P AF7C0EA8 juese_lan.png
-P DE7EE7A2 juese_sheng.png
+P B17E308C juese_lan.png
 P CEAC623A juese_tiaoshang.png
 P 252CF373 juese_tiaoxia.png
 P 9CF797EA juese_yixuanze.png
-P F885BBBB juese_zi.png
+P 123B6FB5 juese_zi.png
 P FE0517C5 juesekuai.png
 D loading
 R 874EF654 loadingClip.png
@@ -130,6 +129,8 @@ P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
 P B223512E jingyantiaodi.png
 P 5607F0AF jingyantiaoshang.png
+P DE7EE7A2 juese_sheng.png
+P CEAC623A juese_tiaoshang.png
 P 937BCEA4 jujue.png
 P B43729DD JYtian.png
 P 61A644DA kapai.png
@@ -260,6 +261,20 @@ P 4ACE790F guangzhuan1.png
 P B568FF28 haojiao.png
 P 8A010280 qi.png
 R DB9A69A9 shenglibu.png
+D shezhi
+P A5EFA7DA guan.png
+P 24194B29 jianti.png
+P 82F435CA kai.png
+P 539AFDC8 yinxiao.png
+P D9EB0B03 yinyue.png
+P 71E4FC8E yuyan.png
+D tianfu
+P 0A614126 biaoti.png
+P A20B20D6 dang.jpg
+P 68AA09BE icon1.jpg
+P 49BBB525 lvtiao.png
+P 87DF6142 pan.png
+R 29C80021 tiandi.png
 D zhaohuan
 P 1285490D guangzhu.png
 P 998DC129 yuandi.png

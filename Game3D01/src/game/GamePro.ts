@@ -128,10 +128,10 @@ export default class GamePro extends Laya.EventDispatcher {
         }
     }
 
-    public setSp3d(sp: Sprite3D): void {
+    public setSp3d(sp: Sprite3D,ww?:number): void {
         this.sp3d_ = sp;
         this.sp3d_.transform.localRotationEulerY = this.rotationEulerY = 0;
-        this.hbox_ = new GameHitBox(GameBG.mw, GameBG.mw);
+        this.hbox_ = new GameHitBox(ww ? ww : GameBG.mw, ww ? ww : GameBG.mw);
         this.hbox_.linkPro_ = this;
         this.hbox_.setCenter(GameBG.mcx, GameBG.mcy);
         let aniSprite3d = sp.getChildAt(0) as Sprite3D;

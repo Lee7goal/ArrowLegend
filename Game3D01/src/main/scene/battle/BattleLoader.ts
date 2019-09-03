@@ -137,22 +137,21 @@ export default class BattleLoader {
         }
         // this._configId = 100801
         console.log("当前地图", this._mapId, this._configId);
-        Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.onLoadRes));
+        Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }
 
     public preload():void
     {
         let arr:string[] = [
-            "h5/mapbg/1001.jpg",
             "res/atlas/icons/skill.png", "res/atlas/icons/skill.atlas",
             "res/atlas/bg.png", "res/atlas/bg.atlas",
             "res/atlas/map_1.png", "res/atlas/map_1.atlas",
             "res/atlas/jiesuan.png", "res/atlas/jiesuan.atlas"
         ];
-        Laya.loader.load(arr,Laya.Handler.create(this,this.onComplete2d));
+        Laya.loader.load(arr,Laya.Handler.create(this,this.onCompletePre));
     }
 
-    private onComplete2d():void
+    private onCompletePre():void
     {
         console.log("2D资源加载完毕");
         this.loadHeroRes();
@@ -167,7 +166,14 @@ export default class BattleLoader {
         Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompleteHero),new Laya.Handler(this,this.onProgress));
     }
 
-    private onLoadRes(): void {
+    private onCompleteHero(): void  {
+        console.log("主角所需资源加载完毕");
+        this._isHeroLoaded = true;
+        this.allLoadCom();
+    }
+
+    private loadBg():void
+    {
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");
         GameBG.MAP_ROW = map.rowNum;
         GameBG.MAP_COL = map.colNum;
@@ -181,23 +187,20 @@ export default class BattleLoader {
         GameBG.bgHH = map.bgHeight;
         GameBG.bgCellWidth = map.cellWidth;
 
-        console.log("加载完地图",GameBG.MAP_ROW,GameBG.MAP_COL);
-
         GameBG.arr0 = map.arr;
         let bgType = map.bgType ? map.bgType : 1;
         bgType = Math.max(bgType, 1);
+        GameBG.BG_TYPE_NUM = bgType;
         GameBG.BG_TYPE = "map_" + bgType;
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
 
+        Laya.loader.load("h5/mapbg/"+GameBG.BG_TYPE_NUM+".jpg",Laya.Handler.create(this,this.onLoadMonster));
+    }
+
+    private onLoadMonster(): void {
         this.resAry.length = 0;
         this.monsterRes = {};
         let res: string;
-
-        // for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
-        //     for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
-        //         this.resAry.push("h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg");
-        //     }
-        // }
 
         if(this.continueRes)
         {
@@ -264,8 +267,31 @@ export default class BattleLoader {
         }
     }
 
-    private onP(vv: number): void  {
-        console.log("进度", vv);
+    private onCompleteMonster(): void {
+        console.log("怪物所需资源加载完毕");
+        this._isMonsterLoaded = true;
+        this.allLoadCom();
+    }
+
+    private onProgress(value: number): void {
+        if(!this._loading)
+        {
+            return;
+        }
+        value = Math.ceil(value * 100);
+        value = Math.min(value, 100);
+        this._loading.txt.text = value + "%";
+        // this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, this._loading.bar.width * value / 100, this._loading.bar.height);
+    }
+
+    private allLoadCom(): void  {
+        if (this._isHeroLoaded && this._isMonsterLoaded)  {
+            console.log("所有资源都加载完毕");
+            CoinEffect.coinsAry.length = 0;
+            Game.scenneM.showBattle();
+            Game.scenneM.battle.init();
+            this._loading.removeSelf();
+        }
     }
 
     private getMonsterRes(id: number): void {
@@ -316,41 +342,6 @@ export default class BattleLoader {
                     }
                 }
             }
-        }
-    }
-
-    private onProgress(value: number): void {
-        if(!this._loading)
-        {
-            return;
-        }
-        value = Math.ceil(value * 100);
-        value = Math.min(value, 100);
-        this._loading.txt.text = value + "%";
-        // this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, this._loading.bar.width * value / 100, this._loading.bar.height);
-    }
-
-    
-    private onCompleteHero(): void  {
-        console.log("主角所需资源加载完毕");
-        this._isHeroLoaded = true;
-        this.allLoadCom();
-    }
-
-    
-    private onCompleteMonster(): void {
-        console.log("怪物所需资源加载完毕");
-        this._isMonsterLoaded = true;
-        this.allLoadCom();
-    }
-
-    private allLoadCom(): void  {
-        if (this._isHeroLoaded && this._isMonsterLoaded)  {
-            console.log("所有资源都加载完毕");
-            CoinEffect.coinsAry.length = 0;
-            Game.scenneM.showBattle();
-            Game.scenneM.battle.init();
-            this._loading.removeSelf();
         }
     }
 }

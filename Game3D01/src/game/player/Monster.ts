@@ -192,7 +192,7 @@ export default class Monster extends GamePro {
         gpro.curLen = gpro.moveLen = 0;
         gpro.sysEnemy = sysEnemy;
         gpro.init();
-        gpro.setSp3d(sp);
+        gpro.setSp3d(sp,GameBG.ww * 0.8);
         gpro.hurtValue = sysEnemy.enemyAttack;
 
 

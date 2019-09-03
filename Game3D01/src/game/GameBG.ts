@@ -15,6 +15,7 @@ import Hero from "./player/Hero";
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
     static BG_TYPE:string;
+    static BG_TYPE_NUM:number;
 
     static MAP_ROW: number;
     static MAP_COL: number;
@@ -174,7 +175,7 @@ export default class GameBG extends Laya.Sprite {
 
         var sprite:Laya.Image = new Laya.Image();
         this._box.addChild(sprite);
-        sprite.texture = Laya.loader.getRes("h5/mapbg/1001.jpg");
+        sprite.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+".jpg");
         sprite.sizeGrid = "584,711,51,72";
         sprite.size(GameBG.bgWW,GameBG.bgHH);
 
@@ -506,11 +507,9 @@ export default class GameBG extends Laya.Sprite {
             //摄像机跟随主角
             Game.camera.transform.localPositionZ = Game.cameraCN.z + Game.hero.z;
             u = true;
-            console.log("更新y",bgy,Game.camera.transform.localPositionZ);
         }
         else if(bgy < Laya.stage.height - GameBG.bgHH){
             //Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Laya.stage.height +  GameBG.bgHH);
-            console.log("更新y===================");
             Game.bg.y = Laya.stage.height - GameBG.bgHH;
             Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
         }
@@ -519,7 +518,6 @@ export default class GameBG extends Laya.Sprite {
             //Game.camera.transform.localPositionZ = Game.cameraCN.z +  GameBG.cy;
             Game.bg.y = 0;
             Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
-            console.log("更新y=fdsfdfdsgfd");
         }
 
         var bgx: number = GameBG.cx - Game.hero.pos2.x;

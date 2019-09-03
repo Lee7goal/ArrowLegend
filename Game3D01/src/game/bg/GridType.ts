@@ -42,12 +42,12 @@ export default class GridType {
 
     public static isWall(type:Number):boolean
     {
-        return type>=600 && type<650;
+        return type>=6000 && type<6500;
     }
 
     public static isTong(type:Number):boolean
     {
-        return type>=650 && type<700;
+        return type>=6500 && type<7000;
     }
 
 

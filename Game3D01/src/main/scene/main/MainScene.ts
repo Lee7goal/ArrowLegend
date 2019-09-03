@@ -34,6 +34,8 @@ import App from "../../../core/App";
         this.switchView();
 
         Laya.stage.on(GameEvent.START_BATTLE,this,this.onStartBattle);
+
+        App.soundManager.play("menu.wav",true);
     }
 
     private onStartBattle():void

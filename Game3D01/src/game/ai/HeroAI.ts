@@ -125,6 +125,7 @@ export default class HeroAI extends GameAI {
             return;
         }
 
+        App.soundManager.play("fx_shoot.wav");
         let basePower: number = Game.hero.playerData.baseAttackPower;
         // let moveSpeed: number = GameBG.ww / 2;
         // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
