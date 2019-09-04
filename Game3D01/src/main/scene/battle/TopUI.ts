@@ -29,7 +29,7 @@ import App from "../../../core/App";
         Game.hero.playerData.level = lv;
         if(!this.isTwo)
         {
-            this.shuzi.value = "" + Game.hero.playerData.level;
+            this.shuzi.text = "" + Game.hero.playerData.level;
         }
         
 
@@ -44,23 +44,23 @@ import App from "../../../core/App";
         this.lastWidth += 15;
         if(this.isTwo)
         {
-            if(this.lastWidth >= this.lvBar.width)
+            if(this.lastWidth >= this.lvBar.height)
             {
                 this.lastWidth = 0;
                 this.isTwo = false;
-                this.shuzi.value = "" + Game.hero.playerData.level;
+                this.shuzi.text = "" + Game.hero.playerData.level;
             }
         }
         else
         {
-            if(this.lastWidth >= this.lvBar.width * vv)
+            if(this.lastWidth >= this.lvBar.height * vv)
             {
-                this.lastWidth = this.lvBar.width * vv;
+                this.lastWidth = this.lvBar.height * vv;
                 Laya.timer.clear(this,this.onLoop);
             }
         }
         this.lastWidth = Math.max(1,this.lastWidth);
-        this.lvBar.scrollRect = new Laya.Rectangle(0,0,this.lastWidth,this.lvBar.height);
+        this.lvBar.scrollRect = new Laya.Rectangle(0,0,this.lvBar.width,this.lastWidth);
     }
 
     updateCoins():void
