@@ -48,6 +48,7 @@ import FlyGameMove2 from "./game/move/FlyGameMove2";
 import TestCookie from "./gameCookie/TestCookie";
 import WXCookie from "./gameCookie/WXCookie";
 import { BaseCookie } from "./gameCookie/BaseCookie";
+import CookieKey from "./gameCookie/CookieKey";
 
 class Main {
 	constructor() {
@@ -67,7 +68,7 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		// if (GameConfig.stat) Laya.Stat.show();
+		if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
@@ -117,6 +118,7 @@ class Main {
 		}
 		Laya.stage.addChild(this.homePage);
 
+
 		// // wx.clearStorage()
 
 		let bc:BaseCookie;
@@ -129,6 +131,33 @@ class Main {
 			bc = new WXCookie();
 		}
 		Game.cookie = bc;
+
+		App.soundManager.pre = "h5/sounds/";
+        Laya.stage.addChild(App.layerManager);
+
+        Game.cookie.getCookie(CookieKey.MUSIC_SWITCH, (res) => {
+            if (res == null)  {
+                Game.cookie.setCookie(CookieKey.MUSIC_SWITCH,{"state":1});
+                App.soundManager.setMusicVolume(1);
+            }
+            else
+            {
+                App.soundManager.setMusicVolume(res.state);
+            }
+        });
+
+        Game.cookie.getCookie(CookieKey.SOUND_SWITCH, (res) => {
+            if (res == null)  {
+                Game.cookie.setCookie(CookieKey.SOUND_SWITCH,{"state":1});
+                App.soundManager.setSoundVolume(1);
+            }
+            else
+            {
+                App.soundManager.setSoundVolume(res.state);
+            }
+        });
+
+        Game.playBgMusic();
 
 		this.authSetting();
 	}
@@ -144,16 +173,12 @@ class Main {
 			Laya.stage.addChild(this.loading);
 			// this.loading.clip.play();
 			this.loading.txt.text = "0%";
-			Laya.loader.create([
-				// { url: "res/atlas/main.png", type: Laya.Loader.IMAGE },
+			Laya.loader.load([
+				{ url: "h5/mapbg/1.jpg", type: Laya.Loader.IMAGE },
 				{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/juese.png", type: Laya.Loader.IMAGE },
 				{ url: "res/atlas/juese.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/chengjiu.png", type: Laya.Loader.IMAGE },
 				{ url: "res/atlas/chengjiu.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/tianfu.png", type: Laya.Loader.IMAGE },
 				{ url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/shezhi.png", type: Laya.Loader.IMAGE },
 				{ url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
 				{ url: "res/atlas/shengli.atlas", type: Laya.Loader.ATLAS },
 				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }

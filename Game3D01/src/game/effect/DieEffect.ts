@@ -15,10 +15,15 @@ export default class DieEffect{
     {
         let effect:DieEffect = Laya.Pool.getItemByClass(DieEffect.TAG,DieEffect);
         // let effect:DieEffect = new DieEffect();
-        effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/monsterDie/monster.lh"));
+        if(!effect.sp3d)
+        {
+            effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/monsterDie/monster.lh"));
+            console.log("创建新的死亡特效");
+        }
+        
         effect.sp3d.transform.localRotationEulerY = 45;
         // Game.monsterResClones.push(effect.sp3d);
-        console.log("创建新的死亡特效");
+        
         Game.layer3d.addChild(effect.sp3d);
         effect.sp3d.transform.localPosition = player.sp3d.transform.localPosition;
         effect.sp3d.transform.localScale = new Laya.Vector3(0.3,0.3,0.3);

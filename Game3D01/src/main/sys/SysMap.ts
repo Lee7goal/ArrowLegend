@@ -40,7 +40,6 @@ export default class SysMap {
                 count++;
             }
         }
-        count--;
         return count;
     }
 }

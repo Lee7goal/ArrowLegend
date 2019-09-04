@@ -20,8 +20,12 @@ export default class WXCookie extends BaseCookie {
         this.wx.getStorage({
             key: code,
             success(res) {
-                console.log("get success",code,res);
                 callback && callback(res.data);
+            },
+            fail(res){
+                callback && callback(null);
+            },
+            complete(res){
             }
         })
     }
@@ -31,7 +35,6 @@ export default class WXCookie extends BaseCookie {
         this.wx.removeStorage({
             key: code,
             success (res) {
-                console.log("remvoe success",code,res);
             }
           })
     }

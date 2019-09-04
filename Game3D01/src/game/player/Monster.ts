@@ -19,9 +19,10 @@ import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
 import BaseAI from "../ai/BaseAi";
 import GameBG from "../GameBG";
+import MemoryManager from "../../main/scene/battle/MemoryManager";
 
 export default class Monster extends GamePro {
-    static TAG: string = "Monster";
+    static TAG: string = "Monster_";
 
     public splitTimes: number;
     public sysEnemy: SysEnemy;
@@ -146,8 +147,9 @@ export default class Monster extends GamePro {
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
         this.sp3d && this.sp3d.removeSelf();
-        Laya.Pool.recover(Monster.TAG,this);
+        Laya.Pool.recover(Monster.TAG + this.sysEnemy.enemymode,this);
         DieEffect.addEffect(this);
+        MemoryManager.ins.app(this.sp3d.url);
     }
 
     clear():void
@@ -157,15 +159,13 @@ export default class Monster extends GamePro {
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
         this.sp3d && this.sp3d.removeSelf();
-        Laya.Pool.recover(Monster.TAG,this);
+        Laya.Pool.recover(Monster.TAG + this.sysEnemy.enemymode,this);
+        MemoryManager.ins.app(this.sp3d.url);
     }
 
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
         console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
-        var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
-        // Game.monsterResClones.push(sp);
-
         let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {
             //console.log(sysEnemy.enemymode ,"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
@@ -187,12 +187,19 @@ export default class Monster extends GamePro {
                 }
             }
         }
-        var gpro:Monster = Laya.Pool.getItemByClass(Monster.TAG,Monster);
+        var gpro:Monster = Laya.Pool.getItemByClass(Monster.TAG + sysEnemy.enemymode,Monster);
         // var gpro: Monster = new Monster();
         gpro.curLen = gpro.moveLen = 0;
         gpro.sysEnemy = sysEnemy;
         gpro.init();
-        gpro.setSp3d(sp,GameBG.ww * 0.8);
+        if(!gpro.sp3d)
+        {
+            var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/monsters/" + sysEnemy.enemymode + "/monster.lh"));
+            MemoryManager.ins.add(sp.url);
+            gpro.setSp3d(sp,GameBG.ww * 0.8);
+            console.log("克隆一个怪");
+        }
+        
         gpro.hurtValue = sysEnemy.enemyAttack;
 
 
@@ -229,7 +236,7 @@ export default class Monster extends GamePro {
         // gpro.bloodUI.visible = false;
         // setTimeout(() => {
             gpro.startAi();
-            Game.layer3d.addChild(sp);
+            Game.layer3d.addChild(gpro.sp3d);
         //     gpro._bulletShadow.visible = true;
         //     gpro.bloodUI.visible = true;
         // }, 1100);

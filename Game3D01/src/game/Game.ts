@@ -30,7 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "09031947";
+    static resVer:string = "09041555";
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -174,7 +174,7 @@ export default class Game {
         // Game.door.active = true;
         Game.map0.setDoor(true);
         Game.shakeBattle();
-        Game.battleLoader.destroyMonsterRes();
+        Game.battleLoader.clearMonster();
         Session.saveData();
 
         // Game.battleLoader.load();
@@ -298,18 +298,28 @@ export default class Game {
         Game.hero.reset();
         Game.hero.resetAI();
         Game.hero.playerData.exp = 0;
-        Game.battleLoader.destroyMonsterRes();
+        Game.battleLoader.clearMonster();
         Game.scenneM.showMain();
 
         Game.map0.Eharr.length = 0;
         Game.AiArr.length = 0;
     }
 
+    static playBgMusic():void
+    {
+        Game.playMusic("bg2.mp3");
+    }
+
+    static playBattleMusic():void
+    {
+
+    }
+
 
     static playMusic(str:string):void
     {
         Game.cookie.getCookie(CookieKey.MUSIC_SWITCH,(res)=>{
-            if(res == 1)
+            if(res == null ||res.state == 1)
             {
                 App.soundManager.play(str,true);
             }
@@ -319,7 +329,7 @@ export default class Game {
     static playSound(str:string):void
     {
         Game.cookie.getCookie(CookieKey.SOUND_SWITCH,(res)=>{
-            if(res == 1)
+            if(res.state == 1)
             {
                 App.soundManager.play(str);
             }

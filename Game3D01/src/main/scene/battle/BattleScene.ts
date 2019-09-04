@@ -31,6 +31,7 @@ import GameRube from "./GameRube";
 import GameFence from "./GameFence";
 import GameTong from "./GameTong";
 import SysMap from "../../sys/SysMap";
+import GameEvent from "../../GameEvent";
 export default class BattleScene extends Laya.Sprite {
 
     private _top: TopUI;
@@ -81,6 +82,13 @@ export default class BattleScene extends Laya.Sprite {
 
         Laya.stage.on(Game.Event_SELECT_NEWSKILL, this, this.onShowSelect);
         Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
+
+        Laya.stage.on(GameEvent.MEMORY_WARNING,this,this.onRelease);
+    }
+
+    private onRelease():void
+    {
+        Game.battleLoader.onRelease();
     }
 
     private _selectSkill: SelectNewSkill;
@@ -213,10 +221,10 @@ export default class BattleScene extends Laya.Sprite {
                     if(type == 9999)
                     {
                         let v3 = GameBG.get3D(i,j);
-                        Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
+                        // Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
                         // if(!Game.door)
                         // {
-                            // Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
+                            Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
                             
                         // }
                         // Game.monsterResClones.push(Game.door);
@@ -288,26 +296,18 @@ export default class BattleScene extends Laya.Sprite {
     createMonster():void
     {
         console.log("刷怪");
-        let sysMap:SysMap = Game.battleLoader.sysMap;
-        let num:number = Math.floor(sysMap.mixEnemy + Math.random() * (sysMap.maxEnemy - sysMap.mixEnemy));
+        // let sysMap:SysMap = Game.battleLoader.sysMap;
+        // let num:number = Math.floor(sysMap.mixEnemy + Math.random() * (sysMap.maxEnemy - sysMap.mixEnemy));
 
-        let monsterGroup:string[] = Game.battleLoader.monsterGroup;
-        for(let i = 0; i < num; i++)
-        {
-            let monsterId:number = Number(monsterGroup[Math.floor(monsterGroup.length * Math.random())]);
-            let p:Laya.Point = this.nullGridList[Math.floor(this.nullGridList.length * Math.random())];
-            let monster: Monster = Monster.getMonster(monsterId, p.x, p.y);
-            // let toArr:number[] = Game.getRandPos(Game.hero);
-            // if (toArr.length == 2) {
-            //     let toX = toArr[0] * GameBG.ww;
-            //     let toY = toArr[1] * GameBG.ww;
-            //     let monster:Monster = Monster.getMonster(monsterId, toX, toY);
-            //     monster.splitTimes = 1;
+        // let monsterGroup:string[] = Game.battleLoader.monsterGroup;
+        // for(let i = 0; i < num; i++)
+        // {
+        //     let monsterId:number = Number(monsterGroup[Math.floor(monsterGroup.length * Math.random())]);
+        //     let p:Laya.Point = this.nullGridList[Math.floor(this.nullGridList.length * Math.random())];
+        //     let monster: Monster = Monster.getMonster(monsterId, p.x, p.y);
+        // }
 
-            // }
-        }
-
-        Game.battleLoader.sysMap = null
+        // Game.battleLoader.sysMap = null
     }
 
     private onOpenDoor(e: Laya.Event): void {

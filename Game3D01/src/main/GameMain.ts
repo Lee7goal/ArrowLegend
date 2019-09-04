@@ -18,27 +18,7 @@ export default class GameMain {
     }
 
     private zipFun(arr: any[]): void {
-        App.init();
-        App.soundManager.pre = "h5/sounds/";
         this.initTable(arr);
-        Laya.stage.addChild(App.layerManager);
-
-        Game.cookie.getCookie(CookieKey.MUSIC_SWITCH, (res) => {
-            if (res == null)  {
-                res = 1;
-                Game.cookie.setCookie(CookieKey.MUSIC_SWITCH,res);
-            }
-            App.soundManager.setMusicVolume(res);
-        });
-
-        Game.cookie.getCookie(CookieKey.SOUND_SWITCH, (res) => {
-            if (res == null)  {
-                res = 1;
-                Game.cookie.setCookie(CookieKey.SOUND_SWITCH,res);
-            }
-            App.soundManager.setSoundVolume(res);
-        });
-
 
         Game.alert = new GameAlert();
 

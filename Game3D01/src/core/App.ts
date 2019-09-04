@@ -10,14 +10,7 @@ export default class App{
     static serverIP:string;
     static platformId:number = 0;
 
-    static layerManager:LayerManager;
-    static tableManager:TableManager;
-    static soundManager:SoundManager;
-
-    static init():void{
-        App.layerManager = new LayerManager();
-        App.tableManager = new TableManager();
-        App.soundManager = new SoundManager();
-    }
-
+    static layerManager:LayerManager = new LayerManager();
+    static tableManager:TableManager = new TableManager();
+    static soundManager:SoundManager = new SoundManager();
 }

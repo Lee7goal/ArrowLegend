@@ -40,7 +40,7 @@ import App from "../../../core/App";
 
     private onDis(e):void
     {
-        Game.playMusic("menu.wav");
+        Game.battleLoader.init();
     }
 
     private onStartBattle():void

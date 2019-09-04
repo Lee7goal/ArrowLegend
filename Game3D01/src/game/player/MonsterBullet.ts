@@ -6,9 +6,10 @@ import MonsterBulletMove from "../move/MonsterBulletMove";
 import Game from "../Game";
 import { ui } from "./../../ui/layaMaxUI";
 import BulletRotateScript from "../controllerScript/BulletRotateScript";
+import MemoryManager from "../../main/scene/battle/MemoryManager";
 
 export default class MonsterBullet extends GamePro {
-    static TAG: string = "MonsterBullet";
+    static TAG: string = "MonsterBullet_";
     static count:number = 0;
     public curLen: number;
     public moveLen: number;
@@ -37,15 +38,17 @@ export default class MonsterBullet extends GamePro {
         else{
             Game.footLayer.addChild(this._bulletShadow);
         }
-        
-        if (this.sysBullet && this.sysBullet.bulletMode == sb.bulletMode)  {
-            return;
-        }
         this.sysBullet = sb;
-        var bullet: Laya.Sprite3D;
-        bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
-        // Game.monsterResClones.push(bullet);
-        this.setSp3d(bullet);
+        if(!this.sp3d)
+        {
+            var bullet: Laya.Sprite3D;
+            bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
+            MemoryManager.ins.add(bullet.url);
+            // Game.monsterResClones.push(bullet);
+            this.setSp3d(bullet);
+            console.log("克隆一个怪的子弹");
+        }
+        
         // this.sp3d.addComponent(BulletRotateScript);
         this.gamedata.bounce = sb.ejectionNum;
         
@@ -54,13 +57,12 @@ export default class MonsterBullet extends GamePro {
         //     trail.trailFilter.time = 0.3;
         // })
         
-        console.log("创建新的怪物子弹");
     }
 
     static getBullet(sb: SysBullet): MonsterBullet {
         // let bullet: MonsterBullet = new MonsterBullet();
         // let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG + sb.bulletMode, MonsterBullet);
-        let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG, MonsterBullet);
+        let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG + sb.bulletMode, MonsterBullet);
         bullet.isDie = false;
         bullet.setBubble(sb);
         // if(bullet.sysBullet.id != 10 && bullet.sysBullet.id != 11)//处理弓箭的，弓箭就不转了
@@ -87,6 +89,8 @@ export default class MonsterBullet extends GamePro {
         this.sp3d.transform.localPositionZ = -500;
 
         // Laya.Pool.recover(MonsterBullet.TAG + this.sysBullet.bulletMode,this);
-        Laya.Pool.recover(MonsterBullet.TAG,this);
+        Laya.Pool.recover(MonsterBullet.TAG + this.sysBullet.bulletMode,this);
+
+        MemoryManager.ins.app(this.sp3d.url);
     }
 }

@@ -1,5 +1,6 @@
 import { BasePlatform } from "./BasePlatform";
 import Game from "../game/Game";
+import GameEvent from "../main/GameEvent";
 
 export default class WXPlatform extends BasePlatform {
     constructor() { super(); }
@@ -62,6 +63,11 @@ export default class WXPlatform extends BasePlatform {
                 content: '当前微信版本过低，无法使用该应用，请升级到最新微信版本后重试。'
             });
         }
+
+        Laya.Browser.window.wx.onMemoryWarning((res)=>{
+            console.error("内存不足了",res);
+            Laya.stage.event(GameEvent.MEMORY_WARNING);
+        });
     }
 
     login(callback): void {

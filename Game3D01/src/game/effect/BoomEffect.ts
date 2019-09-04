@@ -1,6 +1,7 @@
 
 import Game from "../Game";
 import GamePro from "../GamePro";
+import MemoryManager from "../../main/scene/battle/MemoryManager";
 
 /**子弹爆炸特效 */
 export default class BoomEffect{
@@ -15,15 +16,16 @@ export default class BoomEffect{
 
     static getEffect(pro: GamePro,effectId:number):BoomEffect
     {
-        let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG,BoomEffect);
-        // let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG + effectId,BoomEffect);
+        // let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG,BoomEffect);
+        let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG + effectId,BoomEffect);
         // let effect:BoomEffect = new BoomEffect();
-        if(!effect.pro || effect.effectId != effectId)
+        if(!effect.pro)
         {
             effect.pro = pro;
             effect.effectId = effectId;
             effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/" + effectId + "/monster.lh"));
             // Game.monsterResClones.push(effect.sp3d);
+            MemoryManager.ins.add(effect.sp3d.url);
             console.log("创建新的怪物子弹爆炸特效");
         }
         effect.sp3d.transform.localPosition = pro.sp3d.transform.localPosition;
@@ -38,7 +40,8 @@ export default class BoomEffect{
     recover():void
     {
         this.sp3d && this.sp3d.removeSelf();
-        // Laya.Pool.recover(BoomEffect.TAG + this.effectId,this)
-        Laya.Pool.recover(BoomEffect.TAG,this)
+        Laya.Pool.recover(BoomEffect.TAG + this.effectId,this)
+        // Laya.Pool.recover(BoomEffect.TAG,this)
+        MemoryManager.ins.app(this.sp3d.url);
     }
 }
