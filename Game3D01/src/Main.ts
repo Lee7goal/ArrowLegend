@@ -49,6 +49,7 @@ import TestCookie from "./gameCookie/TestCookie";
 import WXCookie from "./gameCookie/WXCookie";
 import { BaseCookie } from "./gameCookie/BaseCookie";
 import CookieKey from "./gameCookie/CookieKey";
+import PlayerData from "./game/data/PlayerData";
 
 class Main {
 	constructor() {
@@ -91,6 +92,7 @@ class Main {
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
 		Laya.loader.load(["h5/config.json", "loading/loadingClip.png"], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
+	
 	}
 
 	private _initView: ui.test.initViewUI;
