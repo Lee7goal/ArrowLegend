@@ -155,7 +155,7 @@
                         {
                             "x":45,
                             "type":"Image",
-                            "props":{"y":308,"x":-5,"skin":"juese/baoshi.png"},
+                            "props":{"y":308,"x":-5,"skin":"main/baoshi.png"},
                             "nodeParent":21,
                             "label":"Image",
                             "isDirectory":false,
@@ -348,7 +348,7 @@
                         {
                             "x":45,
                             "type":"Image",
-                            "props":{"y":310,"x":-7,"skin":"juese/baoshi.png"},
+                            "props":{"y":310,"x":-7,"skin":"main/baoshi.png"},
                             "nodeParent":23,
                             "label":"Image",
                             "isDirectory":false,
