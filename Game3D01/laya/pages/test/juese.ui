@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":49,
+    "selectedBox":49,
+    "selecteID":23,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#c6abab","height":1334},
     "nodeParent":-1,
@@ -46,7 +46,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":911,"x":0,"width":461,"skin":"juese/juese_zi.png","sizeGrid":"0,16,0,15","height":305},
+                    "props":{"y":911,"x":0,"width":503,"skin":"juese/juese_zi.png","sizeGrid":"0,16,0,15","height":305},
                     "nodeParent":49,
                     "label":"Image",
                     "isDirectory":false,
@@ -60,7 +60,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":911,"x":461,"width":289,"skin":"juese/juese_lan.png","sizeGrid":"0,16,0,15","height":305},
+                    "props":{"y":911,"x":503,"width":247,"skin":"juese/juese_lan.png","sizeGrid":"0,16,0,15","height":305},
                     "nodeParent":49,
                     "label":"Image",
                     "isDirectory":false,
@@ -74,9 +74,9 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,shengming",
-                    "props":{"y":791,"x":25,"var":"shengming","skin":"juese/juese_di.png"},
+                    "props":{"y":791,"x":43,"var":"shengming","skin":"juese/juese_di.png"},
                     "nodeParent":49,
-                    "label":"shengming",
+                    "label":"Image(shengming)",
                     "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
@@ -115,7 +115,7 @@
                             "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":184,"x":15,"skin":"juese/juese_tiaoxia.png"},
+                            "props":{"y":310,"x":11,"skin":"juese/juese_tiaoxia.png"},
                             "nodeParent":21,
                             "label":"Image",
                             "isDirectory":false,
@@ -129,9 +129,9 @@
                             "x":45,
                             "type":"Image",
                             "searchKey":"Image,tiao",
-                            "props":{"y":184,"x":15,"var":"tiao","skin":"main/juese_tiaoshang.png"},
+                            "props":{"y":310,"x":11,"var":"tiao","skin":"main/juese_tiaoshang.png"},
                             "nodeParent":21,
-                            "label":"tiao",
+                            "label":"Image(tiao)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -141,11 +141,37 @@
                         },
                         {
                             "x":45,
+                            "type":"Button",
+                            "props":{"y":326,"x":179,"var":"jia","stateNum":"1","skin":"juese/btn_jia.png","anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":21,
+                            "label":"Button(jia)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":59,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"y":308,"x":-5,"skin":"juese/baoshi.png"},
+                            "nodeParent":21,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":58,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,xueshu",
-                            "props":{"y":224,"x":15,"width":754,"var":"xueshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},
+                            "props":{"y":350,"x":11,"width":754,"var":"xueshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},
                             "nodeParent":21,
-                            "label":"xueshu",
+                            "label":"FontClip(xueshu)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -166,15 +192,70 @@
                             "compId":22,
                             "child":[
                                 ]
-                        }]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "searchKey":"Button,shengmingniu",
+                            "props":{"y":340,"x":89,"width":182,"var":"shengmingniu","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":21,
+                            "label":"Button(shengmingniu)",
+                            "isOpen":true,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "compId":32,
+                            "child":[
+                                {
+                                    "x":60,
+                                    "type":"Image",
+                                    "props":{"y":23,"x":62,"skin":"juese/shengzizi.png"},
+                                    "nodeParent":32,
+                                    "label":"Image",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":60,
+                                    "child":[
+                                        ]
+                                }]
+                        },
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"y":202,"x":10,"skin":"juese/shengming.png"},
+                            "nodeParent":21,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":68,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"FontClip",
+                            "searchKey":"FontClip,shengmingshu",
+                            "props":{"y":208,"x":69,"width":461,"var":"shengmingjia","value":"+8000","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.25,"scaleX":0.25,"height":115,"align":"left"},
+                            "nodeParent":21,
+                            "label":"FontClip(shengmingjia)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":69,
+                            "child":[
+                                ]
+                        }],
+                    "$HIDDEN":false
                 },
                 {
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,gongji",
-                    "props":{"y":791,"x":227,"var":"gongji","skin":"juese/juese_di.png"},
+                    "props":{"y":789,"x":280,"var":"gongji","skin":"juese/juese_di.png"},
                     "nodeParent":49,
-                    "label":"gongji",
+                    "label":"Image(gongji)",
                     "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
@@ -211,49 +292,6 @@
                         },
                         {
                             "x":45,
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":184,"x":15,"skin":"juese/juese_tiaoxia.png"},
-                            "nodeParent":23,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":26,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "x":45,
-                            "type":"Image",
-                            "searchKey":"Image,tiao2",
-                            "props":{"y":184,"x":15,"var":"tiao2","skin":"juese/juese_tiaoshang.png"},
-                            "nodeParent":23,
-                            "label":"tiao2",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":27,
-                            "child":[
-                                ],
-                            "$HIDDEN":false
-                        },
-                        {
-                            "x":45,
-                            "type":"FontClip",
-                            "searchKey":"FontClip,gongshu",
-                            "props":{"y":224,"x":15,"width":754,"var":"gongshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},
-                            "nodeParent":23,
-                            "label":"gongshu",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":28,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "x":45,
                             "type":"Label",
                             "searchKey":"Label",
                             "props":{"y":5,"x":54,"width":74,"text":"攻击","height":39,"fontSize":36,"color":"#ffffff","align":"left"},
@@ -265,95 +303,136 @@
                             "compId":29,
                             "child":[
                                 ]
-                        }]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "searchKey":"Button,shengmingniu",
-                    "props":{"y":1084,"x":24,"width":182,"var":"shengmingniu","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91},
-                    "nodeParent":49,
-                    "label":"shengmingniu",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":32,
-                    "child":[
+                        },
                         {
                             "x":45,
-                            "type":"FontClip",
-                            "searchKey":"FontClip,qianshu",
-                            "props":{"y":30,"x":34,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},
-                            "nodeParent":32,
-                            "label":"qianshu",
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"y":312,"x":9,"skin":"juese/juese_tiaoxia.png"},
+                            "nodeParent":23,
+                            "label":"Image",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":33,
+                            "compId":61,
                             "child":[
                                 ]
                         },
                         {
                             "x":45,
                             "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":24,"x":113,"skin":"main/dongjin.png"},
-                            "nodeParent":32,
-                            "label":"Image",
+                            "searchKey":"Image,tiao",
+                            "props":{"y":312,"x":9,"var":"tiao2","skin":"main/juese_tiaoshang.png"},
+                            "nodeParent":23,
+                            "label":"Image(tiao2)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":34,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "searchKey":"Button,gongjiniu",
-                    "props":{"y":1085,"x":225,"width":182,"var":"gongjiniu","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91},
-                    "nodeParent":49,
-                    "label":"gongjiniu",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":35,
-                    "child":[
-                        {
-                            "type":"FontClip",
-                            "searchKey":"FontClip,qianshu2",
-                            "props":{"y":30,"x":34,"width":386,"var":"qianshu2","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},
-                            "nodeParent":35,
-                            "label":"qianshu2",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":36,
+                            "compId":62,
                             "child":[
                                 ]
                         },
                         {
+                            "x":45,
+                            "type":"Button",
+                            "props":{"y":328,"x":177,"var":"jia2","stateNum":"1","skin":"juese/btn_jia.png","anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":23,
+                            "label":"Button(jia2)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":63,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
                             "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":24,"x":113,"skin":"main/dongjin.png"},
-                            "nodeParent":35,
+                            "props":{"y":310,"x":-7,"skin":"juese/baoshi.png"},
+                            "nodeParent":23,
                             "label":"Image",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":37,
+                            "compId":64,
                             "child":[
                                 ]
-                        }]
+                        },
+                        {
+                            "x":45,
+                            "type":"FontClip",
+                            "searchKey":"FontClip,xueshu",
+                            "props":{"y":352,"x":9,"width":754,"var":"gongshu","value":"1299/1234","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"left"},
+                            "nodeParent":23,
+                            "label":"FontClip(gongshu)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":65,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Button",
+                            "searchKey":"Button,shengmingniu",
+                            "props":{"y":342,"x":87,"width":182,"var":"gongjiniu","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":23,
+                            "label":"Button(gongjiniu)",
+                            "isOpen":true,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "compId":66,
+                            "child":[
+                                {
+                                    "x":60,
+                                    "type":"Image",
+                                    "props":{"y":23,"x":62,"skin":"juese/shengzizi.png"},
+                                    "nodeParent":66,
+                                    "label":"Image",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":67,
+                                    "child":[
+                                        ]
+                                }]
+                        },
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"y":204,"x":10,"skin":"juese/gongji.png"},
+                            "nodeParent":23,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":70,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"FontClip",
+                            "searchKey":"FontClip,shengmingshu",
+                            "props":{"y":210,"x":69,"width":461,"var":"gongjijia","value":"+8000","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.25,"scaleX":0.25,"height":115,"align":"left"},
+                            "nodeParent":23,
+                            "label":"FontClip(gongjijia)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":71,
+                            "child":[
+                                ]
+                        }],
+                    "$HIDDEN":false
                 },
                 {
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":791,"x":510,"width":175,"skin":"juese/juese_hei.png","sizeGrid":"23,70,19,34","height":367,"alpha":0.5},
+                    "props":{"y":797,"x":543,"width":175,"skin":"juese/juese_hei.png","sizeGrid":"23,70,19,34","height":367,"alpha":0.5},
                     "nodeParent":49,
                     "label":"Image",
                     "isDirectory":false,
@@ -361,13 +440,14 @@
                     "hasChild":false,
                     "compId":38,
                     "child":[
-                        ]
+                        ],
+                    "$LOCKED":false
                 },
                 {
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":994,"x":511,"skin":"juese/juesekuai.png"},
+                    "props":{"y":1000,"x":544,"skin":"juese/juesekuai.png"},
                     "nodeParent":49,
                     "label":"Image",
                     "isOpen":false,
@@ -382,9 +462,9 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,jinengtubiao",
-                    "props":{"y":836,"x":509,"width":177,"var":"jinengtubiao","skin":"main/kawen.png","height":177},
+                    "props":{"y":842,"x":542,"width":177,"var":"jinengtubiao","skin":"main/kawen.png","height":177},
                     "nodeParent":49,
-                    "label":"jinengtubiao",
+                    "label":"Image(jinengtubiao)",
                     "isOpen":true,
                     "isDirectory":false,
                     "isAniNode":true,
@@ -397,9 +477,9 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label,jinengming",
-                    "props":{"y":797,"x":529,"width":133,"var":"jinengming","text":"技能名字","height":33,"fontSize":30,"color":"#f3e9e9","align":"center"},
+                    "props":{"y":803,"x":562,"width":133,"var":"jinengming","text":"技能名字","height":33,"fontSize":30,"color":"#f3e9e9","align":"center"},
                     "nodeParent":49,
-                    "label":"jinengming",
+                    "label":"Label(jinengming)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -411,7 +491,7 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label",
-                    "props":{"y":1039,"x":518,"wordWrap":true,"width":157,"text":"技能说明技能说明技能说明技能说明技能说明","height":114,"fontSize":24,"color":"#f3e9e9","align":"center"},
+                    "props":{"y":1045,"x":551,"wordWrap":true,"width":157,"text":"技能说明技能说明技能说明技能说明技能说明","height":114,"fontSize":24,"color":"#f3e9e9","align":"center"},
                     "nodeParent":49,
                     "label":"Label",
                     "isDirectory":false,
@@ -427,7 +507,7 @@
                     "searchKey":"Button,zuo",
                     "props":{"y":455,"x":119,"var":"zuo","stateNum":"1","skin":"main/btn_zuo.png","anchorY":0.5,"anchorX":0.5},
                     "nodeParent":49,
-                    "label":"zuo",
+                    "label":"Button(zuo)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -441,7 +521,7 @@
                     "searchKey":"Button,you",
                     "props":{"y":456,"x":641,"width":63,"var":"you","stateNum":"1","skin":"main/btn_zuo.png","scaleX":-1,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":49,
-                    "label":"you",
+                    "label":"Button(you)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -470,7 +550,7 @@
                     "searchKey":"Image,xuan",
                     "props":{"y":571,"x":246,"var":"xuan","skin":"juese/juese_yixuanze.png"},
                     "nodeParent":49,
-                    "label":"xuan",
+                    "label":"Image(xuan)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -526,7 +606,7 @@
                     "searchKey":"FontClip,shengmingshu",
                     "props":{"y":707,"x":205,"width":461,"var":"shengmingshu","value":"12990","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.3,"scaleX":0.3,"height":115,"align":"left"},
                     "nodeParent":49,
-                    "label":"shengmingshu",
+                    "label":"FontClip(shengmingshu)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -540,14 +620,15 @@
                     "searchKey":"FontClip,gongjishu",
                     "props":{"y":702.5,"x":496,"width":461,"var":"gongjishu","value":"12990","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.3,"scaleX":0.3,"height":115,"align":"left"},
                     "nodeParent":49,
-                    "label":"gongjishu",
+                    "label":"FontClip(gongjishu)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":57,
                     "child":[
                         ]
-                }]
+                }],
+            "$HIDDEN":false
         }],
     "animations":[
         {
