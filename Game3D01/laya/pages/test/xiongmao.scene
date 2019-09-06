@@ -448,6 +448,6 @@
             "name":"ani1",
             "id":1,
             "frameRate":24,
-            "action":0
+            "action":2
         }]
 }
