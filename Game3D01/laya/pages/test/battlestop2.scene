@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
-    "selecteID":23,
+    "selectedBox":19,
+    "selecteID":20,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":26,
+    "maxID":28,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -73,24 +73,9 @@
                 },
                 {
                     "x":30,
-                    "type":"Label",
-                    "searchKey":"Label",
-                    "props":{"y":192,"x":255,"width":239,"text":"已学会的能力","height":36,"fontSize":36,"color":"#ffffff","align":"center"},
-                    "nodeParent":23,
-                    "label":"Label",
-                    "isOpen":true,
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":6,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,btnPlay",
-                    "props":{"y":1099,"x":373,"width":296,"var":"btnPlay","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":927,"x":530,"width":296,"var":"btnPlay","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":23,
                     "label":"btnPlay",
                     "isOpen":true,
@@ -118,7 +103,7 @@
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,btnSound",
-                    "props":{"y":907,"x":198,"width":296,"var":"btnSound","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":720,"x":195,"width":296,"var":"btnSound","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":23,
                     "label":"btnSound",
                     "isOpen":true,
@@ -131,7 +116,7 @@
                             "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
-                            "props":{"y":29,"x":104,"texture":"bg/zhanting.png"},
+                            "props":{"y":39,"x":182,"texture":"bg/zhanting.png","scaleY":0.8,"scaleX":0.8},
                             "nodeParent":19,
                             "label":"Sprite",
                             "isDirectory":false,
@@ -146,7 +131,7 @@
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,btnHome",
-                    "props":{"y":907,"x":549,"width":296,"var":"btnHome","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":927,"x":195,"width":296,"var":"btnHome","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":23,
                     "label":"btnHome",
                     "isOpen":true,
@@ -166,6 +151,34 @@
                             "isAniNode":true,
                             "hasChild":false,
                             "compId":22,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button",
+                    "props":{"y":720,"x":541,"width":296,"stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":23,
+                    "label":"Button",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":26,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":29,"x":104,"texture":"bg/zhanting.png"},
+                            "nodeParent":26,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":27,
                             "child":[
                                 ]
                         }]

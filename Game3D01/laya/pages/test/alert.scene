@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
-    "selecteID":3,
+    "selectedBox":3,
+    "selecteID":15,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":15,
+    "maxID":16,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -131,20 +131,6 @@
                 {
                     "x":30,
                     "type":"Label",
-                    "searchKey":"Label,titleTxt",
-                    "props":{"y":31,"x":224,"width":151,"var":"titleTxt","text":"提示","height":48,"fontSize":48,"color":"#ffffff","bold":true,"align":"center"},
-                    "nodeParent":3,
-                    "label":"titleTxt",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":13,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Label",
                     "searchKey":"Label,txt2",
                     "props":{"y":180,"x":15,"width":570,"var":"txt2","text":"本局将不会产生任何收益。","height":40,"fontSize":36,"color":"#ffffff","bold":true,"align":"center"},
                     "nodeParent":3,
@@ -153,6 +139,20 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":14,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":19,"x":245,"texture":"main/biaotitishi.png"},
+                    "nodeParent":3,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":15,
                     "child":[
                         ]
                 }],
