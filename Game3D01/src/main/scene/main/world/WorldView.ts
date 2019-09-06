@@ -50,6 +50,8 @@ import WorldCell from "./WorldCell";
         this.list.renderHandler = new Laya.Handler(this, this.updateItem);
 
         this.on(Laya.Event.DISPLAY,this,this.onDis);
+
+        
     }
 
     private updateItem(cell: WorldCell, index: number): void  {

@@ -5,7 +5,7 @@ P 1DEC2F55 501.png
 P AAC7A5B6 501_1.png
 P 7AD4D7A8 502.png
 P C2D6F8F6 503.png
-P 766D284F andanlandian.png
+P D72614F6 andanlandian.png
 P CC65EFD8 BOSS.png
 P D1F104E5 btn_zhanting.png
 P 424233AD chibang.png
@@ -81,21 +81,26 @@ P 0611C8BB youtiao.png
 P 78C46E2D zhanlipin.png
 P 66C30337 zuotiao.png
 D juese
+P C3FED3FA btn_jia.png
+P F3E8992E gongji.png
 P C01251DC juese_di.png
 P 60794AED juese_hei.png
 P 6C19EF86 juese_jiagong.png
 P 635C7395 juese_jiaxue.png
 P B17E308C juese_lan.png
 P CEAC623A juese_tiaoshang.png
-P 252CF373 juese_tiaoxia.png
+P 97D6AC6C juese_tiaoxia.png
 P 9CF797EA juese_yixuanze.png
 P 123B6FB5 juese_zi.png
 P FE0517C5 juesekuai.png
+P A1FF323C shengming.png
+P 33585B43 shengzizi.png
 D loading
 P 874EF654 loadingClip.png
 D main
 P 6B073E82 action.png
 P 3159A1FA anniudian.png
+P E42E8A97 baoshi.png
 P 2DDABC23 biaoti.png
 P 9FAB6C72 biaotifuhuo.png
 P CE311540 biaotihong.png
@@ -113,6 +118,7 @@ P 00A43187 btn_hong.png
 P 738D77EF btn_huang.png
 P B8BD2231 btn_lan.png
 P 75B7C440 btn_lv.png
+P 7F96474A btn_zi.png
 P 429F2BC1 btn_zuo.png
 P 5CF7DEFA changhong.png
 P 533E8A4A clipshuzi.png
@@ -128,6 +134,8 @@ P 3AF7A488 greenFont.png
 P F211986B guangdian.png
 P 375AA97B haibo.png
 P 87C3577F hei.jpg
+P 0ABC9C61 jiangbei.png
+P B18F77C8 jiangbeiguang.png
 P 53735F2D jianhei.png
 P C913B447 jindutiao.png
 P BA6E98FF jindutiaolan.png
@@ -139,15 +147,18 @@ P 937BCEA4 jujue.png
 P B43729DD JYtian.png
 P 61A644DA kapai.png
 P F78AF3A9 kawen.png
+P CC20CE54 liubei.png
 P 3A3DCE15 maohao.png
 P 0178A633 PTtian.png
 P DF0111DA qing.png
 P 92C4F8F3 queding.png
 P 4070A1DA quxiao.png
 P 7912E984 redFont.png
+P 69A16447 sanbei.png
 P AD7FCD1D shamolvzhou.png
 P A88CEF17 shandianjia.png
 P DB7D6C33 shengji.png
+P 4DAD8819 shibei.png
 P 492175B9 shuaxin.png
 P 5C9A5072 shukuang.png
 P BFA5A81B SStian.png

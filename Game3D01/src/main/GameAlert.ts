@@ -23,7 +23,7 @@ import App from "../core/App";
 
     onShow(content:string,sureHandler:Laya.Handler,cancelHandler:Laya.Handler = null,content2:string = "",title:string = "提示"):void
     {
-        this.titleTxt.text = title;
+        //this.titleTxt.text = title;
         this.txt.text = content;
         this.txt2.text = content2;
         this.handler = sureHandler;

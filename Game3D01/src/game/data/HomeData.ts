@@ -1,6 +1,7 @@
 import IData from "./IData";
 import GameEvent from "../../main/GameEvent";
 import { TopUI } from "../../main/scene/main/MainUI";
+import Game from "../Game";
 
 export default class HomeData implements IData{
     
@@ -11,10 +12,33 @@ export default class HomeData implements IData{
     chapterId:number;
     mapIndex:number;
     level:number;
+    /**
+     * 金币
+     */
     coins:number;
+    /**
+     * 钻石
+     */
+    diamond:number = 0;
 
     public setData(data:any):void{
-
+        this.totalEnergy = data.totalEnergy;
+        this.maxEngergy = data.maxEngergy;
+        this.lastTime = data.lastTime;
+        this.curEnergy = data.curEnergy;
+        this.chapterId = data.chapterId;
+        this.mapIndex = data.mapIndex;
+        this.level = data.level;
+        this.coins = data.coins;
+        if( Date.now() >= this.lastTime){
+            this.curEnergy = this.totalEnergy;
+        } else {
+            let deltaTime:number = this.lastTime - Date.now();
+            let time:number = Math.floor(deltaTime / 1000);
+            let delta:number = Math.ceil(time / TopUI.TOTAL_TIME);
+            this.curEnergy = this.totalEnergy - delta;
+            console.log("Session剩余的时间", time , this.curEnergy);
+        }
     }
 
     /**
@@ -30,6 +54,13 @@ export default class HomeData implements IData{
         data.mapIndex = this.mapIndex;
         data.level = this.level;
         data.coins = this.coins;
+        if( Game.battleLoader.index > this.mapIndex ) {
+            data.mapIndex = Game.battleLoader.index;
+            console.log("存储最高层数",data.mapIndex);
+        }
+        data.coins += Game.addCoins;
+        this.coins = data.coins;
+        data.level = this.level;
     }
 
     /**
@@ -45,6 +76,7 @@ export default class HomeData implements IData{
         this.mapIndex = 0;
         this.level = 1;
         this.coins = 0;
+        this.diamond = 0;
     }
 
     /**
@@ -52,13 +84,37 @@ export default class HomeData implements IData{
      * @param gold 金币改变数量
      * @param type 操作类型 日志用
      */
-    public changeGold( gold:number , type:number = 0 ):boolean{
-        if( (this.coins + gold)  < 0 ){
+    public changeGold( type:GoldType , value:number , useType:number = 0 ):boolean{
+        let num = this.getGoldByType(type);
+        if( ( num  + value )  < 0 ){
             return false;
         }
-        this.coins += gold;
+        this.setGoldByType( type , value );
         Laya.stage.event( GameEvent.GOLD_CHANGE );
     }
 
+    public getGoldByType( type:GoldType ):number{
+        if( type == GoldType.GOLD ){
+            return this.coins;
+        }else if( type == GoldType.DIAMONG ){
+            return this.diamond;
+        }
+    }
 
+    public setGoldByType( type:GoldType , value:number ):void{
+        if( type == GoldType.GOLD ){
+            this.coins += value;
+        }else if( type == GoldType.DIAMONG ){
+            this.diamond += value;
+        }
+    }
+}
+
+export enum GoldType{
+    GOLD = 0,
+    DIAMONG = 1
+}
+
+export enum USE_GOLD_TYPE{
+    HERO_LV_ABILITY = 0
 }
