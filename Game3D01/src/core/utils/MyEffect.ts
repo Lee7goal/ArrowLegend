@@ -18,8 +18,7 @@ export default class MyEffect{
 
     public static clickEffect(sp:Laya.Sprite):void{
         let t = new Laya.Tween();
-        t.from( sp,{scaleX:0.9,scaleY:0.9},80);
+        let s = ( (sp.scaleX > 0) ? 1 : -1);
+        t.from( sp,{scaleX:0.9 * s,scaleY:0.9},80);
     }
-
-    
 }
