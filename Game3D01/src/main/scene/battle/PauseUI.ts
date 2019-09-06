@@ -6,6 +6,12 @@ import Game from "../../../game/Game";
         this.btnHome.clickHandler = new Laya.Handler(this,this.onHome);
         this.btnSound.clickHandler = new Laya.Handler(this,this.onSound);
         this.btnPlay.clickHandler = new Laya.Handler(this,this.onBattle);
+        this.btnyinxiao.clickHandler = new Laya.Handler(this,this.onMusic);
+    }
+
+    private onMusic():void
+    {
+        
     }
 
     private onHome():void
