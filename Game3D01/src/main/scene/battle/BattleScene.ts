@@ -196,6 +196,7 @@ export default class BattleScene extends Laya.Sprite {
 
         let sp: Laya.Sprite3D;
         var isHasBoss: boolean = false;
+        var bossEnemy:SysEnemy;
         var monster: Monster;
         let k: number = 0;
         for (let j = 0; j < GameBG.MAP_ROW; j++) {
@@ -218,6 +219,7 @@ export default class BattleScene extends Laya.Sprite {
                         monster.splitTimes = 1;
                         if (!isHasBoss) {
                             isHasBoss = monster.sysEnemy.isBoss == 1;
+                            bossEnemy = monster.sysEnemy;
                         }
                         // }
                     }
@@ -246,8 +248,7 @@ export default class BattleScene extends Laya.Sprite {
             }
         }
 
-        this._top.boss.visible = isHasBoss;
-        // this._top.boss.visible = true;
+        this._top.setBoss(isHasBoss,bossEnemy);
 
         Game.closeDoor();
 

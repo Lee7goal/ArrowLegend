@@ -20,6 +20,7 @@ import SysBuff from "../../main/sys/SysBuff";
 import BaseAI from "../ai/BaseAi";
 import GameBG from "../GameBG";
 import MemoryManager from "../../main/scene/battle/MemoryManager";
+import GameEvent from "../../main/GameEvent";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster_";
@@ -101,6 +102,10 @@ export default class Monster extends GamePro {
 
     public hurt(hurt: number, isCrit: boolean,isBuff:boolean = false): void {
         super.hurt(hurt, isCrit);
+        if(this.sysEnemy.isBoss)
+        {
+            Laya.stage.event(GameEvent.BOOS_BLOOD_UPDATE,hurt);
+        }
         if(isBuff)
         {
             return;

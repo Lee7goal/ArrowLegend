@@ -259,6 +259,7 @@ export default class GameMap0 extends Laya.Sprite {
             bool = true;
             this._isNpc = true;
             this.npcHitBox = null;
+            Laya.stage.event(Game.Event_SELECT_NEWSKILL);
         }
         return bool;
     }

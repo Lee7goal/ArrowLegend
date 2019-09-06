@@ -7,7 +7,10 @@ P 7AD4D7A8 502.png
 P C2D6F8F6 503.png
 P D72614F6 andanlandian.png
 P CC65EFD8 BOSS.png
-P D1F104E5 btn_zhanting.png
+P 1F51DEAA bosstiaoshang.png
+P 3F4334B6 bosstiaoxia.png
+P 3526A6C3 bosstouxiang.png
+P E9A68193 btn_zhanting.png
 P 424233AD chibang.png
 P 2D12C24A clip_dianjushu.png
 P A4F3ACA8 clip_huoxing.png
@@ -67,8 +70,8 @@ P A0D285B5 y5500.png
 P 3A067C42 yingzi.png
 P 51832849 yinxiao.png
 P B373647A yinyue.png
-P 159377D3 zhanting.png
-P 7813B739 zhanting1.png
+P 7813B739 zhanting_0.png
+P 159377D3 zhanting_1.png
 P A2122577 zhen.png
 D chengjiu
 P A557AC2B chengjiupai.png
@@ -106,6 +109,7 @@ D main
 P 6B073E82 action.png
 P 3159A1FA anniudian.png
 P E42E8A97 baoshi.png
+P FE7551CB baoshi2.png
 P 2DDABC23 biaoti.png
 P 9FAB6C72 biaotifuhuo.png
 P CE311540 biaotihong.png

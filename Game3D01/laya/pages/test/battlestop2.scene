@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":23,
-    "selecteID":26,
+    "selectedBox":26,
+    "selecteID":27,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
@@ -114,11 +114,11 @@
                     "child":[
                         {
                             "x":45,
-                            "type":"Sprite",
-                            "searchKey":"Sprite",
-                            "props":{"y":39,"x":173,"texture":"bg/zhanting.png","scaleY":0.8,"scaleX":0.8},
+                            "type":"Image",
+                            "searchKey":"Image,musicImg",
+                            "props":{"y":39,"x":173,"var":"musicImg","skin":"bg/zhanting_0.png","scaleY":0.8,"scaleX":0.8},
                             "nodeParent":19,
-                            "label":"Sprite",
+                            "label":"musicImg",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -186,9 +186,23 @@
                             "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
-                            "props":{"y":39,"x":177,"texture":"bg/zhanting.png","scaleY":0.8,"scaleX":0.8},
+                            "props":{"y":43,"x":76,"texture":"bg/yinxiao.png"},
                             "nodeParent":26,
                             "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":29,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image,soundImg",
+                            "props":{"y":39,"x":177,"var":"soundImg","skin":"bg/zhanting_0.png","scaleY":0.8,"scaleX":0.8},
+                            "nodeParent":26,
+                            "label":"soundImg",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -196,20 +210,6 @@
                             "child":[
                                 ]
                         }]
-                },
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":684,"x":469,"texture":"bg/yinxiao.png"},
-                    "nodeParent":23,
-                    "label":"Sprite",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":29,
-                    "child":[
-                        ]
                 }]
         }],
     "animations":[

@@ -212,6 +212,7 @@ export default class HeroAI extends GameAI {
     public exeAI(pro: GamePro): boolean {
         //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
+        Game.bg.checkNpc();
 
         if (Game.hero.isIce)  {
             return;
