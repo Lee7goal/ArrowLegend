@@ -10,6 +10,9 @@ export default class TalentData implements IData {
     }
 
     setData(data:any):void{
+        if( data.talent == null ){
+            this.initData(data);
+        }
         let arr = data.talent.split(",");
         for( let k of arr ){
             this.talentArr.push( parseInt(k) );
@@ -29,6 +32,5 @@ export default class TalentData implements IData {
 
     public lvUp( id:number ):void{
         let lv = this.talentArr[id-1];
-        
     }
 }
