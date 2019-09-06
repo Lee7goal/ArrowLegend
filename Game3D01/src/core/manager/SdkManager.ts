@@ -190,7 +190,7 @@ export default class SdkManager {
             h.runWith(1);
             return;
         }
-        if( this.adStat == 2 ){
+        if( this.adStat == 2 || this.ad == null ){
             this.share2( h );
             return;
         }
