@@ -3,9 +3,10 @@ import App from "../../core/App";
 import SysRoleBase from "../../main/sys/SysRolebase";
 import SysRoleUp from "../../main/sys/SysRoleUp";
 import Session from "../../main/Session";
-import { GoldType, USE_GOLD_TYPE } from "./HomeData";
+import { GoldType } from "./HomeData";
 import FlyUpTips from "../../main/FlyUpTips";
 import GameEvent from "../../main/GameEvent";
+import { GOLD_CHANGE_TYPE } from "../../UseGoldType";
 
 /**
  * 角色类 有女海盗 有坦克车 等等
@@ -44,7 +45,8 @@ export default class HeroData implements IData{
         let lv = this.heroData[heroId][type];
         let sys:SysRoleUp = SysRoleUp.getSysRole( heroId , lv );
         let cost = sys.getCost(type);
-        let res = Session.homeData.changeGold( GoldType.DIAMONG ,  cost , USE_GOLD_TYPE.HERO_LV_ABILITY );
+        let goldType = sys.getCostType(type);
+        let res = Session.homeData.changeGold( goldType ,  -cost , GOLD_CHANGE_TYPE.HERO_LV_ABILITY );
         if( res == false ){
             return false;
         }

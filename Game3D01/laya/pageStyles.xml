@@ -47,4 +47,9 @@
    <item name="game/viewbg.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/talent_1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/TalentCell.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/juese_tishi.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/Light.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/GetItemDialog.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/GetItemCell.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/GoldView.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

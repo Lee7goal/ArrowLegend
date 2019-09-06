@@ -2,6 +2,7 @@ import IData from "./IData";
 import GameEvent from "../../main/GameEvent";
 import { TopUI } from "../../main/scene/main/MainUI";
 import Game from "../Game";
+import { GOLD_CHANGE_TYPE } from "../../UseGoldType";
 
 export default class HomeData implements IData{
     
@@ -19,7 +20,8 @@ export default class HomeData implements IData{
     /**
      * 钻石
      */
-    diamond:number = 0;
+    redDiamond:number = 0;
+    blueDiamond:number = 0;
 
     public setData(data:any):void{
         this.totalEnergy = data.totalEnergy;
@@ -76,7 +78,8 @@ export default class HomeData implements IData{
         this.mapIndex = 0;
         this.level = 1;
         this.coins = 0;
-        this.diamond = 0;
+        this.redDiamond = 0;
+        this.blueDiamond = 0;
     }
 
     /**
@@ -84,37 +87,39 @@ export default class HomeData implements IData{
      * @param gold 金币改变数量
      * @param type 操作类型 日志用
      */
-    public changeGold( type:GoldType , value:number , useType:number = 0 ):boolean{
+    public changeGold( type:GoldType , value:number , useType:GOLD_CHANGE_TYPE = 0 ):boolean{
         let num = this.getGoldByType(type);
         if( ( num  + value )  < 0 ){
             return false;
         }
         this.setGoldByType( type , value );
         Laya.stage.event( GameEvent.GOLD_CHANGE );
+        return true;
     }
 
     public getGoldByType( type:GoldType ):number{
         if( type == GoldType.GOLD ){
             return this.coins;
-        }else if( type == GoldType.DIAMONG ){
-            return this.diamond;
+        }else if( type == GoldType.RED_DIAMONG ){
+            return this.redDiamond;
+        }else if( type == GoldType.BLUE_DIAMONG ){
+            return this.blueDiamond;
         }
     }
 
     public setGoldByType( type:GoldType , value:number ):void{
         if( type == GoldType.GOLD ){
             this.coins += value;
-        }else if( type == GoldType.DIAMONG ){
-            this.diamond += value;
+        }else if( type == GoldType.RED_DIAMONG ){
+            this.redDiamond += value;
+        }else if( type == GoldType.BLUE_DIAMONG ){
+            this.blueDiamond += value;
         }
     }
 }
 
 export enum GoldType{
     GOLD = 0,
-    DIAMONG = 1
-}
-
-export enum USE_GOLD_TYPE{
-    HERO_LV_ABILITY = 0
+    RED_DIAMONG = 1,
+    BLUE_DIAMONG = 2
 }

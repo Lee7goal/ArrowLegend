@@ -20,4 +20,6 @@ export default class MyEffect{
         let t = new Laya.Tween();
         t.from( sp,{scaleX:0.9,scaleY:0.9},80);
     }
+
+    
 }

@@ -1,5 +1,6 @@
 import { HeroLvType } from "../../game/data/HeroData";
 import App from "../../core/App";
+import { GoldType } from "../../game/data/HomeData";
 
 export default class SysRoleUp{
     public static NAME:string = 'sys_roleup.txt';
@@ -16,6 +17,14 @@ export default class SysRoleUp{
             return this.costAtk;
         }else if( type == HeroLvType.HP ){
             return this.costHp;
+        }
+    }
+
+    public getCostType( type:HeroLvType ):number{
+        if( type == HeroLvType.ATK ){
+            return GoldType.BLUE_DIAMONG;
+        }else if( type == HeroLvType.HP ){
+            return GoldType.RED_DIAMONG;
         }
     }
 
