@@ -25,7 +25,6 @@ export default class Hero extends GamePro {
         this.unBlocking = true;
         this.setGameMove(new PlaneGameMove());
         this.setGameAi(new HeroAI());
-
         // this.busi = true;
     }
 
@@ -184,6 +183,10 @@ export default class Hero extends GamePro {
         super.updateUI();
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 120);
         this._footCircle && this._footCircle.pos(this.hbox.cx, this.hbox.cy);
+        if(this._footCircle)
+        {
+            this._footCircle.dir.rotation = this.face2d * 180 / Math.PI + 90;
+        }
     }
 
     private onJumpDown(): void {

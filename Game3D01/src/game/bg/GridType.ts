@@ -1,3 +1,5 @@
+import BattleFlagID from "../../main/scene/BattleFlagID";
+
 export default class GridType {
     /**是否是水点 */
     public static isRiverPoint(type:Number):boolean
@@ -42,14 +44,13 @@ export default class GridType {
 
     public static isWall(type:Number):boolean
     {
-        return type>=6000 && type<6500;
+        return (type >= 1000 && type <= 5500);
     }
 
-    public static isTong(type:Number):boolean
+    public static isCube(type:Number):boolean
     {
-        return type>=6500 && type<7000;
+        return (type >= 1000 && type <= 5500) || (type >=1 && type <=10);
     }
-
 
     /**是否是栅栏 */
     public static isFence(type:Number):boolean
@@ -79,7 +80,7 @@ export default class GridType {
 
     public static isNpc(type:number):boolean
     {
-        return type == 1000 ||type == 1001 || type == 1002 || type == 1003;
+        return type == BattleFlagID.ANGLE || type == BattleFlagID.OTHER_NPC;
     }
 
 }

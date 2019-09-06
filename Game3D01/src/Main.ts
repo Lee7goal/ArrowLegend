@@ -71,7 +71,7 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		if (GameConfig.stat) Laya.Stat.show();
+		// if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
@@ -228,9 +228,9 @@ class Main {
 		REG("HIT_" + HitType.hit3, GameScaleAnimator4);
 		REG("HIT_" + HitType.hit4, GameScaleAnimator3);
 		//NPC
-		// REG("NPC1001", NPC_1001);
-		// REG("NPC1002", NPC_1002);
-		// REG("NPC1003", NPC_1003);
+		REG("NPC1001", NPC_1001);
+		REG("NPC1002", NPC_1002);
+		REG("NPC1003", NPC_1003);
 
 		// REG("NPCVIEW1001", NPC_1001_view);
 		// REG("NPCVIEW1002", NPC_1002_view);

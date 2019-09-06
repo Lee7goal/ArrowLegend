@@ -74,7 +74,7 @@
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/Mini Legion Human HP/Animations/SiegeEngine/SiegeEngine_GetHit-GetHit.lani"
+										"clipPath":"Assets/Mini Legion Human HP/Animations/SiegeEngine/SiegeEngine_GetHit-TakeDamage.lani"
 									},
 									{
 										"name":"Die",
@@ -151,7 +151,7 @@
 							"layer":0,
 							"position":[
 								0,
-								2.48,
+								0,
 								0
 							],
 							"rotation":[

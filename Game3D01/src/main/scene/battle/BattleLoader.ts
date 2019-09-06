@@ -19,8 +19,6 @@ import Coin from "../../../game/player/Coin";
 import Monster from "../../../game/player/Monster";
 import Hero from "../../../game/player/Hero";
 import { GameAI } from "../../../game/ai/GameAI";
-import GameRube from "./GameRube";
-import GameTong from "./GameTong";
 import GameFence from "./GameFence";
 import GameEvent from "../../GameEvent";
 import MonsterBullet from "../../../game/player/MonsterBullet";
@@ -102,6 +100,7 @@ export default class BattleLoader {
         let arr:SysMap[] = App.tableManager.getTable(SysMap.NAME);
         let size = arr.length;
         this.configUrls.length = 0;
+        // this.configUrls.push("h5/mapConfig/1001.json");
         for(var i = 0; i < size; i++)
         {
             let sysMap:SysMap = arr[i];
@@ -192,11 +191,11 @@ export default class BattleLoader {
             if (this._index > maxCeng) {
                 this._index = 1;
             }
-            // this._index = 1
+            // this._index = 5
             this._mapId = Session.homeData.chapterId * 1000 + this._index;
             this._configId = this.configIds[this._index - 1];
         }
-        // this._configId = 100801
+        // this._configId = 101003
         console.log("当前地图", this._mapId, this._configId);
 
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");
@@ -239,8 +238,19 @@ export default class BattleLoader {
 
     private loadHeroRes(): void  {
         let pubRes = [
+            "h5/wall/1000/monster.lh",
+            "h5/wall/1500/monster.lh",
+            "h5/wall/2000/monster.lh",
+            "h5/wall/2500/monster.lh",
+            "h5/wall/3000/monster.lh",
+            "h5/wall/3500/monster.lh",
+            "h5/wall/4000/monster.lh",
+            "h5/wall/4500/monster.lh",
+            "h5/wall/5000/monster.lh",
+            "h5/wall/5500/monster.lh",
+
             "h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",
-            "h5/tong/wall.lh","h5/wall/wall.lh","h5/zhalan/hero.lh","h5/effects/door/monster.lh",
+            "h5/zhalan/hero.lh","h5/effects/door/monster.lh",
             "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh",
             "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];

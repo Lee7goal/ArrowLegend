@@ -47,9 +47,16 @@
    <item name="game/viewbg.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/talent_1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/TalentCell.scene" props="" ifExport="内嵌模式" aName=""/>
+<<<<<<< HEAD
    <item name="test/juese_tishi.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/Light.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/GetItemDialog.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/GetItemCell.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/GoldView.scene" props="" ifExport="内嵌模式" aName=""/>
+=======
+   <item name="game/battleIndexBox.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/battleLvUI.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/xiongmao1.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/xiongmao.scene" props="" ifExport="内嵌模式" aName=""/>
+>>>>>>> 301fcd15ac778bfda3d343ac9a31a70ef608c20e
 </page>

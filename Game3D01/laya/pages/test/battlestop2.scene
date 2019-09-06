@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":19,
-    "selecteID":20,
+    "selectedBox":23,
+    "selecteID":26,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":28,
+    "maxID":30,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -88,7 +88,7 @@
                             "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
-                            "props":{"y":31,"x":125,"texture":"bg/sanjiao.png"},
+                            "props":{"y":37,"x":89,"texture":"bg/sanjiao.png"},
                             "nodeParent":17,
                             "label":"Sprite",
                             "isDirectory":false,
@@ -102,10 +102,10 @@
                 {
                     "x":30,
                     "type":"Button",
-                    "searchKey":"Button,btnSound",
-                    "props":{"y":720,"x":195,"width":296,"var":"btnSound","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "searchKey":"Button,btnMusic",
+                    "props":{"y":720,"x":195,"width":296,"var":"btnMusic","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":23,
-                    "label":"btnSound",
+                    "label":"btnMusic",
                     "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
@@ -116,13 +116,27 @@
                             "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
-                            "props":{"y":39,"x":182,"texture":"bg/zhanting.png","scaleY":0.8,"scaleX":0.8},
+                            "props":{"y":39,"x":173,"texture":"bg/zhanting.png","scaleY":0.8,"scaleX":0.8},
                             "nodeParent":19,
                             "label":"Sprite",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
                             "compId":20,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":43,"x":69,"texture":"bg/yinyue.png"},
+                            "nodeParent":19,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":28,
                             "child":[
                                 ]
                         }]
@@ -144,7 +158,7 @@
                             "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
-                            "props":{"y":29,"x":109,"texture":"bg/huijia.png"},
+                            "props":{"y":32,"x":86.5,"texture":"bg/huijia.png"},
                             "nodeParent":21,
                             "label":"Sprite",
                             "isDirectory":false,
@@ -158,10 +172,10 @@
                 {
                     "x":30,
                     "type":"Button",
-                    "searchKey":"Button",
-                    "props":{"y":720,"x":541,"width":296,"stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
+                    "searchKey":"Button,btnSound",
+                    "props":{"y":720,"x":541,"width":296,"var":"btnSound","stateNum":"1","skin":"main/btn_huang.png","sizeGrid":"0,22,0,22","height":157,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":23,
-                    "label":"Button",
+                    "label":"btnSound",
                     "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
@@ -172,7 +186,7 @@
                             "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
-                            "props":{"y":29,"x":104,"texture":"bg/zhanting.png"},
+                            "props":{"y":39,"x":177,"texture":"bg/zhanting.png","scaleY":0.8,"scaleX":0.8},
                             "nodeParent":26,
                             "label":"Sprite",
                             "isDirectory":false,
@@ -182,6 +196,20 @@
                             "child":[
                                 ]
                         }]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":684,"x":469,"texture":"bg/yinxiao.png"},
+                    "nodeParent":23,
+                    "label":"Sprite",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":29,
+                    "child":[
+                        ]
                 }]
         }],
     "animations":[
