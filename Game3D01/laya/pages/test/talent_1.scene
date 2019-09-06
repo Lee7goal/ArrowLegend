@@ -1,11 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
+    "selectedBox":26,
+    "selecteID":6,
     "searchKey":"View",
-    "props":{"width":204,"sceneColor":"#000000","height":163},
+    "props":{"width":231,"sceneColor":"#000000","height":179},
     "nodeParent":-1,
-    "maxID":10,
+    "maxID":29,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -15,102 +16,135 @@
     "child":[
         {
             "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite",
-            "props":{"y":16.5,"x":0,"texture":"tianfu/pan.png"},
-            "nodeParent":2,
-            "label":"Sprite",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite,icon",
-            "props":{"y":22.5,"x":7.5,"var":"icon","texture":"tianfu/icon1.jpg"},
-            "nodeParent":2,
-            "label":"icon",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":4,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Image",
-            "searchKey":"Image,tiao2",
-            "props":{"y":120.5,"x":5.5,"width":184,"var":"tiao2","skin":"juese/juese_tiaoshang.png","height":31},
+            "searchKey":"Image",
+            "props":{"y":19,"x":18,"skin":"tianfu/pan.png"},
             "nodeParent":2,
-            "label":"tiao2",
+            "label":"Image",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":5,
+            "compId":27,
             "child":[
                 ],
+            "$LOCKED":false,
             "$HIDDEN":false
         },
         {
             "x":15,
-            "type":"Label",
-            "searchKey":"Label,jinengming",
-            "props":{"y":57.5,"x":103.5,"width":89,"var":"jinengming","text":"技能名","strokeColor":"#351d03","stroke":3,"height":33,"fontSize":26,"color":"#f3e9e9","align":"left"},
+            "type":"Image",
+            "searchKey":"Image,wenHao",
+            "props":{"y":22,"x":23,"width":186,"var":"wenHao","skin":"tianfu/dang.jpg","height":132},
             "nodeParent":2,
-            "label":"jinengming",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":6,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"FontClip",
-            "searchKey":"FontClip,qianshu2",
-            "props":{"y":125.5,"x":10.5,"width":881,"var":"qianshu2","value":"1299/1300","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"center"},
-            "nodeParent":2,
-            "label":"qianshu2",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":7,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite,dang",
-            "props":{"y":21,"x":5,"width":186,"var":"dang","texture":"tianfu/dang.jpg","height":132},
-            "nodeParent":2,
-            "label":"dang",
+            "label":"wenHao",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":9,
             "child":[
-                ]
+                ],
+            "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "searchKey":"Box,infoBox",
+            "props":{"y":2,"x":21,"width":200,"visible":false,"var":"infoBox","height":164},
+            "nodeParent":2,
+            "label":"infoBox",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":26,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite,icon",
+                    "props":{"y":23.5,"x":6,"var":"icon","texture":"tianfu/icon1.jpg"},
+                    "nodeParent":26,
+                    "label":"icon",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":4,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,tiao2",
+                    "props":{"y":120.5,"x":5,"width":184,"var":"tiao2","skin":"juese/juese_tiaoshang.png","height":31},
+                    "nodeParent":26,
+                    "label":"tiao2",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":5,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,jinengming",
+                    "props":{"y":57.5,"x":103,"width":89,"var":"jinengming","text":"技能名","strokeColor":"#351d03","stroke":3,"height":33,"fontSize":26,"color":"#f3e9e9","align":"left"},
+                    "nodeParent":26,
+                    "label":"jinengming",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":6,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"FontClip",
+                    "searchKey":"FontClip,qianshu2",
+                    "props":{"y":125.5,"x":9,"width":881,"var":"qianshu2","value":"1299/1300","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"center"},
+                    "nodeParent":26,
+                    "label":"qianshu2",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":7,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,sheng",
+                    "props":{"y":24.5,"x":182,"var":"sheng","skin":"main/juese_sheng.png","anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":26,
+                    "label":"sheng",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":8,
+                    "child":[
+                        ]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,sheng",
-            "props":{"y":24.5,"x":182.5,"var":"sheng","skin":"main/juese_sheng.png","anchorY":0.5,"anchorX":0.5},
+            "searchKey":"Image,select",
+            "props":{"y":-1,"x":0,"width":231,"visible":false,"var":"select","skin":"tianfu/xuanzhong1.png","sizeGrid":"57,40,49,42","height":179},
             "nodeParent":2,
-            "label":"sheng",
+            "label":"select",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":8,
+            "compId":28,
             "child":[
-                ]
+                ],
+            "$HIDDEN":true
         }],
     "animations":[
         {

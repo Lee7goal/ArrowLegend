@@ -56,10 +56,9 @@ export default class TableManager {
 					var value: String = propary[j];
 					if (typeof now === 'number') {
 						//在as里 直接给int赋值 他会转成int 但是在js里 虽然类型声明的是int型 但赋值string的话 还是string
-						if (value == null || value == "") {
-							now = 0;
-						} else {
-							now = (typeof now === 'number') ? parseInt(value + "") : parseFloat(value + "");
+						now = parseInt(value + "");
+						if( (now + "") != value ){
+							now = parseFloat( value + "" );
 						}
 					} else {
 						now = value;

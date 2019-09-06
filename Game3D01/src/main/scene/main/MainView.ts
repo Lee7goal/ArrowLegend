@@ -25,6 +25,7 @@ export default class MainView extends Laya.Box {
     private curIndex: number;
     public set selectIndex(index: number)  {
         let view: Laya.View = this.views[index];
+        view.removeSelf();
         this.content.addChild(view);
         if (this.curIndex != null)  {
             var xx:number = index > this.curIndex ? GameConfig.width : -GameConfig.width;

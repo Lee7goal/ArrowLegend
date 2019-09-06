@@ -2,6 +2,11 @@ import HomeData from "../game/data/HomeData";
 import MainUI, { TopUI } from "./scene/main/MainUI";
 import SenderHttp from "../net/SenderHttp";
 import Game from "../game/Game";
+import TalentData from "../game/data/TalentData";
+import IData from "../game/data/IData";
+import UserData from "../game/data/UserData";
+import TaskData from "../game/data/TaskData";
+import GameEvent from "./GameEvent";
 
 export default class Session{
     static SKEY:string;
@@ -9,6 +14,17 @@ export default class Session{
     static gameData:any = {};
 
     static homeData:HomeData = new HomeData();
+    static talentData:TalentData = new TalentData();
+    static userData:UserData = new UserData();
+    static taskData:TaskData = new TaskData();
+
+    static IDataArr:Array<IData> = [];
+
+    public static init():void{
+        Session.IDataArr.push( Session.talentData );
+        Session.IDataArr.push( Session.taskData );
+        Session.IDataArr.push( Session.userData );
+    }
 
     static saveData():void
     {
@@ -27,6 +43,10 @@ export default class Session{
         Session.homeData.coins = Session.gameData.coins;
         Session.gameData.level = Session.homeData.level;
 
+        for( let i of Session.IDataArr ){
+            i.saveData( Session.gameData );
+        }
+
         SenderHttp.create().send();
     }
 
@@ -35,6 +55,11 @@ export default class Session{
         if(str != "" && str != "0" )
         {
             Session.gameData = JSON.parse(str);
+
+            for( let i of Session.IDataArr ){
+                i.setData( Session.gameData );
+            }
+
             Session.homeData.totalEnergy = Session.gameData.totalEnergy;
             Session.homeData.maxEngergy = Session.gameData.maxEngergy;
             Session.homeData.lastTime = Session.gameData.lastTime;
@@ -59,25 +84,14 @@ export default class Session{
         }
         else
         {
-            Session.gameData = {};
-
-            Session.homeData.totalEnergy = TopUI.MAX_ENERGY;
-            Session.homeData.maxEngergy = TopUI.MAX_ENERGY;
-            Session.homeData.curEnergy = Session.homeData.totalEnergy;
-            Session.homeData.lastTime = 0;
-            Session.homeData.chapterId = 1;
-            Session.homeData.mapIndex = 0;
-            Session.homeData.level = 1;
-            Session.homeData.coins = 0;
-
-            Session.gameData.curEnergy = Session.homeData.curEnergy;
-            Session.gameData.maxEngergy = Session.homeData.maxEngergy;
-            Session.gameData.lastTime = Session.homeData.lastTime;
-            Session.gameData.totalEnergy = Session.homeData.totalEnergy;
-            Session.gameData.chapterId = Session.homeData.chapterId;
-            Session.gameData.mapIndex = Session.homeData.mapIndex;
-            Session.gameData.level = Session.homeData.level;
-            Session.gameData.coins = Session.homeData.coins;
+            Laya.stage.once(GameEvent.CONFIG_OVER ,null , Session.configFun );
         }
+    }
+
+    private static configFun():void{
+        for( let i of Session.IDataArr ){
+            i.initData( Session.gameData );
+        }
+        this.saveData();
     }
 }
