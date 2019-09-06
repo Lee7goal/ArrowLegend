@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Dialog",
-    "selectedBox":2,
-    "selecteID":27,
+    "selectedBox":28,
+    "selecteID":31,
     "searchKey":"Dialog",
     "props":{"width":750,"sceneColor":"#b0b0b0","height":418},
     "nodeParent":-1,
@@ -137,26 +137,12 @@
             "nodeParent":2,
             "label":"indexBox",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":28,
             "child":[
-                {
-                    "x":30,
-                    "type":"UIView",
-                    "source":"game/battleIndexBox.scene",
-                    "searchKey":"UIView",
-                    "props":{"visible":false},
-                    "nodeParent":28,
-                    "label":"UIView",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":31,
-                    "child":[
-                        ]
-                }]
+                ]
         },
         {
             "x":15,
