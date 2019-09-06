@@ -23,8 +23,6 @@ export default class GameMap0 extends Laya.Sprite {
     Fharr: GameHitBox[];//碰撞伤害组
 
     Flyharr: GameHitBox[];//飞行碰撞组
-    /**地刺 */
-    Thornarr:GameHitBox[];
 
 
     endRowNum:number = 0;
@@ -57,7 +55,6 @@ export default class GameMap0 extends Laya.Sprite {
         this.Hharr = [];
         this.Fharr = [];
         this.Flyharr = [];
-        this.Thornarr = [];
         this.info = {};
 
         this.map = {};
@@ -121,8 +118,7 @@ export default class GameMap0 extends Laya.Sprite {
                 let key: number = GameBG.arr0[k];
                 // if (k < GameBG.arr0.length) {
                     this.info[j + "_" + i] = key;
-                    if (GridType.isWall(key)
-                        || GridType.isTong(key)) {
+                    if (GridType.isWall(key)) {
                         if (this.map[key]) {
                             hb = this.map[key];
                             hb.setRq(hb.x, hb.y, x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
@@ -151,12 +147,6 @@ export default class GameMap0 extends Laya.Sprite {
                         hb.setXY(x - GameBG.ww, y);
                         this.Wharr.push(hb);
                     }
-                    else if(GridType.isThorn(key))
-                    {
-                        hb = new GameHitBox(GameBG.ww, GameBG.ww);
-                        hb.setXY(x, y);
-                        this.Thornarr.push(hb);
-                    }
                     else if(GridType.isNpc(key))
                     {
                         this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww * 4);
@@ -183,7 +173,7 @@ export default class GameMap0 extends Laya.Sprite {
                 var y = j * ww;
                 // if (k < GameBG.arr0.length) {
                     let key = GameBG.arr0[k];
-                    if (GridType.isWall(GameBG.arr0[k]) || GridType.isTong(GameBG.arr0[k])) {
+                    if (GridType.isWall(GameBG.arr0[k])) {
                         if (this.Amap[key]) {
                             hb = this.Amap[key];
                             hb.setVV(hb.x, hb.y, x + GameBG.ww - hb.x, y + GameBG.ww - hb.y);
@@ -292,10 +282,6 @@ export default class GameMap0 extends Laya.Sprite {
         this.graphics.clear();
         for (let i = 0; i < this.Wharr.length; i++) {
             var hb = this.Wharr[i];
-            this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
-        }
-        for (let i = 0; i < this.Thornarr.length; i++) {
-            var hb = this.Thornarr[i];
             this.graphics.drawRect(hb.left, hb.top, hb.ww, hb.hh, null, 0xff0000);
         }
     }

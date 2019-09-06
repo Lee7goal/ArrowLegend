@@ -27,11 +27,11 @@ import SelectNewSkill from "./SelectNewSkill";
 import SysSkill from "../../sys/SysSkill";
 import Session from "../../Session";
 import RebornView from "./gameOver/RebornView";
-import GameRube from "./GameRube";
+import GameCube from "./GameCube";
 import GameFence from "./GameFence";
-import GameTong from "./GameTong";
 import SysMap from "../../sys/SysMap";
 import GameEvent from "../../GameEvent";
+import GameThorn from "../../../game/GameThorn";
 export default class BattleScene extends Laya.Sprite {
 
     private _top: TopUI;
@@ -84,6 +84,8 @@ export default class BattleScene extends Laya.Sprite {
         Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
 
         Laya.stage.on(GameEvent.MEMORY_WARNING,this,this.onRelease);
+
+        // this.on(Laya.Event.UNDISPLAY,this,this.unDis);
     }
 
     private onRelease():void
@@ -158,13 +160,16 @@ export default class BattleScene extends Laya.Sprite {
     init(): void {
         // Game.camera.transform.localPositionZ = 0;
         // Game.camera.transform.localPositionX = 0;
-        GameRube.recover();
+        Game.playBattleMusic();
+        GameCube.recover();
         GameFence.recover();
+        GameThorn.recover();
 
         Session.saveData();
         Game.reset();
         this._top.updateCoins();
         this._top.updateExp();
+        this._top.updateIndex(Game.battleLoader.index);
         if (!Game.executor) {
             Game.executor = new GameExecut();
             CustomShaderff00.ff00;
@@ -196,11 +201,8 @@ export default class BattleScene extends Laya.Sprite {
             for (let i = 0; i < GameBG.MAP_COL; i++) {
                 let type: number = GameBG.arr0[k];
                 // if (k < GameBG.arr0.length) {
-                    if ((GridType.isWall(type) || (type == 1))) {
-                        GameRube.getOne(GameBG.get3D(i, j));//墙
-                    }
-                    else if ((GridType.isTong(type) || (type == 2))) {
-                        GameTong.getOne(GameBG.get3D(i, j));//酒桶
+                    if (GridType.isCube(type)) {
+                        GameCube.getOne(GameBG.get3D(i, j),type);//墙
                     }
                     else if (GridType.isFence(type)) {
                         GameFence.getOne(GameBG.get3D(i, j));//栅栏
@@ -241,6 +243,9 @@ export default class BattleScene extends Laya.Sprite {
                 k++;
             }
         }
+
+        this._top.boss.visible = isHasBoss;
+        this._top.boss.visible = true;
 
         Game.closeDoor();
 

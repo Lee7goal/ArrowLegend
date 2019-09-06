@@ -3,14 +3,26 @@ import Game from "../../../game/Game";
 import SysLevel from "../../sys/SysLevel";
 import DisplayUtils, { MaskObj } from "../../../core/utils/DisplayUtils";
 import App from "../../../core/App";
+import SysMap from "../../sys/SysMap";
+import Session from "../../Session";
     export default class TopUI extends ui.test.battleUI {
     
+    private maskSpr:Laya.Sprite = new Laya.Sprite();
+    private _indexBox:IndexBox = new IndexBox();
     constructor() { 
         super();
         Laya.stage.on(Game.Event_COINS,this,this.updateCoins);
         Laya.stage.on(Game.Event_EXP,this,this.updateExp);
 
+        this.indexBox.addChild(this._indexBox);
+        this._indexBox.init();
+
         this.y = App.top + 60;
+    }
+
+    updateIndex(index:number):void
+    {
+        this._indexBox.update(index);
     }
 
     private lastWidth:number = 0;
@@ -29,7 +41,7 @@ import App from "../../../core/App";
         Game.hero.playerData.level = lv;
         if(!this.isTwo)
         {
-            this.shuzi.text = "" + Game.hero.playerData.level;
+            // this.shuzi.text = "" + Game.hero.playerData.level;
         }
         
 
@@ -48,7 +60,7 @@ import App from "../../../core/App";
             {
                 this.lastWidth = 0;
                 this.isTwo = false;
-                this.shuzi.text = "" + Game.hero.playerData.level;
+                // this.shuzi.text = "" + Game.hero.playerData.level;
             }
         }
         else
@@ -60,7 +72,11 @@ import App from "../../../core/App";
             }
         }
         this.lastWidth = Math.max(1,this.lastWidth);
-        this.lvBar.scrollRect = new Laya.Rectangle(0,0,this.lvBar.width,this.lastWidth);
+        // this.lvBar.scrollRect = new Laya.Rectangle(0,this.lvBar.height,this.lvBar.width,-this.lastWidth);
+
+        this.maskSpr.graphics.clear();
+        this.maskSpr.graphics.drawRect(0,this.lvBar.height - this.lastWidth,this.lvBar.width,this.lastWidth,"#fff000");
+        this.lvBar.mask = this.maskSpr;
     }
 
     updateCoins():void
@@ -73,4 +89,76 @@ import App from "../../../core/App";
         Game.state = 0;
         return super.removeSelf();
     }
+}
+
+
+export class IndexBox extends ui.game.battleIndexBoxUI
+{
+    private _cellList:IndexCell[] = [];
+    constructor()
+    {
+        super();
+        this.scrollRect = new Laya.Rectangle(0,0,this.width,this.height);
+    }
+
+    init():void
+    {
+        this._cellList.length = 0;
+        let max:number = SysMap.getTotal(Session.homeData.chapterId);
+        for(let i = 0; i < max; i++)
+        {
+            let cell:IndexCell = new IndexCell();
+            cell.update(i + 1);
+            this.box.addChild(cell);
+            cell.x = 185 + i * 150;
+            cell.y = 55;
+            this._cellList.push(cell);
+        }
+    }
+
+    private _isInit:boolean = false;
+    update(index:number):void
+    {
+        let max:number = SysMap.getTotal(Session.homeData.chapterId);
+        if(index > max)
+        {
+            index = max;
+        }
+        this.pbox1.visible = index != 1;
+        this.pbox2.visible = index != max;
+        if(!this._isInit)
+        {
+            this.box.x = -(index - 1) * 150;
+            this._cellList[index - 1].scale(1.5,1.5);
+            this._isInit = true;
+            return;
+        }
+        Laya.Tween.to(this.box,{x:- (index - 1) * 150},300,null,null,100);
+
+        if(index == 1)
+        {
+            Laya.Tween.to(this._cellList[index - 1],{scaleX:1.5,scaleY:1.5},300,null,null,100);
+            
+        }
+        else
+        {
+            Laya.Tween.to(this._cellList[index - 2],{scaleX:1,scaleY:1},300,null,null,100);
+            Laya.Tween.to(this._cellList[index - 1],{scaleX:1.5,scaleY:1.5},300,null,null,100);
+        }
+    }
+}
+
+export class IndexCell extends ui.test.battleLvUIUI
+{
+    constructor()
+    {
+        super();
+    }
+
+
+    update(index:number):void
+    {
+        this.shuziyou.text = "" + index;
+    }
+
 }

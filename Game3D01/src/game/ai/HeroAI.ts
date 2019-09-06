@@ -14,6 +14,7 @@ import SysSkill from "../../main/sys/SysSkill";
 import GameInfrared from "../GameInfrared";
 import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
+import GameThorn from "../GameThorn";
 
 export default class HeroAI extends GameAI {
 
@@ -23,11 +24,9 @@ export default class HeroAI extends GameAI {
 
     private line: MaoLineData;
 
-    private diciPro:GamePro;
     constructor()  {
         super();
-        this.diciPro = new GamePro(8,0);
-        this.diciPro.hurtValue = 150;
+        
     }
 
     public set run(b: boolean) {
@@ -119,7 +118,7 @@ export default class HeroAI extends GameAI {
         {
             if(Game.e0_)
             {
-                Game.hero.hurtValue = 234;
+                Game.hero.hurtValue = Math.floor(Game.hero.playerData.baseAttackPower * 1.5);
                 Game.e0_.hbox.linkPro_.event(Game.Event_Hit, Game.hero);
             }
             return;
@@ -224,13 +223,14 @@ export default class HeroAI extends GameAI {
         let chuanqiangSkill: SysSkill = Game.skillManager.isHas(5007);
         if (!chuanqiangSkill)//有穿墙了可以过地刺
         {
-            if (Game.map0.Thornarr.length > 0) {
-                for (var i = 0; i < Game.map0.Thornarr.length; i++) {
-                    let thornBox: GameHitBox = Game.map0.Thornarr[i];
-                    if (Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
+            if (GameThorn.arr.length > 0) {
+                for (var i = 0; i < GameThorn.arr.length; i++) {
+                    let thorn:GameThorn = GameThorn.arr[i];
+                    let thornBox: GameHitBox = thorn.hbox;
+                    if (thorn.inDanger && Game.hero.hbox.hit(Game.hero.hbox, thornBox)) {
                         if (now > thornBox.cdTime) {
-                            pro.event(Game.Event_Hit, this.diciPro);
-                            thornBox.cdTime = now + 1000;
+                            pro.event(Game.Event_Hit, thorn.diciPro);
+                            thornBox.cdTime = now + 2000;
                         }
                     }
                 }

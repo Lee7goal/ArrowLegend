@@ -11,6 +11,8 @@ import NPC_1002 from "../main/scene/battle/npc/NPC_1002";
 import NPC_1003 from "../main/scene/battle/npc/NPC_1003";
 import GameHitBox from "./GameHitBox";
 import Hero from "./player/Hero";
+import GameThorn from "./GameThorn";
+import GameCube from "../main/scene/battle/GameCube";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -208,16 +210,16 @@ export default class GameBG extends Laya.Sprite {
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
                 index2++;
-                // let label:Laya.Label = new Laya.Label();
-                // label.size(ww,ww);
-                // img.addChild(label);
-                // label.align = "center";
-                // label.valign = "middle";
-                // label.text = j + "," + i;
-                // if(gType > 0)
-                // {
-                //     label.text = "" + gType;
-                // }
+                let label:Laya.Label = new Laya.Label();
+                label.size(ww,ww);
+                img.addChild(label);
+                label.align = "center";
+                label.valign = "middle";
+                label.text = j + "," + i;
+                if(gType > 0)
+                {
+                    label.text = "" + gType;
+                }
 
 
                 // if(i==GameBG.ci && j==GameBG.cj){
@@ -228,12 +230,18 @@ export default class GameBG extends Laya.Sprite {
                 //     this.addChild(sp);
                 //     this.sp = sp;
                 // }
+                var thorn:GameThorn;
                 var grid:Image = new Image();
                 if (GridType.isRiverPoint(gType)) {
                     grid.skin = GameBG.BG_TYPE + '/100.png';
                 }
                 else if (GridType.isThorn(gType)) {
-                    grid.skin = GameBG.BG_TYPE + '/500.png';
+                    // grid.skin = GameBG.BG_TYPE + '/500.png';
+                    thorn = GameThorn.getOne();
+                    thorn.hbox.setXY(img.x,img.y);
+                    // thorn.pos(img.x,img.y);
+                    console.log("添加地刺");
+                    img.addChild(thorn);
                 }
                 else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverScale9Grid2(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType)) {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
@@ -275,13 +283,13 @@ export default class GameBG extends Laya.Sprite {
                     this.npcP.y = img.y;
                 }
 
-                if(gType == 9999)
+                if(gType == 9998)
                 {
                     this._box.addChild(this._door);
                     this._door.pos(img.x - GameBG.ww2,img.y - GameBG.ww2);
                     this._door.skin = 'bg/door.png';
                 }
-                else if(gType == 8888)
+                else if(gType == 9999)
                 {
                     Hero.bornX = img.x;
                     Hero.bornY = img.y;
@@ -289,6 +297,7 @@ export default class GameBG extends Laya.Sprite {
                 // }
 
                 img.addChild(grid);
+               
                 k++;
             }
         }
@@ -301,16 +310,9 @@ export default class GameBG extends Laya.Sprite {
                 // }
                 gType = GameBG.arr0[k];
                 var shadow:Laya.Image = new Laya.Image();
-                if((GridType.isWall(gType) || (gType == 1)))
+                if((GridType.isWall(gType) || (gType >= 1 && gType <= 10)))
                 {
-                    shadow.skin = GameBG.BG_TYPE + '/shitouying.png';
-                    shadow.x = i * ww;
-                    shadow.y = j * ww;
-                    this._box.addChild(shadow);
-                }
-                else if((GridType.isTong(gType) || (gType == 2)))
-                {
-                    shadow.skin = GameBG.BG_TYPE + '/tongying.png';
+                    shadow.skin = 'bg/y' + GameCube.getType(gType) + '.png';
                     shadow.x = i * ww;
                     shadow.y = j * ww;
                     this._box.addChild(shadow);
@@ -542,3 +544,4 @@ export default class GameBG extends Laya.Sprite {
 
     }
 }
+

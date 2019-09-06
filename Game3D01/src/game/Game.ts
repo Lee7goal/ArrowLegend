@@ -30,7 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "09041555";
+    static resVer:string = "09041931";
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -303,18 +303,19 @@ export default class Game {
 
         Game.map0.Eharr.length = 0;
         Game.AiArr.length = 0;
+
+        Game.playBgMusic();
     }
 
     static playBgMusic():void
     {
-        Game.playMusic("bg2.mp3");
+        Game.playMusic("menu.mp3");
     }
 
     static playBattleMusic():void
     {
-
+        Game.playMusic("state_fight.mp3");
     }
-
 
     static playMusic(str:string):void
     {

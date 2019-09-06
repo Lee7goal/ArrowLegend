@@ -46,4 +46,6 @@
    <item name="test/chengjiu_1.ui" props="" ifExport="内嵌模式" aName=""/>
    <item name="game/viewbg.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/talent_1.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/battleLvUI.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="game/battleIndexBox.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>
