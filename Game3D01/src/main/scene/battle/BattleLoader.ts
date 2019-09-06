@@ -100,7 +100,7 @@ export default class BattleLoader {
         let arr:SysMap[] = App.tableManager.getTable(SysMap.NAME);
         let size = arr.length;
         this.configUrls.length = 0;
-        this.configUrls.push("h5/mapConfig/1001.json");
+        // this.configUrls.push("h5/mapConfig/1001.json");
         for(var i = 0; i < size; i++)
         {
             let sysMap:SysMap = arr[i];
@@ -191,11 +191,11 @@ export default class BattleLoader {
             if (this._index > maxCeng) {
                 this._index = 1;
             }
-            // this._index = 1
+            // this._index = 5
             this._mapId = Session.homeData.chapterId * 1000 + this._index;
             this._configId = this.configIds[this._index - 1];
         }
-        this._configId = 1001
+        // this._configId = 101003
         console.log("当前地图", this._mapId, this._configId);
 
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");

@@ -32,9 +32,10 @@ import GameFence from "./GameFence";
 import SysMap from "../../sys/SysMap";
 import GameEvent from "../../GameEvent";
 import GameThorn from "../../../game/GameThorn";
+import BattleFlagID from "../BattleFlagID";
 export default class BattleScene extends Laya.Sprite {
 
-    private _top: TopUI;
+    _top: TopUI;
     private _gameOver: GameOverView;
     private _rebornView: RebornView;
     constructor() {
@@ -77,6 +78,7 @@ export default class BattleScene extends Laya.Sprite {
 
         this._top = new TopUI();
         this.addChild(this._top);
+        this._top.reset();
 
         this._top.zanting.clickHandler = new Laya.Handler(this, this.showPause);
 
@@ -160,7 +162,6 @@ export default class BattleScene extends Laya.Sprite {
     init(): void {
         // Game.camera.transform.localPositionZ = 0;
         // Game.camera.transform.localPositionX = 0;
-        Game.playBattleMusic();
         GameCube.recover();
         GameFence.recover();
         GameThorn.recover();
@@ -212,6 +213,7 @@ export default class BattleScene extends Laya.Sprite {
                         if (Game.battleLoader.monsterId > 0) {
                             type = Game.battleLoader.monsterId;
                         }
+                        // type = 10051;
                         monster = Monster.getMonster(type, GameBG.ww * i + (GameBG.ww - GameBG.mw) / 2, j * GameBG.ww + (GameBG.ww - GameBG.mw) / 2);
                         monster.splitTimes = 1;
                         if (!isHasBoss) {
@@ -220,13 +222,13 @@ export default class BattleScene extends Laya.Sprite {
                         // }
                     }
 
-                    if(type == 9999)
+                    if(type == BattleFlagID.DOOR)
                     {
                         let v3 = GameBG.get3D(i,j);
-                        // Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
+                        Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
                         // if(!Game.door)
                         // {
-                            Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
+                            // Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
                             
                         // }
                         // Game.monsterResClones.push(Game.door);
@@ -245,7 +247,7 @@ export default class BattleScene extends Laya.Sprite {
         }
 
         this._top.boss.visible = isHasBoss;
-        this._top.boss.visible = true;
+        // this._top.boss.visible = true;
 
         Game.closeDoor();
 

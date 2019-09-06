@@ -1,3 +1,5 @@
+import BattleFlagID from "../../main/scene/BattleFlagID";
+
 export default class GridType {
     /**是否是水点 */
     public static isRiverPoint(type:Number):boolean
@@ -78,7 +80,7 @@ export default class GridType {
 
     public static isNpc(type:number):boolean
     {
-        return type == 1000 ||type == 1001 || type == 1002 || type == 1003;
+        return type == BattleFlagID.ANGLE || type == BattleFlagID.OTHER_NPC;
     }
 
 }

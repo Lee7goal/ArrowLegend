@@ -170,7 +170,7 @@ export default class Game {
         Game.bg.setDoor(1);
         Game.layer3d.addChild(Game.door);
         // Game.door.transform.localPositionY = 0;
-        console.log("门的位置",Game.door.transform.localPositionX,Game.door.transform.localPositionY,Game.door.transform.localPositionZ);
+        // console.log("门的位置",Game.door.transform.localPositionX,Game.door.transform.localPositionY,Game.door.transform.localPositionZ);
         // Game.door.active = true;
         Game.map0.setDoor(true);
         Game.shakeBattle();

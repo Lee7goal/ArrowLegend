@@ -1,6 +1,7 @@
 import MainScene from "./scene/main/MainScene";
 import BattleScene from "./scene/battle/BattleScene";
 import App from "../core/App";
+import Game from "../game/Game";
 
 export default class SceneManager {
 
@@ -15,6 +16,7 @@ export default class SceneManager {
         }
         App.layerManager.sceneLayer.removeChildren();
         App.layerManager.sceneLayer.addChild(this.main);
+        this.battle && this.battle._top && this.battle._top.reset();
     }
 
     showBattle(): void {
@@ -23,5 +25,6 @@ export default class SceneManager {
         }
         App.layerManager.sceneLayer.removeChildren();
         App.layerManager.sceneLayer.addChild(this.battle);
+        Game.playBattleMusic();
     }
 }

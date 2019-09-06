@@ -6,6 +6,7 @@ import GridType from "./bg/GridType";
 import MaoLineData from "./MaoLineData";
 import SysSkill from "../main/sys/SysSkill";
 import Hero from "./player/Hero";
+import BattleFlagID from "../main/scene/BattleFlagID";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -149,11 +150,11 @@ export default class GameMap0 extends Laya.Sprite {
                     }
                     else if(GridType.isNpc(key))
                     {
-                        this.npcHitBox = new GameHitBox(GameBG.ww * 11, GameBG.ww * 4);
-                        this.npcHitBox.setXY(x - GameBG.ww * 5, y - GameBG.ww * 3);
+                        this.npcHitBox = new GameHitBox(GameBG.ww * 4, GameBG.ww * 4);
+                        this.npcHitBox.setXY(x, y);
                     }
 
-                    if(key == 9999)
+                    if(key == BattleFlagID.DOOR)
                     {
                         this.doorHitBox = new GameHitBox(GameBG.ww * 2, GameBG.ww * 2);
                         this.doorHitBox.setXY(x - GameBG.ww2, y - GameBG.ww2);

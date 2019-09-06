@@ -228,9 +228,9 @@ class Main {
 		REG("HIT_" + HitType.hit3, GameScaleAnimator4);
 		REG("HIT_" + HitType.hit4, GameScaleAnimator3);
 		//NPC
-		// REG("NPC1001", NPC_1001);
-		// REG("NPC1002", NPC_1002);
-		// REG("NPC1003", NPC_1003);
+		REG("NPC1001", NPC_1001);
+		REG("NPC1002", NPC_1002);
+		REG("NPC1003", NPC_1003);
 
 		// REG("NPCVIEW1001", NPC_1001_view);
 		// REG("NPCVIEW1002", NPC_1002_view);

@@ -23,6 +23,7 @@ export default class Session{
     static IDataArr:Array<IData> = [];
 
     public static init():void{
+        Session.IDataArr.push( Session.homeData );
         Session.IDataArr.push( Session.talentData );
         Session.IDataArr.push( Session.taskData );
         Session.IDataArr.push( Session.userData );

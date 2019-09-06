@@ -15,9 +15,13 @@ import Session from "../../Session";
         Laya.stage.on(Game.Event_EXP,this,this.updateExp);
 
         this.indexBox.addChild(this._indexBox);
-        this._indexBox.init();
 
         this.y = App.top + 60;
+    }
+
+    reset():void
+    {
+        this._indexBox.init();
     }
 
     updateIndex(index:number):void
@@ -112,7 +116,9 @@ export class IndexBox extends ui.game.battleIndexBoxUI
             this.box.addChild(cell);
             cell.x = 185 + i * 150;
             cell.y = 55;
+            cell.gray = true;
             this._cellList.push(cell);
+            cell
         }
     }
 
@@ -130,6 +136,7 @@ export class IndexBox extends ui.game.battleIndexBoxUI
         {
             this.box.x = -(index - 1) * 150;
             this._cellList[index - 1].scale(1.5,1.5);
+            this._cellList[index - 1].gray = false;
             this._isInit = true;
             return;
         }
@@ -138,13 +145,13 @@ export class IndexBox extends ui.game.battleIndexBoxUI
         if(index == 1)
         {
             Laya.Tween.to(this._cellList[index - 1],{scaleX:1.5,scaleY:1.5},300,null,null,100);
-            
         }
         else
         {
             Laya.Tween.to(this._cellList[index - 2],{scaleX:1,scaleY:1},300,null,null,100);
             Laya.Tween.to(this._cellList[index - 1],{scaleX:1.5,scaleY:1.5},300,null,null,100);
         }
+        this._cellList[index - 1].gray = false;
     }
 }
 
@@ -153,6 +160,11 @@ export class IndexCell extends ui.test.battleLvUIUI
     constructor()
     {
         super();
+    }
+
+    set gray(value:boolean)
+    {
+        this.btn.gray = value;
     }
 
 

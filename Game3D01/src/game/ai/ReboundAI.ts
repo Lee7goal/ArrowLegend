@@ -37,6 +37,7 @@ export default class ReboundAI extends BaseAI{
         if(bm && bm.rotation != this.pro.face2d){
             //this.facen2d_ = (2 * Math.PI - n);
             this.pro.rotation(2 * Math.PI - bm.rotation);
+            this.pro.play(GameAI.Run);
         }
 
 

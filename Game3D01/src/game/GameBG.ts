@@ -13,6 +13,7 @@ import GameHitBox from "./GameHitBox";
 import Hero from "./player/Hero";
 import GameThorn from "./GameThorn";
 import GameCube from "../main/scene/battle/GameCube";
+import BattleFlagID from "../main/scene/BattleFlagID";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -210,16 +211,16 @@ export default class GameBG extends Laya.Sprite {
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
                 index2++;
-                let label:Laya.Label = new Laya.Label();
-                label.size(ww,ww);
-                img.addChild(label);
-                label.align = "center";
-                label.valign = "middle";
-                label.text = j + "," + i;
-                if(gType > 0)
-                {
-                    label.text = "" + gType;
-                }
+                // let label:Laya.Label = new Laya.Label();
+                // label.size(ww,ww);
+                // img.addChild(label);
+                // label.align = "center";
+                // label.valign = "middle";
+                // label.text = j + "," + i;
+                // if(gType > 0)
+                // {
+                //     label.text = "" + gType;
+                // }
 
 
                 // if(i==GameBG.ci && j==GameBG.cj){
@@ -283,13 +284,14 @@ export default class GameBG extends Laya.Sprite {
                     this.npcP.y = img.y;
                 }
 
-                if(gType == 9998)
+                if(gType == BattleFlagID.DOOR)
                 {
                     this._box.addChild(this._door);
                     this._door.pos(img.x - GameBG.ww2,img.y - GameBG.ww2);
                     this._door.skin = 'bg/door.png';
+                    console.log("门的位置",img.x,img.y);
                 }
-                else if(gType == 9999)
+                else if(gType == BattleFlagID.HERO)
                 {
                     Hero.bornX = img.x;
                     Hero.bornY = img.y;
@@ -442,7 +444,7 @@ export default class GameBG extends Laya.Sprite {
 
             Laya.Tween.to(this._npcAni,{y:this.npcP.y},300,Laya.Ease.circIn);
 
-            Game.bg.event(Game.Event_NPC);
+            Laya.stage.event(Game.Event_SELECT_NEWSKILL);
         }
     }
 
@@ -454,7 +456,7 @@ export default class GameBG extends Laya.Sprite {
             return;
         }
         Game.scenneM.battle.up(null);
-        if(this.npcId == 1000)
+        if(this.npcId == BattleFlagID.OTHER_NPC)
         {
             this.npcId = 0;
             let lossRate:number = Game.hero.lossBlood();
@@ -471,6 +473,10 @@ export default class GameBG extends Laya.Sprite {
                 // this.npcId = 1003;//胡子
                 this.npcId = 1001;//胡子没做，先用天使
             }
+        }
+        else if(this.npcId == BattleFlagID.ANGLE)
+        {
+            this.npcId = 1001;//天使
         }
 
         if(this.npcId > 0)
@@ -498,6 +504,7 @@ export default class GameBG extends Laya.Sprite {
 
     public setDoor(state:number):void{
         this._door.visible = state == 1;
+        console.log("门是否显示",this._door.visible);
     }
 
     public updateY(): void {
