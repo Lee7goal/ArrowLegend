@@ -1,13 +1,13 @@
 {
     "x":0,
-    "type":"View",
-    "selectedBox":6,
-    "selecteID":40,
-    "searchKey":"View",
+    "type":"Scene",
+    "selectedBox":4,
+    "selecteID":10,
+    "searchKey":"Scene",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":41,
-    "label":"View",
+    "maxID":18,
+    "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
     "isAniNode":true,
@@ -18,7 +18,7 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box",
-            "props":{"width":750,"height":1700,"bgColor":"#000000","alpha":0.75},
+            "props":{"y":0,"x":0,"width":750,"height":1700,"bgColor":"#000000","alpha":0.75},
             "nodeParent":2,
             "label":"Box",
             "isOpen":true,
@@ -34,26 +34,26 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box",
-            "props":{"width":750,"height":506,"centerY":-2,"centerX":3},
+            "props":{"width":750,"height":506,"centerY":-12,"centerX":-7},
             "nodeParent":2,
             "label":"Box",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":6,
+            "compId":4,
             "child":[
                 {
                     "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"y":59,"x":75,"width":600,"texture":"main/fuhuodi2.jpg","height":400},
-                    "nodeParent":6,
+                    "nodeParent":4,
                     "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":12,
+                    "compId":5,
                     "child":[
                         ]
                 },
@@ -61,13 +61,13 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":174,"x":205.5,"width":339,"skin":"main/tishilan.png","sizeGrid":"12,16,11,16","height":170},
-                    "nodeParent":6,
+                    "props":{"y":215,"x":205,"width":339,"skin":"main/tishilan.png","sizeGrid":"12,16,11,16","height":170},
+                    "nodeParent":4,
                     "label":"Image",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":16,
+                    "compId":6,
                     "child":[
                         ]
                 },
@@ -75,8 +75,8 @@
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,rebornBtn",
-                    "props":{"y":460,"x":374,"width":240,"var":"rebornBtn","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"height":100,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":6,
+                    "props":{"y":460,"x":374,"width":358,"var":"rebornBtn","stateNum":"1","skin":"main/btn_zi.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"height":100,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":4,
                     "label":"rebornBtn",
                     "isOpen":true,
                     "isDirectory":true,
@@ -86,15 +86,43 @@
                     "child":[
                         {
                             "x":45,
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":3,"x":46,"texture":"main/action.png"},
+                            "nodeParent":7,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":14,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "searchKey":"Label,deshuliang",
+                            "props":{"y":29,"x":98,"width":222,"var":"deshuliang","text":"随机获得6~10个","height":40,"fontSize":28,"color":"#ffffff","align":"center"},
+                            "nodeParent":7,
+                            "label":"deshuliang",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":13,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":29,"x":89,"skin":"main/queding.png"},
+                            "props":{"y":6,"x":349,"skin":"main/sanbei.png","anchorY":0.5,"anchorX":0.5},
                             "nodeParent":7,
                             "label":"Image",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":17,
+                            "compId":16,
                             "child":[
                                 ]
                         }]
@@ -104,12 +132,12 @@
                     "type":"Button",
                     "searchKey":"Button,closeBtn",
                     "props":{"y":68,"x":614,"var":"closeBtn","stateNum":"1","skin":"main/btn_guanbi.png"},
-                    "nodeParent":6,
+                    "nodeParent":4,
                     "label":"closeBtn",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":11,
+                    "compId":9,
                     "child":[
                         ]
                 },
@@ -117,27 +145,13 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label",
-                    "props":{"y":360,"x":276,"width":167,"text":"剩余次数：","height":40,"fontSize":36,"color":"#ffffff","align":"center"},
-                    "nodeParent":6,
+                    "props":{"y":327,"x":290.5,"width":167,"text":"水晶不足","height":40,"fontSize":36,"color":"#000000","align":"center"},
+                    "nodeParent":4,
                     "label":"Label",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":13,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,txt",
-                    "props":{"y":360,"x":443,"width":45,"var":"txt","text":"2","height":40,"fontSize":36,"color":"#ffffff","align":"left"},
-                    "nodeParent":6,
-                    "label":"txt",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":14,
+                    "compId":10,
                     "child":[
                         ]
                 },
@@ -145,88 +159,47 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":65,"x":331,"skin":"main/biaotifuhuo.png"},
-                    "nodeParent":6,
+                    "props":{"y":70,"x":309,"skin":"main/biaotitishi.png"},
+                    "nodeParent":4,
                     "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":12,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":156,"x":281,"width":176,"texture":"main/jiangbei.png","height":172},
+                    "nodeParent":4,
+                    "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":15,
                     "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,daojishi",
-                    "props":{"y":223,"x":353,"width":45,"var":"daojishi","text":"2","height":64,"fontSize":60,"color":"#ffffff","align":"center"},
-                    "nodeParent":6,
-                    "label":"daojishi",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":40,
-                    "child":[
-                        ]
-                }],
-            "$HIDDEN":false
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,fuhuo",
-            "props":{"y":870,"x":375,"width":358,"var":"fuhuo","stateNum":"1","skin":"main/btn_zi.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"height":100,"anchorY":0.5,"anchorX":0.5},
-            "nodeParent":2,
-            "label":"fuhuo",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":36,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":3,"x":46,"texture":"main/action.png"},
-                    "nodeParent":36,
-                    "label":"Sprite",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":37,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,deshuliang",
-                    "props":{"y":29,"x":98,"width":222,"var":"deshuliang","text":"随机获得6~10个","height":40,"fontSize":28,"color":"#ffffff","align":"center"},
-                    "nodeParent":36,
-                    "label":"deshuliang",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":38,
-                    "child":[
-                        ]
+                        ],
+                    "$HIDDEN":false
                 },
                 {
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":6,"x":349,"skin":"main/sanbei.png","anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":36,
+                    "props":{"y":157,"x":281.5,"width":176,"skin":"main/jiangbeiguang.png","height":172,"blendMode":"lighter","alpha":0.5},
+                    "nodeParent":4,
                     "label":"Image",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":39,
+                    "compId":17,
                     "child":[
-                        ]
+                        ],
+                    "$HIDDEN":false
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         }],
     "animations":[
         {
