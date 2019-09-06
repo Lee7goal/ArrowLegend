@@ -6,4 +6,6 @@ export default class GameEvent{
     static HERO_UPDATE:string = "HERO_UPDATE";
     static WX_ON_SHOW:string = "WX_ON_SHOW";
     static WX_ON_HIDE:string = "WX_ON_HIDE";
+
+    static BOOS_BLOOD_UPDATE:string = "BOOS_BLOOD_UPDATE";
 }

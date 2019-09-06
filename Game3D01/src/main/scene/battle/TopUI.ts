@@ -5,6 +5,8 @@ import DisplayUtils, { MaskObj } from "../../../core/utils/DisplayUtils";
 import App from "../../../core/App";
 import SysMap from "../../sys/SysMap";
 import Session from "../../Session";
+import GameEvent from "../../GameEvent";
+import SysEnemy from "../../sys/SysEnemy";
     export default class TopUI extends ui.test.battleUI {
     
     private maskSpr:Laya.Sprite = new Laya.Sprite();
@@ -17,6 +19,29 @@ import Session from "../../Session";
         this.indexBox.addChild(this._indexBox);
 
         this.y = App.top + 60;
+
+        Laya.stage.on(GameEvent.BOOS_BLOOD_UPDATE,this,this.onUpdate);
+    }
+
+    private onUpdate(hurt:number):void
+    {
+        this._curBlood -= hurt;
+        this._curBlood = Math.max(1,this._curBlood);
+        this.bossxue.scrollRect = new Laya.Rectangle(0,0,this.bossxue.width * this._curBlood / this._bossEnemy.enemyHp,this.bossxue.height);
+    }
+
+    private _bossEnemy:SysEnemy;
+    private _curBlood:number;
+    setBoss(isBoss:boolean,sys:SysEnemy):void
+    {
+        this._bossEnemy = sys;
+        this._curBlood = this._bossEnemy.enemyHp;
+        this.boss.visible = isBoss;
+        this.bossxuetiao.visible = isBoss;
+        if(this.bossxuetiao.visible)
+        {
+            this.bossxue.scrollRect = new Laya.Rectangle(0,0,this.bossxue.width,this.bossxue.height);
+        }
     }
 
     reset():void

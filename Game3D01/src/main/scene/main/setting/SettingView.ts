@@ -55,7 +55,6 @@ import App from "../../../../core/App";
 
     private onMusic():void
     {
-        console.log("设置音效");
         Game.cookie.getCookie(CookieKey.MUSIC_SWITCH, (res) => {
             if(res.state == 1)
             {

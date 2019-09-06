@@ -191,7 +191,7 @@ export default class BattleLoader {
             if (this._index > maxCeng) {
                 this._index = 1;
             }
-            // this._index = 5
+            // this._index = 10
             this._mapId = Session.homeData.chapterId * 1000 + this._index;
             this._configId = this.configIds[this._index - 1];
         }

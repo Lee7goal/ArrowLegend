@@ -29,7 +29,7 @@ export default class ReboundAI extends BaseAI{
         if(this.status == 0){
             this.status = 1;
             this.pro.rotation(Math.PI/180 * 360 * Math.random());
-            this.pro.play(GameAI.Run);
+            // this.pro.play(GameAI.Run);
             // this.pro.setXY2DBox(this.pro.hbox.x + GameBG.ww,this.pro.hbox.y);
         }
         var bm = <BackMove>this.pro.getGameMove();
@@ -37,9 +37,12 @@ export default class ReboundAI extends BaseAI{
         if(bm && bm.rotation != this.pro.face2d){
             //this.facen2d_ = (2 * Math.PI - n);
             this.pro.rotation(2 * Math.PI - bm.rotation);
+            // this.pro.play(GameAI.Run);
+        }
+        if(this.pro.acstr != GameAI.Run)
+        {
             this.pro.play(GameAI.Run);
         }
-
 
         return false;
     }

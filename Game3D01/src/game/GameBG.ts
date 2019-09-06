@@ -282,6 +282,13 @@ export default class GameBG extends Laya.Sprite {
                     // }
                     this.npcP.x = img.x + GameBG.ww2;
                     this.npcP.y = img.y;
+
+                    if(this.npcId == BattleFlagID.ANGLE)
+                    {
+                        let NPC = Laya.ClassUtils.getClass("NPC" + 1001);
+                        this._npcAni = new NPC();
+                        this.showNpc();
+                    }
                 }
 
                 if(gType == BattleFlagID.DOOR)
@@ -443,14 +450,16 @@ export default class GameBG extends Laya.Sprite {
             this._npcAni.pos(this.npcP.x,this.npcP.y - 800);
 
             Laya.Tween.to(this._npcAni,{y:this.npcP.y},300,Laya.Ease.circIn);
-
-            Laya.stage.event(Game.Event_SELECT_NEWSKILL);
         }
     }
 
     /**检测出现哪个npc  恶魔和胡子 */
     checkNpc():void
     {
+        if(this.npcId <= 0)
+        {
+            return;
+        }
         if(!Game.map0.checkNpc())
         {
             return;
@@ -481,16 +490,22 @@ export default class GameBG extends Laya.Sprite {
 
         if(this.npcId > 0)
         {
-            let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
-            this._npcAni = new NPC();
-            this.showNpc();
+            if(!this._npcAni)
+            {
+                let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
+                this._npcAni = new NPC();
+                this.showNpc();
+            }
         }
     }
 
     public clearNpc():void
     {
-        Laya.Tween.to(this._npcAni,{scaleX:0.3},200,null,null,100);
-        Laya.Tween.to(this._npcAni,{y:-300},300,Laya.Ease.circIn,new Laya.Handler(this,this.clearNpcCom),300);
+        if(this._npcAni)
+        {
+            Laya.Tween.to(this._npcAni,{scaleX:0.3},200,null,null,100);
+            Laya.Tween.to(this._npcAni,{y:-300},300,Laya.Ease.circIn,new Laya.Handler(this,this.clearNpcCom),300);
+        }
     }
 
     private clearNpcCom():void

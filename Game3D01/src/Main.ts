@@ -191,6 +191,7 @@ class Main {
 				{ url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
 				{ url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
 				{ url: "res/atlas/shengli.atlas", type: Laya.Loader.ATLAS },
+				{ url: "res/atlas/xiongmao.atlas", type: Laya.Loader.ATLAS },
 				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
 			], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
 		});

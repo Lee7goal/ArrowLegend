@@ -28,11 +28,13 @@ import SysNpc from "../../sys/SysNpc";
         {
             Game.skillManager.addSkill(sys);
         }
+        Game.bg.clearNpc();
         this.removeSelf();
     }
 
     private onDis():void
     {
+        Game.executor.stop_();
         // this.baioti.text = "本次冒险升到了" + Game.hero.playerData.level + "级";
 
         this.box1.scaleX = 1;
@@ -45,6 +47,7 @@ import SysNpc from "../../sys/SysNpc";
 
     removeSelf():Laya.Node
     {
+        Game.executor.start();
         Game.state = 0;
         return super.removeSelf();
     }
