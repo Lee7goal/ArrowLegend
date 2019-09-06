@@ -11,6 +11,13 @@ import SysBuff from "./sys/SysBuff";
 import SysNpc from "./sys/SysNpc";
 import GameAlert from "./GameAlert";
 import CookieKey from "../gameCookie/CookieKey";
+import SysRoleBase from "./sys/SysRolebase";
+import SysRoleUp from "./sys/SysRoleUp";
+import SysHero from "./sys/SysHero";
+import SysTalentCost from "./sys/SysTalentCost";
+import SysTalent from "./sys/SysTalent";
+import SysTalentInfo from "./sys/SysTalentInfo";
+import GameEvent from "./GameEvent";
 
 export default class GameMain {
     constructor() {
@@ -19,6 +26,8 @@ export default class GameMain {
 
     private zipFun(arr: any[]): void {
         this.initTable(arr);
+
+        Laya.stage.event( GameEvent.CONFIG_OVER );
 
         Game.alert = new GameAlert();
 
@@ -51,7 +60,14 @@ export default class GameMain {
         App.tableManager.register(SysSkill.NAME, SysSkill);
         App.tableManager.register(SysBuff.NAME, SysBuff);
         App.tableManager.register(SysNpc.NAME, SysNpc);
-
+        App.tableManager.register(SysRoleBase.NAME , SysRoleBase );
+        
+        App.tableManager.register(SysRoleUp.NAME , SysRoleUp);
+        App.tableManager.register(SysHero.NAME , SysHero );
+        App.tableManager.register(SysTalentCost.NAME , SysTalentCost);
+        App.tableManager.register(SysTalentInfo.NAME , SysTalentInfo );
+        App.tableManager.register(SysTalent.NAME , SysTalent );
+        
         App.tableManager.onParse(arr);
     }
 }

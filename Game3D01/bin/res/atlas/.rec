@@ -25,7 +25,7 @@ P D99251CA heroBlood.png
 P B199C3FB hongtiao.png
 P BBD7E41D huijia.png
 P EA200A72 huzi.png
-R 10D3FB74 huzi.scene
+R 67B4C268 huzi.scene
 P 412DFE3D jinengtiaoshang.png
 P 8483AD37 jinengtiaoxia.png
 P B9019BE6 jingyantiaodi.png
@@ -33,7 +33,7 @@ P 761AF61D jingyantiaoguang.png
 P 08F8B30F jingyantiaoshang.png
 P A653A0FF lanying.png
 P C5032B85 lvkuang.png
-R EF83E9C8 mogui.scene
+R 318AA8BE mogui.scene
 P 9FF2060E qianshu.png
 P E678BFE4 qipaowen.png
 P AFF0FC23 renlankuang.png
@@ -44,7 +44,7 @@ P 7D358F38 rollDir.png
 P 13671975 sanjiao.png
 P 824F858E tantan.jpg
 P F1C69388 tianshi.png
-R 47F587D7 tianshi.scene
+R DB93F7CA tianshi.scene
 P 61E5E0A4 tianshiying.png
 P 7B1E2C6F tongying.png
 P 83DF0706 xiaoguan.png
@@ -292,6 +292,7 @@ P 68AA09BE icon1.jpg
 P 49BBB525 lvtiao.png
 P 87DF6142 pan.png
 P 29C80021 tiandi.png
+P F194DC99 xuanzhong1.png
 D zhaohuan
 P 1285490D guangzhu.png
 P 998DC129 yuandi.png

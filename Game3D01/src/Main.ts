@@ -50,6 +50,8 @@ import WXCookie from "./gameCookie/WXCookie";
 import { BaseCookie } from "./gameCookie/BaseCookie";
 import CookieKey from "./gameCookie/CookieKey";
 import PlayerData from "./game/data/PlayerData";
+import MyEffect from "./core/utils/MyEffect";
+import Session from "./main/Session";
 
 class Main {
 	constructor() {
@@ -87,12 +89,18 @@ class Main {
 			});
 		}
 
+		if( Laya.Browser.onMiniGame == false ){
+			Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;
+			Laya.stage.alignH = "center";
+		}
 
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
 		Laya.loader.load(["h5/config.json", "loading/loadingClip.png"], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 	
+		MyEffect.initBtnEffect();
+		Session.init();
 	}
 
 	private _initView: ui.test.initViewUI;
