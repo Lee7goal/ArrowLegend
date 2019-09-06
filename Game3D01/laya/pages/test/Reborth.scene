@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":6,
-    "selecteID":40,
+    "selectedBox":2,
+    "selecteID":41,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":41,
+    "maxID":42,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -54,20 +54,6 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":12,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"y":174,"x":205.5,"width":339,"skin":"main/tishilan.png","sizeGrid":"12,16,11,16","height":170},
-                    "nodeParent":6,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":16,
                     "child":[
                         ]
                 },
@@ -159,7 +145,7 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label,daojishi",
-                    "props":{"y":223,"x":353,"width":45,"var":"daojishi","text":"2","height":64,"fontSize":60,"color":"#ffffff","align":"center"},
+                    "props":{"y":221,"x":353,"width":45,"var":"daojishi","text":"2","height":64,"fontSize":60,"color":"#ffffff","align":"center"},
                     "nodeParent":6,
                     "label":"daojishi",
                     "isDirectory":false,
@@ -188,7 +174,7 @@
                     "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"y":3,"x":46,"texture":"main/action.png"},
+                    "props":{"y":4,"x":90,"texture":"main/action.png"},
                     "nodeParent":36,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -202,7 +188,7 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label,deshuliang",
-                    "props":{"y":29,"x":98,"width":222,"var":"deshuliang","text":"随机获得6~10个","height":40,"fontSize":28,"color":"#ffffff","align":"center"},
+                    "props":{"y":30,"x":150,"width":122,"var":"deshuliang","text":"免费复活","height":40,"fontSize":28,"color":"#ffffff","align":"left"},
                     "nodeParent":36,
                     "label":"deshuliang",
                     "isDirectory":false,
@@ -211,22 +197,22 @@
                     "compId":38,
                     "child":[
                         ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"y":6,"x":349,"skin":"main/sanbei.png","anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":36,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":39,
-                    "child":[
-                        ]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,jindu",
+            "props":{"y":586,"x":297.5,"var":"jindu","skin":"main/quantiao.png"},
+            "nodeParent":2,
+            "label":"jindu",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":41,
+            "child":[
+                ]
         }],
     "animations":[
         {
