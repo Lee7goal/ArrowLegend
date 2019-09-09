@@ -98,7 +98,8 @@ class Main {
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
 		Laya.loader.load(["h5/config.json", "loading/loadingClip.png"], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
-	
+		
+		App.init();
 		MyEffect.initBtnEffect();
 		Session.init();
 	}

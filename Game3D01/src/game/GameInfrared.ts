@@ -41,6 +41,7 @@ export default class GameInfrared{
 
     public set show(b:boolean){
         this.show_ = b;
+        this.show_ = false;
         if(this.show_){
             for (let i = 0; i < this.redLines.length; i++) {
                 var e = this.redLines[i];

@@ -10,11 +10,18 @@ export default class App{
     static serverIP:string;
     static platformId:number = 0;
 
-    static layerManager:LayerManager = new LayerManager();
-    static tableManager:TableManager = new TableManager();
-    static soundManager:SoundManager = new SoundManager();
-    static sdkManager:SdkManager = new SdkManager();
+    static layerManager:LayerManager = null;
+    static tableManager:TableManager = null;
+    static soundManager:SoundManager = null;
+    static sdkManager:SdkManager = null;
     
+    static init():void{
+        App.layerManager = new LayerManager();
+        App.tableManager = new TableManager();
+        App.soundManager = new SoundManager();
+        App.sdkManager = new SdkManager();        
+    }
+
     static sendEvent( event:string ):void{
         Laya.stage.event( event );
     }

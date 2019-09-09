@@ -7,6 +7,8 @@ import { AD_TYPE } from "../../ADType";
 export default class SdkManager {
     public haveRight:boolean = false;
     constructor(){
+
+
         if( Laya.Browser.onMiniGame == false ){
             return;
         }

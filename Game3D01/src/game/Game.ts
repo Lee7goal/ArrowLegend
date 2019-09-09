@@ -30,7 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "1.0.0";
+    static resVer:string = "1.0.4";
 
     static userHeadUrl:string = "";
     static userName:string = "";
