@@ -7,6 +7,7 @@ import GameHitBox from "../GameHitBox";
 import BoomEffect from "../effect/BoomEffect";
 import SysBullet from "../../main/sys/SysBullet";
 import AttackType from "./AttackType";
+import { GameAI } from "./GameAI";
 
 export default class TreeAI extends FlowerAI {
 
@@ -56,6 +57,7 @@ export default class TreeAI extends FlowerAI {
                             if (this.now >= this.nextTime) {
                                 this.startAttack();
                                 this.shootAc();
+                                this.pro.play(GameAI.NormalAttack)
                                 this.nextTime = this.now + this.shooting.shootCd;
                                 this.status = 0;
                             }
@@ -65,6 +67,7 @@ export default class TreeAI extends FlowerAI {
                         if (this.now >= this.nextTime) {
                             this.startAttack();
                             this.shootAc();
+                            this.pro.play(GameAI.NormalAttack)
                             this.nextTime = this.now + this.shooting.shootCd;
                             this.status = 0;
                         }

@@ -227,14 +227,16 @@ export default class BattleScene extends Laya.Sprite {
                     if(type == BattleFlagID.DOOR)
                     {
                         let v3 = GameBG.get3D(i,j);
-                        Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
-                        // if(!Game.door)
-                        // {
-                            // Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
-                            
-                        // }
+                        // Game.door = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/effects/door/monster.lh"));
+                        if(!Game.door)
+                        {
+                            Game.door = Laya.loader.getRes("h5/effects/door/monster.lh");
+                            Game.layer3d.addChild(Game.door);
+                            Game.door.transform.translate(v3);
+                        }
+                        Game.door.transform.localPositionX = v3.x;
+                        Game.door.transform.localPositionZ = v3.z;
                         // Game.monsterResClones.push(Game.door);
-                        Game.door.transform.translate(v3);
                         
                     }
 
@@ -249,6 +251,17 @@ export default class BattleScene extends Laya.Sprite {
         }
 
         this._top.setBoss(isHasBoss,bossEnemy);
+
+        // Laya.timer.loop(5000,this,()=>{
+        //     if(Game.door.parent)
+        //     {
+        //         Game.door.removeSelf();
+        //     }
+        //     else
+        //     {
+        //         Game.layer3d.addChild(Game.door);
+        //     }
+        // })
 
         Game.closeDoor();
 
@@ -298,6 +311,20 @@ export default class BattleScene extends Laya.Sprite {
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
 
         Laya.stage.on(Laya.Event.KEY_PRESS, this, this.onOpenDoor);
+    }
+
+    private index:number = 0;
+    private doorLoop():void
+    {
+        if(this.index % 2 == 0)
+        {
+            Game.door.transform.localPositionY = 0;
+        }
+        else
+        {
+            Game.door.transform.localPositionY = -500;
+        }
+        this.index++
     }
 
     /**刷怪 */

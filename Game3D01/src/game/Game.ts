@@ -176,8 +176,6 @@ export default class Game {
         Game.shakeBattle();
         Game.battleLoader.clearMonster();
         Session.saveData();
-
-        // Game.battleLoader.load();
     }
 
     static shakeBattle():void
