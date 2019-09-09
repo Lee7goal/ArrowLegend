@@ -40,7 +40,7 @@ import App from "../../../core/App";
 
     private onDis(e):void
     {
-        Game.battleLoader.init();
+        // Game.battleLoader.init();
     }
 
     private onStartBattle():void

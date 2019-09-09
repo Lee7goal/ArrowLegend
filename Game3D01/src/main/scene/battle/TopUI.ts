@@ -34,10 +34,14 @@ import SysEnemy from "../../sys/SysEnemy";
     private _curBlood:number;
     setBoss(isBoss:boolean,sys:SysEnemy):void
     {
-        this._bossEnemy = sys;
-        this._curBlood = this._bossEnemy.enemyHp;
         this.boss.visible = isBoss;
         this.bossxuetiao.visible = isBoss;
+        this._bossEnemy = sys;
+        if(!this._bossEnemy)
+        {
+            return;
+        }
+        this._curBlood = this._bossEnemy.enemyHp;
         if(this.bossxuetiao.visible)
         {
             this.bossxue.scrollRect = new Laya.Rectangle(0,0,this.bossxue.width,this.bossxue.height);
@@ -163,6 +167,10 @@ export class IndexBox extends ui.game.battleIndexBoxUI
             this._cellList[index - 1].scale(1.5,1.5);
             this._cellList[index - 1].gray = false;
             this._isInit = true;
+            for(let i = 0; i < index - 1; i++)
+            {
+                this._cellList[i].gray = false;
+            }
             return;
         }
         Laya.Tween.to(this.box,{x:- (index - 1) * 150},300,null,null,100);
