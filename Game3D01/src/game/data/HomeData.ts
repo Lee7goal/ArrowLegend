@@ -3,6 +3,8 @@ import GameEvent from "../../main/GameEvent";
 import { TopUI } from "../../main/scene/main/MainUI";
 import Game from "../Game";
 import { GOLD_CHANGE_TYPE } from "../../UseGoldType";
+import App from "../../core/App";
+import SysHero from "../../main/sys/SysHero";
 
 export default class HomeData implements IData{
     
@@ -22,6 +24,7 @@ export default class HomeData implements IData{
      */
     redDiamond:number = 0;
     blueDiamond:number = 0;
+    playerExp:number = 0;
 
     public setData(data:any):void{
         this.totalEnergy = data.totalEnergy;
@@ -115,6 +118,29 @@ export default class HomeData implements IData{
         }else if( type == GoldType.BLUE_DIAMONG ){
             this.blueDiamond += value;
         }
+    }
+
+    /**
+     * 君主经验
+     * @param exp 
+     */
+    public addPlayerExp( exp:number ):void{
+        this.playerExp += exp;
+        while( true ){
+            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME , this.level );    
+            if( this.playerExp >= sys.exp  ){
+                let nowLv = this.level + 1;
+                if( App.tableManager.getDataByNameAndId(SysHero.NAME , this.level ) == null ){
+                    //等级已经到头了
+                    break;
+                }
+                this.level = nowLv;
+                this.playerExp -= sys.exp;
+            }else{
+                break;
+            }
+        }
+        App.sendEvent( GameEvent.PLAYER_INFO_UPDATE );
     }
 }
 

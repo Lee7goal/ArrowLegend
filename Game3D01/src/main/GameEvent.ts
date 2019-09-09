@@ -8,4 +8,6 @@ export default class GameEvent{
     static WX_ON_HIDE:string = "WX_ON_HIDE";
 
     static BOOS_BLOOD_UPDATE:string = "BOOS_BLOOD_UPDATE";
+
+    static PLAYER_INFO_UPDATE:string = "PLAYER_INFO_UPDATE";
 }
