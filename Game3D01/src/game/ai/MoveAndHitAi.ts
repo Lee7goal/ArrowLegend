@@ -46,7 +46,7 @@ export default class MoveAndHitAi extends BaseAI {
         if(this.status==1){
             if (this.pro.normalizedTime > 0.4) {
                 this.pro.setSpeed(10);
-                this.pro.move2D(this.pro.face2d);    
+                this.pro.move2D(this.pro.face2d);  
             }else{
                 this.pro.setSpeed(1);
                 this.pro.move2D(this.pro.face2d + Math.PI);   
