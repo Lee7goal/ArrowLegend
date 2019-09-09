@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Dialog",
-    "selectedBox":2,
-    "selecteID":4,
+    "selectedBox":7,
+    "selecteID":16,
     "searchKey":"Dialog",
     "props":{"width":750,"sceneColor":"#000000","isModal":true,"height":1200},
     "nodeParent":-1,
@@ -29,20 +29,6 @@
             "child":[
                 {
                     "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":59,"x":75,"width":600,"texture":"main/fuhuodi2.jpg","height":400},
-                    "nodeParent":4,
-                    "label":"Sprite",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":5,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
                     "type":"UIView",
                     "source":"test/Light.scene",
                     "searchKey":"UIView,light",
@@ -55,7 +41,7 @@
                     "compId":20,
                     "child":[
                         ],
-                    "$HIDDEN":true
+                    "$HIDDEN":false
                 },
                 {
                     "x":30,
@@ -97,20 +83,6 @@
                             "compId":13,
                             "child":[
                                 ]
-                        },
-                        {
-                            "x":45,
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":6,"x":349,"skin":"main/sanbei.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":7,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":16,
-                            "child":[
-                                ]
                         }]
                 },
                 {
@@ -138,20 +110,6 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":10,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"y":70,"x":309,"skin":"main/biaotitishi.png"},
-                    "nodeParent":4,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":12,
                     "child":[
                         ]
                 },
