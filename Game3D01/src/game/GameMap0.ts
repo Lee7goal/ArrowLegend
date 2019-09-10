@@ -40,6 +40,8 @@ export default class GameMap0 extends Laya.Sprite {
 
     /**门的碰撞盒 */
     doorHitBox:GameHitBox;
+
+    guideHitBox:GameHitBox;
     
     constructor() {
         super();
@@ -158,6 +160,11 @@ export default class GameMap0 extends Laya.Sprite {
                     {
                         this.doorHitBox = new GameHitBox(GameBG.ww * 2, GameBG.ww * 2);
                         this.doorHitBox.setXY(x - GameBG.ww2, y - GameBG.ww2);
+                    }
+                    else if(key == BattleFlagID.GUIDE)
+                    {
+                        this.guideHitBox = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww);
+                        this.guideHitBox.setXY(x, y);
                     }
                 k++;
             }

@@ -14,6 +14,7 @@ import Hero from "./player/Hero";
 import GameThorn from "./GameThorn";
 import GameCube from "../main/scene/battle/GameCube";
 import BattleFlagID from "../main/scene/BattleFlagID";
+import GuidePointer from "../main/guide/GuidePointer";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
@@ -124,6 +125,7 @@ export default class GameBG extends Laya.Sprite {
     private _topShadow:Image = new Image();
     private _leftShadow:Image = new Image();
     private _door:Image = new Image();
+    private _guidePointer:GuidePointer;
 
     /**电锯 */
     public saw:Saw = new Saw();
@@ -266,6 +268,7 @@ export default class GameBG extends Laya.Sprite {
                         this.showNpc();
                     }
                 }
+                
 
                 if(gType == BattleFlagID.DOOR)
                 {
@@ -278,6 +281,14 @@ export default class GameBG extends Laya.Sprite {
                 {
                     Hero.bornX = img.x;
                     Hero.bornY = img.y;
+                }
+                else if(gType == BattleFlagID.GUIDE)
+                {
+                    if(!this._guidePointer)
+                    {
+                        this._guidePointer = new GuidePointer();
+                    }
+                    this._guidePointer.pos(img.x,img.y);
                 }
                 // }
 
@@ -348,6 +359,14 @@ export default class GameBG extends Laya.Sprite {
         this.y = (Laya.stage.height -GameBG.bgHH) * 0.5;
         GameBG.cx = this.x;
         GameBG.cy = this.y;
+    }
+
+    public showGuidePointer():void{
+        this._box.addChild(this._guidePointer);
+    }
+
+    public hideGuidePointer():void{
+        this._guidePointer && this._guidePointer.removeSelf();
     }
 
     private showNpc():void

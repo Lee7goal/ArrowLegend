@@ -15,6 +15,7 @@ import GameInfrared from "../GameInfrared";
 import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
 import GameThorn from "../GameThorn";
+import Session from "../../main/Session";
 
 export default class HeroAI extends GameAI {
 
@@ -210,6 +211,11 @@ export default class HeroAI extends GameAI {
     
 
     public exeAI(pro: GamePro): boolean {
+
+        if(Session.guideId == 1 || Session.guideId == 2)
+        {
+            return;
+        }
         //this.gi.drawMoveline();
         var now = Game.executor.getWorldNow();
         Game.bg.checkNpc();
@@ -217,7 +223,6 @@ export default class HeroAI extends GameAI {
         if (Game.hero.isIce)  {
             return;
         }
-
 
         this.rotateBullet();
         //地刺
@@ -238,10 +243,41 @@ export default class HeroAI extends GameAI {
             }
         }
 
+        if(Session.isGuide)
+        {
+            if(Session.guideId == 3)
+            {
+                if(Game.map0.guideHitBox && Game.hero.hbox.hit(Game.hero.hbox, Game.map0.guideHitBox))
+                {
+                    Game.scenneM.battle && Game.scenneM.battle.up(null);
+                    Game.scenneM.battle.setGuide("主角会自动攻击，移动中不会攻击。",2);
+                    Game.map0.guideHitBox = null;
+                    console.log("主角会自动攻击，移动中不会攻击");
+                    return false;
+                }
+            }
+        }
+
         if (this.run_) {
             this.moves();
             return;
         }
+
+        if(Session.isGuide)
+        {
+            if(Session.guideId == 3)
+            {
+                // if(Game.map0.guideHitBox && Game.hero.hbox.hit(Game.hero.hbox, Game.map0.guideHitBox))
+                // {
+                //     Game.scenneM.battle && Game.scenneM.battle.up(null);
+                //     Game.scenneM.battle.setGuide("主角会自动攻击，移动中不会攻击",2);
+                //     Game.map0.guideHitBox = null;
+                //     console.log("主角会自动攻击，移动中不会攻击");
+                // }
+                return false;
+            }
+        }
+        
 
         if (Game.map0.Eharr.length > 0) {
 

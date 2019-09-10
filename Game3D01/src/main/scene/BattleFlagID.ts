@@ -1,4 +1,5 @@
 export default class BattleFlagID{
+    static GUIDE:number = 10000;
     /**主角 */
     static HERO:number = 9999;
     /**门 */

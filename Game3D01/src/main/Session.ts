@@ -8,9 +8,13 @@ import UserData from "../game/data/UserData";
 import TaskData from "../game/data/TaskData";
 import GameEvent from "./GameEvent";
 import HeroData from "../game/data/HeroData";
+import Monster from "../game/player/Monster";
 
 export default class Session{
     static SKEY:string;
+
+    static isGuide:boolean;
+    static guideId:number;
 
     static gameData:any = {};
 
@@ -38,12 +42,14 @@ export default class Session{
     }
 
     static parseData(str:string):void{
+        Session.isGuide = false;
         if(str != "" && str != "0" ){
             Session.gameData = JSON.parse(str);
             for( let i of Session.IDataArr ){
                 i.setData( Session.gameData );
             }
         } else {
+            Session.isGuide = true;
             Laya.stage.once(GameEvent.CONFIG_OVER , null , Session.configFun );
         }
     }

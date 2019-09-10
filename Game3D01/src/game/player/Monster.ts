@@ -95,6 +95,20 @@ export default class Monster extends GamePro {
         }
     }
 
+    show():void
+    {
+        Game.layer3d.addChild(this.sp3d);
+        Game.bloodLayer.addChild(this._bloodUI);
+        Game.footLayer.addChild(this._bulletShadow);
+    }
+
+    hide():void
+    {
+        this.sp3d && this.sp3d.removeSelf();
+        this._bloodUI && this._bloodUI.removeSelf();
+        this._bulletShadow && this._bulletShadow.removeSelf();
+    }
+
     public initBlood(hp: number): void {
         super.initBlood(hp, hp);
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 90);
