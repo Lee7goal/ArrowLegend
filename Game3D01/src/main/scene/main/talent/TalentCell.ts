@@ -27,6 +27,7 @@ export default class TalentCell extends ui.test.TalentCellUI {
         t.infoBox.visible = true;
         t.jinengming.text = sys.talentInfo;
         t.qianshu2.value = "1";
+        
         t.on( Laya.Event.CLICK , this,this.clickFun , [t,sys] );
     }
 

@@ -501,7 +501,9 @@ export module ui.test {
 		public shengmingniu:Laya.Button;
 		public qianshu:Laya.FontClip;
 		public list:Laya.List;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"viewbg","props":{"runtime":"ui.game.viewbgUI"},"compId":29},{"type":"Image","props":{"y":122,"x":26,"width":698,"var":"tianfudi","skin":"tianfu/tiandi.png","sizeGrid":"89,0,115,0","height":1065},"compId":31},{"type":"Box","props":{"y":175,"x":269},"compId":106,"child":[{"type":"Image","props":{"y":97,"x":98,"width":17,"skin":"tianfu/lvtiao.png","height":641},"compId":77}]},{"type":"Button","props":{"y":1053,"x":375,"width":250,"var":"shengmingniu","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},"compId":99,"child":[{"type":"FontClip","props":{"y":30,"x":68,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},"compId":100},{"type":"Image","props":{"y":24,"x":147,"skin":"main/dongjin.png"},"compId":101}]},{"type":"List","props":{"y":199,"x":47,"width":662,"var":"list","spaceY":18,"height":782},"compId":104,"child":[{"type":"TalentCell","props":{"y":0,"x":0,"renderType":"render","runtime":"ui.test.TalentCellUI"},"compId":105}]}],"loadList":["tianfu/tiandi.png","tianfu/lvtiao.png","main/btn_lv.png","main/clipshuzi.png","main/dongjin.png"],"loadList3D":[]};
+		public tipBox:Laya.Box;
+		public txt5:laya.display.Text;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"viewbg","props":{"runtime":"ui.game.viewbgUI"},"compId":29},{"type":"Image","props":{"y":122,"x":26,"width":698,"var":"tianfudi","skin":"tianfu/tiandi.png","sizeGrid":"89,0,115,0","height":1065},"compId":31},{"type":"Button","props":{"y":1046,"x":380,"width":250,"var":"shengmingniu","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},"compId":99,"child":[{"type":"FontClip","props":{"y":30,"x":68,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},"compId":100},{"type":"Image","props":{"y":24,"x":147,"skin":"main/dongjin.png"},"compId":101}]},{"type":"List","props":{"y":207,"x":86,"width":588,"var":"list","spaceY":35,"spaceX":25,"repeatY":3,"repeatX":3,"height":755},"compId":107,"child":[{"type":"TianFuCell","props":{"y":0,"x":0,"renderType":"render","runtime":"ui.test.TianFuCellUI"},"compId":108}]},{"type":"Box","props":{"y":787,"x":867,"var":"tipBox"},"compId":111,"child":[{"type":"Sprite","props":{"y":53,"texture":"tianfu/qipao.png"},"compId":109},{"type":"Sprite","props":{"x":101,"texture":"tianfu/qipaojian.png"},"compId":110},{"type":"Text","props":{"y":86,"x":9,"width":287,"var":"txt5","valign":"middle","text":"这里是天赋信息","height":90,"fontSize":30,"align":"center","runtime":"laya.display.Text"},"compId":112}]}],"loadList":["tianfu/tiandi.png","main/btn_lv.png","main/clipshuzi.png","main/dongjin.png","tianfu/qipao.png","tianfu/qipaojian.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -524,6 +526,21 @@ export module ui.test {
         }
     }
     REG("ui.test.TalentCellUI",TalentCellUI);
+    export class TalentViewUI extends Dialog {
+		public b0:ui.test.TianFuCellUI;
+		public b1:ui.test.TianFuCellUI;
+		public b2:ui.test.TianFuCellUI;
+		public b3:ui.test.TianFuCellUI;
+		public b4:ui.test.TianFuCellUI;
+		public b5:ui.test.TianFuCellUI;
+        public static  uiView:any ={"type":"Dialog","props":{"width":640,"isModal":true,"height":500},"compId":2,"child":[{"type":"TianFuCell","props":{"y":29,"x":23,"var":"b0","runtime":"ui.test.TianFuCellUI"},"compId":3},{"type":"TianFuCell","props":{"y":29,"x":229,"var":"b1","runtime":"ui.test.TianFuCellUI"},"compId":4},{"type":"TianFuCell","props":{"y":29,"x":435,"var":"b2","runtime":"ui.test.TianFuCellUI"},"compId":5},{"type":"TianFuCell","props":{"y":250,"x":23,"var":"b3","runtime":"ui.test.TianFuCellUI"},"compId":6},{"type":"TianFuCell","props":{"y":250,"x":229,"var":"b4","runtime":"ui.test.TianFuCellUI"},"compId":7},{"type":"TianFuCell","props":{"y":250,"x":434,"var":"b5","runtime":"ui.test.TianFuCellUI"},"compId":8}],"loadList":[],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(TalentViewUI.uiView);
+        }
+    }
+    REG("ui.test.TalentViewUI",TalentViewUI);
     export class talent_1UI extends View {
 		public wenHao:Laya.Image;
 		public infoBox:Laya.Box;
@@ -541,6 +558,22 @@ export module ui.test {
         }
     }
     REG("ui.test.talent_1UI",talent_1UI);
+    export class TianFuCellUI extends View {
+		public bg1:Laya.Image;
+		public box2:Laya.Sprite;
+		public select:Laya.Image;
+		public box1:Laya.Box;
+		public logo1:Laya.Image;
+		public txtImg:Laya.Image;
+		public lv:Laya.FontClip;
+        public static  uiView:any ={"type":"View","props":{"width":175,"height":212},"compId":2,"child":[{"type":"Image","props":{"y":13,"x":12,"var":"bg1","skin":"tianfu/PTkuang.png"},"compId":3},{"type":"Sprite","props":{"y":28.5,"x":29,"var":"box2","texture":"tianfu/touwen.png"},"compId":10},{"type":"Image","props":{"y":0,"x":0,"width":175,"var":"select","skin":"tianfu/xuanzhong1.png","sizeGrid":"50,50,38,47","height":212,"blendMode":"lighter"},"compId":13},{"type":"Box","props":{"y":28.5,"x":29,"width":117,"var":"box1","height":161},"compId":14,"child":[{"type":"Image","props":{"var":"logo1","skin":"tianfu/gongji.png"},"compId":9},{"type":"Image","props":{"y":123,"var":"txtImg","skin":"tianfu/gongzi.png","centerX":0},"compId":11},{"type":"FontClip","props":{"y":78,"x":59,"width":180,"var":"lv","value":"9","spaceX":-3,"skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:vbnd","scaleY":0.3,"scaleX":0.3,"height":113,"align":"right"},"compId":12}]}],"loadList":["tianfu/PTkuang.png","tianfu/touwen.png","tianfu/xuanzhong1.png","tianfu/gongji.png","tianfu/gongzi.png","main/clipshuzi.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(TianFuCellUI.uiView);
+        }
+    }
+    REG("ui.test.TianFuCellUI",TianFuCellUI);
     export class tianshiUI extends View {
 		public ani1:Laya.FrameAnimation;
 		public tan:Laya.Image;
