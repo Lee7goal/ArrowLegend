@@ -83,7 +83,7 @@ export default class FlowerAI extends BaseAI {
         else if (curBullet.bulletType == 2)//随机子弹
         {
             // console.log("随机子弹");
-            this.shooting.shootCd = 1200;
+            this.shooting.shootCd = this.sysEnemy.enemySpeed;
             let angle: number = curBullet.bulletAngle;
             angle = angle / 2;
             let bulletNum = minNum + Math.ceil(Math.random() * (maxNum - minNum));

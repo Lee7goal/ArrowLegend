@@ -5,8 +5,8 @@ import MonsterBulletAI from "../ai/MonsterBulletAI";
 import MonsterBulletMove from "../move/MonsterBulletMove";
 import Game from "../Game";
 import { ui } from "./../../ui/layaMaxUI";
-import BulletRotateScript from "../controllerScript/BulletRotateScript";
 import MemoryManager from "../../main/scene/battle/MemoryManager";
+import BulletRotateScript from "../controllerScript/BulletRotateScript";
 
 export default class MonsterBullet extends GamePro {
     static TAG: string = "MonsterBullet_";
@@ -43,6 +43,11 @@ export default class MonsterBullet extends GamePro {
         {
             var bullet: Laya.Sprite3D;
             bullet = (Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + sb.bulletMode + "/monster.lh"))) as Laya.Sprite3D;
+            if(this.sysBullet.id != 10 && this.sysBullet.id != 11 && this.sysBullet.id != 20)//处理弓箭的，弓箭就不转了
+            {
+                (bullet.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bullet.transform.localRotationEulerY;
+                bullet.addComponent(BulletRotateScript);
+            }
             MemoryManager.ins.add(bullet.url);
             // Game.monsterResClones.push(bullet);
             this.setSp3d(bullet);

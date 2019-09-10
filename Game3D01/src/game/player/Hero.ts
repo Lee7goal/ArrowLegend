@@ -127,6 +127,27 @@ export default class Hero extends GamePro {
     }
 
     init(): void {
+
+        if (Game.battleLoader.continueRes)  {
+            Game.hero.gamedata.hp = Game.battleLoader.continueRes.curhp;
+            Game.hero.gamedata.maxhp = Game.battleLoader.continueRes.maxhp;
+            let skills:string = Game.battleLoader.continueRes.skills;
+            if(skills.length > 0)
+            {
+                let arr:string [] = skills.split(",");
+                for(let i = 0; i < arr.length; i++)
+                {
+                    let info:string[] = arr[i].split("_");
+                    if(info.length == 2)
+                    {
+                        let sysSkill:SysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME,Number(info[0]));
+                        sysSkill.curTimes = Number(info[1]);
+                        Game.skillManager.addSkill(sysSkill);
+                    }
+                }
+            }
+        }
+        
         this.isDie = false;
         this.setKeyNum(1);
         this.acstr = "";

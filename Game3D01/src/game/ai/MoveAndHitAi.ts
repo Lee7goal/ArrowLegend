@@ -5,6 +5,7 @@ import GameHitBox from "../GameHitBox";
 import GameBG from "../GameBG";
 import Monster from "../player/Monster";
 import BaseAI from "./BaseAi";
+import SysEnemy from "../../main/sys/SysEnemy";
 
 
 export default class MoveAndHitAi extends BaseAI {
@@ -24,7 +25,7 @@ export default class MoveAndHitAi extends BaseAI {
         {
             return;
         }
-        var sys = this.pro.sysEnemy;        
+        var sys:SysEnemy = this.pro.sysEnemy;        
         if(this.status==0 && this.now>=this.cd){
             var a: number = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);
             this.pro.rotation(a);
@@ -38,7 +39,7 @@ export default class MoveAndHitAi extends BaseAI {
         else if(this.status ==1 && this.now>=this.cd){
             this.pro.setSpeed(sys.moveSpeed);
             // this.cd = this.now + sys.enemySpeed;
-            this.cd = this.now + 1000;
+            this.cd = this.now + sys.enemySpeed;
             this.status = 0;
             this.pro.play(GameAI.Run);
         }
@@ -57,6 +58,11 @@ export default class MoveAndHitAi extends BaseAI {
                 this.pro.rotation(a);
                 this.pro.move2D(this.pro.face2d);
             }
+
+            // if(this.pro.acstr != GameAI.Run)
+            // {
+            //     this.pro.play(GameAI.Run);
+            // }
         }
 
         

@@ -23,8 +23,8 @@
 				"name":"albedoTexture",
 				"path":"../Texture/Albedo.jpg",
 				"constructParams":[
-					1024,
-					1024,
+					256,
+					256,
 					0,
 					true
 				],

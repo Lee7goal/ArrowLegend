@@ -5,7 +5,7 @@
 		"name":"chang",
 		"renderStates":[
 			{
-				"cull":2,
+				"cull":0,
 				"blend":1,
 				"srcBlend":770,
 				"dstBlend":771,
@@ -23,7 +23,7 @@
 				"name":"albedoTexture",
 				"path":"../Texture/chang8.png",
 				"constructParams":[
-					64,
+					128,
 					128,
 					1,
 					true

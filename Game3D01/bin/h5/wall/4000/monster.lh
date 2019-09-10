@@ -26,7 +26,7 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"shuijing (1)",
+					"name":"shuijing (5)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,7 +42,7 @@
 						-1
 					],
 					"scale":[
-						3,
+						4.241101,
 						4,
 						2.5
 					],
@@ -55,42 +55,7 @@
 					]
 				},
 				"components":[],
-				"child":[
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"shuijing (2)",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								-0.01,
-								0.011
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1.80835,
-								1.278014,
-								1.294542
-							],
-							"meshPath":"Assets/wall 6/FBX/shuijing-pCube7.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/wall 6/Materials/guang.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
+				"child":[]
 			}
 		]
 	}

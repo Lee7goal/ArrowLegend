@@ -7,7 +7,6 @@ import App from "../../core/App";
 import MonsterBulletAI from "./MonsterBulletAI";
 import MonsterBullet from "../player/MonsterBullet";
 import { GameAI } from "./GameAI";
-import BulletRotateScript from "../controllerScript/BulletRotateScript";
 
 /**怪射击器*/
 export default class MonsterShooting {
@@ -42,12 +41,6 @@ export default class MonsterShooting {
         bo.curLen = 0;
         bo.hurtValue = pro.hurtValue;
         bo.moveLen = range + Math.sqrt((bo.hbox.cy - Game.hero.hbox.cy) * (bo.hbox.cy - Game.hero.hbox.cy) + (bo.hbox.cx - Game.hero.hbox.cx) * (bo.hbox.cx - Game.hero.hbox.cx));
-        // console.log("子弹速度",this._sysBullet.bulletSpeed,this._sysBullet.nameTxt,bo.curLen,bo.moveLen);
-        if(this._sysBullet.id != 10 && this._sysBullet.id != 11)//处理弓箭的，弓箭就不转了
-        {
-            (bo.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -bo.sp3d.transform.localRotationEulerY;
-            bo.sp3d.addComponent(BulletRotateScript);
-        }
         bo.startAi();
     }
 
