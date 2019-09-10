@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"map_3/1.jpg"},"compId":3},{"type":"Sprite","props":{"y":-211,"x":0,"texture":"map_3/1_0.png"},"compId":4},{"type":"Sprite","props":{"y":1372,"x":0,"texture":"map_3/1_1.png"},"compId":5}],"loadList":["map_3/1.jpg","map_3/1_0.png","map_3/1_1.png"],"loadList3D":[]}

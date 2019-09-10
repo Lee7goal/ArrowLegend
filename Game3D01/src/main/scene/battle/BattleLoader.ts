@@ -130,7 +130,8 @@ export default class BattleLoader {
         }
         else
         {
-            if (this._index > 10) {
+            let maxCeng:number =  SysMap.getTotal(Session.gameData.chapterId);
+            if (this._index > maxCeng) {
                 this._index = 1;
             }
             this._mapId = Session.homeData.chapterId * 1000 + this._index;
@@ -142,7 +143,7 @@ export default class BattleLoader {
             let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
             this._configId = configId;
         }
-        // this._configId = 101401;
+        // this._configId = 103004;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }
@@ -150,6 +151,7 @@ export default class BattleLoader {
     public preload():void
     {
         let arr:string[] = [
+            "h5/mapbg/1.jpg",
             "res/atlas/xiongmao.atlas",
             "res/atlas/shengli.atlas",
             "res/atlas/icons/skill.atlas",
@@ -179,7 +181,7 @@ export default class BattleLoader {
             "h5/wall/5000/monster.lh",
             "h5/wall/5500/monster.lh",
             "h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",
-            "h5/tong/wall.lh","h5/wall/wall.lh","h5/zhalan/hero.lh","h5/effects/door/monster.lh",
+            "h5/zhalan/hero.lh","h5/effects/door/monster.lh",
             "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh",
             "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
@@ -196,7 +198,7 @@ export default class BattleLoader {
     private loadBg():void
     {
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");
-        GameBG.MAP_ROW = map.rowNum;
+        GameBG.MAP_ROW = map.rowNum + 4;
         GameBG.MAP_COL = map.colNum;
 
         GameBG.MAP_ROW2 = Math.floor(GameBG.MAP_ROW * 0.5);
@@ -205,7 +207,7 @@ export default class BattleLoader {
 
         GameBG.bgId = map.bgId;
         GameBG.bgWW = map.bgWidth;
-        GameBG.bgHH = map.bgHeight;
+        GameBG.bgHH = map.bgHeight + 250;
         GameBG.bgCellWidth = map.cellWidth;
 
         GameBG.arr0 = map.arr;

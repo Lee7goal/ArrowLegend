@@ -31,12 +31,12 @@ export default class FlyGameMove2 extends GameMove {
             }
         }
 
-        pro.sp3d.transform.localPositionY = 0;
-        var hits = Game.map0.Wharr;
+        // pro.sp3d.transform.localPositionY = 0;
+        // var hits = Game.map0.Wharr;
 
-        if (Game.map0.chechHitArrs(pro, vx, vz, hits)) {
-            pro.sp3d.transform.localPositionY = 1;
-        }
+        // if (Game.map0.chechHitArrs(pro, vx, vz, hits)) {
+        //     pro.sp3d.transform.localPositionY = 1;
+        // }
 
         if(!this.Blocking(pro,vx,vz)){
             return false;

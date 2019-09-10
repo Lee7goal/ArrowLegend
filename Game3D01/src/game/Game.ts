@@ -30,7 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "1.0.4";
+    static resVer:string = "1.0.8";
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -77,7 +77,7 @@ export default class Game {
     static scene3d: Laya.Scene3D;
     //主英雄
     //static hero:Laya.Sprite3D;
-    static hero: Hero = new Hero();
+    static hero: Hero;
     //主敌人    
     static e0_: GamePro;
 

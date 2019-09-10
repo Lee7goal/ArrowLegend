@@ -182,17 +182,15 @@ export default class GameBG extends Laya.Sprite {
         sprite.sizeGrid = "584,711,51,72";
         sprite.size(GameBG.bgWW,GameBG.bgHH);
 
-        // for(var i = 0; i < GameBG.bgHH / GameBG.bgCellWidth;i++) {
-        //     for(var j = 0; j < GameBG.bgWW / GameBG.bgCellWidth;j++) {
-        //         var sprite:Laya.Image = new Laya.Image();
-        //         this._box.addChild(sprite);
-        //         sprite.skin = "h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg";
-        //         // let tt:Laya.Texture = Laya.loader.getRes("h5/mapbg/" + GameBG.bgId + "/" + j + "_" + i + ".jpg");
-        //         // console.log("地图",tt);
-        //         // sprite.texture = tt;
-        //         sprite.pos(i * GameBG.bgCellWidth,j * GameBG.bgCellWidth);
-        //     }
-        // }
+        // var topImg:Laya.Image = new Laya.Image();
+        // this._box.addChild(topImg);
+        // topImg.y = -211;
+        // topImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_0.png");
+
+        var bottomImg:Laya.Image = new Laya.Image();
+        this._box.addChild(bottomImg);
+        bottomImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_1.png");
+        bottomImg.y = 1372;
         
         let index2:number = 0;
         for (let j = 0; j < GameBG.MAP_ROW; j++) {
@@ -205,32 +203,10 @@ export default class GameBG extends Laya.Sprite {
 
                 gType = GameBG.arr0[k];
                 img = new Image();
-                // img.alpha = 0.3;
-                // img.skin = (index2 % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
                 this._box.addChild(img);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
                 index2++;
-                // let label:Laya.Label = new Laya.Label();
-                // label.size(ww,ww);
-                // img.addChild(label);
-                // label.align = "center";
-                // label.valign = "middle";
-                // label.text = j + "," + i;
-                // if(gType > 0)
-                // {
-                //     label.text = "" + gType;
-                // }
-
-
-                // if(i==GameBG.ci && j==GameBG.cj){
-                //     sp = new Sprite();
-                //     sp.graphics.drawRect(0,0,GameBG.ww,GameBG.ww,0xff0000);
-                //     sp.x = i * ww;
-                //     sp.y = j * ww;
-                //     this.addChild(sp);
-                //     this.sp = sp;
-                // }
                 var thorn:GameThorn;
                 var grid:Image = new Image();
                 if (GridType.isRiverPoint(gType)) {
@@ -368,78 +344,10 @@ export default class GameBG extends Laya.Sprite {
         }
 
         this.saw.updateSaw();
-
-        // for (let j = 0; j < GameBG.hnum; j++) {
-        //     if (j % 2 == 0) {
-        //         var left: Image = new Image();
-        //         Game.frontLayer.addChild(left);
-        //         left.skin = GameBG.BG_TYPE + "/border.png";
-        //         left.x = 0;
-        //         left.y = Math.floor(j / 2) * 128 - 1;
-        //         left.mouseEnabled = false;
-
-        //         var right: Image = new Image();
-        //         Game.frontLayer.addChild(right);
-        //         right.skin = GameBG.BG_TYPE + "/border.png";
-        //         right.x = 0 + GameBG.wnum * ww;
-        //         right.y = Math.floor(j / 2) * 128 - 1;
-        //         right.mouseEnabled = false;
-        //     }
-        // }
-
-        // this._topShadow.skin = "bg/yingzi.png";
-        // this._topShadow.width = GameBG.ww * (GameBG.wnum + 1);
-        // this._leftShadow.skin = "bg/yingzi.png";
-        // this._leftShadow.height = GameBG.ww * GameBG.hnum - 10 * GameBG.ww;
-        // this._leftShadow.y = GameBG.ww * 10 + 28;
-        // this._leftShadow.x = GameBG.ww - 10;
-        // Game.frontLayer.addChild(this._topShadow);
-        // Game.frontLayer.addChild(this._leftShadow);
-        // Game.frontLayer.addChild(this._top);
-
-        // this._top.x = GameBG.ww2;
-        // this._top.skin = GameBG.BG_TYPE + "/top.png";
-        // this._bossImg.skin = GameBG.BG_TYPE + "/bosstou.png";
-        // this._topShadow.y = 10 * GameBG.ww;
-
-        
-        // this._top.addChild(this._bossImg);
-
-        
-        // this.doorNumber.value = "" + Game.battleLoader.index;
-        // this.doorNumber.pos(380,390);
-        // this._top.addChild(this.doorNumber);
-        
-        // this._bossImg.visible = hasBoss;
-        // this.doorNumber.visible = !this._bossImg.visible && Game.battleLoader.index > 0;
-        // this._door.pos(281,418);
-
-        
-
-        // Game.frontLayer.addChild(this._bottom);
-        // this._bottom.x = GameBG.ww2;
-        // this._bottom.skin = GameBG.BG_TYPE + "/bottom.png";
-        // this._bottom.y = (GameBG.MAP_ROW + 11 - 3) * GameBG.ww - GameBG.ww * 0.1;
-        // this._bottom.height = 1000;
-
-        //this.x = (Laya.stage.width - GameBG.MAP_COL * GameBG.ww) * 0.5;
         this.x = -GameBG.ww2;
         this.y = (Laya.stage.height -GameBG.bgHH) * 0.5;
         GameBG.cx = this.x;
         GameBG.cy = this.y;
-        // GameBG.mcx = ((GameBG.wnum + 1) * (GameBG.ww)) / 2 - GameBG.mw2;
-        // GameBG.mcy = (GameBG.hnum * GameBG.ww) / 2 - GameBG.mw2;
-
-        // GameBG.mcx = (GameBG.MAP_COL * GameBG.ww) / 2;
-        // GameBG.mcy = (GameBG.MAP_ROW * GameBG.ww) / 2;
-        
-        // let redLine:Laya.Image = new Laya.Image();
-        // redLine.skin = "bg/hongtiao.png"
-        // Game.frontLayer.addChild(redLine);
-        // redLine.x = GameBG.ww * 5;
-        // redLine.y = GameBG.ww * 18;
-        // redLine.height = 500;
-        // this.showNpc();
     }
 
     private showNpc():void

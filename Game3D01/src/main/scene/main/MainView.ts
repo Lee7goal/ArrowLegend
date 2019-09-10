@@ -9,6 +9,8 @@ export default class MainView extends Laya.Box {
 
     private content: Laya.Box;
     private views: Laya.View[] = [];
+    private skins:string[] = [null,"juese","tianfu","chengjiu","shezhi"];
+    private VIEW_CLAS = [WorldView,RoleView,TalentView,AchievementsView,SettingView];
     constructor() {
         super();
         // this.height = GameBG.height;
@@ -19,11 +21,38 @@ export default class MainView extends Laya.Box {
     private initUI(): void {
         this.content = new Laya.Box();
         this.addChild(this.content);
-        this.views = [new WorldView(),new RoleView(),new TalentView(), new AchievementsView(),  new SettingView()];
+        // this.views = [new WorldView(),new RoleView(),new TalentView(), new AchievementsView(),  new SettingView()];
     }
 
     private curIndex: number;
     public set selectIndex(index: number)  {
+        let view: Laya.View = this.views[index];
+        if(!view)
+        {
+            let skinName:string = this.skins[index];
+            if(skinName)
+            {
+                Laya.loader.load("res/atlas/"+skinName+".atlas",new Laya.Handler(this,()=>{
+                    let CLA = this.VIEW_CLAS[index];
+                    this.views[index] = new CLA();
+                    this.setView(index);
+                }));
+            }
+            else
+            {
+                let CLA = this.VIEW_CLAS[index];
+                this.views[index] = new CLA();
+                this.setView(index);
+            }
+        }
+        else
+        {
+            this.setView(index);
+        }
+    }
+
+    private setView(index: number):void
+    {
         let view: Laya.View = this.views[index];
         view.removeSelf();
         this.content.addChild(view);

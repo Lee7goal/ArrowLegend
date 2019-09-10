@@ -137,40 +137,6 @@
 								"child":[]
 							}
 						]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"guang",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								-0.00203893,
-								0.01682117,
-								0.01682117
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								1
-							],
-							"scale":[
-								7.385856,
-								1.079934,
-								1.360892
-							],
-							"meshPath":"Assets/sword/FBX/jian-pPlane1.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/sword/Materials/guang.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
 					}
 				]
 			},

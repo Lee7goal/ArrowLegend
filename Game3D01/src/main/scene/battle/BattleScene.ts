@@ -160,6 +160,10 @@ export default class BattleScene extends Laya.Sprite {
 
     private nullGridList:Laya.Point[] = [];
     init(): void {
+        if(!Game.hero)
+        {
+            Game.hero = new Hero();
+        }
         // Game.camera.transform.localPositionZ = 0;
         // Game.camera.transform.localPositionX = 0;
         GameCube.recover();
@@ -275,33 +279,10 @@ export default class BattleScene extends Laya.Sprite {
         Game.ro.resetPos();
         this.addChild(Game.ro);
 
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1009));
-
-        if (Game.battleLoader.continueRes)  {
-            Game.hero.gamedata.hp = Game.battleLoader.continueRes.curhp;
-            Game.hero.gamedata.maxhp = Game.battleLoader.continueRes.maxhp;
-            let skills:string = Game.battleLoader.continueRes.skills;
-            if(skills.length > 0)
-            {
-                let arr:string [] = skills.split(",");
-                for(let i = 0; i < arr.length; i++)
-                {
-                    let info:string[] = arr[i].split("_");
-                    if(info.length == 2)
-                    {
-                        let sysSkill:SysSkill = App.tableManager.getDataByNameAndId(SysSkill.NAME,Number(info[0]));
-                        sysSkill.curTimes = Number(info[1]);
-                        Game.skillManager.addSkill(sysSkill);
-                    }
-                }
-            }
+        if(!Game.hero)
+        {
+            Game.hero = new Hero();
         }
-
-        // this.createMonster();
         Game.hero.init();
         Game.hero.playerData.lastLevel = Game.hero.playerData.level;
         Game.bg.updateY();
@@ -326,25 +307,6 @@ export default class BattleScene extends Laya.Sprite {
         }
         this.index++
     }
-
-    /**刷怪 */
-    createMonster():void
-    {
-        console.log("刷怪");
-        // let sysMap:SysMap = Game.battleLoader.sysMap;
-        // let num:number = Math.floor(sysMap.mixEnemy + Math.random() * (sysMap.maxEnemy - sysMap.mixEnemy));
-
-        // let monsterGroup:string[] = Game.battleLoader.monsterGroup;
-        // for(let i = 0; i < num; i++)
-        // {
-        //     let monsterId:number = Number(monsterGroup[Math.floor(monsterGroup.length * Math.random())]);
-        //     let p:Laya.Point = this.nullGridList[Math.floor(this.nullGridList.length * Math.random())];
-        //     let monster: Monster = Monster.getMonster(monsterId, p.x, p.y);
-        // }
-
-        // Game.battleLoader.sysMap = null
-    }
-
     private onOpenDoor(e: Laya.Event): void {
         if (e.nativeEvent.keyCode == 111) {
             // Game.openDoor();

@@ -49,7 +49,6 @@ import TestCookie from "./gameCookie/TestCookie";
 import WXCookie from "./gameCookie/WXCookie";
 import { BaseCookie } from "./gameCookie/BaseCookie";
 import CookieKey from "./gameCookie/CookieKey";
-import PlayerData from "./game/data/PlayerData";
 import MyEffect from "./core/utils/MyEffect";
 import Session from "./main/Session";
 
@@ -71,12 +70,12 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		if (GameConfig.stat) Laya.Stat.show();
+		// if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
 			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
-			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png"];
+			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png","allJson.json"];
 
 			Laya.Browser.window.wx.getSystemInfo({
 				success(res) {
@@ -184,15 +183,17 @@ class Main {
 			Laya.stage.addChild(this.loading);
 			// this.loading.clip.play();
 			this.loading.txt.text = "0%";
-			Laya.loader.load([
-				{ url: "h5/mapbg/1.jpg", type: Laya.Loader.IMAGE },
-				{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/juese.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/chengjiu.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
-				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
-			], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
+			Laya.loader.load([{url: "allJson.json", type: "plf"}], Laya.Handler.create(this, function():void {
+				Laya.loader.load([
+					{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
+					// { url: "res/atlas/juese.atlas", type: Laya.Loader.ATLAS },
+					// { url: "res/atlas/chengjiu.atlas", type: Laya.Loader.ATLAS },
+					// { url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
+					// { url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
+					{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
+				], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
+			}));
+			
 		});
 	}
 
@@ -246,7 +247,6 @@ class Main {
 		REG(AttackType.TAG + AIType.MOVEHIT, MoveAndHitAi);
 		REG(AttackType.TAG + AIType.REBOUND, ReboundAI);
 		REG(AttackType.TAG + AIType.JUMP_FOLLOW, JumpFollowAI);
-		REG(AttackType.TAG + AIType.RED_LINE, ArcherAI);
 		REG(AttackType.TAG + AIType.RED_LINE, ArcherAI);
 		//移动类型
 		REG(MoveType.TAG + MoveType.FLY, FlyGameMove);

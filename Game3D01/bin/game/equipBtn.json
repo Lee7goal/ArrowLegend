@@ -1,1 +1,0 @@
-{"type":"View","props":{"width":108,"height":145},"compId":2,"child":[{"type":"Button","props":{"y":77.5,"x":54,"width":108,"var":"btn","stateNum":2,"skin":"main/zhuangbei.png","height":145,"anchorY":0.5,"anchorX":0.5},"compId":3}],"loadList":["main/zhuangbei.png"],"loadList3D":[]}

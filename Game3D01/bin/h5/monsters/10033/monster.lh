@@ -51,7 +51,7 @@
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10033/FBX/footman-footman (1)-footmanAvatar.lav",
+							"path":"Assets/10032/FBX/footman-footman (1)-footmanAvatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[
@@ -137,7 +137,7 @@
 									"path":"Assets/10033/Material/PBR.lmat"
 								}
 							],
-							"meshPath":"Assets/10033/FBX/footman-FootmanMesh.lm"
+							"meshPath":"Assets/10032/FBX/footman-FootmanMesh.lm"
 						},
 						"components":[],
 						"child":[]
