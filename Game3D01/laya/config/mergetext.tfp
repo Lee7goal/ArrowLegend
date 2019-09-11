@@ -10,9 +10,6 @@
             "h5/config.json": {
                 "type": "json"
             },
-            "h5/mapConfig/1001.json": {
-                "type": "json"
-            },
             "h5/mapConfig/100100.json": {
                 "type": "json"
             },
@@ -249,7 +246,6 @@
     "fileMerge": {
         "allJson.plf": [
             "h5/config.json",
-            "h5/mapConfig/1001.json",
             "h5/mapConfig/100100.json",
             "h5/mapConfig/100101.json",
             "h5/mapConfig/100201.json",

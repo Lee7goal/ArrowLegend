@@ -26,9 +26,9 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"pPlane2",
+					"name":"Tree_4",
 					"active":true,
-					"isStatic":false,
+					"isStatic":true,
 					"layer":0,
 					"position":[
 						0,
@@ -42,15 +42,15 @@
 						-1
 					],
 					"scale":[
-						1,
-						1,
-						1
+						7.429,
+						7.429005,
+						7.429005
 					],
-					"meshPath":"Assets/wall 8/FBX/shupian-pPlane2.lm",
+					"meshPath":"Assets/wall9/FBX/shujian-polySurface714.lm",
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/wall 8/Materials/chang 1.lmat"
+							"path":"Assets/wall9/Material/TreesAndPlants_Mat.lmat"
 						}
 					]
 				},

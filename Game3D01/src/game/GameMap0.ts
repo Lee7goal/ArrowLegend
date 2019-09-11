@@ -66,6 +66,7 @@ export default class GameMap0 extends Laya.Sprite {
     }
 
     public drawMap(): void {
+        this.info = {};
         this.npcHitBox = null;
         this._isNext = false;
         let hb: GameHitBox = null;
@@ -95,6 +96,8 @@ export default class GameMap0 extends Laya.Sprite {
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
+
+        this.endRowNum = GameBG.MAP_COL - 2;
 
         // if(Game.BigMapMode==0){//如果不是大地图模式
         //     hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));

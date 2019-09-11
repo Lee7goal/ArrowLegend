@@ -1,12 +1,16 @@
 <page>
-   <item name="test/TestScene.scene" props="" ifExport="分离模式" aName=""/>
+   <parsererror style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
+      <h3>This page contains the following errors:      </h3>
+      <div style="font-family:monospace;font-size:12px">error on line 59 at column 2: StartTag: invalid element name
+      </div>
+      <h3>Below is a rendering of the page up to the first error.      </h3>
+   </parsererror>
    <item name="test/RockerView.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/BloodUI.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/HeroFoot.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/Blood2UI.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/world.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/mainUI.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="test/mainScene.scene" props="" ifExport="加载模式" aName=""/>
    <item name="test/chengjiu.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/setting.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/equip.scene" props="" ifExport="内嵌模式" aName=""/>
@@ -56,12 +60,8 @@
    <item name="test/battleLvUI.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/xiongmao1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/xiongmao.scene" props="" ifExport="内嵌模式" aName=""/>
-<<<<<<< HEAD
-   <item name="test/TalentView.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="test/TianFuCell.scene" props="" ifExport="内嵌模式" aName=""/>
-=======
    <item name="game/newGuide.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="game/newGuide2.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="game/newGuide3.scene" props="" ifExport="内嵌模式" aName=""/>
->>>>>>> 3c2f8a46c79f198af5095dafc01cb5908be469c4
+   <item name="game/newGuide2.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/TalentView.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

@@ -30,7 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "1.0.9";
+    static resVer:string = "1.0.10.1";
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -254,14 +254,14 @@ export default class Game {
         var info: any = Game.map0.info;
         var arr: number[][] = [];
         for (let i = mRow - range; i <= mRow + range; i++) {
-            if (i < 10 || i > endRowNum)  {
+            if (i < 2 || i > GameBG.MAP_ROW - 2)  {
                 continue;
             }
             for (let j = mCol - range; j <= mCol + range; j++) {
                 if (j == mRow && i == mCol) {
                     continue;
                 }
-                if (j < 1 || j > 11)  {
+                if (j < 1 || j > GameBG.MAP_ROW - 2)  {
                     continue;
                 }
                 var key: number = info[i + "_" + j];

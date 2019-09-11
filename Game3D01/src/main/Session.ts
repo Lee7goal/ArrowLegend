@@ -49,7 +49,7 @@ export default class Session{
                 i.setData( Session.gameData );
             }
         } else {
-            Session.isGuide = false;
+            Session.isGuide = true;
             Laya.stage.once(GameEvent.CONFIG_OVER , null , Session.configFun );
         }
     }

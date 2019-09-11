@@ -23,4 +23,5 @@
    <item name="map_3/top.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="ren" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="main/guangzhuan1.png" type="Sprite" compress="0" pack="0" quality="80" props="" picType="1" scale="0"/>
+   <item name="loading" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
 </res>

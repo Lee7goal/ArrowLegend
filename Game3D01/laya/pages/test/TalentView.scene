@@ -2,7 +2,6 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":2,
-    "selecteID":8,
     "searchKey":"Dialog",
     "props":{"width":640,"sceneColor":"#000000","isModal":true,"height":500},
     "nodeParent":-1,
