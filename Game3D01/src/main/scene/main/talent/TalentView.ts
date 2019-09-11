@@ -56,7 +56,7 @@ export default class TalentView extends ui.test.talentUI {
             this.tipBox.x = this.list.x + b.x - 130;
             this.tipBox.y = this.list.y + b.y + 200;
             let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, index + 1 );
-            this.txt5.text = sys.talentInfo + ":" + this.tianFuSession.getTxt( index ) + "%";
+            this.txt5.text = sys.talentInfo + ":" + Session.talentData.getTxt( index ) + "%";
         }
     }
 

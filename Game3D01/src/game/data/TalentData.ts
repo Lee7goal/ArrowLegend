@@ -5,6 +5,7 @@ import GameEvent from "../../main/GameEvent";
 import Session from "../../main/Session";
 import { GoldType } from "./HomeData";
 import SysTalentCost from "../../main/sys/SysTalentCost";
+import Equip from "./Equip";
 
 export default class TalentData implements IData {
     
@@ -14,8 +15,16 @@ export default class TalentData implements IData {
      */
     public lvTimes:number = 0;
     
+    public equip:Equip = new Equip();
+
+    public id_name:any = {};
+    
     constructor(){
-        
+        this.id_name[1] = ["atk","攻击力"];
+        this.id_name[2] = ["def","防御力"];
+        this.id_name[3] = ["hp","血量"];
+        this.id_name[4] = ["hp","血量"];
+        this.id_name[5] = ["",""];
     }
 
     setData(data:any):void{
@@ -44,25 +53,26 @@ export default class TalentData implements IData {
     }
 
     public getTxt( index:number ):string{
-        if( index == 0 ){
-            return this.equip.attack + "";
-        }else if( index == 1 ){
-            return this.equip.move + "";
-        }else if( index == 2 ){
-            return this.deadLuck + "";
-        }else if( index == 3 ){
-            return this.equip.defense + "";
-        }else if( index == 4 ){
-            return this.equip.hitPoint + "";
-        }else if( index == 5 ){
-            return this.dropGold + "";
-        }else if( index == 6 ){
-            return this.equip.crit + "";
-        }else if( index == 7 ){
-            return this.offLineGold + "";
-        }else if( index == 8 ){
-            return  this.mergeEquip + "";
-        }
+        // if( index == 0 ){
+        //     return this.equip.attack + "";
+        // }else if( index == 1 ){
+        //     return this.equip.move + "";
+        // }else if( index == 2 ){
+        //     return this.deadLuck + "";
+        // }else if( index == 3 ){
+        //     return this.equip.defense + "";
+        // }else if( index == 4 ){
+        //     return this.equip.hitPoint + "";
+        // }else if( index == 5 ){
+        //     return this.dropGold + "";
+        // }else if( index == 6 ){
+        //     return this.equip.crit + "";
+        // }else if( index == 7 ){
+        //     return this.offLineGold + "";
+        // }else if( index == 8 ){
+        //     return  this.mergeEquip + "";
+        // }
+        return "";
     }
 
     /**
