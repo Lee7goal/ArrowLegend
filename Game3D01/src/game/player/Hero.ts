@@ -12,6 +12,7 @@ import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
 import WudiRotateScript from "../controllerScript/WudiRotateScript";
 import BloodEffect from "../effect/BloodEffect";
+import Session from "../../main/Session";
 
 export default class Hero extends GamePro {
 
@@ -217,6 +218,10 @@ export default class Hero extends GamePro {
         // }
         this.startAi();
         Game.executor.start();
+        if(!Session.isGuide)
+        {
+            
+        }
         // setTimeout(() => {
         
         console.log("主角调下来",Game.AiArr.length);

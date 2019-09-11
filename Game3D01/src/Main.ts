@@ -70,12 +70,12 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		// if (GameConfig.stat) Laya.Stat.show();
+		if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
 			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
-			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png","allJson.json"];
+			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png", "allJson.json"];
 
 			Laya.Browser.window.wx.getSystemInfo({
 				success(res) {
@@ -88,7 +88,7 @@ class Main {
 			});
 		}
 
-		if( Laya.Browser.onMiniGame == false ){
+		if (Laya.Browser.onMiniGame == false) {
 			Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;
 			Laya.stage.alignH = "center";
 		}
@@ -97,7 +97,7 @@ class Main {
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
 		Laya.loader.load(["h5/config.json", "loading/loadingClip.png"], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
-		
+
 		App.init();
 		MyEffect.initBtnEffect();
 		Session.init();
@@ -110,7 +110,7 @@ class Main {
 		this._initView.initTxt.text = "" + value.toFixed(0) + "%";
 	}
 
-	private homePage:ui.game.homePageUI;
+	private homePage: ui.game.homePageUI;
 
 	private onInitCom(): void {
 		this.regClass();
@@ -121,9 +121,8 @@ class Main {
 		console.log("config---", config);
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
-		
-		if(!this.homePage)
-		{
+
+		if (!this.homePage) {
 			this.homePage = new ui.game.homePageUI();
 		}
 		Laya.stage.addChild(this.homePage);
@@ -131,86 +130,102 @@ class Main {
 
 		// // wx.clearStorage()
 
-		let bc:BaseCookie;
-		if(App.platformId == PlatformID.TEST)
-		{
+		let bc: BaseCookie;
+		if (App.platformId == PlatformID.TEST) {
 			bc = new TestCookie();
 		}
-		else if(App.platformId == PlatformID.WX)
-		{
+		else if (App.platformId == PlatformID.WX) {
 			bc = new WXCookie();
 		}
 		Game.cookie = bc;
 
 		App.soundManager.pre = "h5/sounds/";
-        Laya.stage.addChild(App.layerManager);
+		Laya.stage.addChild(App.layerManager);
 
-        Game.cookie.getCookie(CookieKey.MUSIC_SWITCH, (res) => {
-            if (res == null)  {
-                Game.cookie.setCookie(CookieKey.MUSIC_SWITCH,{"state":1});
-                App.soundManager.setMusicVolume(1);
-            }
-            else
-            {
-                App.soundManager.setMusicVolume(res.state);
-            }
-        });
+		Game.cookie.getCookie(CookieKey.MUSIC_SWITCH, (res) => {
+			if (res == null) {
+				Game.cookie.setCookie(CookieKey.MUSIC_SWITCH, { "state": 1 });
+				App.soundManager.setMusicVolume(1);
+			}
+			else  {
+				App.soundManager.setMusicVolume(res.state);
+			}
+		});
 
-        Game.cookie.getCookie(CookieKey.SOUND_SWITCH, (res) => {
-            if (res == null)  {
-                Game.cookie.setCookie(CookieKey.SOUND_SWITCH,{"state":1});
-                App.soundManager.setSoundVolume(1);
-            }
-            else
-            {
-                App.soundManager.setSoundVolume(res.state);
-            }
-        });
+		Game.cookie.getCookie(CookieKey.SOUND_SWITCH, (res) => {
+			if (res == null) {
+				Game.cookie.setCookie(CookieKey.SOUND_SWITCH, { "state": 1 });
+				App.soundManager.setSoundVolume(1);
+			}
+			else  {
+				App.soundManager.setSoundVolume(res.state);
+			}
+		});
 
-        Game.playBgMusic();
+		Game.playBgMusic();
 
 		this.authSetting();
 	}
 
-	private authSetting():void
-	{
+	private curBP: BasePlatform;
+	private authSetting(): void {
 		this._initView && this._initView.removeSelf();
-		
+
 		let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
-		new BP().getUserInfo(()=>{
-			this.homePage && this.homePage.removeSelf();
-			this.loading = new ui.test.LoadingUI();
-			Laya.stage.addChild(this.loading);
-			// this.loading.clip.play();
-			this.loading.txt.text = "0%";
-			Laya.loader.load([{url: "allJson.json", type: "plf"}], Laya.Handler.create(this, function():void {
-				Laya.loader.load([
-					{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
-					// { url: "res/atlas/juese.atlas", type: Laya.Loader.ATLAS },
-					// { url: "res/atlas/chengjiu.atlas", type: Laya.Loader.ATLAS },
-					// { url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
-					// { url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
-					{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
-				], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
-			}));
-			
-		});
+		if (!this.curBP) {
+			this.curBP = new BP();
+		}
+		this.curBP.getUserInfo(this.getUserInfoSuccess.bind(this));
 	}
+
+	private isSuccess:boolean = false;
+	private getUserInfoSuccess(): void {
+		if(this.isSuccess)
+		{
+			return;
+		}
+		this.isSuccess = true;
+		console.log("授权成功，开始加载");
+		this.homePage && this.homePage.removeSelf();
+		this.loading = new ui.test.LoadingUI();
+		this.loading.mouseEnabled = true;
+		Laya.stage.addChild(this.loading);
+		// this.loading.clip.play();
+		this.loading.txt.text = "0%";
+		Laya.loader.load([{ url: "allJson.json", type: "plf" }], Laya.Handler.create(this, function (): void {
+			Laya.loader.load([
+				{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
+				{ url: "res/atlas/guide.atlas", type: Laya.Loader.ATLAS },
+				{ url: "res/atlas/zhaohuan.atlas", type: Laya.Loader.ATLAS },
+				// { url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
+				// { url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
+				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
+			], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
+		}));
+	}
+
 
 	private loading: ui.test.LoadingUI;
 	private onHandler(): void {
-		let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
-		new BP().checkUpdate();
+		console.log("加载完成");
+		this.curBP.checkUpdate();
 
 		new LoginHttp(new Laya.Handler(this, this.onSuccess)).checkLogin();
 	}
 
 	private onSuccess(data): void {
+		console.log("登录成功");
 		ReceiverHttp.create(new Laya.Handler(this, this.onReceive)).send();
 	}
 
 
+	private isInit: boolean = false;
 	private onReceive(data): void {
+		if (this.isInit) {
+			return;
+		}
+		console.log("获取玩家数据成功");
+		this.isInit = true;
 		new GameMain();
 		this.loading.removeSelf();
 		// this.loading.clip.stop();

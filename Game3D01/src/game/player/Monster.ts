@@ -95,6 +95,20 @@ export default class Monster extends GamePro {
         }
     }
 
+    show():void
+    {
+        Game.layer3d.addChild(this.sp3d);
+        Game.bloodLayer.addChild(this._bloodUI);
+        Game.footLayer.addChild(this._bulletShadow);
+    }
+
+    hide():void
+    {
+        this.sp3d && this.sp3d.removeSelf();
+        this._bloodUI && this._bloodUI.removeSelf();
+        this._bulletShadow && this._bulletShadow.removeSelf();
+    }
+
     public initBlood(hp: number): void {
         super.initBlood(hp, hp);
         this._bloodUI && this._bloodUI.pos(this.hbox.cx, this.hbox.cy - 90);
@@ -169,7 +183,6 @@ export default class Monster extends GamePro {
     }
 
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
-        console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
         let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {
@@ -226,7 +239,7 @@ export default class Monster extends GamePro {
         gpro.initBlood(hp);
 
         var MonAI: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.enemyAi);
-        console.log("当前怪的AI", sysEnemy.id, sysEnemy.txt, sysEnemy.enemyAi, MonAI);
+        console.log("当前怪的AI", sysEnemy.id,sysEnemy.enemymode, sysEnemy.txt, sysEnemy.enemyAi, MonAI);
         if (MonAI == null) {
             console.log('没有这个怪的AI', sysEnemy.id);
         }

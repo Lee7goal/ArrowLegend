@@ -45,6 +45,11 @@ import App from "../../../core/App";
 
     private onStartBattle():void
     {
+        if(Game.isStartBattle)
+        {
+            return;
+        }
+        Game.isStartBattle = true;
         this.mainUI.appEnergy();
     }
 

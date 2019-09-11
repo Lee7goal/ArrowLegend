@@ -108,6 +108,7 @@ import App from "../../../core/App";
                 FlyUpTips.setTips("体力不足！");
                 return;
             }
+            Game.isStartBattle = true;
             this.homeData.curEnergy -= TopUI.xiaohao;
             this.appEnergyClip.visible = true;
             this.appEnergyClip.value = "-" + TopUI.xiaohao;

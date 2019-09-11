@@ -115,6 +115,7 @@ export default class BattleLoader {
         Game.ro && Game.ro.removeSelf();
         if (!this._loading) {
             this._loading = new ui.test.LoadingUI();
+            this._loading.mouseEnabled = false;
         }
 
         App.layerManager.alertLayer.addChild(this._loading);
@@ -134,16 +135,25 @@ export default class BattleLoader {
             if (this._index > maxCeng) {
                 this._index = 1;
             }
+            
             this._mapId = Session.homeData.chapterId * 1000 + this._index;
-            this.sysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
-            this.curBoTimes = 0;
-            this.maxBoTimes = this.sysMap.numEnemy;
-            this.monsterGroup = this.sysMap.enemyGroup.split(",");
-            let configArr: string[] = this.sysMap.stageGroup.split(',');
-            let configId: number = Number(configArr[Math.floor(configArr.length * Math.random())]);
+            let configId: number;
+            if(Session.isGuide)
+            {
+                configId = 100100;
+            }
+            else
+            {
+                this.sysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
+                this.curBoTimes = 0;
+                this.maxBoTimes = this.sysMap.numEnemy;
+                this.monsterGroup = this.sysMap.enemyGroup.split(",");
+                let configArr: string[] = this.sysMap.stageGroup.split(',');
+                configId = Number(configArr[Math.floor(configArr.length * Math.random())]); 
+            }
             this._configId = configId;
         }
-        // this._configId = 103004;
+        this._configId = 100601;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }
@@ -170,6 +180,7 @@ export default class BattleLoader {
 
     private loadHeroRes(): void  {
         let pubRes = [
+            "h5/effects/guide/monster.lh",
             "h5/wall/1000/monster.lh",
             "h5/wall/1500/monster.lh",
             "h5/wall/2000/monster.lh",
@@ -247,14 +258,19 @@ export default class BattleLoader {
         
         //怪
         let k: number = 0;
-        for (let j = 0; j < GameBG.hnum; j++) {
-            for (let i = 0; i < GameBG.wnum + 1; i++) {
+        for (let j = 0; j < GameBG.MAP_ROW; j++) {
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
                 let type: number = GameBG.arr0[k];
-                if (k < GameBG.arr0.length) {
+                // if (k < GameBG.arr0.length) {
+                    if(type > 0)
+                    {
+                        console.log("================",type);
+                    }
+                    
                     if (GridType.isMonster(type)) {
                         this.getMonsterRes(type);
                     }
-                }
+                // }
                 k++;
             }
         }

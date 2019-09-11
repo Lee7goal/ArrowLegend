@@ -30,10 +30,12 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "1.0.8";
+    static resVer:string = "1.0.9";
 
     static userHeadUrl:string = "";
     static userName:string = "";
+
+    static isStartBattle:boolean = false;
 
     static TestShooting = 0;
     static BigMapMode = 1;
@@ -166,7 +168,16 @@ export default class Game {
             "coins":Game.battleCoins
         });
         Game.isOpen = true;
-        Game.battleLoader.index++;
+        if(Session.isGuide)
+        {
+            Game.scenneM.battle.setGuide("通过传送进入下一关。",5);
+            Session.isGuide = false;
+            Game.battleLoader.index = 1;
+        }
+        else
+        {
+            Game.battleLoader.index++;
+        }
         Game.bg.setDoor(1);
         Game.layer3d.addChild(Game.door);
         // Game.door.transform.localPositionY = 0;

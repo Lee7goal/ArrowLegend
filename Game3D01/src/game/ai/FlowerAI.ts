@@ -10,6 +10,7 @@ import Game from "../Game";
 import GameProType from "../GameProType";
 import AttackType from "./AttackType";
 import GameHitBox from "../GameHitBox";
+import MoveType from "../move/MoveType";
 
 /**食人花ai 吐子弹 */
 export default class FlowerAI extends BaseAI {
@@ -169,6 +170,10 @@ export default class FlowerAI extends BaseAI {
 
         if(this.status == 1)
         {
+            if(this.sysEnemy.moveType == MoveType.FIXED)
+            {
+                return;
+            }
             this.pro.move2D(this.pro.face2d);
             this.pro.play(GameAI.Run);
         }

@@ -33,11 +33,18 @@ import SysMap from "../../sys/SysMap";
 import GameEvent from "../../GameEvent";
 import GameThorn from "../../../game/GameThorn";
 import BattleFlagID from "../BattleFlagID";
+import GuideTalk from "../../guide/GuideTalk";
+import GuideActionArea from "../../guide/GuideActionArea";
 export default class BattleScene extends Laya.Sprite {
 
     _top: TopUI;
     private _gameOver: GameOverView;
     private _rebornView: RebornView;
+    private guideMonster:Monster;
+    private guideCircle:Laya.Sprite3D;
+
+    _guideTalk:GuideTalk;
+    private _guideArea:GuideActionArea;
     constructor() {
         super();
         var bg: GameBG = new GameBG();
@@ -179,6 +186,7 @@ export default class BattleScene extends Laya.Sprite {
             Game.executor = new GameExecut();
             CustomShaderff00.ff00;
         }
+        this._top._indexBox.visible = !Session.isGuide;
         Game.map0.drawMap();
         // this.addChild(Game.map0);
         
@@ -225,6 +233,12 @@ export default class BattleScene extends Laya.Sprite {
                             isHasBoss = monster.sysEnemy.isBoss == 1;
                             bossEnemy = monster.sysEnemy;
                         }
+
+                        if(Session.isGuide)
+                        {
+                            this.guideMonster = monster;
+                            this.guideMonster.hide();
+                        }
                         // }
                     }
 
@@ -243,7 +257,21 @@ export default class BattleScene extends Laya.Sprite {
                         // Game.monsterResClones.push(Game.door);
                         
                     }
-
+                    else if(type == BattleFlagID.GUIDE)
+                    {
+                        let v3 = GameBG.get3D(i,j);
+                        console.log("绿圈的位置",i,j,v3);
+                        // Laya.Sprite3D.load("h5/effects/guide/monster.lh",new Laya.Handler(this,(vv)=>{
+                            console.log("使用的时候",i,j,v3);
+                            this.guideCircle = Laya.loader.getRes("h5/effects/guide/monster.lh");
+                            this.guideCircle.transform.translate(v3);
+                            this.guideCircle.transform.localPositionX = v3.x;
+                            this.guideCircle.transform.localPositionZ = v3.z;
+                            
+                            // this.guideCircle.transform.localPositionX = -500;
+                        // },[v3]))
+                        
+                    }
 
                     // if(type == 0)
                     // {
@@ -287,11 +315,68 @@ export default class BattleScene extends Laya.Sprite {
         Game.hero.playerData.lastLevel = Game.hero.playerData.level;
         Game.bg.updateY();
 
+        this.setGuide("滑动摇杆，控制角色到达指定位置。",1);
 
         Laya.MouseManager.multiTouchEnabled = false;
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
-
+        
         Laya.stage.on(Laya.Event.KEY_PRESS, this, this.onOpenDoor);
+    }
+
+    setGuide(str:string,guideId:number):void
+    {
+        this._guideTalk && this._guideTalk.removeSelf();
+        if(!Session.isGuide)
+        {
+            return;
+        }
+        Session.guideId = guideId;
+        if(!this._guideTalk)
+        {
+            this._guideTalk = new GuideTalk();
+        }
+        this.addChild(this._guideTalk);
+        this._guideTalk.setContent(str,guideId)
+        Laya.stage.on(GameEvent.SHOW_ACTION_RECT,this,this.showActionRect);
+    }
+
+    private showActionRect(guideId:number):void{
+        this._guideArea && this._guideArea.removeSelf();
+        if(!Session.isGuide)
+        {
+            return;
+        }
+        if(Session.guideId == 1)
+        {
+            if(!this._guideArea)
+            {
+                this._guideArea = new GuideActionArea();
+            }
+            this.addChild(this._guideArea);
+            // Game.bg.showGuidePointer();
+            // this.guideCircle.transform.localPositionX = 0;
+            Game.layer3d.addChild(this.guideCircle);
+            Session.guideId = 3;
+            
+        }
+        else if(Session.guideId == 2)
+        {
+            //召唤怪
+            let zhaohuan: ui.test.zhaohuanUI = new ui.test.zhaohuanUI();
+            Game.bloodLayer.addChild(zhaohuan);
+            zhaohuan.pos(this.guideMonster.hbox.cx, this.guideMonster.hbox.cy);
+            setTimeout(() => {
+                zhaohuan.removeSelf();
+                this.guideMonster.show();
+                Session.guideId = 4;
+                this.guideCircle && this.guideCircle.removeSelf();
+            }, 800);
+
+            
+            
+            // this.guideCircle.transform.localPositionX = -500;
+            // Game.bg.hideGuidePointer();
+        }
     }
 
     private index:number = 0;
@@ -311,7 +396,6 @@ export default class BattleScene extends Laya.Sprite {
         if (e.nativeEvent.keyCode == 111) {
             // Game.openDoor();
             Game.hero.busi = true;
-            console.log("不死族");
         }
     }
 
@@ -327,6 +411,11 @@ export default class BattleScene extends Laya.Sprite {
 
     md(eve: MouseEvent): void {
         if (Game.state > 0) {
+            return;
+        }
+
+        if(Session.guideId == 1 || Session.guideId == 2)
+        {
             return;
         }
 

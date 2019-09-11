@@ -18,6 +18,7 @@ import SysTalentCost from "./sys/SysTalentCost";
 import SysTalent from "./sys/SysTalent";
 import SysTalentInfo from "./sys/SysTalentInfo";
 import GameEvent from "./GameEvent";
+import Session from "./Session";
 
 export default class GameMain {
     constructor() {
@@ -34,12 +35,18 @@ export default class GameMain {
         Game.scenneM.showMain();
 
         Game.battleLoader.preload();
-
-        Game.cookie.getCookie(CookieKey.CURRENT_BATTLE, (res) => {
-            if (res)  {
-                Game.alert.onShow("是否继续未完成的战斗?", new Laya.Handler(this, this.onContinue, [res]), new Laya.Handler(this, this.onCancel));
-            }
-        });
+        if(Session.isGuide)
+        {
+            Game.battleLoader.load();
+        }
+        else
+        {
+            Game.cookie.getCookie(CookieKey.CURRENT_BATTLE, (res) => {
+                if (res)  {
+                    Game.alert.onShow("是否继续未完成的战斗?", new Laya.Handler(this, this.onContinue, [res]), new Laya.Handler(this, this.onCancel));
+                }
+            });
+        }
     }
 
     private onCancel(): void  {

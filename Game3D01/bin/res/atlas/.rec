@@ -43,7 +43,7 @@ P AFF0FC23 renlankuang.png
 P 66D52362 renyan.png
 P DFF9EE63 rockerBall.png
 P 81B51E22 rockerBg.png
-P 7D358F38 rollDir.png
+P 2648BCEB rollDir.png
 P 6EC0F896 sanjiao.png
 P 824F858E tantan.jpg
 P F1C69388 tianshi.png
@@ -60,7 +60,7 @@ P 81A19DD8 y1000fdasfd.png
 P ACB4316E y1500.png
 P FE89EDA1 y2000.png
 P B57E8829 y2500.png
-P A810692D y3000.png
+P 2A145FBC y3000.png
 P F0B7251B y3500.png
 P CDBA2A03 y4000.png
 P D91AE9AE y4500.png
@@ -77,6 +77,12 @@ P A557AC2B chengjiupai.png
 P EA8335C7 chengjiupai2.png
 P D2BFD404 lingquzi.png
 P 3E2AD869 xiao.png
+D guide
+P 47804D88 fangbian.png
+P AFF82D52 huangdian.png
+P 9204C0C7 huangjian.png
+P 7BB70B25 nvren.png
+P 6D55EF74 qipao.png
 D icons
 D jiesuan
 P 2984BF02 baifen.png
@@ -258,12 +264,9 @@ P ED2CAE1F bottom.png
 P 5E816280 shitouying.png
 P DE130FDD top.png
 D map_3
-S 5266AEFC 1.jpg
 P 852D900F 10.png
 P D81BF945 100.png
 P E8E91223 11.png
-S 4723EDE2 1_0.png
-S 0A1AD1AE 1_1.png
 P DE1429E4 201.png
 P BD0B6FCD 202.png
 P E9D4C737 203.png

@@ -14,6 +14,7 @@ export default class SceneManager {
         if (!this.main)  {
             this.main = new MainScene();
         }
+        Game.isStartBattle = false;
         App.layerManager.sceneLayer.removeChildren();
         App.layerManager.sceneLayer.addChild(this.main);
         this.battle && this.battle._top && this.battle._top.reset();

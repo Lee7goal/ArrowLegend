@@ -10,7 +10,7 @@ import SysEnemy from "../../sys/SysEnemy";
     export default class TopUI extends ui.test.battleUI {
     
     private maskSpr:Laya.Sprite = new Laya.Sprite();
-    private _indexBox:IndexBox = new IndexBox();
+    _indexBox:IndexBox = new IndexBox();
     constructor() { 
         super();
         Laya.stage.on(Game.Event_COINS,this,this.updateCoins);

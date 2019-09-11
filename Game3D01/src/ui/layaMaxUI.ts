@@ -25,6 +25,37 @@ export module ui.game {
         }
     }
     REG("ui.game.homePageUI",homePageUI);
+    export class newGuideUI extends View {
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"x":0,"skin":"guide/fangbian.png","bottom":0},"compId":3}],"loadList":["guide/fangbian.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(newGuideUI.uiView);
+        }
+    }
+    REG("ui.game.newGuideUI",newGuideUI);
+    export class newGuide2UI extends View {
+		public txt:Laya.Label;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"y":0,"x":0,"width":750,"height":1700,"bgColor":"#000000","alpha":0.75},"compId":6},{"type":"Image","props":{"x":580,"skin":"guide/nvren.png","bottom":0},"compId":3},{"type":"Image","props":{"y":903,"x":66,"width":479,"skin":"guide/qipao.png","sizeGrid":"83,148,116,72","height":205},"compId":4},{"type":"Label","props":{"y":934,"x":90,"wordWrap":true,"width":429,"var":"txt","text":"滑动摇杆，控制角色到达指定位置。","height":101,"fontSize":40,"color":"#ffffff","bold":true,"align":"left"},"compId":5}],"loadList":["guide/nvren.png","guide/qipao.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(newGuide2UI.uiView);
+        }
+    }
+    REG("ui.game.newGuide2UI",newGuide2UI);
+    export class newGuide3UI extends View {
+		public img2:Laya.Image;
+		public img1:Laya.Image;
+		public img0:Laya.Image;
+        public static  uiView:any ={"type":"View","props":{"y":70,"x":42,"width":142,"height":350,"anchorY":0.2,"anchorX":0.3},"compId":2,"child":[{"type":"Box","props":{"width":142,"height":350},"compId":7,"child":[{"type":"Image","props":{"skin":"guide/huangdian.png"},"compId":3},{"type":"Image","props":{"y":161,"x":31,"var":"img2","skin":"guide/huangjian.png"},"compId":4},{"type":"Image","props":{"y":235,"x":31,"var":"img1","skin":"guide/huangjian.png"},"compId":5},{"type":"Image","props":{"y":309,"x":31,"var":"img0","skin":"guide/huangjian.png"},"compId":6}]}],"loadList":["guide/huangdian.png","guide/huangjian.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(newGuide3UI.uiView);
+        }
+    }
+    REG("ui.game.newGuide3UI",newGuide3UI);
     export class viewbgUI extends View {
 		public bg:Laya.Image;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1700},"compId":2,"child":[{"type":"Box","props":{"height":1700},"compId":3,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":4},{"type":"Sprite","props":{"y":109,"x":0,"texture":"main/zhudi2.png"},"compId":5}]}],"loadList":["main/zhudi.jpg","main/zhudi2.png"],"loadList3D":[]};

@@ -13,9 +13,9 @@
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
+		"enableVertexColor":true,
 		"alphaTest":false,
-		"alphaTestValue":0.105,
+		"alphaTestValue":1,
 		"renderQueue":3000,
 		"albedoIntensity":1.24,
 		"textures":[
