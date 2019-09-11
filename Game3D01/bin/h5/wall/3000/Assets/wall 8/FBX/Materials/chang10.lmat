@@ -2,10 +2,10 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"chang 1",
+		"name":"chang10",
 		"renderStates":[
 			{
-				"cull":0,
+				"cull":2,
 				"blend":1,
 				"srcBlend":770,
 				"dstBlend":771,
@@ -13,15 +13,15 @@
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":true,
+		"enableVertexColor":false,
 		"alphaTest":false,
-		"alphaTestValue":1,
+		"alphaTestValue":0.5,
 		"renderQueue":3000,
-		"albedoIntensity":1.24,
+		"albedoIntensity":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Texture/chang10.png",
+				"path":"../../Texture/chang10.png",
 				"constructParams":[
 					128,
 					128,

@@ -183,7 +183,6 @@ export default class Monster extends GamePro {
     }
 
     static getMonster(enemyId: number, xx: number, yy: number, mScale?: number, hp?: number): Monster {
-        console.log("当前的怪", enemyId);
         let sysEnemy: SysEnemy = App.tableManager.getDataByNameAndId(SysEnemy.NAME, enemyId);
         let now = Game.executor.getWorldNow();
         if (!MonsterShader.map[sysEnemy.enemymode]) {
@@ -240,7 +239,7 @@ export default class Monster extends GamePro {
         gpro.initBlood(hp);
 
         var MonAI: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.enemyAi);
-        console.log("当前怪的AI", sysEnemy.id, sysEnemy.txt, sysEnemy.enemyAi, MonAI);
+        console.log("当前怪的AI", sysEnemy.id,sysEnemy.enemymode, sysEnemy.txt, sysEnemy.enemyAi, MonAI);
         if (MonAI == null) {
             console.log('没有这个怪的AI', sysEnemy.id);
         }

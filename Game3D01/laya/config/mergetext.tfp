@@ -10,6 +10,9 @@
             "h5/config.json": {
                 "type": "json"
             },
+            "h5/mapConfig/1001.json": {
+                "type": "json"
+            },
             "h5/mapConfig/100100.json": {
                 "type": "json"
             },
@@ -85,10 +88,118 @@
             "h5/mapConfig/102003.json": {
                 "type": "json"
             },
+            "h5/mapConfig/102101.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102201.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102301.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102401.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102501.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102601.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102701.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102801.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/102901.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103001.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103002.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103003.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103004.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103101.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103201.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103301.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103401.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103501.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103601.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103701.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103801.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/103901.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104001.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104002.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104003.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104101.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104201.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104301.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104401.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104501.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104601.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104701.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104801.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/104901.json": {
+                "type": "json"
+            },
+            "h5/mapConfig/105001.json": {
+                "type": "json"
+            },
             "res/atlas/bg.atlas": {
                 "type": "json"
             },
             "res/atlas/chengjiu.atlas": {
+                "type": "json"
+            },
+            "res/atlas/guide.atlas": {
                 "type": "json"
             },
             "res/atlas/icons/skill.atlas": {
@@ -138,6 +249,7 @@
     "fileMerge": {
         "allJson.plf": [
             "h5/config.json",
+            "h5/mapConfig/1001.json",
             "h5/mapConfig/100100.json",
             "h5/mapConfig/100101.json",
             "h5/mapConfig/100201.json",
@@ -163,8 +275,44 @@
             "h5/mapConfig/102001.json",
             "h5/mapConfig/102002.json",
             "h5/mapConfig/102003.json",
+            "h5/mapConfig/102101.json",
+            "h5/mapConfig/102201.json",
+            "h5/mapConfig/102301.json",
+            "h5/mapConfig/102401.json",
+            "h5/mapConfig/102501.json",
+            "h5/mapConfig/102601.json",
+            "h5/mapConfig/102701.json",
+            "h5/mapConfig/102801.json",
+            "h5/mapConfig/102901.json",
+            "h5/mapConfig/103001.json",
+            "h5/mapConfig/103002.json",
+            "h5/mapConfig/103003.json",
+            "h5/mapConfig/103004.json",
+            "h5/mapConfig/103101.json",
+            "h5/mapConfig/103201.json",
+            "h5/mapConfig/103301.json",
+            "h5/mapConfig/103401.json",
+            "h5/mapConfig/103501.json",
+            "h5/mapConfig/103601.json",
+            "h5/mapConfig/103701.json",
+            "h5/mapConfig/103801.json",
+            "h5/mapConfig/103901.json",
+            "h5/mapConfig/104001.json",
+            "h5/mapConfig/104002.json",
+            "h5/mapConfig/104003.json",
+            "h5/mapConfig/104101.json",
+            "h5/mapConfig/104201.json",
+            "h5/mapConfig/104301.json",
+            "h5/mapConfig/104401.json",
+            "h5/mapConfig/104501.json",
+            "h5/mapConfig/104601.json",
+            "h5/mapConfig/104701.json",
+            "h5/mapConfig/104801.json",
+            "h5/mapConfig/104901.json",
+            "h5/mapConfig/105001.json",
             "res/atlas/bg.atlas",
             "res/atlas/chengjiu.atlas",
+            "res/atlas/guide.atlas",
             "res/atlas/icons/skill.atlas",
             "res/atlas/jiesuan.atlas",
             "res/atlas/juese.atlas",

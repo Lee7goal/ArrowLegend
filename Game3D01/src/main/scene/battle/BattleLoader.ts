@@ -115,6 +115,7 @@ export default class BattleLoader {
         Game.ro && Game.ro.removeSelf();
         if (!this._loading) {
             this._loading = new ui.test.LoadingUI();
+            this._loading.mouseEnabled = false;
         }
 
         App.layerManager.alertLayer.addChild(this._loading);
@@ -152,7 +153,7 @@ export default class BattleLoader {
             }
             this._configId = configId;
         }
-        // this._configId = 1001;
+        this._configId = 100601;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }

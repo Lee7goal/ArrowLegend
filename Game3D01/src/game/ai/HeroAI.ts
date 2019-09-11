@@ -252,7 +252,6 @@ export default class HeroAI extends GameAI {
                     Game.scenneM.battle && Game.scenneM.battle.up(null);
                     Game.scenneM.battle.setGuide("主角会自动攻击，移动中不会攻击。",2);
                     Game.map0.guideHitBox = null;
-                    console.log("主角会自动攻击，移动中不会攻击");
                     return false;
                 }
             }
@@ -325,12 +324,10 @@ export default class HeroAI extends GameAI {
         if(isCloseCombat)
         {
             ac = GameAI.closeCombat;
-            console.log("近战");
         }
         else
         {
             ac = GameAI.NormalAttack;
-            console.log("远程");
         }
         return this.shootin.starAttack(Game.hero, ac);
     }

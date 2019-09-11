@@ -81,8 +81,13 @@ export default class WXPlatform extends BasePlatform {
             });
     }
 
+    private userBtn;
     getUserInfo(callback): void  {
-        var button = Laya.Browser.window.wx.createUserInfoButton(
+        if(this.userBtn)
+        {
+           return; 
+        }
+        this.userBtn = Laya.Browser.window.wx.createUserInfoButton(
             {
                 type: 'text',
                 text: '',
@@ -92,14 +97,14 @@ export default class WXPlatform extends BasePlatform {
                         height: Laya.Browser.window.wx.getSystemInfoSync().windowHeight
                     }
             })
-        button.onTap((resButton) => {
+        this.userBtn.onTap((resButton) => {
             if (resButton.errMsg == "getUserInfo:ok") {
                 //获取到用户信息
                 Game.userHeadUrl = resButton.userInfo.avatarUrl;
                 Game.userName = resButton.userInfo.nickName;
                 this.filterEmoji();
                 //清除微信授权按钮
-                button.destroy()
+                this.userBtn.destroy()
                 callback && callback();
             }
             else {

@@ -26,7 +26,7 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"yezi (1)",
+					"name":"pPlane2",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,11 +42,11 @@
 						-1
 					],
 					"scale":[
-						189.4213,
-						236.4462,
-						189.4214
+						1,
+						1,
+						1
 					],
-					"meshPath":"Assets/wall 8/FBX/yezi-pCube9.lm",
+					"meshPath":"Assets/wall 8/FBX/shupian-pPlane2.lm",
 					"enableRender":true,
 					"materials":[
 						{
