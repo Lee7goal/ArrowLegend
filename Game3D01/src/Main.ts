@@ -123,6 +123,11 @@ class Main {
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
 
+		
+		
+		
+		
+
 		if (!this.homePage) {
 			this.homePage = new ui.game.homePageUI();
 		}

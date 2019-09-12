@@ -17,7 +17,8 @@ export module ui.game {
     }
     REG("ui.game.battleIndexBoxUI",battleIndexBoxUI);
     export class homePageUI extends View {
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png"],"loadList3D":[]};
+		public vvv:ui.test.LoginViewUI;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6},{"type":"LoginView","props":{"y":331,"x":0,"var":"vvv","runtime":"ui.test.LoginViewUI"},"compId":7}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -432,6 +433,17 @@ export module ui.test {
         }
     }
     REG("ui.test.LoadingUI",LoadingUI);
+    export class LoginViewUI extends View {
+		public t1:Laya.TextInput;
+		public btn:laya.display.Text;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":500},"compId":2,"child":[{"type":"TextInput","props":{"y":121,"x":236,"width":278,"var":"t1","prompt":"输入用户名","height":83,"fontSize":40,"bgColor":"#ffffff"},"compId":3},{"type":"Text","props":{"y":275,"x":275,"var":"btn","text":"点我登陆","fontSize":50,"color":"#ffffff","runtime":"laya.display.Text"},"compId":5}],"loadList":[],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(LoginViewUI.uiView);
+        }
+    }
+    REG("ui.test.LoginViewUI",LoginViewUI);
     export class mainUIUI extends View {
 		public headImg:Laya.Image;
 		public jingyantiao:Laya.Image;
