@@ -19,8 +19,10 @@ export default class LoginHttp extends BaseHttp {
         return new LoginHttp(hand);
     }
 
+    public static FRONT:string = "";
+
     send(): void {
-        super.send(App.serverIP + "gamex3/login", "scode=" + App.platformId + "&jscode=" + this.jsCode, "post", "text");
+        super.send(App.serverIP + "gamex3/login", "scode=" + App.platformId + "&jscode=" + LoginHttp.FRONT + this.jsCode, "post", "text");
     }
 
     onSuccess(data): void {

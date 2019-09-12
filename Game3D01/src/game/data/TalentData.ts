@@ -6,6 +6,7 @@ import Session from "../../main/Session";
 import { GoldType } from "./HomeData";
 import SysTalentCost from "../../main/sys/SysTalentCost";
 import Equip from "./Equip";
+import { ui } from "../../ui/layaMaxUI";
 
 export default class TalentData implements IData {
     
@@ -14,17 +15,29 @@ export default class TalentData implements IData {
      * 默认升级0次
      */
     public lvTimes:number = 0;
-    
     public equip:Equip = new Equip();
+    public imgArr:Array<any> = [];
 
-    public id_name:any = {};
-    
     constructor(){
-        this.id_name[1] = ["atk","攻击力"];
-        this.id_name[2] = ["def","防御力"];
-        this.id_name[3] = ["hp","血量"];
-        this.id_name[4] = ["hp","血量"];
-        this.id_name[5] = ["",""];
+        this.addData( "tianfu/PTkuang.png" , "tianfu/gongji.png"  , "tianfu/gongzi.png", 1 );
+        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/shengzi.png", 2 );
+        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/shengzi.png", 3 );
+
+        this.addData( "tianfu/JYkuang.png" , "tianfu/fangyu.png" , "tianfu/fangzi.png", 4 );
+        this.addData( "tianfu/JYkuang.png" , "tianfu/gongji.png" , "tianfu/gongzi.png", 5 );
+        this.addData( "tianfu/JYkuang.png" , "tianfu/jinbi.png" , "tianfu/diaozi.png", 6 );
+
+        this.addData( "tianfu/SSkuang.png" , "tianfu/baoji.png" , "tianfu/baozi.png", 7 );
+        this.addData( "tianfu/SSkuang.png" , "tianfu/lixian.png" , "tianfu/lizi.png", 8 );
+        this.addData( "tianfu/SSkuang.png" , "tianfu/tiejiang.png" , "tianfu/tiezi.png", 9 );
+    }
+
+    private addData( bg:string , logo:string , font:string, id:number ):void{
+        this.imgArr.push( { bg:bg , logo:logo , font:font , id:id } );
+    }
+
+    public getImgData( id:number ):any{
+        return this.imgArr[id-1];
     }
 
     setData(data:any):void{
@@ -75,29 +88,41 @@ export default class TalentData implements IData {
         return "";
     }
 
+    public setView( v:ui.test.TianFuCellUI , id:number ):void{
+        
+    }
+
     /**
      * 升级天赋
      * @param id 
      */
     public lvUp( id:number ):number{
-        let lv = this.talentArr[id-1];
-        let g = Session.homeData.getGoldByType( GoldType.GOLD );
-        let sys:SysTalentCost = App.tableManager.getDataByNameAndId( SysTalentCost.NAME , (this.lvTimes + 1) );
-        if( g < sys.talentCost ){
-            return -1;
-        }
-        if( this.lvTimes > Session.homeData.level ){
-            return -2;
+        let res = this.canLvUp();
+        if( res != 0 ){
+            return res;
         }
         this.lvTimes++;
+        let sys:SysTalentCost = App.tableManager.getDataByNameAndId( SysTalentCost.NAME , (this.lvTimes + 1) );
         Session.homeData.changeGold( GoldType.GOLD , -sys.talentCost );
-        this.talentArr[id-1] = lv + 1;
+        this.talentArr[id-1] = this.getLv( id ) + 1;
         App.sendEvent( GameEvent.TALENT_UPDATE );
+        Session.saveData();
+        return res;
     }
 
     public haveGold():boolean{
         let g = Session.homeData.getGoldByType( GoldType.GOLD );
         let sys:SysTalentCost = App.tableManager.getDataByNameAndId( SysTalentCost.NAME , (this.lvTimes + 1) );
         return g >= sys.talentCost;
+    }
+
+    public canLvUp():number{
+        if( this.haveGold() == false ){
+            return -1;
+        }
+        if( this.lvTimes > Session.homeData.level ){
+            return -2;
+        }
+        return 0;
     }
 }

@@ -12,7 +12,7 @@ export default class TalentCell extends ui.test.TalentCellUI {
     public setData( arr:Array<SysTalentInfo> ):void{
         this.setOne( arr[0] , this.t1 ,this.b1 );
         this.setOne( arr[1] , this.t2 ,this.b2 );
-        this.setLv( arr[0].talentUnlock );
+        //this.setLv( arr[0].talentUnlock );
     }
 
     public setOne( sys:SysTalentInfo , t:ui.test.talent_1UI , b:Laya.Box ):void {
