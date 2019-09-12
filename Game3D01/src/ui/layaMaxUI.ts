@@ -17,7 +17,8 @@ export module ui.game {
     }
     REG("ui.game.battleIndexBoxUI",battleIndexBoxUI);
     export class homePageUI extends View {
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6},{"type":"Image","props":{"x":134,"skin":"loading/logo.png","centerY":0},"compId":7}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png","loading/logo.png"],"loadList3D":[]};
+		public vvv:ui.test.LoginViewUI;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6},{"type":"LoginView","props":{"y":130,"var":"vvv","runtime":"ui.test.LoginViewUI"},"compId":7},{"type":"Image","props":{"y":478,"x":134,"skin":"loading/logo.png"},"compId":8}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png","loading/logo.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -432,6 +433,17 @@ export module ui.test {
         }
     }
     REG("ui.test.LoadingUI",LoadingUI);
+    export class LoginViewUI extends View {
+		public t1:Laya.TextInput;
+		public btn:laya.display.Text;
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":500},"compId":2,"child":[{"type":"TextInput","props":{"y":121,"x":236,"width":278,"var":"t1","prompt":"输入用户名","height":83,"fontSize":40,"bgColor":"#ffffff"},"compId":3},{"type":"Text","props":{"y":275,"x":275,"var":"btn","text":"点我登陆","fontSize":50,"color":"#ffffff","runtime":"laya.display.Text"},"compId":5}],"loadList":[],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(LoginViewUI.uiView);
+        }
+    }
+    REG("ui.test.LoginViewUI",LoginViewUI);
     export class mainUIUI extends View {
 		public headImg:Laya.Image;
 		public jingyantiao:Laya.Image;
@@ -589,7 +601,7 @@ export module ui.test {
 		public list:Laya.List;
 		public tipBox:Laya.Box;
 		public txt5:laya.display.Text;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"viewbg","props":{"runtime":"ui.game.viewbgUI"},"compId":29},{"type":"Image","props":{"y":122,"x":26,"width":698,"var":"tianfudi","skin":"tianfu/tiandi.png","sizeGrid":"89,0,115,0","height":1065},"compId":31},{"type":"Button","props":{"y":1046,"x":380,"width":250,"var":"shengmingniu","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},"compId":99,"child":[{"type":"FontClip","props":{"y":30,"x":68,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},"compId":100},{"type":"Image","props":{"y":24,"x":147,"skin":"main/dongjin.png"},"compId":101}]},{"type":"List","props":{"y":207,"x":86,"width":588,"var":"list","spaceY":35,"spaceX":25,"repeatY":3,"repeatX":3,"height":755},"compId":107,"child":[{"type":"TianFuCell","props":{"y":0,"x":0,"renderType":"render","runtime":"ui.test.TianFuCellUI"},"compId":108}]},{"type":"Box","props":{"y":787,"x":867,"var":"tipBox"},"compId":111,"child":[{"type":"Sprite","props":{"y":53,"texture":"tianfu/qipao.png"},"compId":109},{"type":"Sprite","props":{"x":101,"texture":"tianfu/qipaojian.png"},"compId":110},{"type":"Text","props":{"y":86,"x":9,"width":287,"var":"txt5","valign":"middle","text":"这里是天赋信息","height":90,"fontSize":30,"align":"center","runtime":"laya.display.Text"},"compId":112}]}],"loadList":["tianfu/tiandi.png","main/btn_lv.png","main/clipshuzi.png","main/dongjin.png","tianfu/qipao.png","tianfu/qipaojian.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"viewbg","props":{"runtime":"ui.game.viewbgUI"},"compId":29},{"type":"Image","props":{"width":698,"var":"tianfudi","skin":"tianfu/tiandi.png","sizeGrid":"89,0,115,0","height":1065,"centerY":0,"centerX":0},"compId":31,"child":[{"type":"Button","props":{"y":923,"x":360,"width":250,"var":"shengmingniu","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},"compId":114,"child":[{"type":"FontClip","props":{"y":30,"x":68,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.2,"scaleX":0.2,"height":115,"align":"right"},"compId":116},{"type":"Image","props":{"y":24,"x":147,"skin":"main/dongjin.png"},"compId":117}]},{"type":"List","props":{"y":77,"x":69,"width":588,"var":"list","spaceY":35,"spaceX":25,"repeatY":3,"repeatX":3,"height":755},"compId":115,"child":[{"type":"TianFuCell","props":{"y":0,"x":0,"renderType":"render","runtime":"ui.test.TianFuCellUI"},"compId":118}]},{"type":"Box","props":{"y":276,"x":5,"visible":false,"var":"tipBox"},"compId":123,"child":[{"type":"Sprite","props":{"y":53,"texture":"tianfu/qipao.png"},"compId":124},{"type":"Sprite","props":{"x":101,"texture":"tianfu/qipaojian.png"},"compId":125},{"type":"Text","props":{"y":86,"x":9,"width":287,"var":"txt5","valign":"middle","text":"这里是天赋信息","height":90,"fontSize":30,"align":"center","runtime":"laya.display.Text"},"compId":126}]}]}],"loadList":["tianfu/tiandi.png","main/btn_lv.png","main/clipshuzi.png","main/dongjin.png","tianfu/qipao.png","tianfu/qipaojian.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -613,13 +625,13 @@ export module ui.test {
     }
     REG("ui.test.TalentCellUI",TalentCellUI);
     export class TalentViewUI extends Dialog {
-		public b0:ui.test.TianFuCellUI;
-		public b1:ui.test.TianFuCellUI;
-		public b2:ui.test.TianFuCellUI;
-		public b3:ui.test.TianFuCellUI;
-		public b4:ui.test.TianFuCellUI;
-		public b5:ui.test.TianFuCellUI;
-        public static  uiView:any ={"type":"Dialog","props":{"width":640,"isModal":true,"height":500},"compId":2,"child":[{"type":"TianFuCell","props":{"y":29,"x":23,"var":"b0","runtime":"ui.test.TianFuCellUI"},"compId":3},{"type":"TianFuCell","props":{"y":29,"x":229,"var":"b1","runtime":"ui.test.TianFuCellUI"},"compId":4},{"type":"TianFuCell","props":{"y":29,"x":435,"var":"b2","runtime":"ui.test.TianFuCellUI"},"compId":5},{"type":"TianFuCell","props":{"y":250,"x":23,"var":"b3","runtime":"ui.test.TianFuCellUI"},"compId":6},{"type":"TianFuCell","props":{"y":250,"x":229,"var":"b4","runtime":"ui.test.TianFuCellUI"},"compId":7},{"type":"TianFuCell","props":{"y":250,"x":434,"var":"b5","runtime":"ui.test.TianFuCellUI"},"compId":8}],"loadList":[],"loadList3D":[]};
+		public b0:ui.test.TalentZhuanUI;
+		public b1:ui.test.TalentZhuanUI;
+		public b2:ui.test.TalentZhuanUI;
+		public b3:ui.test.TalentZhuanUI;
+		public b4:ui.test.TalentZhuanUI;
+		public b5:ui.test.TalentZhuanUI;
+        public static  uiView:any ={"type":"Dialog","props":{"width":640,"isModal":true,"height":600},"compId":2,"child":[{"type":"Text","props":{"y":507,"x":178,"text":"请选择您的天赋","fontSize":40,"color":"#ffffff","runtime":"laya.display.Text"},"compId":9},{"type":"TalentZhuan","props":{"y":132,"x":105,"var":"b0","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":10},{"type":"TalentZhuan","props":{"y":132,"x":320,"var":"b1","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":16},{"type":"TalentZhuan","props":{"y":132,"x":535,"var":"b2","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":17},{"type":"TalentZhuan","props":{"y":371,"x":105,"var":"b3","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":18},{"type":"TalentZhuan","props":{"y":371,"x":320,"var":"b4","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":19},{"type":"TalentZhuan","props":{"y":371,"x":535,"var":"b5","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":20}],"loadList":[],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -627,6 +639,17 @@ export module ui.test {
         }
     }
     REG("ui.test.TalentViewUI",TalentViewUI);
+    export class TalentZhuanUI extends View {
+		public back:ui.test.TianFuCellUI;
+		public wenhao:ui.test.TianFuCellUI;
+        public static  uiView:any ={"type":"View","props":{"width":175,"height":212},"compId":2,"child":[{"type":"TianFuCell","props":{"y":0,"x":175,"var":"back","scaleX":-1,"runtime":"ui.test.TianFuCellUI"},"compId":3},{"type":"TianFuCell","props":{"y":0,"x":0,"var":"wenhao","runtime":"ui.test.TianFuCellUI"},"compId":4}],"loadList":[],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(TalentZhuanUI.uiView);
+        }
+    }
+    REG("ui.test.TalentZhuanUI",TalentZhuanUI);
     export class talent_1UI extends View {
 		public wenHao:Laya.Image;
 		public infoBox:Laya.Box;
