@@ -22,7 +22,12 @@ export default class LoginHttp extends BaseHttp {
     public static FRONT:string = "";
 
     send(): void {
-        super.send(App.serverIP + "gamex3/login", "scode=" + App.platformId + "&jscode=" + LoginHttp.FRONT + this.jsCode, "post", "text");
+        let str:string = "gamex3/login";
+        if(App.platformId == PlatformID.H5)
+        {
+            str = "gamex2/login";
+        }
+        super.send(App.serverIP + str, "scode=" + App.platformId + "&jscode=" + LoginHttp.FRONT + this.jsCode, "post", "text");
     }
 
     onSuccess(data): void {

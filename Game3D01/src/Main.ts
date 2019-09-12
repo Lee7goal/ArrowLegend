@@ -133,17 +133,26 @@ class Main {
 		}
 		Laya.stage.addChild(this.homePage);
 
-
+		
 		// // wx.clearStorage()
 
 		let bc: BaseCookie;
-		if (App.platformId == PlatformID.TEST) {
+		if (App.platformId != PlatformID.WX) {
 			bc = new TestCookie();
 		}
 		else if (App.platformId == PlatformID.WX) {
 			bc = new WXCookie();
 		}
 		Game.cookie = bc;
+
+		Game.cookie.getCookie(CookieKey.USER_ID, (res) => {
+			if (res == null) {
+			}
+			else  {
+				App.soundManager.setMusicVolume(res.state);
+				this.homePage.vvv.t1.text = res.userId;
+			}
+		});
 
 		App.soundManager.pre = "h5/sounds/";
 		Laya.stage.addChild(App.layerManager);
@@ -281,6 +290,7 @@ class Main {
 		REG(MoveType.TAG + MoveType.BOOM, FlyGameMove2);
 		//平台
 		REG("p" + PlatformID.TEST, TestPlatform);
+		REG("p" + PlatformID.H5, TestPlatform);
 		REG("p" + PlatformID.WX, WXPlatform);
 
 		//buff
