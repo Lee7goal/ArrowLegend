@@ -70,7 +70,7 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		if (GameConfig.stat) Laya.Stat.show();
+		// if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
