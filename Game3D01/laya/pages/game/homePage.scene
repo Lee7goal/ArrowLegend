@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":6,
+    "selecteID":7,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":7,
+    "maxID":8,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -39,6 +39,20 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":6,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image",
+            "props":{"x":134,"skin":"loading/logo.png","centerY":0},
+            "nodeParent":2,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":7,
             "child":[
                 ]
         }],
