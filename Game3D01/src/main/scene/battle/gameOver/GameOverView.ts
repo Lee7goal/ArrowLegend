@@ -1,6 +1,8 @@
 import { ui } from "./../../../../ui/layaMaxUI";
 import Game from "../../../../game/Game";
 import Session from "../../../Session";
+import SysHero from "../../../sys/SysHero";
+import App from "../../../../core/App";
 export default class GameOverView extends ui.test.GameOverUI {
     constructor() {
         super();
@@ -16,6 +18,21 @@ export default class GameOverView extends ui.test.GameOverUI {
 
     private onDis():void
     {
+        this.jinbishu.value = "" + Game.battleCoins;
+
+        let lastLv:number = Session.homeData.level;
+        let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME,lastLv);
+        let ww:number = this.expBar.width * Game.battleExp / sys.roleExp;
+        ww = Math.max(1,ww);
+        this.expBar.scrollRect = new Laya.Rectangle(0,0,ww,this.expBar.height);
+
+        this.cengshu.value = Session.homeData.level + "";
+        this.dengji.value = Session.homeData.level + "";
+
+        Session.homeData.addPlayerExp(Game.battleExp);
+
+        
+
         Game.addCoins = Game.battleCoins;
         Session.saveData();
         Game.addCoins = 0;

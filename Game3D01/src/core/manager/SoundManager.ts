@@ -8,13 +8,13 @@ export default class SoundManager{
 
     public setMusicVolume(value:number):void
     {
-        Laya.SoundManager.setMusicVolume(value);
+        Laya.SoundManager.musicMuted = value == 0;
         
     }
 
     public setSoundVolume(value:number):void
     {
-        Laya.SoundManager.setSoundVolume(value);
+        Laya.SoundManager.soundMuted = value == 0;
     }
 
     

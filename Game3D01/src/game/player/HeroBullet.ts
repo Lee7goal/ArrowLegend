@@ -28,6 +28,7 @@ export default class HeroBullet extends GamePro {
     setBullet(id: number): void  {
         if (!this.sp3d)  {
             this.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + id + "/monster.lh")));
+            console.log("创建主角的子弹");
         }
 
         if (Game.skillManager.arrowHeadId > 0)  {

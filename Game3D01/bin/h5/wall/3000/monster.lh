@@ -24,9 +24,9 @@
 		},
 		"child":[
 			{
-				"type":"MeshSprite3D",
+				"type":"Sprite3D",
 				"props":{
-					"name":"pPlane2",
+					"name":"shujian (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,20 +42,172 @@
 						-1
 					],
 					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/wall 8/FBX/shupian-pPlane2.lm",
-					"enableRender":true,
-					"materials":[
-						{
-							"path":"Assets/wall 8/Materials/chang 1.lmat"
-						}
+						7.228327,
+						7.228323,
+						7.228323
 					]
 				},
 				"components":[],
-				"child":[]
+				"child":[
+					{
+						"type":"Sprite3D",
+						"props":{
+							"name":"pCylinder1",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								-2.422301E-08,
+								0.002152298,
+								0.01818005
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								13.08461,
+								13.08461,
+								13.08461
+							]
+						},
+						"components":[],
+						"child":[
+							{
+								"type":"MeshSprite3D",
+								"props":{
+									"name":"transform1",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										1.192093E-09,
+										-0.01,
+										1.788139E-09
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									],
+									"meshPath":"Assets/wall9/FBX/shujian-transform1.lm",
+									"enableRender":true,
+									"materials":[
+										{
+											"path":"Assets/wall9/Material/TreesAndPlants_Mat.lmat"
+										}
+									]
+								},
+								"components":[],
+								"child":[]
+							}
+						]
+					},
+					{
+						"type":"Sprite3D",
+						"props":{
+							"name":"polySurface714",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							]
+						},
+						"components":[],
+						"child":[
+							{
+								"type":"MeshSprite3D",
+								"props":{
+									"name":"transform2",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									],
+									"meshPath":"Assets/wall9/FBX/shujian-transform2.lm",
+									"enableRender":true,
+									"materials":[
+										{
+											"path":"Assets/wall9/Material/TreesAndPlants_Mat.lmat"
+										}
+									]
+								},
+								"components":[],
+								"child":[]
+							}
+						]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"polySurface715",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0.003685416,
+								0
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/wall9/FBX/shujian-polySurface715.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"path":"Assets/wall9/Material/TreesAndPlants_Mat.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
 			}
 		]
 	}

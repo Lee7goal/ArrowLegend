@@ -25,7 +25,7 @@ export default class Coin extends GamePro {
         sp.transform.localScale = new Laya.Vector3(1.5,1.5,1.5);
         // sp.transform.localRotationEulerY = 45;
         this.sp3d.addComponent(FootRotateScript);
-        Game.layer3d.addChild(sp);
+        
 
         this.setSpeed(0);
 
@@ -53,6 +53,8 @@ export default class Coin extends GamePro {
         this.setSpeed(2);
         this.rotation(r);
         this.startAi();
+        Game.layer3d.addChild(this.sp3d);
+        Game.footLayer.addChild(this._bulletShadow)
     }
 
     updateUI():void{

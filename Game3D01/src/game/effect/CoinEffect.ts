@@ -25,6 +25,10 @@ export default class CoinEffect{
      static fly():void
      {
         let len:number = CoinEffect.coinsAry.length;
+        if(len > 0)
+        {
+            Game.playSound("fx_goldget.wav");
+        }
          for(let i = 0; i < len; i++)
          {
             let coin:Coin = CoinEffect.coinsAry.shift();

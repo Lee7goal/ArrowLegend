@@ -22,6 +22,7 @@ import { GameAI } from "../../../game/ai/GameAI";
 import GameFence from "./GameFence";
 import GameEvent from "../../GameEvent";
 import MonsterBullet from "../../../game/player/MonsterBullet";
+import GameCube from "./GameCube";
 
 export default class BattleLoader {
     constructor() { 
@@ -37,6 +38,8 @@ export default class BattleLoader {
     private _isMonsterLoaded: boolean = false;
      /**当前关怪物需要的资源 */
      private monsterRes: any = {};
+    private cubeRes:any = {};
+
     _configId: number;
     monsterId: number = 0;
     /**退出再进来数据 */
@@ -60,6 +63,7 @@ export default class BattleLoader {
         return this._mapId;
     }
 
+
     onRelease():void
     {
         console.log("释放资源了");
@@ -82,33 +86,52 @@ export default class BattleLoader {
                 }
             }
         }
-
+        for (let key in this.cubeRes)//cube母体
+        {
+            if (key != '')  {
+                let sp: Laya.Sprite3D = Laya.loader.getRes(key);
+                if (sp)  {
+                    sp.destroy(true);
+                }
+            }
+        }
+        
         //清除对象池
-        let tagArr:string[] = [BoomEffect.TAG,Monster.TAG,MonsterBullet.TAG];
+        let tagArr:string[] = [DieEffect.TAG,Coin.TAG,MonsterBoomEffect.TAG];
+        for(let key in Game.poolTagArr)
+        {
+            tagArr.push(key);
+        }
         for(let i = 0; i < tagArr.length; i++)
-        {   
+        {  
             let arr = Laya.Pool.getPoolBySign(tagArr[i]);
 
             for(let j = 0; j < arr.length;j++)
             {
                 let sp3d:Laya.Sprite3D = arr[j].sp3d;
-                sp3d && sp3d.destroy(true);
+                if(sp3d)
+                {
+                    sp3d.destroy(true);
+                    sp3d = null;
+                }
+                arr[j] = null;
             }
 
             if(arr.length > 0)
             {
                 Laya.Pool.clearBySign(tagArr[i]);
+                console.log("清理资源",tagArr[i]);
             }
-            arr = Laya.Pool.getPoolBySign(tagArr[i]);
         }
 
-        // Game.monsterResClones.length = 0;
         Laya.Resource.destroyUnusedResources();
         console.log("释放显存");
     }
 
     
     public load(res?:any): void {
+        GameCube.recover();
+        this.clearMonster();
         this.continueRes = res;
         Game.scenneM.battle && Game.scenneM.battle.up(null);
 
@@ -153,7 +176,7 @@ export default class BattleLoader {
             }
             this._configId = configId;
         }
-        this._configId = 100601;
+        // this._configId = 101401;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }
@@ -180,22 +203,25 @@ export default class BattleLoader {
 
     private loadHeroRes(): void  {
         let pubRes = [
-            "h5/effects/guide/monster.lh",
-            "h5/wall/1000/monster.lh",
-            "h5/wall/1500/monster.lh",
-            "h5/wall/2000/monster.lh",
-            "h5/wall/2500/monster.lh",
-            "h5/wall/3000/monster.lh",
-            "h5/wall/3500/monster.lh",
-            "h5/wall/4000/monster.lh",
-            "h5/wall/4500/monster.lh",
-            "h5/wall/5000/monster.lh",
-            "h5/wall/5500/monster.lh",
-            "h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",
+            // "h5/wall/1000/monster.lh",
+            // "h5/wall/1500/monster.lh",
+            // "h5/wall/2000/monster.lh",
+            // "h5/wall/2500/monster.lh",
+            // "h5/wall/3000/monster.lh",
+            // "h5/wall/3500/monster.lh",
+            // "h5/wall/4000/monster.lh",
+            // "h5/wall/4500/monster.lh",
+            // "h5/wall/5000/monster.lh",
+            // "h5/wall/5500/monster.lh",
+            // "h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",
             "h5/zhalan/hero.lh","h5/effects/door/monster.lh",
             "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh",
             "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
         ];
+        if(Session.isGuide)
+        {
+            pubRes.push("h5/effects/guide/monster.lh");
+        }
         Laya.loader.create(pubRes, Laya.Handler.create(this, this.onCompleteHero),new Laya.Handler(this,this.onProgress));
     }
 
@@ -247,13 +273,14 @@ export default class BattleLoader {
     private onLoadMonster(): void {
         this.resAry.length = 0;
         this.monsterRes = {};
+        this.cubeRes = {};
         let res: string;
 
-        if(this.continueRes)
-        {
-            this.onCompleteMonster();
-            return;
-        }
+        // if(this.continueRes)
+        // {
+        //     this.onCompleteMonster();
+        //     return;
+        // }
 
         
         //怪
@@ -261,16 +288,16 @@ export default class BattleLoader {
         for (let j = 0; j < GameBG.MAP_ROW; j++) {
             for (let i = 0; i < GameBG.MAP_COL; i++) {
                 let type: number = GameBG.arr0[k];
-                // if (k < GameBG.arr0.length) {
-                    if(type > 0)
-                    {
-                        console.log("================",type);
-                    }
-                    
-                    if (GridType.isMonster(type)) {
+                if (k < GameBG.arr0.length) {
+                    if (this.continueRes == null && GridType.isMonster(type)) {
                         this.getMonsterRes(type);
                     }
-                // }
+                    else if(GridType.isCube(type))
+                    {
+                        //当前的场景模型
+                        this.getSceneRes(type);
+                    }
+                }
                 k++;
             }
         }
@@ -284,12 +311,18 @@ export default class BattleLoader {
         //怪的资源
         if(this.resAry.length > 0){
 
-            let pubResAry:string[] = [];
+            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",];
             for(let j = 0; j < pubResAry.length; j++)
             {
                 res = pubResAry[j];
                 this.monsterRes[res] = res;
                 this.resAry.push(res);
+            }
+        }
+
+        for (let key in this.cubeRes)  {
+            if (key != '')  {
+                this.resAry.push(key);
             }
         }
 
@@ -303,6 +336,13 @@ export default class BattleLoader {
         {
             this.onCompleteMonster();
         }
+    }
+
+    private getSceneRes(type:number):void
+    {
+        let cubeType:number = GameCube.getType(type);
+        let res = "h5/wall/"+cubeType+"/monster.lh";
+        this.cubeRes[res] = res;
     }
 
     private onCompleteMonster(): void {
@@ -319,7 +359,6 @@ export default class BattleLoader {
         value = Math.ceil(value * 100);
         value = Math.min(value, 100);
         this._loading.txt.text = value + "%";
-        // this._loading.bar.scrollRect = new Laya.Rectangle(0, 0, this._loading.bar.width * value / 100, this._loading.bar.height);
     }
 
     private allLoadCom(): void  {

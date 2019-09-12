@@ -34,6 +34,7 @@ export default class RebornView extends ui.test.ReborthUI {
         if(this._curTime <= 0)
         {
             Laya.timer.clear(this,this.onLoop2);
+            this.onClose();
         }
     }
 
@@ -56,6 +57,7 @@ export default class RebornView extends ui.test.ReborthUI {
     }
 
     private onReborn(): void  {
+        Laya.timer.clear(this,this.onLoop2);
         this.removeSelf();
         Game.hero.reborn();
         // let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);

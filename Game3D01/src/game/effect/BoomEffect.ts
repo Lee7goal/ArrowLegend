@@ -17,7 +17,9 @@ export default class BoomEffect{
     static getEffect(pro: GamePro,effectId:number):BoomEffect
     {
         // let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG,BoomEffect);
-        let effect:BoomEffect = Laya.Pool.getItemByClass(BoomEffect.TAG + effectId,BoomEffect);
+        let tag:string = BoomEffect.TAG + effectId;
+        Game.poolTagArr[tag] = tag;
+        let effect:BoomEffect = Laya.Pool.getItemByClass(tag,BoomEffect);
         // let effect:BoomEffect = new BoomEffect();
         if(!effect.pro)
         {

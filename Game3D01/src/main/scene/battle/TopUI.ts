@@ -128,6 +128,7 @@ import SysEnemy from "../../sys/SysEnemy";
 export class IndexBox extends ui.game.battleIndexBoxUI
 {
     private _cellList:IndexCell[] = [];
+    
     constructor()
     {
         super();
@@ -140,7 +141,7 @@ export class IndexBox extends ui.game.battleIndexBoxUI
         let max:number = SysMap.getTotal(Session.homeData.chapterId);
         for(let i = 0; i < max; i++)
         {
-            let cell:IndexCell = new IndexCell();
+            let cell:IndexCell = Laya.Pool.getItemByClass(IndexCell.TAG,IndexCell);
             cell.update(i + 1);
             this.box.addChild(cell);
             cell.x = 185 + i * 150;
@@ -190,9 +191,16 @@ export class IndexBox extends ui.game.battleIndexBoxUI
 
 export class IndexCell extends ui.test.battleLvUIUI
 {
+    static TAG:string = "IndexCell";
     constructor()
     {
         super();
+        this.on(Laya.Event.UNDISPLAY,this,this.onUndis);
+    }
+
+    private onUndis():void
+    {
+        Laya.Pool.recover(IndexCell.TAG,this);
     }
 
     set gray(value:boolean)

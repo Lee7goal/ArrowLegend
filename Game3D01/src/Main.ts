@@ -70,12 +70,12 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		if (GameConfig.stat) Laya.Stat.show();
+		// if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
 		if (Laya.Browser.window.wx) {
 			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
-			Laya.MiniAdpter.nativefiles = ["loading/loadingClip.png", "allJson.json"];
+			Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg","loading/btn_kaishi.png","loading/loadingClip.png", "allJson.json"];
 
 			Laya.Browser.window.wx.getSystemInfo({
 				success(res) {
@@ -96,7 +96,7 @@ class Main {
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
-		Laya.loader.load(["h5/config.json", "loading/loadingClip.png"], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
+		Laya.loader.load(["h5/config.json", "loading/loadingClip.png","loading/jiazai.jpg","loading/btn_kaishi.png",], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 
 		App.init();
 		MyEffect.initBtnEffect();

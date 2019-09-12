@@ -173,7 +173,7 @@ export default class BattleScene extends Laya.Sprite {
         }
         // Game.camera.transform.localPositionZ = 0;
         // Game.camera.transform.localPositionX = 0;
-        GameCube.recover();
+        
         GameFence.recover();
         GameThorn.recover();
 

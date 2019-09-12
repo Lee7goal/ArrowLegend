@@ -205,7 +205,9 @@ export default class Monster extends GamePro {
                 }
             }
         }
-        var gpro:Monster = Laya.Pool.getItemByClass(Monster.TAG + sysEnemy.enemymode,Monster);
+        let tag:string = Monster.TAG + sysEnemy.enemymode;
+        Game.poolTagArr[tag] = tag;
+        var gpro:Monster = Laya.Pool.getItemByClass(tag,Monster);
         // var gpro: Monster = new Monster();
         gpro.curLen = gpro.moveLen = 0;
         gpro.sysEnemy = sysEnemy;

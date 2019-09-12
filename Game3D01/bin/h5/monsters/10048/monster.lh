@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"Idle 1 (1)",
+					"name":"Idle 1 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,16 +42,16 @@
 						-1
 					],
 					"scale":[
-						0.8,
-						0.8,
-						0.8
+						1,
+						1,
+						1
 					]
 				},
 				"components":[
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/10046/FBX/Idle 1-Idle 1 (1)-Idle 1Avatar.lav",
+							"path":"Assets/10049/FBX/Idle 1-Idle 1 (2)-Idle 1Avatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[
@@ -62,23 +62,23 @@
 								"states":[
 									{
 										"name":"Idle",
-										"clipPath":"Assets/10046/Animation/Idle-Idle.lani"
+										"clipPath":"Assets/10049/Animation/Idle-Idle.lani"
 									},
 									{
 										"name":"Attack",
-										"clipPath":"Assets/10046/Animation/Attack-Attack.lani"
+										"clipPath":"Assets/10049/Animation/Attack-Attack.lani"
 									},
 									{
 										"name":"Run",
-										"clipPath":"Assets/10046/Animation/Run-Run.lani"
+										"clipPath":"Assets/10049/Animation/Run-Run.lani"
 									},
 									{
 										"name":"TakeDamage",
-										"clipPath":"Assets/10046/Animation/TakeDamage-TakeDamage.lani"
+										"clipPath":"Assets/10049/Animation/TakeDamage-TakeDamage.lani"
 									},
 									{
 										"name":"Die",
-										"clipPath":"Assets/10046/Animation/Die-Die.lani"
+										"clipPath":"Assets/10049/Animation/Die-Die.lani"
 									}
 								]
 							}
@@ -91,7 +91,7 @@
 					{
 						"type":"SkinnedMeshSprite3D",
 						"props":{
-							"name":"ArcherMesh",
+							"name":"MageMesh",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
@@ -114,30 +114,30 @@
 							"rootBone":"Hips",
 							"boundBox":{
 								"min":[
-									-1.44168,
-									-2.99,
-									-3.848651
+									-1.329455,
+									-2.113934,
+									-3.148746
 								],
 								"max":[
-									3.929091,
-									2.232959,
-									2.452825
+									5.353995,
+									1.785016,
+									3.097559
 								]
 							},
 							"boundSphere":{
 								"center":[
-									1.243705,
-									-0.3785205,
-									-0.6979129
+									2.01227,
+									-0.1644593,
+									-0.02559352
 								],
-								"radius":4.894719
+								"radius":4.972088
 							},
 							"materials":[
 								{
-									"path":"Assets/10046/Mateial/Unlit 1.lmat"
+									"path":"Assets/10049/Mateial/Unlit 1.lmat"
 								}
 							],
-							"meshPath":"Assets/10046/FBX/Idle 1-ArcherMesh.lm"
+							"meshPath":"Assets/10049/FBX/Idle 1-MageMesh.lm"
 						},
 						"components":[],
 						"child":[]
@@ -150,9 +150,9 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								0,
-								0,
-								0
+								0.144311,
+								0.9887449,
+								0.3251567
 							],
 							"rotation":[
 								0,
