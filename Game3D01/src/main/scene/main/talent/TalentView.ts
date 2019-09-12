@@ -8,72 +8,78 @@ import GameEvent from "../../../GameEvent";
 import { GoldType } from "../../../../game/data/HomeData";
 import SysTalentCost from "../../../sys/SysTalentCost";
 import SelectTalent from "./SelectTalent";
+import TalentCell2 from "./TalentCell2";
 
 export default class TalentView extends ui.test.talentUI {
 
-    public dataArr:Array<any> = [];
-
     constructor() { 
         super();
+        this.height = Laya.stage.height;
+        this.width = Laya.stage.width;
 
-        this.addData( "tianfu/PTkuang.png" , "tianfu/gongji.png"  , "tianfu/gongzi.png", 1 );
-        this.addData( "tianfu/PTkuang.png" , "tianfu/sudu.png"    , "tianfu/yizi.png", 2 );
-        this.addData( "tianfu/PTkuang.png" , "tianfu/xingyun.png" , "tianfu/xingzi.png", 3 );
-    
-        this.addData( "tianfu/JYkuang.png" , "tianfu/fangyu.png" , "tianfu/fangzi.png", 4 );
-        this.addData( "tianfu/JYkuang.png" , "tianfu/shengming.png" , "tianfu/shengzi.png", 5 );
-        this.addData( "tianfu/JYkuang.png" , "tianfu/jinbi.png" , "tianfu/diaozi.png", 6 );
-    
-        this.addData( "tianfu/SSkuang.png" , "tianfu/baoji.png" , "tianfu/baozi.png", 7 );
-        this.addData( "tianfu/SSkuang.png" , "tianfu/lixian.png" , "tianfu/lizi.png", 8 );
-        this.addData( "tianfu/SSkuang.png" , "tianfu/tiejiang.png" , "tianfu/tiezi.png", 9 );
-
-        this.list.itemRender = TalentCell;
+        this.list.itemRender = TalentCell2;
         this.on(Laya.Event.DISPLAY,this,this.disFun);
         this.shengmingniu.clickHandler = new Laya.Handler( this,this.btnFun );
         Laya.stage.on(GameEvent.TALENT_UPDATE , this, this.tFun);
 
         this.list.renderHandler = new Laya.Handler( this,this.renderFun );
-        this.list.selectHandler = new Laya.Handler( this,this.selectFun );
-    }
-
-    private addData( bg:string , logo:string , font:string, id:number ):void{
-        this.dataArr.push( { bg:bg , logo:logo , font:font , id:id } );
+        //this.list.selectHandler = new Laya.Handler( this,this.selectFun );
+        
     }
 
     public selectFun(index:number):void{
+        console.log( index );
         if( index == -1 ){
             this.tipBox.visible = false;
             return;
         }
-        let lv = Session.talentData.getLv(index);
-        if( lv == 0 ){
-            this.tipBox.visible = false;
-        }else{
+        let lv = Session.talentData.getLv(index + 1);
+        // if( lv == 0 ){
+        //     this.tipBox.visible = false;
+        // }else{
             this.tipBox.visible = true;
             let b = this.list.getCell(index);
-            //let p = b.localToGlobal( new Laya.Point(0,0) , true , this.dialog.box );
             this.tipBox.x = this.list.x + b.x - 130;
             this.tipBox.y = this.list.y + b.y + 200;
             let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, index + 1 );
             this.txt5.text = sys.talentInfo + ":" + Session.talentData.getTxt( index ) + "%";
-        }
+        //}
     }
 
-    public renderFun( cell:ui.test.TianFuCellUI , index:number ):void{
-        let obj = this.list.getItem( index );
+    public renderFun( cell:TalentCell2 , index:number ):void{
+        let sys:SysTalentInfo = this.list.getItem( index );
+        let obj = Session.talentData.getImgData(sys.id);
+        
         cell.logo1.skin = obj.logo;
         cell.bg1.skin = obj.bg;
         cell.txtImg.skin = obj.font;
-        let lv = Session.talentData.getLv(index);
+        let lv = Session.talentData.getLv(sys.id);
         cell.lv.value = lv + "";
         cell.box1.visible = cell.box2.visible = false;
         if( lv == 0 ){
             cell.box2.visible = true;
         }else{
             cell.box1.visible = true;
-        } 
+        }
         cell.select.visible = (this.list.selectedIndex == index);
+        cell.on(Laya.Event.CLICK,this,this.cellClickFun , [cell,index] );
+    }
+
+    private cellClickFun( cell:TalentCell2 , index:number ):void{
+        if( index == -1 ){
+            this.tipBox.visible = false;
+            return;
+        }
+        let lv = Session.talentData.getLv(index + 1);
+        if( lv == 0 ){
+            this.tipBox.visible = false;
+        }else{
+            this.tipBox.visible = true;
+            this.tipBox.x = this.list.x + cell.x - 60;
+            this.tipBox.y = this.list.y + cell.y + 200;
+            let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, index + 1 );
+            this.txt5.text = sys.talentInfo + ":" + Session.talentData.getTxt( index ) + "%";
+        }
     }
 
     public tFun():void{
@@ -86,20 +92,14 @@ export default class TalentView extends ui.test.talentUI {
     }
 
     public disFun():void{
+        this.tipBox.visible = false;
         this.refresh();
         //this.effect();
     }
 
     public refresh():void{
         let sysArr = App.tableManager.getTable( SysTalentInfo.NAME );
-        let dataArr:Array<any> = [];
-        for( let i:number = 0; i < sysArr.length; i+=2 ){
-            let a:Array<any> = [];
-            a.push( sysArr[i] );
-            a.push( sysArr[i+1] );
-            dataArr.push(a);
-        }
-        this.list.array = dataArr;
+        this.list.array = sysArr;
         this.shengmingniu.disabled = !Session.talentData.haveGold();
     }
 

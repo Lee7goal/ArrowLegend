@@ -101,6 +101,7 @@ class Main {
 		App.init();
 		MyEffect.initBtnEffect();
 		Session.init();
+
 	}
 
 	private _initView: ui.test.initViewUI;
@@ -192,16 +193,19 @@ class Main {
 		Laya.stage.addChild(this.loading);
 		// this.loading.clip.play();
 		this.loading.txt.text = "0%";
-		Laya.loader.load([{ url: "allJson.json", type: "plf" }], Laya.Handler.create(this, function (): void {
-			Laya.loader.load([
-				{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/guide.atlas", type: Laya.Loader.ATLAS },
-				{ url: "res/atlas/zhaohuan.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
-				// { url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
-				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
-			], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
-		}));
+		
+		Laya.loader.load([
+			{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
+			{ url: "res/atlas/guide.atlas", type: Laya.Loader.ATLAS },
+			{ url: "res/atlas/zhaohuan.atlas", type: Laya.Loader.ATLAS },
+			// { url: "res/atlas/shezhi.atlas", type: Laya.Loader.ATLAS },
+			// { url: "res/atlas/tianfu.atlas", type: Laya.Loader.ATLAS },
+			{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
+		], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
+
+		//Laya.loader.load([{ url: "allJson.json", type: "plf" }], Laya.Handler.create(this, function (): void {
+			
+		//}));
 	}
 
 

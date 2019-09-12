@@ -1,10 +1,10 @@
-id	talentInfo	talentUnlock
-1	增加攻击力	1
-2	增加移速	1
-3	遗失物概率降低	1
-4	增加防御	1
-5	增加血量	1
-6	掉落金币增加	1
-7	增加暴击	1
-8	离线奖励增加	1
-9	增加合成概率	1
+id	idName	talentName	talentInfo
+1	addAttack	火力	增加攻击力
+2	addHp	血之力	增加血量
+3	addItemhp	神奇宝贝	道具恢复
+4	addDefense	免伤	伤害减免
+5	addAtkspeed	神速	攻击速度
+6	dropLevelhp	恢复	升级恢复生命
+7	addCompose	强身	属性增强
+8	lineGold	幸运	掉落金币增加
+9	offlineGold	离线奖励	离线奖励

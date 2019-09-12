@@ -56,12 +56,10 @@
    <item name="test/battleLvUI.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/xiongmao1.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/xiongmao.scene" props="" ifExport="内嵌模式" aName=""/>
-<<<<<<< HEAD
    <item name="test/TalentView.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/TianFuCell.scene" props="" ifExport="内嵌模式" aName=""/>
-=======
    <item name="game/newGuide.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="game/newGuide2.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="game/newGuide3.scene" props="" ifExport="内嵌模式" aName=""/>
->>>>>>> 3c2f8a46c79f198af5095dafc01cb5908be469c4
+   <item name="test/TalentZhuan.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>
