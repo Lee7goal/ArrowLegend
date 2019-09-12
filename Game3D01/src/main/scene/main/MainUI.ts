@@ -9,10 +9,10 @@ import HomeData from "../../../game/data/HomeData";
 import Session from "../../Session";
 import SenderHttp from "../../../net/SenderHttp";
 import App from "../../../core/App";
+import SysHero from "../../sys/SysHero";
     export default class MainUI extends Laya.Box {
         private topUI:TopUI;
         private bottomUI:BottomUI;
-
         
         constructor(){
             super();
@@ -58,15 +58,17 @@ import App from "../../../core/App";
         static xiaohao:number = 2;
         private _remainingTime:number = 0;
 
-        private mo:MaskObj;
+        private maskSpr:Laya.Sprite = new Laya.Sprite();
+        // private mo:MaskObj;
         private homeData:HomeData;
+        private _isInit:boolean = false;
         constructor(){
             super();
             this.timerClip.visible = false;
             this.appEnergyClip.visible = false;
 
-            this.mo = new MaskObj(this.jingyantiao);
-            this.mo.value = 1;
+            // this.mo = new MaskObj(this.jingyantiao);
+            // this.mo.value = 0;
 
             this.headImg.skin = Game.userHeadUrl;
             this.nameTxt.text = Game.userName;
@@ -97,7 +99,37 @@ import App from "../../../core/App";
             this.dengji.value = "" + Session.homeData.level;
 
             this.coinClip.value = "" + Session.homeData.coins;
-            console.log("金币数",Session.homeData.coins);
+
+            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME,Session.homeData.level);
+            let vv:number = Session.homeData.playerExp / sys.roleExp;
+            Laya.timer.frameLoop(1,this,this.onLoopExp,[vv]);
+        }
+
+        private lastWidth:number = 0;
+        private isTwo:boolean = false;
+        private onLoopExp(vv:number):void
+        {
+            this.lastWidth += 15;
+            if(this.isTwo)
+            {
+                if(this.lastWidth >= this.jingyantiao.width)
+                {
+                    this.lastWidth = 0;
+                    this.isTwo = false;
+                }
+            }
+            else
+            {
+                if(this.lastWidth >= this.jingyantiao.width * vv)
+                {
+                    this.lastWidth = this.jingyantiao.width * vv;
+                    Laya.timer.clear(this,this.onLoopExp);
+                }
+            }
+            this.lastWidth = Math.max(1,this.lastWidth);
+            this.maskSpr.graphics.clear();
+            this.maskSpr.graphics.drawRect(0,0,this.lastWidth ,this.jingyantiao.height,"#fff000");
+            this.jingyantiao.mask = this.maskSpr;
         }
 
         /**扣除体力 */
@@ -137,7 +169,7 @@ import App from "../../../core/App";
             let value:number = this.homeData.curEnergy / this.homeData.maxEngergy;
             value = Math.max(0.1,value);
 
-            DisplayUtils.updateBlood(this.mo, value, 100);
+            // DisplayUtils.updateBlood(this.mo, value, 100);
 
             if(this.homeData.curEnergy < this.homeData.totalEnergy)
             {
@@ -180,7 +212,7 @@ import App from "../../../core/App";
 
         private _selectIndex:number = 0;
 
-        private opens:number[] = [1,-1,-1,-1,-1];
+        private opens:number[] = [1,-1,-1,-1,1];
         constructor(){
             super();
             this.size(750,122);

@@ -21,11 +21,11 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Texture/chang8.png",
+				"path":"../Texture/chang8.jpg",
 				"constructParams":[
 					128,
 					128,
-					1,
+					0,
 					true
 				],
 				"propertyParams":{

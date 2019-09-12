@@ -69,6 +69,13 @@ export default class GameExecut extends Laya.EventDispatcher {
                 // }
             }
         }
+        // if(arr.length < 4)
+        // {
+        //     for (let i = 0; i < arr.length; i++) {
+        //         console.log("场景里还有什么呢",arr[i]);
+        //     }
+            
+        // }
 
         var farr = Game.map0.Fharr;
         for (let i = 0; i < farr.length; i++) {

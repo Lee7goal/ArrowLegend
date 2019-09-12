@@ -51,7 +51,7 @@ export default class MonsterBullet extends GamePro {
             MemoryManager.ins.add(bullet.url);
             // Game.monsterResClones.push(bullet);
             this.setSp3d(bullet);
-            console.log("克隆一个怪的子弹");
+            // console.log("克隆一个怪的子弹");
         }
         
         // this.sp3d.addComponent(BulletRotateScript);
@@ -67,7 +67,9 @@ export default class MonsterBullet extends GamePro {
     static getBullet(sb: SysBullet): MonsterBullet {
         // let bullet: MonsterBullet = new MonsterBullet();
         // let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG + sb.bulletMode, MonsterBullet);
-        let bullet: MonsterBullet = Laya.Pool.getItemByClass(MonsterBullet.TAG + sb.bulletMode, MonsterBullet);
+        let tag:string = MonsterBullet.TAG + sb.bulletMode;
+        Game.poolTagArr[tag] = tag;
+        let bullet: MonsterBullet = Laya.Pool.getItemByClass(tag, MonsterBullet);
         bullet.isDie = false;
         bullet.setBubble(sb);
         // if(bullet.sysBullet.id != 10 && bullet.sysBullet.id != 11)//处理弓箭的，弓箭就不转了

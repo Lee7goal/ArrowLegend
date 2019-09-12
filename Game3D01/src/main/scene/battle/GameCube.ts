@@ -36,7 +36,9 @@ export default class GameCube{
     static getOne(v3:Laya.Vector3,type:number):GameCube
     {
         type = GameCube.getType(type);
-        let rube:GameCube = Laya.Pool.getItemByClass(GameCube.TAG + type, GameCube);
+        let tag:string = GameCube.TAG + type;
+        Game.poolTagArr[tag] = tag;
+        let rube:GameCube = Laya.Pool.getItemByClass(tag, GameCube);
         rube.init(type);
         rube.box.transform.position = v3;
         GameCube.arr.push(rube);

@@ -231,10 +231,12 @@ export default class BaseAI extends GameAI {
     }
 
     die(): void {
+        this.setShader();
         let goldNum: number = this.sysEnemy.dropGold;
         if (goldNum > 0) {
             CoinEffect.addEffect(this.pro, goldNum);
         }
+        Game.battleExp += this.sysEnemy.dropExp;
         this.splitSkill && this.splitSkill.exeSkill(this.now, this.pro);
         this.pro.die();
     }

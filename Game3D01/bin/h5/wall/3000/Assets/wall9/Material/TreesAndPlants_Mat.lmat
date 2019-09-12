@@ -23,8 +23,8 @@
 				"name":"albedoTexture",
 				"path":"../Texture/TreesAndPlants_D.jpg",
 				"constructParams":[
-					2048,
-					2048,
+					256,
+					256,
 					0,
 					true
 				],

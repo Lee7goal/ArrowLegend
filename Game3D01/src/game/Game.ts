@@ -30,10 +30,12 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 
 export default class Game {
-    static resVer:string = "1.0.10.1";
+    static resVer:string = "1.0.14";
 
     static userHeadUrl:string = "";
     static userName:string = "";
+
+    static poolTagArr:any = {};
 
     static isStartBattle:boolean = false;
 
@@ -254,14 +256,14 @@ export default class Game {
         var info: any = Game.map0.info;
         var arr: number[][] = [];
         for (let i = mRow - range; i <= mRow + range; i++) {
-            if (i < 2 || i > GameBG.MAP_ROW - 2)  {
+            if (i < 3 || i > GameBG.MAP_ROW - 7)  {
                 continue;
             }
             for (let j = mCol - range; j <= mCol + range; j++) {
                 if (j == mRow && i == mCol) {
                     continue;
                 }
-                if (j < 1 || j > GameBG.MAP_ROW - 2)  {
+                if (j < 3 || j > GameBG.MAP_COL - 3)  {
                     continue;
                 }
                 var key: number = info[i + "_" + j];
@@ -290,9 +292,12 @@ export default class Game {
 
     /**战斗中的金币 */
     static battleCoins: number = 0;
+    static battleExp:number = 0;
 
     /**结算时候加的金币 */
     static addCoins:number = 0;
+    static addExp:number = 0;
+    
 
     static showMain():void
     {

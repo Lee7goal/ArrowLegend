@@ -15,6 +15,8 @@ import SysNpc from "../../sys/SysNpc";
         this.grid1 = new SkillGrid(new Laya.Handler(this,this.onClick));
         this.grid2 = new SkillGrid(new Laya.Handler(this,this.onClick));
 
+        this.queding.visible = false;
+
         this.box1.addChild(this.grid1);
         this.box2.addChild(this.grid2);
 

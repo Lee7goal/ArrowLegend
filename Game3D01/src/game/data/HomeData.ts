@@ -35,6 +35,11 @@ export default class HomeData implements IData{
         this.mapIndex = data.mapIndex;
         this.level = data.level;
         this.coins = data.coins;
+        this.playerExp = data.playerExp;
+        if(this.playerExp == null)
+        {
+            this.playerExp = 0;
+        }
         if( Date.now() >= this.lastTime){
             this.curEnergy = this.totalEnergy;
         } else {
@@ -59,6 +64,7 @@ export default class HomeData implements IData{
         data.mapIndex = this.mapIndex;
         data.level = this.level;
         data.coins = this.coins;
+        data.playerExp = this.playerExp;
         if( Game.battleLoader.index > this.mapIndex ) {
             data.mapIndex = Game.battleLoader.index;
             console.log("存储最高层数",data.mapIndex);
@@ -82,6 +88,7 @@ export default class HomeData implements IData{
         this.level = 1;
         this.coins = 0;
         this.redDiamond = 0;
+        this.playerExp = 0;
         this.blueDiamond = 0;
     }
 
@@ -128,14 +135,14 @@ export default class HomeData implements IData{
         this.playerExp += exp;
         while( true ){
             let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME , this.level );    
-            if( this.playerExp >= sys.exp  ){
+            if( this.playerExp >= sys.roleExp  ){
                 let nowLv = this.level + 1;
                 if( App.tableManager.getDataByNameAndId(SysHero.NAME , this.level ) == null ){
                     //等级已经到头了
                     break;
                 }
                 this.level = nowLv;
-                this.playerExp -= sys.exp;
+                this.playerExp -= sys.roleExp;
             }else{
                 break;
             }

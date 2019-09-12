@@ -32,7 +32,7 @@
             "x":15,
             "type":"Button",
             "searchKey":"Button",
-            "props":{"x":160,"stateNum":"1","skin":"loading/btn_kaishi.png","label":"label","bottom":80},
+            "props":{"y":1163,"x":246,"stateNum":"1","skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},
             "nodeParent":2,
             "label":"Button",
             "isDirectory":false,

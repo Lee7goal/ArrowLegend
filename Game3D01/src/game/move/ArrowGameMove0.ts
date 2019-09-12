@@ -198,10 +198,10 @@ export default class ArrowGameMove0 extends GameMove {
         }
         pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);
 
-        // if(Math.abs(pro.pos2.x) > 800 || Math.abs(pro.pos2.z) > 3000)//出了屏幕后销毁
-        // {
-        //     pro.die();
-        // }
+        if(Math.abs(pro.pos2.x) > GameBG.ww * GameBG.MAP_COL || Math.abs(pro.pos2.z) > GameBG.ww * GameBG.MAP_ROW)//出了屏幕后销毁
+        {
+            pro.die();
+        }
 
         return true;
     }

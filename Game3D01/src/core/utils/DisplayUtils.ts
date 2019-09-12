@@ -38,7 +38,8 @@ export class MaskObj{
             xx = this._target.width * (1 - vv);
         }
         this.rect.graphics.clear();
-         this.rect.graphics.drawRect(xx,0,this._target.width * vv,this._target.height,"#ff0000");
+        let ww:number = Math.max(1,this._target.width * vv);
+         this.rect.graphics.drawRect(xx,0,ww,this._target.height,"#ff0000");
         this._target.mask = this.rect;
     }
 

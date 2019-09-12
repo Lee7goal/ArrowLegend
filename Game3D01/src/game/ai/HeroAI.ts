@@ -117,6 +117,7 @@ export default class HeroAI extends GameAI {
 
         if(ac == GameAI.closeCombat)
         {
+            Game.playSound("fx_hit.wav");
             if(Game.e0_)
             {
                 Game.hero.hurtValue = Math.floor(Game.hero.playerData.baseAttackPower * 1.5);
