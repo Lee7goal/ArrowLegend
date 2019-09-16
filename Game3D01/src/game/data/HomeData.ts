@@ -90,6 +90,7 @@ export default class HomeData implements IData{
         this.redDiamond = 0;
         this.playerExp = 0;
         this.blueDiamond = 0;
+        this.coins = 9999999;
     }
 
     /**

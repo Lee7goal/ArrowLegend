@@ -32,6 +32,7 @@ export default class AdDiamond extends ui.test.juese_tishiUI{
 
     private adFun():void{
         let v:number = Math.ceil( Math.random() * 4 )  + 6;
+        //v = 500;
         Session.homeData.changeGold( this.goldType , v , GOLD_CHANGE_TYPE.AD_DIAMOND );
         let g = new GetItemDialog();
         

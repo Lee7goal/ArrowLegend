@@ -212,7 +212,7 @@ import SysHero from "../../sys/SysHero";
 
         private _selectIndex:number = 0;
 
-        private opens:number[] = [1,-1,-1,-1,1];
+        private opens:number[] = [1,1,1,1,1];
         constructor(){
             super();
             this.size(750,122);
