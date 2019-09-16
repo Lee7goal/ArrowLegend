@@ -20,8 +20,8 @@ export default class TalentData implements IData {
 
     constructor(){
         this.addData( "tianfu/PTkuang.png" , "tianfu/gongji.png"  , "tianfu/gongzi.png", 1 );
-        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/shengzi.png", 2 );
-        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/shengzi.png", 3 );
+        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/baozi.png", 2 );
+        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/xingzi.png", 3 );
 
         this.addData( "tianfu/JYkuang.png" , "tianfu/fangyu.png" , "tianfu/fangzi.png", 4 );
         this.addData( "tianfu/JYkuang.png" , "tianfu/gongji.png" , "tianfu/gongzi.png", 5 );
