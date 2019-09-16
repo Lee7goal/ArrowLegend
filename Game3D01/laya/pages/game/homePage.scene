@@ -6,7 +6,7 @@
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":8,
+    "maxID":9,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -47,13 +47,27 @@
             "type":"UIView",
             "source":"test/LoginView.scene",
             "searchKey":"UIView,vvv",
-            "props":{"y":331,"x":0,"var":"vvv"},
+            "props":{"y":130,"var":"vvv"},
             "nodeParent":2,
             "label":"vvv",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":7,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image",
+            "props":{"y":478,"x":134,"skin":"loading/logo.png"},
+            "nodeParent":2,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":8,
             "child":[
                 ]
         }],

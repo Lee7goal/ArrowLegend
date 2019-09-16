@@ -18,7 +18,7 @@ export module ui.game {
     REG("ui.game.battleIndexBoxUI",battleIndexBoxUI);
     export class homePageUI extends View {
 		public vvv:ui.test.LoginViewUI;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6},{"type":"LoginView","props":{"y":331,"x":0,"var":"vvv","runtime":"ui.test.LoginViewUI"},"compId":7}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6},{"type":"LoginView","props":{"y":130,"var":"vvv","runtime":"ui.test.LoginViewUI"},"compId":7},{"type":"Image","props":{"y":478,"x":134,"skin":"loading/logo.png"},"compId":8}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png","loading/logo.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -738,7 +738,7 @@ export module ui.test {
     }
     REG("ui.test.xiongmaoUI",xiongmaoUI);
     export class xiongmao1UI extends View {
-        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"xiongmao","props":{"y":-158,"x":-80.5,"runtime":"ui.test.xiongmaoUI"},"compId":3}],"loadList":[],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":-33.5,"x":-72,"texture":"bg/tianshiying.png"},"compId":5},{"type":"Sprite","props":{"y":-161,"x":-72,"texture":"bg/xiongmao.png"},"compId":4}],"loadList":["bg/tianshiying.png","bg/xiongmao.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

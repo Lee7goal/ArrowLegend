@@ -4,4 +4,6 @@ export default class CookieKey {
 
     static MUSIC_SWITCH:string = "MUSIC_SWITCH";
     static SOUND_SWITCH:string = "SOUND_SWITCH";
+
+    static USER_ID:string = "USER_ID";
 }

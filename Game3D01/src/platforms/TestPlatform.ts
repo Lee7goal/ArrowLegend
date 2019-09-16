@@ -2,6 +2,8 @@ import { BasePlatform } from "./BasePlatform";
 import Game from "../game/Game";
 import { ui } from "../ui/layaMaxUI";
 import LoginHttp from "../net/LoginHttp";
+import App from "../core/App";
+import CookieKey from "../gameCookie/CookieKey";
 
 export default class TestPlatform extends BasePlatform{
     checkUpdate():void
@@ -26,6 +28,7 @@ export default class TestPlatform extends BasePlatform{
 
     clickFun( t:Laya.TextInput ):void{
         LoginHttp.FRONT = "test" + t.text;
+        Game.cookie.setCookie(CookieKey.USER_ID, { "userId": t.text });
         this.cb && this.cb();
     }
 

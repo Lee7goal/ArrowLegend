@@ -185,7 +185,7 @@ export default class BattleLoader {
     {
         let arr:string[] = [
             "h5/mapbg/1.jpg",
-            "res/atlas/xiongmao.atlas",
+            // "res/atlas/xiongmao.atlas",
             "res/atlas/shengli.atlas",
             "res/atlas/icons/skill.atlas",
             "res/atlas/bg.atlas",
