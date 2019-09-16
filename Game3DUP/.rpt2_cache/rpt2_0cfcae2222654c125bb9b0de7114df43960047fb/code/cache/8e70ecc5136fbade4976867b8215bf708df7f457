@@ -1,0 +1,6 @@
+{
+  "code": "import { BaseCookie } from \"./BaseCookie\";\r\nexport default class WXCookie extends BaseCookie {\r\n    constructor() {\r\n        super();\r\n        this.wx = Laya.Browser.window.wx;\r\n    }\r\n    setCookie(code, data1) {\r\n        this.wx.setStorage({\r\n            key: code,\r\n            data: data1,\r\n            success(res) {\r\n            }\r\n        });\r\n    }\r\n    getCookie(code, callback) {\r\n        this.wx.getStorage({\r\n            key: code,\r\n            success(res) {\r\n                callback && callback(res.data);\r\n            },\r\n            fail(res) {\r\n                callback && callback(null);\r\n            },\r\n            complete(res) {\r\n            }\r\n        });\r\n    }\r\n    removeCookie(code) {\r\n        this.wx.removeStorage({\r\n            key: code,\r\n            success(res) {\r\n            }\r\n        });\r\n    }\r\n    clearAll() {\r\n        this.wx.clearStorage();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/gameCookie/BaseCookie.ts"
+  ]
+}

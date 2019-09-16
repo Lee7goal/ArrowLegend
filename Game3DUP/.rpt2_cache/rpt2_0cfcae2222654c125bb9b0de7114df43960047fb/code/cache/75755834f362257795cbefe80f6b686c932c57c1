@@ -1,0 +1,9 @@
+{
+  "code": "import GamePro from \"../GamePro\";\r\nimport GameProType from \"../GameProType\";\r\nimport ArrowRoateMove from \"../move/ArrowRoateMove\";\r\nexport default class BulletRotate extends GamePro {\r\n    constructor() {\r\n        super(GameProType.HeroArrow);\r\n        this.setGameMove(new ArrowRoateMove());\r\n    }\r\n    static getBullet(id) {\r\n        let bullet = new BulletRotate();\r\n        bullet.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes(\"h5/bullets/\" + id + \"/monster.lh\")));\r\n        bullet.sp3d.transform.localPositionY = 1;\r\n        bullet.sp3d.transform.localRotationEulerX = 45;\r\n        return bullet;\r\n    }\r\n}\r\nBulletRotate.TAG = 'HeroBullet';\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameProType.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/move/ArrowRoateMove.ts"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "code": "import { GameMove } from \"./GameMove\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport Game from \"../Game\";\r\nimport GameBG from \"../GameBG\";\r\nexport default class CoinsMove extends GameMove {\r\n    constructor() { super(); }\r\n    move2d(n, pro, speed) {\r\n        if (pro.status == 0) {\r\n        }\r\n        else if (pro.status == 1) {\r\n            var vx = Math.cos(n) * speed;\r\n            var vz = Math.sin(n) * speed;\r\n            if (pro.curLen >= 0 && pro.moveLen >= 0) {\r\n                pro.curLen += speed;\r\n                if (pro.curLen >= pro.moveLen) {\r\n                    pro.curLen = pro.moveLen;\r\n                }\r\n                var nn = pro.curLen / pro.moveLen;\r\n                var dy = Math.sin((Math.PI * nn)) * 2;\r\n                pro.sp3d.transform.localPositionY = 0.1 + dy;\r\n            }\r\n            if (pro.curLen >= pro.moveLen) {\r\n                pro.status = 0;\r\n            }\r\n            pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);\r\n        }\r\n        else if (pro.status == 2) {\r\n            var a = GameHitBox.faceTo3D(pro.hbox, Game.hero.hbox);\r\n            pro.rotation(a);\r\n            if (speed <= 0) {\r\n                return false;\r\n            }\r\n            if (GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox) < GameBG.ww2) {\r\n                return true;\r\n            }\r\n            var vx = Math.cos(n) * speed;\r\n            var vz = Math.sin(n) * speed;\r\n            pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);\r\n        }\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/move/GameMove.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Coin.ts"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "code": "import App from \"../../core/App\";\r\nimport SysRoleBase from \"../../main/sys/SysRolebase\";\r\nimport SysRoleUp from \"../../main/sys/SysRoleUp\";\r\nimport Session from \"../../main/Session\";\r\nimport GameEvent from \"../../main/GameEvent\";\r\nimport { GOLD_CHANGE_TYPE } from \"../../UseGoldType\";\r\nexport default class HeroData {\r\n    constructor() {\r\n        this.heroData = {};\r\n    }\r\n    setData(data) {\r\n        this.heroData = data.heroData;\r\n    }\r\n    saveData(data) {\r\n        data.heroData = this.heroData;\r\n    }\r\n    initData(data) {\r\n        let arr = App.tableManager.getTable(SysRoleBase.NAME);\r\n        for (let k of arr) {\r\n            this.heroData[k.id] = [1, 1];\r\n        }\r\n    }\r\n    getHeroLv(heroId, type) {\r\n        return this.heroData[heroId][type];\r\n    }\r\n    lvUp(heroId, type) {\r\n        let lv = this.heroData[heroId][type];\r\n        let sys = SysRoleUp.getSysRole(heroId, lv);\r\n        let cost = sys.getCost(type);\r\n        let goldType = sys.getCostType(type);\r\n        let res = Session.homeData.changeGold(goldType, -cost, GOLD_CHANGE_TYPE.HERO_LV_ABILITY);\r\n        if (res == false) {\r\n            return false;\r\n        }\r\n        let nowLv = lv + 1;\r\n        let nowSys = SysRoleUp.getSysRole(heroId, nowLv);\r\n        if (nowSys == null) {\r\n            return false;\r\n        }\r\n        this.heroData[heroId][type] = nowLv;\r\n        Laya.stage.event(GameEvent.HERO_UPDATE);\r\n        Session.saveData();\r\n        return true;\r\n    }\r\n}\r\nexport var HeroLvType;\r\n(function (HeroLvType) {\r\n    HeroLvType[HeroLvType[\"ATK\"] = 0] = \"ATK\";\r\n    HeroLvType[HeroLvType[\"HP\"] = 1] = \"HP\";\r\n})(HeroLvType || (HeroLvType = {}));\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/data/IData.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysRolebase.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysRoleUp.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/Session.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/HomeData.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/FlyUpTips.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameEvent.ts",
+    "D:/game01/Layabox/Game3DUP/src/UseGoldType.ts"
+  ]
+}

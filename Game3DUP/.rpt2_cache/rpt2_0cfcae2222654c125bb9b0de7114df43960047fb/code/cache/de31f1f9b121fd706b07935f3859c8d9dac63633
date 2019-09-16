@@ -1,0 +1,26 @@
+{
+  "code": "import ZipLoader from \"../core/utils/ZipLoader\";\r\nimport App from \"../core/App\";\r\nimport Game from \"../game/Game\";\r\nimport SysChapter from \"./sys/SysChapter\";\r\nimport SysMap from \"./sys/SysMap\";\r\nimport SysEnemy from \"./sys/SysEnemy\";\r\nimport SysBullet from \"./sys/SysBullet\";\r\nimport SysLevel from \"./sys/SysLevel\";\r\nimport SysSkill from \"./sys/SysSkill\";\r\nimport SysBuff from \"./sys/SysBuff\";\r\nimport SysNpc from \"./sys/SysNpc\";\r\nimport GameAlert from \"./GameAlert\";\r\nimport CookieKey from \"../gameCookie/CookieKey\";\r\nimport SysRoleBase from \"./sys/SysRolebase\";\r\nimport SysRoleUp from \"./sys/SysRoleUp\";\r\nimport SysHero from \"./sys/SysHero\";\r\nimport SysTalentCost from \"./sys/SysTalentCost\";\r\nimport SysTalent from \"./sys/SysTalent\";\r\nimport SysTalentInfo from \"./sys/SysTalentInfo\";\r\nimport GameEvent from \"./GameEvent\";\r\nimport Session from \"./Session\";\r\nexport default class GameMain {\r\n    constructor() {\r\n        ZipLoader.instance.zipFun(Laya.loader.getRes(\"h5/tables.zip\"), new Laya.Handler(this, this.zipFun));\r\n    }\r\n    zipFun(arr) {\r\n        this.initTable(arr);\r\n        Laya.stage.event(GameEvent.CONFIG_OVER);\r\n        Game.alert = new GameAlert();\r\n        Game.scenneM.showMain();\r\n        Game.battleLoader.preload();\r\n        if (Session.isGuide) {\r\n            Game.battleLoader.load();\r\n        }\r\n        else {\r\n            Game.cookie.getCookie(CookieKey.CURRENT_BATTLE, (res) => {\r\n                if (res) {\r\n                    Game.alert.onShow(\"是否继续未完成的战斗?\", new Laya.Handler(this, this.onContinue, [res]), new Laya.Handler(this, this.onCancel));\r\n                }\r\n            });\r\n        }\r\n    }\r\n    onCancel() {\r\n        Game.cookie.removeCookie(CookieKey.CURRENT_BATTLE);\r\n    }\r\n    onContinue(res) {\r\n        Game.battleLoader.load(res);\r\n        console.log(\"继续战斗\", res);\r\n    }\r\n    initTable(arr) {\r\n        App.tableManager.register(SysChapter.NAME, SysChapter);\r\n        App.tableManager.register(SysMap.NAME, SysMap);\r\n        App.tableManager.register(SysEnemy.NAME, SysEnemy);\r\n        App.tableManager.register(SysBullet.NAME, SysBullet);\r\n        App.tableManager.register(SysLevel.NAME, SysLevel);\r\n        App.tableManager.register(SysSkill.NAME, SysSkill);\r\n        App.tableManager.register(SysBuff.NAME, SysBuff);\r\n        App.tableManager.register(SysNpc.NAME, SysNpc);\r\n        App.tableManager.register(SysRoleBase.NAME, SysRoleBase);\r\n        App.tableManager.register(SysRoleUp.NAME, SysRoleUp);\r\n        App.tableManager.register(SysHero.NAME, SysHero);\r\n        App.tableManager.register(SysTalentCost.NAME, SysTalentCost);\r\n        App.tableManager.register(SysTalentInfo.NAME, SysTalentInfo);\r\n        App.tableManager.register(SysTalent.NAME, SysTalent);\r\n        App.tableManager.onParse(arr);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/core/utils/ZipLoader.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysChapter.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysMap.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysEnemy.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBullet.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysLevel.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysSkill.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBuff.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysNpc.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameAlert.ts",
+    "D:/game01/Layabox/Game3DUP/src/gameCookie/CookieKey.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysRolebase.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysRoleUp.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysHero.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysTalentCost.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysTalent.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysTalentInfo.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameEvent.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/Session.ts"
+  ]
+}

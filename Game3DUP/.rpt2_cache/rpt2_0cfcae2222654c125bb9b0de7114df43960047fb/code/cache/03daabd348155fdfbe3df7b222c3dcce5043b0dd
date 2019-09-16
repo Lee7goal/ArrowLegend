@@ -1,0 +1,10 @@
+{
+  "code": "import FlowerAI from \"./FlowerAI\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport Game from \"../Game\";\r\nimport { GameAI } from \"./GameAI\";\r\nexport default class ShitouAI extends FlowerAI {\r\n    constructor(pro) {\r\n        super(pro);\r\n    }\r\n    onExe() {\r\n        this.checkHeroCollision();\r\n        if (this.status == 0 && this.now >= this.nextTime) {\r\n            var a = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);\r\n            this.pro.rotation(a);\r\n            this.startAttack();\r\n            this.nextTime = this.now + this.shooting.shootCd;\r\n            if (Math.random() > 0.7) {\r\n                this.status = 1;\r\n            }\r\n        }\r\n        else if (this.status == 1 && this.now >= this.nextTime) {\r\n            this.nextTime = this.now + 1000;\r\n            this.status = 2;\r\n            this.pro.rotation(Math.floor(Math.random() * 8) * (Math.PI / 4));\r\n        }\r\n        else if (this.status == 2 && this.now >= this.nextTime) {\r\n            this.pro.play(GameAI.Idle);\r\n            this.nextTime = this.now + 500;\r\n            this.status = 0;\r\n        }\r\n        if (this.status == 2) {\r\n            this.pro.move2D(this.pro.face2d);\r\n            this.pro.play(GameAI.Run);\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/ai/FlowerAI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/ai/GameAI.ts"
+  ]
+}

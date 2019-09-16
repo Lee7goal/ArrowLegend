@@ -1,0 +1,4 @@
+{
+  "code": "export default class BuffID {\r\n}\r\nBuffID.WUDI_5009 = 5009;\r\nBuffID.FIRE_2001 = 2001;\r\nBuffID.FIRE_5001 = 5001;\r\nBuffID.DU_2002 = 2002;\r\nBuffID.DU_5002 = 5002;\r\nBuffID.ICE_2003 = 2003;\r\nBuffID.ICE_5003 = 5003;\r\n",
+  "references": []
+}

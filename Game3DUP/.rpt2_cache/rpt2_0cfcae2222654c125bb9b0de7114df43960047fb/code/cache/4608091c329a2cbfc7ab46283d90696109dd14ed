@@ -1,0 +1,13 @@
+{
+  "code": "import BaseSkill from \"./BaseSkill\";\r\nimport { GameAI } from \"../ai/GameAI\";\r\nimport Game from \"../Game\";\r\nimport { ui } from \"./../../ui/layaMaxUI\";\r\nimport Monster from \"../player/Monster\";\r\nimport GameBG from \"../GameBG\";\r\nexport default class CallSkill extends BaseSkill {\r\n    constructor(sys) {\r\n        super(sys);\r\n        this.callId = 0;\r\n        this.callCd = 0;\r\n        let arr = this.sysBullet.callInfo.split(',');\r\n        this.callId = Number(arr[0]);\r\n        this.callCd = Number(arr[2]);\r\n        this.cd = Game.executor.getWorldNow() + this.callCd;\r\n    }\r\n    exeSkill(now, pro) {\r\n        if (now >= this.cd) {\r\n            pro.play(GameAI.NormalAttack);\r\n            let monster = Monster.getMonster(this.callId, pro.hbox.x + GameBG.ww, pro.hbox.y - GameBG.ww);\r\n            let zhaohuan = new ui.test.zhaohuanUI();\r\n            Game.bloodLayer.addChild(zhaohuan);\r\n            zhaohuan.pos(pro.hbox.cx, pro.hbox.cy);\r\n            setTimeout(() => {\r\n                zhaohuan.removeSelf();\r\n            }, 1500);\r\n            this.cd = now + this.callCd;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/skill/BaseSkill.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBullet.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/ai/GameAI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts"
+  ]
+}

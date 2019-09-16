@@ -1,0 +1,8 @@
+{
+  "code": "import { ui } from \"../../../../ui/layaMaxUI\";\r\nimport Session from \"../../../Session\";\r\nexport default class SelectTalent extends ui.test.TalentViewUI {\r\n    constructor() {\r\n        super();\r\n        this.arr = [];\r\n        this.arr.push(this.b0, this.b1, this.b2, this.b3, this.b4, this.b5);\r\n        for (let k of this.arr) {\r\n            k.wenhao.box1.visible = false;\r\n            k.wenhao.select.visible = false;\r\n            k.back.select.visible = false;\r\n            k.back.box2.visible = false;\r\n            k.on(Laya.Event.CLICK, this, this.clickFun, [k]);\r\n        }\r\n    }\r\n    clickFun(e) {\r\n        let now = Math.floor(Math.random() * 9) + 1;\r\n        let obj = Session.talentData.getImgData(now);\r\n        e.back.logo1.skin = obj.logo;\r\n        e.back.bg1.skin = obj.bg;\r\n        e.back.txtImg.skin = obj.font;\r\n        let lv = Session.talentData.getLv(now);\r\n        e.back.lv.value = (lv + 1) + \"\";\r\n        Session.talentData.lvUp(now);\r\n        e.back.select.visible = true;\r\n        this.mouseEnabled = false;\r\n        let t = new Laya.Tween();\r\n        t.to(e, { scaleX: -1, update: new Laya.Handler(this, this.upFun, [e]) }, 600);\r\n        this.timer.once(2000, this, this.timerFun);\r\n    }\r\n    timerFun() {\r\n        this.close();\r\n    }\r\n    upFun(e) {\r\n        if (e.scaleX <= 0) {\r\n            e.wenhao.visible = false;\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/talent/TalentCell2.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/Session.ts"
+  ]
+}

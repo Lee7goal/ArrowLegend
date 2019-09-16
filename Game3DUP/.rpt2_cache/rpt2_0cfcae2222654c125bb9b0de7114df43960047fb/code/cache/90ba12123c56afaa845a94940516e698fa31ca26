@@ -1,0 +1,4 @@
+{
+  "code": "export var AD_TYPE;\r\n(function (AD_TYPE) {\r\n    AD_TYPE[AD_TYPE[\"AD_DIAMOND\"] = 0] = \"AD_DIAMOND\";\r\n})(AD_TYPE || (AD_TYPE = {}));\r\n",
+  "references": []
+}

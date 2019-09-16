@@ -1,0 +1,6 @@
+{
+  "code": "import { BaseCookie } from \"./BaseCookie\";\r\nexport default class TestCookie extends BaseCookie {\r\n    constructor() {\r\n        super();\r\n    }\r\n    setCookie(code, data) {\r\n        Laya.LocalStorage.setJSON(code, data);\r\n    }\r\n    getCookie(code, callback) {\r\n        let data = Laya.LocalStorage.getJSON(code);\r\n        callback && callback(data);\r\n    }\r\n    removeCookie(code) {\r\n        Laya.LocalStorage.removeItem(code);\r\n    }\r\n    clearAll() {\r\n        Laya.LocalStorage.clear();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/gameCookie/BaseCookie.ts"
+  ]
+}

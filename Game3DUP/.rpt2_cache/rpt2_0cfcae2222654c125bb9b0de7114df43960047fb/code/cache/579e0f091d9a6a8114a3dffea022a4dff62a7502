@@ -1,0 +1,4 @@
+{
+  "code": "export default class GameData {\r\n    constructor() {\r\n        this._bounce = 0;\r\n        this.proType_ = 0;\r\n        this.damage = 10;\r\n        this.ammoClip = -1;\r\n        this.attackCD = 1000;\r\n        this.rspeed = 20;\r\n    }\r\n    set bounce(v) {\r\n        this._bounce = v;\r\n    }\r\n    get bounce() {\r\n        return this._bounce;\r\n    }\r\n    set proType(pt) {\r\n        this.proType_ = pt;\r\n        if (this.proType_ <= 800) {\r\n            this.rspeed = 0;\r\n        }\r\n        else {\r\n            this.rspeed = 20;\r\n        }\r\n    }\r\n    get proType() {\r\n        return this.proType_;\r\n    }\r\n}\r\n",
+  "references": []
+}

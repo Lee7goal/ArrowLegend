@@ -1,0 +1,8 @@
+{
+  "code": "export default class HitEffect {\r\n    constructor() {\r\n        this.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes(\"h5/bulletsEffect/20000/monster.lh\"));\r\n    }\r\n    static addEffect(player) {\r\n        let effect = Laya.Pool.getItemByClass(HitEffect.TAG, HitEffect);\r\n        effect.player = player;\r\n        effect.player.sp3d.addChild(effect.sp3d);\r\n        setTimeout(() => {\r\n            effect.recover();\r\n        }, 800);\r\n        return effect;\r\n    }\r\n    recover() {\r\n        this.player.sp3d.removeChild(this.sp3d);\r\n        Laya.Pool.recover(HitEffect.TAG, this);\r\n        this.sp3d = null;\r\n    }\r\n}\r\nHitEffect.TAG = \"HitEffect\";\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameProType.ts"
+  ]
+}

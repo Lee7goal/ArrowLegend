@@ -1,0 +1,7 @@
+{
+  "code": "import { ui } from \"../../ui/layaMaxUI\";\r\nimport GameEvent from \"../GameEvent\";\r\nexport default class GuideTalk extends ui.game.newGuide2UI {\r\n    constructor() {\r\n        super();\r\n        this.on(Laya.Event.CLICK, this, this.onClick);\r\n    }\r\n    onClick() {\r\n        this.removeSelf();\r\n    }\r\n    setContent(str, guideId) {\r\n        this._guideId = guideId;\r\n        this.contents = str.split(\"\");\r\n        this.txt.text = \"\";\r\n        Laya.timer.loop(80, this, this.onLoop);\r\n    }\r\n    onLoop() {\r\n        if (this.contents.length > 0) {\r\n            let char = this.contents.shift();\r\n            this.txt.text += char;\r\n        }\r\n        else {\r\n            Laya.timer.clear(this, this.onLoop);\r\n        }\r\n    }\r\n    removeSelf() {\r\n        Laya.stage.event(GameEvent.SHOW_ACTION_RECT, this._guideId);\r\n        return super.removeSelf();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameEvent.ts"
+  ]
+}

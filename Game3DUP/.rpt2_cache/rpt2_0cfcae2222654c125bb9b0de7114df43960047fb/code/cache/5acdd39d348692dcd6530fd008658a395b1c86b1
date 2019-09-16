@@ -1,0 +1,4 @@
+{
+  "code": "export default class AIType {\r\n}\r\nAIType.NOTHAS = 0;\r\nAIType.FLYHIT = 1;\r\nAIType.BULLET = 2;\r\nAIType.STONE = 3;\r\nAIType.SHITOUREN = 4;\r\nAIType.TREE = 5;\r\nAIType.RANDOM_MOVE = 6;\r\nAIType.MOVEHIT = 8;\r\nAIType.REBOUND = 9;\r\nAIType.JUMP_FOLLOW = 10;\r\nAIType.RED_LINE = 11;\r\n",
+  "references": []
+}

@@ -1,0 +1,4 @@
+{
+  "code": "export default class Equip {\r\n    constructor() {\r\n        this.hp = 0;\r\n        this.atk = 0;\r\n        this.def = 0;\r\n        this.crit = 0;\r\n        this.moveSpeed = 0;\r\n        this.atkSpeed = 0;\r\n        this.critEffect = 0;\r\n    }\r\n    copy() {\r\n        let e = new Equip();\r\n        e.hp = this.hp;\r\n        e.atk = this.atk;\r\n        e.def = this.def;\r\n        e.crit = this.crit;\r\n        e.moveSpeed = this.moveSpeed;\r\n        e.atkSpeed = this.atkSpeed;\r\n        e.critEffect = this.critEffect;\r\n        return e;\r\n    }\r\n    reset0() {\r\n        this.hp = 0;\r\n        this.atk = 0;\r\n        this.def = 0;\r\n        this.crit = 0;\r\n        this.moveSpeed = 0;\r\n        this.atkSpeed = 0;\r\n        this.critEffect = 0;\r\n    }\r\n}\r\n",
+  "references": []
+}

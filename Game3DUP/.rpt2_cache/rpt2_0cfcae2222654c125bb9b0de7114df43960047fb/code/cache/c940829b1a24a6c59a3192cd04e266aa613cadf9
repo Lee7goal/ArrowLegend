@@ -1,0 +1,6 @@
+{
+  "code": "import Game from \"../../../game/Game\";\r\nexport default class GameFence {\r\n    constructor() {\r\n        this.box = Laya.Sprite3D.instantiate(Game.fence);\r\n    }\r\n    setPos(v3) {\r\n        this.box.transform.position = v3;\r\n        Game.layer3d.addChild(this.box);\r\n    }\r\n    static recover() {\r\n        while (GameFence.arr.length > 0) {\r\n            let rube = GameFence.arr.shift();\r\n            rube.box.removeSelf();\r\n            Laya.Pool.recover(GameFence.TAG, rube);\r\n        }\r\n        GameFence.arr.length = 0;\r\n    }\r\n    static getOne(v3) {\r\n        let rube = Laya.Pool.getItemByClass(GameFence.TAG, GameFence);\r\n        rube.setPos(v3);\r\n        GameFence.arr.push(rube);\r\n        return rube;\r\n    }\r\n}\r\nGameFence.TAG = \"GameFence\";\r\nGameFence.arr = [];\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts"
+  ]
+}

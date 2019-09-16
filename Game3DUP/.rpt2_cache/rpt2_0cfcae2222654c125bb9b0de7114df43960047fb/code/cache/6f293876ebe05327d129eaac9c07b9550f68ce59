@@ -1,0 +1,4 @@
+{
+  "code": "export default class BattleFlagID {\r\n}\r\nBattleFlagID.GUIDE = 10000;\r\nBattleFlagID.HERO = 9999;\r\nBattleFlagID.DOOR = 9998;\r\nBattleFlagID.ANGLE = 9997;\r\nBattleFlagID.OTHER_NPC = 9996;\r\n",
+  "references": []
+}

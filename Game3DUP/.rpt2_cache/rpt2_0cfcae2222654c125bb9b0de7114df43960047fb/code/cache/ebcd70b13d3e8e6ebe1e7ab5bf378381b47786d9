@@ -1,0 +1,7 @@
+{
+  "code": "export default class BaseSkill {\r\n    constructor(sys) {\r\n        this.cd = 0;\r\n        this.sysBullet = sys;\r\n    }\r\n    exeSkill(now, pro) {\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBullet.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts"
+  ]
+}

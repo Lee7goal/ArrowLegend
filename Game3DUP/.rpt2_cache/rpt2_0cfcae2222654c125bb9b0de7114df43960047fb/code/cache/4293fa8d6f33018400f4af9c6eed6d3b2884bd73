@@ -1,0 +1,16 @@
+{
+  "code": "import { ui } from \"../../../../ui/layaMaxUI\";\r\nimport SysChapter from \"../../../sys/SysChapter\";\r\nimport App from \"../../../../core/App\";\r\nimport WorldCell from \"./WorldCell\";\r\nexport default class WorldView extends ui.test.worldUI {\r\n    constructor() {\r\n        super();\r\n        this.list = new Laya.List();\r\n        this.list.pos(this.box.x, this.box.y);\r\n        this.addChild(this.list);\r\n        this.list.itemRender = WorldCell;\r\n        this.list.repeatX = 1;\r\n        this.list.repeatY = 2;\r\n        this.list.vScrollBarSkin = \"\";\r\n        this.list.renderHandler = new Laya.Handler(this, this.updateItem);\r\n        this.on(Laya.Event.DISPLAY, this, this.onDis);\r\n    }\r\n    updateItem(cell, index) {\r\n        cell.update(this.list.array[index]);\r\n    }\r\n    onDis() {\r\n        let arr = App.tableManager.getTable(SysChapter.NAME);\r\n        this.list.array = arr;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameEvent.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysChapter.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/Session.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysMap.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/MainUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameCameraNum.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/world/WorldCell.ts"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysBuff {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.buffName = '';\r\n        this.bufflInfo = '';\r\n        this.buffDot = 0;\r\n        this.buffCD = 0;\r\n        this.times = 0;\r\n        this.damagePercent = 0;\r\n        this.addExp = 0;\r\n        this.addAttack = 0;\r\n        this.addSpeed = 0;\r\n        this.addCrit = 0;\r\n        this.addHurt = 0;\r\n        this.addHp = 0;\r\n        this.hpLimit = 0;\r\n        this.addMiss = 0;\r\n    }\r\n}\r\nSysBuff.NAME = 'sys_rolebuff.txt';\r\n",
+  "references": []
+}

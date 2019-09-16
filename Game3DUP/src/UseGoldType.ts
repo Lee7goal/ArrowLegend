@@ -1,0 +1,4 @@
+export enum GOLD_CHANGE_TYPE{
+    AD_DIAMOND = 0,
+    HERO_LV_ABILITY = 1
+}

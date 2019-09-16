@@ -1,0 +1,13 @@
+{
+  "code": "import { ui } from \"../../ui/layaMaxUI\";\r\nimport RotationEffect from \"../../core/utils/RotationEffect\";\r\nimport App from \"../../core/App\";\r\nimport { AD_TYPE } from \"../../ADType\";\r\nimport Session from \"../Session\";\r\nimport { GoldType } from \"../../game/data/HomeData\";\r\nimport { GOLD_CHANGE_TYPE } from \"../../UseGoldType\";\r\nimport GetItemDialog from \"./GetItemDialog\";\r\nexport default class AdDiamond extends ui.test.juese_tishiUI {\r\n    constructor() {\r\n        super();\r\n        this.goldType = 0;\r\n        RotationEffect.play(this.light);\r\n        this.rebornBtn.clickHandler = new Laya.Handler(this, this.clickFun);\r\n    }\r\n    clickFun() {\r\n        App.sdkManager.playAdVideo(AD_TYPE.AD_DIAMOND, new Laya.Handler(this, this.adFun));\r\n    }\r\n    setGoldType(a) {\r\n        this.goldType = a;\r\n        if (this.goldType == GoldType.BLUE_DIAMONG) {\r\n            this.v1.blue.visible = true;\r\n        }\r\n        else if (this.goldType == GoldType.RED_DIAMONG) {\r\n            this.v1.red.visible = true;\r\n        }\r\n        else if (this.goldType == GoldType.GOLD) {\r\n            this.v1.gold.visible = true;\r\n        }\r\n    }\r\n    adFun() {\r\n        let v = Math.ceil(Math.random() * 4) + 6;\r\n        Session.homeData.changeGold(this.goldType, v, GOLD_CHANGE_TYPE.AD_DIAMOND);\r\n        let g = new GetItemDialog();\r\n        g.setData({ type: this.goldType, value: v });\r\n        g.popup(true);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/utils/RotationEffect.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/ADType.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/Session.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/HomeData.ts",
+    "D:/game01/Layabox/Game3DUP/src/UseGoldType.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/dialog/GetItemDialog.ts"
+  ]
+}

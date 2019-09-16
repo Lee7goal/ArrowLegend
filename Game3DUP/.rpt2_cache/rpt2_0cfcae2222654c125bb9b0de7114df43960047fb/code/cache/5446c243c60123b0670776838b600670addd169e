@@ -1,0 +1,10 @@
+{
+  "code": "import Game from \"../Game\";\r\nexport default class BuffManager {\r\n    constructor() {\r\n        this.buffArr = [];\r\n    }\r\n    exe(now) {\r\n        for (let i = 0; i < this.buffArr.length; i++) {\r\n            this.buffArr[i].exe(now);\r\n        }\r\n    }\r\n    addBuff(buffId, to, bullet) {\r\n        let BUFF = Laya.ClassUtils.getRegClass(\"BUFF\" + buffId);\r\n        let buff = new BUFF(buffId);\r\n        buff.to = to;\r\n        this.buffArr.push(buff);\r\n        if (bullet) {\r\n            buff.bullet = bullet;\r\n            buff.hurtValue = bullet.hurtValue;\r\n            buff.startTime += Game.executor.getWorldNow();\r\n            let buffIndex = bullet.buffAry.indexOf(buffId);\r\n            if (buffIndex > -1) {\r\n                bullet.buffAry.splice(buffIndex, 1);\r\n            }\r\n        }\r\n    }\r\n    removeBuff(buff) {\r\n        let buffIndex = buff.to.buffAry.indexOf(buff.skill.id);\r\n        if (buffIndex != -1) {\r\n            buff.to.buffAry.splice(buffIndex, 1);\r\n        }\r\n        let index = this.buffArr.indexOf(buff);\r\n        if (index > -1) {\r\n            this.buffArr.splice(index, 1);\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/skill/player/PlayerBuff.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/HeroBullet.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts"
+  ]
+}

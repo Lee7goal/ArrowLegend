@@ -1,0 +1,4 @@
+{
+  "code": "export default class GameEvent {\r\n}\r\nGameEvent.START_BATTLE = \"START_BATTLE\";\r\nGameEvent.MEMORY_WARNING = \"MEMORY_WARNING\";\r\nGameEvent.CONFIG_OVER = \"CONFIG_OVER\";\r\nGameEvent.GOLD_CHANGE = \"GOLD_CHANGE\";\r\nGameEvent.HERO_UPDATE = \"HERO_UPDATE\";\r\nGameEvent.WX_ON_SHOW = \"WX_ON_SHOW\";\r\nGameEvent.WX_ON_HIDE = \"WX_ON_HIDE\";\r\nGameEvent.SHOW_ACTION_RECT = \"SHOW_ACTION_RECT\";\r\nGameEvent.BOOS_BLOOD_UPDATE = \"BOOS_BLOOD_UPDATE\";\r\nGameEvent.PLAYER_INFO_UPDATE = \"PLAYER_INFO_UPDATE\";\r\nGameEvent.TALENT_UPDATE = \"TALENT_UPDATE\";\r\n",
+  "references": []
+}

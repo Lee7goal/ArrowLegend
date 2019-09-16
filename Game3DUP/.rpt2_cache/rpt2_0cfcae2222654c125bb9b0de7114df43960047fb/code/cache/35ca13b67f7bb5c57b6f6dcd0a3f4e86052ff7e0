@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysHero {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.roleExp = 0;\r\n    }\r\n}\r\nSysHero.NAME = 'sys_hero.txt';\r\n",
+  "references": []
+}

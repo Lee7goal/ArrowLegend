@@ -1,0 +1,6 @@
+{
+  "code": "import App from \"../../core/App\";\r\nexport default class SysMap {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.stageId = 0;\r\n        this.stageGroup = '';\r\n        this.numEnemy = 0;\r\n        this.mixEnemy = 0;\r\n        this.maxEnemy = 0;\r\n        this.enemyGroup = '';\r\n    }\r\n    static getData(chaterId, mapId) {\r\n        let arr = App.tableManager.getTable(SysMap.NAME);\r\n        let size = arr.length;\r\n        for (var i = 0; i < size; i++) {\r\n            if (arr[i].id == mapId && arr[i].stageId == chaterId) {\r\n                return arr[i];\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n    static getTotal(chaterId) {\r\n        let count = 0;\r\n        let arr = App.tableManager.getTable(SysMap.NAME);\r\n        let size = arr.length;\r\n        for (var i = 0; i < size; i++) {\r\n            if (arr[i].stageId == chaterId) {\r\n                count++;\r\n            }\r\n        }\r\n        return count;\r\n    }\r\n}\r\nSysMap.NAME = 'sys_stageinfo.txt';\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts"
+  ]
+}

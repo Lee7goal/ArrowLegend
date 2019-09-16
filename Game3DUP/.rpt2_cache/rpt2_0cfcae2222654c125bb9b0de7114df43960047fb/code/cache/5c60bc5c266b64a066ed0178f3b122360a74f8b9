@@ -1,0 +1,16 @@
+{
+  "code": "import HomeData from \"../game/data/HomeData\";\r\nimport SenderHttp from \"../net/SenderHttp\";\r\nimport TalentData from \"../game/data/TalentData\";\r\nimport UserData from \"../game/data/UserData\";\r\nimport TaskData from \"../game/data/TaskData\";\r\nimport GameEvent from \"./GameEvent\";\r\nimport HeroData from \"../game/data/HeroData\";\r\nexport default class Session {\r\n    static init() {\r\n        Session.IDataArr.push(Session.homeData);\r\n        Session.IDataArr.push(Session.talentData);\r\n        Session.IDataArr.push(Session.taskData);\r\n        Session.IDataArr.push(Session.userData);\r\n        Session.IDataArr.push(Session.heroData);\r\n    }\r\n    static saveData() {\r\n        for (let i of Session.IDataArr) {\r\n            i.saveData(Session.gameData);\r\n        }\r\n        SenderHttp.create().send();\r\n    }\r\n    static parseData(str) {\r\n        Session.isGuide = false;\r\n        if (str != \"\" && str != \"0\") {\r\n            Session.gameData = JSON.parse(str);\r\n            for (let i of Session.IDataArr) {\r\n                i.setData(Session.gameData);\r\n            }\r\n        }\r\n        else {\r\n            Session.isGuide = true;\r\n            Laya.stage.once(GameEvent.CONFIG_OVER, null, Session.configFun);\r\n        }\r\n    }\r\n    static configFun() {\r\n        for (let i of Session.IDataArr) {\r\n            i.initData(Session.gameData);\r\n        }\r\n        Session.saveData();\r\n    }\r\n}\r\nSession.gameData = {};\r\nSession.homeData = new HomeData();\r\nSession.talentData = new TalentData();\r\nSession.userData = new UserData();\r\nSession.taskData = new TaskData();\r\nSession.heroData = new HeroData();\r\nSession.IDataArr = [];\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/data/HomeData.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/MainUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/net/SenderHttp.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/TalentData.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/IData.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/UserData.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/TaskData.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameEvent.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/data/HeroData.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts"
+  ]
+}
