@@ -1,0 +1,8 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport MemoryManager from \"../../main/scene/battle/MemoryManager\";\r\nexport default class BoomEffect {\r\n    constructor() {\r\n        this.effectId = 0;\r\n    }\r\n    static getEffect(pro, effectId) {\r\n        let tag = BoomEffect.TAG + effectId;\r\n        Game.poolTagArr[tag] = tag;\r\n        let effect = Laya.Pool.getItemByClass(tag, BoomEffect);\r\n        if (!effect.pro) {\r\n            effect.pro = pro;\r\n            effect.effectId = effectId;\r\n            effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes(\"h5/bulletsEffect/\" + effectId + \"/monster.lh\"));\r\n            MemoryManager.ins.add(effect.sp3d.url);\r\n            console.log(\"创建新的怪物子弹爆炸特效\");\r\n        }\r\n        effect.sp3d.transform.localPosition = pro.sp3d.transform.localPosition;\r\n        Game.layer3d.addChild(effect.sp3d);\r\n        setTimeout(() => {\r\n            effect.recover();\r\n        }, 500);\r\n        return effect;\r\n    }\r\n    recover() {\r\n        this.sp3d && this.sp3d.removeSelf();\r\n        Laya.Pool.recover(BoomEffect.TAG + this.effectId, this);\r\n        MemoryManager.ins.app(this.sp3d.url);\r\n    }\r\n}\r\nBoomEffect.TAG = \"BoomEffect\";\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/battle/MemoryManager.ts"
+  ]
+}

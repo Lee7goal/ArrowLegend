@@ -1,0 +1,4 @@
+{
+  "code": "export var GOLD_CHANGE_TYPE;\r\n(function (GOLD_CHANGE_TYPE) {\r\n    GOLD_CHANGE_TYPE[GOLD_CHANGE_TYPE[\"AD_DIAMOND\"] = 0] = \"AD_DIAMOND\";\r\n    GOLD_CHANGE_TYPE[GOLD_CHANGE_TYPE[\"HERO_LV_ABILITY\"] = 1] = \"HERO_LV_ABILITY\";\r\n})(GOLD_CHANGE_TYPE || (GOLD_CHANGE_TYPE = {}));\r\n",
+  "references": []
+}

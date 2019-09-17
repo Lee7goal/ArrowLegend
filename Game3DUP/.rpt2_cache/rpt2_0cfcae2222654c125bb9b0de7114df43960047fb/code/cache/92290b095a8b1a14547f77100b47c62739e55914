@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysBullet {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.nameTxt = '';\r\n        this.txt = '';\r\n        this.bulletCd = 0;\r\n        this.bulletType = 0;\r\n        this.bulletMode = 0;\r\n        this.boomEffect = 0;\r\n        this.mixNum = 0;\r\n        this.maxNum = 0;\r\n        this.bulletAngle = 0;\r\n        this.bulletNum = 0;\r\n        this.bulletSpeed = 0;\r\n        this.bulletBlock = 0;\r\n        this.bulletEjection = 0;\r\n        this.ejectionNum = 0;\r\n        this.bulletsAoe = 0;\r\n        this.attackAngle = 0;\r\n        this.bulletSplit = 0;\r\n        this.splitNum = 0;\r\n        this.triggerComparison = 0;\r\n        this.skilltarget = 0;\r\n        this.callInfo = '';\r\n        this.damagePercent = 0;\r\n        this.skillEffect1 = 0;\r\n        this.attackDistance = 0;\r\n    }\r\n}\r\nSysBullet.NAME = 'sys_bullet.txt';\r\n",
+  "references": []
+}

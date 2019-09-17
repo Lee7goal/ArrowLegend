@@ -1,0 +1,6 @@
+{
+  "code": "import App from \"../../core/App\";\r\nexport default class SysLevel {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.roleExp = 0;\r\n    }\r\n    static getMaxExpByLv(lv) {\r\n        var sys = App.tableManager.getDataByNameAndId(SysLevel.NAME, lv);\r\n        return sys == null ? 0 : sys.roleExp;\r\n    }\r\n    static getLv(exp) {\r\n        var sum = 0;\r\n        for (var i = 1; i <= 10; i++) {\r\n            var sys = App.tableManager.getDataByNameAndId(SysLevel.NAME, i);\r\n            sum += sys.roleExp;\r\n            if (exp < sum) {\r\n                return sys.id;\r\n            }\r\n        }\r\n        return 10;\r\n    }\r\n    static getExpSum(lv) {\r\n        var sum = 0;\r\n        for (var i = 1; i <= lv; i++) {\r\n            sum += SysLevel.getMaxExpByLv(i);\r\n        }\r\n        return sum;\r\n    }\r\n}\r\nSysLevel.NAME = 'sys_rolelevel.txt';\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts"
+  ]
+}

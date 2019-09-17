@@ -1,0 +1,10 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport GameScaleAnimator from \"./GameScaleAnimator\";\r\nexport default class GameScaleAnimator4 extends GameScaleAnimator {\r\n    constructor() {\r\n        super();\r\n        this.flag = false;\r\n    }\r\n    move(nt, ms) {\r\n        nt = nt * 100;\r\n        if (nt > 100)\r\n            nt = 100;\r\n        nt = Math.ceil(nt);\r\n        this.flag = !this.flag;\r\n        ms.sp3d.transform.localPositionX = ms.sp3d.transform.localPositionX + (this.flag ? 0.1 : -0.1);\r\n    }\r\n    ai(ms) {\r\n        if (this.starttime != 0) {\r\n            var now = Game.executor.getWorldNow();\r\n            if (now >= this.starttime + this.playtime) {\r\n                this.starttime = 0;\r\n            }\r\n            else {\r\n                let nt = now - this.starttime;\r\n                nt = nt / this.playtime;\r\n                this.move(nt, ms);\r\n            }\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/player/Monster.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/GameHitBox.ts",
+    "D:/gitworker/Game3DUP/src/game/ai/GameScaleAnimator.ts"
+  ]
+}

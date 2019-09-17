@@ -1,0 +1,11 @@
+{
+  "code": "import BaseHttp from \"../core/net/BaseHttp\";\r\nimport App from \"../core/App\";\r\nimport Session from \"../main/Session\";\r\nimport PlatformID from \"../platforms/PlatformID\";\r\nexport default class LoginHttp extends BaseHttp {\r\n    constructor(hand) {\r\n        super(hand);\r\n    }\r\n    static create(hand) {\r\n        return new LoginHttp(hand);\r\n    }\r\n    send() {\r\n        let str = \"gamex3/login\";\r\n        if (App.platformId == PlatformID.H5) {\r\n            str = \"gamex2/login\";\r\n        }\r\n        super.send(App.serverIP + str, \"scode=\" + App.platformId + \"&jscode=\" + LoginHttp.FRONT + this.jsCode, \"post\", \"text\");\r\n    }\r\n    onSuccess(data) {\r\n        Session.SKEY = data;\r\n        super.onSuccess(data);\r\n        console.log(\"login success\", data);\r\n    }\r\n    checkLogin() {\r\n        let BP = Laya.ClassUtils.getRegClass(\"p\" + App.platformId);\r\n        new BP().login((code) => {\r\n            this.jsCode = code;\r\n            this.send();\r\n        });\r\n    }\r\n}\r\nLoginHttp.FRONT = \"\";\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/core/net/BaseHttp.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/net/ReceiverHttp.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/Session.ts",
+    "D:/game01/Layabox/Game3DUP/src/platforms/PlatformID.ts",
+    "D:/game01/Layabox/Game3DUP/src/platforms/BasePlatform.ts"
+  ]
+}

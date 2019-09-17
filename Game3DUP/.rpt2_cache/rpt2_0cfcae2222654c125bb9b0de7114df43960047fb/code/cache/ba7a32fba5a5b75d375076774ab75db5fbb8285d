@@ -1,0 +1,6 @@
+{
+  "code": "import App from \"../../core/App\";\r\nexport default class SysSkill {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.skillName = '';\r\n        this.skillInfo = '';\r\n        this.skillType = 0;\r\n        this.triggerComparison = 0;\r\n        this.skilltarget = 0;\r\n        this.skillcondition = '';\r\n        this.damagePercent = 0;\r\n        this.skillEffect1 = 0;\r\n        this.upperLimit = 0;\r\n        this.curTimes = 0;\r\n    }\r\n    reset() {\r\n        let ary = App.tableManager.getTable(SysSkill.NAME);\r\n        for (let i = 0; i < ary.length; i++) {\r\n            ary[i].curTimes = 0;\r\n        }\r\n    }\r\n}\r\nSysSkill.NAME = 'sys_roleskill.txt';\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "code": "import { ui } from \"../../../../ui/layaMaxUI\";\r\nexport default class AcheievementCell extends ui.test.chengjiu_1UI {\r\n    constructor() {\r\n        super();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "code": "export default class MyEffect {\r\n    constructor() {\r\n    }\r\n    static initBtnEffect() {\r\n        Laya.stage.on(Laya.Event.CLICK, null, MyEffect.clickFun);\r\n    }\r\n    static clickFun(e) {\r\n        if (e.target instanceof Laya.Button) {\r\n            if (e.target.anchorX == 0.5 && e.target.anchorY == 0.5) {\r\n                MyEffect.clickEffect(e.target);\r\n            }\r\n        }\r\n    }\r\n    static clickEffect(sp) {\r\n        let t = new Laya.Tween();\r\n        let s = ((sp.scaleX > 0) ? 1 : -1);\r\n        t.from(sp, { scaleX: 0.9 * s, scaleY: 0.9 }, 80);\r\n    }\r\n}\r\n",
+  "references": []
+}

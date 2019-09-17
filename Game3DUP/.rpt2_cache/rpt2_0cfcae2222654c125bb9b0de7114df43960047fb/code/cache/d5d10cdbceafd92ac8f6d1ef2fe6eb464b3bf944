@@ -1,0 +1,4 @@
+{
+  "code": "export default class HitType {\r\n}\r\nHitType.hit1 = 1;\r\nHitType.hit2 = 2;\r\nHitType.hit3 = 3;\r\nHitType.hit4 = 4;\r\n",
+  "references": []
+}

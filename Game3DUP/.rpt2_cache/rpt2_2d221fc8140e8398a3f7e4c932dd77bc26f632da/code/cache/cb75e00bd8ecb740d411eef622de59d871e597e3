@@ -1,0 +1,4 @@
+{
+  "code": "export default class RotationEffect {\r\n    constructor() {\r\n    }\r\n    rotation(s, ro) {\r\n        this.s = s;\r\n        this.ro = ro;\r\n        Laya.timer.frameLoop(1, this, this.loopFun);\r\n        s.once(Laya.Event.UNDISPLAY, this, this.undisFun);\r\n    }\r\n    undisFun() {\r\n        Laya.timer.clear(this, this.loopFun);\r\n    }\r\n    loopFun() {\r\n        this.s.rotation += this.ro;\r\n    }\r\n    static play(s, ro = 1) {\r\n        let a = new RotationEffect();\r\n        a.rotation(s, ro);\r\n    }\r\n}\r\n",
+  "references": []
+}

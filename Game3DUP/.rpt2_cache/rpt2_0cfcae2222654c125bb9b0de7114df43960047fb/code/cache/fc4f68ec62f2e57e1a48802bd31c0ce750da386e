@@ -1,0 +1,9 @@
+{
+  "code": "import MainScene from \"./scene/main/MainScene\";\r\nimport BattleScene from \"./scene/battle/BattleScene\";\r\nimport App from \"../core/App\";\r\nimport Game from \"../game/Game\";\r\nexport default class SceneManager {\r\n    constructor() { }\r\n    ;\r\n    showMain() {\r\n        if (!this.main) {\r\n            this.main = new MainScene();\r\n        }\r\n        Game.isStartBattle = false;\r\n        App.layerManager.sceneLayer.removeChildren();\r\n        App.layerManager.sceneLayer.addChild(this.main);\r\n        this.battle && this.battle._top && this.battle._top.reset();\r\n    }\r\n    showBattle() {\r\n        if (!this.battle) {\r\n            this.battle = new BattleScene();\r\n        }\r\n        App.layerManager.sceneLayer.removeChildren();\r\n        App.layerManager.sceneLayer.addChild(this.battle);\r\n        Game.playBattleMusic();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/MainScene.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/battle/BattleScene.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts"
+  ]
+}

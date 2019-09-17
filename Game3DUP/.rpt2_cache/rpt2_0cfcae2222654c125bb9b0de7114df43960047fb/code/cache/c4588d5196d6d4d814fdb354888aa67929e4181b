@@ -1,0 +1,12 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport { GameMove } from \"./GameMove\";\r\nimport MaoLineData from \"../MaoLineData\";\r\nimport GameBG from \"../GameBG\";\r\nexport default class ArrowRoateMove extends GameMove {\r\n    constructor() {\r\n        super(...arguments);\r\n        this.future = new GameHitBox(2, 2);\r\n        this.angle = 0;\r\n        this.zhuanLine = new MaoLineData(0, 0, GameBG.ww * 3, 0);\r\n        this.cd = 0;\r\n    }\r\n    move2d(n, pro, speed) {\r\n        this.angle += 5;\r\n        if (this.angle > 360) {\r\n            this.angle = 0;\r\n        }\r\n        let hudu = this.angle / 180 * Math.PI;\r\n        this.zhuanLine.rad(n + hudu);\r\n        pro.setXY2D(Game.hero.pos2.x + this.zhuanLine.x_len, Game.hero.pos2.z + this.zhuanLine.y_len);\r\n        if (Game.executor.getWorldNow() > this.cd) {\r\n            var ebh = Game.map0.chechHit_arr(pro.hbox, Game.map0.Eharr);\r\n            if (ebh) {\r\n                if (ebh.linkPro_) {\r\n                    ebh.linkPro_.event(Game.Event_Hit, pro);\r\n                    pro.event(Game.Event_Hit, ebh.linkPro_);\r\n                    this.cd = Game.executor.getWorldNow() + 1000;\r\n                }\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameProType.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/move/GameMove.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/MaoLineData.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts"
+  ]
+}

@@ -16,7 +16,7 @@ import SysEnemy from "../../sys/SysEnemy";
         Laya.stage.on(Game.Event_COINS,this,this.updateCoins);
         Laya.stage.on(Game.Event_EXP,this,this.updateExp);
 
-        this.indexBox.addChild(this._indexBox);
+        // this.indexBox.addChild(this._indexBox);
 
         this.y = App.top + 60;
 

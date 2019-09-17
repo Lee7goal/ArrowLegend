@@ -1,0 +1,13 @@
+{
+  "code": "import BaseAI from \"./BaseAi\";\r\nimport { GameAI } from \"./GameAI\";\r\nexport default class ReboundAI extends BaseAI {\r\n    constructor(pro) {\r\n        super(pro);\r\n        this.cd = 0;\r\n        this.status = 0;\r\n        this.f = [];\r\n    }\r\n    exeAI(pro) {\r\n        if (!this.run_)\r\n            return;\r\n        super.exeAI(pro);\r\n        this.checkHeroCollision();\r\n        if (this.pro.isIce) {\r\n            return;\r\n        }\r\n        if (this.status == 0) {\r\n            this.status = 1;\r\n            this.pro.rotation(Math.PI / 180 * 360 * Math.random());\r\n        }\r\n        var bm = this.pro.getGameMove();\r\n        this.pro.move2D(this.pro.face2d);\r\n        if (bm && bm.rotation != this.pro.face2d) {\r\n            this.pro.rotation(2 * Math.PI - bm.rotation);\r\n        }\r\n        if (this.pro.acstr != GameAI.Run) {\r\n            this.pro.play(GameAI.Run);\r\n        }\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/ai/BaseAi.ts",
+    "D:/gitworker/Game3DUP/src/game/player/Monster.ts",
+    "D:/gitworker/Game3DUP/src/game/GamePro.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/GameHitBox.ts",
+    "D:/gitworker/Game3DUP/src/game/ai/GameAI.ts",
+    "D:/gitworker/Game3DUP/src/game/move/BackMove.ts"
+  ]
+}

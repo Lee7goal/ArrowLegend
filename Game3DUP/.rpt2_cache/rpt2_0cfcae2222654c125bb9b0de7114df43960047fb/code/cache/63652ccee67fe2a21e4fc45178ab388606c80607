@@ -1,0 +1,10 @@
+{
+  "code": "export default class PlayerBuff {\r\n    constructor() {\r\n        this.skillCD = 0;\r\n        this.chixuCD = 0;\r\n        this.hurtValue = 0;\r\n        this.nextTime = 0;\r\n        this.startTime = 0;\r\n        this.curTimes = 0;\r\n    }\r\n    exe(now) {\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysSkill.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBuff.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts"
+  ]
+}

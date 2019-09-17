@@ -1,0 +1,6 @@
+{
+  "code": "export default class TaskData {\r\n    constructor() {\r\n    }\r\n    setData(data) {\r\n    }\r\n    saveData(data) {\r\n    }\r\n    initData(data) {\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/data/IData.ts"
+  ]
+}

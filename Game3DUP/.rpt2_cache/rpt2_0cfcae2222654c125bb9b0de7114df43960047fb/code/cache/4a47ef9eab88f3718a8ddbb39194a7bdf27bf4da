@@ -1,0 +1,11 @@
+{
+  "code": "import { BasePlatform } from \"./BasePlatform\";\r\nimport Game from \"../game/Game\";\r\nimport LoginHttp from \"../net/LoginHttp\";\r\nimport CookieKey from \"../gameCookie/CookieKey\";\r\nexport default class TestPlatform extends BasePlatform {\r\n    checkUpdate() {\r\n    }\r\n    login(callback) {\r\n        callback && callback(\"shfdsaomghjgai123fdafda456\");\r\n    }\r\n    getUserInfo(callback) {\r\n        this.cb = callback;\r\n        let uu = Laya.stage.getChildAt(0);\r\n        uu.vvv.btn.on(Laya.Event.CLICK, this, this.clickFun, [uu.vvv.t1]);\r\n    }\r\n    clickFun(t) {\r\n        LoginHttp.FRONT = \"test\" + t.text;\r\n        Game.cookie.setCookie(CookieKey.USER_ID, { \"userId\": t.text });\r\n        this.cb && this.cb();\r\n    }\r\n    onShare(callback) {\r\n        callback && callback();\r\n        Game.hero.reborn();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/platforms/BasePlatform.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/net/LoginHttp.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/gameCookie/CookieKey.ts"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "code": "import { ui } from \"../../ui/layaMaxUI\";\r\nimport RotationEffect from \"../../core/utils/RotationEffect\";\r\nimport { GoldType } from \"../../game/data/HomeData\";\r\nexport default class GetItemCell extends ui.test.GetItemCellUI {\r\n    constructor() {\r\n        super();\r\n        RotationEffect.play(this.light);\r\n        this.anchorX = this.anchorY = 0.5;\r\n    }\r\n    setData(data) {\r\n        if (data.type == GoldType.BLUE_DIAMONG) {\r\n            this.v1.blue.visible = true;\r\n        }\r\n        else if (data.type == GoldType.RED_DIAMONG) {\r\n            this.v1.red.visible = true;\r\n        }\r\n        else if (data.type == GoldType.GOLD) {\r\n            this.v1.gold.visible = true;\r\n        }\r\n        this.label.text = \"+\" + data.value;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/core/utils/RotationEffect.ts",
+    "D:/gitworker/Game3DUP/src/game/data/HomeData.ts"
+  ]
+}

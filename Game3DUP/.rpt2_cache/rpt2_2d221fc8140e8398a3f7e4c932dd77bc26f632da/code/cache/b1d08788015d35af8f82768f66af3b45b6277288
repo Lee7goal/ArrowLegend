@@ -1,0 +1,7 @@
+{
+  "code": "import App from \"../../core/App\";\r\nimport { HeroLvType } from \"../../game/data/HeroData\";\r\nexport default class SysRoleBase {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.roleName = \"\";\r\n        this.baseAtk = 0;\r\n        this.baseHp = 0;\r\n        this.baseSpeed = 0;\r\n        this.baseCrit = 0;\r\n        this.baseCritHurt = 0;\r\n        this.baseDodge = 0;\r\n        this.baseMove = 0;\r\n        this.baseSkill = 0;\r\n        this.addExp = 0;\r\n        this.addSpeed = 0;\r\n        this.addAttack = 0;\r\n    }\r\n    static getSys(id) {\r\n        let arr = App.tableManager.getTable(SysRoleBase.NAME);\r\n        for (let k of arr) {\r\n            if (k.id == id) {\r\n                return k;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n    getValue(v) {\r\n        if (v == HeroLvType.ATK) {\r\n            return this.baseAtk;\r\n        }\r\n        else if (v == HeroLvType.HP) {\r\n            return this.baseHp;\r\n        }\r\n    }\r\n}\r\nSysRoleBase.NAME = 'sys_rolebase.txt';\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/core/App.ts",
+    "D:/gitworker/Game3DUP/src/game/data/HeroData.ts"
+  ]
+}

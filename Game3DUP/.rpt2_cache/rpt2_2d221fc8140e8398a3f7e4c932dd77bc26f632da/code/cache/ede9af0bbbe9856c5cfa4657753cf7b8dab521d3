@@ -1,0 +1,9 @@
+{
+  "code": "import BaseHttp from \"../core/net/BaseHttp\";\r\nimport App from \"../core/App\";\r\nimport Session from \"../main/Session\";\r\nexport default class ReceiverHttp extends BaseHttp {\r\n    constructor(hand) {\r\n        super(hand);\r\n    }\r\n    static create(hand) {\r\n        return new ReceiverHttp(hand);\r\n    }\r\n    send() {\r\n        super.send(App.serverIP + \"gamex3/gamedata\", \"skey=\" + Session.SKEY, \"post\", \"text\");\r\n    }\r\n    onSuccess(data) {\r\n        Session.parseData(data);\r\n        super.onSuccess(data);\r\n        console.log(\"receive data\", data);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/core/net/BaseHttp.ts",
+    "D:/gitworker/Game3DUP/src/core/App.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/main/Session.ts"
+  ]
+}

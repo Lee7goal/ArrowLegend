@@ -1,0 +1,10 @@
+{
+  "code": "import PlayerBuff from \"./PlayerBuff\";\r\nimport Game from \"../../Game\";\r\nimport App from \"../../../core/App\";\r\nimport SysBuff from \"../../../main/sys/SysBuff\";\r\nimport SysSkill from \"../../../main/sys/SysSkill\";\r\nexport default class WudiBuff extends PlayerBuff {\r\n    constructor(id) {\r\n        super();\r\n        this.skill = App.tableManager.getDataByNameAndId(SysSkill.NAME, id);\r\n        this.buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, this.skill.skillEffect1);\r\n    }\r\n    exe(now) {\r\n        this.buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, this.skill.skillEffect1);\r\n        if (now > this.skillCD) {\r\n            this.skillCD = now + this.buff.buffCD;\r\n            this.chixuCD = now + this.buff.buffDot;\r\n            Game.hero.setWudi(true);\r\n        }\r\n        else if (now > this.chixuCD) {\r\n            Game.hero.setWudi(false);\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/skill/player/PlayerBuff.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBuff.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysSkill.ts"
+  ]
+}

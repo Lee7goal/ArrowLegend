@@ -1,0 +1,12 @@
+{
+  "code": "import BaseSkill from \"./BaseSkill\";\r\nimport BoomEffect from \"../effect/BoomEffect\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport Game from \"../Game\";\r\nimport GameBG from \"../GameBG\";\r\nexport default class AOESkill extends BaseSkill {\r\n    constructor(sys) {\r\n        super(sys);\r\n        this.sysBullet.bulletCd = 3000;\r\n    }\r\n    exeSkill(now, pro) {\r\n        if (GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox) > GameBG.ww * 6) {\r\n            if (now >= this.cd) {\r\n                pro.sp3d.transform.localPositionY = 0;\r\n                pro.curLen = 0;\r\n                pro.moveLen = GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox);\r\n                pro.setSpeed(Math.ceil(pro.moveLen / GameBG.ww));\r\n                let a = GameHitBox.faceTo3D(pro.hbox, Game.hero.hbox);\r\n                pro.rotation(a);\r\n                this.cd = now + this.sysBullet.bulletCd;\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n    showEff(pro) {\r\n        pro.curLen = pro.moveLen = 0;\r\n        BoomEffect.getEffect(pro, this.sysBullet.boomEffect);\r\n        if (GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox) <= this.sysBullet.attackAngle) {\r\n            pro.hurtValue = pro.sysEnemy.enemyAttack;\r\n            Game.hero.hbox.linkPro_.event(Game.Event_Hit, pro);\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/skill/BaseSkill.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBullet.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/effect/BoomEffect.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "code": "import { ui } from \"./../../../../ui/layaMaxUI\";\r\nexport default class NPC_1003 extends ui.test.huziUI {\r\n    constructor() { super(); }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "code": "export default class SoundManager {\r\n    constructor() {\r\n        this.pre = \"\";\r\n    }\r\n    setMusicVolume(value) {\r\n        Laya.SoundManager.musicMuted = value == 0;\r\n    }\r\n    setSoundVolume(value) {\r\n        Laya.SoundManager.soundMuted = value == 0;\r\n    }\r\n    play(soundName, isMusic = false) {\r\n        this.soundName = soundName;\r\n        this.isMusic = isMusic;\r\n        var url = this.pre + soundName;\r\n        if (Laya.loader.getRes(url)) {\r\n            this.onLoadCom(url, isMusic);\r\n        }\r\n        else {\r\n            Laya.loader.load(url, new Laya.Handler(this, this.onLoadCom, [url, isMusic]));\r\n        }\r\n    }\r\n    onLoadCom(url, isMusic) {\r\n        if (isMusic) {\r\n            Laya.SoundManager.playMusic(url, 0);\r\n        }\r\n        else {\r\n            Laya.SoundManager.playSound(url, 1);\r\n        }\r\n    }\r\n}\r\n",
+  "references": []
+}

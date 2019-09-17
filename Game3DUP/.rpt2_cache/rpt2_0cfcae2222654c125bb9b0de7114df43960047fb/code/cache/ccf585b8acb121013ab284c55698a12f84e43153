@@ -1,0 +1,9 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport CoinEffect from \"./CoinEffect\";\r\nexport default class DieEffect {\r\n    constructor() {\r\n    }\r\n    static addEffect(player) {\r\n        let effect = Laya.Pool.getItemByClass(DieEffect.TAG, DieEffect);\r\n        if (!effect.sp3d) {\r\n            effect.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes(\"h5/effects/monsterDie/monster.lh\"));\r\n            console.log(\"创建新的死亡特效\");\r\n        }\r\n        effect.sp3d.transform.localRotationEulerY = 45;\r\n        Game.layer3d.addChild(effect.sp3d);\r\n        effect.sp3d.transform.localPosition = player.sp3d.transform.localPosition;\r\n        effect.sp3d.transform.localScale = new Laya.Vector3(0.3, 0.3, 0.3);\r\n        setTimeout(() => {\r\n            effect.recover();\r\n        }, 1000);\r\n        return effect;\r\n    }\r\n    recover() {\r\n        this.sp3d && this.sp3d.removeSelf();\r\n        Laya.Pool.recover(DieEffect.TAG, this);\r\n        if (Game.map0.Eharr.length == 0) {\r\n            CoinEffect.fly();\r\n            Laya.stage.event(Game.Event_EXP);\r\n        }\r\n    }\r\n}\r\nDieEffect.TAG = \"DieEffect\";\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameProType.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/effect/CoinEffect.ts"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport GameScaleAnimator from \"./GameScaleAnimator\";\r\nexport default class GameScaleAnimator1 extends GameScaleAnimator {\r\n    constructor() {\r\n        super();\r\n    }\r\n    zoom(nt, zoom, ms) {\r\n        if (nt > 1)\r\n            nt = 1;\r\n        nt = Math.sin(Math.PI * (nt) * 4);\r\n        let st = 0;\r\n        st = zoom * 0.2 * nt;\r\n        st = zoom * 0.8 + st;\r\n        ms.sp3d.transform.localScaleX = st;\r\n        ms.sp3d.transform.localScaleZ = st;\r\n        st = zoom * 0.1 * nt;\r\n        st = zoom * 1.1 - st;\r\n        ms.sp3d.transform.localScaleY = st;\r\n    }\r\n    ai(ms) {\r\n        if (this.starttime != 0) {\r\n            var now = Game.executor.getWorldNow();\r\n            var zoom = ms.tScale;\r\n            if (now >= this.starttime + this.playtime) {\r\n                ms.sp3d.transform.localScaleZ = zoom;\r\n                ms.sp3d.transform.localScaleX = zoom;\r\n                ms.sp3d.transform.localScaleY = zoom;\r\n                this.starttime = 0;\r\n            }\r\n            else {\r\n                let nt = now - this.starttime;\r\n                nt = nt / this.playtime;\r\n                this.zoom(nt, zoom, ms);\r\n            }\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/player/Monster.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/GameHitBox.ts",
+    "D:/gitworker/Game3DUP/src/game/ai/GameScaleAnimator.ts"
+  ]
+}

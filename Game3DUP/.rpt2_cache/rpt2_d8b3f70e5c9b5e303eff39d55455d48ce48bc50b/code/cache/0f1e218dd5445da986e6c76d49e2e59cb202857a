@@ -1,0 +1,6 @@
+{
+  "code": "import { ui } from \"../../../../ui/layaMaxUI\";\r\nexport default class TalentCell2 extends ui.test.TianFuCellUI {\r\n    constructor() {\r\n        super();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts"
+  ]
+}

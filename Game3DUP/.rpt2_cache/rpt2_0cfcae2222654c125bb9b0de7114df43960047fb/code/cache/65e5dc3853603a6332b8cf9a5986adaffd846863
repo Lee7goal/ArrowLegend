@@ -1,0 +1,4 @@
+{
+  "code": "export default class PlatformID {\r\n}\r\nPlatformID.TEST = 0;\r\nPlatformID.H5 = 10;\r\nPlatformID.WX = 31;\r\n",
+  "references": []
+}

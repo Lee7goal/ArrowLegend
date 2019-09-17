@@ -1,0 +1,8 @@
+{
+  "code": "import Game from \"../Game\";\r\nexport default class GameScaleAnimator {\r\n    constructor() {\r\n        this.starttime = 0;\r\n        this.playtime = 0;\r\n        this.movelen = 0;\r\n        this.ms = null;\r\n        this.rad = 0;\r\n        this.now = 0;\r\n        this.cd = 650;\r\n    }\r\n    ai(ms) { }\r\n    ;\r\n    isOk() {\r\n        return Game.executor.getWorldNow() >= this.now + this.cd;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts"
+  ]
+}

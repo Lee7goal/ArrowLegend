@@ -1,0 +1,6 @@
+{
+  "code": "import Http from \"./Http\";\r\nexport default class BaseHttp {\r\n    constructor(hand) {\r\n        this.handler = hand;\r\n        this._http = Http.create().success(this.onSuccess, this).error(this.onErro, this);\r\n    }\r\n    onSuccess(data) {\r\n        this.handler && this.handler.runWith(data);\r\n    }\r\n    onErro(e) {\r\n        console.error(e);\r\n    }\r\n    send(url, data, method, responseType) {\r\n        this._http.send(url, data, method, responseType);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/core/net/Http.ts"
+  ]
+}

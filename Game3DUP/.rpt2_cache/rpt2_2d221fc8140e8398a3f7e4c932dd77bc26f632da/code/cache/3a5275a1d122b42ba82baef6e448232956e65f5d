@@ -1,0 +1,9 @@
+{
+  "code": "import { GameAI } from \"./GameAI\";\r\nimport Game from \"../Game\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nexport default class CoinsAI extends GameAI {\r\n    constructor() { super(); }\r\n    starAi() {\r\n        this.run_ = true;\r\n    }\r\n    stopAi() {\r\n        this.run_ = false;\r\n    }\r\n    hit(pro) {\r\n    }\r\n    exeAI(pro) {\r\n        if (!this.run_) {\r\n            return false;\r\n        }\r\n        var a = GameHitBox.faceTo3D(pro.hbox, Game.hero.hbox);\r\n        if (pro.move2D(pro.face2d)) {\r\n            pro.clear();\r\n            this.run_ = false;\r\n        }\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/ai/GameAI.ts",
+    "D:/gitworker/Game3DUP/src/game/player/Coin.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GameHitBox.ts"
+  ]
+}

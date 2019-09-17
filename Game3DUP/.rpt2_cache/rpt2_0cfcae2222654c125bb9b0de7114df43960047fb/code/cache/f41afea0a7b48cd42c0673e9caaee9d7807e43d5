@@ -1,0 +1,11 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport { GameMove } from \"./GameMove\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nexport default class BackMove extends GameMove {\r\n    constructor() {\r\n        super(...arguments);\r\n        this.future = new GameHitBox(1, 1);\r\n        this.rotation = Math.PI * -1;\r\n    }\r\n    move2d(n, pro, speed) {\r\n        if (pro.gamedata.hp <= 0) {\r\n            return;\r\n        }\r\n        this.rotation = n;\r\n        var vx = Math.cos(n) * speed;\r\n        var vz = Math.sin(n) * speed;\r\n        var hits = Game.map0.Wharr;\r\n        this.future.setXY(pro.hbox.x + vx, pro.hbox.y + vz);\r\n        if (Game.map0.chechHit_arr(this.future, hits)) {\r\n            this.future.setXY(pro.hbox.x + vx, pro.hbox.y);\r\n            var ex = Game.map0.chechHit_arr(this.future, hits);\r\n            this.future.setXY(pro.hbox.x, pro.hbox.y + vz);\r\n            var ez = Game.map0.chechHit_arr(this.future, hits);\r\n            if (ex != null) {\r\n                vx = vx * -1;\r\n            }\r\n            else if (ez != null) {\r\n                vz = vz * -1;\r\n            }\r\n            this.future.setXY(pro.hbox.x + vx, pro.hbox.y + vz);\r\n            if (Game.map0.chechHit_arr(this.future, hits)) {\r\n                vx = vx * -1;\r\n                vz = vz * -1;\r\n            }\r\n            this.rotation = Math.atan2(vz, vx);\r\n        }\r\n        pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);\r\n        return true;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/move/GameMove.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/MaoLineData.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts"
+  ]
+}

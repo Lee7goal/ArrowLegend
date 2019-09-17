@@ -1,0 +1,27 @@
+<res>
+   <item name="bg/bottom.png" type="Sprite" compress="0" pack="0" quality="80" props="sizeGrid=418,0,0,0" picType="0" scale="0"/>
+   <item name="jingyantiaodi.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="jingyantiaoshang.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="jiesuan/shanglian.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="loading/fei.jpg" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/erdao.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/guang1.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/guang2.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/jiandi.jpg" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/tiandi.jpg" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/yidao.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/zhudi.jpg" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/shuiwen.sk" type="SkeletonPlayer" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_1/bosstou.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_1/bottom.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_1/top.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_2/bosstou.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_2/bottom.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_2/top.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_3/bosstou.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_3/bottom.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="map_3/top.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="ren" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="main/guangzhuan1.png" type="Sprite" compress="0" pack="0" quality="80" props="" picType="1" scale="0"/>
+   <item name="loading" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+</res>

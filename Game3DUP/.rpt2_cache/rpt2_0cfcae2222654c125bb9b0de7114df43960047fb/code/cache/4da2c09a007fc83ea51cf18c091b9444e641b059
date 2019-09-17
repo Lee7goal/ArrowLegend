@@ -1,0 +1,13 @@
+{
+  "code": "import { GameAI } from \"./GameAI\";\r\nimport Game from \"../Game\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport GameBG from \"../GameBG\";\r\nimport BaseAI from \"./BaseAi\";\r\nexport default class MoveAndHitAi extends BaseAI {\r\n    constructor(pro) {\r\n        super(pro);\r\n        this.status = 0;\r\n        this.cd = 0;\r\n        MoveAndHitAi.index++;\r\n        if (MoveAndHitAi.index > 4) {\r\n            MoveAndHitAi.index = 0;\r\n        }\r\n        this.cd = Game.executor.getWorldNow() + MoveAndHitAi.index * 1500;\r\n    }\r\n    exeAI(pro) {\r\n        if (!this.run_)\r\n            return;\r\n        super.exeAI(pro);\r\n        this.checkHeroCollision();\r\n        if (this.pro.isIce) {\r\n            return;\r\n        }\r\n        var sys = this.pro.sysEnemy;\r\n        if (this.status == 0 && this.now >= this.cd) {\r\n            var a = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);\r\n            this.pro.rotation(a);\r\n            this.cd = this.now + sys.enemySpeed;\r\n            this.status = 1;\r\n            if (this.pro.acstr != GameAI.NormalAttack) {\r\n                this.pro.play(GameAI.NormalAttack);\r\n            }\r\n        }\r\n        else if (this.status == 1 && this.now >= this.cd) {\r\n            this.pro.setSpeed(sys.moveSpeed);\r\n            this.cd = this.now + sys.enemySpeed;\r\n            this.status = 0;\r\n            this.pro.play(GameAI.Run);\r\n        }\r\n        if (this.status == 1) {\r\n            if (this.pro.normalizedTime > 0.4) {\r\n                this.pro.setSpeed(8);\r\n                this.pro.move2D(this.pro.face2d);\r\n            }\r\n            else {\r\n                this.pro.setSpeed(1);\r\n                this.pro.move2D(this.pro.face2d + Math.PI);\r\n            }\r\n        }\r\n        else {\r\n            if (GameHitBox.faceToLenth(this.pro.hbox, Game.hero.hbox) < GameBG.ww * 5) {\r\n                let a = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);\r\n                this.pro.rotation(a);\r\n                this.pro.move2D(this.pro.face2d);\r\n            }\r\n        }\r\n    }\r\n    hit(pro) {\r\n        super.hit(pro);\r\n    }\r\n}\r\nMoveAndHitAi.index = 0;\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/ai/GameAI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/ai/BaseAi.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysEnemy.ts"
+  ]
+}

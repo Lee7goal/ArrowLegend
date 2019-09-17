@@ -1,0 +1,10 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport Coin from \"../player/Coin\";\r\nexport default class CoinEffect {\r\n    constructor() {\r\n    }\r\n    static addEffect(monster, goldNum) {\r\n        for (let i = 0; i < goldNum; i++) {\r\n            let coin = Coin.getOne();\r\n            coin.setPos(monster, 2 * Math.PI / goldNum * i);\r\n            CoinEffect.coinsAry.push(coin);\r\n            setTimeout(() => {\r\n            }, i * 50);\r\n        }\r\n    }\r\n    static fly() {\r\n        let len = CoinEffect.coinsAry.length;\r\n        if (len > 0) {\r\n            Game.playSound(\"fx_goldget.wav\");\r\n        }\r\n        for (let i = 0; i < len; i++) {\r\n            let coin = CoinEffect.coinsAry.shift();\r\n            coin && coin.fly();\r\n        }\r\n    }\r\n}\r\nCoinEffect.coinsAry = [];\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/player/Monster.ts",
+    "D:/gitworker/Game3DUP/src/game/controllerScript/FootRotateScript.ts",
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/game/player/Coin.ts"
+  ]
+}

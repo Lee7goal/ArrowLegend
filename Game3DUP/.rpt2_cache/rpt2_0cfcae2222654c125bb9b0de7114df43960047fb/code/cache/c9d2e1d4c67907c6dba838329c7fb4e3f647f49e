@@ -1,0 +1,12 @@
+{
+  "code": "import { ui } from \"./../../../ui/layaMaxUI\";\r\nimport Game from \"../../../game/Game\";\r\nimport SkillGrid from \"./SkillGrid\";\r\nexport default class SelectNewSkill extends ui.test.battlestopUI {\r\n    constructor() {\r\n        super();\r\n        this.grid1 = new SkillGrid(new Laya.Handler(this, this.onClick));\r\n        this.grid2 = new SkillGrid(new Laya.Handler(this, this.onClick));\r\n        this.queding.visible = false;\r\n        this.box1.addChild(this.grid1);\r\n        this.box2.addChild(this.grid2);\r\n        this.on(Laya.Event.DISPLAY, this, this.onDis);\r\n    }\r\n    onClick(sys) {\r\n        console.log(sys.skillName);\r\n        if (!Game.hero.changeBlood(sys)) {\r\n            Game.skillManager.addSkill(sys);\r\n        }\r\n        Game.bg.clearNpc();\r\n        this.removeSelf();\r\n    }\r\n    onDis() {\r\n        Game.executor.stop_();\r\n        this.box1.scaleX = 1;\r\n        this.box2.scaleX = 1;\r\n        this.grid1.update(Game.skillManager.getRandomSkillByNpcId(1004));\r\n        this.grid2.update(Game.skillManager.getRandomSkillByNpcId(1004));\r\n    }\r\n    removeSelf() {\r\n        Game.executor.start();\r\n        Game.state = 0;\r\n        return super.removeSelf();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/battle/SkillGrid.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysSkill.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBuff.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysNpc.ts"
+  ]
+}

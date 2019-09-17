@@ -1,0 +1,7 @@
+{
+  "code": "import Game from \"../Game\";\r\nexport class GameMove {\r\n    move2d(n, pro, speed, hitStop) { return false; }\r\n    Blocking(pro, vx, vz) {\r\n        if (!pro.unBlocking) {\r\n            var hits = Game.map0.Eharr;\r\n            if (Game.map0.chechHitArrs(pro, vx, vz, hits)) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts"
+  ]
+}

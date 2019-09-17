@@ -1,0 +1,11 @@
+{
+  "code": "import BitmapNumber from \"../../core/display/BitmapNumber\";\r\nimport GameBG from \"../GameBG\";\r\nimport Game from \"../Game\";\r\nexport default class BloodEffect {\r\n    constructor() { }\r\n    static add(value, sprite, isCrit, skin) {\r\n        let bitNum = BitmapNumber.getFontClip(0.05, skin);\r\n        if (isCrit) {\r\n            Game.shakeBattle();\r\n        }\r\n        bitNum.value = value;\r\n        let xx = -GameBG.ww2 + Math.random() * GameBG.ww;\r\n        let yy = Math.random() * GameBG.ww;\r\n        sprite.addChild(bitNum);\r\n        bitNum.pos(xx, yy);\r\n        sprite.bloodCount++;\r\n        Laya.Tween.to(bitNum, { y: yy - 50, scaleX: 0.2, scaleY: 0.2 }, 200, Laya.Ease.circOut);\r\n        setTimeout(() => {\r\n            bitNum.recover();\r\n        }, 400);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/core/display/BitmapNumber.ts",
+    "D:/gitworker/Game3DUP/src/core/App.ts",
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/Blood.ts",
+    "D:/gitworker/Game3DUP/src/core/utils/ShakeUtils.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts"
+  ]
+}

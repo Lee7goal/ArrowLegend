@@ -1,0 +1,13 @@
+{
+  "code": "import MainUI from \"./MainUI\";\r\nimport MainView from \"./MainView\";\r\nimport GameBG from \"../../../game/GameBG\";\r\nimport GameEvent from \"../../GameEvent\";\r\nimport Game from \"../../../game/Game\";\r\nexport default class MainScene extends Laya.Sprite {\r\n    constructor() {\r\n        super();\r\n        this.verLabel = new Laya.Label();\r\n        this.height = GameBG.height;\r\n        this.initUI();\r\n    }\r\n    initUI() {\r\n        this.mainView = new MainView();\r\n        this.mainUI = new MainUI();\r\n        this.addChild(this.mainView);\r\n        this.addChild(this.mainUI);\r\n        this.addChild(this.verLabel);\r\n        this.verLabel.fontSize = 16;\r\n        this.verLabel.color = \"#ffffff\";\r\n        Laya.stage.on(\"switchView\", this, this.switchView);\r\n        this.switchView();\r\n        Laya.stage.on(GameEvent.START_BATTLE, this, this.onStartBattle);\r\n        this.on(Laya.Event.DISPLAY, this, this.onDis);\r\n    }\r\n    onDis(e) {\r\n    }\r\n    onStartBattle() {\r\n        if (Game.isStartBattle) {\r\n            return;\r\n        }\r\n        Game.isStartBattle = true;\r\n        this.mainUI.appEnergy();\r\n    }\r\n    switchView() {\r\n        this.mainView.selectIndex = this.mainUI.selectIndex;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/MainUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/MainView.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/scene/main/world/WorldView.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/GameEvent.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/core/App.ts"
+  ]
+}

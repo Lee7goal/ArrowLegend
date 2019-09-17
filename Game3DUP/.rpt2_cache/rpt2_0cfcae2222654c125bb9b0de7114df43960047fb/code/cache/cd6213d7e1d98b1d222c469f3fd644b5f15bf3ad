@@ -1,0 +1,18 @@
+{
+  "code": "import { GameAI } from \"./GameAI\";\r\nimport FlowerAI from \"./FlowerAI\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport Game from \"../Game\";\r\nimport CallSkill from \"../skill/CallSkill\";\r\nimport WindSkill from \"../skill/WindSkill\";\r\nexport default class StoneAI extends FlowerAI {\r\n    constructor(pro) {\r\n        super(pro);\r\n        this.cd = 0;\r\n        this.skillcd = 0;\r\n        this.windCd = 0;\r\n        this.callSkill = new CallSkill(this.skillISbs[0]);\r\n        this.windSkill = new WindSkill(this.skillISbs[1]);\r\n        this.cd = this.sysEnemy.enemySpeed;\r\n        this.nextTime = Game.executor.getWorldNow() + this.cd;\r\n    }\r\n    exeAI(pro) {\r\n        if (!this.run_)\r\n            return;\r\n        if (pro.isDie) {\r\n            return;\r\n        }\r\n        this.setShader();\r\n        if (this.pro.isIce) {\r\n            return;\r\n        }\r\n        this.now = Game.executor.getWorldNow();\r\n        if (this.now >= this.nextTime) {\r\n            this.onExe2(this.now);\r\n            this.nextTime = this.now + this.cd;\r\n        }\r\n        if (this.pro.moveLen > 0) {\r\n            this.pro.setSpeed(8);\r\n            if (this.pro.move2D(this.pro.face2d)) {\r\n                this.pro.curLen = this.pro.moveLen = 0;\r\n                this.pro.setSpeed(this.sysEnemy.moveSpeed);\r\n                this.pro.play(GameAI.SkillEnd);\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n    onExe2(now) {\r\n        let isCall = this.callSkill.exeSkill(now, this.pro);\r\n        if (!isCall) {\r\n            let isWind = this.windSkill.exeSkill(now, this.pro);\r\n            if (!isWind) {\r\n                this.normalAttack();\r\n            }\r\n        }\r\n    }\r\n    normalAttack() {\r\n        if (this.pro.isDie) {\r\n            return;\r\n        }\r\n        if (this.status == 0 && this.now >= this.nextTime) {\r\n            this.pro.play(GameAI.Idle);\r\n            this.nextTime = this.now + this.sysEnemy.enemySpeed;\r\n            var a = GameHitBox.faceTo3D(this.pro.hbox, Game.hero.hbox);\r\n            this.pro.rotation(a);\r\n            this.status = 1;\r\n        }\r\n        else if (this.status == 1 && this.now >= this.nextTime) {\r\n            this.startAttack();\r\n            this.status = 0;\r\n            this.nextTime = this.now + this.shooting.shootCd;\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/game01/Layabox/Game3DUP/src/game/ai/BaseAi.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysEnemy.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GamePro.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/ai/GameAI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/player/Monster.ts",
+    "D:/game01/Layabox/Game3DUP/src/main/sys/SysBullet.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/ai/FlowerAI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameHitBox.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/Game.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/GameBG.ts",
+    "D:/game01/Layabox/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/skill/CallSkill.ts",
+    "D:/game01/Layabox/Game3DUP/src/game/skill/WindSkill.ts"
+  ]
+}

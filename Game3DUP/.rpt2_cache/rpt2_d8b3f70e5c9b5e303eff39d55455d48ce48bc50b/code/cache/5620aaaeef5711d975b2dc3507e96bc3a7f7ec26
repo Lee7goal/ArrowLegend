@@ -1,0 +1,8 @@
+{
+  "code": "import Game from \"../Game\";\r\nimport { GameMove } from \"./GameMove\";\r\nexport default class FlyGameMove extends GameMove {\r\n    move2d(n, pro, speed) {\r\n        if (pro.gamedata.hp <= 0) {\r\n            return;\r\n        }\r\n        var vx = pro.speed * Math.cos(n);\r\n        var vz = pro.speed * Math.sin(n);\r\n        var hits = Game.map0.Flyharr;\r\n        if (Game.map0.chechHitArrs(pro, vx, vz, hits)) {\r\n            if (vz != 0 && Game.map0.chechHitArrs(pro, vx, 0, hits)) {\r\n                vx = 0;\r\n            }\r\n            if (vx != 0 && Game.map0.chechHitArrs(pro, 0, vz, hits)) {\r\n                vz = 0;\r\n            }\r\n            if (Game.map0.chechHitArrs(pro, vx, vz, hits)) {\r\n                return false;\r\n            }\r\n        }\r\n        if (!this.Blocking(pro, vx, vz)) {\r\n            return false;\r\n        }\r\n        pro.setXY2D(pro.pos2.x + vx, pro.pos2.z + vz);\r\n        return true;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GamePro.ts",
+    "D:/gitworker/Game3DUP/src/game/move/GameMove.ts"
+  ]
+}

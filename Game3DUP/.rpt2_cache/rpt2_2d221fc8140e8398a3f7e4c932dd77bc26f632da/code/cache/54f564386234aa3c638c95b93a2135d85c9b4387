@@ -1,0 +1,6 @@
+{
+  "code": "import Game from \"../Game\";\r\nexport default class BulletRotateScript extends Laya.Script3D {\r\n    constructor() {\r\n        super();\r\n    }\r\n    onAwake() {\r\n        let box = this.owner;\r\n        this.qiu = box.getChildAt(0);\r\n        this.qiu.transform.localRotationEulerX = 45;\r\n        this.ball = this.qiu.getChildAt(0);\r\n    }\r\n    onStart() {\r\n    }\r\n    onUpdate() {\r\n        if (!Game.executor.isRun) {\r\n            return;\r\n        }\r\n        this.ball.transform.localRotationEulerY += 8;\r\n    }\r\n    onDisable() {\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/Game.ts"
+  ]
+}
