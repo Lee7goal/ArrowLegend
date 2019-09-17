@@ -9,8 +9,13 @@ import { GoldType } from "../../../../game/data/HomeData";
 import SysTalentCost from "../../../sys/SysTalentCost";
 import SelectTalent from "./SelectTalent";
 import TalentCell2 from "./TalentCell2";
+import SysTalent from "../../../sys/SysTalent";
 
 export default class TalentView extends ui.test.talentUI {
+
+    public imgArr:Array<string> = ["tianfu/PTkuang.png","tianfu/PTkuang.png","tianfu/PTkuang.png",
+    "tianfu/JYkuang.png","tianfu/JYkuang.png","tianfu/JYkuang.png",
+    "tianfu/SSkuang.png","tianfu/SSkuang.png","tianfu/SSkuang.png"];
 
     constructor() { 
         super();
@@ -24,16 +29,14 @@ export default class TalentView extends ui.test.talentUI {
 
         this.list.renderHandler = new Laya.Handler( this,this.renderFun );
         //this.list.selectHandler = new Laya.Handler( this,this.selectFun );
-        
     }
 
     public selectFun(index:number):void{
-        console.log( index );
+        //console.log( index );
         if( index == -1 ){
             this.tipBox.visible = false;
             return;
         }
-        let lv = Session.talentData.getLv(index + 1);
         // if( lv == 0 ){
         //     this.tipBox.visible = false;
         // }else{
@@ -41,17 +44,26 @@ export default class TalentView extends ui.test.talentUI {
             let b = this.list.getCell(index);
             this.tipBox.x = this.list.x + b.x - 130;
             this.tipBox.y = this.list.y + b.y + 200;
-            let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, index + 1 );
-            this.txt5.text = sys.talentInfo + ":" + Session.talentData.getTxt( index ) + "%";
+            let arr = SysTalentInfo.getSys();
+            let sys = arr[index];
+            let tlv = Session.talentData.getLv( sys.id );
+            
+            let sysT = App.tableManager.getDataByNameAndId( SysTalent.NAME , tlv );
+            let vv = sysT[sys.idName];
+            this.txt5.text = sys.talentInfo + ":" + vv + "%";
         //}
     }
 
     public renderFun( cell:TalentCell2 , index:number ):void{
+        
         let sys:SysTalentInfo = this.list.getItem( index );
         let obj = Session.talentData.getImgData(sys.id);
         
+       
         cell.logo1.skin = obj.logo;
-        cell.bg1.skin = obj.bg;
+        
+        cell.bg1.skin = this.imgArr[index];//obj.bg;//this.imgArr[index]; //obj.bg;
+
         cell.txtImg.skin = obj.font;
         let lv = Session.talentData.getLv(sys.id);
         cell.lv.value = lv + "";
@@ -62,24 +74,27 @@ export default class TalentView extends ui.test.talentUI {
             cell.box1.visible = true;
         }
         cell.select.visible = (this.list.selectedIndex == index);
-        cell.on(Laya.Event.CLICK,this,this.cellClickFun , [cell,index] );
+        cell.on(Laya.Event.CLICK,this,this.cellClickFun , [cell, sys.id] );
     }
 
-    private cellClickFun( cell:TalentCell2 , index:number ):void{
-        if( index == -1 ){
+    private cellClickFun( cell:TalentCell2 , tid:number ):void{
+        // if( tlv == 0 ){
+        //     this.tipBox.visible = false;
+        //     return;
+        // }
+        let lv = Session.talentData.getLv(tid);
+        if( lv == 0 ){
             this.tipBox.visible = false;
             return;
         }
-        let lv = Session.talentData.getLv(index + 1);
-        if( lv == 0 ){
-            this.tipBox.visible = false;
-        }else{
-            this.tipBox.visible = true;
-            this.tipBox.x = this.list.x + cell.x - 60;
-            this.tipBox.y = this.list.y + cell.y + 200;
-            let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, index + 1 );
-            this.txt5.text = sys.talentInfo + ":" + Session.talentData.getTxt( index ) + "%";
-        }
+
+        this.tipBox.visible = true;
+        this.tipBox.x = this.list.x + cell.x - 60;
+        this.tipBox.y = this.list.y + cell.y + 200;
+        let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, tid );
+        let sysT = App.tableManager.getDataByNameAndId( SysTalent.NAME , lv );
+        let vv = sysT[sys.idName];
+        this.txt5.text = sys.talentInfo + ":" + vv + "%";
     }
 
     public tFun():void{
@@ -87,6 +102,10 @@ export default class TalentView extends ui.test.talentUI {
     }
 
     public btnFun():void{
+        if( Session.talentData.canLvUp() == -2 ){
+            FlyUpTips.setTips( "请您提升君主等级" );
+            return;
+        }
         let d = new SelectTalent();
         d.popup(false);
     }
@@ -94,13 +113,14 @@ export default class TalentView extends ui.test.talentUI {
     public disFun():void{
         this.tipBox.visible = false;
         this.refresh();
-        //this.effect();
     }
 
     public refresh():void{
-        let sysArr = App.tableManager.getTable( SysTalentInfo.NAME );
+        let sysArr = SysTalentInfo.getSys();
         this.list.array = sysArr;
         this.shengmingniu.disabled = !Session.talentData.haveGold();
+        this.qianshu.value = Session.talentData.getGold() + "";
+        //Session.talentData.canLvUp();
     }
 
     private effect():void{

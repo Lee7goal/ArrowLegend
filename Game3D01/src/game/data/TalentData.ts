@@ -18,18 +18,20 @@ export default class TalentData implements IData {
     public equip:Equip = new Equip();
     public imgArr:Array<any> = [];
 
+    public talentLvMap:any = {};
+
     constructor(){
         this.addData( "tianfu/PTkuang.png" , "tianfu/gongji.png"  , "tianfu/gongzi.png", 1 );
-        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/baozi.png", 2 );
-        this.addData( "tianfu/PTkuang.png" , "tianfu/shengming.png" , "tianfu/xingzi.png", 3 );
+        this.addData( "tianfu/PTkuang.png" , "tianfu/baoji.png" , "tianfu/baozi.png", 2 );
+        this.addData( "tianfu/PTkuang.png" , "tianfu/xingyun.png" , "tianfu/xingzi.png", 3 );
 
         this.addData( "tianfu/JYkuang.png" , "tianfu/fangyu.png" , "tianfu/fangzi.png", 4 );
-        this.addData( "tianfu/JYkuang.png" , "tianfu/gongji.png" , "tianfu/gongzi.png", 5 );
-        this.addData( "tianfu/JYkuang.png" , "tianfu/jinbi.png" , "tianfu/diaozi.png", 6 );
+        this.addData( "tianfu/JYkuang.png" , "tianfu/sudu.png" , "tianfu/yizi.png", 5 );
+        this.addData( "tianfu/JYkuang.png" , "tianfu/shengming.png" , "tianfu/shengzi.png", 6 );
 
-        this.addData( "tianfu/SSkuang.png" , "tianfu/baoji.png" , "tianfu/baozi.png", 7 );
-        this.addData( "tianfu/SSkuang.png" , "tianfu/lixian.png" , "tianfu/lizi.png", 8 );
-        this.addData( "tianfu/SSkuang.png" , "tianfu/tiejiang.png" , "tianfu/tiezi.png", 9 );
+        this.addData( "tianfu/SSkuang.png" , "tianfu/tiejiang.png" , "tianfu/tiezi.png", 7 );
+        this.addData( "tianfu/SSkuang.png" , "tianfu/jinbi.png" , "tianfu/diaozi.png", 8 );
+        this.addData( "tianfu/SSkuang.png" , "tianfu/lixian.png" , "tianfu/lizi.png", 9 );
     }
 
     private addData( bg:string , logo:string , font:string, id:number ):void{
@@ -45,27 +47,35 @@ export default class TalentData implements IData {
             this.initData(data);
         }
         let arr = data.talent.split(",");
-        for( let k of arr ){
-            this.talentArr.push( parseInt(k) );
+        for( let i:number = 0; i < arr.length; i+=2 ){
+            let tId:number = parseInt(arr[i]);
+            let tLv:number = parseInt(arr[i+1]);
+            this.talentLvMap[tId] = tLv;
         }
     }
 
     saveData(data:any):void{
-        data.talent = this.talentArr.join(",");
+        let arr:Array<any> = [];
+        for( let k in this.talentLvMap ){
+            arr.push(k);
+            arr.push( this.talentLvMap[k] );
+        }
+        data.talent = arr.join(",");
     }
 
     initData(data:any):void{
         let sysArr:Array<SysTalentInfo> = App.tableManager.getTable( SysTalentInfo.NAME );
         for( let k of sysArr ){
-            this.talentArr.push(0);
+            this.talentLvMap[k.id] = 0;
         }
     }
 
     public getLv( id:number ):number {
-        return this.talentArr[id-1];
+        return this.talentLvMap[id];
     }
 
-    public getTxt( index:number ):string{
+    public getTxt( index:number ):string
+    {
         // if( index == 0 ){
         //     return this.equip.attack + "";
         // }else if( index == 1 ){
@@ -104,10 +114,15 @@ export default class TalentData implements IData {
         this.lvTimes++;
         let sys:SysTalentCost = App.tableManager.getDataByNameAndId( SysTalentCost.NAME , (this.lvTimes + 1) );
         Session.homeData.changeGold( GoldType.GOLD , -sys.talentCost );
-        this.talentArr[id-1] = this.getLv( id ) + 1;
+        this.talentLvMap[id] = this.getLv( id ) + 1;
         App.sendEvent( GameEvent.TALENT_UPDATE );
         Session.saveData();
         return res;
+    }
+
+    public getGold():number{
+        let sys:SysTalentCost = App.tableManager.getDataByNameAndId( SysTalentCost.NAME , (this.lvTimes + 1) );
+        return sys.talentCost;
     }
 
     public haveGold():boolean{

@@ -1,6 +1,7 @@
 import { ui } from "../../../../ui/layaMaxUI";
 import TalentCell2 from "./TalentCell2";
 import Session from "../../../Session";
+import MyEffect from "../../../../core/utils/MyEffect";
 
 export default class SelectTalent extends ui.test.TalentViewUI{
     public arr:Array<ui.test.TalentZhuanUI> = [];
@@ -33,7 +34,25 @@ export default class SelectTalent extends ui.test.TalentViewUI{
         this.mouseEnabled = false;
         let t = new Laya.Tween();
         t.to( e , {scaleX:-1,update:new Laya.Handler(this,this.upFun,[e])} , 600  );
-        this.timer.once( 2000,this,this.timerFun );        
+        //this.timer.once( 2000,this,this.timerFun );
+        
+        for( let a of this.arr ){
+            if( a != e ) {
+                a.back.visible = false;
+                this.undisFun( a );
+            }
+        }
+
+        let ty = this.arr[1].y - 100;
+        let tx = this.arr[1].x;
+        let tw = new Laya.Tween();
+        tw.to( e, {x:tx,y:ty} , 500 );MyEffect
+    }
+
+    private undisFun( e:Laya.Sprite ):void{
+        
+        let t = new Laya.Tween();
+        t.to( e, {alpha:0} ,  500 );
     }
 
     private timerFun():void{

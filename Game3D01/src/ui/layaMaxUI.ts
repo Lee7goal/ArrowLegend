@@ -235,7 +235,7 @@ export module ui.test {
 		public light:ui.test.LightUI;
 		public label:Laya.Label;
 		public v1:ui.test.GoldViewUI;
-        public static  uiView:any ={"type":"View","props":{"width":600,"height":600},"compId":2,"child":[{"type":"Light","props":{"y":300,"x":300,"var":"light","blendMode":"lighter","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.LightUI"},"compId":4},{"type":"Label","props":{"y":431,"x":156,"width":288,"var":"label","text":"X 1000","height":91,"fontSize":60,"color":"#ffffff","align":"center"},"compId":5},{"type":"GoldView","props":{"y":150,"x":155,"var":"v1","runtime":"ui.test.GoldViewUI"},"compId":13}],"loadList":[],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":600,"height":600},"compId":2,"child":[{"type":"Light","props":{"y":300,"x":300,"var":"light","blendMode":"lighter","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.LightUI"},"compId":4},{"type":"Image","props":{"y":431,"x":177,"width":244,"skin":"main/yuanhei.png","sizeGrid":"0,28,0,30","height":64},"compId":14},{"type":"Label","props":{"y":431,"x":156,"width":288,"var":"label","text":"X 1000","height":91,"fontSize":60,"color":"#ffffff","align":"center"},"compId":5},{"type":"GoldView","props":{"y":150,"x":155,"var":"v1","runtime":"ui.test.GoldViewUI"},"compId":13}],"loadList":["main/yuanhei.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -581,6 +581,21 @@ export module ui.test {
         }
     }
     REG("ui.test.settingUI",settingUI);
+    export class shengjiUI extends Scene {
+		public jinbishu:Laya.FontClip;
+		public label:Laya.Label;
+		public lanzuan:Laya.FontClip;
+		public hongzuan:Laya.FontClip;
+		public rebornBtn:Laya.Button;
+		public deshuliang:Laya.Label;
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Light","props":{"y":371,"x":375,"anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.LightUI"},"compId":3},{"type":"Sprite","props":{"y":781,"x":249,"texture":"main/jiangbeihei.png","scaleY":0.3,"scaleX":0.3},"compId":13},{"type":"Image","props":{"y":504,"x":112,"width":520,"skin":"main/yuanhei.png","sizeGrid":"0,28,0,30","height":64},"compId":7},{"type":"Image","props":{"y":272,"x":293,"skin":"main/dunpai.png"},"compId":4},{"type":"FontClip","props":{"y":335,"x":366,"width":36,"var":"jinbishu","value":"12","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.6,"scaleX":0.6,"height":121,"align":"center"},"compId":5},{"type":"Label","props":{"y":509,"x":133,"width":477,"var":"label","text":"等级达到14级","height":52,"fontSize":48,"color":"#ffffff","align":"center"},"compId":6},{"type":"Image","props":{"y":643,"x":150.5,"width":441,"skin":"main/biaotihuang.png","sizeGrid":"0,38,0,36","height":99},"compId":8},{"type":"Sprite","props":{"y":667,"x":318.5,"texture":"main/jainglizi.png"},"compId":10},{"type":"Sprite","props":{"y":778,"x":249,"texture":"main/jiangbei.png","scaleY":0.3,"scaleX":0.3},"compId":11},{"type":"FontClip","props":{"y":801,"x":369,"width":36,"var":"lanzuan","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":121,"align":"left"},"compId":12},{"type":"Sprite","props":{"y":889,"x":249,"texture":"main/jiangbeihei.png","scaleY":0.3,"scaleX":0.3},"compId":14},{"type":"Sprite","props":{"y":886,"x":249,"texture":"main/jiangbei1.png","scaleY":0.3,"scaleX":0.3},"compId":15},{"type":"FontClip","props":{"y":909,"x":369,"width":36,"var":"hongzuan","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":121,"align":"left"},"compId":16},{"type":"Sprite","props":{"y":991,"x":246,"texture":"main/jiangbi.png","scaleY":0.35,"scaleX":0.35},"compId":17},{"type":"FontClip","props":{"y":1019,"x":369,"width":36,"value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":121,"align":"left"},"compId":19},{"type":"Button","props":{"y":1187,"x":375,"width":358,"var":"rebornBtn","stateNum":1,"skin":"main/btn_lv.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"name":"close","height":100,"anchorY":0.5,"anchorX":0.5},"compId":20,"child":[{"type":"Label","props":{"y":24,"x":66,"width":222,"var":"deshuliang","text":"确定","height":40,"fontSize":36,"color":"#ffffff","align":"center"},"compId":21}]}],"loadList":["main/jiangbeihei.png","main/yuanhei.png","main/dunpai.png","main/clipshuzi.png","main/biaotihuang.png","main/jainglizi.png","main/jiangbei.png","main/jiangbei1.png","main/jiangbi.png","main/btn_lv.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(shengjiUI.uiView);
+        }
+    }
+    REG("ui.test.shengjiUI",shengjiUI);
     export class SkillGridUI extends View {
 		public txt:Laya.Label;
 		public imgBox:Laya.Box;
@@ -631,7 +646,8 @@ export module ui.test {
 		public b3:ui.test.TalentZhuanUI;
 		public b4:ui.test.TalentZhuanUI;
 		public b5:ui.test.TalentZhuanUI;
-        public static  uiView:any ={"type":"Dialog","props":{"width":640,"isModal":true,"height":600},"compId":2,"child":[{"type":"Text","props":{"y":507,"x":178,"text":"请选择您的天赋","fontSize":40,"color":"#ffffff","runtime":"laya.display.Text"},"compId":9},{"type":"TalentZhuan","props":{"y":132,"x":105,"var":"b0","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":10},{"type":"TalentZhuan","props":{"y":132,"x":320,"var":"b1","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":16},{"type":"TalentZhuan","props":{"y":132,"x":535,"var":"b2","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":17},{"type":"TalentZhuan","props":{"y":371,"x":105,"var":"b3","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":18},{"type":"TalentZhuan","props":{"y":371,"x":320,"var":"b4","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":19},{"type":"TalentZhuan","props":{"y":371,"x":535,"var":"b5","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":20}],"loadList":[],"loadList3D":[]};
+		public clickClose:laya.display.Text;
+        public static  uiView:any ={"type":"Dialog","props":{"width":750,"isModal":true,"height":1200},"compId":2,"child":[{"type":"viewbg","props":{"centerY":0,"centerX":0,"runtime":"ui.game.viewbgUI"},"compId":22},{"type":"Text","props":{"y":857,"x":241,"text":"请选择您的天赋","fontSize":40,"color":"#ffffff","runtime":"laya.display.Text"},"compId":9},{"type":"TalentZhuan","props":{"y":476,"x":164,"var":"b0","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":10},{"type":"TalentZhuan","props":{"y":476,"x":380,"var":"b1","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":16},{"type":"TalentZhuan","props":{"y":476,"x":595,"var":"b2","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":17},{"type":"TalentZhuan","props":{"y":715,"x":165,"var":"b3","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":18},{"type":"TalentZhuan","props":{"y":715,"x":380,"var":"b4","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":19},{"type":"TalentZhuan","props":{"y":715,"x":595,"var":"b5","anchorY":0.5,"anchorX":0.5,"runtime":"ui.test.TalentZhuanUI"},"compId":20},{"type":"Text","props":{"y":1107,"x":301,"var":"clickClose","text":"点击关闭","fontSize":40,"color":"#ffffff","runtime":"laya.display.Text"},"compId":23},{"type":"Box","props":{"y":915,"x":255,"width":252,"height":166},"compId":24}],"loadList":[],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

@@ -10,6 +10,7 @@ import Session from "../../Session";
 import SenderHttp from "../../../net/SenderHttp";
 import App from "../../../core/App";
 import SysHero from "../../sys/SysHero";
+import GameEvent from "../../GameEvent";
     export default class MainUI extends Laya.Box {
         private topUI:TopUI;
         private bottomUI:BottomUI;
@@ -103,6 +104,12 @@ import SysHero from "../../sys/SysHero";
             let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME,Session.homeData.level);
             let vv:number = Session.homeData.playerExp / sys.roleExp;
             Laya.timer.frameLoop(1,this,this.onLoopExp,[vv]);
+
+            Laya.stage.on( GameEvent.GOLD_CHANGE , this, this.goldFun );
+        }
+
+        private goldFun():void{
+            this.coinClip.value = "" + Session.homeData.coins;
         }
 
         private lastWidth:number = 0;

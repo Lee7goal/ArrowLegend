@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":12,
+    "selecteID":14,
     "searchKey":"View",
     "props":{"width":175,"sceneColor":"#000000","height":212},
     "nodeParent":-1,
@@ -119,7 +119,8 @@
                     "child":[
                         ],
                     "$LOCKED":false
-                }]
+                }],
+            "$HIDDEN":true
         }],
     "animations":[
         {
