@@ -1,0 +1,4 @@
+{
+  "code": "export default class CustomMaterial extends Laya.BaseMaterial {\r\n    constructor() {\r\n        super();\r\n        this._addReference(3);\r\n        this.setShaderName(\"CustomShader\");\r\n    }\r\n    get diffuseTexture() {\r\n        return this._shaderValues.getTexture(CustomMaterial.DIFFUSETEXTURE);\r\n    }\r\n    set diffuseTexture(value) {\r\n        this._shaderValues.setTexture(CustomMaterial.DIFFUSETEXTURE, value);\r\n    }\r\n    set marginalColor(value) {\r\n        this._shaderValues.setVector(CustomMaterial.MARGINALCOLOR, value);\r\n    }\r\n}\r\nCustomMaterial.DIFFUSETEXTURE = Laya.Shader3D.propertyNameToID(\"u_texture\");\r\nCustomMaterial.MARGINALCOLOR = Laya.Shader3D.propertyNameToID(\"u_marginalColor\");\r\n",
+  "references": []
+}

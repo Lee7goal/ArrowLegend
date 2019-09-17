@@ -1,0 +1,7 @@
+{
+  "code": "import { ui } from \"./../ui/layaMaxUI\";\r\nimport App from \"../core/App\";\r\nexport default class GameAlert extends ui.test.alertUI {\r\n    constructor() {\r\n        super();\r\n        this.cancelBtn.clickHandler = new Laya.Handler(this, this.onCancel);\r\n        this.sureBtn.clickHandler = new Laya.Handler(this, this.onSure);\r\n    }\r\n    onCancel() {\r\n        this.removeSelf();\r\n        this.handler2 && this.handler2.run();\r\n    }\r\n    onSure() {\r\n        this.handler && this.handler.run();\r\n        this.removeSelf();\r\n    }\r\n    onShow(content, sureHandler, cancelHandler = null, content2 = \"\", title = \"提示\") {\r\n        this.txt.text = content;\r\n        this.txt2.text = content2;\r\n        this.handler = sureHandler;\r\n        this.handler2 = cancelHandler;\r\n        App.layerManager.alertLayer.addChild(this);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/core/App.ts"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "code": "import GameBG from \"./GameBG\";\r\nimport Game from \"./Game\";\r\nimport GameHitBox from \"./GameHitBox\";\r\nimport GamePro from \"./GamePro\";\r\nexport default class GameThorn extends Laya.Image {\r\n    constructor() {\r\n        super();\r\n        this.lastTime = 0;\r\n        this.hbox = new GameHitBox(GameBG.ww, GameBG.ww);\r\n        this.inDanger = false;\r\n        this.cd = 1500;\r\n        this.diciPro = new GamePro(8, 0);\r\n        this.diciPro.hurtValue = 150;\r\n        this.on(Laya.Event.DISPLAY, this, this.onDis);\r\n        this.on(Laya.Event.UNDISPLAY, this, this.onUnDis);\r\n    }\r\n    static getOne() {\r\n        let one = Laya.Pool.getItemByClass(GameThorn.TAG, GameThorn);\r\n        GameThorn.arr.push(one);\r\n        return one;\r\n    }\r\n    static recover() {\r\n        while (GameThorn.length > 0) {\r\n            let one = GameThorn.arr.shift();\r\n            one.removeSelf();\r\n            Laya.Pool.recover(GameThorn.TAG, one);\r\n        }\r\n    }\r\n    onDis() {\r\n        console.log(\"显示地刺\");\r\n        this.inDanger = false;\r\n        Laya.timer.frameLoop(1, this, this.onLoop);\r\n        this.onLoop();\r\n    }\r\n    onLoop() {\r\n        let now = Game.executor.getWorldNow();\r\n        if (now > this.lastTime) {\r\n            this.inDanger = !this.inDanger;\r\n            this.lastTime = now + this.cd;\r\n            this.skin = this.inDanger ? GameBG.BG_TYPE + '/500.png' : GameBG.BG_TYPE + '/500_0.png';\r\n        }\r\n    }\r\n    onUnDis() {\r\n        this.inDanger = false;\r\n        Laya.timer.clear(this, this.onLoop);\r\n    }\r\n}\r\nGameThorn.TAG = \"GameThorn\";\r\nGameThorn.arr = [];\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GameHitBox.ts",
+    "D:/gitworker/Game3DUP/src/game/GamePro.ts"
+  ]
+}

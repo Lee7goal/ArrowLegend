@@ -58,17 +58,17 @@ class Main {
 		if (window["Laya3D"]) Laya3D.init(GameConfig.width, GameConfig.height);
 		else Laya.init(GameConfig.width, GameConfig.height, Laya["WebGL"]);
 		Laya["Physics"] && Laya["Physics"].enable();
-		Laya["DebugPanel"] && Laya["DebugPanel"].enable();
+		// Laya["DebugPanel"] && Laya["DebugPanel"].enable();
 		Laya.stage.scaleMode = GameConfig.scaleMode;
 		Laya.stage.screenMode = GameConfig.screenMode;
 		//兼容微信不支持加载scene后缀场景
 		Laya.URL.exportSceneToJson = GameConfig.exportSceneToJson;
 
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
-		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
-		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
+		// if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
+		// if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
 		if (GameConfig.stat) Laya.Stat.show();
-		Laya.alertGlobalError = true;
+		// Laya.alertGlobalError = true;
 
 		// var i = 0;
 		// if(i<1){
@@ -217,6 +217,7 @@ class Main {
 		if (!this.curBP) {
 			this.curBP = new BP();
 		}
+		this.homePage.vvv.visible = (App.platformId == PlatformID.TEST || App.platformId == PlatformID.H5);
 		this.curBP.getUserInfo(this.getUserInfoSuccess.bind(this));
 	}
 

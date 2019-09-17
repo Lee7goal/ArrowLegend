@@ -1,0 +1,4 @@
+{
+  "code": "export default class MoveType {\r\n}\r\nMoveType.TAG = \"MOVE\";\r\nMoveType.FLY = 1;\r\nMoveType.MOVE = 2;\r\nMoveType.FIXED = 3;\r\nMoveType.JUMP = 4;\r\nMoveType.BACK = 5;\r\nMoveType.BOOM = 6;\r\n",
+  "references": []
+}

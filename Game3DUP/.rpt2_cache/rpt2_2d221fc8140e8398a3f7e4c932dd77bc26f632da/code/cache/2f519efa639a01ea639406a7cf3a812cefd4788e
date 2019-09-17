@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysTalent {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.addAttack = 0.1;\r\n        this.addHp = 0.1;\r\n        this.addItemhp = 0.1;\r\n        this.addDefense = 0.1;\r\n        this.addAtkspeed = 0.1;\r\n        this.dropLevelhp = 0.1;\r\n        this.addCompose = 0.1;\r\n        this.lineGold = 0.1;\r\n        this.offlineGold = 0.1;\r\n    }\r\n}\r\nSysTalent.NAME = \"sys_talent.txt\";\r\n",
+  "references": []
+}

@@ -1,0 +1,7 @@
+{
+  "code": "import Game from \"../Game\";\r\nexport default class MonsterBoomEffect {\r\n    constructor() {\r\n        this.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes(\"h5/effects/boom/monster.lh\"));\r\n    }\r\n    static addEffect(pro, tScale = 1) {\r\n        let effect = Laya.Pool.getItemByClass(MonsterBoomEffect.TAG, MonsterBoomEffect);\r\n        effect.player = pro;\r\n        effect.sp3d.transform.localPosition = pro.sp3d.transform.localPosition;\r\n        Game.layer3d.addChild(effect.sp3d);\r\n        effect.sp3d.transform.localScale = new Laya.Vector3(tScale, tScale, tScale);\r\n        setTimeout(() => {\r\n            effect.recover();\r\n        }, 1000);\r\n        return effect;\r\n    }\r\n    recover() {\r\n        this.sp3d && this.sp3d.removeSelf();\r\n        Laya.Pool.recover(MonsterBoomEffect.TAG, this);\r\n    }\r\n}\r\nMonsterBoomEffect.TAG = \"MonsterBoomEffect\";\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GamePro.ts"
+  ]
+}

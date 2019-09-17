@@ -16,7 +16,8 @@ export default class GameCube{
             this.box = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/wall/"+type+"/monster.lh"));
             if(type != 3000 && type != 3500 && type != 4000)
             {
-                this.box.transform.scale = Game.cameraCN.boxscale;
+                // this.box.transform.scale = Game.cameraCN.boxscale;
+                this.box.transform.setWorldLossyScale(Game.cameraCN.boxscale)
             }
         }
         Game.layer3d.addChild(this.box);

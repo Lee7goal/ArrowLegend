@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysChapter {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.name = '';\r\n        this.image = '';\r\n        this.status = 0;\r\n        this.winCondition = 0;\r\n        this.beforeId = 0;\r\n        this.npcDamagescale = 0;\r\n        this.npcHealthscale = 0;\r\n        this.description = '';\r\n    }\r\n}\r\nSysChapter.NAME = 'sys_stagemap.txt';\r\n",
+  "references": []
+}

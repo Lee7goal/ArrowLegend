@@ -3101,7 +3101,6 @@
         appEnergy() {
             if (this.homeData.curEnergy < TopUI.xiaohao) {
                 FlyUpTips.setTips("体力不足！");
-                return;
             }
             Game.isStartBattle = true;
             this.homeData.curEnergy -= TopUI.xiaohao;
@@ -3791,7 +3790,7 @@
             if (!this.box) {
                 this.box = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/wall/" + type + "/monster.lh"));
                 if (type != 3000 && type != 3500 && type != 4000) {
-                    this.box.transform.scale = Game.cameraCN.boxscale;
+                    this.box.transform.setWorldLossyScale(Game.cameraCN.boxscale);
                 }
             }
             Game.layer3d.addChild(this.box);
@@ -6619,7 +6618,7 @@
             let tScale = sysEnemy.zoomMode / 100;
             tScale = mScale ? mScale : tScale;
             gpro.tScale = tScale;
-            gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
+            gpro.sp3d.transform.setWorldLossyScale(new Laya.Vector3(tScale, tScale, tScale));
             Game.map0.Eharr.push(gpro.hbox);
             Game.map0.Fharr.push(gpro.hbox);
             gpro.setShadowSize(sysEnemy.zoomShadow);
@@ -6761,9 +6760,23 @@
                 cell.y = 55;
                 cell.gray = true;
                 this._cellList.push(cell);
+                cell.visible = false;
             }
         }
         update(index) {
+            for (let i = 0; i < this._cellList.length; i++) {
+                this._cellList[i].visible = false;
+                if (index >= 2) {
+                    if (i == index - 1 || i == index - 2 || i == index) {
+                        this._cellList[i].visible = true;
+                    }
+                }
+                else {
+                    this._cellList[0].visible = true;
+                    this._cellList[1].visible = true;
+                    this._cellList[2].visible = true;
+                }
+            }
             let max = SysMap.getTotal(Session.homeData.chapterId);
             if (index > max) {
                 index = max;
@@ -7312,13 +7325,6 @@
             Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1005));
             Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1008));
             Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1009));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1001));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1002));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1003));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1004));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1005));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1008));
-            Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME, 1009));
             this.setGuide("滑动摇杆，控制角色到达指定位置。", 1);
             Laya.MouseManager.multiTouchEnabled = false;
             Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.md);
@@ -7814,7 +7820,7 @@
             });
         }
     }
-    Game.resVer = "1.0.16";
+    Game.resVer = "1.0.16.191710";
     Game.userHeadUrl = "";
     Game.userName = "";
     Game.poolTagArr = {};
@@ -8930,7 +8936,7 @@
                     }
                 }
             }
-            this.pro.hurt(pro.hurtValue, crit3006 || crit3007, isBuff);
+            this.pro.hurt(pro.gamedata.maxhp, crit3006 || crit3007, isBuff);
             if (this.pro.gamedata.hp <= 0) {
                 this.die();
             }
@@ -10652,17 +10658,11 @@
             else
                 Laya.init(GameConfig.width, GameConfig.height, Laya["WebGL"]);
             Laya["Physics"] && Laya["Physics"].enable();
-            Laya["DebugPanel"] && Laya["DebugPanel"].enable();
             Laya.stage.scaleMode = GameConfig.scaleMode;
             Laya.stage.screenMode = GameConfig.screenMode;
             Laya.URL.exportSceneToJson = GameConfig.exportSceneToJson;
-            if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true")
-                Laya.enableDebugPanel();
-            if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"])
-                Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
-            Laya.alertGlobalError = true;
             if (Laya.Browser.window.wx) {
                 Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
                 Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg", "loading/btn_kaishi.png", "loading/loadingClip.png", "allJson.json"];
@@ -10746,6 +10746,7 @@
             if (!this.curBP) {
                 this.curBP = new BP();
             }
+            this.homePage.vvv.visible = (App.platformId == PlatformID.TEST || App.platformId == PlatformID.H5);
             this.curBP.getUserInfo(this.getUserInfoSuccess.bind(this));
         }
         getUserInfoSuccess() {

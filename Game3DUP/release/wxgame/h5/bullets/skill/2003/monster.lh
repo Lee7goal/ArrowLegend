@@ -1,0 +1,62 @@
+{
+	"version":"LAYAHIERARCHY:01",
+	"data":{
+		"type":"Sprite3D",
+		"props":{
+			"name":"monster",
+			"active":true,
+			"position":[
+				0,
+				0,
+				0
+			],
+			"rotation":[
+				0,
+				0,
+				0,
+				-1
+			],
+			"scale":[
+				1,
+				1,
+				1
+			]
+		},
+		"child":[
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"pian 1 (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						0
+					],
+					"rotation":[
+						0,
+						0.7071068,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/jineng/ICEJIAN/FBX/pian 1-pPlane1.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/jineng/ICEJIAN/Materials/huo 1.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			}
+		]
+	}
+}

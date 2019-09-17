@@ -1,0 +1,4 @@
+{
+  "code": "export default class GameProType {\r\n}\r\nGameProType.Hero = 9999;\r\nGameProType.RockGolem_Blue = 8000;\r\nGameProType.Rock = 801;\r\nGameProType.HeroArrow = 799;\r\nGameProType.MonstorArrow = 798;\r\n",
+  "references": []
+}

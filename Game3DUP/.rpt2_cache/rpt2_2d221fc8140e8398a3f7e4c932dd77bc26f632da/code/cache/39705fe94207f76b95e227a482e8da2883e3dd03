@@ -1,0 +1,4 @@
+{
+  "code": "var HttpRequest = Laya.HttpRequest;\r\nexport default class Http {\r\n    constructor() {\r\n        this.xhr = new HttpRequest();\r\n        this.xhr.http.timeout = 10000;\r\n    }\r\n    static create() {\r\n        return new Http();\r\n    }\r\n    success(func, thisObj) {\r\n        this.xhr.once(Laya.Event.COMPLETE, thisObj, function (data) {\r\n            Laya.Handler.create(thisObj, func).runWith(data);\r\n        });\r\n        return this;\r\n    }\r\n    error(func, thisObj = null) {\r\n        this.xhr.once(Laya.Event.ERROR, thisObj, function (data) {\r\n            Laya.Handler.create(thisObj, func).runWith(data);\r\n        });\r\n        return this;\r\n    }\r\n    send(url, data, method, responseType) {\r\n        this.xhr.send(url, data, method, responseType);\r\n    }\r\n}\r\n",
+  "references": []
+}

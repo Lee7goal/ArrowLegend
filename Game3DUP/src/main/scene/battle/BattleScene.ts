@@ -323,14 +323,6 @@ export default class BattleScene extends Laya.Sprite {
         Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1008));
         Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1009));
 
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1008));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1009));
-
 
         this.setGuide("滑动摇杆，控制角色到达指定位置。",1);
 

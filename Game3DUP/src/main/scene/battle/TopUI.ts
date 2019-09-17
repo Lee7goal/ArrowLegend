@@ -148,13 +148,32 @@ export class IndexBox extends ui.game.battleIndexBoxUI
             cell.y = 55;
             cell.gray = true;
             this._cellList.push(cell);
-            cell
+            cell.visible = false;
         }
     }
 
     private _isInit:boolean = false;
     update(index:number):void
     {
+        for(let i = 0; i < this._cellList.length; i++)
+        {
+            this._cellList[i].visible = false;
+            if(index >= 2)
+            {
+                if(i == index - 1 || i == index - 2 || i == index)
+                {
+                    this._cellList[i].visible = true;
+                }
+            }
+            else
+            {
+                this._cellList[0].visible = true;
+                this._cellList[1].visible = true;
+                this._cellList[2].visible = true;
+            }
+
+        }
+        
         let max:number = SysMap.getTotal(Session.homeData.chapterId);
         if(index > max)
         {

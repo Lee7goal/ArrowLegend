@@ -1,0 +1,6 @@
+{
+  "code": "export default class SysEnemy {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.moveType = 0;\r\n        this.moveSpeed = 0;\r\n        this.zoomMode = 0;\r\n        this.zoomShadow = 0;\r\n        this.enemyHp = 0;\r\n        this.enemyAttack = 0;\r\n        this.enemyBlack = 0;\r\n        this.enemySpeed = 0;\r\n        this.normalAttack = 0;\r\n        this.skillId = '';\r\n        this.isBoss = 0;\r\n        this.enemymode = 0;\r\n        this.enemyAi = 0;\r\n        this.txt = '';\r\n        this.enemyLevel = 0;\r\n        this.dropGold = 0;\r\n        this.dropExp = 0;\r\n        this.dropItem = 0;\r\n    }\r\n}\r\nSysEnemy.NAME = 'sys_enemy.txt';\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/core/App.ts"
+  ]
+}

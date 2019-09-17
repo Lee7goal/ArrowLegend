@@ -2770,9 +2770,10 @@
 	        var batchIndexCount = 0;
 	        var floatStride = vertexDeclaration.vertexStride / 4;
 	        var renderBatchCount = 0;
-	        var elementCount = batchElements.length;
+			var elementCount = batchElements.length;
+			var elements = batchElements.elements;
 	        for (var i = 0; i < elementCount; i++) {
-	            var subElement = batchElements[i];
+	            var subElement = elements[i];
 	            var subMesh = subElement._geometry;
 	            var indexCount = subMesh._indexCount;
 	            if (batchIndexCount + indexCount > SubMeshDynamicBatch.maxIndicesCount) {
@@ -8224,7 +8225,7 @@
 	        var scene = context.scene;
 	        var camera = context.camera;
 	        var transform = this._transform;
-	        var geometry = this._geometry;
+			var geometry = this._geometry;
 	        context.renderElement = this;
 	        var updateRender = updateMark !== this.render._updateMark || this.renderType !== this.render._updateRenderType;
 	        if (updateRender) {

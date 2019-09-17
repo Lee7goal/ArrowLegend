@@ -1,0 +1,161 @@
+{
+	"version":"LAYAHIERARCHY:01",
+	"data":{
+		"type":"Sprite3D",
+		"props":{
+			"name":"Demo",
+			"active":true,
+			"position":[
+				0,
+				0,
+				0
+			],
+			"rotation":[
+				0,
+				0,
+				0,
+				-1
+			],
+			"scale":[
+				1,
+				1,
+				1
+			]
+		},
+		"child":[
+			{
+				"type":"Sprite3D",
+				"props":{
+					"name":"Lady Pirate(Clone)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1.166569,
+						1.166569,
+						1.166569
+					]
+				},
+				"components":[
+					{
+						"type":"Animator",
+						"avatar":{
+							"path":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Lady Pirate(Clone)-Lady PirateAvatar.lav",
+							"linkSprites":{}
+						},
+						"layers":[
+							{
+								"name":"Base Layer",
+								"weight":0,
+								"blendingMode":0,
+								"states":[
+									{
+										"name":"Idle",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Idle.lani"
+									},
+									{
+										"name":"Attack1",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Attack1.lani"
+									},
+									{
+										"name":"Show",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Show.lani"
+									},
+									{
+										"name":"Attack",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Attack.lani"
+									},
+									{
+										"name":"Attack2",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Attack2.lani"
+									},
+									{
+										"name":"Jump",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Jmp.lani"
+									},
+									{
+										"name":"Run",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-Run.lani"
+									},
+									{
+										"name":"Die",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-D.lani"
+									}
+								]
+							}
+						],
+						"cullingMode":0,
+						"playOnWake":true
+					}
+				],
+				"child":[
+					{
+						"type":"SkinnedMeshSprite3D",
+						"props":{
+							"name":"102700_hdnw_npc_mo_0",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								-2.18557E-08,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								0.9999999,
+								0.9999999,
+								0.9999999
+							],
+							"rootBone":"Bip001 Pelvis",
+							"boundBox":{
+								"min":[
+									-0.6550906,
+									-0.3556834,
+									-0.4910732
+								],
+								"max":[
+									0.7094851,
+									0.2891786,
+									0.4017645
+								]
+							},
+							"boundSphere":{
+								"center":[
+									0.02719721,
+									-0.03325242,
+									-0.04465438
+								],
+								"radius":0.8767943
+							},
+							"materials":[
+								{
+									"path":"Assets/MeshSmith/Fantasy1/Lady Pirate/Material/102710_hdnw_npc_d_512.lmat"
+								}
+							],
+							"meshPath":"Assets/MeshSmith/Fantasy1/Lady Pirate/Mesh/Lady Pirate-102700_hdnw_npc_mo_0.lm"
+						},
+						"components":[],
+						"child":[]
+					}
+				]
+			}
+		]
+	}
+}

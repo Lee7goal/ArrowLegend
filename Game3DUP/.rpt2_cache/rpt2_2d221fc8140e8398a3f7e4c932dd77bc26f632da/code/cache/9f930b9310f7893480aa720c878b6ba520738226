@@ -1,0 +1,4 @@
+{
+  "code": "export default class AttackType {\r\n}\r\nAttackType.TAG = \"ATTACK\";\r\nAttackType.NORMAL_BULLET = 1;\r\nAttackType.RANDOM_BULLET = 2;\r\nAttackType.AOE = 3;\r\nAttackType.FLY_HIT = 4;\r\nAttackType.SPLIT = 5;\r\nAttackType.CALL_MONSTER = 6;\r\n",
+  "references": []
+}

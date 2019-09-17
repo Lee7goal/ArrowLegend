@@ -1,0 +1,4 @@
+{
+  "code": "export default class GameCameraNum {\r\n    constructor(a, y) {\r\n        this.a = a;\r\n        this.n = a * Math.PI / 180;\r\n        this.abs = Math.abs(a);\r\n        this.a0 = 90 - this.abs;\r\n        this.n0 = this.a0 * Math.PI / 180;\r\n        this.tan0 = Math.tan(this.n0);\r\n        this.cos0 = Math.cos(this.n0);\r\n        this.y = y;\r\n        this.z = y * this.tan0;\r\n        this.boxscale = new Laya.Vector3(1, 1, 1 / this.cos0);\r\n        this.boxscale0 = new Laya.Vector3(1, 1, (0.5) / this.cos0);\r\n    }\r\n}\r\n",
+  "references": []
+}

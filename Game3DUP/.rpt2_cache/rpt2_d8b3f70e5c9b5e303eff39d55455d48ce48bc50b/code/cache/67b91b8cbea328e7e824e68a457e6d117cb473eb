@@ -1,0 +1,12 @@
+{
+  "code": "import { ui } from \"../../../../ui/layaMaxUI\";\r\nimport GameEvent from \"../../../GameEvent\";\r\nimport Session from \"../../../Session\";\r\nimport FlyUpTips from \"../../../FlyUpTips\";\r\nimport SysMap from \"../../../sys/SysMap\";\r\nexport default class WorldCell extends ui.test.worldCellUI {\r\n    constructor() {\r\n        super();\r\n        this.mapBtn.clickHandler = new Laya.Handler(this, this.onClick);\r\n        this.suo.visible = false;\r\n    }\r\n    onClick() {\r\n        if (!this.suo.visible) {\r\n            Laya.stage.event(GameEvent.START_BATTLE);\r\n        }\r\n        else {\r\n            FlyUpTips.setTips(\"未开启\");\r\n        }\r\n    }\r\n    update(sysChapter) {\r\n        this.suo.visible = Session.gameData.chapterId < sysChapter.id;\r\n        this.mapBtn.gray = this.suo.visible;\r\n        this.cengshuTxt.text = \"\";\r\n        if (!this.suo.visible) {\r\n            let maxCeng = SysMap.getTotal(Session.gameData.chapterId);\r\n            if (sysChapter.id == Session.gameData.chapterId) {\r\n                this.cengshuTxt.text = \"最高层数:\" + Session.gameData.mapIndex + \"/\" + maxCeng;\r\n            }\r\n            else {\r\n                this.cengshuTxt.text = \"最高层数:\" + maxCeng + \"/\" + maxCeng;\r\n            }\r\n        }\r\n        console.log(\"刷新大关卡\");\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/main/sys/SysChapter.ts",
+    "D:/gitworker/Game3DUP/src/main/GameEvent.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/main/Session.ts",
+    "D:/gitworker/Game3DUP/src/main/FlyUpTips.ts",
+    "D:/gitworker/Game3DUP/src/main/sys/SysMap.ts"
+  ]
+}

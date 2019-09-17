@@ -1,0 +1,8 @@
+{
+  "code": "import { ui } from \"./../../../ui/layaMaxUI\";\r\nimport SysSkill from \"../../sys/SysSkill\";\r\nimport App from \"../../../core/App\";\r\nexport default class SkillGrid extends ui.test.SkillGridUI {\r\n    constructor(handler) {\r\n        super();\r\n        this.handler = handler;\r\n        this.imgBox.addChild(this.img);\r\n        this.imgBox.on(Laya.Event.CLICK, this, this.onClick);\r\n    }\r\n    onClick() {\r\n        this.handler && this.handler.runWith(this.sys);\r\n    }\r\n    update(skillId) {\r\n        this.txt.text = \"****\";\r\n        this.shuoming.text = \"****\";\r\n        this.img.skin = \"main/kawen.png\";\r\n        Laya.Tween.to(this.parent, { scaleX: 0.1 }, 150, null, new Laya.Handler(this, this.onFan, [skillId]));\r\n    }\r\n    onFan(skillId) {\r\n        this.sys = App.tableManager.getDataByNameAndId(SysSkill.NAME, skillId);\r\n        this.txt.text = this.sys.skillName;\r\n        this.shuoming.text = this.sys.skillInfo;\r\n        this.img.skin = 'icons/skill/' + this.sys.id + \".png\";\r\n        Laya.Tween.to(this.parent, { scaleX: 1 }, 150);\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/main/sys/SysSkill.ts",
+    "D:/gitworker/Game3DUP/src/core/App.ts"
+  ]
+}

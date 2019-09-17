@@ -138,7 +138,7 @@ import SysHero from "../../sys/SysHero";
             if(this.homeData.curEnergy < TopUI.xiaohao)
             {
                 FlyUpTips.setTips("体力不足！");
-                return;
+                // return;
             }
             Game.isStartBattle = true;
             this.homeData.curEnergy -= TopUI.xiaohao;

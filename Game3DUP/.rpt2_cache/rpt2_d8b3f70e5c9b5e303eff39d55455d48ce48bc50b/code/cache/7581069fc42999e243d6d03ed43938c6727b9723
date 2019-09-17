@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysNpc {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.npcTxt = '';\r\n        this.skillId = 0;\r\n        this.skillRandom = '';\r\n    }\r\n}\r\nSysNpc.NAME = 'sys_npc.txt';\r\n",
+  "references": []
+}

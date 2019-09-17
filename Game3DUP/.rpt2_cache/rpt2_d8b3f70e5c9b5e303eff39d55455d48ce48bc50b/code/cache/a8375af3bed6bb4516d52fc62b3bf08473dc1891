@@ -1,0 +1,4 @@
+{
+  "code": "export default class CookieKey {\r\n}\r\nCookieKey.CURRENT_BATTLE = \"CURRENT_BATTLE\";\r\nCookieKey.MUSIC_SWITCH = \"MUSIC_SWITCH\";\r\nCookieKey.SOUND_SWITCH = \"SOUND_SWITCH\";\r\nCookieKey.USER_ID = \"USER_ID\";\r\n",
+  "references": []
+}

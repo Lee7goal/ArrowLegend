@@ -1,0 +1,4 @@
+{
+  "code": "var Sprite = Laya.Sprite;\r\nexport default class LayerManager extends Sprite {\r\n    constructor() {\r\n        super();\r\n        this.sceneLayer = new Sprite();\r\n        this.panelLayer = new Sprite();\r\n        this.faceLayer = new Sprite();\r\n        this.alertLayer = new Sprite();\r\n        this.guideLayer = new Sprite();\r\n        this.addChild(this.sceneLayer);\r\n        this.addChild(this.panelLayer);\r\n        this.addChild(this.faceLayer);\r\n        this.addChild(this.alertLayer);\r\n        this.addChild(this.guideLayer);\r\n    }\r\n}\r\n",
+  "references": []
+}

@@ -1,0 +1,10 @@
+{
+  "code": "import { ui } from \"./../../../../ui/layaMaxUI\";\r\nimport Game from \"../../../../game/Game\";\r\nimport Session from \"../../../Session\";\r\nimport SysHero from \"../../../sys/SysHero\";\r\nimport App from \"../../../../core/App\";\r\nexport default class GameOverView extends ui.test.GameOverUI {\r\n    constructor() {\r\n        super();\r\n        this.on(Laya.Event.DISPLAY, this, this.onDis);\r\n        this.on(Laya.Event.CLICK, this, this.onClick);\r\n    }\r\n    onClick() {\r\n        this.removeSelf();\r\n        Game.showMain();\r\n    }\r\n    onDis() {\r\n        this.jinbishu.value = \"\" + Game.battleCoins;\r\n        let lastLv = Session.homeData.level;\r\n        let sys = App.tableManager.getDataByNameAndId(SysHero.NAME, lastLv);\r\n        let ww = this.expBar.width * Game.battleExp / sys.roleExp;\r\n        ww = Math.max(1, ww);\r\n        this.expBar.scrollRect = new Laya.Rectangle(0, 0, ww, this.expBar.height);\r\n        this.cengshu.value = Session.homeData.level + \"\";\r\n        this.dengji.value = Session.homeData.level + \"\";\r\n        Session.homeData.addPlayerExp(Game.battleExp);\r\n        Game.addCoins = Game.battleCoins;\r\n        Session.saveData();\r\n        Game.addCoins = 0;\r\n        Laya.timer.frameLoop(1, this, this.onLoop);\r\n    }\r\n    onLoop() {\r\n        this.lightView.rotation++;\r\n    }\r\n    removeSelf() {\r\n        Laya.timer.clear(this, this.onLoop);\r\n        Game.state = 0;\r\n        return super.removeSelf();\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/main/Session.ts",
+    "D:/gitworker/Game3DUP/src/main/sys/SysHero.ts",
+    "D:/gitworker/Game3DUP/src/core/App.ts"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "code": "import BaseSkill from \"./BaseSkill\";\r\nimport GameHitBox from \"../GameHitBox\";\r\nimport Game from \"../Game\";\r\nimport GameBG from \"../GameBG\";\r\nimport { GameAI } from \"../ai/GameAI\";\r\nexport default class WindSkill extends BaseSkill {\r\n    constructor(sys) {\r\n        super(sys);\r\n        this.sysBullet.bulletCd = 4000;\r\n    }\r\n    exeSkill(now, pro) {\r\n        if (GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox) > GameBG.ww * 6) {\r\n            if (now >= this.cd) {\r\n                let a = GameHitBox.faceTo3D(pro.hbox, Game.hero.hbox);\r\n                pro.rotation(a);\r\n                pro.play(GameAI.SkillStart);\r\n                pro.curLen = 0;\r\n                pro.moveLen = GameHitBox.faceToLenth(pro.hbox, Game.hero.hbox);\r\n                this.cd = now + this.sysBullet.bulletCd;\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/skill/BaseSkill.ts",
+    "D:/gitworker/Game3DUP/src/main/sys/SysBullet.ts",
+    "D:/gitworker/Game3DUP/src/game/GamePro.ts",
+    "D:/gitworker/Game3DUP/src/game/GameHitBox.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/ai/GameAI.ts",
+    "D:/gitworker/Game3DUP/src/game/player/Monster.ts"
+  ]
+}

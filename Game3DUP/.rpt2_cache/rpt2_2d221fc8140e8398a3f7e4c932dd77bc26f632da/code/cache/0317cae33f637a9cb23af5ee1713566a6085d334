@@ -1,0 +1,7 @@
+{
+  "code": "import { ui } from \"../../../../ui/layaMaxUI\";\r\nimport AcheievementCell from \"./AcheievementCell\";\r\nexport default class AchievementsView extends ui.test.chengjiuUI {\r\n    constructor() {\r\n        super();\r\n        this.list = new Laya.List();\r\n        this.list.pos(this.listBox.x, this.listBox.y);\r\n        this.addChild(this.list);\r\n        this.list.itemRender = AcheievementCell;\r\n        this.list.repeatX = 1;\r\n        this.list.repeatY = 4;\r\n        this.list.vScrollBarSkin = \"\";\r\n        this.list.renderHandler = new Laya.Handler(this, this.updateItem);\r\n        this.on(Laya.Event.DISPLAY, this, this.onDis);\r\n    }\r\n    onDis() {\r\n        this.list.array = [, , , , , , , , ,];\r\n        this.refresh();\r\n        this.effect();\r\n    }\r\n    refresh() {\r\n    }\r\n    effect() {\r\n        this.list.mouseEnabled = false;\r\n        let len = this.list.cells.length;\r\n        for (let i = 0; i < len; i++) {\r\n            this.tw(this.list.cells[i], i * 100);\r\n        }\r\n        Laya.timer.once(len * 100 + 800, this, this.mouseFun);\r\n    }\r\n    mouseFun() {\r\n        this.list.mouseEnabled = true;\r\n    }\r\n    tw(cell, delay) {\r\n        let t = new Laya.Tween();\r\n        t.from(cell, { y: cell.y + this.list.height - cell.height }, 800 + delay, Laya.Ease.backIn, null);\r\n    }\r\n    updateItem() {\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/ui/layaMaxUI.ts",
+    "D:/gitworker/Game3DUP/src/main/scene/main/achievements/AcheievementCell.ts"
+  ]
+}

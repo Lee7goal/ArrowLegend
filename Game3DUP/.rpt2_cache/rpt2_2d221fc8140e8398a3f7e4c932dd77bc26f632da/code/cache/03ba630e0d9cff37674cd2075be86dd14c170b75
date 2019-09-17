@@ -1,0 +1,4 @@
+{
+  "code": "export default class SysTalentInfo {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.idName = \"\";\r\n        this.talentName = \"\";\r\n        this.talentInfo = \"\";\r\n    }\r\n}\r\nSysTalentInfo.NAME = \"sys_talentinfo.txt\";\r\n",
+  "references": []
+}

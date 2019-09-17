@@ -1,0 +1,6 @@
+{
+  "code": "export class GameAI {\r\n    constructor() {\r\n        this.run_ = false;\r\n    }\r\n    die() { }\r\n    ;\r\n}\r\nGameAI.closeCombat = \"Attack1\";\r\nGameAI.NormalAttack = \"Attack\";\r\nGameAI.Idle = \"Idle\";\r\nGameAI.Die = \"Die\";\r\nGameAI.Run = \"Run\";\r\nGameAI.TakeDamage = \"TakeDamage\";\r\nGameAI.SkillStart = \"SkillStart\";\r\nGameAI.SkillLoop = \"SkillLoop\";\r\nGameAI.SkillEnd = \"SkillEnd\";\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/GamePro.ts"
+  ]
+}

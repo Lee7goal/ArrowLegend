@@ -1,7 +1,8 @@
 {
-    "platformId": 0,
+    "platformId": 10,
     "platforms": {
-        "31": "http://10.92.22.248:8082/",
-        "0": "https://s1.kuwan511.com/"
+        "0": "http://10.92.22.248:8082/",
+        "10": "https://s1.kuwan511.com/",
+        "31": "https://s1.kuwan511.com/"
     }
 }

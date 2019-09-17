@@ -1,0 +1,8 @@
+{
+  "code": "import { HeroLvType } from \"../../game/data/HeroData\";\r\nimport App from \"../../core/App\";\r\nimport { GoldType } from \"../../game/data/HomeData\";\r\nexport default class SysRoleUp {\r\n    constructor() {\r\n        this.id = 0;\r\n        this.roleLevel = 0;\r\n        this.roleId = 0;\r\n        this.addAtk = 0;\r\n        this.costAtk = 0;\r\n        this.addHp = 0;\r\n        this.costHp = 0;\r\n    }\r\n    getCost(type) {\r\n        if (type == HeroLvType.ATK) {\r\n            return this.costAtk;\r\n        }\r\n        else if (type == HeroLvType.HP) {\r\n            return this.costHp;\r\n        }\r\n    }\r\n    getCostType(type) {\r\n        if (type == HeroLvType.ATK) {\r\n            return GoldType.BLUE_DIAMONG;\r\n        }\r\n        else if (type == HeroLvType.HP) {\r\n            return GoldType.RED_DIAMONG;\r\n        }\r\n    }\r\n    getValue(type) {\r\n        if (type == HeroLvType.ATK) {\r\n            return this.addAtk;\r\n        }\r\n        else if (type == HeroLvType.HP) {\r\n            return this.addHp;\r\n        }\r\n    }\r\n    static getSysRole(roleId, lv) {\r\n        let sysArr = App.tableManager.getTable(SysRoleUp.NAME);\r\n        for (let k of sysArr) {\r\n            if (k.roleId == roleId && k.roleLevel == lv) {\r\n                return k;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n}\r\nSysRoleUp.NAME = 'sys_roleup.txt';\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/data/HeroData.ts",
+    "D:/gitworker/Game3DUP/src/core/App.ts",
+    "D:/gitworker/Game3DUP/src/game/data/HomeData.ts"
+  ]
+}

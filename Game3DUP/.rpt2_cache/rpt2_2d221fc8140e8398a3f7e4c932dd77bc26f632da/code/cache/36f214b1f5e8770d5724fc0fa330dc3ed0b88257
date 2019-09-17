@@ -1,0 +1,4 @@
+{
+  "code": "export default class AutoEvent {\r\n    constructor() {\r\n        this.arr = [];\r\n    }\r\n    setSprite(sp) {\r\n        sp.on(Laya.Event.DISPLAY, this, this.disFun);\r\n        sp.on(Laya.Event.UNDISPLAY, this, this.undisFun);\r\n    }\r\n    undisFun() {\r\n        for (let i = 0; i < this.arr.length; i += 3) {\r\n            Laya.stage.off(this.arr[i], this.arr[i + 1], this.arr[i + 2]);\r\n        }\r\n    }\r\n    disFun() {\r\n        for (let i = 0; i < this.arr.length; i += 3) {\r\n            Laya.stage.on(this.arr[i], this.arr[i + 1], this.arr[i + 2]);\r\n        }\r\n    }\r\n    onEvent(e, caller, listener) {\r\n        this.arr.push(e, caller, listener);\r\n        Laya.stage.on(e, caller, listener);\r\n    }\r\n}\r\n",
+  "references": []
+}

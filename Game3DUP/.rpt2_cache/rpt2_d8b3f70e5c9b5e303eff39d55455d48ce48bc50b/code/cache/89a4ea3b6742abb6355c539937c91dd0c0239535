@@ -1,0 +1,10 @@
+{
+  "code": "import { GameMove } from \"./GameMove\";\r\nexport default class JumpMove extends GameMove {\r\n    constructor() { super(); }\r\n    move2d(n, monster, speed) {\r\n        this.pro = monster;\r\n        monster.curLen += speed;\r\n        if (monster.curLen >= monster.moveLen) {\r\n            monster.curLen = monster.moveLen;\r\n            return true;\r\n        }\r\n        var nn = monster.curLen / monster.moveLen;\r\n        var vx = speed * Math.cos(n);\r\n        var vz = speed * Math.sin(n);\r\n        var dy = Math.sin((Math.PI * nn)) * 2;\r\n        monster.sp3d.transform.localPositionY = 0.1 + dy * 2;\r\n        monster.setXY2D(monster.pos2.x + vx, monster.pos2.z + vz);\r\n        if (monster.hbox.x == null || monster.hbox.y == null) {\r\n            console.log(\"跳出问题了\");\r\n        }\r\n        return false;\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/move/GameMove.ts",
+    "D:/gitworker/Game3DUP/src/game/player/Monster.ts",
+    "D:/gitworker/Game3DUP/src/game/GameBG.ts",
+    "D:/gitworker/Game3DUP/src/game/Game.ts",
+    "D:/gitworker/Game3DUP/src/game/move/MoveType.ts"
+  ]
+}

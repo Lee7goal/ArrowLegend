@@ -230,7 +230,7 @@ export default class Monster extends GamePro {
         let tScale: number = sysEnemy.zoomMode / 100;
         tScale = mScale ? mScale : tScale;
         gpro.tScale = tScale;
-        gpro.sp3d.transform.scale = new Laya.Vector3(tScale, tScale, tScale);
+        gpro.sp3d.transform.setWorldLossyScale(new Laya.Vector3(tScale, tScale, tScale));
         Game.map0.Eharr.push(gpro.hbox);//加入敌人组
         Game.map0.Fharr.push(gpro.hbox);//加入碰撞伤害组
         //Game.map0.addChild(gpro.sp2d);

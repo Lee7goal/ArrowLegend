@@ -1,0 +1,9 @@
+{
+  "code": "import HeroBlood from \"./HeroBlood\";\r\nimport MonsterBlood from \"./MonsterBlood\";\r\nimport GameProType from \"./GameProType\";\r\nexport default class Blood extends Laya.Sprite {\r\n    constructor() {\r\n        super();\r\n        this.bloodCount = 0;\r\n    }\r\n    init(data) {\r\n        this._data = data;\r\n        if (this._data.proType == GameProType.Hero) {\r\n            if (!this.ui) {\r\n                this.ui = new HeroBlood();\r\n            }\r\n            this.ui.init(this._data);\r\n            this.addChild(this.ui);\r\n        }\r\n        else if (this._data.proType == GameProType.RockGolem_Blue) {\r\n            if (!this.ui2) {\r\n                this.ui2 = new MonsterBlood();\r\n            }\r\n            this.ui2.init(this._data);\r\n            this.addChild(this.ui2);\r\n        }\r\n    }\r\n    update(hurt) {\r\n        if (this._data.proType == GameProType.Hero) {\r\n            this.ui.update(hurt);\r\n        }\r\n        else if (this._data.proType == GameProType.RockGolem_Blue) {\r\n            this.ui2.update(hurt);\r\n        }\r\n    }\r\n}\r\n",
+  "references": [
+    "D:/gitworker/Game3DUP/src/game/HeroBlood.ts",
+    "D:/gitworker/Game3DUP/src/game/MonsterBlood.ts",
+    "D:/gitworker/Game3DUP/src/game/GameData.ts",
+    "D:/gitworker/Game3DUP/src/game/GameProType.ts"
+  ]
+}
