@@ -311,7 +311,7 @@ export default class BattleLoader {
         //怪的资源
         if(this.resAry.length > 0){
 
-            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",];
+            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh","h5/wall/3000/monster.lh"];
             for(let j = 0; j < pubResAry.length; j++)
             {
                 res = pubResAry[j];
