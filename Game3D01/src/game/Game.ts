@@ -191,6 +191,7 @@ export default class Game {
             Game.scenneM.battle.setGuide("通过传送进入下一关。",5);
             Session.isGuide = false;
             Game.battleLoader.index = 1;
+            Game.battleLoader.chapterId = 1;
         }
         else
         {
