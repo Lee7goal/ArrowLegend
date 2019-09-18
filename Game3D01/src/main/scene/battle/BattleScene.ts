@@ -221,7 +221,6 @@ export default class BattleScene extends Laya.Sprite {
                 let type: number = GameBG.arr0[k];
                 // if (k < GameBG.arr0.length) {
                     if (GridType.isCube(type)) {
-                        type = 3000;
                         GameCube.getOne(GameBG.get3D(i, j),type);//墙
                     }
                     else if (GridType.isFence(type)) {

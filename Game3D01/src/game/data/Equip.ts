@@ -13,6 +13,10 @@ export default class Equip{
      * 暴击效果
      */
     public critEffect:number = 0;
+    /**
+     * 闪避
+     */
+    public dodge:number = 0;
 
     public copy():Equip{
         let e = new Equip();
