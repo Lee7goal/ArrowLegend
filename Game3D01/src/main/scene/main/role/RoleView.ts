@@ -24,6 +24,9 @@ export default class RoleView extends ui.test.jueseUI {
         this.jia2.clickHandler = new Laya.Handler( this,this.jiaFun , [GoldType.BLUE_DIAMONG ] );
         this.autoEvent.onEvent( GameEvent.GOLD_CHANGE , this,this.goldChangeFun );
         this.autoEvent.onEvent( GameEvent.HERO_UPDATE , this,this.heroFun );
+        
+        //let sss = Session.heroData.getHeroData(1);
+        //console.log( sss );
     }
 
     public heroFun():void{

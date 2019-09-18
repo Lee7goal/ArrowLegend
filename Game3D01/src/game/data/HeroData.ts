@@ -8,6 +8,7 @@ import FlyUpTips from "../../main/FlyUpTips";
 import GameEvent from "../../main/GameEvent";
 import { GOLD_CHANGE_TYPE } from "../../UseGoldType";
 import HeroBaseData from "./HeroBaseData";
+import Equip from "./Equip";
 
 /**
  * 角色类 有女海盗 有坦克车 等等
@@ -56,6 +57,31 @@ export default class HeroData implements IData{
         let hd:HeroBaseData = this.heroMap[heroId];
         return hd.getLv( type );
     }
+
+    /**
+     * 得到某位英雄具体的数值 给战场用的
+     * @param heroId 
+     */
+    public getHeroData( heroId:number ):Equip{
+        let e = new Equip();
+        let sysRB = SysRoleBase.getSys( heroId );
+        e.atk = sysRB.baseAtk + this.getValue( heroId , HeroLvType.ATK ) ;
+        e.hp = sysRB.baseHp + this.getValue( heroId , HeroLvType.HP );
+        e.dodge = sysRB.baseDodge;
+        e.moveSpeed = sysRB.baseMove;
+        e.atkSpeed = sysRB.baseSpeed;
+        e.crit = sysRB.baseCrit;
+        e.critEffect = sysRB.baseCritHurt;
+        
+        return e;
+    }
+
+    public getValue( heroId:number, type:HeroLvType ):number{
+        let lv = this.getHeroLv( heroId , type );
+        let sys = SysRoleUp.getSysRole( heroId , lv );
+        return sys.getValue( type );
+    }
+
 
     /**
      * @param heroId 
