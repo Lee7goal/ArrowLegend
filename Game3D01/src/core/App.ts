@@ -3,6 +3,7 @@ import TableManager from "./manager/TableManager";
 import BitmapNumber from "./display/BitmapNumber";
 import SoundManager from "./manager/SoundManager";
 import SdkManager from "./manager/SdkManager";
+import DialogManager from "./manager/DialogManager";
 
 export default class App{
     static top:number = 10;
@@ -14,7 +15,9 @@ export default class App{
     static tableManager:TableManager = null;
     static soundManager:SoundManager = null;
     static sdkManager:SdkManager = null;
-    
+    static eventManager:Laya.EventDispatcher = new Laya.EventDispatcher();
+    static dialogManager:DialogManager = new DialogManager();
+
     static init():void{
         App.layerManager = new LayerManager();
         App.tableManager = new TableManager();

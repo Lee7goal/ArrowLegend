@@ -9,6 +9,9 @@ import SysMap from "../../../sys/SysMap";
 import MainUI from "../MainUI";
 import GameCameraNum from "../../../../game/GameCameraNum";
 import WorldCell from "./WorldCell";
+import TimeGoldDialog from "../timegold/TimeGoldDialog";
+import GameMain from "../../../GameMain";
+import MyTimeGold from "../timegold/MyTimeGold";
     export default class WorldView extends ui.test.worldUI {
     // private _gameScene:Laya.Scene3D;
 
@@ -51,7 +54,13 @@ import WorldCell from "./WorldCell";
 
         this.on(Laya.Event.DISPLAY,this,this.onDis);
 
-        
+        let myTime = new MyTimeGold();
+        myTime.setUI( this.timeLogo );
+        this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
+    }
+
+    private timeClickFun():void{
+        App.dialogManager.open( GameMain.TIME_GOLD );
     }
 
     private updateItem(cell: WorldCell, index: number): void  {

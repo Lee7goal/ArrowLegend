@@ -7,34 +7,54 @@ import { GoldType } from "./HomeData";
 import FlyUpTips from "../../main/FlyUpTips";
 import GameEvent from "../../main/GameEvent";
 import { GOLD_CHANGE_TYPE } from "../../UseGoldType";
+import HeroBaseData from "./HeroBaseData";
 
 /**
  * 角色类 有女海盗 有坦克车 等等
  */
 export default class HeroData implements IData{
-    public heroData:any = {};
-
+    public heroMap:any = {};
     constructor(){
         
     }
 
     public setData(data:any):void{
-        this.heroData = data.heroData;
+        this.initData(null);
+        let str:string = data.heroData;
+        let arr = str.split(".");
+        for( let v of arr ){
+            let hd = new HeroBaseData();
+            hd.setString( v );
+            this.heroMap[hd.id] = hd;
+        }
     }
     
     public saveData(data:any):void{
-        data.heroData = this.heroData;
+        let arr:Array<any> = [];
+        for( let k in this.heroMap ){
+            let hd:HeroBaseData = this.heroMap[k];
+            arr.push( hd.getString() );
+        }
+        data.heroData = arr.join(".");
     }
     
     public initData(data:any):void{
         let arr:SysRoleBase[] = App.tableManager.getTable(SysRoleBase.NAME);
-        for( let k of arr ){
-            this.heroData[k.id] = [1,1];
+        for( let k of arr ){ 
+            let hd = new HeroBaseData();
+            hd.id = k.id;
+            hd.initData();
+            this.heroMap[hd.id] = hd;
         }
     }
 
+    /**
+     * @param heroId 得到英雄的等级
+     * @param type 
+     */
     public getHeroLv( heroId:number , type:HeroLvType ):number{
-        return this.heroData[heroId][type];
+        let hd:HeroBaseData = this.heroMap[heroId];
+        return hd.getLv( type );
     }
 
     /**
@@ -42,7 +62,9 @@ export default class HeroData implements IData{
      * @param type 
      */
     public lvUp( heroId:number , type:HeroLvType ):boolean{
-        let lv = this.heroData[heroId][type];
+        let hd:HeroBaseData = this.heroMap[heroId];
+        
+        let lv = hd.getLv( type );
         let sys:SysRoleUp = SysRoleUp.getSysRole( heroId , lv );
         let cost = sys.getCost(type);
         let goldType = sys.getCostType(type);
@@ -56,7 +78,7 @@ export default class HeroData implements IData{
             //已经到头了 无法升级
             return false;
         }
-        this.heroData[heroId][type] = nowLv;
+        hd.setLv( type , nowLv );
         Laya.stage.event( GameEvent.HERO_UPDATE );
         Session.saveData();
         return true;

@@ -9,6 +9,7 @@ import TaskData from "../game/data/TaskData";
 import GameEvent from "./GameEvent";
 import HeroData from "../game/data/HeroData";
 import Monster from "../game/player/Monster";
+import TimeGoldData from "../game/data/TimeGoldData";
 
 export default class Session{
     static SKEY:string;
@@ -18,20 +19,29 @@ export default class Session{
 
     static gameData:any = {};
 
-    static homeData:HomeData = new HomeData();
-    static talentData:TalentData = new TalentData();
-    static userData:UserData = new UserData();
-    static taskData:TaskData = new TaskData();
-    static heroData:HeroData = new HeroData();
+    static homeData:HomeData = null;
+    static talentData:TalentData = null;
+    static userData:UserData = null;
+    static taskData:TaskData = null;
+    static heroData:HeroData = null;
+    static timeGoldData:TimeGoldData = null;
 
     static IDataArr:Array<IData> = [];
 
     public static init():void{
+        Session.homeData = new HomeData();
+        Session.talentData = new TalentData();
+        Session.taskData = new TaskData();
+        Session.userData = new UserData();
+        Session.heroData = new HeroData();
+        Session.timeGoldData = new TimeGoldData();
+        
         Session.IDataArr.push( Session.homeData );
         Session.IDataArr.push( Session.talentData );
         Session.IDataArr.push( Session.taskData );
         Session.IDataArr.push( Session.userData );
         Session.IDataArr.push( Session.heroData );
+        Session.IDataArr.push( Session.timeGoldData );
     }
 
     static saveData():void{
@@ -51,7 +61,10 @@ export default class Session{
             
         } else {
             Session.isGuide = true;
-            Laya.stage.once(GameEvent.CONFIG_OVER , null , Session.configFun );
+            for( let i of Session.IDataArr ){
+                i.initData( Session.gameData );
+            }
+            Session.saveData();
         }
     }
 

@@ -2,11 +2,11 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":2,
-    "selecteID":16,
+    "selecteID":18,
     "searchKey":"Dialog",
     "props":{"width":750,"sceneColor":"#000000","isModal":true,"height":1200},
     "nodeParent":-1,
-    "maxID":18,
+    "maxID":19,
     "label":"Dialog",
     "isOpen":true,
     "isDirectory":true,
@@ -14,6 +14,21 @@
     "hasChild":true,
     "compId":2,
     "child":[
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"game/viewbg.scene",
+            "searchKey":"UIView",
+            "props":{"y":10,"x":10,"centerY":0,"centerX":0},
+            "nodeParent":2,
+            "label":"UIView",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":18,
+            "child":[
+                ]
+        },
         {
             "x":15,
             "type":"Box",

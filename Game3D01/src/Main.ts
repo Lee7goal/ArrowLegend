@@ -51,6 +51,8 @@ import { BaseCookie } from "./gameCookie/BaseCookie";
 import CookieKey from "./gameCookie/CookieKey";
 import MyEffect from "./core/utils/MyEffect";
 import Session from "./main/Session";
+import ZipLoader from "./core/utils/ZipLoader";
+import GameEvent from "./main/GameEvent";
 
 class Main {
 	constructor() {
@@ -96,12 +98,38 @@ class Main {
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
-		Laya.loader.load(["h5/config.json", "loading/loadingClip.png","loading/jiazai.jpg","loading/btn_kaishi.png",], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
+		
+		Laya.loader.load( "h5/config.json" , new Laya.Handler(this,this.configFun) );
 
 		App.init();
 		MyEffect.initBtnEffect();
-		Session.init();
+	}
 
+	private configFun():void{
+		let config = Laya.loader.getRes("h5/config.json");
+		App.platformId = config.platformId;
+		App.serverIP = config.platforms[App.platformId];
+		this.loadZip();
+	}
+
+	private loadZip():void{
+		Laya.loader.load( "h5/tables.zip" , new Laya.Handler(this,this.zipOverFun) , null, Laya.Loader.BUFFER  );
+	}
+
+	private zipOverFun():void{
+		ZipLoader.instance.zipFun( Laya.loader.getRes("h5/tables.zip") , new Laya.Handler(this, this.zipFun));
+	}
+
+	private zipFun( arr: any[] ):void {
+		GameMain.initDialog();
+		GameMain.initTable( arr );
+		Session.init();
+        Laya.stage.event( GameEvent.CONFIG_OVER );
+		this.loadRes();
+	}
+
+	private loadRes():void{
+		Laya.loader.load(["loading/loadingClip.png","loading/jiazai.jpg","loading/btn_kaishi.png",], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 	}
 
 	private _initView: ui.test.initViewUI;
@@ -117,16 +145,6 @@ class Main {
 		this.regClass();
 
 		// this._initView.initTxt.text = "";
-
-		let config = Laya.loader.getRes("h5/config.json");
-		console.log("config---", config);
-		App.platformId = config.platformId;
-		App.serverIP = config.platforms[App.platformId];
-
-		
-		
-		
-		
 
 		if (!this.homePage) {
 			this.homePage = new ui.game.homePageUI();
@@ -228,7 +246,6 @@ class Main {
 	private onHandler(): void {
 		console.log("加载完成");
 		this.curBP.checkUpdate();
-
 		new LoginHttp(new Laya.Handler(this, this.onSuccess)).checkLogin();
 	}
 
