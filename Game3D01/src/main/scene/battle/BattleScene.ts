@@ -35,6 +35,7 @@ import GameThorn from "../../../game/GameThorn";
 import BattleFlagID from "../BattleFlagID";
 import GuideTalk from "../../guide/GuideTalk";
 import GuideActionArea from "../../guide/GuideActionArea";
+import HeroBullet from "../../../game/player/HeroBullet";
 export default class BattleScene extends Laya.Sprite {
 
     _top: TopUI;
@@ -85,12 +86,14 @@ export default class BattleScene extends Laya.Sprite {
 
         this._top = new TopUI();
         this.addChild(this._top);
-        this._top.reset();
+        
 
         this._top.zanting.clickHandler = new Laya.Handler(this, this.showPause);
 
         Laya.stage.on(Game.Event_SELECT_NEWSKILL, this, this.onShowSelect);
         Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
+
+        Laya.stage.on(GameEvent.PASS_CHAPTER,this,this.onOver);
 
         Laya.stage.on(GameEvent.MEMORY_WARNING,this,this.onRelease);
 
@@ -167,6 +170,8 @@ export default class BattleScene extends Laya.Sprite {
 
     private nullGridList:Laya.Point[] = [];
     init(): void {
+        Laya.Pool.clearBySign(HeroBullet.TAG);
+        this._top.reset();
         if(!Game.hero)
         {
             Game.hero = new Hero();
@@ -315,13 +320,13 @@ export default class BattleScene extends Laya.Sprite {
         Game.hero.playerData.lastLevel = Game.hero.playerData.level;
         Game.bg.updateY();
 
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1008));
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1009));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1005));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1008));
+        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1009));
 
         this.setGuide("滑动摇杆，控制角色到达指定位置。",1);
 

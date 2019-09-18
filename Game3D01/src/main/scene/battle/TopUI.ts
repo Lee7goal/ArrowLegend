@@ -138,6 +138,10 @@ export class IndexBox extends ui.game.battleIndexBoxUI
     init():void
     {
         this._cellList.length = 0;
+        if(Session.homeData.chapterId == 0)
+        {
+            return;
+        }
         let max:number = SysMap.getTotal(Session.homeData.chapterId);
         for(let i = 0; i < max; i++)
         {
@@ -155,6 +159,10 @@ export class IndexBox extends ui.game.battleIndexBoxUI
     private _isInit:boolean = false;
     update(index:number):void
     {
+        if(Session.homeData.chapterId == 0)
+        {
+            return;
+        }
         for(let i = 0; i < this._cellList.length; i++)
         {
             this._cellList[i].visible = false;

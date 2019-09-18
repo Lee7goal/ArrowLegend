@@ -7,6 +7,7 @@ import MaoLineData from "./MaoLineData";
 import SysSkill from "../main/sys/SysSkill";
 import Hero from "./player/Hero";
 import BattleFlagID from "../main/scene/BattleFlagID";
+import Session from "../main/Session";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -72,31 +73,31 @@ export default class GameMap0 extends Laya.Sprite {
 
         this.reset();
 
-        hb = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww);
-        hb.setXY(0, GameBG.ww * 2);
-        this.Wharr.push(hb);
-        this.Aharr.push(hb);
-        this.Flyharr.push(hb);
-
-        hb = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww);
-        hb.setXY(0, GameBG.ww * (GameBG.MAP_ROW - 2));
+        hb = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww * 3);
+        hb.setXY(0,0);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
 
         hb = new GameHitBox(GameBG.ww, GameBG.ww * GameBG.MAP_ROW);
-        hb.setXY(GameBG.ww, 0);
+        hb.setXY(0, 0);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
 
         hb = new GameHitBox(GameBG.ww, GameBG.ww * GameBG.MAP_ROW);
-        hb.setXY(GameBG.ww * (GameBG.MAP_COL - 2), 0);
+        hb.setXY(GameBG.ww * (GameBG.MAP_COL -1), 0);
         this.Wharr.push(hb);
         this.Aharr.push(hb);
         this.Flyharr.push(hb);
 
-        this.endRowNum = GameBG.MAP_COL - 2;
+        hb = new GameHitBox(GameBG.ww * GameBG.MAP_COL, GameBG.ww * 3);
+        hb.setXY(0, GameBG.ww * (GameBG.MAP_ROW - 3));
+        this.Wharr.push(hb);
+        this.Aharr.push(hb);
+        this.Flyharr.push(hb);
+
+        this.endRowNum = GameBG.MAP_ROW - 3;
 
         // if(Game.BigMapMode==0){//如果不是大地图模式
         //     hb = new GameHitBox(GameBG.ww, GameBG.ww * (GameBG.hnum - 2));
@@ -272,7 +273,14 @@ export default class GameMap0 extends Laya.Sprite {
         if (this.doorHitBox && Game.hero.hbox.hit(Game.hero.hbox, this.doorHitBox))  {
             bool = true;
             this.doorHitBox = null;
-            Game.battleLoader.load();
+            if(Session.homeData.isPass)
+            {
+                
+            }
+            else
+            {
+                Game.battleLoader.load();
+            }
         }
         return bool;
     }

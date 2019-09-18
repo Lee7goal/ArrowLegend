@@ -28,9 +28,11 @@ import BuffManager from "./buff/BuffManager";
 import GameAlert from "../main/GameAlert";
 import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
+import SysMap from "../main/sys/SysMap";
+import GameEvent from "../main/GameEvent";
 
 export default class Game {
-    static resVer:string = "1.0.16";
+    static resVer:string = "1.0.17.1925";
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -160,6 +162,19 @@ export default class Game {
             return;
         }
         console.log("开门");
+
+        Session.homeData.isPass = false;
+        if(Game.battleLoader.index >= SysMap.getTotal(Game.battleLoader.chapterId) && Game.battleLoader._configId != 100000)
+        {
+            console.log("通关了");
+            Session.homeData.isPass = true;
+            Session.homeData.chapterId++;
+            Game.battleLoader.index = 0;
+            Session.homeData.mapIndex = 0;
+
+            Laya.stage.event(GameEvent.PASS_CHAPTER)
+        }
+
         Game.cookie.setCookie(CookieKey.CURRENT_BATTLE,{
             "mapId":Game.battleLoader.mapId,
             "index":Game.battleLoader.index,
@@ -172,6 +187,7 @@ export default class Game {
         Game.isOpen = true;
         if(Session.isGuide)
         {
+            Session.homeData.chapterId = 1;
             Game.scenneM.battle.setGuide("通过传送进入下一关。",5);
             Session.isGuide = false;
             Game.battleLoader.index = 1;
@@ -180,6 +196,8 @@ export default class Game {
         {
             Game.battleLoader.index++;
         }
+
+
         Game.bg.setDoor(1);
         Game.layer3d.addChild(Game.door);
         // Game.door.transform.localPositionY = 0;

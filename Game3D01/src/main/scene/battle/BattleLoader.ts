@@ -28,7 +28,7 @@ export default class BattleLoader {
     constructor() { 
         
     }
-
+    chapterId:number = 0;
     private _mapId: number;
     private _index: number = 1;
     private resAry: string[] = [];
@@ -154,20 +154,20 @@ export default class BattleLoader {
         }
         else
         {
-            let maxCeng:number =  SysMap.getTotal(Session.gameData.chapterId);
+            let maxCeng:number =  SysMap.getTotal(this.chapterId);
             if (this._index > maxCeng) {
                 this._index = 1;
             }
             
-            this._mapId = Session.homeData.chapterId * 1000 + this._index;
+            this._mapId = this.chapterId * 1000 + this._index;
             let configId: number;
             if(Session.isGuide)
             {
-                configId = 100100;
+                configId = 100000;
             }
             else
             {
-                this.sysMap = SysMap.getData(Session.homeData.chapterId, this._mapId);
+                this.sysMap = SysMap.getData(this.chapterId, this._mapId);
                 this.curBoTimes = 0;
                 this.maxBoTimes = this.sysMap.numEnemy;
                 this.monsterGroup = this.sysMap.enemyGroup.split(",");
@@ -176,7 +176,7 @@ export default class BattleLoader {
             }
             this._configId = configId;
         }
-        // this._configId = 101401;
+        // this._configId = 1001;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }
@@ -235,7 +235,7 @@ export default class BattleLoader {
     private loadBg():void
     {
         let map = Laya.loader.getRes("h5/mapConfig/" + this._configId + ".json");
-        GameBG.MAP_ROW = map.rowNum + 4;
+        GameBG.MAP_ROW = map.rowNum;
         GameBG.MAP_COL = map.colNum;
 
         GameBG.MAP_ROW2 = Math.floor(GameBG.MAP_ROW * 0.5);
@@ -244,7 +244,7 @@ export default class BattleLoader {
 
         GameBG.bgId = map.bgId;
         GameBG.bgWW = map.bgWidth;
-        GameBG.bgHH = map.bgHeight + 250;
+        GameBG.bgHH = map.bgHeight;
         GameBG.bgCellWidth = map.cellWidth;
 
         GameBG.arr0 = map.arr;

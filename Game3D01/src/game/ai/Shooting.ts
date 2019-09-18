@@ -54,7 +54,7 @@ export default class Shooting {
         this.pro = pro;
         this.curAttack = acstr
         if (this.attackOk()) {            
-            this.st = this.now + Game.hero.playerData.attackSpeed;
+            this.st = Game.executor.getWorldNow() + Game.hero.playerData.attackSpeed;
             this.scd = 0;
             this.pro.play(acstr);
             if (this.at > 0) {
@@ -82,6 +82,7 @@ export default class Shooting {
             }
             if (this.scd == 0) {
                 this.scd = 1;
+                this.st = Game.executor.getWorldNow() + Game.hero.playerData.attackSpeed;
                 this.pro.event(Game.Event_Short, this.curAttack);
                 this.et = this.st;
             }

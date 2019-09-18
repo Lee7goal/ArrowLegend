@@ -5,6 +5,8 @@ import Game from "../Game";
 import { GOLD_CHANGE_TYPE } from "../../UseGoldType";
 import App from "../../core/App";
 import SysHero from "../../main/sys/SysHero";
+import SysMap from "../../main/sys/SysMap";
+import Session from "../../main/Session";
 
 export default class HomeData implements IData{
     
@@ -25,6 +27,8 @@ export default class HomeData implements IData{
     redDiamond:number = 0;
     blueDiamond:number = 0;
     playerExp:number = 0;
+
+    isPass:boolean = false;
 
     public setData(data:any):void{
         this.totalEnergy = data.totalEnergy;
@@ -60,8 +64,8 @@ export default class HomeData implements IData{
         data.maxEngergy = this.maxEngergy;
         data.lastTime = this.lastTime;
         data.totalEnergy = this.totalEnergy;
-        data.chapterId = this.chapterId;
         data.mapIndex = this.mapIndex;
+        data.chapterId = this.chapterId;
         data.level = this.level;
         data.coins = this.coins;
         data.playerExp = this.playerExp;
@@ -83,7 +87,7 @@ export default class HomeData implements IData{
         this.maxEngergy = TopUI.MAX_ENERGY;
         this.curEnergy = this.totalEnergy;
         this.lastTime = 0;
-        this.chapterId = 1;
+        this.chapterId = 0;
         this.mapIndex = 0;
         this.level = 1;
         this.coins = 0;

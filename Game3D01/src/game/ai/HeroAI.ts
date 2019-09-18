@@ -72,7 +72,7 @@ export default class HeroAI extends GameAI {
             Game.selectEnemy(Game.map0.Eharr[0].linkPro_);
         }
         Game.hero.on(Game.Event_Short, this, this.short);
-        this.shootin.at = 0.5;
+        this.shootin.at = 0.6;
         this.shootin.now = Game.executor.getWorldNow();
     }
 
@@ -154,7 +154,7 @@ export default class HeroAI extends GameAI {
 
     private onShoot(basePower: number): void {
         let moveSpeed: number = GameBG.ww / 2;
-        // moveSpeed = 2;
+        // moveSpeed = 1;
 
         let skillLen: number = Game.skillManager.skillList.length;
 

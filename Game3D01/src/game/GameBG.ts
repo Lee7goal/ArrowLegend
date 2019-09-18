@@ -168,6 +168,8 @@ export default class GameBG extends Laya.Sprite {
     }
 
     private npcP:Laya.Point = new Laya.Point();
+
+    private startX:number;
     public drawR(hasBoss:boolean = false): void {
         this.npcId = 0;
         var img: Image;
@@ -178,26 +180,24 @@ export default class GameBG extends Laya.Sprite {
         this.addChild(this._box);
         this.addChild(this.saw);
 
-        var sprite:Laya.Image = new Laya.Image();
-        this._box.addChild(sprite);
-        sprite.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+".jpg");
-        sprite.sizeGrid = "584,711,51,72";
-        sprite.size(GameBG.bgWW,GameBG.bgHH);
+        // this._box.cacheAs = "bitmap";
+
+        
 
         // var topImg:Laya.Image = new Laya.Image();
         // this._box.addChild(topImg);
         // topImg.y = -211;
         // topImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_0.png");
 
-        var bottomImg:Laya.Image = new Laya.Image();
-        this._box.addChild(bottomImg);
-        bottomImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_1.png");
-        bottomImg.y = 1372;
+        // var bottomImg:Laya.Image = new Laya.Image();
+        // this._box.addChild(bottomImg);
+        // bottomImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_1.png");
+        // bottomImg.y = 1372;
         
         let index2:number = 0;
         for (let j = 0; j < GameBG.MAP_ROW; j++) {
             this.bgh += ww;
-            if(GameBG.MAP_ROW % 2 == 0)
+            if(GameBG.MAP_COL % 2 == 0)
             {
                 index2++;
             }
@@ -205,9 +205,12 @@ export default class GameBG extends Laya.Sprite {
 
                 gType = GameBG.arr0[k];
                 img = new Image();
+                img.skin = (index2 % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
                 this._box.addChild(img);
+                img.size(64,64);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
+
                 index2++;
                 var thorn:GameThorn;
                 var grid:Image = new Image();
@@ -272,7 +275,6 @@ export default class GameBG extends Laya.Sprite {
 
                 if(gType == BattleFlagID.DOOR)
                 {
-                    this._box.addChild(this._door);
                     this._door.pos(img.x - GameBG.ww2,img.y - GameBG.ww2);
                     this._door.skin = 'bg/door.png';
                     console.log("门的位置",img.x,img.y);
@@ -354,11 +356,26 @@ export default class GameBG extends Laya.Sprite {
             this.saw.addBg(pos.x,pos.y,hh,2);
         }
 
+        this._box.addChild(this._door);
+
         this.saw.updateSaw();
-        this.x = -GameBG.ww2;
+        this.startX = GameBG.ww2;
+        this.x = -this.startX;
         this.y = (Laya.stage.height -GameBG.bgHH) * 0.5;
         GameBG.cx = this.x;
         GameBG.cy = this.y;
+
+        var sprite:Laya.Image = new Laya.Image();
+        this.addChild(sprite);
+        // sprite.alpha = 0.4;s
+        // sprite.x = GameBG.ww;
+        // sprite.texture = Laya.loader.getRes("h5/mapbg/topbg.png");
+        sprite.skin = "topbg.png";
+        sprite.sizeGrid = "506,421,801,321";
+        sprite.width = GameBG.bgWW;
+        sprite.height = GameBG.bgHH;
+        
+        // sprite.size(GameBG.bgWW - GameBG.ww,GameBG.ww * 10);
     }
 
     public showGuidePointer():void{
@@ -471,18 +488,19 @@ export default class GameBG extends Laya.Sprite {
             Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
         }
 
+        let ww2 = this.startX;
         var bgx: number = GameBG.cx - Game.hero.pos2.x;
-        if (bgx <= -GameBG.ww2 && bgx >= (Laya.stage.width - GameBG.bgWW) + GameBG.ww2) {
+        if (bgx <= -ww2 && bgx >= (Laya.stage.width - GameBG.bgWW) + ww2) {
             Game.camera.transform.localPositionX = Game.hero.x;
             Game.bg.x = bgx;
             u = true;
         }
-        else if(bgx > -GameBG.ww2 ){
-            Game.bg.x = -GameBG.ww2;
+        else if(bgx > -ww2 ){
+            Game.bg.x = -ww2;
             Game.camera.transform.localPositionX = (GameBG.cx  -Game.bg.x)/GameBG.ww;
         }
         else{
-            Game.bg.x = (Laya.stage.width - GameBG.bgWW) + GameBG.ww2;
+            Game.bg.x = (Laya.stage.width - GameBG.bgWW) + ww2;
             Game.camera.transform.localPositionX = (GameBG.cx  -Game.bg.x)/GameBG.ww;
         }
 

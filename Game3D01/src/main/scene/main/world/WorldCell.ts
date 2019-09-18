@@ -6,6 +6,7 @@ import Session from "../../../Session";
 import FlyUpTips from "../../../FlyUpTips";
 import SysMap from "../../../sys/SysMap";
 export default class WorldCell extends ui.test.worldCellUI {
+    private sys:SysChapter;
     constructor() { 
         super(); 
         this.mapBtn.clickHandler = new Laya.Handler(this,this.onClick);
@@ -17,6 +18,7 @@ export default class WorldCell extends ui.test.worldCellUI {
     {
         if(!this.suo.visible)
         {
+            Game.battleLoader.chapterId = this.sys.id;
             Laya.stage.event(GameEvent.START_BATTLE);
         }
         else
@@ -27,6 +29,7 @@ export default class WorldCell extends ui.test.worldCellUI {
 
     update(sysChapter:SysChapter):void
     {
+        this.sys = sysChapter;
         this.suo.visible = Session.gameData.chapterId < sysChapter.id;
         this.mapBtn.gray = this.suo.visible;
         this.cengshuTxt.text = "";

@@ -9,8 +9,8 @@ export default class WXPlatform extends BasePlatform {
     checkUpdate(): void {
         //右上角转发
         Laya.Browser.window.wx.showShareMenu();
-        var id = 'mss05Kw6QeiJbN73G30yFA' // 通过 MP 系统审核的图片编号
-        var url = 'https://mmocgame.qpic.cn/wechatgame/myCE4RvnnlWbLMDCe1kBOVfEy4RuicNqB65G9yDzdvib1zNFpniajf0xJxm4ewoRtAl/0' // 通过 MP 系统审核的图片地址
+        var id = 'hebPVHd-ROOvCPBYwMaWzA' // 通过 MP 系统审核的图片编号
+        var url = 'https://mmocgame.qpic.cn/wechatgame/myCE4RvnnlUwh8icwghnhQjdvCNVqau9jVdAVMCpd3RdUAc0fA3pHsW0CRDkpKGIX/0' // 通过 MP 系统审核的图片地址
 
         Laya.Browser.window.wx.onShareAppMessage(function () {
             return {

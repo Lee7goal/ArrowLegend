@@ -14,4 +14,6 @@ export default class GameEvent{
     static PLAYER_INFO_UPDATE:string = "PLAYER_INFO_UPDATE";
 
     static TALENT_UPDATE:string = "TALENT_UPDATE";
+
+    static PASS_CHAPTER:string = "PASS_CHAPTER";
 }

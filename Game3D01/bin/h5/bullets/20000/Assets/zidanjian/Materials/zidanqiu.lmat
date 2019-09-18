@@ -1,28 +1,31 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.ShurikenParticleMaterial",
+		"type":"Laya.UnlitMaterial",
+		"name":"zidanqiu",
 		"renderStates":[
 			{
 				"cull":0,
-				"blend":1,
-				"srcBlend":770,
-				"dstBlend":1,
-				"depthWrite":false,
+				"blend":0,
+				"srcBlend":1,
+				"dstBlend":0,
+				"depthWrite":true,
 				"depthTest":515
 			}
 		],
-		"name":"glow",
+		"enableVertexColor":false,
 		"alphaTest":false,
-		"renderQueue":3000,
+		"alphaTestValue":0.757,
+		"renderQueue":2000,
+		"albedoIntensity":1.35,
 		"textures":[
 			{
-				"name":"texture",
-				"path":"../Textures/glow.png",
+				"name":"albedoTexture",
+				"path":"../Textures/yuanqiu.jpg",
 				"constructParams":[
-					512,
-					512,
-					1,
+					64,
+					64,
+					0,
 					true
 				],
 				"propertyParams":{
@@ -44,17 +47,15 @@
 				]
 			},
 			{
-				"name":"color",
+				"name":"albedoColor",
 				"value":[
-					0.5,
-					0.5,
-					0.5,
-					0.5
+					1,
+					1,
+					1,
+					1
 				]
 			}
 		],
-		"defines":[
-			"ADDTIVEFOG"
-		]
+		"defines":[]
 	}
 }

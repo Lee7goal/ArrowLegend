@@ -4,10 +4,9 @@ import Game from "../Game";
 import HeroArrowAI from "../ai/HeroArrowAI";
 import ArrowGameMove0 from "../move/ArrowGameMove0";
 import SysSkill from "../../main/sys/SysSkill";
+import FootRotateScript from "../controllerScript/FootRotateScript";
 export default class HeroBullet extends GamePro {
     static TAG: string = 'HeroBullet';
-
-
     chuantouSkill: SysSkill;
     fantanSkill: SysSkill;
     tansheSkill: SysSkill;
@@ -28,6 +27,10 @@ export default class HeroBullet extends GamePro {
     setBullet(id: number): void  {
         if (!this.sp3d)  {
             this.setSp3d(Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bullets/" + id + "/monster.lh")));
+            // (this.sp3d.getChildAt(0) as Laya.Sprite3D).transform.localRotationEulerY = -this.sp3d.transform.localRotationEulerY;
+
+            // this.sp3d.transform.localRotationEulerX = 45;
+            // this.sp3d.addComponent(FootRotateScript)
             console.log("创建主角的子弹");
         }
 
@@ -85,9 +88,9 @@ export default class HeroBullet extends GamePro {
         // Laya.timer.once(1000,this,()=>{
 
         // })
-        // this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
-        this.sp3d.transform.localPositionY = -500;
-        this.sp3d.transform.localPositionZ = -500;
+        this.sp3d.parent && this.sp3d.parent.removeChild(this.sp3d);
+        // this.sp3d.transform.localPositionY = -500;
+        // this.sp3d.transform.localPositionZ = -500;
         Laya.Pool.recover(HeroBullet.TAG, this);
     }
 }

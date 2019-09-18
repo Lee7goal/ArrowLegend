@@ -54,6 +54,7 @@ export default class GameMain {
     }
 
     private onContinue(res): void  {
+        Game.battleLoader.chapterId = res.chapterId;
         Game.battleLoader.load(res);
         console.log("继续战斗", res);
     }

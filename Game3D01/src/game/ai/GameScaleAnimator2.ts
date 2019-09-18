@@ -28,7 +28,7 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
             let nextX:number = this.sp.x + vx;
             let nextY:number = this.sp.y + vy
 
-            if(nextX >= (GameBG.width - GameBG.ww2) || nextX <= GameBG.ww2 || nextY >= ((Game.map0.endRowNum - 1) * GameBG.ww) || nextY <= 10 * GameBG.ww)
+            if(nextX >= (GameBG.bgWW - GameBG.ww) || nextX <= GameBG.ww || nextY >= (Game.map0.endRowNum  * GameBG.ww) || nextY <= 3 * GameBG.ww)
             {
                 return;
             }
@@ -37,6 +37,7 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
             var hits = Game.map0.Wharr;
             if( !Game.map0.chechHit_arr(this.futureBox,hits) ){
                 this.ms.setXY2DBox(this.futureBox.x,this.futureBox.y);
+                console.log("位移");
             }
             else
             {
@@ -62,6 +63,8 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
         st = zoom*0.2 *(1 - nt );
         st = zoom*1 + st ;
         ms.sp3d.transform.localScaleX = st;
+
+        console.log("缩放");
     }
 
     public ai(ms:Monster):void{        

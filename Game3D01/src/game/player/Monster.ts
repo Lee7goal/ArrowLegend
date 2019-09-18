@@ -115,6 +115,7 @@ export default class Monster extends GamePro {
     }
 
     public hurt(hurt: number, isCrit: boolean,isBuff:boolean = false): void {
+        Game.playSound("monsterHit.mp3");
         super.hurt(hurt, isCrit);
         if(this.sysEnemy.isBoss)
         {
