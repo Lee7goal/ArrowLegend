@@ -19,28 +19,25 @@ import SysTalent from "./sys/SysTalent";
 import SysTalentInfo from "./sys/SysTalentInfo";
 import GameEvent from "./GameEvent";
 import Session from "./Session";
+import TimeGoldDialog from "./scene/main/timegold/TimeGoldDialog";
 
 export default class GameMain {
     constructor() {
-        ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"), new Laya.Handler(this, this.zipFun));
+        //ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"), new Laya.Handler(this, this.zipFun));
+        this.zipFun( null );
     }
 
     private zipFun(arr: any[]): void {
-        this.initTable(arr);
+        //this.initTable(arr);
 
-        Laya.stage.event( GameEvent.CONFIG_OVER );
-
+        // Laya.stage.event( GameEvent.CONFIG_OVER );
+        // App.eventManager.event( GameEvent.CONFIG_OVER );
         Game.alert = new GameAlert();
-
         Game.scenneM.showMain();
-
         Game.battleLoader.preload();
-        if(Session.isGuide)
-        {
+        if(Session.isGuide){
             Game.battleLoader.load();
-        }
-        else
-        {
+        }else{
             Game.cookie.getCookie(CookieKey.CURRENT_BATTLE, (res) => {
                 if (res)  {
                     Game.alert.onShow("是否继续未完成的战斗?", new Laya.Handler(this, this.onContinue, [res]), new Laya.Handler(this, this.onCancel));
@@ -58,7 +55,7 @@ export default class GameMain {
         console.log("继续战斗", res);
     }
 
-    private initTable(arr: any[]): void {
+    public static initTable(arr: any[]): void {
         App.tableManager.register(SysChapter.NAME, SysChapter);
         App.tableManager.register(SysMap.NAME, SysMap);
         App.tableManager.register(SysEnemy.NAME, SysEnemy);
@@ -76,5 +73,11 @@ export default class GameMain {
         App.tableManager.register(SysTalent.NAME , SysTalent );
         
         App.tableManager.onParse(arr);
+    }
+
+    public static TIME_GOLD:string = "TIME_GOLD";
+
+    public static initDialog():void{
+        App.dialogManager.register( GameMain.TIME_GOLD , TimeGoldDialog , ["res/atlas/timegold.atlas"] );
     }
 }

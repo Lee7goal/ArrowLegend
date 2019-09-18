@@ -7,6 +7,7 @@ import { GoldType } from "./HomeData";
 import SysTalentCost from "../../main/sys/SysTalentCost";
 import Equip from "./Equip";
 import { ui } from "../../ui/layaMaxUI";
+import SysTalent from "../../main/sys/SysTalent";
 
 export default class TalentData implements IData {
     
@@ -15,7 +16,7 @@ export default class TalentData implements IData {
      * 默认升级0次
      */
     public lvTimes:number = 0;
-    public equip:Equip = new Equip();
+    
     public imgArr:Array<any> = [];
 
     public talentLvMap:any = {};
@@ -42,7 +43,7 @@ export default class TalentData implements IData {
         return this.imgArr[id-1];
     }
 
-    setData(data:any):void{
+    public setData(data:any):void{
         if( data.talent == null ){
             this.initData(data);
         }
@@ -52,18 +53,21 @@ export default class TalentData implements IData {
             let tLv:number = parseInt(arr[i+1]);
             this.talentLvMap[tId] = tLv;
         }
+        this.lvTimes = (data.lvTimes?data.lvTimes:0);
+        this.updateAttribute();
     }
 
-    saveData(data:any):void{
+    public saveData(data:any):void{
         let arr:Array<any> = [];
         for( let k in this.talentLvMap ){
             arr.push(k);
             arr.push( this.talentLvMap[k] );
         }
         data.talent = arr.join(",");
+        data.lvTimes = this.lvTimes;
     }
 
-    initData(data:any):void{
+    public initData(data:any):void{
         let sysArr:Array<SysTalentInfo> = App.tableManager.getTable( SysTalentInfo.NAME );
         for( let k of sysArr ){
             this.talentLvMap[k.id] = 0;
@@ -98,8 +102,39 @@ export default class TalentData implements IData {
         return "";
     }
 
-    public setView( v:ui.test.TianFuCellUI , id:number ):void{
-        
+    public atk:number = 0;
+    public hp:number = 0;
+    public def:number = 0;
+    
+    public equip:Equip = new Equip();
+
+    public updateAttribute():void{
+        this.equip.reset0();
+        this.equip.atk = this.getAtt( 1 );
+        this.equip.hp = this.getAtt( 2 );
+        this.equip.def = this.getAtt( 4 );
+        this.equip.atkSpeed = this.getAtt( 5 );
+        this.addItemhp = this.getAtt(3);
+        this.dropLevelhp = this.getAtt(6);
+        this.addCompose = this.getAtt(7);
+        this.lineGold = this.getAtt(8);
+        this.offlineGold = this.getAtt(9);
+    }
+
+    public offlineGold:number = 0;
+    public lineGold:number = 0;
+    public addCompose:number = 0;
+    public dropLevelhp:number = 0;
+    public addItemhp:number = 0;
+
+    private getAtt( tid:number ):number{
+        let lv = this.getLv(tid);
+        if( lv == 0 ){
+            return 0;
+        }
+        let sysInfo:SysTalentInfo = App.tableManager.getDataByNameAndId( SysTalentInfo.NAME , tid );
+        let sysT:SysTalent = App.tableManager.getDataByNameAndId( SysTalent.NAME , lv );
+        return sysT[sysInfo.idName];
     }
 
     /**
@@ -117,6 +152,7 @@ export default class TalentData implements IData {
         this.talentLvMap[id] = this.getLv( id ) + 1;
         App.sendEvent( GameEvent.TALENT_UPDATE );
         Session.saveData();
+        this.updateAttribute();
         return res;
     }
 
@@ -135,7 +171,7 @@ export default class TalentData implements IData {
         if( this.haveGold() == false ){
             return -1;
         }
-        if( this.lvTimes > Session.homeData.level ){
+        if( this.lvTimes >= Session.homeData.level ){
             return -2;
         }
         return 0;

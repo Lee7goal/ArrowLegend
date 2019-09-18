@@ -1,10 +1,4 @@
 <page>
-   <parsererror style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
-      <h3>This page contains the following errors:            </h3>
-      <div style="font-family:monospace;font-size:12px">error on line 59 at column 2: StartTag: invalid element name
-            </div>
-      <h3>Below is a rendering of the page up to the first error.            </h3>
-   </parsererror>
    <item name="test/RockerView.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/BloodUI.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/HeroFoot.scene" props="" ifExport="内嵌模式" aName=""/>

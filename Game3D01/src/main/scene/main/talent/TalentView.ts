@@ -121,6 +121,7 @@ export default class TalentView extends ui.test.talentUI {
         this.shengmingniu.disabled = !Session.talentData.haveGold();
         this.qianshu.value = Session.talentData.getGold() + "";
         //Session.talentData.canLvUp();
+        this.lvTime.text = "已升级" + Session.talentData.lvTimes + "次";
     }
 
     private effect():void{

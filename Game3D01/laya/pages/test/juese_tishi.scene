@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Dialog",
-    "selectedBox":7,
-    "selecteID":16,
+    "selectedBox":2,
+    "selecteID":4,
     "searchKey":"Dialog",
     "props":{"width":750,"sceneColor":"#000000","isModal":true,"height":1200},
     "nodeParent":-1,
-    "maxID":29,
+    "maxID":32,
     "label":"Dialog",
     "isOpen":true,
     "isDirectory":true,
@@ -14,6 +14,21 @@
     "hasChild":true,
     "compId":2,
     "child":[
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"game/viewbg.scene",
+            "searchKey":"UIView",
+            "props":{"y":20,"x":20,"centerY":0,"centerX":0},
+            "nodeParent":2,
+            "label":"UIView",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":29,
+            "child":[
+                ]
+        },
         {
             "x":15,
             "type":"Box",
@@ -47,7 +62,7 @@
                     "x":30,
                     "type":"Button",
                     "searchKey":"Button,rebornBtn",
-                    "props":{"y":460,"x":374,"width":358,"var":"rebornBtn","stateNum":"1","skin":"main/btn_zi.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"height":100,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":661,"x":375,"width":358,"var":"rebornBtn","stateNum":"1","skin":"main/btn_zi.png","sizeGrid":"0,27,0,28","scaleY":1,"scaleX":1,"height":100,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":4,
                     "label":"rebornBtn",
                     "isOpen":true,
@@ -101,24 +116,10 @@
                 },
                 {
                     "x":30,
-                    "type":"Label",
-                    "searchKey":"Label",
-                    "props":{"y":339,"x":290.5,"width":167,"text":"水晶不足","height":40,"fontSize":36,"color":"#000000","align":"center"},
-                    "nodeParent":4,
-                    "label":"Label",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":10,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
                     "type":"UIView",
                     "source":"test/GoldView.scene",
                     "searchKey":"UIView,v1",
-                    "props":{"y":159,"x":282,"var":"v1","scaleY":0.6,"scaleX":0.6},
+                    "props":{"y":53,"x":145,"var":"v1","scaleY":1.6,"scaleX":1.6},
                     "nodeParent":4,
                     "label":"v1",
                     "isDirectory":false,
@@ -127,6 +128,46 @@
                     "compId":28,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Box",
+                    "searchKey":"Box",
+                    "props":{"y":474,"x":262},
+                    "nodeParent":4,
+                    "label":"Box",
+                    "isOpen":null,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":31,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"width":244,"skin":"main/yuanhei.png","sizeGrid":"0,28,0,30","height":64},
+                            "nodeParent":31,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":30,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Label",
+                            "searchKey":"Label",
+                            "props":{"y":12,"x":38,"width":167,"text":"水晶不足","height":40,"fontSize":36,"color":"#ffffff","align":"center"},
+                            "nodeParent":31,
+                            "label":"Label",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":10,
+                            "child":[
+                                ]
+                        }]
                 }],
             "$HIDDEN":false
         }],
