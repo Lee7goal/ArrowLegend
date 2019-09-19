@@ -27,7 +27,7 @@ export default class RankData implements IData{
         obj.skey = Session.SKEY;
         obj.name = "荒野女枪";
         obj.scorestr = Session.homeData.chapterId;
-        obj.url = "chengjiu/xiao.png";
+        obj.url = "main/suo.png";
         obj.item = 0;
         if( Laya.Browser.onMiniGame == false ){
             App.http( App.serverIP + "gamex3/saveRank" , obj , "post" );
@@ -42,7 +42,11 @@ export default class RankData implements IData{
     }
 
     public getRank( caller:any  , listener:Function  ):void {
-        App.http( App.serverIP + "gamex3/getRank" , "skey=" + Session.SKEY + "&st=0&et=50", "GET",caller , listener );
+        let obj:any = {};
+        obj.skey = Session.SKEY;
+        obj.st = 0;
+        obj.et = 50;
+        App.http( App.serverIP + "gamex3/getRank" ,  obj , "GET", caller , listener );
     }
 
     /**
