@@ -3,20 +3,20 @@ import Session from "../../../Session";
 import Game from "../../../../game/Game";
 import SysChapter from "../../../sys/SysChapter";
     export default class LvUpView extends ui.test.shengjiUI {
-    clickHandler: Laya.Handler;
     constructor() {
         super();
         this.on(Laya.Event.DISPLAY, this, this.onDis);
-        this.rebornBtn.clickHandler = new Laya.Handler(this, this.onHide);
+        this.rebornBtn.clickHandler = new Laya.Handler(this, this.onCloseView);
     }
-
-    private onHide(): void  {
-        this.clickHandler && this.clickHandler.run();
+    
+    private onCloseView(): void {
+        this.removeSelf();
+        Game.showMain();
     }
 
     private onDis(): void  {
-        this.lvClip.value = "" + Session.homeData.battleLv;
-        this.lvLabel.text = "" + Session.homeData.battleLv;
+        this.lvClip.value = "" + Session.homeData.playerLv;
+        this.lvLabel.text = "" + Session.homeData.playerLv;
         
         this.lanBox.removeSelf();
         this.ziBox.removeSelf();

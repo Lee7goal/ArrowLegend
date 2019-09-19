@@ -34,23 +34,11 @@ export default class GameOverView extends ui.test.GameOverUI {
         this.topBox.scale(2.5, 2.5);
         Laya.Tween.to(this.topBox, { scaleX: 1, scaleY: 1 }, 200, null, new Laya.Handler(this, this.onNext));
 
-
-        let lastLv: number = Session.homeData.battleLv;
-
-        this.cengshu.value = Session.homeData.battleLv + "";
-        this.dengji.value = Session.homeData.battleLv + "";
+        this.cengshu.value = Session.homeData.playerLv + "";
+        this.dengji.value = Session.homeData.playerLv + "";
 
         Game.addCoins = Game.battleCoins;
-        Session.saveData();
-        Game.addCoins = 0;
         Laya.timer.frameLoop(1, this, this.onLoop);
-
-
-        if (lastLv != Session.homeData.battleLv)  {
-            setTimeout(() => {
-                Laya.stage.event(GameEvent.LV_UP_VIEW);
-            }, 800);
-        }
     }
 
     private onNext(): void {
@@ -58,18 +46,27 @@ export default class GameOverView extends ui.test.GameOverUI {
         setTimeout(() => {
             this.expBox.visible = true;
 
-            let lastLv: number = Session.homeData.battleLv;
+            let lastLv: number = Session.homeData.playerLv;
             let sys: SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME, lastLv);
             let ww: number = this.expBar.width * Game.battleExp / sys.roleExp;
             ww = Math.max(1, ww);
             this.expBar.scrollRect = new Laya.Rectangle(0, 0, ww, this.expBar.height);
 
-            let vv: number = Session.homeData.playerExp / sys.roleExp;
+            let vv: number = (Session.homeData.playerExp + Game.battleExp) / sys.roleExp;
             Laya.timer.frameLoop(1, this, this.onLoopExp, [vv]);
 
             Session.homeData.addPlayerExp(Game.battleExp);
+            let newLv:number = Session.homeData.playerLv;
+
+            console.log("是否升级的判断",lastLv,newLv,);
+
+            setTimeout(() => {
+                if (lastLv != newLv)  {
+                    Laya.stage.event(GameEvent.LV_UP_VIEW);
+                }
+            }, 1000);
         }, 100);
-        let hh = 866;
+        let hh = 780;
         setTimeout(() => {
             this.lingqu.visible = true;
             if (SysChapter.blueNum > 0)  {
@@ -98,6 +95,8 @@ export default class GameOverView extends ui.test.GameOverUI {
         }, 200);
         setTimeout(() => {
             this.fuhuo.visible = true;
+            Session.saveData();
+            Game.addCoins = 0;
         }, 300);
     }
 

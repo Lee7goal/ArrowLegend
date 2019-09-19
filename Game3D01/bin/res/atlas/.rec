@@ -42,7 +42,7 @@ P 9FF2060E qianshu.png
 P E678BFE4 qipaowen.png
 P AFF0FC23 renlankuang.png
 P 66D52362 renyan.png
-P DFF9EE63 rockerBall.png
+P E55E4211 rockerBall.png
 P 81B51E22 rockerBg.png
 P 2648BCEB rollDir.png
 P 6EC0F896 sanjiao.png
@@ -184,6 +184,7 @@ P 61A644DA kapai.png
 P F78AF3A9 kawen.png
 P CC20CE54 liubei.png
 P 3A3DCE15 maohao.png
+P 253CFB6C paihangbangdi.png
 P 0178A633 PTtian.png
 P DF0111DA qing.png
 P 1D522270 quantiao.png
@@ -196,6 +197,7 @@ P AD7FCD1D shamolvzhou.png
 P A88CEF17 shandianjia.png
 P DB7D6C33 shengji.png
 P 4DAD8819 shibei.png
+P 7C58C490 shuangbei.png
 P 492175B9 shuaxin.png
 P 5C9A5072 shukuang.png
 P BFA5A81B SStian.png
@@ -228,6 +230,20 @@ P 9461C219 sanming.png
 P 37533C87 shijiezi.png
 P 15AE747C xiaoxi.png
 P 98F02697 yiming.png
+D qiandao
+P 792F090E diqitian.png
+P 932679F9 ertian.png
+P FE0FF236 liutian.png
+P 9E7F1E03 qiandaoanniu.png
+P BAE37F10 qiandaozi.png
+P 19B918B5 qitian.png
+P 619676A8 riliye.png
+P 5819F51A riliyeguang.png
+P 0618EFD8 santian.png
+P AE13720B sitian.png
+P 8D1BB715 tou.png
+P 3C905F15 wutian.png
+P 39E5B23B yitian.png
 D rank
 P 1113F29B clip_shuzi.png
 P 3557489A haoyou.png
