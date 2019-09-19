@@ -6,7 +6,7 @@
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334,"centerY":0},
     "nodeParent":-1,
-    "maxID":36,
+    "maxID":37,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -48,7 +48,7 @@
             "type":"UIView",
             "source":"test/TimeLogo.scene",
             "searchKey":"UIView,timeLogo",
-            "props":{"zOrder":100,"y":183,"x":600,"var":"timeLogo"},
+            "props":{"zOrder":100,"y":158,"x":586,"var":"timeLogo"},
             "nodeParent":2,
             "label":"timeLogo",
             "isDirectory":false,
@@ -60,59 +60,45 @@
         },
         {
             "x":15,
-            "type":"Image",
-            "searchKey":"Image",
-            "props":{"zOrder":100,"y":454.5,"x":579,"width":140,"skin":"main/guanjikuang.png","sizeGrid":"34,17,26,26","height":425},
+            "type":"Button",
+            "searchKey":"Button,rankBtn",
+            "props":{"zOrder":100,"y":361,"x":11,"var":"rankBtn","stateNum":"1","skin":"main/btn_paihang.png"},
             "nodeParent":2,
-            "label":"Image",
-            "isOpen":true,
-            "isDirectory":true,
+            "label":"rankBtn",
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
-            "compId":32,
+            "hasChild":false,
+            "compId":33,
             "child":[
-                {
-                    "x":30,
-                    "type":"Button",
-                    "searchKey":"Button",
-                    "props":{"y":161.5,"x":19.5,"width":96,"stateNum":"1","skin":"main/btn_paihang.png","height":96},
-                    "nodeParent":32,
-                    "label":"Button",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":33,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "searchKey":"Button",
-                    "props":{"y":293,"x":27,"width":96,"stateNum":"1","skin":"main/btn_qiandao.png","height":96},
-                    "nodeParent":32,
-                    "label":"Button",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":34,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "searchKey":"Button",
-                    "props":{"y":32,"x":23,"width":96,"stateNum":"1","skin":"main/btn_fenxiang.png","height":96},
-                    "nodeParent":32,
-                    "label":"Button",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":35,
-                    "child":[
-                        ]
-                }]
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "searchKey":"Button",
+            "props":{"zOrder":100,"y":361,"x":586,"stateNum":"1","skin":"main/btn_qiandao.png"},
+            "nodeParent":2,
+            "label":"Button",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":34,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "searchKey":"Button",
+            "props":{"zOrder":100,"y":170,"x":11,"stateNum":"1","skin":"main/btn_fenxiang.png"},
+            "nodeParent":2,
+            "label":"Button",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":35,
+            "child":[
+                ]
         }],
     "animations":[
         {
