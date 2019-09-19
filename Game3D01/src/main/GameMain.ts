@@ -24,14 +24,10 @@ import TimeGoldDialog from "./scene/main/timegold/TimeGoldDialog";
 export default class GameMain {
     constructor() {
         //ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"), new Laya.Handler(this, this.zipFun));
-        this.zipFun( null );
+        this.zipFun();
     }
 
-    private zipFun(arr: any[]): void {
-        //this.initTable(arr);
-
-        // Laya.stage.event( GameEvent.CONFIG_OVER );
-        // App.eventManager.event( GameEvent.CONFIG_OVER );
+    private zipFun(): void {
         Game.alert = new GameAlert();
         Game.scenneM.showMain();
         Game.battleLoader.preload();

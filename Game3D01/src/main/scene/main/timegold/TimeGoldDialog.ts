@@ -1,6 +1,10 @@
 import { ui } from "../../../../ui/layaMaxUI";
 import MyEffect from "../../../../core/utils/MyEffect";
 import Session from "../../../Session";
+import GetItemDialog from "../../../dialog/GetItemDialog";
+import { GoldType } from "../../../../game/data/HomeData";
+import App from "../../../../core/App";
+import { AD_TYPE } from "../../../../ADType";
 
 export default class TimeGoldDialog extends ui.test.TimeGoldUI{
     constructor(){
@@ -8,6 +12,7 @@ export default class TimeGoldDialog extends ui.test.TimeGoldUI{
         MyEffect.rotation( this.light , 5000 );
         this.LingBtn.on( Laya.Event.CLICK,this,this.normalClick );
         this.AdLingBtn.on( Laya.Event.CLICK,this,this.adClick );
+        this.init();
     }
 
     private adClick():void{
@@ -15,6 +20,7 @@ export default class TimeGoldDialog extends ui.test.TimeGoldUI{
             this.close();
             return;
         }
+        App.sdkManager.playAdVideo( AD_TYPE.AD_DIAMOND , new Laya.Handler( this,this.adFun ) );
         //this.sdkSession.playAdVideo(SdkSession.TIME_GOLD, new Laya.Handler(this, this.adFun));
     }
 
@@ -23,6 +29,7 @@ export default class TimeGoldDialog extends ui.test.TimeGoldUI{
             this.close();
             return;
         }
+        GetItemDialog.open( { type:GoldType.GOLD ,value:Session.timeGoldData.gold } );
         //App.dialog( MyGameInit.NewGetItemDialog , true ,  this.timeGoldSession.gold );
         //this.timeGoldSession.rewardGold(false);
         Session.timeGoldData.rewardGold(false);
@@ -35,6 +42,7 @@ export default class TimeGoldDialog extends ui.test.TimeGoldUI{
             return;
         }
         if (stat == 1) {
+            GetItemDialog.open( { type:GoldType.GOLD ,value:Session.timeGoldData.gold * 3 } );
             //App.dialog( MyGameInit.NewGetItemDialog , true ,  this.timeGoldSession.gold * 3 );
             Session.timeGoldData.rewardGold(true);
             this.init();

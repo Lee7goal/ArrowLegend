@@ -6,6 +6,12 @@ export default class GetItemDialog extends ui.test.GetItemDialogUI {
     constructor(){
         super();
     }
+
+    public static open( value:any ):void{
+        let g = new GetItemDialog();
+        g.setData( value );
+        g.popup( true );
+    }
     
     public now:number = 0;
     public col:number = 3;
@@ -13,6 +19,10 @@ export default class GetItemDialog extends ui.test.GetItemDialogUI {
     public cellWid:number = 500;
     public cellHei:number = 500;
 
+    /**
+     * {type:this.goldType , value:v }
+     * @param value 
+     */
     public setData( value:any ):void{
         this.now = 0;
         if( value instanceof Array ){

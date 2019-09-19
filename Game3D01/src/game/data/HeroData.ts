@@ -72,7 +72,7 @@ export default class HeroData implements IData{
         e.atkSpeed = sysRB.baseSpeed;
         e.crit = sysRB.baseCrit;
         e.critEffect = sysRB.baseCritHurt;
-        
+        e.addPercent( Session.talentData.equip );
         return e;
     }
 
@@ -81,7 +81,6 @@ export default class HeroData implements IData{
         let sys = SysRoleUp.getSysRole( heroId , lv );
         return sys.getValue( type );
     }
-
 
     /**
      * @param heroId 
