@@ -62,4 +62,5 @@
    <item name="test/shengji.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/paihang.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/paihang1.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/qiandao.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

@@ -29,7 +29,7 @@ P D99251CA heroBlood.png
 P B199C3FB hongtiao.png
 P 81136E81 huijia.png
 P EA200A72 huzi.png
-R 10D3FB74 huzi.scene
+R 67B4C268 huzi.scene
 P 412DFE3D jinengtiaoshang.png
 P 8483AD37 jinengtiaoxia.png
 P B9019BE6 jingyantiaodi.png
@@ -37,18 +37,18 @@ P 761AF61D jingyantiaoguang.png
 P 08F8B30F jingyantiaoshang.png
 P A653A0FF lanying.png
 P C5032B85 lvkuang.png
-R EF83E9C8 mogui.scene
+R 318AA8BE mogui.scene
 P 9FF2060E qianshu.png
 P E678BFE4 qipaowen.png
 P AFF0FC23 renlankuang.png
 P 66D52362 renyan.png
-P DFF9EE63 rockerBall.png
+P E55E4211 rockerBall.png
 P 81B51E22 rockerBg.png
 P 2648BCEB rollDir.png
 P 6EC0F896 sanjiao.png
 P 824F858E tantan.jpg
 P F1C69388 tianshi.png
-R 47F587D7 tianshi.scene
+R DB93F7CA tianshi.scene
 P 61E5E0A4 tianshiying.png
 P 7B1E2C6F tongying.png
 P 83DF0706 xiaoguan.png
@@ -184,6 +184,7 @@ P 61A644DA kapai.png
 P F78AF3A9 kawen.png
 P CC20CE54 liubei.png
 P 3A3DCE15 maohao.png
+P 253CFB6C paihangbangdi.png
 P 0178A633 PTtian.png
 P DF0111DA qing.png
 P 1D522270 quantiao.png
@@ -196,6 +197,7 @@ P AD7FCD1D shamolvzhou.png
 P A88CEF17 shandianjia.png
 P DB7D6C33 shengji.png
 P 4DAD8819 shibei.png
+P 7C58C490 shuangbei.png
 P 492175B9 shuaxin.png
 P 5C9A5072 shukuang.png
 P BFA5A81B SStian.png
@@ -228,6 +230,20 @@ P 9461C219 sanming.png
 P 37533C87 shijiezi.png
 P 15AE747C xiaoxi.png
 P 98F02697 yiming.png
+D qiandao
+P 792F090E diqitian.png
+P 932679F9 ertian.png
+P FE0FF236 liutian.png
+P 9E7F1E03 qiandaoanniu.png
+P BAE37F10 qiandaozi.png
+P 19B918B5 qitian.png
+P 619676A8 riliye.png
+P 5819F51A riliyeguang.png
+P 0618EFD8 santian.png
+P AE13720B sitian.png
+P 8D1BB715 tou.png
+P 3C905F15 wutian.png
+P 39E5B23B yitian.png
 D rank
 P 1113F29B clip_shuzi.png
 P 3557489A haoyou.png
