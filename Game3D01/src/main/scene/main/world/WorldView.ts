@@ -57,7 +57,7 @@ import MyTimeGold from "../timegold/MyTimeGold";
         let myTime = new MyTimeGold();
         myTime.setUI( this.timeLogo );
         this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
-        // this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
+        this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
     }
 
     private rankClickFun():void{
