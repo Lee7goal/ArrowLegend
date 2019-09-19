@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":49,
+    "selectedBox":21,
+    "selecteID":21,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#c6abab","height":1334},
     "nodeParent":-1,
@@ -153,7 +153,7 @@
                                         ],
                                     "$HIDDEN":false
                                 }],
-                            "$HIDDEN":true
+                            "$HIDDEN":false
                         },
                         {
                             "x":45,
@@ -265,7 +265,8 @@
                                     "compId":14,
                                     "child":[
                                         ]
-                                }]
+                                }],
+                            "$HIDDEN":true
                         }],
                     "$HIDDEN":false
                 },
