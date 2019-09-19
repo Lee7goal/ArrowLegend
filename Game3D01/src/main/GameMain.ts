@@ -20,6 +20,7 @@ import SysTalentInfo from "./sys/SysTalentInfo";
 import GameEvent from "./GameEvent";
 import Session from "./Session";
 import TimeGoldDialog from "./scene/main/timegold/TimeGoldDialog";
+import RankDialog from "./scene/main/rank/RankDialog";
 
 export default class GameMain {
     constructor() {
@@ -73,8 +74,10 @@ export default class GameMain {
     }
 
     public static TIME_GOLD:string = "TIME_GOLD";
+    public static RANK_DIALOG:string = "RANK_DIALOG";
 
     public static initDialog():void{
         App.dialogManager.register( GameMain.TIME_GOLD , TimeGoldDialog , ["res/atlas/timegold.atlas"] );
+        App.dialogManager.register( GameMain.RANK_DIALOG , RankDialog , ["res/atlas/rank.atlas"] );
     }
 }

@@ -127,15 +127,15 @@ P 54CB6CD5 btn_1.png
 P 2E767910 btn_2.png
 P 07EB4C2D btn_3.png
 P D9999E83 btn_4.png
-P F95AD7F3 btn_fenxiang.png
+P 855D1934 btn_fenxiang.png
 P 812A6012 btn_fuhuo.png
 P 2B1B6A7B btn_guanbi.png
 P 00A43187 btn_hong.png
 P 738D77EF btn_huang.png
 P B8BD2231 btn_lan.png
 P 75B7C440 btn_lv.png
-P 0EE272B3 btn_paihang.png
-P B72B2CD6 btn_qiandao.png
+P 7A154C25 btn_paihang.png
+P 40D9C69A btn_qiandao.png
 P 7F96474A btn_zi.png
 P 429F2BC1 btn_zuo.png
 P 5CF7DEFA changhong.png
@@ -307,6 +307,16 @@ P B713B4F5 bosstou.png
 P 4FB661B7 bottom.png
 P 41DF23DB shitouying.png
 P 9D89FA1A top.png
+D rank
+P 1113F29B clip_shuzi.png
+P 3557489A haoyou.png
+P 5C3EBC21 jinpai.png
+P 7D8A9D10 paihangbangzi.png
+P 78197DB8 paimingBG.png
+P D74321B0 paiminglv.png
+P 5282848B shijie.png
+P 6295B483 tongpai.png
+P EA6C9810 yinpai.png
 D ren
 D shengli
 P 2988BC0D chengli.png
