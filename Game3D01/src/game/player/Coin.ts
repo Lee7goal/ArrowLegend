@@ -19,7 +19,7 @@ export default class Coin extends GamePro {
     constructor() {
         super(0, 1);
 
-        var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/monster.lh"));
+        var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/coins/monster.lh"));
         // Game.monsterResClones.push(sp);
         this.setSp3d(sp);
         sp.transform.localScale = new Laya.Vector3(1.5,1.5,1.5);

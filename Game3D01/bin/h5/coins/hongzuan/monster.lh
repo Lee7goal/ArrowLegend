@@ -26,14 +26,14 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"shupian",
+					"name":"pCylinder1",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						0,
-						-0.001359446,
-						0.0003681404
+						0,
+						0
 					],
 					"rotation":[
 						0,
@@ -42,15 +42,15 @@
 						-1
 					],
 					"scale":[
-						8.333691,
-						10.67588,
-						8.333691
+						5.35155,
+						5.351547,
+						5.351547
 					],
-					"meshPath":"Assets/wall 8/FBX/shupian-polySurface1.lm",
+					"meshPath":"Assets/lanzuan/FBX/zuanshi-pCylinder1.lm",
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/wall 8/Materials/chang 1.lmat"
+							"path":"Assets/lanzuan/Material/New Material.lmat"
 						}
 					]
 				},

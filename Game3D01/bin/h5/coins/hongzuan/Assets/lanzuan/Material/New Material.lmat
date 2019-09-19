@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"TreesAndPlants_Mat",
+		"name":"New Material",
 		"renderStates":[
 			{
 				"cull":2,
@@ -17,14 +17,14 @@
 		"alphaTest":false,
 		"alphaTestValue":0.5,
 		"renderQueue":2000,
-		"albedoIntensity":1,
+		"albedoIntensity":1.5,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Texture/TreesAndPlants_D.jpg",
+				"path":"../Texture/zuanshi.jpg",
 				"constructParams":[
-					256,
-					256,
+					512,
+					512,
 					0,
 					true
 				],
