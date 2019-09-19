@@ -7,6 +7,7 @@ import HeroBullet from "../player/HeroBullet";
 import HeroArrowAI from "./HeroArrowAI";
 import SysSkill from "../../main/sys/SysSkill";
 import App from "../../core/App";
+import Session from "../../main/Session";
 
 /**射击器*/
 export default class Shooting {
@@ -54,7 +55,7 @@ export default class Shooting {
         this.pro = pro;
         this.curAttack = acstr
         if (this.attackOk()) {            
-            this.st = Game.executor.getWorldNow() + Game.hero.playerData.attackSpeed;
+            this.st = Game.executor.getWorldNow() + Session.heroData.curHeroData.atkSpeed;
             this.scd = 0;
             this.pro.play(acstr);
             if (this.at > 0) {
@@ -82,7 +83,7 @@ export default class Shooting {
             }
             if (this.scd == 0) {
                 this.scd = 1;
-                this.st = Game.executor.getWorldNow() + Game.hero.playerData.attackSpeed;
+                this.st = Game.executor.getWorldNow() + Session.heroData.curHeroData.atkSpeed;
                 this.pro.event(Game.Event_Short, this.curAttack);
                 this.et = this.st;
             }

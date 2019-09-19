@@ -35,7 +35,7 @@ export default class GameMain {
         Game.alert = new GameAlert();
         Game.scenneM.showMain();
         Game.battleLoader.preload();
-        if(Session.isGuide){
+        if(Session.homeData.isGuide){
             Game.battleLoader.load();
         }else{
             Game.cookie.getCookie(CookieKey.CURRENT_BATTLE, (res) => {
@@ -74,6 +74,26 @@ export default class GameMain {
         App.tableManager.register(SysTalent.NAME , SysTalent );
         
         App.tableManager.onParse(arr);
+
+        let mapArr:SysMap[] = App.tableManager.getTable(SysMap.NAME);
+        let len:number = mapArr.length;
+        for(let i = 0; i < len; i++)
+        {
+            let sysMap:SysMap = mapArr[i];
+            if(SysMap.dic[sysMap.stageId] == null)
+            {
+                SysMap.dic[sysMap.stageId] = [];
+            }
+            SysMap.dic[sysMap.stageId].push(sysMap);
+        }
+
+        for(let key in SysMap.dic)
+        {
+            let tArr:SysMap[] = SysMap.dic[key];
+            tArr.sort((a:SysMap,b:SysMap)=>{
+                return a.id - b.id;
+            });
+        }
     }
 
     public static TIME_GOLD:string = "TIME_GOLD";

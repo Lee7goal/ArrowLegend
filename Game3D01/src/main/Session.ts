@@ -14,7 +14,7 @@ import TimeGoldData from "../game/data/TimeGoldData";
 export default class Session{
     static SKEY:string;
 
-    static isGuide:boolean;
+    // static isGuide:boolean;
     static guideId:number;
 
     static gameData:any = {};
@@ -52,7 +52,6 @@ export default class Session{
     }
 
     static parseData(str:string):void{
-        Session.isGuide = false;
         if(str != "" && str != "0" ){
             Session.gameData = JSON.parse(str);
             for( let i of Session.IDataArr ){
@@ -60,7 +59,6 @@ export default class Session{
             }
             
         } else {
-            Session.isGuide = true;
             for( let i of Session.IDataArr ){
                 i.initData( Session.gameData );
             }

@@ -120,16 +120,22 @@ export default class HeroAI extends GameAI {
             Game.playSound("fx_hit.wav");
             if(Game.e0_)
             {
-                Game.hero.hurtValue = Math.floor(Game.hero.playerData.baseAttackPower * 1.5);
+                Game.hero.hurtValue = Math.floor(Session.heroData.curHeroData.atk * 1.5);
                 Game.e0_.hbox.linkPro_.event(Game.Event_Hit, Game.hero);
             }
             return;
         }
 
         Game.playSound("fx_shoot.wav");
-        let basePower: number = Game.hero.playerData.baseAttackPower;
-        // let moveSpeed: number = GameBG.ww / 2;
-        // this.shootin.short_arrow(moveSpeed, Game.hero.face3d, Game.hero);
+        let basePower: number = Session.heroData.curHeroData.atk;
+        //愤怒
+        let angerSkill:SysSkill = Game.skillManager.isHas(3008);
+        if(angerSkill)
+        {
+            let rate:number = (Game.hero.gamedata.maxhp - Game.hero.gamedata.hp) / Game.hero.gamedata.maxhp;
+            basePower = Math.floor(Game.skillManager.addAttack() * (1 + rate));
+        }
+        
 
         this.onShoot(basePower);
 
@@ -244,7 +250,7 @@ export default class HeroAI extends GameAI {
             }
         }
 
-        if(Session.isGuide)
+        if(Session.homeData.isGuide)
         {
             if(Session.guideId == 3)
             {
@@ -263,7 +269,7 @@ export default class HeroAI extends GameAI {
             return;
         }
 
-        if(Session.isGuide)
+        if(Session.homeData.isGuide)
         {
             if(Session.guideId == 3)
             {

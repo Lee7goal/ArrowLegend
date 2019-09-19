@@ -9,6 +9,9 @@ export default class Equip{
     public crit:number = 0;
     public moveSpeed:number = 0;
     public atkSpeed:number = 0;
+
+    public initSkillId:number = 0;
+
     /**
      * 暴击效果
      */
@@ -27,6 +30,7 @@ export default class Equip{
         e.moveSpeed = this.moveSpeed;
         e.atkSpeed = this.atkSpeed;
         e.critEffect = this.critEffect;
+        e.initSkillId = this.initSkillId;
         return e;
     }
 
@@ -38,5 +42,6 @@ export default class Equip{
         this.moveSpeed = 0;
         this.atkSpeed = 0;
         this.critEffect = 0;
+        this.initSkillId = 0;
     }
 }

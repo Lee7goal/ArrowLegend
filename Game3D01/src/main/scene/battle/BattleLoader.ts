@@ -23,6 +23,7 @@ import GameFence from "./GameFence";
 import GameEvent from "../../GameEvent";
 import MonsterBullet from "../../../game/player/MonsterBullet";
 import GameCube from "./GameCube";
+import SysChapter from "../../sys/SysChapter";
 
 export default class BattleLoader {
     constructor() { 
@@ -161,13 +162,13 @@ export default class BattleLoader {
             
             this._mapId = this.chapterId * 1000 + this._index;
             let configId: number;
-            if(Session.isGuide)
+            if(Session.homeData.isGuide)
             {
                 configId = 100000;
             }
             else
             {
-                this.sysMap = SysMap.getData(this.chapterId, this._mapId);
+                this.sysMap = SysMap.getData(this.chapterId, this._index);
                 this.curBoTimes = 0;
                 this.maxBoTimes = this.sysMap.numEnemy;
                 this.monsterGroup = this.sysMap.enemyGroup.split(",");
@@ -184,7 +185,7 @@ export default class BattleLoader {
     public preload():void
     {
         let arr:string[] = [
-            "h5/mapbg/1.jpg",
+            // "h5/mapbg/1.jpg",
             // "res/atlas/xiongmao.atlas",
             "res/atlas/shengli.atlas",
             "res/atlas/icons/skill.atlas",
@@ -203,22 +204,11 @@ export default class BattleLoader {
 
     private loadHeroRes(): void  {
         let pubRes = [
-            // "h5/wall/1000/monster.lh",
-            // "h5/wall/1500/monster.lh",
-            // "h5/wall/2000/monster.lh",
-            // "h5/wall/2500/monster.lh",
-            // "h5/wall/3000/monster.lh",
-            // "h5/wall/3500/monster.lh",
-            // "h5/wall/4000/monster.lh",
-            // "h5/wall/4500/monster.lh",
-            // "h5/wall/5000/monster.lh",
-            // "h5/wall/5500/monster.lh",
-            // "h5/effects/monsterDie/monster.lh","h5/coins/monster.lh","h5/effects/boom/monster.lh",
             "h5/zhalan/hero.lh","h5/effects/door/monster.lh",
             "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh",
-            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/hero.lh"//主角
+            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/1/hero.lh"//主角
         ];
-        if(Session.isGuide)
+        if(Session.homeData.isGuide)
         {
             pubRes.push("h5/effects/guide/monster.lh");
         }
@@ -311,7 +301,7 @@ export default class BattleLoader {
         //怪的资源
         if(this.resAry.length > 0){
 
-            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh","h5/wall/3000/monster.lh"];
+            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh"];
             for(let j = 0; j < pubResAry.length; j++)
             {
                 res = pubResAry[j];
@@ -320,8 +310,27 @@ export default class BattleLoader {
             }
         }
 
+        if(this.index == SysChapter.dropIndex)
+        {
+            let key:string;
+            if(SysChapter.blueNum > 0)
+            {
+                key = "h5/coins/lanzuan/monster.lh";
+                this.monsterRes[key] = key;
+                this.resAry.push(key);
+            }
+            else if(SysChapter.redNum > 0)
+            {
+                key = "h5/coins/hongzuan/monster.lh";
+                this.monsterRes[key] = key;
+                this.resAry.push(key);
+            }
+        }
+
+
         for (let key in this.cubeRes)  {
             if (key != '')  {
+                this.monsterRes[key] = key;
                 this.resAry.push(key);
             }
         }

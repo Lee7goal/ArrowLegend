@@ -69,6 +69,8 @@ export default class GameBG extends Laya.Sprite {
     //主角中心坐标
     static mcy: number;
 
+    private maskImg:Laya.Image = new Laya.Image();
+
     private static v3d: Laya.Vector3;
 
     private doorNumber:BitmapNumber;
@@ -365,15 +367,15 @@ export default class GameBG extends Laya.Sprite {
         GameBG.cx = this.x;
         GameBG.cy = this.y;
 
-        var sprite:Laya.Image = new Laya.Image();
-        this.addChild(sprite);
+        
+        this.addChild(this.maskImg);
         // sprite.alpha = 0.4;s
         // sprite.x = GameBG.ww;
         // sprite.texture = Laya.loader.getRes("h5/mapbg/topbg.png");
-        sprite.skin = "topbg.png";
-        sprite.sizeGrid = "506,421,801,321";
-        sprite.width = GameBG.bgWW;
-        sprite.height = GameBG.bgHH;
+        this.maskImg.skin = "battleBg/" + GameBG.BG_TYPE_NUM + ".png";
+        this.maskImg.sizeGrid = "506,421,801,321";
+        this.maskImg.width = GameBG.bgWW;
+        this.maskImg.height = GameBG.bgHH;
         
         // sprite.size(GameBG.bgWW - GameBG.ww,GameBG.ww * 10);
     }

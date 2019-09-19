@@ -34,6 +34,11 @@ import GameEvent from "../main/GameEvent";
 export default class Game {
     static resVer:string = "1.0.17.1925";
 
+    //战斗中的临时数据
+    static exp:number;
+    static level:number;
+    static lastLevel:number;
+
     static userHeadUrl:string = "";
     static userName:string = "";
 
@@ -171,8 +176,6 @@ export default class Game {
             Session.homeData.chapterId++;
             Game.battleLoader.index = 0;
             Session.homeData.mapIndex = 0;
-
-            Laya.stage.event(GameEvent.PASS_CHAPTER)
         }
 
         Game.cookie.setCookie(CookieKey.CURRENT_BATTLE,{
@@ -185,17 +188,20 @@ export default class Game {
             "coins":Game.battleCoins
         });
         Game.isOpen = true;
-        if(Session.isGuide)
+        if(Session.homeData.isGuide)
         {
             Session.homeData.chapterId = 1;
             Game.scenneM.battle.setGuide("通过传送进入下一关。",5);
-            Session.isGuide = false;
+            Session.homeData.isGuide = false;
             Game.battleLoader.index = 1;
             Game.battleLoader.chapterId = 1;
         }
         else
         {
-            Game.battleLoader.index++;
+            if(!Session.homeData.isPass)
+            {
+                Game.battleLoader.index++;
+            }
         }
 
 
@@ -330,7 +336,7 @@ export default class Game {
         Game.rebornTimes = 2;
         Game.hero.reset();
         Game.hero.resetAI();
-        Game.hero.playerData.exp = 0;
+        Game.exp = 0;
         Game.battleLoader.clearMonster();
         Game.scenneM.showMain();
 

@@ -19,6 +19,7 @@ export default class WorldCell extends ui.test.worldCellUI {
         if(!this.suo.visible)
         {
             Game.battleLoader.chapterId = this.sys.id;
+            SysChapter.randomDiamond(Game.battleLoader.chapterId);
             Laya.stage.event(GameEvent.START_BATTLE);
         }
         else
@@ -30,15 +31,15 @@ export default class WorldCell extends ui.test.worldCellUI {
     update(sysChapter:SysChapter):void
     {
         this.sys = sysChapter;
-        this.suo.visible = Session.gameData.chapterId < sysChapter.id;
+        this.suo.visible = Session.homeData.chapterId < sysChapter.id;
         this.mapBtn.gray = this.suo.visible;
         this.cengshuTxt.text = "";
         if(!this.suo.visible)
         {
-            let maxCeng:number =  SysMap.getTotal(Session.gameData.chapterId);
-            if(sysChapter.id == Session.gameData.chapterId)
+            let maxCeng:number =  SysMap.getTotal(this.sys.id);
+            if(sysChapter.id == Session.homeData.chapterId)
             {
-                this.cengshuTxt.text = "最高层数:" + Session.gameData.mapIndex + "/" + maxCeng;
+                this.cengshuTxt.text = "最高层数:" + Session.homeData.mapIndex + "/" + maxCeng;
             }
             else
             {

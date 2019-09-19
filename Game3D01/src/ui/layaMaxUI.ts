@@ -17,7 +17,7 @@ export module ui.game {
     }
     REG("ui.game.battleIndexBoxUI",battleIndexBoxUI);
     export class heheUI extends Scene {
-        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":11,"x":8,"width":1088,"skin":"topbg.png","sizeGrid":"680,0,594,0","height":1552},"compId":3}],"loadList":["topbg.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":11,"x":8,"width":1088,"skin":"battleBg/1.png","sizeGrid":"680,0,594,0","height":1552},"compId":3}],"loadList":["battleBg/1.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();

@@ -50,6 +50,7 @@ import SysEnemy from "../../sys/SysEnemy";
 
     reset():void
     {
+        Game.exp = 0;
         this._indexBox.init();
     }
 
@@ -62,16 +63,16 @@ import SysEnemy from "../../sys/SysEnemy";
     private isTwo:boolean = false;
     updateExp():void
     {
-        let lv:number = SysLevel.getLv(Game.hero.playerData.exp);
+        let lv:number = SysLevel.getLv(Game.exp);
         let maxExp: number = SysLevel.getMaxExpByLv(lv);
         let curExpSum: number = SysLevel.getExpSum(lv - 1);
-        let curExp: number = Game.hero.playerData.exp - curExpSum;
+        let curExp: number = Game.exp - curExpSum;
         let vv = curExp / maxExp;
 
-        this.isTwo = lv > Game.hero.playerData.level;
+        this.isTwo = lv > Game.level;
         Laya.timer.frameLoop(1,this,this.onLoop,[vv]);
 
-        Game.hero.playerData.level = lv;
+        Game.level = lv;
         if(!this.isTwo)
         {
             // this.shuzi.text = "" + Game.hero.playerData.level;
@@ -110,6 +111,7 @@ import SysEnemy from "../../sys/SysEnemy";
         this.maskSpr.graphics.clear();
         this.maskSpr.graphics.drawRect(0,this.lvBar.height - this.lastWidth,this.lvBar.width,this.lastWidth,"#fff000");
         this.lvBar.mask = this.maskSpr;
+        console.log("===================================")
     }
 
     updateCoins():void

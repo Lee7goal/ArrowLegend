@@ -9,7 +9,7 @@ import SysMap from "../../main/sys/SysMap";
 import Session from "../../main/Session";
 
 export default class HomeData implements IData{
-    
+    isGuide:boolean;
     totalEnergy:number;
     curEnergy:number;
     maxEngergy:number;
@@ -40,6 +40,7 @@ export default class HomeData implements IData{
         this.level = data.level;
         this.coins = data.coins;
         this.playerExp = data.playerExp;
+        this.isGuide = data.isGuide;
         if(this.playerExp == null)
         {
             this.playerExp = 0;
@@ -74,6 +75,7 @@ export default class HomeData implements IData{
             console.log("存储最高层数",data.mapIndex);
         }
         data.coins += Game.addCoins;
+        data.isGuide = this.isGuide;
         this.coins = data.coins;
         data.level = this.level;
     }
@@ -87,6 +89,7 @@ export default class HomeData implements IData{
         this.maxEngergy = TopUI.MAX_ENERGY;
         this.curEnergy = this.totalEnergy;
         this.lastTime = 0;
+        this.isGuide = true;
         this.chapterId = 0;
         this.mapIndex = 0;
         this.level = 1;

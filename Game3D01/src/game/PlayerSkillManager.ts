@@ -5,6 +5,7 @@ import SysBuff from "../main/sys/SysBuff";
 import App from "../core/App";
 import SysNpc from "../main/sys/SysNpc";
 import BuffID from "./buff/BuffID";
+import Session from "../main/Session";
 
 export default class PlayerSkillManager {
 
@@ -40,7 +41,10 @@ export default class PlayerSkillManager {
     skinSkills: number[] = [5001, 5002, 5003, 5004, 5005, 5009];
 
     addSkill(data?: SysSkill): void {
-
+        if(data == null)
+        {
+            return;
+        }
         if (this.skinsHeads.indexOf(data.id) != -1)  {
             this.addArrowHead(data.id);
             // return;
@@ -74,12 +78,12 @@ export default class PlayerSkillManager {
 
     addAttack(): number {
         let buff: SysBuff;
-        Game.hero.playerData.baseAttackPower = 200;
+        let attackNum:number = Session.heroData.curHeroData.atk;
         let sys3002: SysSkill = this.isHas(3002);
         if (sys3002) {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3002.skillEffect1);
             if (buff) {
-                Game.hero.playerData.baseAttackPower += sys3002.curTimes * buff.addAttack;
+                attackNum += sys3002.curTimes * buff.addAttack;
             }
         }
         buff = null;
@@ -88,22 +92,22 @@ export default class PlayerSkillManager {
         if (sys3003) {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3003.skillEffect1);
             if (buff) {
-                Game.hero.playerData.baseAttackPower += sys3003.curTimes * buff.addAttack;
+                attackNum += sys3003.curTimes * buff.addAttack;
             }
         }
-        return Game.hero.playerData.baseAttackPower;
+        return attackNum;
     }
 
     addAttackSpeed(): number {
         let buff: SysBuff;
-        Game.hero.playerData.attackSpeed = 650;
+        let attackSpeed:number = Session.heroData.curHeroData.atkSpeed;
         let sys3004: SysSkill = this.isHas(3004);
         if (sys3004) {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3004.skillEffect1);
             if (buff) {
                 let rate: number = 1;
                 for (let i = 0; i < sys3004.curTimes; i++)  {
-                    Game.hero.playerData.attackSpeed = Game.hero.playerData.attackSpeed * (1 - buff.addSpeed / 1000);
+                    attackSpeed = attackSpeed * (1 - buff.addSpeed / 1000);
                 }
 
             }
@@ -119,10 +123,10 @@ export default class PlayerSkillManager {
                 for (let i = 0; i < sys3005.curTimes; i++)  {
                     rate = rate * (buff.addSpeed / 1000);
                 }
-                Game.hero.playerData.attackSpeed = Game.hero.playerData.attackSpeed * (1 - rate);
+                attackSpeed = attackSpeed * (1 - rate);
             }
         }
-        return Game.hero.playerData.attackSpeed;
+        return attackSpeed;
     }
 
     isHas(id: number): SysSkill {

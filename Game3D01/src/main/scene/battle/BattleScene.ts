@@ -36,6 +36,7 @@ import BattleFlagID from "../BattleFlagID";
 import GuideTalk from "../../guide/GuideTalk";
 import GuideActionArea from "../../guide/GuideActionArea";
 import HeroBullet from "../../../game/player/HeroBullet";
+import LvUpView from "./gameOver/LvUpView";
 export default class BattleScene extends Laya.Sprite {
 
     _top: TopUI;
@@ -94,10 +95,22 @@ export default class BattleScene extends Laya.Sprite {
         Laya.stage.on(Game.Event_MAIN_DIE, this, this.showDieView1);
 
         Laya.stage.on(GameEvent.PASS_CHAPTER,this,this.onOver);
-
+        Laya.stage.on(GameEvent.LV_UP_VIEW,this,this.onLvup);
         Laya.stage.on(GameEvent.MEMORY_WARNING,this,this.onRelease);
 
         // this.on(Laya.Event.UNDISPLAY,this,this.unDis);
+    }
+
+    private _lvupView:LvUpView;
+    private onLvup():void
+    {
+        this._gameOver && this._gameOver.removeSelf();
+        if(!this._lvupView)
+        {
+            this._lvupView = new LvUpView();
+        }
+        this.addChild(this._lvupView);
+        Game.state = 1;
     }
 
     private onRelease():void
@@ -191,7 +204,8 @@ export default class BattleScene extends Laya.Sprite {
             Game.executor = new GameExecut();
             CustomShaderff00.ff00;
         }
-        this._top._indexBox.visible = !Session.isGuide;
+        this._top._indexBox.visible = !Session.homeData.isGuide;
+        this._top.zanting.visible = !Session.homeData.isGuide;
         Game.map0.drawMap();
         // this.addChild(Game.map0);
         
@@ -239,7 +253,7 @@ export default class BattleScene extends Laya.Sprite {
                             bossEnemy = monster.sysEnemy;
                         }
 
-                        if(Session.isGuide)
+                        if(Session.homeData.isGuide)
                         {
                             this.guideMonster = monster;
                             this.guideMonster.hide();
@@ -317,10 +331,10 @@ export default class BattleScene extends Laya.Sprite {
             Game.hero = new Hero();
         }
         Game.hero.init();
-        Game.hero.playerData.lastLevel = Game.hero.playerData.level;
+        Game.lastLevel = Game.level;
         Game.bg.updateY();
 
-        // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1001));
+        
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1002));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1003));
         // Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,1004));
@@ -339,7 +353,7 @@ export default class BattleScene extends Laya.Sprite {
     setGuide(str:string,guideId:number):void
     {
         this._guideTalk && this._guideTalk.removeSelf();
-        if(!Session.isGuide)
+        if(!Session.homeData.isGuide)
         {
             return;
         }
@@ -355,7 +369,7 @@ export default class BattleScene extends Laya.Sprite {
 
     private showActionRect(guideId:number):void{
         this._guideArea && this._guideArea.removeSelf();
-        if(!Session.isGuide)
+        if(!Session.homeData.isGuide)
         {
             return;
         }

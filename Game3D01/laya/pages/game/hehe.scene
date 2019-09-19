@@ -18,7 +18,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"y":11,"x":8,"width":1088,"skin":"topbg.png","sizeGrid":"680,0,594,0","height":1552},
+            "props":{"y":11,"x":8,"width":1088,"skin":"battleBg/1.png","sizeGrid":"680,0,594,0","height":1552},
             "nodeParent":2,
             "label":"Image",
             "isDirectory":false,
