@@ -157,8 +157,8 @@ export default class BaseAI extends GameAI {
             }
         }
 
-        // this.pro.hurt(pro.hurtValue,crit3006 || crit3007,isBuff);
-        this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
+        this.pro.hurt(pro.hurtValue,crit3006 || crit3007,isBuff);
+        // this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
@@ -237,7 +237,7 @@ export default class BaseAI extends GameAI {
         if (goldNum > 0) {
             CoinEffect.addEffect(this.pro, goldNum,0);
         }
-        Game.battleExp += this.sysEnemy.dropExp;
+        Game.battleCoins += goldNum;
         this.splitSkill && this.splitSkill.exeSkill(this.now, this.pro);
         this.pro.die();
     }

@@ -335,8 +335,6 @@ export default class Game {
     static showMain():void
     {
         Game.cookie.removeCookie(CookieKey.CURRENT_BATTLE);
-        
-        Game.battleCoins = 0;
         Game.selectFoot && Game.selectFoot.removeSelf();
         Game.selectHead && Game.selectHead.removeSelf();
         Game.skillManager.clear();
