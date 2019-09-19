@@ -28,6 +28,7 @@ export default class RankData implements IData{
         obj.name = "荒野女枪";
         obj.scorestr = Session.homeData.chapterId;
         obj.url = "chengjiu/xiao.png";
+        obj.item = 0;
         if( Laya.Browser.onMiniGame == false ){
             App.http( App.serverIP + "gamex3/saveRank" , obj , "post" );
             return;

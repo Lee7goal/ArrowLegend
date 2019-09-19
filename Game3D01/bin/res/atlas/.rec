@@ -127,9 +127,10 @@ P 54CB6CD5 btn_1.png
 P 2E767910 btn_2.png
 P 07EB4C2D btn_3.png
 P D9999E83 btn_4.png
+P A2A1EFF3 btn_anniu.png
 P 855D1934 btn_fenxiang.png
 P 812A6012 btn_fuhuo.png
-P 2B1B6A7B btn_guanbi.png
+P F31C2CE6 btn_guanbi.png
 P 00A43187 btn_hong.png
 P 738D77EF btn_huang.png
 P B8BD2231 btn_lan.png
@@ -139,6 +140,7 @@ P 40D9C69A btn_qiandao.png
 P 7F96474A btn_zi.png
 P 429F2BC1 btn_zuo.png
 P 5CF7DEFA changhong.png
+P 7E543FB5 changhong2.png
 P F878E648 clip_shuzi.png
 P 8A48BAA7 clipshuzi.png
 P 8498FFA8 dabiao.png
@@ -148,7 +150,7 @@ P 8E95C78E diandian.png
 P 6E600239 diban.png
 P 081D1B14 dongjin.png
 P D6F6405B dunpai.png
-P 7781CAC0 erdao.png
+P 79A4A1C0 erdao.png
 P 47AAA150 fenxiangbiao.png
 P 9347A667 fuhuodi2.jpg
 P 257A340C greenFont.png
@@ -307,6 +309,15 @@ P B713B4F5 bosstou.png
 P 4FB661B7 bottom.png
 P 41DF23DB shitouying.png
 P 9D89FA1A top.png
+D paihang
+P D66FF09B erming.png
+P D2FB8539 fen.png
+P 5207E8AC haoyouzi.png
+P D11FC579 paihangzi.png
+P 9461C219 sanming.png
+P 37533C87 shijiezi.png
+P 15AE747C xiaoxi.png
+P 98F02697 yiming.png
 D rank
 P 1113F29B clip_shuzi.png
 P 3557489A haoyou.png

@@ -1,13 +1,13 @@
 {
     "x":0,
-    "type":"Scene",
+    "type":"Dialog",
     "selectedBox":2,
-    "selecteID":12,
-    "searchKey":"Scene",
-    "props":{"width":750,"sceneColor":"#000000","height":1334},
+    "selecteID":19,
+    "searchKey":"Dialog",
+    "props":{"width":750,"sceneColor":"#000000","isShowEffect":false,"height":1334},
     "nodeParent":-1,
-    "maxID":13,
-    "label":"Scene",
+    "maxID":20,
+    "label":"Dialog",
     "isOpen":true,
     "isDirectory":true,
     "isAniNode":true,
@@ -76,59 +76,18 @@
         },
         {
             "x":15,
-            "type":"Button",
-            "searchKey":"Button,table1",
-            "props":{"y":256,"x":57,"var":"table1","stateNum":"2","skin":"main/btn_anniu.png"},
+            "type":"Tab",
+            "searchKey":"Tab,tab",
+            "props":{"y":252,"x":57,"var":"tab","stateNum":"2","space":30,"skin":"main/btn_anniu.png","labels":","},
             "nodeParent":2,
-            "label":"table1",
+            "label":"tab",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":7,
             "child":[
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":9,"x":52,"texture":"paihang/haoyouzi.png"},
-                    "nodeParent":7,
-                    "label":"Sprite",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":8,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button",
-            "props":{"y":256,"x":265,"stateNum":"2","skin":"main/btn_anniu.png"},
-            "nodeParent":2,
-            "label":"Button",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":9,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":9,"x":52,"texture":"paihang/shijiezi.png"},
-                    "nodeParent":9,
-                    "label":"Sprite",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":10,
-                    "child":[
-                        ]
-                }]
+                ]
         },
         {
             "x":15,
@@ -146,16 +105,87 @@
         },
         {
             "x":15,
-            "type":"UIView",
-            "source":"test/paihang1.scene",
-            "searchKey":"UIView",
-            "props":{"y":376,"x":0},
+            "type":"List",
+            "searchKey":"List,list",
+            "props":{"y":358,"x":0,"width":759,"var":"list","height":732},
             "nodeParent":2,
-            "label":"UIView",
+            "label":"list",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":13,
+            "child":[
+                {
+                    "x":30,
+                    "type":"UIView",
+                    "source":"test/paihang1.scene",
+                    "searchKey":"UIView",
+                    "props":{"y":0,"x":0,"renderType":"render"},
+                    "nodeParent":13,
+                    "label":"UIView",
+                    "isDirectory":false,
+                    "isAniNode":false,
+                    "hasChild":false,
+                    "compId":14,
+                    "child":[
+                        ]
+                }]
+        },
+        {
+            "x":15,
+            "type":"WXOpenDataViewer",
+            "searchKey":"WXOpenDataViewer,wxOpen",
+            "props":{"y":358,"x":60,"width":627,"var":"wxOpen","iconSign":"wx","height":763},
+            "nodeParent":2,
+            "label":"wxOpen",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":12,
+            "compId":15,
+            "child":[
+                ],
+            "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Sprite",
+            "searchKey":"Sprite",
+            "props":{"y":262.5,"x":116,"texture":"paihang/haoyouzi.png"},
+            "nodeParent":2,
+            "label":"Sprite",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":16,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Sprite",
+            "searchKey":"Sprite",
+            "props":{"y":262.5,"x":339,"texture":"paihang/shijiezi.png"},
+            "nodeParent":2,
+            "label":"Sprite",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":18,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Text",
+            "searchKey":"Text,myText",
+            "props":{"y":1133,"x":525.5224609375,"var":"myText","text":"我的名次:11","fontSize":30,"color":"#ffffff"},
+            "nodeParent":2,
+            "label":"myText",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":19,
             "child":[
                 ]
         }],
