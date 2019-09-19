@@ -62,10 +62,10 @@ import SysEnemy from "../../sys/SysEnemy";
     private isTwo:boolean = false;
     updateExp():void
     {
-        let lv:number = SysLevel.getLv(Game.exp);
+        let lv:number = SysLevel.getLv(Game.battleExp);
         let maxExp: number = SysLevel.getMaxExpByLv(lv);
         let curExpSum: number = SysLevel.getExpSum(lv - 1);
-        let curExp: number = Game.exp - curExpSum;
+        let curExp: number = Game.battleExp - curExpSum;
         let vv = curExp / maxExp;
 
         this.isTwo = lv > Game.level;

@@ -21,6 +21,7 @@ export default class WorldCell extends ui.test.worldCellUI {
             Game.battleLoader.chapterId = this.sys.id;
             SysChapter.randomDiamond(Game.battleLoader.chapterId);
             Game.battleCoins = 0;
+            Game.battleExp = 0;
             Laya.stage.event(GameEvent.START_BATTLE);
         }
         else

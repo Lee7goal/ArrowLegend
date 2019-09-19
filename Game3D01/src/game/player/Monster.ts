@@ -150,7 +150,7 @@ export default class Monster extends GamePro {
                     let buff3001: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill3001.skillEffect1);
                     addNum = Math.ceil(this.sysEnemy.dropExp * buff3001.addExp / 1000);
                 }
-                Game.exp += this.sysEnemy.dropExp + addNum;
+                Game.battleExp += this.sysEnemy.dropExp + addNum;
             }
         }
 

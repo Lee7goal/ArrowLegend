@@ -36,7 +36,6 @@ export default class Game {
     static resVer:string = "1.0.17.1925";
 
     //战斗中的临时数据
-    static exp:number;
     static level:number;
     static lastLevel:number;
 
@@ -342,7 +341,7 @@ export default class Game {
         Game.rebornTimes = 2;
         Game.hero.reset();
         Game.hero.resetAI();
-        Game.exp = 0;
+        Game.battleExp = 0;
         Game.battleLoader.clearMonster();
         Game.scenneM.showMain();
 
