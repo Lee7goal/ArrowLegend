@@ -58,6 +58,11 @@ export default class HeroData implements IData{
         return hd.getLv( type );
     }
 
+    public get curHeroData():Equip
+    {
+        return this.getHeroData(1);
+    }
+
     /**
      * 得到某位英雄具体的数值 给战场用的
      * @param heroId 
@@ -72,7 +77,8 @@ export default class HeroData implements IData{
         e.atkSpeed = sysRB.baseSpeed;
         e.crit = sysRB.baseCrit;
         e.critEffect = sysRB.baseCritHurt;
-        e.addPercent( Session.talentData.equip );
+        e.initSkillId = sysRB.baseSkill;
+        
         return e;
     }
 
@@ -81,6 +87,7 @@ export default class HeroData implements IData{
         let sys = SysRoleUp.getSysRole( heroId , lv );
         return sys.getValue( type );
     }
+
 
     /**
      * @param heroId 

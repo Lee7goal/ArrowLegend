@@ -12,21 +12,15 @@ import GameHitBox from "../GameHitBox";
 export default class Coin extends GamePro {
     static TAG:string = "Coin";
 
+    static tScale = new Laya.Vector3(1.5,1.5,1.5);
+    static tScale2 = new Laya.Vector3(0.5,0.5,0.5);
+
     curLen: number = 0;
     moveLen: number = 0;
     status:number = 0;
 
     constructor() {
         super(0, 1);
-
-        var sp: Laya.Sprite3D = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/coins/monster.lh"));
-        // Game.monsterResClones.push(sp);
-        this.setSp3d(sp);
-        sp.transform.localScale = new Laya.Vector3(1.5,1.5,1.5);
-        // sp.transform.localRotationEulerY = 45;
-        this.sp3d.addComponent(FootRotateScript);
-        
-
         this.setSpeed(0);
 
         this.setGameAi(new CoinsAI());
@@ -39,16 +33,46 @@ export default class Coin extends GamePro {
         this.setShadowSize(20);
     }
 
-    static getOne():Coin{
+    static getOne(id:number):Coin{
         let coin:Coin = Laya.Pool.getItemByClass(Coin.TAG,Coin);
+        var sp: Laya.Sprite3D;
+        if(id == 0)
+        {
+            sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/coins/monster.lh"));
+            coin.setSp3d(sp);
+            coin.sp3d.transform.localScale = Coin.tScale;
+        }
+        else if(id == 1)
+        {
+            sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/lanzuan/monster.lh"));
+            coin.setSp3d(sp);
+            coin.sp3d.transform.localScale = Coin.tScale2;
+        }
+        else if(id == 2)
+        {
+            sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/hongzuan/monster.lh"));
+            coin.setSp3d(sp);
+            coin.sp3d.transform.localScale = Coin.tScale2;
+        }
+        if(sp)
+        {
+            coin.sp3d.addComponent(FootRotateScript);
+        }
         return coin;
     }
 
-    public setPos(monster:Monster,r:number):void
+    public setPos(monster:GamePro,r:number,id:number):void
     {
         this.status = 1;
         this.curLen = 0;
-        this.moveLen = 20 + Math.random() * GameBG.ww;
+        if(id == 0)
+        {
+            this.moveLen = 20 + Math.random() * GameBG.ww;
+        }
+        else
+        {
+            this.moveLen = 50 + Math.random() * GameBG.ww;
+        }
         this.setXY2D(monster.pos2.x,monster.pos2.z);
         this.setSpeed(2);
         this.rotation(r);

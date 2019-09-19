@@ -9,14 +9,15 @@ import SysMap from "../../main/sys/SysMap";
 import Session from "../../main/Session";
 
 export default class HomeData implements IData{
-    
+    isGuide:boolean;
     totalEnergy:number;
     curEnergy:number;
     maxEngergy:number;
     lastTime:number;
     chapterId:number;
     mapIndex:number;
-    level:number;
+    battleLv:number;
+    playerLv:number;
     /**
      * 金币
      */
@@ -43,9 +44,11 @@ export default class HomeData implements IData{
         this.curEnergy = data.curEnergy;
         this.chapterId = data.chapterId;
         this.mapIndex = data.mapIndex;
-        this.level = data.level;
+        this.battleLv = data.battleLv;
+        this.playerLv = data.playerLv;
         this.coins = data.coins;
         this.playerExp = data.playerExp;
+        this.isGuide = data.isGuide;
         if(this.playerExp == null)
         {
             this.playerExp = 0;
@@ -72,7 +75,8 @@ export default class HomeData implements IData{
         data.totalEnergy = this.totalEnergy;
         data.mapIndex = this.mapIndex;
         data.chapterId = this.chapterId;
-        data.level = this.level;
+        data.battleLv = this.battleLv;
+        data.playerLv = this.playerLv;
         data.coins = this.coins;
         data.playerExp = this.playerExp;
         if( Game.battleLoader.index > this.mapIndex ) {
@@ -80,8 +84,8 @@ export default class HomeData implements IData{
             console.log("存储最高层数",data.mapIndex);
         }
         data.coins += Game.addCoins;
+        data.isGuide = this.isGuide;
         this.coins = data.coins;
-        data.level = this.level;
     }
 
     /**
@@ -93,9 +97,11 @@ export default class HomeData implements IData{
         this.maxEngergy = TopUI.MAX_ENERGY;
         this.curEnergy = this.totalEnergy;
         this.lastTime = 0;
+        this.isGuide = true;
         this.chapterId = 0;
         this.mapIndex = 0;
-        this.level = 1;
+        this.battleLv = 1;
+        this.playerLv = 1;
         this.coins = 0;
         this.redDiamond = 0;
         this.playerExp = 0;
@@ -145,14 +151,14 @@ export default class HomeData implements IData{
     public addPlayerExp( exp:number ):void{
         this.playerExp += exp;
         while( true ){
-            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME , this.level );    
+            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME , this.playerLv );    
             if( this.playerExp >= sys.roleExp  ){
-                let nowLv = this.level + 1;
-                if( App.tableManager.getDataByNameAndId(SysHero.NAME , this.level ) == null ){
+                let nowLv = this.playerLv + 1;
+                if( App.tableManager.getDataByNameAndId(SysHero.NAME , this.playerLv ) == null ){
                     //等级已经到头了
                     break;
                 }
-                this.level = nowLv;
+                this.playerLv = nowLv;
                 this.playerExp -= sys.roleExp;
             }else{
                 break;

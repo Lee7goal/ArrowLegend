@@ -97,11 +97,11 @@ import GameEvent from "../../GameEvent";
             }
             this.updateEnergy();
 
-            this.dengji.value = "" + Session.homeData.level;
+            this.dengji.value = "" + Session.homeData.playerLv;
 
             this.coinClip.value = "" + Session.homeData.coins;
 
-            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME,Session.homeData.level);
+            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME,Session.homeData.battleLv);
             let vv:number = Session.homeData.playerExp / sys.roleExp;
             Laya.timer.frameLoop(1,this,this.onLoopExp,[vv]);
 

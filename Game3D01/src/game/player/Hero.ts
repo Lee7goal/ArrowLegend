@@ -19,7 +19,6 @@ export default class Hero extends GamePro {
     static bornX:number;
     static bornY:number;
 
-    public playerData: PlayerData = new PlayerData();
     constructor() {
         super(GameProType.Hero, 0);
         this.reset();
@@ -50,7 +49,7 @@ export default class Hero extends GamePro {
         {
             if(sys.id == 4002 || sys.id == 4004)//加血的
             {
-                this.addBlood(Math.floor(Game.hero.gamedata.maxhp * buff.addHp / 1000));
+                this.addBlood(Math.floor(this.gamedata.maxhp * buff.addHp / 1000));
                 return true;
             }
             else if(sys.id == 4003)
@@ -89,8 +88,10 @@ export default class Hero extends GamePro {
     }
 
     public reset(): void {
-        this.gamedata.hp = this.gamedata.maxhp = 600;
+        this.gamedata.hp = this.gamedata.maxhp = Session.heroData.curHeroData.hp;
         this.buffAry.length = 0;
+        Game.skillManager.clear();
+        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,Session.heroData.curHeroData.initSkillId));
     }
 
     resetAI():void
@@ -152,7 +153,7 @@ export default class Hero extends GamePro {
         this.isDie = false;
         this.setKeyNum(1);
         this.acstr = "";
-        let sp: Laya.Sprite3D = Laya.loader.getRes("h5/hero/hero.lh");
+        let sp: Laya.Sprite3D = Laya.loader.getRes("h5/hero/1/hero.lh");
         Game.layer3d.addChild(sp);
         //var scale = 1.2;
         var scale = 1.4;
@@ -160,6 +161,7 @@ export default class Hero extends GamePro {
         this.setSp3d(sp as Laya.Sprite3D);
 
         this.play("Idle");
+        this.setSpeed(Session.heroData.curHeroData.moveSpeed);
 
         // this.addWeapon();
 
@@ -218,10 +220,6 @@ export default class Hero extends GamePro {
         // }
         this.startAi();
         Game.executor.start();
-        if(!Session.isGuide)
-        {
-            
-        }
         // setTimeout(() => {
         
         console.log("主角调下来",Game.AiArr.length);
@@ -252,14 +250,6 @@ export default class Hero extends GamePro {
         {
             super.hurt(hurt, isCrit);
             HitEffect.addEffect(this);
-        }
-
-        //愤怒
-        let angerSkill:SysSkill = Game.skillManager.isHas(3008);
-        if(angerSkill)
-        {
-            let rate:number = (this.gamedata.maxhp - this.gamedata.hp) / this.gamedata.maxhp;
-            this.playerData.baseAttackPower = Math.floor(Game.skillManager.addAttack() * (1 + rate));
         }
     }
 

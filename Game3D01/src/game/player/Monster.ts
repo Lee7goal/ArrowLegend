@@ -21,6 +21,8 @@ import BaseAI from "../ai/BaseAi";
 import GameBG from "../GameBG";
 import MemoryManager from "../../main/scene/battle/MemoryManager";
 import GameEvent from "../../main/GameEvent";
+import SysChapter from "../../main/sys/SysChapter";
+import CoinEffect from "../effect/CoinEffect";
 
 export default class Monster extends GamePro {
     static TAG: string = "Monster_";
@@ -138,7 +140,7 @@ export default class Monster extends GamePro {
             Game.map0.Eharr.splice(Game.map0.Eharr.indexOf(this.hbox), 1);
         }
 
-        if(Game.hero.playerData.level <= 10)
+        if(Game.level <= 10)
         {
             if (this.sysEnemy.dropExp > 0)  {
                 let skill3001: SysSkill = Game.skillManager.isHas(3001);//聪明
@@ -148,7 +150,7 @@ export default class Monster extends GamePro {
                     let buff3001: SysBuff = App.tableManager.getDataByNameAndId(SysBuff.NAME, skill3001.skillEffect1);
                     addNum = Math.ceil(this.sysEnemy.dropExp * buff3001.addExp / 1000);
                 }
-                Game.hero.playerData.exp += this.sysEnemy.dropExp + addNum;
+                Game.exp += this.sysEnemy.dropExp + addNum;
             }
         }
 
@@ -159,6 +161,7 @@ export default class Monster extends GamePro {
             console.log(skill4001.skillName);
         }
 
+        Game.dropDiamond(this);
     }
 
     onDie(key): void {

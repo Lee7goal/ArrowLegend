@@ -8,6 +8,7 @@ import SysSkill from "../main/sys/SysSkill";
 import Hero from "./player/Hero";
 import BattleFlagID from "../main/scene/BattleFlagID";
 import Session from "../main/Session";
+import GameEvent from "../main/GameEvent";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -275,7 +276,7 @@ export default class GameMap0 extends Laya.Sprite {
             this.doorHitBox = null;
             if(Session.homeData.isPass)
             {
-                
+                Laya.stage.event(GameEvent.PASS_CHAPTER);
             }
             else
             {

@@ -3,22 +3,20 @@ import Monster from "../player/Monster";
 import FootRotateScript from "../controllerScript/FootRotateScript";
 import { ui } from "./../../ui/layaMaxUI";
 import Coin from "../player/Coin";
+import GamePro from "../GamePro";
 
 export default class CoinEffect{
     static coinsAry:Coin[] = [];
     constructor() {
      }
 
-     static addEffect(monster:Monster,goldNum:number):void
+     static addEffect(monster:GamePro,goldNum:number,id:number):void
      {
          for(let i = 0; i < goldNum; i++)
          {
-            let coin:Coin = Coin.getOne();
-            coin.setPos(monster,2 * Math.PI / goldNum * i);
+            let coin:Coin = Coin.getOne(id);
+            coin.setPos(monster,2 * Math.PI / goldNum * i,id);
             CoinEffect.coinsAry.push(coin);
-            setTimeout(() => {
-                
-            }, i * 50);
          }
      }
 

@@ -9,6 +9,9 @@ export default class Equip{
     public crit:number = 0;
     public moveSpeed:number = 0;
     public atkSpeed:number = 0;
+
+    public initSkillId:number = 0;
+
     /**
      * 暴击效果
      */
@@ -27,7 +30,7 @@ export default class Equip{
         e.moveSpeed = this.moveSpeed;
         e.atkSpeed = this.atkSpeed;
         e.critEffect = this.critEffect;
-        e.dodge = this.dodge;
+        e.initSkillId = this.initSkillId;
         return e;
     }
 
@@ -39,20 +42,6 @@ export default class Equip{
         this.moveSpeed = 0;
         this.atkSpeed = 0;
         this.critEffect = 0;
-    }
-
-    public addPercent( e:Equip ):void{
-        this.hp = this.v1( this.hp , e.hp );
-        this.atk = this.v1( this.atk , e.atk );
-        this.def = this.v1( this.def, e.def );
-        this.crit = this.v1( this.crit , e.crit );
-        this.moveSpeed = this.v1( this.moveSpeed , e.moveSpeed );
-        this.atkSpeed = this.v1( this.atkSpeed , e.atkSpeed );
-        this.critEffect = this.v1( this.critEffect , e.critEffect );
-        this.dodge = this.v1( this.dodge , e.dodge );
-    }
-
-    private v1( v:number , per:number ):number{
-        return v * (1 + per);
+        this.initSkillId = 0;
     }
 }

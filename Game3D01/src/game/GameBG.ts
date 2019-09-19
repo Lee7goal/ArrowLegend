@@ -14,6 +14,7 @@ import Hero from "./player/Hero";
 import GameThorn from "./GameThorn";
 import GameCube from "../main/scene/battle/GameCube";
 import BattleFlagID from "../main/scene/BattleFlagID";
+import CoinEffect from "./effect/CoinEffect";
 // import GuidePointer from "../main/guide/GuidePointer";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
@@ -68,6 +69,8 @@ export default class GameBG extends Laya.Sprite {
     static mcx: number;
     //主角中心坐标
     static mcy: number;
+
+    private maskImg:Laya.Image = new Laya.Image();
 
     private static v3d: Laya.Vector3;
 
@@ -365,15 +368,15 @@ export default class GameBG extends Laya.Sprite {
         GameBG.cx = this.x;
         GameBG.cy = this.y;
 
-        var sprite:Laya.Image = new Laya.Image();
-        this.addChild(sprite);
+        
+        this.addChild(this.maskImg);
         // sprite.alpha = 0.4;s
         // sprite.x = GameBG.ww;
         // sprite.texture = Laya.loader.getRes("h5/mapbg/topbg.png");
-        sprite.skin = "topbg.png";
-        sprite.sizeGrid = "506,421,801,321";
-        sprite.width = GameBG.bgWW;
-        sprite.height = GameBG.bgHH;
+        this.maskImg.skin = "battleBg/" + GameBG.BG_TYPE_NUM + ".png";
+        this.maskImg.sizeGrid = "506,421,801,321";
+        this.maskImg.width = GameBG.bgWW;
+        this.maskImg.height = GameBG.bgHH;
         
         // sprite.size(GameBG.bgWW - GameBG.ww,GameBG.ww * 10);
     }
@@ -459,6 +462,9 @@ export default class GameBG extends Laya.Sprite {
         this.npcId = 0;
         this._npcAni = null;
         // Game.openDoor();
+        if (Game.map0.Eharr.length == 0)  {
+            CoinEffect.fly();
+        }
     }
 
     public setDoor(state:number):void{

@@ -30,9 +30,15 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 import SysMap from "../main/sys/SysMap";
 import GameEvent from "../main/GameEvent";
+import SysChapter from "../main/sys/SysChapter";
 
 export default class Game {
     static resVer:string = "1.0.17.1925";
+
+    //战斗中的临时数据
+    static exp:number;
+    static level:number;
+    static lastLevel:number;
 
     static userHeadUrl:string = "";
     static userName:string = "";
@@ -168,11 +174,13 @@ export default class Game {
         {
             console.log("通关了");
             Session.homeData.isPass = true;
-            Session.homeData.chapterId++;
+            if(Game.battleLoader.chapterId >= Session.homeData.chapterId)
+            {
+                Session.homeData.chapterId++;
+                Session.homeData.setChapterId(Session.homeData.chapterId);
+            }
             Game.battleLoader.index = 0;
             Session.homeData.mapIndex = 0;
-
-            Laya.stage.event(GameEvent.PASS_CHAPTER)
         }
 
         Game.cookie.setCookie(CookieKey.CURRENT_BATTLE,{
@@ -182,20 +190,26 @@ export default class Game {
             "curhp":Game.hero.gamedata.hp,
             "maxhp":Game.hero.gamedata.maxhp,
             "skills":Game.skillManager.skills,
-            "coins":Game.battleCoins
+            "coins":Game.battleCoins,
+            "chapterId":Game.battleLoader.chapterId
         });
         Game.isOpen = true;
-        if(Session.isGuide)
+        if(Session.homeData.isGuide)
         {
             Session.homeData.chapterId = 1;
             Game.scenneM.battle.setGuide("通过传送进入下一关。",5);
-            Session.isGuide = false;
+            Session.homeData.isGuide = false;
             Game.battleLoader.index = 1;
             Game.battleLoader.chapterId = 1;
+            SysChapter.randomDiamond(Game.battleLoader.chapterId);
+            Session.homeData.setChapterId(Session.homeData.chapterId);
         }
         else
         {
-            Game.battleLoader.index++;
+            if(!Session.homeData.isPass)
+            {
+                Game.battleLoader.index++;
+            }
         }
 
 
@@ -330,7 +344,7 @@ export default class Game {
         Game.rebornTimes = 2;
         Game.hero.reset();
         Game.hero.resetAI();
-        Game.hero.playerData.exp = 0;
+        Game.exp = 0;
         Game.battleLoader.clearMonster();
         Game.scenneM.showMain();
 
@@ -368,5 +382,22 @@ export default class Game {
                 App.soundManager.play(str);
             }
         });
+    }
+
+    static dropDiamond(pro:GamePro):void
+    {
+        if (Game.map0.Eharr.length == 0)  {
+            if(Game.battleLoader.index == SysChapter.dropIndex)
+            {
+                if(SysChapter.blueNum > 0)
+                {
+                    CoinEffect.addEffect(pro,SysChapter.blueNum,1);
+                }
+                else if(SysChapter.redNum > 0)
+                {
+                    CoinEffect.addEffect(pro,SysChapter.redNum,2);
+                }
+            }
+        }
     }
 }

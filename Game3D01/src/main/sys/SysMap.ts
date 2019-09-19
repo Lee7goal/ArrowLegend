@@ -2,6 +2,8 @@ import App from "../../core/App";
 
 export default class SysMap {
     static NAME:string = 'sys_stageinfo.txt';
+
+    static dic:any = {};
     constructor() { }
 
     public id:number = 0;
@@ -16,11 +18,11 @@ export default class SysMap {
 
     static getData(chaterId:number,mapId:number):SysMap
     {
-        let arr:SysMap[] = App.tableManager.getTable(SysMap.NAME);
+        let arr:SysMap[] = SysMap.dic[chaterId];
         let size = arr.length;
         for(var i = 0; i < size; i++)
         {
-            if(arr[i].id == mapId && arr[i].stageId == chaterId)
+            if((i + 1) == mapId)
             {
                 return arr[i];
             }
@@ -31,15 +33,7 @@ export default class SysMap {
     static getTotal(chaterId:number):number
     {
         let count:number = 0;
-        let arr:SysMap[] = App.tableManager.getTable(SysMap.NAME);
-        let size = arr.length;
-        for(var i = 0; i < size; i++)
-        {
-            if(arr[i].stageId == chaterId)
-            {
-                count++;
-            }
-        }
-        return count;
+        let arr:SysMap[] =  SysMap.dic[chaterId];
+        return arr.length;
     }
 }

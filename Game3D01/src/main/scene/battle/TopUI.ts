@@ -62,16 +62,16 @@ import SysEnemy from "../../sys/SysEnemy";
     private isTwo:boolean = false;
     updateExp():void
     {
-        let lv:number = SysLevel.getLv(Game.hero.playerData.exp);
+        let lv:number = SysLevel.getLv(Game.exp);
         let maxExp: number = SysLevel.getMaxExpByLv(lv);
         let curExpSum: number = SysLevel.getExpSum(lv - 1);
-        let curExp: number = Game.hero.playerData.exp - curExpSum;
+        let curExp: number = Game.exp - curExpSum;
         let vv = curExp / maxExp;
 
-        this.isTwo = lv > Game.hero.playerData.level;
+        this.isTwo = lv > Game.level;
         Laya.timer.frameLoop(1,this,this.onLoop,[vv]);
 
-        Game.hero.playerData.level = lv;
+        Game.level = lv;
         if(!this.isTwo)
         {
             // this.shuzi.text = "" + Game.hero.playerData.level;
@@ -138,11 +138,11 @@ export class IndexBox extends ui.game.battleIndexBoxUI
     init():void
     {
         this._cellList.length = 0;
-        if(Session.homeData.chapterId == 0)
+        if(Game.battleLoader.chapterId == 0)
         {
             return;
         }
-        let max:number = SysMap.getTotal(Session.homeData.chapterId);
+        let max:number = SysMap.getTotal(Game.battleLoader.chapterId);
         for(let i = 0; i < max; i++)
         {
             let cell:IndexCell = Laya.Pool.getItemByClass(IndexCell.TAG,IndexCell);
@@ -159,7 +159,7 @@ export class IndexBox extends ui.game.battleIndexBoxUI
     private _isInit:boolean = false;
     update(index:number):void
     {
-        if(Session.homeData.chapterId == 0)
+        if(Game.battleLoader.chapterId == 0)
         {
             return;
         }
@@ -182,7 +182,7 @@ export class IndexBox extends ui.game.battleIndexBoxUI
 
         }
         
-        let max:number = SysMap.getTotal(Session.homeData.chapterId);
+        let max:number = SysMap.getTotal(Game.battleLoader.chapterId);
         if(index > max)
         {
             index = max;
