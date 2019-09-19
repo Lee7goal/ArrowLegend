@@ -18,7 +18,7 @@ export default class DialogManager{
         let arr = this.dialogMap[dialogName];
         let dc = arr[0];
         let a:Laya.Dialog = new dc();
-        a.popup( true, true );
+        a.popup(true,a.isShowEffect);
         a.once( Laya.Event.UNDISPLAY , this,this.undisFun , [a] );
     }
 

@@ -67,7 +67,7 @@ export default class App{
             url = url + "?" + str;
             data = null;
         }
-        http.send(url,data,method);
+        http.send(url,str,method);
         if( caller && listener ){
             http.once(Laya.Event.COMPLETE,caller,listener,args );
         }

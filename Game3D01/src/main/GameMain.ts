@@ -97,6 +97,6 @@ export default class GameMain {
 
     public static initDialog():void{
         App.dialogManager.register( GameMain.TIME_GOLD , TimeGoldDialog , ["res/atlas/timegold.atlas"] );
-        App.dialogManager.register( GameMain.RANK_DIALOG , RankDialog , ["res/atlas/rank.atlas"] );
+        App.dialogManager.register( GameMain.RANK_DIALOG , RankDialog , ["res/atlas/paihang.atlas"] );
     }
 }
