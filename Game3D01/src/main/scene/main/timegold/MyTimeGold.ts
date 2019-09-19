@@ -31,7 +31,7 @@ export default class MyTimeGold{
         let endA = 360 * ( (60000 - ms) / 60000 ) - 90;
         let a = this.disView.shanbox;
         a.graphics.clear();
-        a.graphics.drawPie(a.width/2 -1 ,a.height/2 + 2 , 35,-90 , endA , "#ffec1d" );
+        a.graphics.drawPie(a.width/2 ,a.height/2 - 2 , 35,-90 , endA , "#ffec1d" );
     }
 
     public getString( value:number ):string{
