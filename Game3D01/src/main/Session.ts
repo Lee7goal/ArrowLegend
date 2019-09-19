@@ -10,6 +10,7 @@ import GameEvent from "./GameEvent";
 import HeroData from "../game/data/HeroData";
 import Monster from "../game/player/Monster";
 import TimeGoldData from "../game/data/TimeGoldData";
+import RankData from "../game/data/RankData";
 
 export default class Session{
     static SKEY:string;
@@ -25,6 +26,7 @@ export default class Session{
     static taskData:TaskData = null;
     static heroData:HeroData = null;
     static timeGoldData:TimeGoldData = null;
+    static rankData:RankData = null;
 
     static IDataArr:Array<IData> = [];
 
@@ -35,6 +37,7 @@ export default class Session{
         Session.userData = new UserData();
         Session.heroData = new HeroData();
         Session.timeGoldData = new TimeGoldData();
+        Session.rankData = new RankData();
         
         Session.IDataArr.push( Session.homeData );
         Session.IDataArr.push( Session.talentData );

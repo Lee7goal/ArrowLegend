@@ -50,4 +50,27 @@ export default class App{
         }
         return resvalue;
     }
+
+     /**
+         * 他会自动帮你拼参数 
+         * 你不需要get的时候把参数拼在url后面
+         * 也就是说get 和 post 是是一样的
+         */
+    public static http( url:string , data:any , method:string,caller:any = null ,listener:Function = null,args:Array<any> = null ):Laya.HttpRequest{
+        var http = new Laya.HttpRequest();
+        let arr:Array<string> = [];
+        for( let k in data ){
+            arr.push( k + "=" + data[k] );
+        }
+        let str:string = arr.join("&");
+        if( method == "GET" ){
+            url = url + "?" + str;
+            data = null;
+        }
+        http.send(url,data,method);
+        if( caller && listener ){
+            http.once(Laya.Event.COMPLETE,caller,listener,args );
+        }
+        return http;
+    }
 }

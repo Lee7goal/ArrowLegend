@@ -30,6 +30,12 @@ export default class HomeData implements IData{
 
     isPass:boolean = false;
 
+    public setChapterId( value:number ):void{
+        this.chapterId = value;
+        Session.rankData.saveWorldRank();
+        Session.rankData.saveFriendRank();
+    }
+
     public setData(data:any):void{
         this.totalEnergy = data.totalEnergy;
         this.maxEngergy = data.maxEngergy;
@@ -94,7 +100,7 @@ export default class HomeData implements IData{
         this.redDiamond = 0;
         this.playerExp = 0;
         this.blueDiamond = 0;
-        this.coins = 9999999;
+        this.coins = 9999;
     }
 
     /**
