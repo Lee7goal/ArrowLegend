@@ -143,21 +143,6 @@
             "compId":11,
             "child":[
                 ]
-        },
-        {
-            "x":15,
-            "type":"UIView",
-            "source":"test/paihang1.scene",
-            "searchKey":"UIView",
-            "props":{"y":376,"x":0},
-            "nodeParent":2,
-            "label":"UIView",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":12,
-            "child":[
-                ]
         }],
     "animations":[
         {
