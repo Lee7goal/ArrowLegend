@@ -161,21 +161,7 @@ export default class Monster extends GamePro {
             console.log(skill4001.skillName);
         }
 
-
-        if (Game.map0.Eharr.length == 0)  {
-            console.log("怪物都死了，开始判断钻石");
-            if(Game.battleLoader.index == SysChapter.dropIndex)
-            {
-                if(SysChapter.blueNum > 0)
-                {
-                    CoinEffect.addEffect(this,SysChapter.blueNum,1);
-                }
-                else if(SysChapter.redNum > 0)
-                {
-                    CoinEffect.addEffect(this,SysChapter.redNum,2);
-                }
-            }
-        }
+        Game.dropDiamond(this);
     }
 
     onDie(key): void {

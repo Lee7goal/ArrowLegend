@@ -129,18 +129,19 @@ export default class GamePro extends Laya.EventDispatcher {
     }
 
     public setSp3d(sp: Sprite3D,ww?:number): void {
-        this.sp3d_ = sp;
-        this.sp3d_.transform.localRotationEulerY = this.rotationEulerY = 0;
         this.hbox_ = new GameHitBox(ww ? ww : GameBG.mw, ww ? ww : GameBG.mw);
         this.hbox_.linkPro_ = this;
         this.hbox_.setCenter(GameBG.mcx, GameBG.mcy);
-        let aniSprite3d = sp.getChildAt(0) as Sprite3D;
-        if (aniSprite3d) {
-            this.ani_ = aniSprite3d.getComponent(Laya.Animator) as Animator;
-            
+        if(sp)
+        {
+            this.sp3d_ = sp;
+            this.sp3d_.transform.localRotationEulerY = this.rotationEulerY = 0;
+            let aniSprite3d = sp.getChildAt(0) as Sprite3D;
+            if (aniSprite3d) {
+                this.ani_ = aniSprite3d.getComponent(Laya.Animator) as Animator;
+            }
+            this.on(Game.Event_Hit, this, this.hit);
         }
-
-        this.on(Game.Event_Hit, this, this.hit);
     }
 
     public get animator(): Animator {
@@ -416,6 +417,10 @@ export default class GamePro extends Laya.EventDispatcher {
 
     
     public pos2To3d(): void {
+        if(!this.sp3d_)
+        {
+            return;
+        }
         //2D转3D坐标 给主角模型
         this.sp3d_.transform.localPositionX = this._pos2.x / GameBG.ww;
         this.sp3d_.transform.localPositionZ = this._pos2.z / Game.cameraCN.cos0 / GameBG.ww;

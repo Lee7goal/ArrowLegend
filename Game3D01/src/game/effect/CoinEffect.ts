@@ -3,13 +3,14 @@ import Monster from "../player/Monster";
 import FootRotateScript from "../controllerScript/FootRotateScript";
 import { ui } from "./../../ui/layaMaxUI";
 import Coin from "../player/Coin";
+import GamePro from "../GamePro";
 
 export default class CoinEffect{
     static coinsAry:Coin[] = [];
     constructor() {
      }
 
-     static addEffect(monster:Monster,goldNum:number,id:number):void
+     static addEffect(monster:GamePro,goldNum:number,id:number):void
      {
          for(let i = 0; i < goldNum; i++)
          {

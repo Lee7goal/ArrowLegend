@@ -148,6 +148,7 @@ export default class BattleLoader {
 
         if(this.continueRes)
         {
+            this.chapterId = this.continueRes.chapterId;
             this._mapId = this.continueRes.mapId;
             this._index  = this.continueRes.index;
             this._configId = this.continueRes.configId;

@@ -61,7 +61,7 @@ export default class Coin extends GamePro {
         return coin;
     }
 
-    public setPos(monster:Monster,r:number,id:number):void
+    public setPos(monster:GamePro,r:number,id:number):void
     {
         this.status = 1;
         this.curLen = 0;

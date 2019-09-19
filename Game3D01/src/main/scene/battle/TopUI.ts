@@ -50,7 +50,6 @@ import SysEnemy from "../../sys/SysEnemy";
 
     reset():void
     {
-        Game.exp = 0;
         this._indexBox.init();
     }
 
@@ -111,7 +110,6 @@ import SysEnemy from "../../sys/SysEnemy";
         this.maskSpr.graphics.clear();
         this.maskSpr.graphics.drawRect(0,this.lvBar.height - this.lastWidth,this.lvBar.width,this.lastWidth,"#fff000");
         this.lvBar.mask = this.maskSpr;
-        console.log("===================================")
     }
 
     updateCoins():void
@@ -140,11 +138,11 @@ export class IndexBox extends ui.game.battleIndexBoxUI
     init():void
     {
         this._cellList.length = 0;
-        if(Session.homeData.chapterId == 0)
+        if(Game.battleLoader.chapterId == 0)
         {
             return;
         }
-        let max:number = SysMap.getTotal(Session.homeData.chapterId);
+        let max:number = SysMap.getTotal(Game.battleLoader.chapterId);
         for(let i = 0; i < max; i++)
         {
             let cell:IndexCell = Laya.Pool.getItemByClass(IndexCell.TAG,IndexCell);
@@ -161,7 +159,7 @@ export class IndexBox extends ui.game.battleIndexBoxUI
     private _isInit:boolean = false;
     update(index:number):void
     {
-        if(Session.homeData.chapterId == 0)
+        if(Game.battleLoader.chapterId == 0)
         {
             return;
         }
@@ -184,7 +182,7 @@ export class IndexBox extends ui.game.battleIndexBoxUI
 
         }
         
-        let max:number = SysMap.getTotal(Session.homeData.chapterId);
+        let max:number = SysMap.getTotal(Game.battleLoader.chapterId);
         if(index > max)
         {
             index = max;

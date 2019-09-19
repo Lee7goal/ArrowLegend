@@ -14,6 +14,7 @@ import Hero from "./player/Hero";
 import GameThorn from "./GameThorn";
 import GameCube from "../main/scene/battle/GameCube";
 import BattleFlagID from "../main/scene/BattleFlagID";
+import CoinEffect from "./effect/CoinEffect";
 // import GuidePointer from "../main/guide/GuidePointer";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
@@ -461,6 +462,9 @@ export default class GameBG extends Laya.Sprite {
         this.npcId = 0;
         this._npcAni = null;
         // Game.openDoor();
+        if (Game.map0.Eharr.length == 0)  {
+            CoinEffect.fly();
+        }
     }
 
     public setDoor(state:number):void{

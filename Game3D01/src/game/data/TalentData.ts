@@ -171,7 +171,7 @@ export default class TalentData implements IData {
         if( this.haveGold() == false ){
             return -1;
         }
-        if( this.lvTimes >= Session.homeData.level ){
+        if( this.lvTimes >= Session.homeData.battleLv ){
             return -2;
         }
         return 0;

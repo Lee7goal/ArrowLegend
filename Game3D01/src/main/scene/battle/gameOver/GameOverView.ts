@@ -35,10 +35,10 @@ export default class GameOverView extends ui.test.GameOverUI {
         Laya.Tween.to(this.topBox, { scaleX: 1, scaleY: 1 }, 200, null, new Laya.Handler(this, this.onNext));
 
 
-        let lastLv: number = Session.homeData.level;
+        let lastLv: number = Session.homeData.battleLv;
 
-        this.cengshu.value = Session.homeData.level + "";
-        this.dengji.value = Session.homeData.level + "";
+        this.cengshu.value = Session.homeData.battleLv + "";
+        this.dengji.value = Session.homeData.battleLv + "";
 
         Game.addCoins = Game.battleCoins;
         Session.saveData();
@@ -46,7 +46,7 @@ export default class GameOverView extends ui.test.GameOverUI {
         Laya.timer.frameLoop(1, this, this.onLoop);
 
 
-        if (lastLv != Session.homeData.level)  {
+        if (lastLv != Session.homeData.battleLv)  {
             setTimeout(() => {
                 Laya.stage.event(GameEvent.LV_UP_VIEW);
             }, 800);
@@ -58,7 +58,7 @@ export default class GameOverView extends ui.test.GameOverUI {
         setTimeout(() => {
             this.expBox.visible = true;
 
-            let lastLv: number = Session.homeData.level;
+            let lastLv: number = Session.homeData.battleLv;
             let sys: SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME, lastLv);
             let ww: number = this.expBar.width * Game.battleExp / sys.roleExp;
             ww = Math.max(1, ww);

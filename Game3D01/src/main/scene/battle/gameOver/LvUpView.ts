@@ -15,8 +15,8 @@ import SysChapter from "../../../sys/SysChapter";
     }
 
     private onDis(): void  {
-        this.lvClip.value = "" + Session.homeData.level;
-        this.lvLabel.text = "" + Session.homeData.level;
+        this.lvClip.value = "" + Session.homeData.battleLv;
+        this.lvLabel.text = "" + Session.homeData.battleLv;
         
         this.lanBox.removeSelf();
         this.ziBox.removeSelf();

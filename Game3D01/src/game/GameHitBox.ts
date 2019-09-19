@@ -2,7 +2,6 @@ import GamePro from "./GamePro";
 import MaoLineData from "./MaoLineData";
 
 export default class GameHitBox {
-
     private x_:number  = 0;
     private y_:number  = 0;
     private ww_:number = 2;

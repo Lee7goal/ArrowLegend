@@ -30,6 +30,7 @@ import { BaseCookie } from "../gameCookie/BaseCookie";
 import CookieKey from "../gameCookie/CookieKey";
 import SysMap from "../main/sys/SysMap";
 import GameEvent from "../main/GameEvent";
+import SysChapter from "../main/sys/SysChapter";
 
 export default class Game {
     static resVer:string = "1.0.17.1925";
@@ -173,7 +174,11 @@ export default class Game {
         {
             console.log("通关了");
             Session.homeData.isPass = true;
-            Session.homeData.chapterId++;
+            if(Game.battleLoader.chapterId >= Session.homeData.chapterId)
+            {
+                Session.homeData.chapterId++;
+                Session.homeData.setChapterId(Session.homeData.chapterId);
+            }
             Game.battleLoader.index = 0;
             Session.homeData.mapIndex = 0;
         }
@@ -185,7 +190,8 @@ export default class Game {
             "curhp":Game.hero.gamedata.hp,
             "maxhp":Game.hero.gamedata.maxhp,
             "skills":Game.skillManager.skills,
-            "coins":Game.battleCoins
+            "coins":Game.battleCoins,
+            "chapterId":Game.battleLoader.chapterId
         });
         Game.isOpen = true;
         if(Session.homeData.isGuide)
@@ -195,6 +201,8 @@ export default class Game {
             Session.homeData.isGuide = false;
             Game.battleLoader.index = 1;
             Game.battleLoader.chapterId = 1;
+            SysChapter.randomDiamond(Game.battleLoader.chapterId);
+            Session.homeData.setChapterId(Session.homeData.chapterId);
         }
         else
         {
@@ -374,5 +382,22 @@ export default class Game {
                 App.soundManager.play(str);
             }
         });
+    }
+
+    static dropDiamond(pro:GamePro):void
+    {
+        if (Game.map0.Eharr.length == 0)  {
+            if(Game.battleLoader.index == SysChapter.dropIndex)
+            {
+                if(SysChapter.blueNum > 0)
+                {
+                    CoinEffect.addEffect(pro,SysChapter.blueNum,1);
+                }
+                else if(SysChapter.redNum > 0)
+                {
+                    CoinEffect.addEffect(pro,SysChapter.redNum,2);
+                }
+            }
+        }
     }
 }
