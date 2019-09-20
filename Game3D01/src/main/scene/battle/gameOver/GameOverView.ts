@@ -17,10 +17,13 @@ export default class GameOverView extends ui.test.GameOverUI {
 
     private onCloseView(): void {
         this.removeSelf();
-        Game.showMain();        
+        Game.showMain();
     }
 
+    private _isCom: boolean = false;
     private onDis(): void {
+        this._isCom = false;
+        this.isTwo = false;
         this.lanBox.removeSelf();
         this.ziBox.removeSelf();
         this.coinBox.removeSelf();
@@ -37,7 +40,7 @@ export default class GameOverView extends ui.test.GameOverUI {
         this.cengshu.value = Session.homeData.playerLv + "";
         this.dengji.value = Session.homeData.playerLv + "";
 
-       
+
         Laya.timer.frameLoop(1, this, this.onLoop);
     }
 
@@ -56,63 +59,67 @@ export default class GameOverView extends ui.test.GameOverUI {
             Laya.timer.frameLoop(1, this, this.onLoopExp, [vv]);
 
             Session.homeData.addPlayerExp(Game.battleExp);
-            let newLv:number = Session.homeData.playerLv;
-
-            console.log("是否升级的判断",lastLv,newLv,);
-
-            setTimeout(() => {
-                if (lastLv != newLv)  {
-                    Laya.stage.event(GameEvent.LV_UP_VIEW);
-                }
-            }, 1200);
+            let newLv: number = Session.homeData.playerLv;
         }, 100);
-        let hh = 780;
-        setTimeout(() => {
-            this.lingqu.visible = true;
-            if (SysChapter.blueNum > 0)  {
-                this.addChild(this.lanBox);
-                this.lanzuan.value = "" + SysChapter.blueNum;
-                this.lanBox.x = 260;
-                this.lanBox.y = hh;
-                hh += 100;
-            }
-            if (SysChapter.redNum > 0)  {
-                this.hongzuan.value = "" + SysChapter.redNum;
-                this.addChild(this.ziBox);
-                this.ziBox.x = 260;
-                this.ziBox.y = hh;
-                hh += 100;
-            }
-            if (Game.battleCoins > 0)  {
-                this.coinClip.value = "" + Game.battleCoins;
-                this.addChild(this.coinBox);
-                this.coinBox.x = 260;
-                this.coinBox.y = hh;
-                hh += 100;
-            }
-
-            this.fuhuo.y = hh;
-        }, 200);
-        setTimeout(() => {
-            this.fuhuo.visible = true;
-            Session.saveData();
-        }, 300);
     }
 
     private lastWidth: number = 0;
     private isTwo: boolean = false;
-    private onLoopExp(vv: number): void  {
+    private onLoopExp(vv: number): void {
         this.lastWidth += 5;
-        if (this.isTwo)  {
-            if (this.lastWidth >= this.expBar.width)  {
+        if (this.isTwo) {
+            if (this.lastWidth >= this.expBar.width) {
                 this.lastWidth = 0;
                 this.isTwo = false;
             }
         }
-        else  {
-            if (this.lastWidth >= this.expBar.width * vv)  {
+        else {
+            if (this.lastWidth >= this.expBar.width * vv) {
                 this.lastWidth = this.expBar.width * vv;
                 Laya.timer.clear(this, this.onLoopExp);
+
+                let hh = 780;
+                setTimeout(() => {
+                    this.lingqu.visible = true;
+                    if (SysChapter.blueNum > 0) {
+                        this.addChild(this.lanBox);
+                        this.lanzuan.value = "" + SysChapter.blueNum;
+                        this.lanBox.x = 260;
+                        this.lanBox.y = hh;
+                        hh += 100;
+                    }
+                    if (SysChapter.redNum > 0) {
+                        this.hongzuan.value = "" + SysChapter.redNum;
+                        this.addChild(this.ziBox);
+                        this.ziBox.x = 260;
+                        this.ziBox.y = hh;
+                        hh += 100;
+                    }
+                    if (Game.showCoinsNum > 0) {
+                        this.coinClip.value = "" + Game.showCoinsNum;
+                        this.addChild(this.coinBox);
+                        this.coinBox.x = 260;
+                        this.coinBox.y = hh;
+                        hh += 100;
+                    }
+
+                    this.fuhuo.y = hh;
+                }, 200);
+                setTimeout(() => {
+                    this.fuhuo.visible = true;
+                    Session.saveData();
+                    this._isCom = true;
+
+                    if(this.isTwo)
+                    {
+                        Laya.stage.event(GameEvent.LV_UP_VIEW);
+                    }
+                }, 300);
+            }
+        }
+        if (this.lastWidth >= this.expBar.width)  {
+            if (!this.isTwo)  {
+                this.isTwo = true;
             }
         }
         this.lastWidth = Math.max(1, this.lastWidth);

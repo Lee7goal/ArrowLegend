@@ -32,6 +32,7 @@ export default class GameBG extends Laya.Sprite {
     static bgId:number;
     static bgWW:number;
     static bgHH:number;
+    static bgHHReal:number;
     static bgCellWidth:number;
 
 
@@ -71,6 +72,7 @@ export default class GameBG extends Laya.Sprite {
     static mcy: number;
 
     private maskImg:Laya.Image = new Laya.Image();
+    private bottomImg:Laya.Image = new Laya.Image();
 
     private static v3d: Laya.Vector3;
 
@@ -370,13 +372,19 @@ export default class GameBG extends Laya.Sprite {
 
         
         this.addChild(this.maskImg);
+        this.addChild(this.bottomImg);
         // sprite.alpha = 0.4;s
         // sprite.x = GameBG.ww;
         // sprite.texture = Laya.loader.getRes("h5/mapbg/topbg.png");
         this.maskImg.skin = "battleBg/" + GameBG.BG_TYPE_NUM + ".png";
         this.maskImg.sizeGrid = "506,421,801,321";
         this.maskImg.width = GameBG.bgWW;
-        this.maskImg.height = GameBG.bgHH;
+        this.maskImg.height = GameBG.bgHHReal;
+
+        this.bottomImg.width = GameBG.bgWW;
+        this.bottomImg.height = 500;
+        this.bottomImg.y = this.maskImg.y +this.maskImg.height;
+        this.bottomImg.skin = "battleBg/bottom_" + GameBG.BG_TYPE_NUM + ".jpg";
         
         // sprite.size(GameBG.bgWW - GameBG.ww,GameBG.ww * 10);
     }

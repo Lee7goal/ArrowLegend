@@ -120,19 +120,21 @@ export default class SdkManager {
     
     public static NEXT_STAGE_CHAPING:number = 6;
 
+    static REBORTH:number = 11;
+
     public adMap:any = {};
 
     public log( type:number ,content:string = "" ):void{
         
     }
     
-    private initAd():void {
-        if( App.isSimulator() ){
-            return;
-        }
+    initAd():void {
+        // if( App.isSimulator() ){
+        //     return;
+        // }
 
         if( Laya.Browser.onMiniGame ){
-            // this.adMap[SdkSession.FLY_BOX] = "adunit-961fd03b6fac0683";
+            this.adMap[AD_TYPE.AD_REBORTH] = "adunit-dd859bd89e519faa";
             // this.adMap[SdkSession.GAME_OVER] = "adunit-98b44cb96437ac93";
             // this.adMap[SdkSession.GET_PET] = "adunit-237729103790be65";
             // this.adMap[SdkSession.TIME_GOLD] = "adunit-7b46c29d0d9cf9b3";
@@ -142,7 +144,7 @@ export default class SdkManager {
             // this.adMap[SdkSession.AD_DIALOG] = "adunit-ed6eb635c1d6b846";
         }
 
-        this.ad = Laya.Browser.window.wx.createRewardedVideoAd({adUnitId:this.adMap[""]});
+        this.ad = Laya.Browser.window.wx.createRewardedVideoAd({adUnitId:this.adMap[AD_TYPE.AD_REBORTH]});
         this.ad.onClose( (res)=>{
             console.log("广告 观看结果返回");
             if ( res && res.isEnded || res===undefined ){
@@ -163,7 +165,7 @@ export default class SdkManager {
         });
         this.ad.onLoad( ()=>{
             this.adStat = 1;
-            console.log("广告 加载成功");
+            console.log("广告 加载成功-----------------");
         });
     }
 

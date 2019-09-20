@@ -59,7 +59,6 @@ export default class Session{
             for( let i of Session.IDataArr ){
                 i.setData( Session.gameData );
             }
-            
         } else {
             for( let i of Session.IDataArr ){
                 i.initData( Session.gameData );

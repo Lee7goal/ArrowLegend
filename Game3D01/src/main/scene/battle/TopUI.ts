@@ -115,6 +115,7 @@ import SysEnemy from "../../sys/SysEnemy";
     updateCoins():void
     {
         this.jinbishu.value = "" + Game.battleCoins;
+        Game.showCoinsNum = Game.battleCoins;
     }
 
     removeSelf():Laya.Node

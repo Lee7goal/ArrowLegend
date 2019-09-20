@@ -36,8 +36,8 @@ import SysChapter from "../../../sys/SysChapter";
             this.ziBox.y = hh;
             hh += 100;
         }
-        if (Game.battleCoins > 0)  {
-            this.coinClip.value = "+" + Game.battleCoins;
+        if (Game.showCoinsNum > 0)  {
+            this.coinClip.value = "+" + Game.showCoinsNum;
             this.addChild(this.coinBox);
             this.coinBox.x = 216;
             this.coinBox.y = hh;

@@ -32,7 +32,7 @@ import GameEvent from "../main/GameEvent";
 import SysChapter from "../main/sys/SysChapter";
 
 export default class Game {
-    static resVer:string = "1.0.19.1931";
+    static resVer:string = "1.1.0.190920";
 
     //战斗中的临时数据
     static level:number;
@@ -282,7 +282,6 @@ export default class Game {
         let mCol: number = Math.floor(pro.hbox.x / GameBG.ww);
 
         let range: number = range1;
-        let endRowNum = Game.map0.endRowNum;
 
         var info: any = Game.map0.info;
         var arr: number[][] = [];
@@ -294,7 +293,7 @@ export default class Game {
                 if (j == mRow && i == mCol) {
                     continue;
                 }
-                if (j < 3 || j > GameBG.MAP_COL - 3)  {
+                if (j < 1 || j > GameBG.MAP_COL - 1)  {
                     continue;
                 }
                 var key: number = info[i + "_" + j];
@@ -324,6 +323,9 @@ export default class Game {
     /**战斗中的金币 */
     static battleCoins: number = 0;
     static battleExp:number = 0;
+
+
+    static showCoinsNum:number;
     
 
     static showMain():void
@@ -345,10 +347,10 @@ export default class Game {
 
         Game.playBgMusic();
 
-        if(Game.battleCoins > 0)
+        if(Game.showCoinsNum > 0)
         {
-            Laya.stage.event(GameEvent.ADD_COIN,Game.battleCoins);
-            Game.battleCoins = 0;
+            Laya.stage.event(GameEvent.ADD_COIN,Game.showCoinsNum);
+            Game.showCoinsNum = 0;
         }
     }
 
