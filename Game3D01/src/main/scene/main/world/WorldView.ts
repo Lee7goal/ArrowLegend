@@ -116,15 +116,16 @@ import FlyEffect from "../../../../game/effect/FlyEffect";
 
         let arr:SysChapter[] = App.tableManager.getTable(SysChapter.NAME);
         this.list.array = arr;
-        Laya.timer.callLater( this,this.callFun );
+        Laya.timer.once( 500, this,this.callFun );
     }
 
     private callFun():void{
         console.log( "aaa" , Session.homeData.chapterId );
-        this.list.scrollTo( Session.homeData.chapterId - 1 );
-        let cell = this.list.getCell(0);
+        //this.list.scrollTo( Session.homeData.chapterId - 1 );
+        let cell:ui.test.worldCellUI = <any>this.list.getCell(0);
+        cell.mapBtn.scale( 0.6,0.6 );
         let t = new Laya.Tween();
-        t.from( cell , {scaleX:0.8,scaleY:0.8} , 100  );
+        t.to( cell.mapBtn , {scaleX:1,scaleY:1} , 500 , Laya.Ease.backOut  );
     }
 
     // private onStart():void

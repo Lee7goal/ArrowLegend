@@ -57,7 +57,7 @@ export default class SelectTalent extends ui.test.TalentViewUI{
         let ty = this.arr[1].y - 100;
         let tx = this.arr[1].x;
         let tw = new Laya.Tween();
-        tw.to( e, {x:tx,y:ty} , 800 );
+        tw.to( e, {x:tx,y:ty} , 800 , Laya.Ease.strongOut );
 
         this.nameImg.skin = e.back.txtImg.skin;
         this.nameImg.y = ty - 200;
