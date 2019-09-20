@@ -8,10 +8,10 @@ import SysMap from "../../../sys/SysMap";
 export default class WorldCell extends ui.test.worldCellUI {
     private sys:SysChapter;
     constructor() { 
-        super(); 
-        this.mapBtn.clickHandler = new Laya.Handler(this,this.onClick);
+        super();
+        this.clickBox.on(Laya.Event.CLICK,this,this.onClick);// clickHandler = new Laya.Handler(this,this.onClick);
+        //this.mapBtn.clickHandler = new Laya.Handler(this,this.onClick);
         this.suo.visible = false;
-        
     }
 
     private onClick():void
@@ -38,6 +38,7 @@ export default class WorldCell extends ui.test.worldCellUI {
         this.cengshuTxt.text = "";
         this.titleTxt.skin = "chapters/chapter_title_" + this.sys.id + ".png";
         this.mapBtn.skin = "chapters/chapter_img_" + this.sys.id + ".png";
+        this.box1.visible = !this.suo.visible;
         if(!this.suo.visible)
         {
             let maxCeng:number =  SysMap.getTotal(this.sys.id);

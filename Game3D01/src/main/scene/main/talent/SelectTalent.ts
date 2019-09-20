@@ -18,6 +18,7 @@ export default class SelectTalent extends ui.test.TalentViewUI{
             k.wenhao.select.visible = false;
             k.back.select.visible = false;
             k.back.box2.visible = false;
+            k.back.lvBox.visible = false;
             k.on(Laya.Event.CLICK,this,this.clickFun,[k]);
         }
         this.nameImg.alpha = 0;
@@ -86,6 +87,7 @@ export default class SelectTalent extends ui.test.TalentViewUI{
 
     private boxFun():void{
         this.box1.visible = true;
+        
         let t3 = new Laya.Tween();
         t3.from( this.box1,{ scaleX:0 ,scaleY:0 } , 200 , Laya.Ease.backInOut );
     }
@@ -101,6 +103,7 @@ export default class SelectTalent extends ui.test.TalentViewUI{
     private upFun(e:ui.test.TalentZhuanUI):void{
         if( e.scaleX <= 0 ){
             e.wenhao.visible = false;    
+            e.back.lvBox.visible = true;
         }
     }
 }

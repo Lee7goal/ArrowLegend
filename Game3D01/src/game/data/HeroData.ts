@@ -90,30 +90,43 @@ export default class HeroData implements IData{
 
 
     /**
+     * 能力升级 先费红蓝宝石
+     * 最后费金币
      * @param heroId 
      * @param type 
+     * 0是成功
      */
-    public lvUp( heroId:number , type:HeroLvType ):boolean{
+    public lvUp( heroId:number , type:HeroLvType ):number{
         let hd:HeroBaseData = this.heroMap[heroId];
-        
         let lv = hd.getLv( type );
+        // if( lv >= Session.homeData.playerLv ){
+        //     return 1;
+        // }
         let sys:SysRoleUp = SysRoleUp.getSysRole( heroId , lv );
         let cost = sys.getCost(type);
         let goldType = sys.getCostType(type);
-        let res = Session.homeData.changeGold( goldType ,  -cost , GOLD_CHANGE_TYPE.HERO_LV_ABILITY );
-        if( res == false ){
-            return false;
+        if( Session.homeData.getGoldByType( goldType ) < cost ){
+            return 2;
         }
         let nowLv = lv + 1;
         let nowSys = SysRoleUp.getSysRole( heroId , nowLv );
         if( nowSys == null ){
             //已经到头了 无法升级
-            return false;
+            return 3;
         }
+        if( Session.homeData.getGoldByType( GoldType.GOLD ) < sys.costGold ){
+            return 4;
+        }
+        let sysRB:SysRoleBase = App.tableManager.getDataByNameAndId( SysRoleBase.NAME , heroId );
+        if( nowLv > sysRB.roleLimt ){
+            return 5;
+        }
+        Session.homeData.changeGold( goldType ,  -cost , GOLD_CHANGE_TYPE.HERO_LV_ABILITY );
+        Session.homeData.changeGold( GoldType.GOLD , -sys.costGold , GOLD_CHANGE_TYPE.AD_DIAMOND );
         hd.setLv( type , nowLv );
         Laya.stage.event( GameEvent.HERO_UPDATE );
         Session.saveData();
-        return true;
+        return 0;
     }
 }
 

@@ -16,7 +16,11 @@ export default class SysRoleBase{
     public addExp:number = 0;
     public addSpeed:number = 0;
     public addAttack:number = 0;
-
+    /**
+     * 能力升级上限
+     */
+    public roleLimt:number = 0;
+    
     public static getSys(id:number):SysRoleBase{
         let arr = App.tableManager.getTable( SysRoleBase.NAME );
         for( let k of arr ){
