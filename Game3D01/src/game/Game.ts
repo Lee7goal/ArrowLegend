@@ -22,7 +22,6 @@ import SceneManager from "../main/SceneManager";
 import ShakeUtils from "../core/utils/ShakeUtils";
 import CoinEffect from "./effect/CoinEffect";
 import PlayerSkillManager from "./PlayerSkillManager";
-import MainUI from "../main/scene/main/MainUI";
 import Session from "../main/Session";
 import BuffManager from "./buff/BuffManager";
 import GameAlert from "../main/GameAlert";
@@ -325,10 +324,6 @@ export default class Game {
     /**战斗中的金币 */
     static battleCoins: number = 0;
     static battleExp:number = 0;
-
-    /**结算时候加的金币 */
-    static addCoins:number = 0;
-    static addExp:number = 0;
     
 
     static showMain():void
@@ -349,6 +344,12 @@ export default class Game {
         Game.AiArr.length = 0;
 
         Game.playBgMusic();
+
+        if(Game.battleCoins > 0)
+        {
+            Laya.stage.event(GameEvent.ADD_COIN,Game.battleCoins);
+            Game.battleCoins = 0;
+        }
     }
 
     static playBgMusic():void

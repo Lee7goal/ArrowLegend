@@ -6,7 +6,6 @@ import SysChapter from "../../../sys/SysChapter";
 import App from "../../../../core/App";
 import Session from "../../../Session";
 import SysMap from "../../../sys/SysMap";
-import MainUI from "../MainUI";
 import GameCameraNum from "../../../../game/GameCameraNum";
 import WorldCell from "./WorldCell";
 import TimeGoldDialog from "../timegold/TimeGoldDialog";

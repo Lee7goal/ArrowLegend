@@ -12,7 +12,7 @@ import App from "../../../core/App";
 import SysHero from "../../sys/SysHero";
 import GameEvent from "../../GameEvent";
     export default class MainUI extends Laya.Box {
-        private topUI:TopUI;
+        topUI:TopUI;
         private bottomUI:BottomUI;
         
         constructor(){
