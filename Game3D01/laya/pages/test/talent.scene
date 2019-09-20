@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":31,
-    "selecteID":114,
+    "selecteID":128,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":128,
+    "maxID":129,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -45,19 +45,33 @@
             "child":[
                 {
                     "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":20,"x":13,"width":671,"skin":"main/zhudi2.png","height":977},
+                    "nodeParent":31,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":128,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,shengmingniu",
                     "props":{"y":923,"x":360,"width":250,"var":"shengmingniu","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"41,31,38,33","height":91,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":31,
                     "label":"shengmingniu",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":114,
                     "child":[
                         {
-                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,qianshu",
                             "props":{"y":24,"x":44,"width":386,"var":"qianshu","value":"1299","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.3,"scaleX":0.3,"height":115,"align":"right"},
@@ -71,7 +85,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":24,"x":158,"skin":"main/dongjin.png"},
@@ -92,14 +105,13 @@
                     "props":{"y":77,"x":69,"width":588,"var":"list","spaceY":35,"spaceX":25,"repeatY":3,"repeatX":3,"height":755},
                     "nodeParent":31,
                     "label":"list",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":115,
                     "child":[
                         {
-                            "x":45,
                             "type":"UIView",
                             "source":"test/TianFuCell.scene",
                             "searchKey":"UIView",
@@ -121,14 +133,13 @@
                     "props":{"y":276,"x":5,"visible":false,"var":"tipBox"},
                     "nodeParent":31,
                     "label":"tipBox",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":123,
                     "child":[
                         {
-                            "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
                             "props":{"y":53,"texture":"tianfu/qipao.png"},
@@ -142,7 +153,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
                             "props":{"x":101,"texture":"tianfu/qipaojian.png"},
@@ -156,7 +166,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Text",
                             "searchKey":"Text,txt5",
                             "props":{"y":86,"x":9,"width":287,"var":"txt5","valign":"middle","text":"这里是天赋信息","height":90,"fontSize":30,"align":"center"},

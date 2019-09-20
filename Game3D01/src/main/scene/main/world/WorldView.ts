@@ -11,6 +11,7 @@ import WorldCell from "./WorldCell";
 import TimeGoldDialog from "../timegold/TimeGoldDialog";
 import GameMain from "../../../GameMain";
 import MyTimeGold from "../timegold/MyTimeGold";
+import FlyEffect from "../../../../game/effect/FlyEffect";
     export default class WorldView extends ui.test.worldUI {
     // private _gameScene:Laya.Scene3D;
 
@@ -57,6 +58,22 @@ import MyTimeGold from "../timegold/MyTimeGold";
         myTime.setUI( this.timeLogo );
         this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
         this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
+
+        //Laya.timer.once( 1000,this,this.tttFun );
+        Laya.stage.on( GameEvent.ADD_COIN , this , this.addCoinFun );
+    }
+
+    private addCoinFun():void {
+       
+        let cell = this.list.getCell(0);
+        let fly = new FlyEffect();
+        //fly.fly(  ,  );
+    }
+
+    private tttFun():void{
+        
+        //
+        //this.filters = [Laya.ColorFilter];
     }
 
     private rankClickFun():void{
@@ -99,6 +116,15 @@ import MyTimeGold from "../timegold/MyTimeGold";
 
         let arr:SysChapter[] = App.tableManager.getTable(SysChapter.NAME);
         this.list.array = arr;
+        Laya.timer.callLater( this,this.callFun );
+    }
+
+    private callFun():void{
+        console.log( "aaa" , Session.homeData.chapterId );
+        this.list.scrollTo( Session.homeData.chapterId - 1 );
+        let cell = this.list.getCell(0);
+        let t = new Laya.Tween();
+        t.from( cell , {scaleX:0.8,scaleY:0.8} , 100  );
     }
 
     // private onStart():void
