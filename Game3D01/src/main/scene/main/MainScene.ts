@@ -8,8 +8,10 @@ import Game from "../../../game/Game";
 import App from "../../../core/App";
 
     export default class MainScene extends Laya.Sprite{
-    private mainUI:MainUI;
+    mainUI:MainUI;
     private mainView:MainView;
+
+    public coinClip:Laya.FontClip;
     
     private verLabel:Laya.Label = new Laya.Label();
     constructor() { 
@@ -23,6 +25,8 @@ import App from "../../../core/App";
         this.mainUI = new MainUI();
         this.addChild(this.mainView);
         this.addChild(this.mainUI);
+
+        this.coinClip = this.mainUI.topUI.coinClip;
 
         this.addChild(this.verLabel);
         this.verLabel.fontSize = 16;
