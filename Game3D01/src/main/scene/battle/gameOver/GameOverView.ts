@@ -17,7 +17,7 @@ export default class GameOverView extends ui.test.GameOverUI {
 
     private onCloseView(): void {
         this.removeSelf();
-        Game.showMain();
+        Game.showMain();        
     }
 
     private onDis(): void {
@@ -37,7 +37,7 @@ export default class GameOverView extends ui.test.GameOverUI {
         this.cengshu.value = Session.homeData.playerLv + "";
         this.dengji.value = Session.homeData.playerLv + "";
 
-        Game.addCoins = Game.battleCoins;
+       
         Laya.timer.frameLoop(1, this, this.onLoop);
     }
 
@@ -64,7 +64,7 @@ export default class GameOverView extends ui.test.GameOverUI {
                 if (lastLv != newLv)  {
                     Laya.stage.event(GameEvent.LV_UP_VIEW);
                 }
-            }, 1000);
+            }, 1200);
         }, 100);
         let hh = 780;
         setTimeout(() => {
@@ -96,7 +96,6 @@ export default class GameOverView extends ui.test.GameOverUI {
         setTimeout(() => {
             this.fuhuo.visible = true;
             Session.saveData();
-            Game.addCoins = 0;
         }, 300);
     }
 

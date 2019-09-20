@@ -4,7 +4,7 @@ import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
 export module ui.game {
-    export class battleIndexBoxUI extends Laya.View {
+    export class battleIndexBoxUI extends View {
 		public pbox1:Laya.Box;
 		public pbox2:Laya.Box;
 		public box:Laya.Box;
@@ -16,7 +16,7 @@ export module ui.game {
         }
     }
     REG("ui.game.battleIndexBoxUI",battleIndexBoxUI);
-    export class heheUI extends Laya.Scene {
+    export class heheUI extends Scene {
         public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":11,"x":8,"width":1088,"skin":"battleBg/1.png","sizeGrid":"680,0,594,0","height":1552},"compId":3}],"loadList":["battleBg/1.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -35,7 +35,7 @@ export module ui.game {
         }
     }
     REG("ui.game.homePageUI",homePageUI);
-    export class newGuideUI extends Laya.View {
+    export class newGuideUI extends View {
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"x":0,"skin":"guide/fangbian.png","bottom":0},"compId":3}],"loadList":["guide/fangbian.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -44,7 +44,7 @@ export module ui.game {
         }
     }
     REG("ui.game.newGuideUI",newGuideUI);
-    export class newGuide2UI extends Laya.View {
+    export class newGuide2UI extends View {
 		public txt:Laya.Label;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"y":0,"x":0,"width":750,"height":1700,"bgColor":"#000000","alpha":0.75},"compId":6},{"type":"Image","props":{"x":580,"skin":"guide/nvren.png","bottom":0},"compId":3},{"type":"Image","props":{"y":903,"x":66,"width":479,"skin":"guide/qipao.png","sizeGrid":"83,148,116,72","height":205},"compId":4},{"type":"Label","props":{"y":934,"x":90,"wordWrap":true,"width":429,"var":"txt","text":"滑动摇杆，控制角色到达指定位置。","height":101,"fontSize":40,"color":"#ffffff","bold":true,"align":"left"},"compId":5}],"loadList":["guide/nvren.png","guide/qipao.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -54,7 +54,7 @@ export module ui.game {
         }
     }
     REG("ui.game.newGuide2UI",newGuide2UI);
-    export class newGuide3UI extends Laya.View {
+    export class newGuide3UI extends View {
 		public img2:Laya.Image;
 		public img1:Laya.Image;
 		public img0:Laya.Image;
@@ -66,7 +66,7 @@ export module ui.game {
         }
     }
     REG("ui.game.newGuide3UI",newGuide3UI);
-    export class viewbgUI extends Laya.View {
+    export class viewbgUI extends View {
 		public bg:Laya.Image;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1700},"compId":2,"child":[{"type":"Box","props":{"height":1700},"compId":3,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"main/zhudi.jpg","height":1700},"compId":4},{"type":"Sprite","props":{"y":109,"x":0,"texture":"main/zhudi2.png"},"compId":5}]}],"loadList":["main/zhudi.jpg","main/zhudi2.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -78,7 +78,7 @@ export module ui.game {
     REG("ui.game.viewbgUI",viewbgUI);
 }
 export module ui.test {
-    export class alertUI extends Laya.View {
+    export class alertUI extends View {
 		public txt:Laya.Label;
 		public cancelBtn:Laya.Button;
 		public sureBtn:Laya.Button;
@@ -91,7 +91,7 @@ export module ui.test {
         }
     }
     REG("ui.test.alertUI",alertUI);
-    export class battleUI extends Laya.Dialog {
+    export class battleUI extends Dialog {
 		public lvBox:Laya.Box;
 		public lvBar:Laya.Box;
 		public jingyantiao:Laya.Image;
@@ -109,7 +109,7 @@ export module ui.test {
         }
     }
     REG("ui.test.battleUI",battleUI);
-    export class battleLvUIUI extends Laya.View {
+    export class battleLvUIUI extends View {
 		public box:Laya.Button;
 		public btn:Laya.Button;
 		public shuziyou:Laya.Label;
@@ -121,7 +121,7 @@ export module ui.test {
         }
     }
     REG("ui.test.battleLvUIUI",battleLvUIUI);
-    export class battlestopUI extends Laya.View {
+    export class battlestopUI extends View {
 		public box:Laya.Box;
 		public box1:Laya.Box;
 		public box2:Laya.Box;
@@ -134,7 +134,7 @@ export module ui.test {
         }
     }
     REG("ui.test.battlestopUI",battlestopUI);
-    export class battlestop2UI extends Laya.View {
+    export class battlestop2UI extends View {
 		public baioti:Laya.Label;
 		public btnPlay:Laya.Button;
 		public btnMusic:Laya.Button;
@@ -150,7 +150,7 @@ export module ui.test {
         }
     }
     REG("ui.test.battlestop2UI",battlestop2UI);
-    export class Blood2UIUI extends Laya.View {
+    export class Blood2UIUI extends View {
 		public bar:Laya.Sprite;
 		public txt:Laya.Label;
         public static  uiView:any ={"type":"View","props":{"width":85,"height":17,"centerX":0},"compId":2,"child":[{"type":"Sprite","props":{"texture":"bg/xuetiaodi.png"},"compId":3},{"type":"Sprite","props":{"var":"bar","texture":"bg/xuetiaoshanghong.png"},"compId":4},{"type":"Label","props":{"y":-1,"x":0,"width":85,"var":"txt","text":"600","stroke":3,"height":18,"fontSize":18,"color":"#ffffff","bold":true,"align":"center"},"compId":6}],"loadList":["bg/xuetiaodi.png","bg/xuetiaoshanghong.png"],"loadList3D":[]};
@@ -161,7 +161,7 @@ export module ui.test {
         }
     }
     REG("ui.test.Blood2UIUI",Blood2UIUI);
-    export class BloodUIUI extends Laya.View {
+    export class BloodUIUI extends View {
 		public bar:Laya.Image;
 		public colBox:Laya.Box;
 		public txt:Laya.Label;
@@ -173,7 +173,7 @@ export module ui.test {
         }
     }
     REG("ui.test.BloodUIUI",BloodUIUI);
-    export class BulletShadowUI extends Laya.View {
+    export class BulletShadowUI extends View {
 		public img:Laya.Sprite;
         public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Sprite","props":{"y":-19,"x":-19,"var":"img","texture":"bg/douying.png"},"compId":3}],"loadList":["bg/douying.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -193,7 +193,7 @@ export module ui.test {
         }
     }
     REG("ui.test.chengjiuUI",chengjiuUI);
-    export class chengjiu_1UI extends Laya.View {
+    export class chengjiu_1UI extends View {
 		public chengjiuming:Laya.Label;
 		public xiangjie:Laya.Label;
 		public lingqu:Laya.Button;
@@ -206,7 +206,7 @@ export module ui.test {
         }
     }
     REG("ui.test.chengjiu_1UI",chengjiu_1UI);
-    export class dianjuUI extends Laya.View {
+    export class dianjuUI extends View {
 		public heng:Laya.Box;
 		public huoxing:Laya.Clip;
 		public dianju:Laya.Image;
@@ -222,7 +222,7 @@ export module ui.test {
         }
     }
     REG("ui.test.dianjuUI",dianjuUI);
-    export class GameOverUI extends Laya.View {
+    export class GameOverUI extends View {
 		public lightView:Laya.Box;
 		public topBox:Laya.Box;
 		public cengshu:Laya.FontClip;
@@ -271,7 +271,7 @@ export module ui.test {
         }
     }
     REG("ui.test.GetItemDialogUI",GetItemDialogUI);
-    export class GoldViewUI extends Laya.View {
+    export class GoldViewUI extends View {
 		public red:Laya.Box;
 		public blue:Laya.Box;
 		public gold:Laya.Image;
@@ -283,7 +283,7 @@ export module ui.test {
         }
     }
     REG("ui.test.GoldViewUI",GoldViewUI);
-    export class guangUI extends Laya.Scene {
+    export class guangUI extends Scene {
 		public ani1:Laya.FrameAnimation;
         public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":-219,"x":-210,"skin":"main/guang1.png","blendMode":"lighter"},"compId":3},{"type":"Image","props":{"y":-219,"x":-210,"skin":"main/guang2.png","blendMode":"lighter"},"compId":4},{"type":"Image","props":{"y":-281,"x":-223,"skin":"main/guang1.png","rotation":12,"blendMode":"lighter"},"compId":5},{"type":"Image","props":{"y":-254,"x":-156,"skin":"main/guang2.png","rotation":-3,"blendMode":"lighter"},"compId":6}],"animations":[{"nodes":[{"target":3,"keyframes":{"alpha":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"alpha","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"label":null,"key":"alpha","index":45},{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"label":null,"key":"alpha","index":95},{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"label":null,"key":"alpha","index":389},{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"alpha","index":442}]}},{"target":4,"keyframes":{"alpha":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"alpha","index":0},{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"label":null,"key":"alpha","index":45},{"value":1,"tweenMethod":"linearNone","tween":true,"target":4,"key":"alpha","index":95},{"value":1,"tweenMethod":"linearNone","tween":true,"target":4,"label":null,"key":"alpha","index":115},{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"alpha","index":183}]}},{"target":5,"keyframes":{"alpha":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":0},{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":115},{"value":1,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":183},{"value":1,"tweenMethod":"linearNone","tween":true,"target":5,"label":null,"key":"alpha","index":244},{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":313}]}},{"target":6,"keyframes":{"alpha":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":6,"key":"alpha","index":0},{"value":0,"tweenMethod":"linearNone","tween":true,"target":6,"label":null,"key":"alpha","index":244},{"value":1,"tweenMethod":"linearNone","tween":true,"target":6,"key":"alpha","index":313},{"value":1,"tweenMethod":"linearNone","tween":true,"target":6,"label":null,"key":"alpha","index":389},{"value":0,"tweenMethod":"linearNone","tween":true,"target":6,"key":"alpha","index":442}]}}],"name":"ani1","id":1,"frameRate":40,"action":2}],"loadList":["main/guang1.png","main/guang2.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -293,7 +293,7 @@ export module ui.test {
         }
     }
     REG("ui.test.guangUI",guangUI);
-    export class HengjuUI extends Laya.View {
+    export class HengjuUI extends View {
 		public huoxing:Laya.Clip;
 		public box:Laya.Box;
 		public dianju:Laya.Image;
@@ -306,7 +306,7 @@ export module ui.test {
         }
     }
     REG("ui.test.HengjuUI",HengjuUI);
-    export class HeroFootUI extends Laya.View {
+    export class HeroFootUI extends View {
 		public dir:Laya.Sprite;
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":0,"x":0,"width":132,"texture":"bg/renlankuang.png","pivotY":55,"pivotX":66,"height":110},"compId":3},{"type":"Sprite","props":{"y":0,"x":0,"width":50,"var":"dir","texture":"bg/andanlandian.png","pivotY":110,"pivotX":25,"height":40},"compId":4}],"loadList":["bg/renlankuang.png","bg/andanlandian.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -316,7 +316,7 @@ export module ui.test {
         }
     }
     REG("ui.test.HeroFootUI",HeroFootUI);
-    export class hongtanUI extends Laya.Scene {
+    export class hongtanUI extends Scene {
         public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"loadList":[],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -325,7 +325,7 @@ export module ui.test {
         }
     }
     REG("ui.test.hongtanUI",hongtanUI);
-    export class huziUI extends Laya.View {
+    export class huziUI extends View {
 		public ani1:Laya.FrameAnimation;
 		public tan:Laya.Image;
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":-51,"skin":"bg/tianshiying.png","scaleY":0.8,"scaleX":0.8,"anchorY":0.5,"anchorX":0.5},"compId":5},{"type":"Image","props":{"y":-188,"x":-29,"skin":"bg/zhuanpan.png"},"compId":4},{"type":"Image","props":{"y":-225,"x":-164,"skin":"bg/huzi.png"},"compId":3,"child":[{"type":"Image","props":{"y":7,"x":15,"var":"tan","skin":"bg/tantan.jpg","scaleY":1.1,"scaleX":1.1},"compId":6}]}],"animations":[{"nodes":[{"target":3,"keyframes":{"y":[{"value":-232,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":0},{"value":-255,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":20},{"value":-232,"tweenMethod":"linearNone","tween":true,"target":3,"label":null,"key":"y","index":40}],"x":[{"value":-162,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":0},{"value":-162,"tweenMethod":"linearNone","tween":true,"target":3,"label":null,"key":"x","index":40}]}}],"name":"ani1","id":1,"frameRate":24,"action":2}],"loadList":["bg/tianshiying.png","bg/zhuanpan.png","bg/huzi.png","bg/tantan.jpg"],"loadList3D":[]};
@@ -336,7 +336,7 @@ export module ui.test {
         }
     }
     REG("ui.test.huziUI",huziUI);
-    export class initViewUI extends Laya.View {
+    export class initViewUI extends View {
 		public initTxt:Laya.Label;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#000000"},"compId":3},{"type":"Label","props":{"x":0,"width":750,"var":"initTxt","text":"0%","height":100,"fontSize":60,"color":"#ffffff","centerY":0,"bold":true,"align":"center"},"compId":4}],"loadList":[],"loadList3D":[]};
         constructor(){ super()}
@@ -377,7 +377,7 @@ export module ui.test {
         }
     }
     REG("ui.test.jueseUI",jueseUI);
-    export class juese_1UI extends Laya.View {
+    export class juese_1UI extends View {
 		public ren:Laya.Box;
         public static  uiView:any ={"type":"View","props":{"width":265,"height":540},"compId":1,"child":[{"type":"Box","props":{"y":5,"width":265,"var":"ren"},"compId":7,"child":[{"type":"Image","props":{"y":436,"skin":"ren/ying.png"},"compId":9},{"type":"Image","props":{"y":5,"x":-110,"skin":"ren/juese1.png"},"compId":8}]}],"loadList":["ren/ying.png","ren/juese1.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -401,7 +401,7 @@ export module ui.test {
         }
     }
     REG("ui.test.juese_tishiUI",juese_tishiUI);
-    export class LightUI extends Laya.View {
+    export class LightUI extends View {
         public static  uiView:any ={"type":"View","props":{"width":742,"height":742},"compId":2,"child":[{"type":"Sprite","props":{"y":0,"x":0,"texture":"main/guangzhuan1.png"},"compId":9},{"type":"Sprite","props":{"y":0,"x":742,"texture":"main/guangzhuan1.png","scaleX":-1},"compId":10},{"type":"Sprite","props":{"y":742,"x":0,"texture":"main/guangzhuan1.png","scaleY":-1},"compId":11},{"type":"Sprite","props":{"y":742,"x":742,"texture":"main/guangzhuan1.png","scaleY":-1,"scaleX":-1},"compId":12}],"loadList":["main/guangzhuan1.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -410,7 +410,7 @@ export module ui.test {
         }
     }
     REG("ui.test.LightUI",LightUI);
-    export class LoadingUI extends Laya.Scene {
+    export class LoadingUI extends Scene {
 		public clip:Laya.Clip;
 		public txt:Laya.Label;
         public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Box","props":{"width":750,"height":1700,"bgColor":"#ffffff"},"compId":3},{"type":"Box","props":{"width":156,"scaleY":1.5,"scaleX":1.5,"height":156,"centerY":0,"centerX":0},"compId":5,"child":[{"type":"Clip","props":{"y":0,"x":0,"var":"clip","skin":"loading/loadingClip.png","interval":150,"clipY":4,"clipX":4,"autoPlay":true},"compId":10},{"type":"Label","props":{"y":58,"x":0,"width":156,"var":"txt","text":"10%","height":40,"fontSize":36,"color":"#b7b7b7","bold":true,"align":"center"},"compId":7}]}],"loadList":["loading/loadingClip.png"],"loadList3D":[]};
@@ -421,7 +421,7 @@ export module ui.test {
         }
     }
     REG("ui.test.LoadingUI",LoadingUI);
-    export class LoginViewUI extends Laya.View {
+    export class LoginViewUI extends View {
 		public t1:Laya.TextInput;
 		public btn:laya.display.Text;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":500},"compId":2,"child":[{"type":"TextInput","props":{"y":121,"x":236,"width":278,"var":"t1","prompt":"输入用户名","height":83,"fontSize":40,"bgColor":"#ffffff"},"compId":3},{"type":"Text","props":{"y":275,"x":275,"var":"btn","text":"点我登陆","fontSize":50,"color":"#ffffff","runtime":"laya.display.Text"},"compId":5}],"loadList":[],"loadList3D":[]};
@@ -432,7 +432,7 @@ export module ui.test {
         }
     }
     REG("ui.test.LoginViewUI",LoginViewUI);
-    export class mainUIUI extends Laya.View {
+    export class mainUIUI extends View {
 		public headImg:Laya.Image;
 		public jingyantiao:Laya.Image;
 		public dengji:Laya.FontClip;
@@ -449,7 +449,7 @@ export module ui.test {
         }
     }
     REG("ui.test.mainUIUI",mainUIUI);
-    export class moguiUI extends Laya.View {
+    export class moguiUI extends View {
 		public ani1:Laya.FrameAnimation;
 		public tan:Laya.Image;
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Image","props":{"y":101,"x":0,"skin":"bg/tianshiying.png","anchorY":0.5,"anchorX":0.5},"compId":3},{"type":"Box","props":{"y":-3,"x":-7},"compId":4,"child":[{"type":"Image","props":{"y":-53,"x":97,"skin":"bg/guichibang.png","rotation":0,"anchorY":0.5,"anchorX":0},"compId":5},{"type":"Image","props":{"y":-61,"x":-86,"skin":"bg/guichibang.png","scaleX":-1,"rotation":0,"anchorY":0.5,"anchorX":0},"compId":6},{"type":"Image","props":{"y":-75,"x":-12,"skin":"bg/gui.png","scaleY":1.3,"scaleX":1.3,"anchorY":0.5,"anchorX":0.5},"compId":7},{"type":"Image","props":{"y":-199,"x":-102,"var":"tan","skin":"bg/tantan.jpg","scaleY":1.1,"scaleX":1.1},"compId":8}]}],"animations":[{"nodes":[{"target":4,"keyframes":{"y":[{"value":-105.5,"tweenMethod":"linearNone","tween":true,"target":4,"key":"y","index":0},{"value":-135,"tweenMethod":"linearNone","tween":true,"target":4,"key":"y","index":20},{"value":-105.5,"tweenMethod":"linearNone","tween":true,"target":4,"label":null,"key":"y","index":40}],"x":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"x","index":0},{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"x","index":20},{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"label":null,"key":"x","index":40}]}},{"target":5,"keyframes":{"y":[{"value":-61,"tweenMethod":"linearNone","tween":true,"target":5,"label":null,"key":"y","index":0}],"x":[{"value":89,"tweenMethod":"linearNone","tween":true,"target":5,"label":null,"key":"x","index":0}],"rotation":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"rotation","index":0},{"value":30,"tweenMethod":"linearNone","tween":true,"target":5,"key":"rotation","index":20},{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"rotation","index":40}]}},{"target":6,"keyframes":{"rotation":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":6,"key":"rotation","index":0},{"value":-30,"tweenMethod":"linearNone","tween":true,"target":6,"key":"rotation","index":20},{"value":0,"tweenMethod":"linearNone","tween":true,"target":6,"key":"rotation","index":40}]}},{"target":3,"keyframes":{"y":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":0}],"scaleY":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleY","index":0},{"value":1.2,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleY","index":20},{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleY","index":40}],"scaleX":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleX","index":0},{"value":1.2,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleX","index":20},{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleX","index":40}]}}],"name":"ani1","id":1,"frameRate":24,"action":2}],"loadList":["bg/tianshiying.png","bg/guichibang.png","bg/gui.png","bg/tantan.jpg"],"loadList3D":[]};
@@ -476,7 +476,7 @@ export module ui.test {
         }
     }
     REG("ui.test.mogui_1UI",mogui_1UI);
-    export class newhandUI extends Laya.Scene {
+    export class newhandUI extends Scene {
         public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"loadList":[],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -499,7 +499,7 @@ export module ui.test {
         }
     }
     REG("ui.test.paihangUI",paihangUI);
-    export class paihang1UI extends Laya.View {
+    export class paihang1UI extends View {
 		public paiming:Laya.Image;
 		public touxiang:Laya.Image;
 		public mingzi:laya.display.Text;
@@ -525,7 +525,7 @@ export module ui.test {
         }
     }
     REG("ui.test.qiandaoUI",qiandaoUI);
-    export class qiandao1UI extends Laya.Scene {
+    export class qiandao1UI extends Scene {
 		public xuanzhong:Laya.Image;
 		public tianshu:Laya.Sprite;
 		public tupian:Laya.Sprite;
@@ -538,7 +538,7 @@ export module ui.test {
         }
     }
     REG("ui.test.qiandao1UI",qiandao1UI);
-    export class qiandao2UI extends Laya.Scene {
+    export class qiandao2UI extends Scene {
         public static  uiView:any ={"type":"Scene","props":{"width":657,"height":243},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"width":657,"skin":"qiandao/riliye.png","sizeGrid":"90,78,89,67","height":243},"compId":4},{"type":"Sprite","props":{"y":50,"x":35.5,"texture":"qiandao/diqitian.png"},"compId":5},{"type":"Sprite","props":{"y":110,"x":470,"texture":"qiandao/qitian.png"},"compId":6}],"loadList":["qiandao/riliye.png","qiandao/diqitian.png","qiandao/qitian.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -547,7 +547,7 @@ export module ui.test {
         }
     }
     REG("ui.test.qiandao2UI",qiandao2UI);
-    export class RankCellUI extends Laya.View {
+    export class RankCellUI extends View {
 		public bg:Laya.Image;
 		public di:Laya.Image;
 		public jifen:Laya.FontClip;
@@ -576,7 +576,7 @@ export module ui.test {
         }
     }
     REG("ui.test.RankDialogUI",RankDialogUI);
-    export class ReborthUI extends Laya.View {
+    export class ReborthUI extends View {
 		public rebornBtn:Laya.Button;
 		public closeBtn:Laya.Button;
 		public txt:Laya.Label;
@@ -593,7 +593,7 @@ export module ui.test {
         }
     }
     REG("ui.test.ReborthUI",ReborthUI);
-    export class RockerViewUI extends Laya.View {
+    export class RockerViewUI extends View {
 		public sp:Laya.Image;
 		public dir:Laya.Box;
 		public sp0:Laya.Image;
@@ -605,7 +605,7 @@ export module ui.test {
         }
     }
     REG("ui.test.RockerViewUI",RockerViewUI);
-    export class SawHengUI extends Laya.View {
+    export class SawHengUI extends View {
 		public bg:Laya.Image;
         public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"bg","skin":"bg/501.png","sizeGrid":"0,64,0,64"},"compId":3}],"loadList":["bg/501.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -615,7 +615,7 @@ export module ui.test {
         }
     }
     REG("ui.test.SawHengUI",SawHengUI);
-    export class SawZongUI extends Laya.View {
+    export class SawZongUI extends View {
 		public bg:Laya.Image;
         public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Image","props":{"var":"bg","skin":"bg/502.png","sizeGrid":"64,0,64,0"},"compId":3}],"loadList":["bg/502.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -680,7 +680,7 @@ export module ui.test {
         }
     }
     REG("ui.test.shengjiUI",shengjiUI);
-    export class SkillGridUI extends Laya.View {
+    export class SkillGridUI extends View {
 		public txt:Laya.Label;
 		public imgBox:Laya.Box;
 		public img:Laya.Image;
@@ -757,7 +757,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TalentZhuanUI",TalentZhuanUI);
-    export class talent_1UI extends Laya.View {
+    export class talent_1UI extends View {
 		public wenHao:Laya.Image;
 		public infoBox:Laya.Box;
 		public icon:Laya.Sprite;
@@ -774,7 +774,7 @@ export module ui.test {
         }
     }
     REG("ui.test.talent_1UI",talent_1UI);
-    export class TianFuCellUI extends Laya.View {
+    export class TianFuCellUI extends View {
 		public bg1:Laya.Image;
 		public box2:Laya.Sprite;
 		public select:Laya.Image;
@@ -790,7 +790,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TianFuCellUI",TianFuCellUI);
-    export class tianshiUI extends Laya.View {
+    export class tianshiUI extends View {
 		public ani1:Laya.FrameAnimation;
 		public tan:Laya.Image;
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Image","props":{"y":133.45000000000002,"x":0,"skin":"bg/tianshiying.png","scaleY":1.09,"scaleX":1.09,"anchorY":0.5,"anchorX":0.5},"compId":6},{"type":"Box","props":{"y":0,"x":0},"compId":7,"child":[{"type":"Image","props":{"y":-68,"x":-77,"skin":"bg/qipaowen.png","rotation":-12.15,"anchorY":0.4,"anchorX":1},"compId":4},{"type":"Image","props":{"y":-68,"x":100,"skin":"bg/qipaowen.png","scaleX":-1,"rotation":12.15,"anchorY":0.4,"anchorX":1},"compId":5},{"type":"Image","props":{"y":-75,"x":-12,"skin":"bg/tianshi.png","scaleY":1.3,"scaleX":1.3,"anchorY":0.5,"anchorX":0.5},"compId":3},{"type":"Image","props":{"y":-228,"x":-115,"var":"tan","skin":"bg/tantan.jpg","scaleY":1.1,"scaleX":1.1},"compId":8}]}],"animations":[{"nodes":[{"target":7,"keyframes":{"y":[{"value":-133.45000000000002,"tweenMethod":"linearNone","tween":true,"target":7,"key":"y","index":0},{"value":-176,"tweenMethod":"linearNone","tween":true,"target":7,"key":"y","index":20},{"value":-133.45000000000002,"tweenMethod":"linearNone","tween":true,"target":7,"label":null,"key":"y","index":40}],"x":[{"value":-8,"tweenMethod":"linearNone","tween":true,"target":7,"key":"x","index":0}]}},{"target":6,"keyframes":{"y":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":6,"key":"y","index":0}],"x":[{"value":2,"tweenMethod":"linearNone","tween":true,"target":6,"key":"x","index":0}],"scaleY":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":6,"key":"scaleY","index":0},{"value":1.2,"tweenMethod":"linearNone","tween":true,"target":6,"key":"scaleY","index":20},{"value":1,"tweenMethod":"linearNone","tween":true,"target":6,"key":"scaleY","index":40}],"scaleX":[{"value":1,"tweenMethod":"linearNone","tween":true,"target":6,"key":"scaleX","index":0},{"value":1.2,"tweenMethod":"linearNone","tween":true,"target":6,"key":"scaleX","index":20},{"value":1,"tweenMethod":"linearNone","tween":true,"target":6,"key":"scaleX","index":40}]}},{"target":4,"keyframes":{"rotation":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"rotation","index":0},{"value":-27,"tweenMethod":"linearNone","tween":true,"target":4,"key":"rotation","index":20},{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"label":null,"key":"rotation","index":40}]}},{"target":5,"keyframes":{"rotation":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"rotation","index":0},{"value":27,"tweenMethod":"linearNone","tween":true,"target":5,"key":"rotation","index":20},{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"rotation","index":40}]}}],"name":"ani1","id":1,"frameRate":24,"action":2}],"loadList":["bg/tianshiying.png","bg/qipaowen.png","bg/tianshi.png","bg/tantan.jpg"],"loadList3D":[]};
@@ -817,7 +817,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TimeGoldUI",TimeGoldUI);
-    export class TimeLogoUI extends Laya.View {
+    export class TimeLogoUI extends View {
 		public goldBtn:Laya.Button;
 		public goldFc:Laya.FontClip;
 		public shanbox:Laya.Box;
@@ -842,12 +842,12 @@ export module ui.test {
         }
     }
     REG("ui.test.worldUI",worldUI);
-    export class worldCellUI extends Laya.View {
+    export class worldCellUI extends View {
 		public mapBtn:Laya.Button;
 		public cengshuTxt:Laya.Label;
-		public titleTxt:Laya.Sprite;
+		public titleTxt:Laya.Image;
 		public suo:Laya.Sprite;
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":710},"compId":2,"child":[{"type":"Image","props":{"y":27,"x":176,"skin":"main/changhong.png"},"compId":4},{"type":"Button","props":{"y":147,"x":33,"var":"mapBtn","stateNum":1,"skin":"main/erdao.png"},"compId":3},{"type":"Label","props":{"y":108,"x":248,"width":245,"var":"cengshuTxt","text":"最高层数","height":36,"fontSize":36,"color":"#f6ecec","align":"center"},"compId":6},{"type":"Sprite","props":{"y":35,"x":304,"var":"titleTxt","texture":"main/shamolvzhou.png"},"compId":7},{"type":"Sprite","props":{"y":372.5,"x":334.5,"var":"suo","texture":"main/suo2.png"},"compId":8},{"type":"Box","props":{"y":702,"x":5,"width":739},"compId":27,"child":[{"type":"Sprite","props":{"texture":"main/xuxian.png"},"compId":10},{"type":"Sprite","props":{"x":50,"texture":"main/xuxian.png"},"compId":12},{"type":"Sprite","props":{"x":100,"texture":"main/xuxian.png"},"compId":13},{"type":"Sprite","props":{"x":150,"texture":"main/xuxian.png"},"compId":14},{"type":"Sprite","props":{"x":200,"texture":"main/xuxian.png"},"compId":15},{"type":"Sprite","props":{"x":250,"texture":"main/xuxian.png"},"compId":16},{"type":"Sprite","props":{"x":300,"texture":"main/xuxian.png"},"compId":17},{"type":"Sprite","props":{"x":350,"texture":"main/xuxian.png"},"compId":18},{"type":"Sprite","props":{"x":400,"texture":"main/xuxian.png"},"compId":19},{"type":"Sprite","props":{"x":450,"texture":"main/xuxian.png"},"compId":20},{"type":"Sprite","props":{"x":500,"texture":"main/xuxian.png"},"compId":21},{"type":"Sprite","props":{"x":550,"texture":"main/xuxian.png"},"compId":22},{"type":"Sprite","props":{"x":600,"texture":"main/xuxian.png"},"compId":23},{"type":"Sprite","props":{"x":650,"texture":"main/xuxian.png"},"compId":24},{"type":"Sprite","props":{"x":700,"texture":"main/xuxian.png"},"compId":28}]}],"loadList":["main/changhong.png","main/erdao.png","main/shamolvzhou.png","main/suo2.png","main/xuxian.png"],"loadList3D":[]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":710},"compId":2,"child":[{"type":"Image","props":{"y":27,"x":176,"skin":"main/changhong.png"},"compId":4},{"type":"Button","props":{"y":147,"x":33,"width":684,"var":"mapBtn","stateNum":1,"height":531},"compId":3},{"type":"Label","props":{"y":108,"x":248,"width":245,"var":"cengshuTxt","text":"最高层数","height":36,"fontSize":36,"color":"#f6ecec","align":"center"},"compId":6},{"type":"Image","props":{"y":35,"x":304,"width":139,"var":"titleTxt","height":39},"compId":7},{"type":"Sprite","props":{"y":372.5,"x":334.5,"var":"suo","texture":"main/suo2.png"},"compId":8},{"type":"Box","props":{"y":702,"x":5,"width":739},"compId":27,"child":[{"type":"Sprite","props":{"texture":"main/xuxian.png"},"compId":10},{"type":"Sprite","props":{"x":50,"texture":"main/xuxian.png"},"compId":12},{"type":"Sprite","props":{"x":100,"texture":"main/xuxian.png"},"compId":13},{"type":"Sprite","props":{"x":150,"texture":"main/xuxian.png"},"compId":14},{"type":"Sprite","props":{"x":200,"texture":"main/xuxian.png"},"compId":15},{"type":"Sprite","props":{"x":250,"texture":"main/xuxian.png"},"compId":16},{"type":"Sprite","props":{"x":300,"texture":"main/xuxian.png"},"compId":17},{"type":"Sprite","props":{"x":350,"texture":"main/xuxian.png"},"compId":18},{"type":"Sprite","props":{"x":400,"texture":"main/xuxian.png"},"compId":19},{"type":"Sprite","props":{"x":450,"texture":"main/xuxian.png"},"compId":20},{"type":"Sprite","props":{"x":500,"texture":"main/xuxian.png"},"compId":21},{"type":"Sprite","props":{"x":550,"texture":"main/xuxian.png"},"compId":22},{"type":"Sprite","props":{"x":600,"texture":"main/xuxian.png"},"compId":23},{"type":"Sprite","props":{"x":650,"texture":"main/xuxian.png"},"compId":24},{"type":"Sprite","props":{"x":700,"texture":"main/xuxian.png"},"compId":28}]}],"loadList":["main/changhong.png","main/suo2.png","main/xuxian.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
             super.createChildren();
@@ -855,7 +855,7 @@ export module ui.test {
         }
     }
     REG("ui.test.worldCellUI",worldCellUI);
-    export class xiaodaoUI extends Laya.Scene {
+    export class xiaodaoUI extends Scene {
 		public dao:Laya.Image;
         public static  uiView:any ={"type":"Scene","props":{"width":684,"height":531},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"var":"dao","skin":"main/erdao.png"},"compId":3}],"loadList":["main/erdao.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -865,7 +865,7 @@ export module ui.test {
         }
     }
     REG("ui.test.xiaodaoUI",xiaodaoUI);
-    export class xiongmaoUI extends Laya.View {
+    export class xiongmaoUI extends View {
 		public ani1:Laya.FrameAnimation;
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":125,"x":17,"width":120,"texture":"bg/tianshiying.png","height":58},"compId":4},{"type":"Image","props":{"y":2.6666666666666665,"x":-1,"skin":"xiongmao/5.png"},"compId":3}],"animations":[{"nodes":[{"target":3,"keyframes":{"y":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":0},{"value":-0.25,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":3},{"value":-0.16666666666666674,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":6},{"value":0.4166666666666665,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":9},{"value":0.2777777777777777,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":10},{"value":0.6388888888888888,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":11},{"value":3,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":12},{"value":2.3333333333333335,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":13},{"value":2.6666666666666665,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":14},{"value":-5,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":15},{"value":-4.666666666666667,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":16},{"value":-4.833333333333334,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":17},{"value":-7,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":18},{"value":-8,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":21},{"value":-7.5,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":24},{"value":-7.333333333333334,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":25},{"value":-7.166666666666667,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":26},{"value":-1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":27}],"x":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":0},{"value":0.33333333333333326,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":1},{"value":1.166666666666667,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":2},{"value":4,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":3},{"value":3.333333333333333,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":6},{"value":3.166666666666666,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":9},{"value":2.7777777777777777,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":10},{"value":2.888888888888889,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":11},{"value":-1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"x","index":12}],"skin":[{"value":"xiongmao/1.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":0},{"value":"xiongmao/2.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":3},{"value":"xiongmao/3.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":6},{"value":"xiongmao/4.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":9},{"value":"xiongmao/5.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":12},{"value":"xiongmao/6.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":15},{"value":"xiongmao/7.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":18},{"value":"xiongmao/8.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":21},{"value":"xiongmao/9.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":24},{"value":"xiongmao/10.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":27},{"value":"xiongmao/11.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":30},{"value":"xiongmao/12.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":33},{"value":"xiongmao/13.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":36},{"value":"xiongmao/14.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":39},{"value":"xiongmao/15.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":42},{"value":"xiongmao/16.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":45},{"value":"xiongmao/17.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":48},{"value":"xiongmao/18.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":51},{"value":"xiongmao/19.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":54},{"value":"xiongmao/20.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":57},{"value":"xiongmao/21.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":60},{"value":"xiongmao/22.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":63}]}}],"name":"ani1","id":1,"frameRate":24,"action":2}],"loadList":["bg/tianshiying.png","xiongmao/5.png","xiongmao/1.png","xiongmao/2.png","xiongmao/3.png","xiongmao/4.png","xiongmao/6.png","xiongmao/7.png","xiongmao/8.png","xiongmao/9.png","xiongmao/10.png","xiongmao/11.png","xiongmao/12.png","xiongmao/13.png","xiongmao/14.png","xiongmao/15.png","xiongmao/16.png","xiongmao/17.png","xiongmao/18.png","xiongmao/19.png","xiongmao/20.png","xiongmao/21.png","xiongmao/22.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -875,7 +875,7 @@ export module ui.test {
         }
     }
     REG("ui.test.xiongmaoUI",xiongmaoUI);
-    export class xiongmao1UI extends Laya.View {
+    export class xiongmao1UI extends View {
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Sprite","props":{"y":-33.5,"x":-72,"texture":"bg/tianshiying.png"},"compId":5},{"type":"Sprite","props":{"y":-161,"x":-72,"texture":"bg/xiongmao.png"},"compId":4}],"loadList":["bg/tianshiying.png","bg/xiongmao.png"],"loadList3D":[]};
         constructor(){ super()}
         createChildren():void {
@@ -884,7 +884,7 @@ export module ui.test {
         }
     }
     REG("ui.test.xiongmao1UI",xiongmao1UI);
-    export class zhaohuanUI extends Laya.View {
+    export class zhaohuanUI extends View {
 		public ani1:Laya.FrameAnimation;
         public static  uiView:any ={"type":"View","props":{},"compId":2,"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"zhaohuan/yuandi.png","anchorY":0.5,"anchorX":0.5},"compId":3},{"type":"Image","props":{"y":8,"x":0,"skin":"zhaohuan/yun.png","anchorY":0.5,"anchorX":0.5},"compId":4},{"type":"Image","props":{"y":17,"x":-2,"skin":"zhaohuan/guangzhu.png","anchorY":1,"anchorX":0.5},"compId":5}],"animations":[{"nodes":[{"target":5,"keyframes":{"scaleY":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"scaleY","index":0},{"value":4,"tweenMethod":"linearNone","tween":true,"target":5,"key":"scaleY","index":5},{"value":4,"tweenMethod":"linearNone","tween":true,"target":5,"key":"scaleY","index":15},{"value":4,"tweenMethod":"linearNone","tween":true,"target":5,"label":null,"key":"scaleY","index":18}],"scaleX":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"scaleX","index":0},{"value":0.2,"tweenMethod":"linearNone","tween":true,"target":5,"key":"scaleX","index":5},{"value":0.8,"tweenMethod":"linearNone","tween":true,"target":5,"key":"scaleX","index":15},{"value":0.8,"tweenMethod":"linearNone","tween":true,"target":5,"label":null,"key":"scaleX","index":18}],"alpha":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":15},{"value":1,"tweenMethod":"linearNone","tween":true,"target":5,"label":null,"key":"alpha","index":18},{"value":0,"tweenMethod":"linearNone","tween":true,"target":5,"key":"alpha","index":24}]}},{"target":4,"keyframes":{"scaleY":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"scaleY","index":0},{"value":1.5,"tweenMethod":"linearNone","tween":true,"target":4,"key":"scaleY","index":29}],"scaleX":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"scaleX","index":0},{"value":1.5,"tweenMethod":"linearNone","tween":true,"target":4,"key":"scaleX","index":29}],"alpha":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"alpha","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":4,"key":"alpha","index":8},{"value":1,"tweenMethod":"linearNone","tween":true,"target":4,"label":null,"key":"alpha","index":15},{"value":0,"tweenMethod":"linearNone","tween":true,"target":4,"key":"alpha","index":25}]}},{"target":3,"keyframes":{"scaleY":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleY","index":0},{"value":1.2,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleY","index":15}],"scaleX":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleX","index":0},{"value":1.2,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleX","index":15}],"alpha":[{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"alpha","index":0},{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"alpha","index":8},{"value":1,"tweenMethod":"linearNone","tween":true,"target":3,"key":"alpha","index":15},{"value":0,"tweenMethod":"linearNone","tween":true,"target":3,"key":"alpha","index":22}]}}],"name":"ani1","id":1,"frameRate":60,"action":1}],"loadList":["zhaohuan/yuandi.png","zhaohuan/yun.png","zhaohuan/guangzhu.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -894,7 +894,7 @@ export module ui.test {
         }
     }
     REG("ui.test.zhaohuanUI",zhaohuanUI);
-    export class zhuanpanUI extends Laya.View {
+    export class zhuanpanUI extends View {
 		public pan:Laya.Image;
 		public zhen:Laya.Image;
 		public btn_kaishi:Laya.Button;
@@ -912,7 +912,7 @@ export module ui.test {
         }
     }
     REG("ui.test.zhuanpanUI",zhuanpanUI);
-    export class ZongjuUI extends Laya.View {
+    export class ZongjuUI extends View {
 		public shudianju:Laya.Clip;
 		public shuhuoxing:Laya.Clip;
         public static  uiView:any ={"type":"View","props":{"width":0,"height":0},"compId":2,"child":[{"type":"Clip","props":{"y":0,"x":0,"var":"shudianju","skin":"bg/clip_dianjushu.png","scaleY":1.2,"scaleX":1.2,"clipY":3,"clipX":3,"anchorY":0.5,"anchorX":0.5},"compId":3},{"type":"Clip","props":{"y":-107,"x":12,"width":58,"var":"shuhuoxing","skin":"bg/clip_huoxing.png","rotation":62,"height":48,"clipY":2,"clipX":3,"autoPlay":true},"compId":4}],"loadList":["bg/clip_dianjushu.png","bg/clip_huoxing.png"],"loadList3D":[]};

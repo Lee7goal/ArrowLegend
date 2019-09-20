@@ -1,5 +1,4 @@
 import HomeData from "../game/data/HomeData";
-import MainUI, { TopUI } from "./scene/main/MainUI";
 import SenderHttp from "../net/SenderHttp";
 import Game from "../game/Game";
 import TalentData from "../game/data/TalentData";

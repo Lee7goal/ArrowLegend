@@ -22,10 +22,15 @@ export default class BloodEffect{
         sprite.addChild(bitNum);
         bitNum.pos(xx,yy);
         sprite.bloodCount++;
-        
-        Laya.Tween.to(bitNum,{y:yy-50,scaleX:0.2,scaleY:0.2},200,Laya.Ease.circOut);
+
+        let tscale:number = 0.3;
+        if(isCrit)
+        {
+            tscale = 0.4;
+        }
+        Laya.Tween.to(bitNum,{y:yy-100,scaleX:tscale,scaleY:tscale},300,Laya.Ease.circOut);
         setTimeout(() => {
             bitNum.recover();
-        }, 400);
+        }, 500);
     }
 }

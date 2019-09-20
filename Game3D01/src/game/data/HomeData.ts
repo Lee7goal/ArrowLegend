@@ -83,7 +83,7 @@ export default class HomeData implements IData{
             data.mapIndex = Game.battleLoader.index;
             console.log("存储最高层数",data.mapIndex);
         }
-        data.coins += Game.addCoins;
+        data.coins += Game.battleCoins;
         data.isGuide = this.isGuide;
         this.coins = data.coins;
     }

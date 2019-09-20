@@ -21,6 +21,7 @@ export default class WorldCell extends ui.test.worldCellUI {
             Game.battleLoader.chapterId = this.sys.id;
             SysChapter.randomDiamond(Game.battleLoader.chapterId);
             Game.battleCoins = 0;
+            Game.battleExp = 0;
             Laya.stage.event(GameEvent.START_BATTLE);
         }
         else
@@ -35,6 +36,8 @@ export default class WorldCell extends ui.test.worldCellUI {
         this.suo.visible = Session.homeData.chapterId < sysChapter.id;
         this.mapBtn.gray = this.suo.visible;
         this.cengshuTxt.text = "";
+        this.titleTxt.skin = "chapters/chapter_title_" + this.sys.id + ".png";
+        this.mapBtn.skin = "chapters/chapter_img_" + this.sys.id + ".png";
         if(!this.suo.visible)
         {
             let maxCeng:number =  SysMap.getTotal(this.sys.id);
