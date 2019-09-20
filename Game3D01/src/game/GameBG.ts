@@ -313,7 +313,7 @@ export default class GameBG extends Laya.Sprite {
                 var shadow:Laya.Image = new Laya.Image();
                 if((GridType.isWall(gType) || (gType >= 1 && gType <= 10)))
                 {
-                    shadow.skin = 'bg/y' + GameCube.getType(gType) + '.png';
+                    shadow.skin = GameBG.BG_TYPE + '/y' + GameCube.getType(gType) + '.png';
                     shadow.x = i * ww;
                     shadow.y = j * ww;
                     this._box.addChild(shadow);

@@ -27,4 +27,5 @@
    <item name="battleBg" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="map_1" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="map_2" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="chapters" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
 </res>
