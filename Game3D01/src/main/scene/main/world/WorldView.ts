@@ -60,12 +60,19 @@ import FlyEffect from "../../../../game/effect/FlyEffect";
         this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
 
         //Laya.timer.once( 1000,this,this.tttFun );
-        //Laya.stage.on( GameEvent );
+        Laya.stage.on( GameEvent.ADD_COIN , this , this.addCoinFun );
+    }
+
+    private addCoinFun():void {
+       
+        let cell = this.list.getCell(0);
+        let fly = new FlyEffect();
+        //fly.fly(  ,  );
     }
 
     private tttFun():void{
-        let fly = new FlyEffect();
-        //fly.fly( this.list.getCell(0) ,  );
+        
+        //
         //this.filters = [Laya.ColorFilter];
     }
 
@@ -109,6 +116,15 @@ import FlyEffect from "../../../../game/effect/FlyEffect";
 
         let arr:SysChapter[] = App.tableManager.getTable(SysChapter.NAME);
         this.list.array = arr;
+        Laya.timer.callLater( this,this.callFun );
+    }
+
+    private callFun():void{
+        console.log( "aaa" , Session.homeData.chapterId );
+        this.list.scrollTo( Session.homeData.chapterId - 1 );
+        let cell = this.list.getCell(0);
+        let t = new Laya.Tween();
+        t.from( cell , {scaleX:0.8,scaleY:0.8} , 100  );
     }
 
     // private onStart():void
