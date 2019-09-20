@@ -277,17 +277,17 @@ export default class Game {
         }
     }
 
-    static getRandPos(pro: GamePro): number[]  {
+    static getRandPos(pro: GamePro,range1:number = 4): number[]  {
         let mRow: number = Math.floor(pro.hbox.y / GameBG.ww);
         let mCol: number = Math.floor(pro.hbox.x / GameBG.ww);
 
-        let range: number = 4;
-        let endRowNum = Game.map0.endRowNum - 1;
+        let range: number = range1;
+        let endRowNum = Game.map0.endRowNum;
 
         var info: any = Game.map0.info;
         var arr: number[][] = [];
         for (let i = mRow - range; i <= mRow + range; i++) {
-            if (i < 3 || i > GameBG.MAP_ROW - 7)  {
+            if (i < 3 || i > GameBG.MAP_ROW - 4)  {
                 continue;
             }
             for (let j = mCol - range; j <= mCol + range; j++) {
