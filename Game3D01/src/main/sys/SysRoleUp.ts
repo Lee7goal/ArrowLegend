@@ -11,6 +11,7 @@ export default class SysRoleUp{
     public costAtk:number = 0;
     public addHp:number = 0;
     public costHp:number = 0;
+    public costGold:number = 0;
 
     public getCost( type:HeroLvType ):number{
         if( type == HeroLvType.ATK ){

@@ -6,7 +6,7 @@
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#c6abab","height":1334},
     "nodeParent":-1,
-    "maxID":75,
+    "maxID":90,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -142,7 +142,7 @@
                                     "x":60,
                                     "type":"Image",
                                     "searchKey":"Image",
-                                    "props":{"y":23,"x":62,"skin":"juese/shengzizi.png"},
+                                    "props":{"y":12,"x":71,"skin":"juese/shengzizi.png","scaleY":0.8,"scaleX":0.8},
                                     "nodeParent":32,
                                     "label":"Image",
                                     "isDirectory":false,
@@ -152,14 +152,42 @@
                                     "child":[
                                         ],
                                     "$HIDDEN":false
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Sprite",
+                                    "searchKey":"Sprite",
+                                    "props":{"y":38.5,"x":40,"texture":"main/jinbi.png","scaleY":0.5,"scaleX":0.5},
+                                    "nodeParent":32,
+                                    "label":"Sprite",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":75,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Text",
+                                    "searchKey":"Text,hpGold",
+                                    "props":{"y":37,"x":70.5,"var":"hpGold","text":"1000","fontSize":28,"color":"#ffffff","align":"left"},
+                                    "nodeParent":32,
+                                    "label":"hpGold",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":76,
+                                    "child":[
+                                        ]
                                 }],
-                            "$HIDDEN":true
+                            "$HIDDEN":false
                         },
                         {
                             "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":203,"x":29.5,"skin":"juese/shengming.png"},
+                            "props":{"y":171,"x":32,"skin":"juese/shengming.png"},
                             "nodeParent":21,
                             "label":"Image",
                             "isDirectory":false,
@@ -173,7 +201,7 @@
                             "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,shengmingjia",
-                            "props":{"y":208,"x":69,"width":461,"var":"shengmingjia","value":"+1","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.25,"scaleX":0.25,"height":115,"align":"center"},
+                            "props":{"y":177,"x":69,"width":461,"var":"shengmingjia","value":"+1","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.25,"scaleX":0.25,"height":115,"align":"center"},
                             "nodeParent":21,
                             "label":"shengmingjia",
                             "isDirectory":false,
@@ -265,7 +293,37 @@
                                     "compId":14,
                                     "child":[
                                         ]
-                                }]
+                                }],
+                            "$HIDDEN":true
+                        },
+                        {
+                            "x":45,
+                            "type":"FontClip",
+                            "searchKey":"FontClip,hpLv",
+                            "props":{"y":217,"x":103,"width":180,"var":"hpLv","value":"99","spaceX":-3,"skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:vbnd","scaleY":0.25,"scaleX":0.25,"height":113,"align":"center"},
+                            "nodeParent":21,
+                            "label":"hpLv",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":86,
+                            "child":[
+                                ],
+                            "$LOCKED":false
+                        },
+                        {
+                            "x":45,
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":213,"x":37.5,"texture":"main/dengji.png","scaleY":0.6,"scaleX":0.6},
+                            "nodeParent":21,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":87,
+                            "child":[
+                                ]
                         }],
                     "$HIDDEN":false
                 },
@@ -341,23 +399,52 @@
                                     "x":60,
                                     "type":"Image",
                                     "searchKey":"Image",
-                                    "props":{"y":23,"x":62,"skin":"juese/shengzizi.png"},
+                                    "props":{"y":13,"x":77,"skin":"juese/shengzizi.png","scaleY":0.8,"scaleX":0.8},
                                     "nodeParent":66,
                                     "label":"Image",
                                     "isDirectory":false,
                                     "isAniNode":true,
                                     "hasChild":false,
-                                    "compId":67,
+                                    "compId":77,
+                                    "child":[
+                                        ],
+                                    "$HIDDEN":false
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Sprite",
+                                    "searchKey":"Sprite",
+                                    "props":{"y":39,"x":46,"texture":"main/jinbi.png","scaleY":0.5,"scaleX":0.5},
+                                    "nodeParent":66,
+                                    "label":"Sprite",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":78,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Text",
+                                    "searchKey":"Text,atkGold",
+                                    "props":{"y":38,"x":76,"var":"atkGold","text":"1000","fontSize":28,"color":"#ffffff","align":"left"},
+                                    "nodeParent":66,
+                                    "label":"atkGold",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":79,
                                     "child":[
                                         ]
                                 }],
-                            "$HIDDEN":true
+                            "$HIDDEN":false
                         },
                         {
                             "x":45,
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":204,"x":27,"skin":"juese/gongji.png"},
+                            "props":{"y":172,"x":28,"skin":"juese/gongji.png"},
                             "nodeParent":23,
                             "label":"Image",
                             "isDirectory":false,
@@ -371,7 +458,7 @@
                             "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,gongjijia",
-                            "props":{"y":210,"x":69,"width":461,"var":"gongjijia","value":"+1","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.25,"scaleX":0.25,"height":115,"align":"center"},
+                            "props":{"y":175,"x":70,"width":461,"var":"gongjijia","value":"+1","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.25,"scaleX":0.25,"height":115,"align":"center"},
                             "nodeParent":23,
                             "label":"gongjijia",
                             "isDirectory":false,
@@ -463,7 +550,37 @@
                                     "compId":65,
                                     "child":[
                                         ]
-                                }]
+                                }],
+                            "$HIDDEN":true
+                        },
+                        {
+                            "x":45,
+                            "type":"FontClip",
+                            "searchKey":"FontClip,atkLv",
+                            "props":{"y":213,"x":104,"width":180,"var":"atkLv","value":"99","spaceX":-3,"skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:vbnd","scaleY":0.25,"scaleX":0.25,"height":113,"align":"center"},
+                            "nodeParent":23,
+                            "label":"atkLv",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":88,
+                            "child":[
+                                ],
+                            "$LOCKED":false
+                        },
+                        {
+                            "x":45,
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":209,"x":39,"texture":"main/dengji.png","scaleY":0.6,"scaleX":0.6},
+                            "nodeParent":23,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":89,
+                            "child":[
+                                ]
                         }],
                     "$HIDDEN":false
                 },
@@ -471,7 +588,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":797,"x":543,"width":175,"skin":"juese/juese_hei.png","sizeGrid":"23,70,19,34","height":367,"alpha":0.5},
+                    "props":{"y":789,"x":543,"width":175,"skin":"juese/juese_hei.png","sizeGrid":"23,70,19,34","height":367,"alpha":0.5},
                     "nodeParent":49,
                     "label":"Image",
                     "isDirectory":false,
@@ -486,7 +603,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image",
-                    "props":{"y":1000,"x":544,"skin":"juese/juesekuai.png"},
+                    "props":{"y":995,"x":544,"skin":"juese/juesekuai.png"},
                     "nodeParent":49,
                     "label":"Image",
                     "isOpen":false,
@@ -501,7 +618,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,jinengtubiao",
-                    "props":{"y":842,"x":542,"width":177,"var":"jinengtubiao","skin":"main/kawen.png","height":177},
+                    "props":{"y":838,"x":542,"width":177,"var":"jinengtubiao","skin":"main/kawen.png","height":177},
                     "nodeParent":49,
                     "label":"jinengtubiao",
                     "isOpen":true,
@@ -516,7 +633,7 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label,jinengming",
-                    "props":{"y":803,"x":562,"width":133,"var":"jinengming","text":"技能名字","height":33,"fontSize":30,"color":"#f3e9e9","align":"center"},
+                    "props":{"y":799,"x":562,"width":133,"var":"jinengming","text":"技能名字","height":33,"fontSize":30,"color":"#f3e9e9","align":"center"},
                     "nodeParent":49,
                     "label":"jinengming",
                     "isDirectory":false,
@@ -530,7 +647,7 @@
                     "x":30,
                     "type":"Label",
                     "searchKey":"Label,skillLabel",
-                    "props":{"y":1045,"x":551,"wordWrap":true,"width":157,"var":"skillLabel","text":"技能说明技能说明技能说明技能说明技能说明","height":114,"fontSize":24,"color":"#f3e9e9","align":"center"},
+                    "props":{"y":1043,"x":551,"wordWrap":true,"width":157,"var":"skillLabel","text":"技能说明技能说明技能说明技能说明技能说明","height":114,"fontSize":24,"color":"#f3e9e9","align":"center"},
                     "nodeParent":49,
                     "label":"skillLabel",
                     "isDirectory":false,

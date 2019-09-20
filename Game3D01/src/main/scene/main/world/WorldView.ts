@@ -12,6 +12,7 @@ import TimeGoldDialog from "../timegold/TimeGoldDialog";
 import GameMain from "../../../GameMain";
 import MyTimeGold from "../timegold/MyTimeGold";
 import FlyEffect from "../../../../game/effect/FlyEffect";
+import FlyUpTips from "../../../FlyUpTips";
     export default class WorldView extends ui.test.worldUI {
     // private _gameScene:Laya.Scene3D;
 
@@ -58,16 +59,23 @@ import FlyEffect from "../../../../game/effect/FlyEffect";
         myTime.setUI( this.timeLogo );
         this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
         this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
-
+        this.sign7Btn.on( Laya.Event.CLICK,this,this.sign7clickFun );
         //Laya.timer.once( 1000,this,this.tttFun );
         Laya.stage.on( GameEvent.ADD_COIN , this , this.addCoinFun );
     }
 
-    private addCoinFun():void {
-       
+    private sign7clickFun():void{
+        FlyUpTips.setTips("暂未开启");
+    }
+
+    private addCoinFun( v:number ):void {
+        let last = Session.homeData.coins - v;
+        let fc = Game.scenneM.main.mainUI.topUI.coinClip;
+        fc.value = last + "";
         let cell = this.list.getCell(0);
         let fly = new FlyEffect();
-        //fly.fly(  ,  );
+        //fly.fly( this.list.getCell(0) , Game.scenneM.main.coinClip );
+        fly.flyFromP( Laya.stage.width/2, Laya.stage.height/2 , Game.scenneM.main.mainUI.topUI.goldImg , v , last , fc );
     }
 
     private tttFun():void{
@@ -114,18 +122,25 @@ import FlyEffect from "../../../../game/effect/FlyEffect";
 
         // this.onComplete1();
 
+        let indexTo:number = Session.homeData.chapterId - 1;
+        indexTo = Math.max( indexTo , 0 );
+
         let arr:SysChapter[] = App.tableManager.getTable(SysChapter.NAME);
         this.list.array = arr;
-        Laya.timer.once( 500, this,this.callFun );
+        this.list.scrollTo( indexTo );
+
+        let cell:ui.test.worldCellUI = <any>this.list.getCell( indexTo );
+        cell.mapBtn.scale( 0.0,0.0 );
+        let t = new Laya.Tween();
+        t.to( cell.mapBtn , {scaleX:1,scaleY:1} , 500 , Laya.Ease.backOut , null , 200 );
+        //Laya.timer.once( 200, this,this.callFun );
+        //this.addCoinFun( 1000 );
     }
 
     private callFun():void{
-        console.log( "aaa" , Session.homeData.chapterId );
+        //console.log( "aaa" , Session.homeData.chapterId );
         //this.list.scrollTo( Session.homeData.chapterId - 1 );
-        let cell:ui.test.worldCellUI = <any>this.list.getCell(0);
-        cell.mapBtn.scale( 0.6,0.6 );
-        let t = new Laya.Tween();
-        t.to( cell.mapBtn , {scaleX:1,scaleY:1} , 500 , Laya.Ease.backOut  );
+        
     }
 
     // private onStart():void

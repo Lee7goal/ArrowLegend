@@ -105,7 +105,7 @@ export default class TalentView extends ui.test.talentUI {
     public btnFun():void{
         if( Session.talentData.canLvUp() == -2 ){
             FlyUpTips.setTips( "请您提升君主等级" );
-            //return;
+            return;
         }
         let d = new SelectTalent();
         d.popup(false);

@@ -30,11 +30,34 @@ export default class FlyEffect{
     public fly( start:Laya.Sprite , end:Laya.Sprite ):void{
         this.start = start;
         this.end = end;
+        let p = this.start.localToGlobal( new Laya.Point( 0 , 0 ) );
+        this.flyGold( p.x , p.y , 1 );
     }
 
-    public flyGold( x1:number,y1:number,gold:number ):void{
+    public x1:number = 0;
+    public y1:number = 0;
+    public ex:number = 0;
+    public ey:number = 0;
+    
+
+    public goldEvery:number = 0;
+    public nowGold:number = 0;
+    public fc:Laya.FontClip;
+    public flyFromP( x1:number ,y1:number ,end:Laya.Sprite , gold:number , nowGold:number,fc:Laya.FontClip  ):void{
+        this.fc = fc;
+        this.end = end;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.nowGold = nowGold;
+        let p = end.localToGlobal( new Laya.Point(0,0) );
+        this.ex = p.x;// + end.width/2;
+        this.ey = p.y;// + end.height/2;
+        this.flyGold( 0,0,gold );
+    }
+
+    public flyGold( x1:number,y1:number, gold:number ):void{
         let flyGoldNum: number = 30;
-        let goldEvery: number = gold / flyGoldNum;
+        this.goldEvery = gold / flyGoldNum;
         for (let i: number = 0; i < flyGoldNum; i++) {
             let img = Laya.Pool.getItem("flygold"); 
             if( img == null ){
@@ -43,26 +66,39 @@ export default class FlyEffect{
             Laya.stage.addChild(img);
             img.scaleX = 1;
             img.scaleY = 1;
-            img.x = x1 + Math.random() * 80 - 50;
-            img.y = y1 + Math.random() * 80 - 150;
+            img.anchorX = img.anchorY = 0.5;
+            img.x = this.x1 + Math.random() * 300 - 150;
+            img.y = this.y1 + Math.random() * 100 - 50;
             img.alpha = 0;
-            this.flyEffect(img , goldEvery);
+            this.flyEffect(img , this.goldEvery);
         }
     }
 
     private flyEffect(img: Laya.Image, gold: number): void {
-        let p = this.start.localToGlobal( FlyEffect.getP00() );
+        //let p = this.start.localToGlobal( FlyEffect.getP00() );
+        let p = new Laya.Point( this.x1,this.y1 );
         let t = new Laya.Tween();
-        img.anchorX = img.anchorY = 0.5;
+        
+        //t.to(img, { x: p.x + 10, y: p.y + 10, scaleX: 0.6, scaleY: 0.6 }, 700, Laya.Ease.backIn, new Laya.Handler(this, this.flyGoldOverFun, [img, gold]), Math.random() * 500);
+        let delayTime:number = Math.random() * 1000;//, scaleX: 0.6, scaleY: 0.6
+        t.to( img , { x: this.ex , y: this.ey ,scaleX:0.5 , scaleY:0.5 }, 700, Laya.Ease.backIn, new Laya.Handler(this, this.flyGoldOverFun, [img, gold]), delayTime + 300 );
+        //Laya.timer.once( delayTime , this, this.dFun, [img] , false );
+        
+        let t1 = new Laya.Tween();
+        img.scaleX = img.scaleY = 0;
+        img.alpha = 0.0;
+        t1.to( img ,{ scaleX:1,scaleY:1,alpha:1 } , 300 , Laya.Ease.backOut , null, delayTime );
+    }
+
+    private dFun( img:Laya.Image ):void{
         FlyEffect.BigSmallEffect(img);
-        t.to(img, { x: p.x + 10, y: p.y + 10, scaleX: 0.6, scaleY: 0.6 }, 700, Laya.Ease.backIn, new Laya.Handler(this, this.flyGoldOverFun, [img, gold]), Math.random() * 500);
     }
 
     public static BigSmallEffect( s:Laya.Image ):void{
-        s.anchorX = s.anchorY = 0.5;
         let t = new Laya.Tween();
-        s.scaleX = s.scaleY = 0.5;
-        t.to( s,{ scaleX:0.8,scaleY:0.8,alpha:1,rotation:90 } , 600 , Laya.Ease.backInOut ,null,Math.random() * 100 );
+        s.scaleX = s.scaleY = 0;
+        s.alpha = 0.0;
+        t.to( s,{ scaleX:1,scaleY:1,alpha:1 } , 300 , Laya.Ease.backOut );//,Math.random() * 100
     }
 
     public flyGoldOverFun(img: Laya.Image, gold: number): void {
@@ -75,8 +111,8 @@ export default class FlyEffect{
         let t1 = new Laya.Tween();
         t1.to(this.end , { scaleX: 1, scaleY: 1 }, 60, null, null, 80);
 
-        //this.nowGold += gold;
-
+        this.nowGold += gold;
+        this.fc.value = parseInt( Math.ceil( this.nowGold ) + "" ) + "";
         //this.goldFc.value = parseInt( Math.ceil( this.nowGold ) + "" ) + "";
     }
 }
