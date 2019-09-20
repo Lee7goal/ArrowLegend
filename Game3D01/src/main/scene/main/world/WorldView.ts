@@ -12,6 +12,7 @@ import WorldCell from "./WorldCell";
 import TimeGoldDialog from "../timegold/TimeGoldDialog";
 import GameMain from "../../../GameMain";
 import MyTimeGold from "../timegold/MyTimeGold";
+import FlyEffect from "../../../../game/effect/FlyEffect";
     export default class WorldView extends ui.test.worldUI {
     // private _gameScene:Laya.Scene3D;
 
@@ -58,6 +59,15 @@ import MyTimeGold from "../timegold/MyTimeGold";
         myTime.setUI( this.timeLogo );
         this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
         this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
+
+        //Laya.timer.once( 1000,this,this.tttFun );
+        //Laya.stage.on( GameEvent );
+    }
+
+    private tttFun():void{
+        let fly = new FlyEffect();
+        //fly.fly( this.list.getCell(0) ,  );
+        //this.filters = [Laya.ColorFilter];
     }
 
     private rankClickFun():void{

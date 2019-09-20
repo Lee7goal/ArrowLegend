@@ -3,6 +3,19 @@ export default class MyEffect{
         
     }
 
+    public static light( sp:Laya.Sprite ):void{
+        let obj:any = {};
+        obj.v = 100;
+        let t = new Laya.Tween();
+        let f = new Laya.ColorFilter();
+        let farr = [f];
+        t.to( obj , { v:0 ,update:new Laya.Handler( null, ()=>{
+            f.reset();
+            f.adjustBrightness( obj.v );
+            sp.filters = farr;
+        } ) } , 1000 );
+    }
+
     public static rotation( a:Laya.Sprite ,time:number = 100 ):void{
         let t = new Laya.Tween();
         t.repeat = 0;

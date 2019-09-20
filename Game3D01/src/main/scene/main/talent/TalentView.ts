@@ -10,6 +10,7 @@ import SysTalentCost from "../../../sys/SysTalentCost";
 import SelectTalent from "./SelectTalent";
 import TalentCell2 from "./TalentCell2";
 import SysTalent from "../../../sys/SysTalent";
+import MyEffect from "../../../../core/utils/MyEffect";
 
 export default class TalentView extends ui.test.talentUI {
 

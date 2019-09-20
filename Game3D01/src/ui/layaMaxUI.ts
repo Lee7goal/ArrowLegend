@@ -25,7 +25,7 @@ export module ui.game {
         }
     }
     REG("ui.game.heheUI",heheUI);
-    export class homePageUI extends Laya.View {
+    export class homePageUI extends View {
 		public vvv:ui.test.LoginViewUI;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Sprite","props":{"texture":"loading/jiazai.jpg"},"compId":5},{"type":"Button","props":{"y":1163,"x":246,"stateNum":1,"skin":"loading/btn_kaishi.png","scaleY":0.6,"scaleX":0.6,"bottom":80},"compId":6},{"type":"LoginView","props":{"y":130,"var":"vvv","runtime":"ui.test.LoginViewUI"},"compId":7},{"type":"Image","props":{"y":478,"x":134,"skin":"loading/logo.png"},"compId":8}],"loadList":["loading/jiazai.jpg","loading/btn_kaishi.png","loading/logo.png"],"loadList3D":[]};
         constructor(){ super()}
@@ -183,7 +183,7 @@ export module ui.test {
         }
     }
     REG("ui.test.BulletShadowUI",BulletShadowUI);
-    export class chengjiuUI extends Laya.View {
+    export class chengjiuUI extends View {
 		public listBox:Laya.Box;
         public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"viewbg","props":{"y":0,"x":0,"runtime":"ui.game.viewbgUI"},"compId":29},{"type":"Box","props":{"y":111,"x":37,"width":675,"var":"listBox","height":1100},"compId":25}],"loadList":[],"loadList3D":[]};
         constructor(){ super()}
@@ -247,7 +247,7 @@ export module ui.test {
         }
     }
     REG("ui.test.GameOverUI",GameOverUI);
-    export class GetItemCellUI extends Laya.View {
+    export class GetItemCellUI extends View {
 		public light:ui.test.LightUI;
 		public label:Laya.Label;
 		public v1:ui.test.GoldViewUI;
@@ -259,7 +259,7 @@ export module ui.test {
         }
     }
     REG("ui.test.GetItemCellUI",GetItemCellUI);
-    export class GetItemDialogUI extends Laya.Dialog {
+    export class GetItemDialogUI extends Dialog {
 		public box:Laya.Box;
 		public rebornBtn:Laya.Button;
 		public deshuliang:Laya.Label;
@@ -346,7 +346,7 @@ export module ui.test {
         }
     }
     REG("ui.test.initViewUI",initViewUI);
-    export class jueseUI extends Laya.View {
+    export class jueseUI extends View {
 		public shengming:Laya.Image;
 		public shengmingniu:Laya.Button;
 		public shengmingjia:Laya.FontClip;
@@ -387,7 +387,7 @@ export module ui.test {
         }
     }
     REG("ui.test.juese_1UI",juese_1UI);
-    export class juese_tishiUI extends Laya.Dialog {
+    export class juese_tishiUI extends Dialog {
 		public light:ui.test.LightUI;
 		public rebornBtn:Laya.Button;
 		public deshuliang:Laya.Label;
@@ -460,7 +460,7 @@ export module ui.test {
         }
     }
     REG("ui.test.moguiUI",moguiUI);
-    export class mogui_1UI extends Laya.View {
+    export class mogui_1UI extends View {
 		public biaoti2:Laya.Label;
 		public baioti:Laya.Label;
 		public txt:Laya.Label;
@@ -485,7 +485,7 @@ export module ui.test {
         }
     }
     REG("ui.test.newhandUI",newhandUI);
-    export class paihangUI extends Laya.Dialog {
+    export class paihangUI extends Dialog {
 		public guanbi:Laya.Button;
 		public tab:Laya.Tab;
 		public list:Laya.List;
@@ -513,7 +513,7 @@ export module ui.test {
         }
     }
     REG("ui.test.paihang1UI",paihang1UI);
-    export class qiandaoUI extends Laya.Scene {
+    export class qiandaoUI extends Scene {
 		public guanbi:Laya.Button;
 		public LingBtn:Laya.Button;
 		public AdLingBtn:Laya.Button;
@@ -563,7 +563,7 @@ export module ui.test {
         }
     }
     REG("ui.test.RankCellUI",RankCellUI);
-    export class RankDialogUI extends Laya.Dialog {
+    export class RankDialogUI extends Dialog {
 		public tab:Laya.Tab;
 		public wxopen:laya.ui.WXOpenDataViewer;
 		public worldBox:Laya.Box;
@@ -625,7 +625,7 @@ export module ui.test {
         }
     }
     REG("ui.test.SawZongUI",SawZongUI);
-    export class selectmissionUI extends Laya.Scene {
+    export class selectmissionUI extends Scene {
 		public biaoti2:Laya.Label;
 		public biaoti:Laya.Label;
 		public changdu2:Laya.Label;
@@ -644,7 +644,7 @@ export module ui.test {
         }
     }
     REG("ui.test.selectmissionUI",selectmissionUI);
-    export class settingUI extends Laya.View {
+    export class settingUI extends View {
 		public id:Laya.Label;
 		public ver:Laya.Label;
 		public yuyan:Laya.Button;
@@ -660,7 +660,7 @@ export module ui.test {
         }
     }
     REG("ui.test.settingUI",settingUI);
-    export class shengjiUI extends Laya.View {
+    export class shengjiUI extends View {
 		public lightView:ui.test.LightUI;
 		public lvClip:Laya.FontClip;
 		public lvLabel:Laya.Label;
@@ -693,7 +693,7 @@ export module ui.test {
         }
     }
     REG("ui.test.SkillGridUI",SkillGridUI);
-    export class talentUI extends Laya.View {
+    export class talentUI extends View {
 		public tianfudi:Laya.Image;
 		public shengmingniu:Laya.Button;
 		public qianshu:Laya.FontClip;
@@ -709,7 +709,7 @@ export module ui.test {
         }
     }
     REG("ui.test.talentUI",talentUI);
-    export class TalentCellUI extends Laya.View {
+    export class TalentCellUI extends View {
 		public b1:Laya.Box;
 		public xian1:Laya.Box;
 		public t1:ui.test.talent_1UI;
@@ -724,7 +724,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TalentCellUI",TalentCellUI);
-    export class TalentViewUI extends Laya.Dialog {
+    export class TalentViewUI extends Dialog {
 		public l1:laya.display.Text;
 		public b0:ui.test.TalentZhuanUI;
 		public b1:ui.test.TalentZhuanUI;
@@ -746,7 +746,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TalentViewUI",TalentViewUI);
-    export class TalentZhuanUI extends Laya.View {
+    export class TalentZhuanUI extends View {
 		public back:ui.test.TianFuCellUI;
 		public wenhao:ui.test.TianFuCellUI;
         public static  uiView:any ={"type":"View","props":{"width":175,"height":212},"compId":2,"child":[{"type":"TianFuCell","props":{"y":0,"x":175,"var":"back","scaleX":-1,"runtime":"ui.test.TianFuCellUI"},"compId":3},{"type":"TianFuCell","props":{"y":0,"x":0,"var":"wenhao","runtime":"ui.test.TianFuCellUI"},"compId":4}],"loadList":[],"loadList3D":[]};
@@ -801,7 +801,7 @@ export module ui.test {
         }
     }
     REG("ui.test.tianshiUI",tianshiUI);
-    export class TimeGoldUI extends Laya.Dialog {
+    export class TimeGoldUI extends Dialog {
 		public light:ui.test.LightUI;
 		public goldFc:Laya.FontClip;
 		public LingBtn:Laya.Button;
@@ -830,7 +830,7 @@ export module ui.test {
         }
     }
     REG("ui.test.TimeLogoUI",TimeLogoUI);
-    export class worldUI extends Laya.View {
+    export class worldUI extends View {
 		public box:Laya.Box;
 		public timeLogo:ui.test.TimeLogoUI;
 		public rankBtn:Laya.Button;
