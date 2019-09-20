@@ -11,6 +11,8 @@ export default class RandMoveAI extends BaseAI {
 
     private static timdex:number = 0;
 
+    static dirs:number[] = [1,2,3,5,6,7,9,10,11,13,14,15];
+
     constructor(pro: Monster) {
         super(pro);
         pro.setSpeed(this.sysEnemy.moveSpeed);
@@ -36,7 +38,8 @@ export default class RandMoveAI extends BaseAI {
             
             this.status = 1;
             this.cd = this.now + this.sysEnemy.enemySpeed;
-            this.pro.rotation((Math.PI/8) * Math.floor(Math.random()*16) );
+            let randIndex:number = Math.floor(Math.random() * 12);
+            this.pro.rotation((Math.PI/8) * RandMoveAI.dirs[randIndex] );
             this.pro.play(GameAI.Run);
         }
         else if(this.status == 1 && this.now >= this.cd)

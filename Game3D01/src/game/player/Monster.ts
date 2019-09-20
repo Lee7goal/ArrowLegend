@@ -227,8 +227,9 @@ export default class Monster extends GamePro {
         gpro.hurtValue = sysEnemy.enemyAttack;
 
 
+        var MOVE: any;
         if (sysEnemy.moveType > 0) {
-            var MOVE: any = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
+            MOVE = Laya.ClassUtils.getClass(MoveType.TAG + sysEnemy.moveType);
             gpro.setGameMove(new MOVE());
         }
         let tScale: number = sysEnemy.zoomMode / 100;
@@ -245,7 +246,7 @@ export default class Monster extends GamePro {
         gpro.initBlood(hp);
 
         var MonAI: any = Laya.ClassUtils.getClass(AttackType.TAG + sysEnemy.enemyAi);
-        console.log("当前怪的AI", sysEnemy.id,sysEnemy.enemymode, sysEnemy.txt, sysEnemy.enemyAi, MonAI);
+        console.log("当前怪的AI", sysEnemy.id,sysEnemy.enemymode, sysEnemy.txt, sysEnemy.enemyAi, MonAI,MOVE);
         if (MonAI == null) {
             console.log('没有这个怪的AI', sysEnemy.id);
         }

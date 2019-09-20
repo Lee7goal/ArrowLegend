@@ -1,6 +1,8 @@
 import Game from "../Game";
 import GamePro from "../GamePro";
 import { GameMove } from "./GameMove";
+import Monster from "../player/Monster";
+import { GameAI } from "../ai/GameAI";
 
 export default class PlaneGameMove extends GameMove {
     move2d(n: number, pro: GamePro, speed: number): boolean {
@@ -9,17 +11,40 @@ export default class PlaneGameMove extends GameMove {
         }
         var vx: number = pro.speed * Math.cos(n);
         var vz: number = pro.speed * Math.sin(n);
-        if (Game.map0.chechHit(pro, vx, vz)) {
-            if (vz != 0 && Game.map0.chechHit(pro, vx, 0)) {
-                vx = 0;
-                vz = (vz < 0 ? -1 : 1) * pro.speed;
-            }
-            if (vx != 0 && Game.map0.chechHit(pro, 0, vz)) {
-                vz = 0;
-                vx = (vx < 0 ? -1 : 1) * pro.speed;
-            }
+        if(pro instanceof Monster)
+        {
             if (Game.map0.chechHit(pro, vx, vz)) {
-                return false;
+                if (vz != 0 && Game.map0.chechHit(pro, vx, 0)) {
+                    vx = 0;
+                    vz = (vz < 0 ? -1 : 1) * pro.speed;
+                    pro.play(GameAI.Idle);
+                    return false;
+                }
+                if (vx != 0 && Game.map0.chechHit(pro, 0, vz)) {
+                    vz = 0;
+                    vx = (vx < 0 ? -1 : 1) * pro.speed;
+                    pro.play(GameAI.Idle);
+                    return false;
+                }
+                if (Game.map0.chechHit(pro, vx, vz)) {
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            if (Game.map0.chechHit(pro, vx, vz)) {
+                if (vz != 0 && Game.map0.chechHit(pro, vx, 0)) {
+                    vx = 0;
+                    vz = (vz < 0 ? -1 : 1) * pro.speed;
+                }
+                if (vx != 0 && Game.map0.chechHit(pro, 0, vz)) {
+                    vz = 0;
+                    vx = (vx < 0 ? -1 : 1) * pro.speed;
+                }
+                if (Game.map0.chechHit(pro, vx, vz)) {
+                    return false;
+                }
             }
         }
 
