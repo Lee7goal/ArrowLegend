@@ -21,6 +21,8 @@ export default class MainView extends Laya.Box {
     private initUI(): void {
         this.content = new Laya.Box();
         this.addChild(this.content);
+        this.content.height = Laya.stage.height - 122;
+        //这个容器在左上角00点 下面卡住底
         // this.views = [new WorldView(),new RoleView(),new TalentView(), new AchievementsView(),  new SettingView()];
     }
 
@@ -55,7 +57,9 @@ export default class MainView extends Laya.Box {
     {
         let view: Laya.View = this.views[index];
         view.removeSelf();
+        
         this.content.addChild(view);
+        view.bottom = 122;
         if (this.curIndex != null)  {
             var xx:number = index > this.curIndex ? GameConfig.width : -GameConfig.width;
             view.x = xx;
