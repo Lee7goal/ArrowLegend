@@ -6,6 +6,7 @@ import App from "../core/App";
 import SysNpc from "../main/sys/SysNpc";
 import BuffID from "./buff/BuffID";
 import Session from "../main/Session";
+import Hero from "./player/Hero";
 
 export default class PlayerSkillManager {
 
@@ -79,7 +80,7 @@ export default class PlayerSkillManager {
 
     addAttack(): number {
         let buff: SysBuff;
-        let attackNum:number = Session.heroData.curHeroData.atk;
+        let attackNum:number = Hero.curHeroData.atk;
         let sys3002: SysSkill = this.isHas(3002);
         if (sys3002) {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3002.skillEffect1);
@@ -101,7 +102,7 @@ export default class PlayerSkillManager {
 
     addAttackSpeed(): number {
         let buff: SysBuff;
-        let attackSpeed:number = Session.heroData.curHeroData.atkSpeed;
+        let attackSpeed:number = Hero.curHeroData.atkSpeed;
         let sys3004: SysSkill = this.isHas(3004);
         if (sys3004) {
             buff = App.tableManager.getDataByNameAndId(SysBuff.NAME, sys3004.skillEffect1);

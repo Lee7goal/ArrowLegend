@@ -698,6 +698,16 @@ export module ui.test {
         }
     }
     REG("ui.test.shengjiUI",shengjiUI);
+    export class shengjiEFFUI extends Scene {
+		public ani1:Laya.FrameAnimation;
+        public static  uiView:any ={"type":"Scene","props":{"width":750,"height":1334},"compId":2,"child":[{"type":"Image","props":{"y":67,"x":0,"skin":"juese/monster_caster_01.png","anchorY":1,"anchorX":0.5},"compId":3}],"animations":[{"nodes":[{"target":3,"keyframes":{"y":[{"value":67,"tweenMethod":"linearNone","tween":true,"target":3,"key":"y","index":0}],"skin":[{"value":"juese/monster_caster_01.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":0},{"value":"juese/monster_caster_02.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":3},{"value":"juese/monster_caster_03.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":6},{"value":"juese/monster_caster_04.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":9},{"value":"juese/monster_caster_05.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":12},{"value":"juese/monster_caster_06.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":15},{"value":"juese/monster_caster_07.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":18},{"value":"juese/monster_caster_08.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":21},{"value":"juese/monster_caster_09.png","tweenMethod":"linearNone","tween":false,"target":3,"key":"skin","index":24}],"scaleY":[{"value":2,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleY","index":0}],"scaleX":[{"value":2,"tweenMethod":"linearNone","tween":true,"target":3,"key":"scaleX","index":0}]}}],"name":"ani1","id":1,"frameRate":24,"action":0}],"loadList":["juese/monster_caster_01.png","juese/monster_caster_02.png","juese/monster_caster_03.png","juese/monster_caster_04.png","juese/monster_caster_05.png","juese/monster_caster_06.png","juese/monster_caster_07.png","juese/monster_caster_08.png","juese/monster_caster_09.png"],"loadList3D":[]};
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.createView(shengjiEFFUI.uiView);
+        }
+    }
+    REG("ui.test.shengjiEFFUI",shengjiEFFUI);
     export class SkillGridUI extends View {
 		public txt:Laya.Label;
 		public imgBox:Laya.Box;

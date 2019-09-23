@@ -14,8 +14,16 @@ import WudiRotateScript from "../controllerScript/WudiRotateScript";
 import BloodEffect from "../effect/BloodEffect";
 import Session from "../../main/Session";
 import { ui } from "../../ui/layaMaxUI";
+import Equip from "../data/Equip";
 
 export default class Hero extends GamePro {
+
+    static curHeroData:Equip;
+
+    static udpateHeroData():void
+    {
+        Hero.curHeroData = Session.heroData.getHeroData(Session.heroData.nowRoleId);
+    }
 
     static bornX:number;
     static bornY:number;
@@ -102,10 +110,10 @@ export default class Hero extends GamePro {
     }
 
     public reset(): void {
-        this.gamedata.hp = this.gamedata.maxhp = Session.heroData.curHeroData.hp;
+        this.gamedata.hp = this.gamedata.maxhp = Hero.curHeroData.hp;
         this.buffAry.length = 0;
         Game.skillManager.clear();
-        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,Session.heroData.curHeroData.initSkillId));
+        Game.skillManager.addSkill(App.tableManager.getDataByNameAndId(SysSkill.NAME,Hero.curHeroData.initSkillId));
     }
 
     resetAI():void
@@ -175,7 +183,7 @@ export default class Hero extends GamePro {
         this.setSp3d(sp as Laya.Sprite3D);
 
         this.play("Idle");
-        this.setSpeed(Session.heroData.curHeroData.moveSpeed);
+        this.setSpeed(Hero.curHeroData.moveSpeed);
 
         // this.addWeapon();
 

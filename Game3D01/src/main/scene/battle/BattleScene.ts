@@ -189,6 +189,7 @@ export default class BattleScene extends Laya.Sprite {
         this._top.reset();
         if(!Game.hero)
         {
+            Hero.udpateHeroData();
             Game.hero = new Hero();
         }
         // Game.camera.transform.localPositionZ = 0;

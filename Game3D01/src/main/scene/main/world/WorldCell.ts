@@ -5,6 +5,7 @@ import Game from "../../../../game/Game";
 import Session from "../../../Session";
 import FlyUpTips from "../../../FlyUpTips";
 import SysMap from "../../../sys/SysMap";
+import Hero from "../../../../game/player/Hero";
 export default class WorldCell extends ui.test.worldCellUI {
     private sys:SysChapter;
     constructor() { 
@@ -22,6 +23,7 @@ export default class WorldCell extends ui.test.worldCellUI {
             SysChapter.randomDiamond(Game.battleLoader.chapterId);
             Game.battleCoins = 0;
             Game.battleExp = 0;
+            Hero.udpateHeroData();
             Laya.stage.event(GameEvent.START_BATTLE);
         }
         else
