@@ -137,6 +137,7 @@ export default class TimeGoldData implements IData{
     public getOneGold():number{
         let max = Session.homeData.chapterId;
         let addGold = Math.ceil( max / 2 + 1 );
+        addGold = 2;
         addGold = addGold * ( 100 + Session.talentData.offlineGold )/100;
         addGold = parseInt( addGold + "" );
         return addGold;

@@ -287,7 +287,8 @@ export default class SdkManager {
         var arr:Array<string> = ["亲手打造更多的神兵利器，来与恶龙们抗争到底。","只有我一个，我是独一份、我是限量款、我是天选之子。","今年只玩骑马合成冲，对抗恶龙，拯救你的大陆。"];
         var obj:any = {};
         obj.title = App.RandomByArray(arr);
-        obj.imageUrl = "https://img.kuwan511.com/rideGame/f.jpg";
+        //obj.imageUrl = "https://img.kuwan511.com/rideGame/f.jpg";
+        obj.imageUrl = "https://img.kuwan511.com/arrowLegend/shareImg.jpg";
         return obj;
     }
 
