@@ -167,6 +167,30 @@ export default class HomeData implements IData{
         }
         App.sendEvent( GameEvent.PLAYER_INFO_UPDATE );
     }
+
+    static getNewLv(exp:number):number
+    {
+        let oldExp:number = Session.homeData.playerExp;
+        let oldLv:number = Session.homeData.playerLv;
+
+        let newExp:number = oldExp + exp;
+        let newLv:number = 0;
+        while( true ){
+            let sys:SysHero = App.tableManager.getDataByNameAndId(SysHero.NAME , oldLv );    
+            if( newExp >= sys.roleExp  ){
+                let nowLv = oldLv + 1;
+                if( App.tableManager.getDataByNameAndId(SysHero.NAME ,oldLv ) == null ){
+                    //等级已经到头了
+                    break;
+                }
+                newLv = nowLv;
+                newExp -= sys.roleExp;
+            }else{
+                break;
+            }
+        }
+        return newLv;
+    }
 }
 
 export enum GoldType{

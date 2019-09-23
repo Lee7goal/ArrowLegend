@@ -71,13 +71,19 @@ export default class StoneAI extends FlowerAI {
     }
 
     onExe2(now:number):void{
-        let isCall:boolean = this.callSkill.exeSkill(now,this.pro);
-        if(!isCall)
+        if(this.callSkill)
         {
-            let isWind:boolean = this.windSkill.exeSkill(now,this.pro);
-            if(!isWind)
+            let isCall:boolean = this.callSkill.exeSkill(now,this.pro);
+            if(!isCall)
             {
-                this.normalAttack();
+                if(this.windSkill)
+                {
+                    let isWind:boolean = this.windSkill.exeSkill(now,this.pro);
+                    if(!isWind)
+                    {
+                        this.normalAttack();
+                    }
+                }
             }
         }
     }

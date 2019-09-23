@@ -16,6 +16,7 @@ import SysBuff from "../../main/sys/SysBuff";
 import App from "../../core/App";
 import GameThorn from "../GameThorn";
 import Session from "../../main/Session";
+import Hero from "../player/Hero";
 
 export default class HeroAI extends GameAI {
 
@@ -120,14 +121,14 @@ export default class HeroAI extends GameAI {
             Game.playSound("fx_hit.wav");
             if(Game.e0_)
             {
-                Game.hero.hurtValue = Math.floor(Session.heroData.curHeroData.atk * 1.5);
+                Game.hero.hurtValue = Math.floor(Hero.curHeroData.atk * 1.5);
                 Game.e0_.hbox.linkPro_.event(Game.Event_Hit, Game.hero);
             }
             return;
         }
 
         Game.playSound("fx_shoot.wav");
-        let basePower: number = Session.heroData.curHeroData.atk;
+        let basePower: number = Hero.curHeroData.atk;
         //愤怒
         let angerSkill:SysSkill = Game.skillManager.isHas(3008);
         if(angerSkill)
