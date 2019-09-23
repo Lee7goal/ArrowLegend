@@ -192,7 +192,6 @@ export default class BattleLoader {
             "res/atlas/texiao/jiaxue.atlas",
             "res/atlas/icons/skill.atlas",
             "res/atlas/bg.atlas",
-            "res/atlas/map_1.atlas",
             "res/atlas/jiesuan.atlas"
         ];
         Laya.loader.load(arr,Laya.Handler.create(this,this.onCompletePre));
@@ -306,10 +305,14 @@ export default class BattleLoader {
             }
         }
 
+        res = "h5/bulletsEffect/20000/monster.lh";
+        this.monsterRes[res] = res;
+        this.resAry.push(res);
+
         //怪的资源
         if(this.resAry.length > 0){
 
-            let pubResAry:string[] = ["h5/bulletsEffect/20000/monster.lh","h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh"];
+            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh"];
             for(let j = 0; j < pubResAry.length; j++)
             {
                 res = pubResAry[j];

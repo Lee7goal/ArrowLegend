@@ -31,20 +31,12 @@ export default class WorldCell extends ui.test.worldCellUI {
             Hero.udpateHeroData();
             
             MyEffect.scaleEffect( this.mapBtn );
-
-            //Laya.MouseManager.enabled = false;
             Laya.stage.event(GameEvent.START_BATTLE);
-            //Laya.timer.once( 1000,this,this.tttFun );
         }
         else
         {
             FlyUpTips.setTips("未开启");
         }
-    }
-
-    public tttFun():void{
-        Laya.MouseManager.enabled = true;
-        
     }
 
     public update(sysChapter:SysChapter):void
