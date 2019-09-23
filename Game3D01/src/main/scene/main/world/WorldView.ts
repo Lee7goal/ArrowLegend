@@ -47,8 +47,9 @@ import FlyUpTips from "../../../FlyUpTips";
         this.list.pos(this.box.x,this.box.y);
         this.addChild(this.list);
         this.list.itemRender = WorldCell;
-        this.list.repeatX = 1;
-        this.list.repeatY = 2;
+        this.list.size( Laya.stage.width , Laya.stage.height - 170 );
+        // this.list.repeatX = 1;
+        // this.list.repeatY = 2;
         this.list.vScrollBarSkin = "";
         // this.list.selectEnable = true;
         this.list.renderHandler = new Laya.Handler(this, this.updateItem);
@@ -116,7 +117,7 @@ import FlyUpTips from "../../../FlyUpTips";
     }
 
     private updateItem(cell: WorldCell, index: number): void  {
-        cell.update(this.list.array[index]);
+        cell.update( this.list.getItem(index) );
     }
 
     // onComplete1() {
@@ -149,7 +150,10 @@ import FlyUpTips from "../../../FlyUpTips";
         indexTo = Math.max( indexTo , 0 );
 
         let arr:SysChapter[] = App.tableManager.getTable(SysChapter.NAME);
-        this.list.array = arr;
+        let arr1 = arr.concat();
+        arr1.length = 3;
+        arr1.push( null );
+        this.list.array = arr1;
         this.list.scrollTo( indexTo );
 
         let cell:ui.test.worldCellUI = <any>this.list.getCell( indexTo );

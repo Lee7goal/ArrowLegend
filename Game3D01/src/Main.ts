@@ -91,7 +91,8 @@ class Main {
 		}
 
 		if (Laya.Browser.onMiniGame == false) {
-			Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;
+			//Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;
+			Laya.stage.scaleMode = Laya.Stage.SCALE_NOSCALE;
 			Laya.stage.alignH = "center";
 		}
 

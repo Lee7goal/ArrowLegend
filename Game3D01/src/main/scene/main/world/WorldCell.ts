@@ -29,8 +29,12 @@ export default class WorldCell extends ui.test.worldCellUI {
             Game.battleCoins = 0;
             Game.battleExp = 0;
             Hero.udpateHeroData();
-            Laya.stage.event(GameEvent.START_BATTLE);
+            
             MyEffect.scaleEffect( this.mapBtn );
+
+            //Laya.MouseManager.enabled = false;
+            Laya.stage.event(GameEvent.START_BATTLE);
+            //Laya.timer.once( 1000,this,this.tttFun );
         }
         else
         {
@@ -38,8 +42,23 @@ export default class WorldCell extends ui.test.worldCellUI {
         }
     }
 
+    public tttFun():void{
+        Laya.MouseManager.enabled = true;
+        
+    }
+
     public update(sysChapter:SysChapter):void
     {
+        if( sysChapter == null ){
+            this.openBox.visible = false;
+            this.noOpenImg.visible = true;
+            this.titleTxt.skin = "chapters/wait_title.png";
+            return;
+        }else{
+            this.openBox.visible = true;
+            this.noOpenImg.visible = false;
+        }
+
         this.sys = sysChapter;
         this.suo.visible = Session.homeData.chapterId < sysChapter.id;
         this.mapBtn.gray = this.suo.visible;
