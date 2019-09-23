@@ -15,6 +15,8 @@ import Equip from "./Equip";
  */
 export default class HeroData implements IData{
     public heroMap:any = {};
+    public nowRoleId:number = 1;
+    
     constructor(){
         
     }
