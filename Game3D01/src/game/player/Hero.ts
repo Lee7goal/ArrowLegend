@@ -13,6 +13,7 @@ import App from "../../core/App";
 import WudiRotateScript from "../controllerScript/WudiRotateScript";
 import BloodEffect from "../effect/BloodEffect";
 import Session from "../../main/Session";
+import { ui } from "../../ui/layaMaxUI";
 
 export default class Hero extends GamePro {
 
@@ -75,12 +76,25 @@ export default class Hero extends GamePro {
         this.initBlood(this.gamedata.hp);
     }
 
+    private _addEff:ui.game.addBloodEffUI;
     addBlood(addValue: number): void {
         this.gamedata.hp = this.gamedata.hp + addValue;
         this.gamedata.hp = Math.min(this.gamedata.hp, this.gamedata.maxhp);
         this.initBlood(this.gamedata.hp);
 
         BloodEffect.add("+" + addValue,this._bloodUI,false,"main/greenFont.png");
+
+        if(!this._addEff)
+        {
+            this._addEff = new ui.game.addBloodEffUI();
+        }
+        
+        this._bloodUI.addChild(this._addEff);
+        
+        this._addEff.ani.play(0,false);
+        setTimeout(() => {
+            this._addEff && this._addEff.removeSelf(); 
+        }, 300);
     }
 
     private updateAttackSpeed(): void {
@@ -181,15 +195,19 @@ export default class Hero extends GamePro {
 
         this.gamedata.rspeed = 0;
         this.rotation(90 / 180 * Math.PI);
-        // this.sp3d.transform.localPositionY = 15;
-        // Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 600, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
-        this.onJumpDown();
+        // this.sp3d.transform.localPositionY = 30;
+        // Laya.Tween.to(this.sp3d.transform, { localPositionY: 0 }, 800, Laya.Ease.strongIn, new Laya.Handler(this, this.onJumpDown));
+        ;
 
         // if (Game.battleLoader.mapId % 1000 == 0) {
         //     setTimeout(() => {
         //         Game.openDoor();
         //     }, 3000);
         // }
+
+        setTimeout(() => {
+            this.onJumpDown()
+        }, 500);
 
         Laya.stage.on(Game.Event_ADD_HP, this, this.addBlood);
         Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED, this, this.updateAttackSpeed);
@@ -274,8 +292,8 @@ export default class Hero extends GamePro {
         this.isDie = false;
         this.setKeyNum(1);
         this.acstr = "";
-        Game.hero.reset();
-        Game.hero.initBlood(Game.hero.gamedata.hp);
+        this.reset();
+        this.initBlood(Game.hero.gamedata.hp);
         this.play("Idle");
         this.startAi();
         Game.executor &&Game.executor.start();

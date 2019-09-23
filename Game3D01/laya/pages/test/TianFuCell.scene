@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":3,
+    "selecteID":14,
     "searchKey":"View",
     "props":{"width":175,"sceneColor":"#a4a4a4","height":212},
     "nodeParent":-1,
-    "maxID":21,
+    "maxID":22,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -108,32 +108,44 @@
                 },
                 {
                     "x":30,
-                    "type":"Sprite",
-                    "searchKey":"Sprite",
-                    "props":{"y":-39.5,"x":-38,"width":54,"texture":"tianfu/quan.png","height":55},
+                    "type":"Box",
+                    "searchKey":"Box,lvBox",
+                    "props":{"y":-39.5,"x":-38,"var":"lvBox"},
                     "nodeParent":14,
-                    "label":"Sprite",
-                    "isDirectory":false,
+                    "label":"lvBox",
+                    "isOpen":null,
+                    "isDirectory":true,
                     "isAniNode":true,
-                    "hasChild":false,
-                    "compId":20,
+                    "hasChild":true,
+                    "compId":21,
                     "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"FontClip",
-                    "searchKey":"FontClip,lv",
-                    "props":{"y":-25,"x":-33,"width":180,"var":"lv","value":"99","spaceX":-3,"skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:vbnd","scaleY":0.25,"scaleX":0.25,"height":113,"align":"center"},
-                    "nodeParent":14,
-                    "label":"lv",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":12,
-                    "child":[
-                        ],
-                    "$LOCKED":false
+                        {
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":0.5,"width":54,"texture":"tianfu/quan.png","height":55},
+                            "nodeParent":21,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":20,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"FontClip",
+                            "searchKey":"FontClip,lv",
+                            "props":{"y":14.5,"x":5,"width":180,"var":"lv","value":"99","spaceX":-3,"skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:vbnd","scaleY":0.25,"scaleX":0.25,"height":113,"align":"center"},
+                            "nodeParent":21,
+                            "label":"lv",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":12,
+                            "child":[
+                                ],
+                            "$LOCKED":false
+                        }]
                 }],
             "$HIDDEN":false
         }],

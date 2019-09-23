@@ -160,7 +160,7 @@ export default class BattleLoader {
             if (this._index > maxCeng) {
                 this._index = 1;
             }
-            
+            // this._index = 3;
             this._mapId = this.chapterId * 1000 + this._index;
             let configId: number;
             if(Session.homeData.isGuide)
@@ -189,6 +189,7 @@ export default class BattleLoader {
             // "h5/mapbg/1.jpg",
             // "res/atlas/xiongmao.atlas",
             "res/atlas/shengli.atlas",
+            "res/atlas/texiao/jiaxue.atlas",
             "res/atlas/icons/skill.atlas",
             "res/atlas/bg.atlas",
             "res/atlas/map_1.atlas",
@@ -236,7 +237,13 @@ export default class BattleLoader {
         GameBG.bgId = map.bgId;
         GameBG.bgWW = map.bgWidth;
         GameBG.bgHH = map.bgHeight;
+        GameBG.bgHHReal = map.bgHeight;
         GameBG.bgCellWidth = map.cellWidth;
+
+        if(GameBG.bgHH < 1700)
+        {
+            GameBG.bgHH = 1700;
+        }
 
         GameBG.arr0 = map.arr;
         let bgType = map.bgType ? map.bgType : 1;
@@ -244,15 +251,15 @@ export default class BattleLoader {
         GameBG.BG_TYPE_NUM = bgType;
         GameBG.BG_TYPE = "map_" + bgType;
         Laya.loader.clearRes("h5/mapConfig/" + this._configId + ".json");//清理map.json
-
-        if(this.bgRes[GameBG.BG_TYPE_NUM])
-        {
-            this.onBgComplete();
-        }
-        else
-        {
-            Laya.loader.load("h5/mapbg/"+GameBG.BG_TYPE_NUM+".jpg",Laya.Handler.create(this,this.onBgComplete));
-        }
+        this.onBgComplete();
+        // if(this.bgRes[GameBG.BG_TYPE_NUM])
+        // {
+        //     this.onBgComplete();
+        // }
+        // else
+        // {
+        //     Laya.loader.load("h5/mapbg/"+GameBG.BG_TYPE_NUM+".jpg",Laya.Handler.create(this,this.onBgComplete));
+        // }
     }
 
     private onBgComplete():void

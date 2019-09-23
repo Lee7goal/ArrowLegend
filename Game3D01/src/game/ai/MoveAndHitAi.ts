@@ -8,13 +8,18 @@ import BaseAI from "./BaseAi";
 
 
 export default class MoveAndHitAi extends BaseAI {
-
+    static timdex:number = 0;
     private status: number = 0;
     private cd: number = 0;
 
     constructor(pro: Monster) {
         super(pro);
-        this.cd = this.now + this.pro.sysEnemy.enemySpeed;
+
+        if(MoveAndHitAi.timdex>=4){
+            MoveAndHitAi.timdex = 0;
+        }
+        this.cd = Game.executor.getWorldNow() + MoveAndHitAi.timdex*500;
+        MoveAndHitAi.timdex++;
     }
 
     exeAI(pro: GamePro): boolean {

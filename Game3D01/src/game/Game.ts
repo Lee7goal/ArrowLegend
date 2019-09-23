@@ -32,7 +32,7 @@ import GameEvent from "../main/GameEvent";
 import SysChapter from "../main/sys/SysChapter";
 
 export default class Game {
-    static resVer:string = "1.0.19.1931";
+    static resVer:string = "1.1.0.190920";
 
     //战斗中的临时数据
     static level:number;
@@ -167,7 +167,6 @@ export default class Game {
         }
         console.log("开门");
 
-        Session.homeData.isPass = false;
         if(Game.battleLoader.index >= SysMap.getTotal(Game.battleLoader.chapterId) && Game.battleLoader._configId != 100000)
         {
             console.log("通关了");
@@ -277,24 +276,23 @@ export default class Game {
         }
     }
 
-    static getRandPos(pro: GamePro): number[]  {
+    static getRandPos(pro: GamePro,range1:number = 4): number[]  {
         let mRow: number = Math.floor(pro.hbox.y / GameBG.ww);
         let mCol: number = Math.floor(pro.hbox.x / GameBG.ww);
 
-        let range: number = 4;
-        let endRowNum = Game.map0.endRowNum - 1;
+        let range: number = range1;
 
         var info: any = Game.map0.info;
         var arr: number[][] = [];
         for (let i = mRow - range; i <= mRow + range; i++) {
-            if (i < 3 || i > GameBG.MAP_ROW - 7)  {
+            if (i <= 3 || i >= GameBG.MAP_ROW - 3)  {
                 continue;
             }
             for (let j = mCol - range; j <= mCol + range; j++) {
                 if (j == mRow && i == mCol) {
                     continue;
                 }
-                if (j < 3 || j > GameBG.MAP_COL - 3)  {
+                if (j <= 1 || j >= GameBG.MAP_COL - 1)  {
                     continue;
                 }
                 var key: number = info[i + "_" + j];
@@ -312,6 +310,10 @@ export default class Game {
             var rand: number = Math.floor(arr.length * Math.random());
             toArr = arr[rand];
         }
+        if(toArr.length == 0)
+        {
+            toArr = [mRow,mCol];
+        }
         return toArr;
     }
 
@@ -324,6 +326,12 @@ export default class Game {
     /**战斗中的金币 */
     static battleCoins: number = 0;
     static battleExp:number = 0;
+
+
+    static showCoinsNum:number = 0;
+
+    static showBlueNum:number = 0;
+    static showRedNum:number = 0;
     
 
     static showMain():void
@@ -345,11 +353,12 @@ export default class Game {
 
         Game.playBgMusic();
 
-        if(Game.battleCoins > 0)
+        if(Game.showCoinsNum > 0)
         {
-            Laya.stage.event(GameEvent.ADD_COIN,Game.battleCoins);
-            Game.battleCoins = 0;
+            Laya.stage.event(GameEvent.ADD_COIN,Game.showCoinsNum);
+            Game.showCoinsNum = 0;
         }
+        Game.showBlueNum = Game.showRedNum = 0;
     }
 
     static playBgMusic():void
@@ -384,6 +393,7 @@ export default class Game {
 
     static dropDiamond(pro:GamePro):void
     {
+        Game.showBlueNum = Game.showRedNum = 0;
         if (Game.map0.Eharr.length == 0)  {
             if(Game.battleLoader.index == SysChapter.dropIndex)
             {

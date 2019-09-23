@@ -22,22 +22,22 @@ import SysChapter from "../../../sys/SysChapter";
         this.ziBox.removeSelf();
         this.coinBox.removeSelf();
         let hh = 780;
-        if (SysChapter.blueNum > 0)  {
-            this.lanzuan.value = "" + SysChapter.blueNum;
+        if (Game.showBlueNum > 0)  {
+            this.lanzuan.value = "" + Game.showBlueNum ;
             this.addChild(this.lanBox);
             this.lanBox.x = 216;
             this.lanBox.y = hh;
             hh += 100;
         }
-        if (SysChapter.redNum > 0)  {
-            this.hongzuan.value = "" + SysChapter.redNum;
+        if (Game.showRedNum > 0)  {
+            this.hongzuan.value = "" + Game.showRedNum;
             this.addChild(this.ziBox);
             this.ziBox.x = 216;
             this.ziBox.y = hh;
             hh += 100;
         }
-        if (Game.battleCoins > 0)  {
-            this.coinClip.value = "+" + Game.battleCoins;
+        if (Game.showCoinsNum > 0)  {
+            this.coinClip.value = "+" + Game.showCoinsNum;
             this.addChild(this.coinBox);
             this.coinBox.x = 216;
             this.coinBox.y = hh;

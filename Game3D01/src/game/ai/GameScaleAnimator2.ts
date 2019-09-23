@@ -37,7 +37,6 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
             var hits = Game.map0.Wharr;
             if( !Game.map0.chechHit_arr(this.futureBox,hits) ){
                 this.ms.setXY2DBox(this.futureBox.x,this.futureBox.y);
-                console.log("位移");
             }
             else
             {
@@ -63,8 +62,6 @@ export default class GameScaleAnimator2 extends GameScaleAnimator{
         st = zoom*0.2 *(1 - nt );
         st = zoom*1 + st ;
         ms.sp3d.transform.localScaleX = st;
-
-        console.log("缩放");
     }
 
     public ai(ms:Monster):void{        

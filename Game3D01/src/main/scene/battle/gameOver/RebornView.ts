@@ -1,17 +1,26 @@
 import { ui } from "./../../../../ui/layaMaxUI";
 import Game from "../../../../game/Game";
 import App from "../../../../core/App";
+import { AD_TYPE } from "../../../../ADType";
+import CookieKey from "../../../../gameCookie/CookieKey";
 export default class RebornView extends ui.test.ReborthUI {
     private shape: Laya.Sprite;
 
     constructor() {
         super();
         this.closeBtn.clickHandler = new Laya.Handler(this, this.onClose);
-        this.rebornBtn.clickHandler = new Laya.Handler(this, this.onReborn);
-
+        // this.rebornBtn.clickHandler = new Laya.Handler(this, this.onReborn);
+        this.fuhuo.clickHandler = new Laya.Handler(this,this.onFuhuo);
+        App.sdkManager.initAdBtn(this.fuhuo,AD_TYPE.AD_REBORTH);
         this.shape = new Laya.Sprite();
 
         this.on(Laya.Event.DISPLAY, this, this.onDis);
+    }
+
+    private onFuhuo():void
+    {
+        Laya.timer.clear(this,this.onLoop2);
+        App.sdkManager.playAdVideo(AD_TYPE.AD_REBORTH,new Laya.Handler(this,this.onReborn));
     }
 
 
@@ -51,6 +60,7 @@ export default class RebornView extends ui.test.ReborthUI {
     }
 
     private onClose(): void  {
+        Game.cookie.removeCookie(CookieKey.CURRENT_BATTLE);
         this.removeSelf();
         Game.rebornTimes = 0;
         Laya.stage.event(Game.Event_MAIN_DIE);

@@ -7,8 +7,8 @@ import GameEvent from "../../GameEvent";
 import Game from "../../../game/Game";
 import App from "../../../core/App";
 
-    export default class MainScene extends Laya.Sprite{
-    mainUI:MainUI;
+export default class MainScene extends Laya.Sprite{
+    public mainUI:MainUI;
     private mainView:MainView;
 
     public coinClip:Laya.FontClip;

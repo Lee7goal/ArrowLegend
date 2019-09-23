@@ -60,7 +60,7 @@ export default class MainView extends Laya.Box {
             var xx:number = index > this.curIndex ? GameConfig.width : -GameConfig.width;
             view.x = xx;
             Laya.Tween.clearTween(this.content);
-            Laya.Tween.to(this.content, { x: -xx }, 500, null, new Laya.Handler(this, this.onCom, [view]));
+            Laya.Tween.to(this.content, { x: -xx }, 300 , null, new Laya.Handler(this, this.onCom, [view]));
         }
         this.curIndex = index;
     }

@@ -159,6 +159,7 @@ export default class BaseAI extends GameAI {
 
         this.pro.hurt(pro.hurtValue,crit3006 || crit3007,isBuff);
         // this.pro.hurt(this.pro.gamedata.maxhp,crit3006 || crit3007,isBuff);
+        // this.pro.hurt(1,crit3006 || crit3007,isBuff);
         if (this.pro.gamedata.hp <= 0) {
             this.die();
         }
@@ -185,7 +186,6 @@ export default class BaseAI extends GameAI {
                     this.g2.starttime = this.now;//受击变形 击退
                     this.g2.now = this.now;
                     this.g2.playtime = 200;
-                    console.log("执行击退");
                 }
             }
 
