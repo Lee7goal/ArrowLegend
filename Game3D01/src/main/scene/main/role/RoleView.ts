@@ -34,6 +34,7 @@ export default class RoleView extends ui.test.jueseUI {
     public heroLvUpFun():void{
         this.lvEff.visible = true;
         this.lvEff.ani1.gotoAndStop(0);
+        this.lvEff.ani1.interval = 1000/60;
         this.lvEff.ani1.play( 0,false );
         this.lvEff.ani1.on( Laya.Event.COMPLETE ,this,this.efFun );
     }
