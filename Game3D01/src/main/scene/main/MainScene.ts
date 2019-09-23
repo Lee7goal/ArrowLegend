@@ -21,7 +21,9 @@ export default class MainScene extends Laya.Sprite{
     }
 
     private initUI():void{
+        //这个是中间的xin
         this.mainView = new MainView();
+        //这个是上下ui
         this.mainUI = new MainUI();
         this.addChild(this.mainView);
         this.addChild(this.mainUI);

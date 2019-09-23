@@ -1,2 +1,3 @@
-id	roleName	baseAtk	baseHp	baseSpeed	baseCrit	baseCritHurt	baseDodge	baseMove	baseSkill	AtkRate	addExp	addSpeed	addAttack	roleLimt
-1	女海盗	150	600	650	200	1500	0	6	1001	1700	0	0	0	20
+id	roleName	baseAtk	baseHp	baseSpeed	baseCrit	baseCritHurt	baseDodge	baseMove	baseSkill	AtkRate	addExp	addSpeed	addAttack	roleLimt	goldLock	videoLock
+1	女海盗	150	600	650	200	1500	0	6	1001	1700	0	0	0	20	0	0
+2	加特林	120	600	450	200	1500	0	6	1001	1700	0	0	0	30	50000	99
