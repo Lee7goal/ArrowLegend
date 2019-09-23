@@ -60,8 +60,13 @@ import FlyUpTips from "../../../FlyUpTips";
         this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
         this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
         this.sign7Btn.on( Laya.Event.CLICK,this,this.sign7clickFun );
+        this.shareBtn.on( Laya.Event.CLICK,this,this.shareFun );
         //Laya.timer.once( 1000,this,this.tttFun );
         Laya.stage.on( GameEvent.ADD_COIN , this , this.addCoinFun );
+    }
+
+    private shareFun():void{
+        App.sdkManager.onlyShare();
     }
 
     private sign7clickFun():void{

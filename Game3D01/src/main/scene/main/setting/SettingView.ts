@@ -2,6 +2,7 @@ import { ui } from "../../../../ui/layaMaxUI";
 import Game from "../../../../game/Game";
 import CookieKey from "../../../../gameCookie/CookieKey";
 import App from "../../../../core/App";
+import Session from "../../../Session";
     export default class SettingView extends ui.test.settingUI {
     
     constructor() { 
@@ -11,8 +12,10 @@ import App from "../../../../core/App";
         this.yinyue.clickHandler = new Laya.Handler(this,this.onMusic);
 
         this.ver.text = "VER:" + Game.resVer;
-
+        this.id.text = "ID:" + Session.SKEY.substring( Session.SKEY.length - 6  );
         this.on(Laya.Event.DISPLAY,this,this.onDis);
+
+        this.box1.centerY = 0;
     }
 
     private onDis():void

@@ -29,6 +29,7 @@ export default class RoleView extends ui.test.jueseUI {
         //let sss = Session.heroData.getHeroData(1);
         //console.log( sss );
         this.lvEff.visible = false;
+        //Laya.stage.on( Laya.Event.CLICK ,this,this.heroLvUpFun );
     }
 
     public heroLvUpFun():void{
