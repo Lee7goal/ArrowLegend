@@ -17,7 +17,7 @@ export default class SysSkill{
     upperLimit:number = 0;
     curTimes:number = 0;
 
-    reset():void
+    static reset():void
     {
         let ary:SysSkill[] = App.tableManager.getTable(SysSkill.NAME);
         for(let i = 0; i < ary.length; i++)

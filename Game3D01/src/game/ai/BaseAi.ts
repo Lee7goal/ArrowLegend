@@ -186,7 +186,6 @@ export default class BaseAI extends GameAI {
                     this.g2.starttime = this.now;//受击变形 击退
                     this.g2.now = this.now;
                     this.g2.playtime = 200;
-                    console.log("执行击退");
                 }
             }
 

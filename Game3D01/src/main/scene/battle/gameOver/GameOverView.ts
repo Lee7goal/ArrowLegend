@@ -56,6 +56,7 @@ export default class GameOverView extends ui.test.GameOverUI {
             this.expBar.scrollRect = new Laya.Rectangle(0, 0, ww, this.expBar.height);
 
             let vv: number = (Session.homeData.playerExp + Game.battleExp) / sys.roleExp;
+            vv = Math.min(1,vv);
             Laya.timer.frameLoop(1, this, this.onLoopExp, [vv]);
 
             Session.homeData.addPlayerExp(Game.battleExp);
@@ -81,15 +82,15 @@ export default class GameOverView extends ui.test.GameOverUI {
                 let hh = 780;
                 setTimeout(() => {
                     this.lingqu.visible = true;
-                    if (SysChapter.blueNum > 0) {
+                    if (Game.showBlueNum > 0) {
                         this.addChild(this.lanBox);
-                        this.lanzuan.value = "" + SysChapter.blueNum;
+                        this.lanzuan.value = "" + Game.showBlueNum;
                         this.lanBox.x = 260;
                         this.lanBox.y = hh;
                         hh += 100;
                     }
-                    if (SysChapter.redNum > 0) {
-                        this.hongzuan.value = "" + SysChapter.redNum;
+                    if (Game.showRedNum > 0) {
+                        this.hongzuan.value = "" + Game.showRedNum;
                         this.addChild(this.ziBox);
                         this.ziBox.x = 260;
                         this.ziBox.y = hh;

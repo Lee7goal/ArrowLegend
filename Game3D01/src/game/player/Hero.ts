@@ -207,7 +207,7 @@ export default class Hero extends GamePro {
 
         setTimeout(() => {
             this.onJumpDown()
-        }, 1000);
+        }, 500);
 
         Laya.stage.on(Game.Event_ADD_HP, this, this.addBlood);
         Laya.stage.on(Game.Event_UPDATE_ATTACK_SPEED, this, this.updateAttackSpeed);
@@ -292,8 +292,8 @@ export default class Hero extends GamePro {
         this.isDie = false;
         this.setKeyNum(1);
         this.acstr = "";
-        Game.hero.reset();
-        Game.hero.initBlood(Game.hero.gamedata.hp);
+        this.reset();
+        this.initBlood(Game.hero.gamedata.hp);
         this.play("Idle");
         this.startAi();
         Game.executor &&Game.executor.start();

@@ -167,7 +167,6 @@ export default class Game {
         }
         console.log("开门");
 
-        Session.homeData.isPass = false;
         if(Game.battleLoader.index >= SysMap.getTotal(Game.battleLoader.chapterId) && Game.battleLoader._configId != 100000)
         {
             console.log("通关了");
@@ -286,14 +285,14 @@ export default class Game {
         var info: any = Game.map0.info;
         var arr: number[][] = [];
         for (let i = mRow - range; i <= mRow + range; i++) {
-            if (i < 3 || i > GameBG.MAP_ROW - 4)  {
+            if (i <= 3 || i >= GameBG.MAP_ROW - 3)  {
                 continue;
             }
             for (let j = mCol - range; j <= mCol + range; j++) {
                 if (j == mRow && i == mCol) {
                     continue;
                 }
-                if (j < 1 || j > GameBG.MAP_COL - 1)  {
+                if (j <= 1 || j >= GameBG.MAP_COL - 1)  {
                     continue;
                 }
                 var key: number = info[i + "_" + j];
@@ -311,6 +310,10 @@ export default class Game {
             var rand: number = Math.floor(arr.length * Math.random());
             toArr = arr[rand];
         }
+        if(toArr.length == 0)
+        {
+            toArr = [mRow,mCol];
+        }
         return toArr;
     }
 
@@ -325,7 +328,10 @@ export default class Game {
     static battleExp:number = 0;
 
 
-    static showCoinsNum:number;
+    static showCoinsNum:number = 0;
+
+    static showBlueNum:number = 0;
+    static showRedNum:number = 0;
     
 
     static showMain():void
@@ -352,6 +358,7 @@ export default class Game {
             Laya.stage.event(GameEvent.ADD_COIN,Game.showCoinsNum);
             Game.showCoinsNum = 0;
         }
+        Game.showBlueNum = Game.showRedNum = 0;
     }
 
     static playBgMusic():void
@@ -386,6 +393,7 @@ export default class Game {
 
     static dropDiamond(pro:GamePro):void
     {
+        Game.showBlueNum = Game.showRedNum = 0;
         if (Game.map0.Eharr.length == 0)  {
             if(Game.battleLoader.index == SysChapter.dropIndex)
             {
