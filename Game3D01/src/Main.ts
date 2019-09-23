@@ -78,7 +78,7 @@ class Main {
 
 		if (Laya.Browser.window.wx) {
 			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
-			Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg", "loading/btn_kaishi.png", "loading/loadingClip.png", "allJson.json"];
+			Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg", "loading/btn_kaishi.png", "loading/loadingClip.png","loading/logo.png", "allJson.json"];
 
 			Laya.Browser.window.wx.getSystemInfo({
 				success(res) {
@@ -92,8 +92,8 @@ class Main {
 		}
 
 		if (Laya.Browser.onMiniGame == false) {
-			//Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;
-			Laya.stage.scaleMode = Laya.Stage.SCALE_NOSCALE;
+			Laya.stage.scaleMode = Laya.Stage.SCALE_SHOWALL;
+			//Laya.stage.scaleMode = Laya.Stage.SCALE_NOSCALE;
 			Laya.stage.alignH = "center";
 		}
 
@@ -125,9 +125,10 @@ class Main {
 		Laya.loader.load(
 			[
 				{ url: "loading/loadingClip.png", type: Laya.Loader.IMAGE },
+				{ url: "loading/logo.png", type: Laya.Loader.IMAGE },
+				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER },
 				{ url: "loading/jiazai.jpg", type: Laya.Loader.IMAGE },
-				{ url: "loading/btn_kaishi.png", type: Laya.Loader.IMAGE },
-				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
+				{ url: "loading/btn_kaishi.png", type: Laya.Loader.IMAGE }
 			],
 			new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 	}

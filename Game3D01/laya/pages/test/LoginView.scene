@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":3,
+    "selecteID":5,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":500},
     "nodeParent":-1,
@@ -25,20 +25,6 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Text",
-            "searchKey":"Text,btn",
-            "props":{"y":275,"x":275,"var":"btn","text":"点我登陆","fontSize":50,"color":"#ffffff"},
-            "nodeParent":2,
-            "label":"btn",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":5,
             "child":[
                 ]
         }],

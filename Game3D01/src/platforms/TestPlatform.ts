@@ -23,7 +23,7 @@ export default class TestPlatform extends BasePlatform{
         this.cb = callback;
         // callback && callback();
         let uu:ui.game.homePageUI = <any>Laya.stage.getChildAt( 0 );
-        uu.vvv.btn.on( Laya.Event.CLICK ,this,this.clickFun , [uu.vvv.t1] );
+        Laya.stage.once( Laya.Event.CLICK ,this,this.clickFun , [uu.vvv.t1] );
     }
 
     clickFun( t:Laya.TextInput ):void{
