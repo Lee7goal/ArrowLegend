@@ -7,20 +7,6 @@ export default class WXPlatform extends BasePlatform {
 
     private tag: number = 0;
     checkUpdate(): void {
-        //右上角转发
-        Laya.Browser.window.wx.showShareMenu();
-        var id = 'hebPVHd-ROOvCPBYwMaWzA' // 通过 MP 系统审核的图片编号
-        var url = 'https://mmocgame.qpic.cn/wechatgame/myCE4RvnnlUwh8icwghnhQjdvCNVqau9jVdAVMCpd3RdUAc0fA3pHsW0CRDkpKGIX/0' // 通过 MP 系统审核的图片地址
-
-        Laya.Browser.window.wx.onShareAppMessage(function () {
-            return {
-                title: '魔界流浪的弓术大师',
-                imageUrlId: id,
-                imageUrl: url
-            }
-        })
-
-
         Laya.Browser.window.wx.setKeepScreenOn({
             keepScreenOn: true
         });

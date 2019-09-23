@@ -21,11 +21,11 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/yuzidan.png",
+				"path":"../Textures/yuzidan.jpg",
 				"constructParams":[
 					64,
 					64,
-					1,
+					0,
 					true
 				],
 				"propertyParams":{

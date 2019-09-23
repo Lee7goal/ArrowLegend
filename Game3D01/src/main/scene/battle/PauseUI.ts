@@ -67,7 +67,7 @@ import App from "../../../core/App";
 
     private onGo():void
     {
-        Game.battleCoins = 0;
+        Game.showCoinsNum = 0;
         Game.showMain();
         this.removeSelf();
     }

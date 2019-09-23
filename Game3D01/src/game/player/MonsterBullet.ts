@@ -90,11 +90,11 @@ export default class MonsterBullet extends GamePro {
         this.moveLen = null;
         this.stopAi();
         this._bulletShadow && this._bulletShadow.removeSelf();
-        this.sp3d && this.sp3d.removeSelf();
+        // this.sp3d && this.sp3d.removeSelf();
         // let trail:Laya.TrailSprite3D = <Laya.TrailSprite3D>this.sp3d.getChildAt(0).getChildAt(1);
         // trail.trailFilter.time = 0;
-        // this.sp3d.transform.localPositionY = -500;
-        // this.sp3d.transform.localPositionZ = -500;
+        this.sp3d.transform.localPositionY = -500;
+        this.sp3d.transform.localPositionZ = -500;
 
         // Laya.Pool.recover(MonsterBullet.TAG + this.sysBullet.bulletMode,this);
         Laya.Pool.recover(MonsterBullet.TAG + this.sysBullet.bulletMode,this);

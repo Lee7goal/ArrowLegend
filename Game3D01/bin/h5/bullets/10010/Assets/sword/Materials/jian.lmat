@@ -21,11 +21,11 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"../Textures/jian.png",
+				"path":"../Textures/jian.jpg",
 				"constructParams":[
 					256,
 					256,
-					1,
+					0,
 					true
 				],
 				"propertyParams":{
