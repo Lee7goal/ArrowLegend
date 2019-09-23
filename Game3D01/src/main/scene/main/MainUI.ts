@@ -76,6 +76,7 @@ import GameEvent from "../../GameEvent";
 
             // this.topBox.y = App.top;
             this.on(Laya.Event.DISPLAY,this,this.onDis);
+            Laya.stage.on(GameEvent.WX_ON_SHOW,this,this.onDis);
         }
 
         private onDis():void
@@ -219,7 +220,7 @@ import GameEvent from "../../GameEvent";
 
         private _selectIndex:number = 0;
 
-        private opens:number[] = [1,1,1,-1,1];
+        private opens:number[] = [1,1,-1,-1,1];
         constructor(){
             super();
             this.size(750,122);

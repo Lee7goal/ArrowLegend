@@ -16,10 +16,10 @@ export default class RandMoveAI extends BaseAI {
     constructor(pro: Monster) {
         super(pro);
         pro.setSpeed(this.sysEnemy.moveSpeed);
-        if(RandMoveAI.timdex>=4){
+        if(RandMoveAI.timdex>=3){
             RandMoveAI.timdex = 0;
         }
-        this.cd = Game.executor.getWorldNow() + RandMoveAI.timdex*2000;
+        this.cd = Game.executor.getWorldNow() + RandMoveAI.timdex*500;
         RandMoveAI.timdex++;
     }
 

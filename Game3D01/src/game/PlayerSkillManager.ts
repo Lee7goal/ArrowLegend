@@ -12,6 +12,7 @@ export default class PlayerSkillManager {
     clear(): void  {
         this.skillList.length = 0;
         this.arrowHeadId = 0;
+        SysSkill.reset();
     }
 
     /**已经获得技能 */

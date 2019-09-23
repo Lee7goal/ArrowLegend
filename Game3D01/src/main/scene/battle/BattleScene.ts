@@ -183,6 +183,7 @@ export default class BattleScene extends Laya.Sprite {
     static npcPro:GamePro;
     private nullGridList:Laya.Point[] = [];
     init(): void {
+        Session.homeData.isPass = false;
         BattleScene.npcPro = null;
         Laya.Pool.clearBySign(HeroBullet.TAG);
         this._top.reset();
