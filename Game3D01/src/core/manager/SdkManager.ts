@@ -258,6 +258,12 @@ export default class SdkManager {
         Laya.stage.once( GameEvent.WX_ON_SHOW ,this,this.showFun,[chao?null:h] );
     }
 
+    public onlyShare():void{
+        var obj:any = this.getShareObject();
+        obj.query = "";
+        Laya.Browser.window.wx.shareAppMessage(obj);
+    }
+
     public showFun(h:Laya.Handler):void{
         if( h == null ){
             FlyUpTips.setTips("分享成功" );

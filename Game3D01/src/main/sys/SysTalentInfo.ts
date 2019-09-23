@@ -7,7 +7,11 @@ export default class SysTalentInfo{
     public talentName:string = "";
     public talentInfo:string = "";
     public talentSort:number = 0;
-
+    /**
+     * 1是数值
+     * 2是百分比
+     */
+    public talentType:number = 0;
     /**
      * 已排序
      */
@@ -17,5 +21,13 @@ export default class SysTalentInfo{
             return a.talentSort - b.talentSort;
         } );
         return arr;
+    }
+
+    public getHou():string{
+        if( this.talentType == 1 ){
+            return "";
+        }else if( this.talentType == 2 ) {
+            return "%";
+        }
     }
 }

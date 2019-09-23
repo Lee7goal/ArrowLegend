@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":2,
-    "selecteID":33,
+    "selecteID":34,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#ffffff","height":900},
     "nodeParent":-1,
-    "maxID":34,
+    "maxID":38,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -14,34 +14,6 @@
     "hasChild":true,
     "compId":2,
     "child":[
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,mapBtn",
-            "props":{"y":569,"x":375,"width":684,"var":"mapBtn","stateNum":"1","skin":"chapters/chapter_img_1.png","height":531,"anchorY":0.5,"anchorX":0.5},
-            "nodeParent":2,
-            "label":"mapBtn",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite,suo",
-            "props":{"y":530,"x":335,"var":"suo","texture":"main/suo2.png"},
-            "nodeParent":2,
-            "label":"suo",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":8,
-            "child":[
-                ]
-        },
         {
             "x":15,
             "type":"Box",
@@ -273,13 +245,14 @@
             "props":{"y":93,"x":176},
             "nodeParent":2,
             "label":"Box",
-            "isOpen":null,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":30,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"skin":"main/changhong.png"},
@@ -293,6 +266,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,titleTxt",
                     "props":{"y":8,"x":128,"width":139,"var":"titleTxt","height":39},
@@ -309,45 +283,96 @@
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,box1",
-            "props":{"y":214,"x":236,"width":288,"var":"box1","skin":"main/yuanhei.png","sizeGrid":"0,28,0,30","height":64},
+            "searchKey":"Image,noOpenImg",
+            "props":{"y":184.5,"x":-17,"var":"noOpenImg","skin":"chapters/wait.png","scaleY":1.2,"scaleX":1.2},
             "nodeParent":2,
-            "label":"box1",
-            "isOpen":true,
-            "isDirectory":true,
+            "label":"noOpenImg",
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
-            "compId":31,
+            "hasChild":false,
+            "compId":34,
             "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,cengshuTxt",
-                    "props":{"y":0,"x":1,"width":286,"var":"cengshuTxt","valign":"middle","text":"最高层数","height":64,"fontSize":36,"color":"#f6ecec","align":"center"},
-                    "nodeParent":31,
-                    "label":"cengshuTxt",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":32,
-                    "child":[
-                        ]
-                }]
+                ]
         },
         {
             "x":15,
             "type":"Box",
-            "searchKey":"Box,clickBox",
-            "props":{"y":372,"x":204,"width":345,"var":"clickBox","height":373},
+            "searchKey":"Box,openBox",
+            "props":{"y":208,"x":40.5,"width":680,"var":"openBox","height":656},
             "nodeParent":2,
-            "label":"clickBox",
-            "isDirectory":false,
+            "label":"openBox",
+            "isOpen":null,
+            "isDirectory":true,
             "isAniNode":true,
-            "hasChild":false,
-            "compId":33,
+            "hasChild":true,
+            "compId":36,
             "child":[
-                ],
-            "$HIDDEN":false
+                {
+                    "type":"Button",
+                    "searchKey":"Button,mapBtn",
+                    "props":{"y":355,"x":342,"width":684,"var":"mapBtn","stateNum":"1","skin":"chapters/chapter_img_1.png","height":531,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":36,
+                    "label":"mapBtn",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":3,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Sprite",
+                    "searchKey":"Sprite,suo",
+                    "props":{"y":316,"x":302,"var":"suo","texture":"main/suo2.png"},
+                    "nodeParent":36,
+                    "label":"suo",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":8,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image,box1",
+                    "props":{"x":203,"width":288,"var":"box1","skin":"main/yuanhei.png","sizeGrid":"0,28,0,30","height":64},
+                    "nodeParent":36,
+                    "label":"box1",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":31,
+                    "child":[
+                        {
+                            "type":"Label",
+                            "searchKey":"Label,cengshuTxt",
+                            "props":{"y":0,"x":1,"width":286,"var":"cengshuTxt","valign":"middle","text":"最高层数","height":64,"fontSize":36,"color":"#f6ecec","align":"center"},
+                            "nodeParent":31,
+                            "label":"cengshuTxt",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":32,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "type":"Box",
+                    "searchKey":"Box,clickBox",
+                    "props":{"y":158,"x":171,"width":345,"var":"clickBox","height":373},
+                    "nodeParent":36,
+                    "label":"clickBox",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":33,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                }]
         }],
     "animations":[
         {

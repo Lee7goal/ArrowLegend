@@ -36,7 +36,7 @@ import GameEvent from "../../GameEvent";
             img.x = 375;
 
             this.addChild(this.bottomUI);
-
+        
             this.mouseThrough = true;
         }
 
@@ -221,7 +221,7 @@ import GameEvent from "../../GameEvent";
 
         private _selectIndex:number = 0;
 
-        private opens:number[] = [1,1,-1,-1,1];
+        private opens:number[] = [1,1,1,-1,1];
         constructor(){
             super();
             this.size(750,122);

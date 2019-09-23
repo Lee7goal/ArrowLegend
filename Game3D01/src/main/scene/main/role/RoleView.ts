@@ -10,6 +10,7 @@ import GameEvent from "../../../GameEvent";
 import SysSkill from "../../../sys/SysSkill";
 import { GoldType } from "../../../../game/data/HomeData";
 import FlyUpTips from "../../../FlyUpTips";
+import WorldCell from "../world/WorldCell";
 export default class RoleView extends ui.test.jueseUI {
     public nowRoleId:number = 1;
     public autoEvent:AutoEvent = new AutoEvent();
@@ -28,19 +29,28 @@ export default class RoleView extends ui.test.jueseUI {
         Laya.stage.on( GameEvent.HERO_UPDATE , this, this.heroLvUpFun );
         //let sss = Session.heroData.getHeroData(1);
         //console.log( sss );
-        // this.lvEff.visible = false;
+        this.lvEff.visible = false;
+
+        
+        
+        //Laya.stage.on( GameEvent.APP_ENERGY ,  this, this.reducePowerFun );
+
+
+        //Laya.stage.on( Laya.Event.CLICK ,this,this.reducePowerFun , [1] );
     }
 
+   
+
     public heroLvUpFun():void{
-        // this.lvEff.visible = true;
-        // this.lvEff.ani1.gotoAndStop(0);
-        // this.lvEff.ani1.interval = 1000/60;
-        // this.lvEff.ani1.play( 0,false );
-        // this.lvEff.ani1.on( Laya.Event.COMPLETE ,this,this.efFun );
+        this.lvEff.visible = true;
+        this.lvEff.ani1.gotoAndStop(0);
+        this.lvEff.ani1.interval = 1000/60;
+        this.lvEff.ani1.play( 0,false );
+        this.lvEff.ani1.on( Laya.Event.COMPLETE ,this,this.efFun );
     }
 
     public efFun():void{
-        // this.lvEff.visible = false;
+        this.lvEff.visible = false;
     }
 
     public heroFun():void{

@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":31,
-    "selecteID":128,
+    "selectedBox":2,
+    "selecteID":31,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":129,
+    "maxID":130,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -28,13 +28,13 @@
             "compId":29,
             "child":[
                 ],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
             "type":"Image",
             "searchKey":"Image,tianfudi",
-            "props":{"width":698,"var":"tianfudi","skin":"tianfu/tiandi.png","sizeGrid":"89,0,115,0","height":1065,"centerY":0,"centerX":0},
+            "props":{"width":698,"var":"tianfudi","skin":"tianfu/tiandi.png","sizeGrid":"89,0,115,0","height":1065,"centerY":112,"centerX":1},
             "nodeParent":2,
             "label":"tianfudi",
             "isOpen":true,
@@ -130,7 +130,7 @@
                     "x":30,
                     "type":"Box",
                     "searchKey":"Box,tipBox",
-                    "props":{"y":276,"x":5,"visible":false,"var":"tipBox"},
+                    "props":{"zOrder":100,"y":276,"x":5,"visible":false,"var":"tipBox"},
                     "nodeParent":31,
                     "label":"tipBox",
                     "isOpen":false,
@@ -178,23 +178,23 @@
                             "child":[
                                 ]
                         }]
+                },
+                {
+                    "x":30,
+                    "type":"Text",
+                    "searchKey":"Text,lvTime",
+                    "props":{"y":814.5,"x":205,"width":310,"var":"lvTime","text":"已升级0次","height":35,"fontSize":28,"color":"#482910","align":"center"},
+                    "nodeParent":31,
+                    "label":"lvTime",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":129,
+                    "child":[
+                        ]
                 }],
             "$LOCKED":false,
             "$HIDDEN":false
-        },
-        {
-            "x":15,
-            "type":"Text",
-            "searchKey":"Text,lvTime",
-            "props":{"y":946,"x":220,"width":310,"var":"lvTime","text":"已升级0次","height":35,"fontSize":28,"color":"#482910","align":"center"},
-            "nodeParent":2,
-            "label":"lvTime",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":127,
-            "child":[
-                ]
         }],
     "animations":[
         {

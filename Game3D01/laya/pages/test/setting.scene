@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":37,
-    "selecteID":40,
+    "selectedBox":43,
+    "selecteID":44,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":43,
+    "maxID":46,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -28,7 +28,7 @@
             "compId":28,
             "child":[
                 ],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -47,157 +47,186 @@
         },
         {
             "x":15,
-            "type":"Label",
-            "searchKey":"Label,id",
-            "props":{"y":162,"x":213,"width":139,"var":"id","text":"ID:1234","height":45,"fontSize":40,"color":"#ffffff","align":"center"},
+            "type":"Box",
+            "searchKey":"Box,box1",
+            "props":{"y":574,"x":106,"width":551,"var":"box1","height":952},
             "nodeParent":2,
-            "label":"id",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":29,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "searchKey":"Label,ver",
-            "props":{"y":162,"x":384,"width":190,"var":"ver","text":"VER:4.0.2","height":45,"fontSize":40,"color":"#ffffff","align":"center"},
-            "nodeParent":2,
-            "label":"ver",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":31,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite",
-            "props":{"y":279,"x":315,"texture":"shezhi/yuyan.png"},
-            "nodeParent":2,
-            "label":"Sprite",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":32,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,yuyan",
-            "props":{"y":383,"x":375,"width":540,"var":"yuyan","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91,"anchorY":0.5,"anchorX":0.5},
-            "nodeParent":2,
-            "label":"yuyan",
+            "label":"box1",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":33,
+            "compId":43,
             "child":[
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,id",
+                    "props":{"y":-0.5,"x":34,"width":208,"var":"id","text":"ID:1234","height":45,"fontSize":40,"color":"#ffffff","align":"right"},
+                    "nodeParent":43,
+                    "label":"id",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":29,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "searchKey":"Label,ver",
+                    "props":{"y":0.5,"x":279,"width":190,"var":"ver","text":"VER:4.0.2","height":45,"fontSize":40,"color":"#ffffff","align":"center"},
+                    "nodeParent":43,
+                    "label":"ver",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":31,
+                    "child":[
+                        ]
+                },
                 {
                     "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"y":18,"x":179,"texture":"shezhi/jianti.png"},
-                    "nodeParent":33,
+                    "props":{"y":117.5,"x":210,"texture":"shezhi/yuyan.png"},
+                    "nodeParent":43,
                     "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":38,
+                    "compId":32,
                     "child":[
                         ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,yinxiao",
-            "props":{"y":599,"x":375,"width":540,"var":"yinxiao","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91,"anchorY":0.5,"anchorX":0.5},
-            "nodeParent":2,
-            "label":"yinxiao",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":36,
-            "child":[
+                },
                 {
                     "x":30,
-                    "type":"Image",
-                    "searchKey":"Image,soundImg",
-                    "props":{"y":19,"x":241,"var":"soundImg","skin":"shezhi/kai.png"},
-                    "nodeParent":36,
-                    "label":"soundImg",
+                    "type":"Button",
+                    "searchKey":"Button,yuyan",
+                    "props":{"y":221.5,"x":270,"width":540,"var":"yuyan","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":43,
+                    "label":"yuyan",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":33,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Sprite",
+                            "searchKey":"Sprite",
+                            "props":{"y":18,"x":179,"texture":"shezhi/jianti.png"},
+                            "nodeParent":33,
+                            "label":"Sprite",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":38,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button,yinxiao",
+                    "props":{"y":437.5,"x":270,"width":540,"var":"yinxiao","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":43,
+                    "label":"yinxiao",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":36,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image,soundImg",
+                            "props":{"y":19,"x":241,"var":"soundImg","skin":"shezhi/kai.png"},
+                            "nodeParent":36,
+                            "label":"soundImg",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":39,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button,yinyue",
+                    "props":{"y":619.5,"width":540,"var":"yinyue","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91},
+                    "nodeParent":43,
+                    "label":"yinyue",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":37,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image,musicImg",
+                            "props":{"y":21,"x":240,"var":"musicImg","skin":"shezhi/kai.png"},
+                            "nodeParent":37,
+                            "label":"musicImg",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":40,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":333.5,"x":211,"texture":"shezhi/yinxiao.png"},
+                    "nodeParent":43,
+                    "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":39,
+                    "compId":41,
                     "child":[
                         ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Button",
-            "searchKey":"Button,yinyue",
-            "props":{"y":781,"x":105,"width":540,"var":"yinyue","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91},
-            "nodeParent":2,
-            "label":"yinyue",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":37,
-            "child":[
+                },
                 {
                     "x":30,
-                    "type":"Image",
-                    "searchKey":"Image,musicImg",
-                    "props":{"y":21,"x":240,"var":"musicImg","skin":"shezhi/kai.png"},
-                    "nodeParent":37,
-                    "label":"musicImg",
+                    "type":"Sprite",
+                    "searchKey":"Sprite",
+                    "props":{"y":562.5,"x":211,"texture":"shezhi/yinyue.png"},
+                    "nodeParent":43,
+                    "label":"Sprite",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":40,
+                    "compId":42,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button,zuobi",
+                    "props":{"y":834,"x":0,"width":540,"var":"zuobi","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","label":"作弊","height":91},
+                    "nodeParent":43,
+                    "label":"zuobi",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":44,
                     "child":[
                         ]
                 }]
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite",
-            "props":{"y":495,"x":316,"texture":"shezhi/yinxiao.png"},
-            "nodeParent":2,
-            "label":"Sprite",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":41,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Sprite",
-            "searchKey":"Sprite",
-            "props":{"y":724,"x":316,"texture":"shezhi/yinyue.png"},
-            "nodeParent":2,
-            "label":"Sprite",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":42,
-            "child":[
-                ]
         }],
     "animations":[
         {

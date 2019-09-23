@@ -2,17 +2,32 @@ import { ui } from "../../../../ui/layaMaxUI";
 import Game from "../../../../game/Game";
 import CookieKey from "../../../../gameCookie/CookieKey";
 import App from "../../../../core/App";
+import Session from "../../../Session";
     export default class SettingView extends ui.test.settingUI {
     
     constructor() { 
-        super(); 
+        super();
         this.yuyan.clickHandler = new Laya.Handler(this,this.onLanguage);
         this.yinxiao.clickHandler = new Laya.Handler(this,this.onSound);
         this.yinyue.clickHandler = new Laya.Handler(this,this.onMusic);
 
-        this.ver.text = "VER:" + Game.resVer;
+        if( Laya.Browser.onMiniGame ){
+            this.zuobi.visible = false;
+        }
+        this.zuobi.clickHandler = new Laya.Handler( this,this.zuobiFun );
 
+        this.ver.text = "VER:" + Game.resVer;
+        this.id.text = "ID:" + Session.SKEY.substring( Session.SKEY.length - 6  );
         this.on(Laya.Event.DISPLAY,this,this.onDis);
+
+        this.box1.centerY = 0;
+    }
+
+    private zuobiFun():void{
+        Session.homeData.changeGold(  0 , 100000 );
+        Session.homeData.curEnergy = 20;
+        Session.homeData.lastTime = 0;
+        Session.saveData();
     }
 
     private onDis():void

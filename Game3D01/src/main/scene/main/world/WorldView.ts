@@ -47,8 +47,9 @@ import FlyUpTips from "../../../FlyUpTips";
         this.list.pos(this.box.x,this.box.y);
         this.addChild(this.list);
         this.list.itemRender = WorldCell;
-        this.list.repeatX = 1;
-        this.list.repeatY = 2;
+        this.list.size( Laya.stage.width , Laya.stage.height - 170 );
+        // this.list.repeatX = 1;
+        // this.list.repeatY = 2;
         this.list.vScrollBarSkin = "";
         // this.list.selectEnable = true;
         this.list.renderHandler = new Laya.Handler(this, this.updateItem);
@@ -60,8 +61,31 @@ import FlyUpTips from "../../../FlyUpTips";
         this.timeLogo.on( Laya.Event.CLICK , this,this.timeClickFun );
         this.rankBtn.on( Laya.Event.CLICK,this,this.rankClickFun );
         this.sign7Btn.on( Laya.Event.CLICK,this,this.sign7clickFun );
+        this.shareBtn.on( Laya.Event.CLICK,this,this.shareFun );
         //Laya.timer.once( 1000,this,this.tttFun );
         Laya.stage.on( GameEvent.ADD_COIN , this , this.addCoinFun );
+        Laya.stage.on( GameEvent.APP_ENERGY ,  this, this.reducePowerFun );
+        //Laya.stage.on( Laya.Event.CLICK ,this,this.reducePowerFun , [1] );
+    }
+
+    public reducePowerFun( v:number ):void{
+        let r = new ui.test.ReducePowerUI();
+        this.addChild( r ); 
+        r.fc.value = "-" + v;
+        let sp:Laya.Sprite = WorldCell.clickCell.mapBtn;
+        let p = sp.localToGlobal( new Laya.Point( 0 ,0 ) , true, this );
+        r.x = p.x + sp.width/2;
+        r.y = p.y + sp.height/2;
+        let t = new Laya.Tween();
+        t.to( r , { y:r.y - 200 } , 700 , null , new Laya.Handler(this,this.rFun, [r] ));
+    }
+
+    private rFun(  a:Laya.Sprite ):void{
+        a.removeSelf();
+    }
+
+    private shareFun():void{
+        App.sdkManager.onlyShare();
     }
 
     private sign7clickFun():void{
@@ -93,7 +117,7 @@ import FlyUpTips from "../../../FlyUpTips";
     }
 
     private updateItem(cell: WorldCell, index: number): void  {
-        cell.update(this.list.array[index]);
+        cell.update( this.list.getItem(index) );
     }
 
     // onComplete1() {
@@ -126,7 +150,10 @@ import FlyUpTips from "../../../FlyUpTips";
         indexTo = Math.max( indexTo , 0 );
 
         let arr:SysChapter[] = App.tableManager.getTable(SysChapter.NAME);
-        this.list.array = arr;
+        let arr1 = arr.concat();
+        arr1.length = 3;
+        arr1.push( null );
+        this.list.array = arr1;
         this.list.scrollTo( indexTo );
 
         let cell:ui.test.worldCellUI = <any>this.list.getCell( indexTo );

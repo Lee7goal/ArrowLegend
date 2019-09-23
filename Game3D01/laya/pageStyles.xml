@@ -67,4 +67,5 @@
    <item name="game/addBloodEff.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/shengjiEFF.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="test/MainUITest.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="test/ReducePower.scene" props="" ifExport="内嵌模式" aName=""/>
 </page>

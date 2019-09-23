@@ -74,14 +74,20 @@ export default class SelectTalent extends ui.test.TalentViewUI{
 
         let oldSys:SysTalent = App.tableManager.getDataByNameAndId( SysTalent.NAME , oldLv );
         let newSys:SysTalent = App.tableManager.getDataByNameAndId( SysTalent.NAME , newLv );
+        let hou:string = "%";
+        if( sysInfo.talentType == 1 ){
+            hou = "";
+        }else if ( sysInfo.talentType == 2 ){
+            hou = "%";
+        }
         if( oldSys == null ){
-            this.f1.value = "+0%";
+            this.f1.value = "+0" + hou;
         }else{
             let oldValue = oldSys[sysInfo.idName];
-            this.f1.value = "+" + oldValue + "%";
+            this.f1.value = "+" + oldValue + hou;
         }
         let newValue = newSys[sysInfo.idName];
-        this.f2.value = "+" + newValue + "%";  
+        this.f2.value = "+" + newValue + hou;
         Laya.timer.once( 500 ,this,this.boxFun );
     }
 
