@@ -1,31 +1,28 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.UnlitMaterial",
-		"name":"102710_hdnw_npc_d_512",
+		"type":"Laya.ShurikenParticleMaterial",
 		"renderStates":[
 			{
-				"cull":2,
-				"blend":0,
-				"srcBlend":1,
-				"dstBlend":0,
-				"depthWrite":true,
+				"cull":0,
+				"blend":1,
+				"srcBlend":770,
+				"dstBlend":771,
+				"depthWrite":false,
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
+		"name":"lvxue",
 		"alphaTest":false,
-		"alphaTestValue":0.5,
-		"renderQueue":2000,
-		"albedoIntensity":1.1,
+		"renderQueue":3000,
 		"textures":[
 			{
-				"name":"albedoTexture",
-				"path":"../Texture/102750_hdnw_npc_d_512.jpg",
+				"name":"texture",
+				"path":"../Textures/lvxue.png",
 				"constructParams":[
-					512,
-					512,
-					0,
+					16,
+					16,
+					1,
 					true
 				],
 				"propertyParams":{
@@ -47,12 +44,12 @@
 				]
 			},
 			{
-				"name":"albedoColor",
+				"name":"color",
 				"value":[
-					1,
-					1,
-					1,
-					1
+					0.5,
+					0.5,
+					0.5,
+					0.5
 				]
 			}
 		],

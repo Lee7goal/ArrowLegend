@@ -150,6 +150,7 @@ export default class GameOverView extends ui.test.GameOverUI {
                 }
                 if (Game.showCoinsNum > 0) {
                     this.coinClip.value = "+" + Game.showCoinsNum;
+                    this.deltaCoin.value = "+" + Math.floor(Game.showCoinsNum * Session.talentData.lineGold / 100);
                     this.addChild(this.coinBox);
                     this.coinBox.x = 260;
                     this.coinBox.y = hh;

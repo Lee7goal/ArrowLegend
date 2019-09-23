@@ -9,7 +9,6 @@ export default class RebornView extends ui.test.ReborthUI {
     constructor() {
         super();
         this.closeBtn.clickHandler = new Laya.Handler(this, this.onClose);
-        // this.rebornBtn.clickHandler = new Laya.Handler(this, this.onReborn);
         this.fuhuo.clickHandler = new Laya.Handler(this,this.onFuhuo);
         App.sdkManager.initAdBtn(this.fuhuo,AD_TYPE.AD_REBORTH);
         this.shape = new Laya.Sprite();
@@ -30,8 +29,6 @@ export default class RebornView extends ui.test.ReborthUI {
 
         this._curTime = 5;
         this.daojishi.text = "" + this._curTime;
-        // this.onLoop();
-        // this.timerLoop(1, this, this.onLoop);
 
         Laya.timer.loop(1000,this,this.onLoop2);
     }
@@ -46,20 +43,9 @@ export default class RebornView extends ui.test.ReborthUI {
             this.onClose();
         }
     }
-
-    private onLoop(): void  {
-        if (this._curTime == 0)  {
-            this.clearTimer(this, this.onLoop);
-            return;
-        }
-        this._curTime--;
-        console.log("------------", this._curTime);
-        this.shape.graphics.clear();
-        this.jindu.mask = this.shape;
-        this.shape.graphics.drawPie(this.centerBox.x, this.centerBox.y, 81, 90, 90 + (5000 - this._curTime) / 5000 * 360, "#ff0000");
-    }
-
+    
     private onClose(): void  {
+        Laya.timer.clear(this,this.onLoop2);
         Game.cookie.removeCookie(CookieKey.CURRENT_BATTLE);
         this.removeSelf();
         Game.rebornTimes = 0;

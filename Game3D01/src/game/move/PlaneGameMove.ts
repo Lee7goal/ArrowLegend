@@ -3,6 +3,7 @@ import GamePro from "../GamePro";
 import { GameMove } from "./GameMove";
 import Monster from "../player/Monster";
 import { GameAI } from "../ai/GameAI";
+import RandMoveAI from "../ai/RandMoveAI";
 
 export default class PlaneGameMove extends GameMove {
     move2d(n: number, pro: GamePro, speed: number): boolean {
@@ -11,28 +12,37 @@ export default class PlaneGameMove extends GameMove {
         }
         var vx: number = pro.speed * Math.cos(n);
         var vz: number = pro.speed * Math.sin(n);
-        if(pro instanceof Monster)
-        {
+        if (pro instanceof Monster)  {
             if (Game.map0.chechHit(pro, vx, vz)) {
                 if (vz != 0 && Game.map0.chechHit(pro, vx, 0)) {
                     vx = 0;
                     vz = (vz < 0 ? -1 : 1) * pro.speed;
-                    pro.play(GameAI.Idle);
-                    return false;
+                    if(pro.getGameAi() instanceof RandMoveAI)
+                    {
+                        let randIndex: number = Math.floor(Math.random() * 12);
+                        pro.rotation((Math.PI / 8) * RandMoveAI.dirs[randIndex]);
+                    }
                 }
                 if (vx != 0 && Game.map0.chechHit(pro, 0, vz)) {
                     vz = 0;
                     vx = (vx < 0 ? -1 : 1) * pro.speed;
-                    pro.play(GameAI.Idle);
-                    return false;
+                    if(pro.getGameAi() instanceof RandMoveAI)
+                    {
+                        let randIndex: number = Math.floor(Math.random() * 12);
+                        pro.rotation((Math.PI / 8) * RandMoveAI.dirs[randIndex]);
+                    }
                 }
                 if (Game.map0.chechHit(pro, vx, vz)) {
+                    if(pro.getGameAi() instanceof RandMoveAI)
+                    {
+                        let randIndex: number = Math.floor(Math.random() * 12);
+                        pro.rotation((Math.PI / 8) * RandMoveAI.dirs[randIndex]);
+                    }
                     return false;
                 }
             }
         }
-        else
-        {
+        else  {
             if (Game.map0.chechHit(pro, vx, vz)) {
                 if (vz != 0 && Game.map0.chechHit(pro, vx, 0)) {
                     vx = 0;
@@ -48,7 +58,7 @@ export default class PlaneGameMove extends GameMove {
             }
         }
 
-        if(!this.Blocking(pro,vx,vz)){
+        if (!this.Blocking(pro, vx, vz)) {
             return false;
         }
 

@@ -1,0 +1,10 @@
+id	stageName	stageImage	beforeId	npcDamagescale	npcHealthscale	description	blueDiamond	redDiamond
+1	沃野草原	xiaoqiu8	0	0	0	沃野草原	500,5	500,5
+2	沃野草原	xiaoqiu9	1	0	0	沃野草原	500,5	500,5
+3	沃野草原	xiaoqiu10	2	0	0	沃野草原	500,5	500,5
+4	沃野草原	xiaoqiu11	3	0	0	沃野草原	500,5	500,5
+5	沃野草原	xiaoqiu12	4	0	0	沃野草原	500,5	500,5
+6	沃野草原	xiaoqiu13	5	0	0	沃野草原	500,5	500,5
+7	沃野草原	xiaoqiu14	6	0	0	沃野草原	500,5	500,5
+8	沃野草原	xiaoqiu15	7	0	0	沃野草原	500,5	500,5
+9	沃野草原	xiaoqiu16	8	0	0	沃野草原	500,5	500,5

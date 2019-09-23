@@ -19,8 +19,8 @@ import CoinEffect from "./effect/CoinEffect";
 //2d地图板块    
 export default class GameBG extends Laya.Sprite {
     /**地图颜色 绿色1 蓝色2 黄色3 */
-    static BG_TYPE:string;
-    static BG_TYPE_NUM:number;
+    static BG_TYPE: string;
+    static BG_TYPE_NUM: number;
 
     static MAP_ROW: number;
     static MAP_COL: number;
@@ -29,11 +29,11 @@ export default class GameBG extends Laya.Sprite {
     static MAP_ROW2: number;
     static MAP_COL2: number;
 
-    static bgId:number;
-    static bgWW:number;
-    static bgHH:number;
-    static bgHHReal:number;
-    static bgCellWidth:number;
+    static bgId: number;
+    static bgWW: number;
+    static bgHH: number;
+    static bgHHReal: number;
+    static bgCellWidth: number;
 
 
     /**地图恒星格子数*/
@@ -71,20 +71,20 @@ export default class GameBG extends Laya.Sprite {
     //主角中心坐标
     static mcy: number;
 
-    private maskImg:Laya.Image = new Laya.Image();
-    private bottomImg:Laya.Image = new Laya.Image();
+    private maskImg: Laya.Image = new Laya.Image();
+    private bottomImg: Laya.Image = new Laya.Image();
 
     private static v3d: Laya.Vector3;
 
-    private doorNumber:BitmapNumber;
+    private doorNumber: BitmapNumber;
 
     static get3D(xx: number, yy: number): Laya.Vector3 {
         if (!GameBG.v3d) {
             GameBG.v3d = new Laya.Vector3(0, 0, 0);
         }
         GameBG.v3d.x = (xx - 6);
-        let rowNum:number = GameBG.bgHH / GameBG.ww / 2;
-        let delta:number = GameBG.bgHH % GameBG.ww;
+        let rowNum: number = GameBG.bgHH / GameBG.ww / 2;
+        let delta: number = GameBG.bgHH % GameBG.ww;
         delta = delta / GameBG.ww;
         GameBG.v3d.z = (yy - rowNum + 0.5) / Game.cameraCN.cos0;
         return GameBG.v3d;
@@ -125,22 +125,22 @@ export default class GameBG extends Laya.Sprite {
 
     private _box: Sprite = new Sprite();
     private _top: Image = new Image();
-    private _bossImg:Image = new Image();
+    private _bossImg: Image = new Image();
     private _bottom: Image = new Image();
-    private _topShadow:Image = new Image();
-    private _leftShadow:Image = new Image();
-    private _door:Image = new Image();
+    private _topShadow: Image = new Image();
+    private _leftShadow: Image = new Image();
+    private _door: Image = new Image();
     // private _guidePointer:GuidePointer;
 
     /**电锯 */
-    public saw:Saw = new Saw();
+    public saw: Saw = new Saw();
 
     /**电锯信息 */
-    private _sawInfo:any = {};
-    private _sawInfoZong:any = {};
-    public _npcAni:Laya.View;
+    private _sawInfo: any = {};
+    private _sawInfoZong: any = {};
+    public _npcAni: Laya.View;
 
-    public npcId:number = 0;
+    public npcId: number = 0;
 
     constructor() {
         super();
@@ -159,8 +159,7 @@ export default class GameBG extends Laya.Sprite {
         this.mySp.y = y - GameBG.mw2;
     }
 
-    public clear():void
-    {
+    public clear(): void  {
         this._box.removeChildren();
         this.saw.clear();
 
@@ -172,10 +171,10 @@ export default class GameBG extends Laya.Sprite {
         this._npcAni = null;
     }
 
-    private npcP:Laya.Point = new Laya.Point();
+    private npcP: Laya.Point = new Laya.Point();
 
-    private startX:number;
-    public drawR(hasBoss:boolean = false): void {
+    private startX: number;
+    public drawR(hasBoss: boolean = false): void {
         this.npcId = 0;
         var img: Image;
         var ww: number = GameBG.ww;
@@ -187,7 +186,7 @@ export default class GameBG extends Laya.Sprite {
 
         // this._box.cacheAs = "bitmap";
 
-        
+
 
         // var topImg:Laya.Image = new Laya.Image();
         // this._box.addChild(topImg);
@@ -198,12 +197,11 @@ export default class GameBG extends Laya.Sprite {
         // this._box.addChild(bottomImg);
         // bottomImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_1.png");
         // bottomImg.y = 1372;
-        
-        let index2:number = 0;
+
+        let index2: number = 0;
         for (let j = 0; j < GameBG.MAP_ROW; j++) {
             this.bgh += ww;
-            if(GameBG.MAP_COL % 2 == 0)
-            {
+            if (GameBG.MAP_COL % 2 == 0)  {
                 index2++;
             }
             for (let i = 0; i < GameBG.MAP_COL; i++) {
@@ -212,20 +210,20 @@ export default class GameBG extends Laya.Sprite {
                 img = new Image();
                 img.skin = (index2 % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
                 this._box.addChild(img);
-                img.size(64,64);
+                img.size(64, 64);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
 
                 index2++;
-                var thorn:GameThorn;
-                var grid:Image = new Image();
+                var thorn: GameThorn;
+                var grid: Image = new Image();
                 if (GridType.isRiverPoint(gType)) {
                     grid.skin = GameBG.BG_TYPE + '/100.png';
                 }
                 else if (GridType.isThorn(gType)) {
                     // grid.skin = GameBG.BG_TYPE + '/500.png';
                     thorn = GameThorn.getOne();
-                    thorn.hbox.setXY(img.x,img.y);
+                    thorn.hbox.setXY(img.x, img.y);
                     // thorn.pos(img.x,img.y);
                     console.log("添加地刺");
                     img.addChild(thorn);
@@ -234,32 +232,28 @@ export default class GameBG extends Laya.Sprite {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
                     grid.skin = GameBG.BG_TYPE + '/' + gType + '.png';
                 }
-                else if(GridType.isFlower(gType))
-                {
+                else if (GridType.isFlower(gType))  {
                     grid.skin = GameBG.BG_TYPE + '/' + gType + '.png';
                 }
-                else if(GridType.isSawHeng(gType))//横锯子
+                else if (GridType.isSawHeng(gType))//横锯子
                 {
-                    if(this._sawInfo[gType] == null)
-                    {
-                        let hengAry:Laya.Point[] = [];
+                    if (this._sawInfo[gType] == null)  {
+                        let hengAry: Laya.Point[] = [];
                         this._sawInfo[gType] = hengAry;
                     }
-                    let p:Laya.Point = new Laya.Point(img.x,img.y);
+                    let p: Laya.Point = new Laya.Point(img.x, img.y);
                     this._sawInfo[gType].push(p);
                 }
-                else if(GridType.isSawZong(gType))//纵锯子
+                else if (GridType.isSawZong(gType))//纵锯子
                 {
-                    if(this._sawInfoZong[gType] == null)
-                    {
-                        let hengAry:Laya.Point[] = [];
+                    if (this._sawInfoZong[gType] == null)  {
+                        let hengAry: Laya.Point[] = [];
                         this._sawInfoZong[gType] = hengAry;
                     }
-                    let p:Laya.Point = new Laya.Point(img.x,img.y);
+                    let p: Laya.Point = new Laya.Point(img.x, img.y);
                     this._sawInfoZong[gType].push(p);
                 }
-                else if(GridType.isNpc(gType))
-                {
+                else if (GridType.isNpc(gType))  {
                     this.npcId = gType;
                     // if(this.npcId == 1001)
                     // {
@@ -269,28 +263,32 @@ export default class GameBG extends Laya.Sprite {
                     this.npcP.x = img.x + GameBG.ww2;
                     this.npcP.y = img.y;
 
-                    if(this.npcId == BattleFlagID.ANGLE)
-                    {
-                        let NPC = Laya.ClassUtils.getClass("NPC" + 1001);
-                        this._npcAni = new NPC();
+                    if (this.npcId == BattleFlagID.ANGLE)  {
+                        this.npcId = 1001;
+                        if (this.npcDic[this.npcId] == null)  {
+                            let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
+                            this._npcAni = new NPC();
+                            this.npcDic[this.npcId] = this._npcAni;
+                        }
+                        else  {
+                            this.npcDic[this.npcId] = this._npcAni;
+                        }
                         this.showNpc();
+                        console.log("显示npc", this.npcId);
                     }
                 }
-                
 
-                if(gType == BattleFlagID.DOOR)
-                {
-                    this._door.pos(img.x - GameBG.ww2,img.y - GameBG.ww2);
+
+                if (gType == BattleFlagID.DOOR)  {
+                    this._door.pos(img.x - GameBG.ww2, img.y - GameBG.ww2);
                     this._door.skin = 'bg/door.png';
-                    console.log("门的位置",img.x,img.y);
+                    console.log("门的位置", img.x, img.y);
                 }
-                else if(gType == BattleFlagID.HERO)
-                {
+                else if (gType == BattleFlagID.HERO)  {
                     Hero.bornX = img.x;
                     Hero.bornY = img.y;
                 }
-                else if(gType == BattleFlagID.GUIDE)
-                {
+                else if (gType == BattleFlagID.GUIDE)  {
                     // if(!this._guidePointer)
                     // {
                     //     this._guidePointer = new GuidePointer();
@@ -300,7 +298,7 @@ export default class GameBG extends Laya.Sprite {
                 // }
 
                 img.addChild(grid);
-               
+
                 k++;
             }
         }
@@ -312,24 +310,21 @@ export default class GameBG extends Laya.Sprite {
                 //     continue;
                 // }
                 gType = GameBG.arr0[k];
-                var shadow:Laya.Image = new Laya.Image();
-                if((GridType.isWall(gType) || (gType >= 1 && gType <= 10)))
-                {
+                var shadow: Laya.Image = new Laya.Image();
+                if ((GridType.isWall(gType) || (gType >= 1 && gType <= 10)))  {
                     shadow.skin = GameBG.BG_TYPE + '/y' + GameCube.getType(gType) + '.png';
                     shadow.x = i * ww;
                     shadow.y = j * ww;
                     this._box.addChild(shadow);
                 }
-                else if(GridType.isFence(gType))
-                {
+                else if (GridType.isFence(gType))  {
                     shadow.skin = 'bg/lanying.png';
                     shadow.width = 200;
                     shadow.x = i * ww - 64;
                     shadow.y = j * ww + 50;
                     this._box.addChild(shadow);
                 }
-                else if(GridType.isRiverCube(gType))
-                {
+                else if (GridType.isRiverCube(gType))  {
                     shadow.skin = GameBG.BG_TYPE + '/900.png';
                     shadow.width = 122;
                     shadow.height = 134;
@@ -345,20 +340,18 @@ export default class GameBG extends Laya.Sprite {
         this.saw.clear();
 
         //横
-        for(let key in this._sawInfo)
-        {
-            let hengAry:Laya.Point[] = this._sawInfo[key];
-            let pos:Laya.Point = hengAry[0];
-            let ww:number = hengAry[1].x - hengAry[0].x + GameBG.ww;
-            this.saw.addBg(pos.x,pos.y,ww,1);
+        for (let key in this._sawInfo)  {
+            let hengAry: Laya.Point[] = this._sawInfo[key];
+            let pos: Laya.Point = hengAry[0];
+            let ww: number = hengAry[1].x - hengAry[0].x + GameBG.ww;
+            this.saw.addBg(pos.x, pos.y, ww, 1);
         }
         //纵
-        for(let key in this._sawInfoZong)
-        {
-            let zongAry:Laya.Point[] = this._sawInfoZong[key];
-            let pos:Laya.Point = zongAry[0];
-            let hh:number = zongAry[1].y - zongAry[0].y + GameBG.ww;
-            this.saw.addBg(pos.x,pos.y,hh,2);
+        for (let key in this._sawInfoZong)  {
+            let zongAry: Laya.Point[] = this._sawInfoZong[key];
+            let pos: Laya.Point = zongAry[0];
+            let hh: number = zongAry[1].y - zongAry[0].y + GameBG.ww;
+            this.saw.addBg(pos.x, pos.y, hh, 2);
         }
 
         this._box.addChild(this._door);
@@ -366,11 +359,11 @@ export default class GameBG extends Laya.Sprite {
         this.saw.updateSaw();
         this.startX = GameBG.ww2;
         this.x = -this.startX;
-        this.y = (Laya.stage.height -GameBG.bgHH) * 0.5;
+        this.y = (Laya.stage.height - GameBG.bgHH) * 0.5;
         GameBG.cx = this.x;
         GameBG.cy = this.y;
 
-        
+
         this.addChild(this.maskImg);
         this.addChild(this.bottomImg);
         // sprite.alpha = 0.4;s
@@ -383,106 +376,89 @@ export default class GameBG extends Laya.Sprite {
 
         this.bottomImg.width = GameBG.bgWW;
         this.bottomImg.height = 500;
-        this.bottomImg.y = this.maskImg.y +this.maskImg.height;
+        this.bottomImg.y = this.maskImg.y + this.maskImg.height;
         this.bottomImg.skin = "battleBg/bottom_" + GameBG.BG_TYPE_NUM + ".jpg";
-        
+
         // sprite.size(GameBG.bgWW - GameBG.ww,GameBG.ww * 10);
     }
 
-    public showGuidePointer():void{
+    public showGuidePointer(): void {
         // this._box.addChild(this._guidePointer);
     }
 
-    public hideGuidePointer():void{
+    public hideGuidePointer(): void {
         // this._guidePointer && this._guidePointer.removeSelf();
     }
 
-    private showNpc():void
-    {
-        if(this._npcAni)
-        {
+    private showNpc(): void  {
+        if (this._npcAni)  {
             Game.topLayer.addChild(this._npcAni);
-            this._npcAni.pos(this.npcP.x,this.npcP.y - 800);
+            this._npcAni.pos(this.npcP.x, this.npcP.y - 800);
 
-            Laya.Tween.to(this._npcAni,{y:this.npcP.y},300,Laya.Ease.circIn);
+            Laya.Tween.to(this._npcAni, { y: this.npcP.y }, 300, Laya.Ease.circIn);
         }
     }
 
     /**检测出现哪个npc  恶魔和胡子 */
-    checkNpc():void
-    {
-        if(this.npcId <= 0)
-        {
+    checkNpc(): void  {
+        if (this.npcId <= 0)  {
             return;
         }
-        if(!Game.map0.checkNpc())
-        {
+        if (!Game.map0.checkNpc())  {
             return;
         }
         Game.scenneM.battle.up(null);
-        if(this.npcId == BattleFlagID.OTHER_NPC)
-        {
+        if (this.npcId == BattleFlagID.OTHER_NPC)  {
             this.npcId = 0;
-            let lossRate:number = Game.hero.lossBlood();
-            if(lossRate <= 0)
-            {
+            let lossRate: number = Game.hero.lossBlood();
+            if (lossRate <= 0)  {
                 this.npcId = 1002;//恶魔
             }
-            else if(lossRate <= 0.1)
-            {
+            else if (lossRate <= 0.1)  {
                 this.npcId = 1002;//恶魔
             }
-            else
-            {
+            else  {
                 // this.npcId = 1003;//胡子
                 this.npcId = 1001;//胡子没做，先用天使
             }
         }
-        else if(this.npcId == BattleFlagID.ANGLE)
-        {
+        else if (this.npcId == BattleFlagID.ANGLE)  {
             this.npcId = 1001;//天使
         }
 
-        if(this.npcId > 0)
-        {
-            if(!this._npcAni)
-            {
-                let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
-                this._npcAni = new NPC();
-                this.showNpc();
-            }
+        if (this.npcId > 0)  {
+           
         }
     }
 
-    public clearNpc():void
-    {
-        if(this._npcAni)
-        {
-            Laya.Tween.to(this._npcAni,{scaleX:0.3},200,null,null,100);
-            Laya.Tween.to(this._npcAni,{y:-300},300,Laya.Ease.circIn,new Laya.Handler(this,this.clearNpcCom),300);
+    private npcDic: any = {};
+
+    public clearNpc(): void  {
+        if (this._npcAni)  {
+            Laya.Tween.to(this._npcAni, { scaleX: 0.3 }, 200, null, null, 100);
+            Laya.Tween.to(this._npcAni, { y: -300 }, 300, Laya.Ease.circIn, new Laya.Handler(this, this.clearNpcCom), 300);
         }
     }
 
-    private clearNpcCom():void
-    {
+    private clearNpcCom(): void  {
         this._npcAni && this._npcAni.removeSelf();
         Game.map0.clearNpc();
         this.npcId = 0;
         this._npcAni = null;
         // Game.openDoor();
-        if (Game.map0.Eharr.length == 0)  {
+        if (Game.map0.Eharr.length == 0) {
             CoinEffect.fly();
         }
     }
 
-    public setDoor(state:number):void{
+    public setDoor(state: number): void {
         this._door.visible = state == 1;
-        console.log("门是否显示",this._door.visible);
+        console.log("门是否显示", this._door.visible);
     }
 
     public updateY(): void {
         var bgy: number = GameBG.cy - Game.hero.pos2.z;
-        var u:boolean = false;
+        var u: boolean = false;
         if (bgy <= 0 && bgy >= Laya.stage.height - GameBG.bgHH) {
             //移动2D背景板
             Game.bg.y = bgy;
@@ -490,16 +466,15 @@ export default class GameBG extends Laya.Sprite {
             Game.camera.transform.localPositionZ = Game.cameraCN.z + Game.hero.z;
             u = true;
         }
-        else if(bgy < Laya.stage.height - GameBG.bgHH){
+        else if (bgy < Laya.stage.height - GameBG.bgHH) {
             //Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Laya.stage.height +  GameBG.bgHH);
             Game.bg.y = Laya.stage.height - GameBG.bgHH;
-            Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
+            Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y) / GameBG.ww / Game.cameraCN.cos0;
         }
-        else
-        {
+        else  {
             //Game.camera.transform.localPositionZ = Game.cameraCN.z +  GameBG.cy;
             Game.bg.y = 0;
-            Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y)/GameBG.ww/ Game.cameraCN.cos0;
+            Game.camera.transform.localPositionZ = Game.cameraCN.z + (GameBG.cy - Game.bg.y) / GameBG.ww / Game.cameraCN.cos0;
         }
 
         let ww2 = this.startX;
@@ -509,17 +484,17 @@ export default class GameBG extends Laya.Sprite {
             Game.bg.x = bgx;
             u = true;
         }
-        else if(bgx > -ww2 ){
+        else if (bgx > -ww2) {
             Game.bg.x = -ww2;
-            Game.camera.transform.localPositionX = (GameBG.cx  -Game.bg.x)/GameBG.ww;
+            Game.camera.transform.localPositionX = (GameBG.cx - Game.bg.x) / GameBG.ww;
         }
-        else{
+        else {
             Game.bg.x = (Laya.stage.width - GameBG.bgWW) + ww2;
-            Game.camera.transform.localPositionX = (GameBG.cx  -Game.bg.x)/GameBG.ww;
+            Game.camera.transform.localPositionX = (GameBG.cx - Game.bg.x) / GameBG.ww;
         }
 
-        if(u){
-            
+        if (u) {
+
         }
         Game.updateMap();
 

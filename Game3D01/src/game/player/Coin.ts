@@ -99,7 +99,7 @@ export default class Coin extends GamePro {
         this.curLen = 0;
         this.moveLen = 0;
         this._bulletShadow && this._bulletShadow.removeSelf();
-        this.setSpeed(40);
+        this.setSpeed(GameBG.ww * 0.5);
     }
 
     public clear(): void  {
