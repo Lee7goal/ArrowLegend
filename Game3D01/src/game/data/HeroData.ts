@@ -67,8 +67,15 @@ export default class HeroData implements IData{
     public getHeroData( heroId:number ):Equip{
         let e = new Equip();
         let sysRB = SysRoleBase.getSys( heroId );
-        e.atk = sysRB.baseAtk + this.getValue( heroId , HeroLvType.ATK ) ;
-        e.hp = sysRB.baseHp + this.getValue( heroId , HeroLvType.HP );
+        e.atk = sysRB.baseAtk + this.getValue( heroId , HeroLvType.ATK ) * Session.talentData.addCompose + Session.talentData.equip.atk;
+        e.hp  = sysRB.baseHp  + this.getValue( heroId , HeroLvType.HP )  * Session.talentData.addCompose + Session.talentData.equip.hp;
+        
+        e.atk = parseInt( e.atk + "");
+        e.hp  = parseInt( e.hp + "" );
+        
+        console.log( sysRB.baseAtk , this.getValue( heroId , HeroLvType.ATK ) , Session.talentData.addCompose , Session.talentData.equip.atk );
+        console.log( sysRB.baseHp  , this.getValue( heroId , HeroLvType.HP )  , Session.talentData.addCompose , Session.talentData.equip.hp );
+
         e.dodge = sysRB.baseDodge;
         e.moveSpeed = sysRB.baseMove;
         e.atkSpeed = sysRB.baseSpeed;

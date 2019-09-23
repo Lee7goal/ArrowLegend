@@ -14,10 +14,14 @@ export default class WorldCell extends ui.test.worldCellUI {
         super();
         this.clickBox.on(Laya.Event.CLICK,this,this.onClick);
         this.suo.visible = false;
+        WorldCell.clickCell = this;
     }
+
+    public static clickCell:WorldCell = null;
 
     private onClick():void
     {
+        WorldCell.clickCell = this;
         if(!this.suo.visible)
         {
             Game.battleLoader.chapterId = this.sys.id;

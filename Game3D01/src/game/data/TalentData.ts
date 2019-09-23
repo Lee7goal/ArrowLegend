@@ -123,6 +123,9 @@ export default class TalentData implements IData {
 
     public offlineGold:number = 0;
     public lineGold:number = 0;
+    /**
+     * 属性增加 全部计算完毕以后 加攻击力和血量 升级的 150 基础值后面那个 加的数值 乘以 3%
+     */
     public addCompose:number = 0;
     public dropLevelhp:number = 0;
     public addItemhp:number = 0;
@@ -134,7 +137,13 @@ export default class TalentData implements IData {
         }
         let sysInfo:SysTalentInfo = App.tableManager.getDataByNameAndId( SysTalentInfo.NAME , tid );
         let sysT:SysTalent = App.tableManager.getDataByNameAndId( SysTalent.NAME , lv );
-        return sysT[sysInfo.idName];
+        let v = sysT[sysInfo.idName];
+        if( sysInfo.talentType == 1 ){
+            return v;
+        }else if( sysInfo.talentType == 2 ){
+            return v/100;
+        }
+        return v;
     }
 
     /**
@@ -171,7 +180,7 @@ export default class TalentData implements IData {
         if( this.haveGold() == false ){
             return -1;
         }
-        if( this.lvTimes >= Session.homeData.battleLv ){
+        if( this.lvTimes >= Session.homeData.playerLv ){
             return -2;
         }
         return 0;

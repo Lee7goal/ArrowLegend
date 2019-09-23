@@ -63,6 +63,24 @@ import FlyUpTips from "../../../FlyUpTips";
         this.shareBtn.on( Laya.Event.CLICK,this,this.shareFun );
         //Laya.timer.once( 1000,this,this.tttFun );
         Laya.stage.on( GameEvent.ADD_COIN , this , this.addCoinFun );
+        Laya.stage.on( GameEvent.APP_ENERGY ,  this, this.reducePowerFun );
+        //Laya.stage.on( Laya.Event.CLICK ,this,this.reducePowerFun , [1] );
+    }
+
+    public reducePowerFun( v:number ):void{
+        let r = new ui.test.ReducePowerUI();
+        this.addChild( r ); 
+        r.fc.value = "-" + v;
+        let sp:Laya.Sprite = WorldCell.clickCell.mapBtn;
+        let p = sp.localToGlobal( new Laya.Point( 0 ,0 ) , true, this );
+        r.x = p.x + sp.width/2;
+        r.y = p.y + sp.height/2;
+        let t = new Laya.Tween();
+        t.to( r , { y:r.y - 200 } , 700 , null , new Laya.Handler(this,this.rFun, [r] ));
+    }
+
+    private rFun(  a:Laya.Sprite ):void{
+        a.removeSelf();
     }
 
     private shareFun():void{

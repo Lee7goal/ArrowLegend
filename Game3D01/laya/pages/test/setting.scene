@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":2,
-    "selecteID":43,
+    "selectedBox":43,
+    "selecteID":44,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
-    "maxID":44,
+    "maxID":46,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -49,16 +49,17 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box,box1",
-            "props":{"y":574,"x":106,"width":551,"var":"box1","height":711},
+            "props":{"y":574,"x":106,"width":551,"var":"box1","height":952},
             "nodeParent":2,
             "label":"box1",
-            "isOpen":null,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":43,
             "child":[
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,id",
                     "props":{"y":-0.5,"x":34,"width":208,"var":"id","text":"ID:1234","height":45,"fontSize":40,"color":"#ffffff","align":"right"},
@@ -72,6 +73,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Label",
                     "searchKey":"Label,ver",
                     "props":{"y":0.5,"x":279,"width":190,"var":"ver","text":"VER:4.0.2","height":45,"fontSize":40,"color":"#ffffff","align":"center"},
@@ -85,6 +87,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"y":117.5,"x":210,"texture":"shezhi/yuyan.png"},
@@ -98,6 +101,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,yuyan",
                     "props":{"y":221.5,"x":270,"width":540,"var":"yuyan","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91,"anchorY":0.5,"anchorX":0.5},
@@ -110,6 +114,7 @@
                     "compId":33,
                     "child":[
                         {
+                            "x":45,
                             "type":"Sprite",
                             "searchKey":"Sprite",
                             "props":{"y":18,"x":179,"texture":"shezhi/jianti.png"},
@@ -124,6 +129,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,yinxiao",
                     "props":{"y":437.5,"x":270,"width":540,"var":"yinxiao","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91,"anchorY":0.5,"anchorX":0.5},
@@ -136,6 +142,7 @@
                     "compId":36,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,soundImg",
                             "props":{"y":19,"x":241,"var":"soundImg","skin":"shezhi/kai.png"},
@@ -150,6 +157,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "searchKey":"Button,yinyue",
                     "props":{"y":619.5,"width":540,"var":"yinyue","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","height":91},
@@ -162,6 +170,7 @@
                     "compId":37,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,musicImg",
                             "props":{"y":21,"x":240,"var":"musicImg","skin":"shezhi/kai.png"},
@@ -176,6 +185,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"y":333.5,"x":211,"texture":"shezhi/yinxiao.png"},
@@ -189,6 +199,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"y":562.5,"x":211,"texture":"shezhi/yinyue.png"},
@@ -198,6 +209,21 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":42,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "searchKey":"Button,zuobi",
+                    "props":{"y":834,"x":0,"width":540,"var":"zuobi","stateNum":"1","skin":"main/btn_lv.png","sizeGrid":"0,31,0,33","label":"作弊","height":91},
+                    "nodeParent":43,
+                    "label":"zuobi",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":44,
                     "child":[
                         ]
                 }]

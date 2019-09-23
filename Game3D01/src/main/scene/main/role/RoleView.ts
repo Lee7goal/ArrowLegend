@@ -10,6 +10,7 @@ import GameEvent from "../../../GameEvent";
 import SysSkill from "../../../sys/SysSkill";
 import { GoldType } from "../../../../game/data/HomeData";
 import FlyUpTips from "../../../FlyUpTips";
+import WorldCell from "../world/WorldCell";
 export default class RoleView extends ui.test.jueseUI {
     public nowRoleId:number = 1;
     public autoEvent:AutoEvent = new AutoEvent();
@@ -29,8 +30,16 @@ export default class RoleView extends ui.test.jueseUI {
         //let sss = Session.heroData.getHeroData(1);
         //console.log( sss );
         this.lvEff.visible = false;
-        //Laya.stage.on( Laya.Event.CLICK ,this,this.heroLvUpFun );
+
+        
+        
+        //Laya.stage.on( GameEvent.APP_ENERGY ,  this, this.reducePowerFun );
+
+
+        //Laya.stage.on( Laya.Event.CLICK ,this,this.reducePowerFun , [1] );
     }
+
+   
 
     public heroLvUpFun():void{
         this.lvEff.visible = true;

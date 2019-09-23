@@ -95,7 +95,7 @@ export default class TalentView extends ui.test.talentUI {
         let sys:SysTalentInfo = App.tableManager.getDataByNameAndId(  SysTalentInfo.NAME, tid );
         let sysT = App.tableManager.getDataByNameAndId( SysTalent.NAME , lv );
         let vv = sysT[sys.idName];
-        this.txt5.text = sys.talentInfo + ":" + vv + "%";
+        this.txt5.text = sys.talentInfo + ":" + vv + sys.getHou();
     }
 
     public tFun():void{
