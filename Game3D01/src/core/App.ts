@@ -25,8 +25,8 @@ export default class App{
         App.sdkManager = new SdkManager();        
     }
 
-    static sendEvent( event:string ):void{
-        Laya.stage.event( event );
+    static sendEvent( event:string ,data?:any):void{
+        Laya.stage.event( event ,data);
     }
 
      /**

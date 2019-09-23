@@ -23,14 +23,14 @@ import SysChapter from "../../../sys/SysChapter";
         this.coinBox.removeSelf();
         let hh = 780;
         if (Game.showBlueNum > 0)  {
-            this.lanzuan.value = "" + Game.showBlueNum ;
+            this.lanzuan.value = "+" + Game.showBlueNum ;
             this.addChild(this.lanBox);
             this.lanBox.x = 216;
             this.lanBox.y = hh;
             hh += 100;
         }
         if (Game.showRedNum > 0)  {
-            this.hongzuan.value = "" + Game.showRedNum;
+            this.hongzuan.value = "+" + Game.showRedNum;
             this.addChild(this.ziBox);
             this.ziBox.x = 216;
             this.ziBox.y = hh;
