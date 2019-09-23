@@ -2,11 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":98,
+    "selecteID":49,
     "searchKey":"View",
     "props":{"width":750,"sceneColor":"#c6abab","height":1334},
     "nodeParent":-1,
-    "maxID":99,
+    "maxID":102,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -367,6 +367,21 @@
                                             "child":[
                                                 ],
                                             "$HIDDEN":false
+                                        },
+                                        {
+                                            "x":75,
+                                            "type":"UIView",
+                                            "source":"test/juese_zuanguang.scene",
+                                            "searchKey":"UIView,a1",
+                                            "props":{"y":23,"x":17,"var":"a1"},
+                                            "nodeParent":72,
+                                            "label":"a1",
+                                            "isDirectory":false,
+                                            "isAniNode":true,
+                                            "hasChild":false,
+                                            "compId":99,
+                                            "child":[
+                                                ]
                                         }],
                                     "$HIDDEN":false
                                 },
@@ -638,6 +653,21 @@
                                             "child":[
                                                 ],
                                             "$HIDDEN":false
+                                        },
+                                        {
+                                            "x":75,
+                                            "type":"UIView",
+                                            "source":"test/juese_zuanguang.scene",
+                                            "searchKey":"UIView,a2",
+                                            "props":{"y":22,"x":28,"var":"a2"},
+                                            "nodeParent":73,
+                                            "label":"a2",
+                                            "isDirectory":false,
+                                            "isAniNode":true,
+                                            "hasChild":false,
+                                            "compId":101,
+                                            "child":[
+                                                ]
                                         }],
                                     "$HIDDEN":false
                                 },
