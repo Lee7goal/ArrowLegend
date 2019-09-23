@@ -407,13 +407,14 @@
             "props":{"y":780,"x":215,"width":256,"var":"lanBox","height":78},
             "nodeParent":2,
             "label":"lanBox",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":74,
             "child":[
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"y":3,"x":0,"texture":"main/jiangbeihei.png","scaleY":0.3,"scaleX":0.3},
@@ -427,9 +428,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
-                    "props":{"x":0,"texture":"main/jiangbei.png","scaleY":0.3,"scaleX":0.3},
+                    "props":{"texture":"main/jiangbei.png","scaleY":0.3,"scaleX":0.3},
                     "nodeParent":74,
                     "label":"Sprite",
                     "isDirectory":false,
@@ -440,9 +442,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"FontClip",
                     "searchKey":"FontClip,lanzuan",
-                    "props":{"y":23,"x":120,"width":500,"var":"lanzuan","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":121,"align":"left"},
+                    "props":{"y":24,"x":120,"width":500,"var":"lanzuan","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":120,"align":"left"},
                     "nodeParent":74,
                     "label":"lanzuan",
                     "isOpen":true,
@@ -461,13 +464,14 @@
             "props":{"y":880,"x":215,"width":256,"var":"ziBox","height":78},
             "nodeParent":2,
             "label":"ziBox",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":75,
             "child":[
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"y":3,"texture":"main/jiangbeihei.png","scaleY":0.3,"scaleX":0.3},
@@ -481,6 +485,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Sprite",
                     "searchKey":"Sprite",
                     "props":{"x":0,"texture":"main/jiangbei1.png","scaleY":0.3,"scaleX":0.3},
@@ -494,9 +499,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"FontClip",
                     "searchKey":"FontClip,hongzuan",
-                    "props":{"y":20,"x":120,"width":500,"var":"hongzuan","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":121,"align":"left"},
+                    "props":{"y":24,"x":120,"width":500,"var":"hongzuan","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":120,"align":"left"},
                     "nodeParent":75,
                     "label":"hongzuan",
                     "isOpen":true,
@@ -512,7 +518,7 @@
             "x":15,
             "type":"Box",
             "searchKey":"Box,coinBox",
-            "props":{"y":980,"x":213,"width":256,"var":"coinBox","height":78},
+            "props":{"y":980,"x":215,"width":256,"var":"coinBox","height":78},
             "nodeParent":2,
             "label":"coinBox",
             "isOpen":true,
@@ -539,7 +545,7 @@
                     "x":30,
                     "type":"FontClip",
                     "searchKey":"FontClip,coinClip",
-                    "props":{"y":28,"x":123,"width":500,"var":"coinClip","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":121,"align":"left"},
+                    "props":{"y":24,"x":120,"width":500,"var":"coinClip","value":"+120","skin":"main/clipshuzi.png","sheet":"123456 7890-+ /:cdef","scaleY":0.4,"scaleX":0.4,"height":120,"align":"left"},
                     "nodeParent":76,
                     "label":"coinClip",
                     "isOpen":true,

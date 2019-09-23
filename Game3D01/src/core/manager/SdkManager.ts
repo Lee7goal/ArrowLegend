@@ -135,7 +135,7 @@ export default class SdkManager {
 
         if( Laya.Browser.onMiniGame ){
             this.adMap[AD_TYPE.AD_REBORTH] = "adunit-dd859bd89e519faa";
-            // this.adMap[SdkSession.GAME_OVER] = "adunit-98b44cb96437ac93";
+            this.adMap[AD_TYPE.AD_BATTLE10] = "adunit-fb55742c910f9809";
             // this.adMap[SdkSession.GET_PET] = "adunit-237729103790be65";
             // this.adMap[SdkSession.TIME_GOLD] = "adunit-7b46c29d0d9cf9b3";
             // this.adMap[SdkSession.TREASURE] = "adunit-d4c57c5c9ae67d48";
@@ -256,6 +256,12 @@ export default class SdkManager {
         this.shareStartTime = Laya.Browser.now();
         let chao:boolean = this.shareTimes >= SdkManager.SHARE_MAX_TIMES;
         Laya.stage.once( GameEvent.WX_ON_SHOW ,this,this.showFun,[chao?null:h] );
+    }
+
+    public onlyShare():void{
+        var obj:any = this.getShareObject();
+        obj.query = "";
+        Laya.Browser.window.wx.shareAppMessage(obj);
     }
 
     public showFun(h:Laya.Handler):void{

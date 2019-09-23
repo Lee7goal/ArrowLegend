@@ -71,4 +71,12 @@ export default class MyEffect{
             Laya.Tween.clearAll( e );
         } );
     }
+
+    public static scaleEffect( sp:Laya.Sprite ):void{
+        let t = new Laya.TimeLine();
+        t.to( sp , { scaleX:0.7 , scaleY:0.7 } , 100 );
+        t.to( sp , { scaleX:1 , scaleY:1 } , 300 , Laya.Ease.backOut );
+        t.play();
+    }
+
 }

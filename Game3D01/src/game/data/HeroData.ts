@@ -60,11 +60,6 @@ export default class HeroData implements IData{
         return hd.getLv( type );
     }
 
-    public get curHeroData():Equip
-    {
-        return this.getHeroData(1);
-    }
-
     /**
      * 得到某位英雄具体的数值 给战场用的
      * @param heroId 

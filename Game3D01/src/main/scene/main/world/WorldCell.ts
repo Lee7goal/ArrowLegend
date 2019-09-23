@@ -5,12 +5,14 @@ import Game from "../../../../game/Game";
 import Session from "../../../Session";
 import FlyUpTips from "../../../FlyUpTips";
 import SysMap from "../../../sys/SysMap";
+import Hero from "../../../../game/player/Hero";
+import MyEffect from "../../../../core/utils/MyEffect";
+
 export default class WorldCell extends ui.test.worldCellUI {
     private sys:SysChapter;
     constructor() { 
         super();
-        this.clickBox.on(Laya.Event.CLICK,this,this.onClick);// clickHandler = new Laya.Handler(this,this.onClick);
-        //this.mapBtn.clickHandler = new Laya.Handler(this,this.onClick);
+        this.clickBox.on(Laya.Event.CLICK,this,this.onClick);
         this.suo.visible = false;
     }
 
@@ -22,7 +24,9 @@ export default class WorldCell extends ui.test.worldCellUI {
             SysChapter.randomDiamond(Game.battleLoader.chapterId);
             Game.battleCoins = 0;
             Game.battleExp = 0;
+            Hero.udpateHeroData();
             Laya.stage.event(GameEvent.START_BATTLE);
+            MyEffect.scaleEffect( this.mapBtn );
         }
         else
         {
@@ -30,7 +34,7 @@ export default class WorldCell extends ui.test.worldCellUI {
         }
     }
 
-    update(sysChapter:SysChapter):void
+    public update(sysChapter:SysChapter):void
     {
         this.sys = sysChapter;
         this.suo.visible = Session.homeData.chapterId < sysChapter.id;

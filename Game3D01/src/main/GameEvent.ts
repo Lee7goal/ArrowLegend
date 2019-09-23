@@ -20,4 +20,6 @@ export default class GameEvent{
     static LV_UP_VIEW:string = "LV_UP_VIEW";
 
     static ADD_COIN:string = "ADD_COIN";
+
+    static APP_ENERGY:string = "APP_ENERGY";
 }

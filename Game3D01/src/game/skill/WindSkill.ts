@@ -10,7 +10,10 @@ import Monster from "../player/Monster";
 export default class WindSkill extends BaseSkill {
     constructor(sys: SysBullet) { 
         super(sys); 
-        this.sysBullet.bulletCd = 4000;
+        if(sys)
+        {
+            this.sysBullet.bulletCd = 4000;
+        }
     }
 
     exeSkill(now: number, pro: Monster): boolean  {

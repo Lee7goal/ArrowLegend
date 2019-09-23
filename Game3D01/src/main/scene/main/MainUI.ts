@@ -152,6 +152,7 @@ import GameEvent from "../../GameEvent";
             this.homeData.curEnergy -= TopUI.xiaohao;
             this.appEnergyClip.visible = true;
             this.appEnergyClip.value = "-" + TopUI.xiaohao;
+            App.sendEvent(GameEvent.APP_ENERGY,TopUI.xiaohao);
             Laya.Tween.to(this.appEnergyClip,{y: 100},300,null,new Laya.Handler(this,this.onStart));
         }
 
