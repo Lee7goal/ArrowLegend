@@ -46,4 +46,38 @@ export default class SysRoleUp{
         }
         return null;
     }
+
+    public static getAddHp( heroId:number , lv:number ):number{
+        let arr = App.tableManager.getTable( SysRoleUp.NAME );
+        let v = 0;
+        for( let a of arr ){
+            if( a.roleId == heroId ){
+                v += a.addHp;
+                if( a.roleLevel == lv ){
+                    return v;
+                }
+            }
+        }
+    }
+
+    public static getAddAtk( heroId:number , lv:number ):number{
+        let arr = App.tableManager.getTable( SysRoleUp.NAME );
+        let v = 0;
+        for( let a of arr ){
+            if( a.roleId == heroId  ){
+                v += a.addAtk;
+                if( a.roleLevel == lv ){
+                    return v;
+                }
+            }
+        }
+    }
+    
+    public static getAddValue( heroId:number , lv:number , type:HeroLvType ):number{
+        if( type ==  HeroLvType.ATK ){
+            return this.getAddAtk( heroId , lv );
+        }else if( type == HeroLvType.HP ){
+            return this.getAddHp( heroId , lv );
+        }
+    }
 }

@@ -84,8 +84,9 @@ export default class HeroData implements IData{
 
     public getValue( heroId:number, type:HeroLvType ):number{
         let lv = this.getHeroLv( heroId , type );
-        let sys = SysRoleUp.getSysRole( heroId , lv );
-        return sys.getValue( type );
+        //let sys = SysRoleUp.getSysRole( heroId , lv );
+        return SysRoleUp.getAddValue( heroId , lv , type );
+        //return sys.getValue( type );
     }
 
 

@@ -71,8 +71,8 @@ export default class RoleView extends ui.test.jueseUI {
     }
 
     public updateAll():void{
-        this.setOne( this.box1 , HeroLvType.HP , this.shengmingniu , this.shengmingjia ,this.xueshu , this.tiao , this.shengmingshu ,this.hpLv , this.hpGold );
-        this.setOne( this.box2 , HeroLvType.ATK , this.gongjiniu ,this.gongjijia , this.gongshu , this.tiao2 , this.gongjishu ,this.atkLv  ,this.atkGold ); 
+        this.setOne( this.box1 , HeroLvType.HP , this.shengmingniu , this.shengmingjia ,this.xueshu , this.tiao , this.shengmingshu ,this.hpLv , this.hpGold , this.hpAddFc );
+        this.setOne( this.box2 , HeroLvType.ATK , this.gongjiniu ,this.gongjijia , this.gongshu , this.tiao2 , this.gongjishu ,this.atkLv  ,this.atkGold , this.atkAddFc );
         let sys = SysRoleBase.getSys( this.nowRoleId );
         let sysSkill:SysSkill = App.tableManager.getDataByNameAndId( SysSkill.NAME,sys.baseSkill );
         this.skillLabel.text = sysSkill.skillInfo;
@@ -81,10 +81,17 @@ export default class RoleView extends ui.test.jueseUI {
         this.jinengtubiao.skin = "icons/skill/" + sysSkill.id + ".png";
     }
 
-    public setOne( box:Laya.Box , type:HeroLvType , btn:Laya.Button , fc:Laya.FontClip  ,fc2:Laya.FontClip , tiao:Laya.Image , allFc:Laya.FontClip , lvFc:Laya.FontClip ,goldFc:Laya.Text ):void{
+    public setOne( box:Laya.Box , type:HeroLvType , btn:Laya.Button , fc:Laya.FontClip  ,fc2:Laya.FontClip , tiao:Laya.Image , allFc:Laya.FontClip , lvFc:Laya.FontClip ,goldFc:Laya.Text ,addFc:Laya.FontClip ):void{
         let lv = Session.heroData.getHeroLv( this.nowRoleId , type );
         let sys = SysRoleUp.getSysRole( this.nowRoleId , lv );
+        //显示这个等级加多少属性
+        // if( type == HeroLvType.ATK ){
+        //     fc.value = "+" + SysRoleUp.getAddAtk( this.nowRoleId , lv ); //sys.getValue( type );
+        // }else if( type == HeroLvType.HP ){
+        //     fc.value = "+" + SysRoleUp.getAddHp( this.nowRoleId , lv ); //sys.getValue( type );
+        // }
         fc.value = "+" + sys.getValue( type );
+        
         let cost = sys.getCost( type );
         let costType = sys.getCostType(type);
         let have = Session.homeData.getGoldByType( costType );
@@ -93,7 +100,14 @@ export default class RoleView extends ui.test.jueseUI {
         box.visible = !can;
         let sysRB = SysRoleBase.getSys( this.nowRoleId );
         let v = sysRB.getValue( type );
-        allFc.value = ( v + sys.getValue( type ) ) + "";
+        
+        //这里显示最终加的
+        allFc.value = v + "";// sys. getValue( type )
+
+        addFc.value = "+" + SysRoleUp.getAddValue( this.nowRoleId , lv , type );
+
+        addFc.x = allFc.x + allFc.value.length * 23 + 10;
+
         lvFc.value = lv + "";
         
         if( box.visible == false ){
