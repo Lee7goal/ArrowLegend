@@ -98,7 +98,7 @@ export default class BattleLoader {
         }
         
         //清除对象池
-        let tagArr:string[] = [DieEffect.TAG,Coin.TAG,MonsterBoomEffect.TAG];
+        let tagArr:string[] = [DieEffect.TAG,Coin.TAG,MonsterBoomEffect.TAG,HitEffect.TAG];
         for(let key in Game.poolTagArr)
         {
             tagArr.push(key);
@@ -178,7 +178,7 @@ export default class BattleLoader {
             }
             this._configId = configId;
         }
-        // this._configId = 303001;
+        // this._configId = 100301;
         console.log("当前地图", this._mapId, this._configId);
         Laya.loader.load("h5/mapConfig/" + this._configId + ".json", new Laya.Handler(this, this.loadBg));
     }
@@ -208,7 +208,7 @@ export default class BattleLoader {
         let pubRes = [
             "h5/zhalan/hero.lh","h5/effects/door/monster.lh",
             "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh",
-            "h5/bullets/skill/5009/monster.lh","h5/bulletsEffect/20000/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/1/hero.lh"//主角
+            "h5/bullets/skill/5009/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/1/hero.lh"//主角
         ];
         if(Session.homeData.isGuide)
         {
@@ -309,7 +309,7 @@ export default class BattleLoader {
         //怪的资源
         if(this.resAry.length > 0){
 
-            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh"];
+            let pubResAry:string[] = ["h5/bulletsEffect/20000/monster.lh","h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh"];
             for(let j = 0; j < pubResAry.length; j++)
             {
                 res = pubResAry[j];

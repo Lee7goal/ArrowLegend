@@ -83,8 +83,6 @@ export default class BattleScene extends Laya.Sprite {
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
         directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
 
-        bg.on(Game.Event_NPC, this, this.showNpcView);
-
         this._top = new TopUI();
         this.addChild(this._top);
         
@@ -97,6 +95,7 @@ export default class BattleScene extends Laya.Sprite {
         Laya.stage.on(GameEvent.PASS_CHAPTER,this,this.onOver);
         Laya.stage.on(GameEvent.LV_UP_VIEW,this,this.onLvup);
         Laya.stage.on(GameEvent.MEMORY_WARNING,this,this.onRelease);
+        Laya.stage.on(Game.Event_NPC, this, this.showNpcView);
 
         // this.on(Laya.Event.UNDISPLAY,this,this.unDis);
     }
@@ -168,15 +167,22 @@ export default class BattleScene extends Laya.Sprite {
         Game.state = 1;
     }
 
-    private npcView: Laya.View;
+    
+    private npcViewDic:any = {};
     private showNpcView(): void {
+        this.up(null);
         let npcId: number = Game.bg.npcId;
+        console.log("显示npc",npcId);
         if (npcId > 0) {
-            let NPCVIEW = Laya.ClassUtils.getClass("NPCVIEW" + npcId);
-            if (NPCVIEW) {
-                this.npcView = new NPCVIEW();
-                this.addChild(this.npcView);
+            if(this.npcViewDic[npcId] == null)
+            {
+                let NPCVIEW = Laya.ClassUtils.getClass("NPCVIEW" + npcId);
+                if (NPCVIEW) {
+                    this.npcViewDic[npcId] = new NPCVIEW();
+                }
             }
+            
+            this.addChild(this.npcViewDic[npcId]);
             Game.state = 1;
         }
     }

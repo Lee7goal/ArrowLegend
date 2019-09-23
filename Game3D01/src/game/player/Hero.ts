@@ -259,6 +259,8 @@ export default class Hero extends GamePro {
         {
             return;
         }
+        hurt = Math.floor(hurt * (1-Hero.curHeroData.def));
+
         let isMiss:boolean = false;
         let missSkill:SysSkill = Game.skillManager.isHas(5006)//闪避
         if(missSkill)
@@ -318,7 +320,6 @@ export default class Hero extends GamePro {
             setTimeout(() => {
                 this.reborn();
             }, 800);
-            console.log(skill4005.skillName);
         }
         else {
             this.stopAi();

@@ -79,6 +79,10 @@
 									{
 										"name":"Run",
 										"clipPath":"Assets/MeshSmith/Fantasy1/Gun Girl/Mesh/Gun Girl-Run.lani"
+									},
+									{
+										"name":"Attack1",
+										"clipPath":"Assets/MeshSmith/Fantasy1/Gun Girl/Mesh/Gun Girl-Attack1.lani"
 									}
 								]
 							}

@@ -38,6 +38,7 @@ import SysChapter from "../../../sys/SysChapter";
         }
         if (Game.showCoinsNum > 0)  {
             this.coinClip.value = "+" + Game.showCoinsNum;
+            this.deltaCoin.value = "+" + Math.floor(Game.showCoinsNum * Session.talentData.lineGold / 100);
             this.addChild(this.coinBox);
             this.coinBox.x = 216;
             this.coinBox.y = hh;

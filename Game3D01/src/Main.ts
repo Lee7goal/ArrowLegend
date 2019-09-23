@@ -53,6 +53,7 @@ import MyEffect from "./core/utils/MyEffect";
 import Session from "./main/Session";
 import ZipLoader from "./core/utils/ZipLoader";
 import GameEvent from "./main/GameEvent";
+import NPC_1001_view from "./main/scene/battle/npc/NPC_1001_view";
 
 class Main {
 	constructor() {
@@ -77,7 +78,7 @@ class Main {
 
 		if (Laya.Browser.window.wx) {
 			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
-			Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg","loading/btn_kaishi.png","loading/loadingClip.png", "allJson.json"];
+			Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg", "loading/btn_kaishi.png", "loading/loadingClip.png", "allJson.json"];
 
 			Laya.Browser.window.wx.getSystemInfo({
 				success(res) {
@@ -99,38 +100,36 @@ class Main {
 		this._initView = new ui.test.initViewUI();
 		Laya.stage.addChild(this._initView);
 		this._initView.initTxt.text = "0%";
-		
-		Laya.loader.load( "h5/config.json" , new Laya.Handler(this,this.configFun) );
+
+		Laya.loader.load("h5/config.json", new Laya.Handler(this, this.configFun));
 
 		App.init();
 		MyEffect.initBtnEffect();
 	}
 
-	private configFun():void{
+	private configFun(): void {
 		let config = Laya.loader.getRes("h5/config.json");
 		App.platformId = config.platformId;
 		App.serverIP = config.platforms[App.platformId];
-		this.loadZip();
-	}
-
-	private loadZip():void{
-		Laya.loader.load( "h5/tables.zip" , new Laya.Handler(this,this.zipOverFun) , null, Laya.Loader.BUFFER  );
-	}
-
-	private zipOverFun():void{
-		ZipLoader.instance.zipFun( Laya.loader.getRes("h5/tables.zip") , new Laya.Handler(this, this.zipFun));
-	}
-
-	private zipFun( arr: any[] ):void {
-		GameMain.initDialog();
-		GameMain.initTable( arr );
-		Session.init();
-        Laya.stage.event( GameEvent.CONFIG_OVER );
 		this.loadRes();
 	}
 
-	private loadRes():void{
-		Laya.loader.load(["loading/loadingClip.png","loading/jiazai.jpg","loading/btn_kaishi.png",], new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
+	private zipFun(arr: any[]): void {
+		GameMain.initDialog();
+		GameMain.initTable(arr);
+		Session.init();
+		Laya.stage.event(GameEvent.CONFIG_OVER);
+	}
+
+	private loadRes(): void {
+		Laya.loader.load(
+			[
+				{ url: "loading/loadingClip.png", type: Laya.Loader.IMAGE },
+				{ url: "loading/jiazai.jpg", type: Laya.Loader.IMAGE },
+				{ url: "loading/btn_kaishi.png", type: Laya.Loader.IMAGE },
+				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER }
+			],
+			new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 	}
 
 	private _initView: ui.test.initViewUI;
@@ -143,6 +142,7 @@ class Main {
 	private homePage: ui.game.homePageUI;
 
 	private onInitCom(): void {
+		ZipLoader.instance.zipFun(Laya.loader.getRes("h5/tables.zip"), new Laya.Handler(this, this.zipFun));
 		this.regClass();
 
 		// this._initView.initTxt.text = "";
@@ -152,7 +152,7 @@ class Main {
 		}
 		Laya.stage.addChild(this.homePage);
 
-		
+
 		// // wx.clearStorage()
 
 		let bc: BaseCookie;
@@ -167,7 +167,7 @@ class Main {
 		Game.cookie.getCookie(CookieKey.USER_ID, (res) => {
 			if (res == null) {
 			}
-			else  {
+			else {
 				App.soundManager.setMusicVolume(res.state);
 				this.homePage.vvv.t1.text = res.userId;
 			}
@@ -181,7 +181,7 @@ class Main {
 				Game.cookie.setCookie(CookieKey.MUSIC_SWITCH, { "state": 1 });
 				App.soundManager.setMusicVolume(1);
 			}
-			else  {
+			else {
 				App.soundManager.setMusicVolume(res.state);
 			}
 		});
@@ -191,7 +191,7 @@ class Main {
 				Game.cookie.setCookie(CookieKey.SOUND_SWITCH, { "state": 1 });
 				App.soundManager.setSoundVolume(1);
 			}
-			else  {
+			else {
 				App.soundManager.setSoundVolume(res.state);
 			}
 		});
@@ -213,10 +213,9 @@ class Main {
 		this.curBP.getUserInfo(this.getUserInfoSuccess.bind(this));
 	}
 
-	private isSuccess:boolean = false;
+	private isSuccess: boolean = false;
 	private getUserInfoSuccess(): void {
-		if(this.isSuccess)
-		{
+		if (this.isSuccess) {
 			return;
 		}
 		this.isSuccess = true;
@@ -227,7 +226,7 @@ class Main {
 		Laya.stage.addChild(this.loading);
 		// this.loading.clip.play();
 		this.loading.txt.text = "0%";
-		
+
 		Laya.loader.load([
 			{ url: "res/atlas/main.atlas", type: Laya.Loader.ATLAS },
 			{ url: "res/atlas/guide.atlas", type: Laya.Loader.ATLAS },
@@ -238,7 +237,7 @@ class Main {
 		], new Laya.Handler(this, this.onHandler), new Laya.Handler(this, this.onProgress));
 
 		//Laya.loader.load([{ url: "allJson.json", type: "plf" }], Laya.Handler.create(this, function (): void {
-			
+
 		//}));
 	}
 
@@ -285,7 +284,7 @@ class Main {
 		REG("NPC1002", NPC_1002);
 		REG("NPC1003", NPC_1003);
 
-		// REG("NPCVIEW1001", NPC_1001_view);
+		REG("NPCVIEW1001", NPC_1001_view);
 		// REG("NPCVIEW1002", NPC_1002_view);
 		// REG("NPCVIEW1003", NPC_1003_view);
 		//攻击类型

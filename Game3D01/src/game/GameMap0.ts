@@ -9,6 +9,7 @@ import Hero from "./player/Hero";
 import BattleFlagID from "../main/scene/BattleFlagID";
 import Session from "../main/Session";
 import GameEvent from "../main/GameEvent";
+import App from "../core/App";
 //地图逻辑层
 export default class GameMap0 extends Laya.Sprite {
 
@@ -264,7 +265,8 @@ export default class GameMap0 extends Laya.Sprite {
             bool = true;
             this._isNpc = true;
             this.npcHitBox = null;
-            Laya.stage.event(Game.Event_SELECT_NEWSKILL);
+            App.sendEvent(Game.Event_NPC);
+            console.log("碰到npc了=-===================");
         }
         return bool;
     }

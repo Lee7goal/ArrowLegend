@@ -10,7 +10,11 @@ export default class GameConfig{
     static screenMode:string="none";
     static alignV:string="top";
     static alignH:string="left";
+<<<<<<< HEAD
     static startScene:any="test/juese_zuanguang.scene";
+=======
+    static startScene:any="test/tianshi_1.scene";
+>>>>>>> 55b3dab28045c94347460e8b20dcc236b08ed2f5
     static sceneRoot:string="";
     static debug:boolean=false;
     static stat:boolean=true;

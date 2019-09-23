@@ -2,7 +2,7 @@
 	"version":"LAYAAVATAR:01",
 	"rootNode":{
 		"props":{
-			"name":"Lady Pirate(Clone)",
+			"name":"Lady Pirate",
 			"translate":[
 				0,
 				0,
@@ -15,9 +15,9 @@
 				-1
 			],
 			"scale":[
-				1.166569,
-				1.166569,
-				1.166569
+				0.9222337,
+				0.9222339,
+				0.9222339
 			]
 		},
 		"child":[

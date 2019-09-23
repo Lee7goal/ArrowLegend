@@ -355,6 +355,7 @@ export default class Game {
 
         if(Game.showCoinsNum > 0)
         {
+            Game.showCoinsNum = Game.showCoinsNum + Math.floor(Game.showCoinsNum * Session.talentData.lineGold / 100);
             Laya.stage.event(GameEvent.ADD_COIN,Game.showCoinsNum);
             Game.showCoinsNum = 0;
         }
