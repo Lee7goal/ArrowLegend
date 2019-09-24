@@ -41,7 +41,6 @@ export default class GameThorn extends Laya.Image{
 
     private onDis():void
     {
-        console.log("显示地刺");
         this.inDanger = false;
         Laya.timer.frameLoop(1,this,this.onLoop);
         this.onLoop();
@@ -54,7 +53,7 @@ export default class GameThorn extends Laya.Image{
         {
             this.inDanger = !this.inDanger;
             this.lastTime = now + this.cd;
-            this.skin = this.inDanger ? GameBG.BG_TYPE + '/500.png' : GameBG.BG_TYPE + '/500_0.png';
+            this.skin = this.inDanger ? 'bg/500.png' : 'bg/500_0.png';
         }
     }
 
