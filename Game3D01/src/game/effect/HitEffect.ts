@@ -8,7 +8,9 @@ export default class HitEffect{
     public player:GamePro;
     public sp3d:Laya.Sprite3D;
     constructor() {
-        this.sp3d = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh"));
+        let ss:Laya.Sprite3D = Laya.loader.getRes("h5/bulletsEffect/20000/monster.lh");
+        console.log("受击特效",ss);
+        this.sp3d = Laya.Sprite3D.instantiate(ss);
         // Game.monsterResClones.push(this.sp3d);
         // console.log("创建新的受击特效");
     }

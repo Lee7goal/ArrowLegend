@@ -98,7 +98,7 @@ export default class BattleLoader {
         }
         
         //清除对象池
-        let tagArr:string[] = [DieEffect.TAG,Coin.TAG,MonsterBoomEffect.TAG,HitEffect.TAG];
+        let tagArr:string[] = [DieEffect.TAG,Coin.TAG,MonsterBoomEffect.TAG];
         for(let key in Game.poolTagArr)
         {
             tagArr.push(key);
@@ -206,7 +206,7 @@ export default class BattleLoader {
     private loadHeroRes(): void  {
         let pubRes = [
             "h5/zhalan/hero.lh","h5/effects/door/monster.lh",
-            "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh",
+            "h5/effects/foot/hero.lh", "h5/effects/head/monster.lh","h5/bulletsEffect/20000/monster.lh",
             "h5/bullets/skill/5009/monster.lh", "h5/bullets/20000/monster.lh", "h5/hero/1/hero.lh"//主角
         ];
         if(Session.homeData.isGuide)
@@ -305,10 +305,6 @@ export default class BattleLoader {
             }
         }
 
-        res = "h5/bulletsEffect/20000/monster.lh";
-        this.monsterRes[res] = res;
-        this.resAry.push(res);
-
         //怪的资源
         if(this.resAry.length > 0){
 
@@ -345,6 +341,7 @@ export default class BattleLoader {
                 this.resAry.push(key);
             }
         }
+
 
         this._isMonsterLoaded = false;
         console.log('资源列表', this.resAry);
