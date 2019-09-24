@@ -36,17 +36,22 @@ export default class RoleView extends ui.test.jueseUI {
         //this.a2.ani1.gotoAndStop( 60 );
         this.a1.ani1.stop();
         this.a2.ani1.stop();
+        
+        this.a1.visible = this.a2.visible = false;
+
         //Laya.stage.on( GameEvent.APP_ENERGY ,  this, this.reducePowerFun );
         //Laya.stage.on( Laya.Event.CLICK ,this,this.reducePowerFun , [1] );
-        Laya.timer.loop( 2000 , this,this.ani1tFun );
+        Laya.timer.loop( 4000 , this,this.ani1tFun );
     }
 
     private ani1tFun():void{
+        this.a1.visible = true;
         this.a1.ani1.play( 0 , false );
         Laya.timer.once( 1000 , this,this.ani2tFun );
     }
 
     private ani2tFun():void{
+        this.a2.visible = true;
         this.a2.ani1.play( 0 , false );
     }
 

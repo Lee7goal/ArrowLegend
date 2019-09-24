@@ -47,7 +47,7 @@
                     "type":"UIView",
                     "source":"test/Light.scene",
                     "searchKey":"UIView,light",
-                    "props":{"y":259,"x":375,"var":"light","anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":259,"x":375,"var":"light","blendMode":"lighter","anchorY":0.5,"anchorX":0.5},
                     "nodeParent":4,
                     "label":"light",
                     "isDirectory":false,
