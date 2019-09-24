@@ -190,7 +190,6 @@ export default class BattleLoader {
             // "res/atlas/xiongmao.atlas",
             "res/atlas/shengli.atlas",
             "res/atlas/texiao/jiaxue.atlas",
-            "res/atlas/icons/skill.atlas",
             "res/atlas/bg.atlas",
             "res/atlas/jiesuan.atlas"
         ];

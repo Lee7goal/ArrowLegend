@@ -29,4 +29,13 @@
    <item name="map_2" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="chapters" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="texiao" type="" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbei.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbei1.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbeiguang.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbeiguang1.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbeiguanglan.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbeihei.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbeilan.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="juese/jiangbi.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="icons/skill" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
 </res>
