@@ -21,6 +21,7 @@ import GameEvent from "./GameEvent";
 import Session from "./Session";
 import TimeGoldDialog from "./scene/main/timegold/TimeGoldDialog";
 import RankDialog from "./scene/main/rank/RankDialog";
+import SysItem from "./sys/SysItem";
 
 export default class GameMain {
     constructor() {
@@ -62,6 +63,7 @@ export default class GameMain {
         App.tableManager.register(SysBuff.NAME, SysBuff);
         App.tableManager.register(SysNpc.NAME, SysNpc);
         App.tableManager.register(SysRoleBase.NAME , SysRoleBase );
+        App.tableManager.register(SysItem.NAME,SysItem);
         
         App.tableManager.register(SysRoleUp.NAME , SysRoleUp);
         App.tableManager.register(SysHero.NAME , SysHero );

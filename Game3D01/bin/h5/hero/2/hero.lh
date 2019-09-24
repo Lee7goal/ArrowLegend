@@ -26,7 +26,7 @@
 			{
 				"type":"Sprite3D",
 				"props":{
-					"name":"Gun Girl (1)",
+					"name":"Gun Girl (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -42,16 +42,16 @@
 						-1
 					],
 					"scale":[
-						1,
-						1,
-						1
+						1.108189,
+						1.108189,
+						1.108189
 					]
 				},
 				"components":[
 					{
 						"type":"Animator",
 						"avatar":{
-							"path":"Assets/MeshSmith/Fantasy1/Gun Girl/Mesh/Gun Girl-Gun Girl (1)-Gun GirlAvatar.lav",
+							"path":"Assets/MeshSmith/Fantasy1/Gun Girl/Mesh/Gun Girl-Gun Girl (2)-Gun GirlAvatar.lav",
 							"linkSprites":{}
 						},
 						"layers":[

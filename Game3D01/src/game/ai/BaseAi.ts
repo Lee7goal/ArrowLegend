@@ -16,6 +16,7 @@ import SysSkill from "../../main/sys/SysSkill";
 import SysBuff from "../../main/sys/SysBuff";
 import FireBuff from "../skill/player/FireBuff";
 import HeroBullet from "../player/HeroBullet";
+import Coin from "../player/Coin";
 
 /**不动不攻击的ai */
 export default class BaseAI extends GameAI {
@@ -235,7 +236,7 @@ export default class BaseAI extends GameAI {
         this.setShader();
         let goldNum: number = this.sysEnemy.dropGold;
         if (goldNum > 0) {
-            CoinEffect.addEffect(this.pro, goldNum,0);
+            CoinEffect.addEffect(this.pro, goldNum,Coin.TYPE_COIN);
         }
         Game.battleCoins += goldNum;
         this.splitSkill && this.splitSkill.exeSkill(this.now, this.pro);

@@ -9,8 +9,16 @@ import CoinsAI from "../ai/CoinsAI";
 import CoinsMove from "../move/CoinsMove";
 import GameHitBox from "../GameHitBox";
 import SysChapter from "../../main/sys/SysChapter";
+import Session from "../../main/Session";
+import SysItem from "../../main/sys/SysItem";
+import App from "../../core/App";
 
 export default class Coin extends GamePro {
+    static TYPE_COIN:number = 1001;
+    static TYPE_BLUE:number = 1002;
+    static TYPE_RED:number = 1003;
+    static TYPE_HEART:number = 1004;
+
     static TAG: string = "Coin";
 
     static tScale = new Laya.Vector3(1.5, 1.5, 1.5);
@@ -41,27 +49,15 @@ export default class Coin extends GamePro {
         coin.id = id;
         if (!coin.sp3d)  {
             var sp: Laya.Sprite3D;
-            if (id == 0)  {
-                sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/coins/monster.lh"));
-                coin.setSp3d(sp);
+            sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/"+id+"/monster.lh"));
+            coin.setSp3d(sp);
+            if (id == Coin.TYPE_COIN)  {
+                
                 coin.sp3d.transform.localScale = Coin.tScale;
             }
-            else if (id == 1)  {
-                sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/lanzuan/monster.lh"));
-                coin.setSp3d(sp);
-                coin.sp3d.transform.localScale = Coin.tScale2;
-            }
-            else if (id == 2)  {
-                sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/hongzuan/monster.lh"));
-                coin.setSp3d(sp);
-                coin.sp3d.transform.localScale = Coin.tScale2;
-            }
-            else if(id == 3)
+            else
             {
-                sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/heart/monster.lh"));
-                coin.setSp3d(sp);
                 coin.sp3d.transform.localScale = Coin.tScale2;
-                console.log("掉落红心");
             }
             if (sp)  {
                 coin.sp3d.addComponent(FootRotateScript);
@@ -73,10 +69,10 @@ export default class Coin extends GamePro {
     public setPos(monster: GamePro, r: number, id: number): void  {
         this.status = 1;
         this.curLen = 0;
-        if (id == 0)  {
+        if (id == Coin.TYPE_COIN)  {
             this.moveLen = 20 + Math.random() * GameBG.ww;
         }
-        else if(id == 3)
+        else if(id == Coin.TYPE_HEART)
         {
             this.moveLen =  Math.random() * GameBG.ww;
         }
@@ -119,26 +115,27 @@ export default class Coin extends GamePro {
         this._bulletShadow && this._bulletShadow.removeSelf();
         this.stopAi();
         this.sp3d && this.sp3d.removeSelf();
-        if(this.id == 0)
+        if(this.id == Coin.TYPE_COIN)
         {
             Game.showCoinsNum++;
             Laya.stage.event(Game.Event_COINS);
         }
-        else if(this.id == 1)
+        else if(this.id == Coin.TYPE_BLUE)
         {
             Game.showBlueNum++;
             SysChapter.blueNum--;
         }
-        else if(this.id == 2)
+        else if(this.id == Coin.TYPE_RED)
         {
             Game.showRedNum++;
             SysChapter.redNum--;
         }
-        else if(this.id == 3)
+        else if(this.id == Coin.TYPE_HEART)
         {
-            let addValue:number = Math.floor(Game.hero.gamedata.hp * 0.15);
+            let sys:SysItem = App.tableManager.getDataByNameAndId(SysItem.NAME,Coin.TYPE_HEART);
+            let addValue:number = sys.addHp + Session.talentData.addItemhp;
             Game.hero.addBlood(addValue);
-            console.log("红心恢复血量",addValue);
+            console.log("红心恢复血量",200,Session.talentData.addItemhp);
             SysChapter.heartNum--;
         }
         this.curLen = 0;

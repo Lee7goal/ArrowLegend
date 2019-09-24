@@ -244,7 +244,7 @@ export default class BattleLoader {
         }
 
         GameBG.arr0 = map.arr;
-        let bgType = map.bgType ? map.bgType : 1;
+        let bgType = this.chapterId;
         bgType = Math.max(bgType, 1);
         GameBG.BG_TYPE_NUM = bgType;
         GameBG.BG_TYPE = "map_" + bgType;
@@ -307,7 +307,7 @@ export default class BattleLoader {
         //怪的资源
         if(this.resAry.length > 0){
 
-            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/coins/monster.lh","h5/effects/boom/monster.lh"];
+            let pubResAry:string[] = ["h5/effects/monsterDie/monster.lh","h5/coins/1001/monster.lh","h5/effects/boom/monster.lh"];
             for(let j = 0; j < pubResAry.length; j++)
             {
                 res = pubResAry[j];
@@ -321,13 +321,13 @@ export default class BattleLoader {
             let key:string;
             if(SysChapter.blueNum > 0)
             {
-                key = "h5/coins/lanzuan/monster.lh";
+                key = "h5/coins/1002/monster.lh";
                 this.monsterRes[key] = key;
                 this.resAry.push(key);
             }
             else if(SysChapter.redNum > 0)
             {
-                key = "h5/coins/hongzuan/monster.lh";
+                key = "h5/coins/1003/monster.lh";
                 this.monsterRes[key] = key;
                 this.resAry.push(key);
             }
@@ -337,7 +337,7 @@ export default class BattleLoader {
         {
             if(SysChapter.heartNum > 0)
             {
-                res = "h5/coins/heart/monster.lh";
+                res = "h5/coins/1004/monster.lh";
                 this.monsterRes[res] = res;
                 this.resAry.push(res);
             }
@@ -391,6 +391,7 @@ export default class BattleLoader {
         if (this._isHeroLoaded && this._isMonsterLoaded)  {
             console.log("所有资源都加载完毕");
             CoinEffect.coinsAry.length = 0;
+            CoinEffect.hearAry.length = 0;
             Game.scenneM.showBattle();
             Game.scenneM.battle.init();
             this._loading.removeSelf();

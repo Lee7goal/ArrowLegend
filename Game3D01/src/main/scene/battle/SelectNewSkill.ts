@@ -5,6 +5,7 @@ import SysSkill from "../../sys/SysSkill";
 import App from "../../../core/App";
 import SysBuff from "../../sys/SysBuff";
 import SysNpc from "../../sys/SysNpc";
+import Session from "../../Session";
     export default class SelectNewSkill extends ui.test.battlestopUI {
 
     private grid1:SkillGrid;
@@ -49,6 +50,8 @@ import SysNpc from "../../sys/SysNpc";
 
     removeSelf():Laya.Node
     {
+        Game.hero.addBlood(Session.talentData.dropLevelhp);
+        console.log("战斗内升级回血",Session.talentData.dropLevelhp);
         Game.executor.start();
         Game.state = 0;
         return super.removeSelf();

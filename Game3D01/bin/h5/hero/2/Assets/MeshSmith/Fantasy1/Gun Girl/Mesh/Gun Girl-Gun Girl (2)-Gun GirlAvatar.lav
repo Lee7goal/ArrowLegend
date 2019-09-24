@@ -2,7 +2,7 @@
 	"version":"LAYAAVATAR:01",
 	"rootNode":{
 		"props":{
-			"name":"Gun Girl (1)",
+			"name":"Gun Girl (2)",
 			"translate":[
 				0,
 				0,
@@ -15,9 +15,9 @@
 				-1
 			],
 			"scale":[
-				1,
-				1,
-				1
+				1.108189,
+				1.108189,
+				1.108189
 			]
 		},
 		"child":[

@@ -30,6 +30,7 @@ import CookieKey from "../gameCookie/CookieKey";
 import SysMap from "../main/sys/SysMap";
 import GameEvent from "../main/GameEvent";
 import SysChapter from "../main/sys/SysChapter";
+import Coin from "./player/Coin";
 
 export default class Game {
     static codeVer:string = "1.1.1.190924";
@@ -401,11 +402,11 @@ export default class Game {
             {
                 if(SysChapter.blueNum > 0)
                 {
-                    CoinEffect.addEffect(pro,SysChapter.blueNum,1);
+                    CoinEffect.addEffect(pro,SysChapter.blueNum,Coin.TYPE_BLUE);
                 }
                 else if(SysChapter.redNum > 0)
                 {
-                    CoinEffect.addEffect(pro,SysChapter.redNum,2);
+                    CoinEffect.addEffect(pro,SysChapter.redNum,Coin.TYPE_RED);
                 }
             }
 
@@ -413,7 +414,11 @@ export default class Game {
             {
                 if(SysChapter.heartNum > 0)
                 {
-                    CoinEffect.addEffect(pro,SysChapter.heartNum,3);
+                    CoinEffect.addEffect(pro,SysChapter.heartNum,Coin.TYPE_HEART);
+
+                    setTimeout(() => {
+                        CoinEffect.flyHeart();
+                    }, 1000);
                 }
             }
         }

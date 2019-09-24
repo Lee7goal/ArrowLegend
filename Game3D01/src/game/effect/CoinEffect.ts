@@ -7,6 +7,7 @@ import GamePro from "../GamePro";
 
 export default class CoinEffect{
     static coinsAry:Coin[] = [];
+    static hearAry:Coin[] = [];
     constructor() {
      }
 
@@ -16,7 +17,14 @@ export default class CoinEffect{
          {
             let coin:Coin = Coin.getOne(id);
             coin.setPos(monster,2 * Math.PI / goldNum * i,id);
-            CoinEffect.coinsAry.push(coin);
+            if(id == Coin.TYPE_HEART)
+            {
+                CoinEffect.hearAry.push(coin);
+            }
+            else
+            {
+                CoinEffect.coinsAry.push(coin);
+            }
          }
      }
 
@@ -31,9 +39,16 @@ export default class CoinEffect{
          {
             let coin:Coin = CoinEffect.coinsAry.shift();
             coin && coin.fly();
-            // setTimeout(() => {
-                
-            // }, 10 * i);
+         }
+     }
+
+     static flyHeart():void
+     {
+        let len:number = CoinEffect.hearAry.length;
+         for(let i = 0; i < len; i++)
+         {
+            let coin:Coin = CoinEffect.hearAry.shift();
+            coin && coin.fly();
          }
      }
 }

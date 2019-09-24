@@ -70,11 +70,7 @@ class Main {
 		//兼容微信不支持加载scene后缀场景
 		Laya.URL.exportSceneToJson = GameConfig.exportSceneToJson;
 
-		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
-		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
-		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
 		// if (GameConfig.stat) Laya.Stat.show();
-		Laya.alertGlobalError = true;
 
 		console.log("代码版本",Game.codeVer);
 		console.log("代码版本",Game.resVer);
@@ -130,7 +126,9 @@ class Main {
 				{ url: "loading/logo.png", type: Laya.Loader.IMAGE },
 				{ url: "h5/tables.zip", type: Laya.Loader.BUFFER },
 				{ url: "loading/jiazai.jpg", type: Laya.Loader.IMAGE },
-				{ url: "loading/btn_kaishi.png", type: Laya.Loader.IMAGE }
+				{ url: "loading/btn_kaishi.png", type: Laya.Loader.IMAGE },
+				{ url: "loading/zhudi.jpg", type: Laya.Loader.IMAGE },
+				{ url: "loading/zhudi2.png", type: Laya.Loader.IMAGE }
 			],
 			new Laya.Handler(this, this.onInitCom), new Laya.Handler(this, this.onInitProgress));
 	}
