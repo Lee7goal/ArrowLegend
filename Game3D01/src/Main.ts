@@ -76,6 +76,8 @@ class Main {
 		// if (GameConfig.stat) Laya.Stat.show();
 		Laya.alertGlobalError = true;
 
+		console.log("代码版本",Game.codeVer);
+		console.log("代码版本",Game.resVer);
 		if (Laya.Browser.window.wx) {
 			Laya.URL.basePath = "https://img.kuwan511.com/arrowLegend/" + Game.resVer + "/";
 			Laya.MiniAdpter.nativefiles = ["loading/jiazai.jpg", "loading/btn_kaishi.png", "loading/loadingClip.png","loading/logo.png", "allJson.json"];

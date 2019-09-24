@@ -32,7 +32,8 @@ import GameEvent from "../main/GameEvent";
 import SysChapter from "../main/sys/SysChapter";
 
 export default class Game {
-    static resVer:string = "1.1.0.190920";
+    static codeVer:string = "1.1.1.190924";
+    static resVer:string = "1.1.1.190923";
 
     //战斗中的临时数据
     static level:number;

@@ -23,6 +23,7 @@ export default class Hero extends GamePro {
     static udpateHeroData():void
     {
         Hero.curHeroData = Session.heroData.getHeroData(Session.heroData.nowRoleId);
+        console.log("获取玩家数据",Session.heroData.nowRoleId,Hero.curHeroData);
     }
 
     static bornX:number;

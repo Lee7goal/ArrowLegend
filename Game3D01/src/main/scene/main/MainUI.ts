@@ -148,18 +148,15 @@ import GameEvent from "../../GameEvent";
                 FlyUpTips.setTips("体力不足！");
                 return;
             }
+            Laya.MouseManager.enabled = false;
             Game.isStartBattle = true;
             this.homeData.curEnergy -= TopUI.xiaohao;
-            this.appEnergyClip.visible = true;
-            this.appEnergyClip.value = "-" + TopUI.xiaohao;
             App.sendEvent(GameEvent.APP_ENERGY,TopUI.xiaohao);
-            Laya.Tween.to(this.appEnergyClip,{y: 100},300,null,new Laya.Handler(this,this.onStart));
+            Laya.timer.once(800,this,this.onStart);
         }
 
         private onStart():void{
-            this.appEnergyClip.visible = false;
-            this.appEnergyClip.y = 47;
-            
+            Laya.MouseManager.enabled = true;
 
             this._remainingTime = TopUI.TOTAL_TIME;
             
