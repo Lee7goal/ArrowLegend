@@ -20,8 +20,8 @@ export default class TalentView extends ui.test.talentUI {
 
     constructor() { 
         super();
-        this.height = Laya.stage.height;
-        this.width = Laya.stage.width;
+        // this.height = Laya.stage.height;
+        // this.width = Laya.stage.width;
 
         this.list.itemRender = TalentCell2;
         this.on(Laya.Event.DISPLAY,this,this.disFun);

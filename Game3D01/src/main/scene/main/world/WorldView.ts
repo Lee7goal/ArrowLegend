@@ -43,6 +43,9 @@ import FlyUpTips from "../../../FlyUpTips";
         // this.box.addChild(this.btn_start);
         // this.on(Laya.Event.DISPLAY,this,this.onDis);
 
+        this.box.y = this.box.y + App.top;
+        this.box1.y = this.box1.y + App.top;
+
         this.list = new Laya.List();
         this.list.pos(this.box.x,this.box.y);
         this.addChild(this.list);
