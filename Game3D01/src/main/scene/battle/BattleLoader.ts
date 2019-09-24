@@ -334,6 +334,16 @@ export default class BattleLoader {
             }
         }
 
+        if(this.index == SysChapter.heartIndex)
+        {
+            if(SysChapter.heartNum > 0)
+            {
+                res = "h5/coins/heart/monster.lh";
+                this.monsterRes[res] = res;
+                this.resAry.push(res);
+            }
+        }
+
 
         for (let key in this.cubeRes)  {
             if (key != '')  {

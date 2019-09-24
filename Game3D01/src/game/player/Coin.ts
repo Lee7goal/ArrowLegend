@@ -8,6 +8,7 @@ import GameBG from "../GameBG";
 import CoinsAI from "../ai/CoinsAI";
 import CoinsMove from "../move/CoinsMove";
 import GameHitBox from "../GameHitBox";
+import SysChapter from "../../main/sys/SysChapter";
 
 export default class Coin extends GamePro {
     static TAG: string = "Coin";
@@ -55,6 +56,13 @@ export default class Coin extends GamePro {
                 coin.setSp3d(sp);
                 coin.sp3d.transform.localScale = Coin.tScale2;
             }
+            else if(id == 3)
+            {
+                sp = Laya.Sprite3D.instantiate(Laya.loader.getRes("h5/coins/heart/monster.lh"));
+                coin.setSp3d(sp);
+                coin.sp3d.transform.localScale = Coin.tScale2;
+                console.log("掉落红心");
+            }
             if (sp)  {
                 coin.sp3d.addComponent(FootRotateScript);
             }
@@ -68,9 +76,14 @@ export default class Coin extends GamePro {
         if (id == 0)  {
             this.moveLen = 20 + Math.random() * GameBG.ww;
         }
+        else if(id == 3)
+        {
+            this.moveLen =  Math.random() * GameBG.ww;
+        }
         else  {
             this.moveLen = 50 + Math.random() * GameBG.ww;
         }
+
         this.setXY2D(monster.pos2.x, monster.pos2.z);
         this.setSpeed(2);
         this.rotation(r);
@@ -114,14 +127,33 @@ export default class Coin extends GamePro {
         else if(this.id == 1)
         {
             Game.showBlueNum++;
+            SysChapter.blueNum--;
         }
         else if(this.id == 2)
         {
             Game.showRedNum++;
+            SysChapter.redNum--;
+        }
+        else if(this.id == 3)
+        {
+            let addValue:number = Math.floor(Game.hero.gamedata.hp * 0.15);
+            Game.hero.addBlood(addValue);
+            console.log("红心恢复血量",addValue);
+            SysChapter.heartNum--;
         }
         this.curLen = 0;
         this.moveLen = 0;
         this.status = 0;
+
+        if(SysChapter.blueNum <= 0 && SysChapter.redNum <= 0)
+        {
+            SysChapter.dropIndex = -1;
+        }
+
+        if(SysChapter.heartNum <= 0)
+        {
+            SysChapter.heartIndex = -1;
+        }
 
         Laya.Pool.recover(Coin.TAG, this);
     }

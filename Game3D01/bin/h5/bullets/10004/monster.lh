@@ -42,9 +42,9 @@
 						0
 					],
 					"scale":[
-						7.696357,
-						2.668062,
-						2.668062
+						3.291996,
+						3.168124,
+						3.168124
 					]
 				},
 				"components":[],
@@ -139,11 +139,11 @@
 										1,
 										1
 									],
-									"meshPath":"Assets/jian/FBX/jian-pPlane1.lm",
+									"meshPath":"Assets/jian/FBX/gongjian-pPlane2.lm",
 									"enableRender":true,
 									"materials":[
 										{
-											"path":"Assets/jianzidan/Materials/jian.lmat"
+											"path":"Assets/jian/Materials/jian.lmat"
 										}
 									]
 								},

@@ -18,6 +18,9 @@ export default class SysChapter{
     static dropIndex:number;
     static blueNum:number;
     static redNum:number;
+    static heartNum:number;
+    static heartIndex:number = -1;
+
     public static randomDiamond(chapterId:number):void
     {
         let totolNum:number = SysMap.getTotal(chapterId);
@@ -54,11 +57,14 @@ export default class SysChapter{
             SysChapter.redNum = redNum;
             console.log("掉落红钻",SysChapter.redNum);
         }
-    }
-
-    public static reandomHeart():number
-    {
-        let chapterId:number = 1;
-        return chapterId;
+        SysChapter.heartIndex = -1;
+        let heartRate:number = 1 - Math.random();
+        if(heartRate >= 0.1)
+        {
+            SysChapter.heartIndex = Math.ceil(totolNum * Math.random());
+            SysChapter.heartIndex = 1;
+            SysChapter.heartNum = 1;
+            console.log("红心掉落的关卡",SysChapter.heartIndex);
+        }
     }
 }
