@@ -21,17 +21,14 @@ export default class AdDiamond extends ui.test.juese_tishiUI{
     public goldType:number = 0;
     public setGoldType(a:GoldType):void{
         this.goldType = a;
-        if( this.goldType == GoldType.BLUE_DIAMONG ){
-            this.v1.blue.visible = true;
-        }else if(  this.goldType == GoldType.RED_DIAMONG ){
-            this.v1.red.visible = true;
-        }else if(  this.goldType == GoldType.GOLD ){
-            this.v1.gold.visible = true;
-        }
+        this.v1.vs.selectedIndex = a;
     }
+
+    public addNum:number = 0;
 
     private adFun():void{
         let v:number = Math.ceil( Math.random() * 4 )  + 6;
+        this.addNum = v;
         //v = 500;
         Session.homeData.changeGold( this.goldType , v , GOLD_CHANGE_TYPE.AD_DIAMOND );
         let g = new GetItemDialog();
@@ -57,5 +54,13 @@ export default class AdDiamond extends ui.test.juese_tishiUI{
         //g.setData(arr);
 
         g.popup(true);
+
+        g.once( Laya.Event.UNDISPLAY ,this, this.undisFun );
     }
+
+    private undisFun():void{
+        this.event( AdDiamond.CHANGE_GOLD_EVENT , [this.goldType , this.addNum] );
+    }
+
+    public static CHANGE_GOLD_EVENT:string = "CHANGE_GOLD_EVENT";
 }

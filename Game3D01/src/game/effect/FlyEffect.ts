@@ -3,6 +3,13 @@ export default class FlyEffect{
 
     }
 
+    /**
+     * 飞几个金币
+     */
+    public flyNum:number = 30;
+    public flySkin:string = "main/jinbi.png";
+    public flyTargetHandler:Laya.Handler = null;
+
     private static p00Array:Array<Laya.Point> = [];
     private static p00Index:number = 0;
     /**
@@ -56,13 +63,13 @@ export default class FlyEffect{
     }
 
     public flyGold( x1:number,y1:number, gold:number ):void{
-        let flyGoldNum: number = 30;
+        let flyGoldNum: number = this.flyNum;
         this.goldEvery = gold / flyGoldNum;
         for (let i: number = 0; i < flyGoldNum; i++) {
-            let img = Laya.Pool.getItem("flygold"); 
-            if( img == null ){
-                img = new Laya.Image("main/jinbi.png");
-            }
+            let img = null;//Laya.Pool.getItem("flygold"); 
+            //if( img == null ){
+                img = new Laya.Image(this.flySkin);
+            //}
             Laya.stage.addChild(img);
             img.scaleX = 1;
             img.scaleY = 1;
@@ -103,7 +110,7 @@ export default class FlyEffect{
 
     public flyGoldOverFun(img: Laya.Image, gold: number): void {
         img.removeSelf();
-        Laya.Pool.recover( "flygold",img );
+        //Laya.Pool.recover( "flygold",img );
         
         let t = new Laya.Tween();
         t.to(this.end , { scaleX: 0.7, scaleY: 0.7 }, 80);
@@ -112,7 +119,11 @@ export default class FlyEffect{
         t1.to(this.end , { scaleX: 1, scaleY: 1 }, 60, null, null, 80);
 
         this.nowGold += gold;
-        this.fc.value = parseInt( Math.ceil( this.nowGold ) + "" ) + "";
-        //this.goldFc.value = parseInt( Math.ceil( this.nowGold ) + "" ) + "";
+        
+        if( this.flyTargetHandler == null ){
+            this.fc.value = parseInt( Math.ceil( this.nowGold ) + "" ) + "";    
+        }else{
+            this.flyTargetHandler.runWith( [this.fc ,  this.nowGold ]  );
+        }
     }
 }

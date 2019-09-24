@@ -10,13 +10,7 @@ export default class GetItemCell extends ui.test.GetItemCellUI{
     }
 
     public setData( data:any ):void{
-        if( data.type == GoldType.BLUE_DIAMONG ){
-            this.v1.blue.visible = true;
-        }else if( data.type == GoldType.RED_DIAMONG ){
-            this.v1.red.visible = true;
-        }else if( data.type == GoldType.GOLD ){
-            this.v1.gold.visible = true;
-        }
+        this.v1.vs.selectedIndex = data.type;
         this.label.text = "+" + data.value;
     }
 }

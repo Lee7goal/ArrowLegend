@@ -102,12 +102,6 @@ import FlyUpTips from "../../../FlyUpTips";
         fly.flyFromP( Laya.stage.width/2, Laya.stage.height/2 , Game.scenneM.main.mainUI.topUI.goldImg , v , last , fc );
     }
 
-    private tttFun():void{
-        
-        //
-        //this.filters = [Laya.ColorFilter];
-    }
-
     private rankClickFun():void{
         App.dialogManager.open( GameMain.RANK_DIALOG );
     }

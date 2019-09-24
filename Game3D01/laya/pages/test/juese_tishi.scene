@@ -6,7 +6,7 @@
     "searchKey":"Dialog",
     "props":{"width":750,"sceneColor":"#000000","isModal":true,"height":1200},
     "nodeParent":-1,
-    "maxID":32,
+    "maxID":33,
     "label":"Dialog",
     "isOpen":true,
     "isDirectory":true,
@@ -27,7 +27,8 @@
             "hasChild":false,
             "compId":29,
             "child":[
-                ]
+                ],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -136,7 +137,7 @@
                     "props":{"y":474,"x":262},
                     "nodeParent":4,
                     "label":"Box",
-                    "isOpen":null,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,

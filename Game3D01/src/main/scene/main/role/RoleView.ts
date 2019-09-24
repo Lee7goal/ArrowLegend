@@ -11,6 +11,7 @@ import SysSkill from "../../../sys/SysSkill";
 import { GoldType } from "../../../../game/data/HomeData";
 import FlyUpTips from "../../../FlyUpTips";
 import WorldCell from "../world/WorldCell";
+import FlyEffect from "../../../../game/effect/FlyEffect";
 export default class RoleView extends ui.test.jueseUI {
     public nowRoleId:number = 1;
     public autoEvent:AutoEvent = new AutoEvent();
@@ -22,8 +23,10 @@ export default class RoleView extends ui.test.jueseUI {
         this.gongjiniu.clickHandler = new Laya.Handler( this,this.atkFun );
         this.updateAll();
         this.on(Laya.Event.DISPLAY,this,this.disFun);
-        this.jia.clickHandler = new Laya.Handler( this,this.jiaFun , [GoldType.RED_DIAMONG]  );
-        this.jia2.clickHandler = new Laya.Handler( this,this.jiaFun , [GoldType.BLUE_DIAMONG ] );
+        
+        this.jia.clickHandler = new Laya.Handler( this,this.jiaFun , [GoldType.RED_DIAMONG , this.redImg , this.xueshu ]  );
+        this.jia2.clickHandler = new Laya.Handler( this,this.jiaFun , [GoldType.BLUE_DIAMONG , this.blueImg , this.gongshu ] );
+
         this.autoEvent.onEvent( GameEvent.GOLD_CHANGE , this,this.goldChangeFun );
         this.autoEvent.onEvent( GameEvent.HERO_UPDATE , this,this.heroFun );
         Laya.stage.on( GameEvent.HERO_UPDATE , this, this.heroLvUpFun );
@@ -75,10 +78,29 @@ export default class RoleView extends ui.test.jueseUI {
         this.updateAll();
     }
 
-    public jiaFun( goldType:GoldType ):void{
+    public oldNum:number = 0;
+    /**
+     * 点击加号 获得宝石
+     * @param goldType 
+     */
+    public jiaFun( goldType:GoldType , flyTarget:Laya.Image , fc:Laya.FontClip ):void{
         let d = new AdDiamond();
         d.setGoldType( goldType );
         d.popup();
+        this.oldNum = Session.homeData.getGoldByType( goldType );
+        d.on( AdDiamond.CHANGE_GOLD_EVENT , this, this.flyGoldFun , [flyTarget , fc] );
+    }
+
+    public flyGoldFun(  flyTarget:Laya.Image , fc:Laya.FontClip ,y:GoldType , v:number ):void{
+        let fly = new FlyEffect();
+        fly.flyNum = v;
+        fly.flySkin = flyTarget.skin;
+        fly.flyTargetHandler = new Laya.Handler( this,this.flyFun );
+        fly.flyFromP( Laya.stage.width/2 , Laya.stage.height/2 , flyTarget , v , this.oldNum , fc );
+    }
+
+    public flyFun( fc:Laya.FontClip , now:number ) :void{
+        fc.value = now + "/" + 0;
     }
 
     public disFun():void {
@@ -108,8 +130,8 @@ export default class RoleView extends ui.test.jueseUI {
     }
 
     public updateAll():void{
-        this.setOne( this.box1 , HeroLvType.HP , this.shengmingniu , this.shengmingjia ,this.xueshu , this.tiao , this.shengmingshu ,this.hpLv , this.hpGold , this.hpAddFc );
-        this.setOne( this.box2 , HeroLvType.ATK , this.gongjiniu ,this.gongjijia , this.gongshu , this.tiao2 , this.gongjishu ,this.atkLv  ,this.atkGold , this.atkAddFc );
+        this.setOne( this.box1 , HeroLvType.HP , this.shengmingniu , this.shengmingjia ,this.xueshu , this.tiao , this.shengmingshu ,this.hpLv , this.hpGold , this.hpAddFc , this.vs1 , this.vs11 );
+        this.setOne( this.box2 , HeroLvType.ATK , this.gongjiniu ,this.gongjijia , this.gongshu , this.tiao2 , this.gongjishu ,this.atkLv  ,this.atkGold , this.atkAddFc ,this.vs2 ,this.vs12);
         let sys = SysRoleBase.getSys( this.nowRoleId );
         let sysSkill:SysSkill = App.tableManager.getDataByNameAndId( SysSkill.NAME,sys.baseSkill );
         this.skillLabel.text = sysSkill.skillInfo;
@@ -118,8 +140,13 @@ export default class RoleView extends ui.test.jueseUI {
         this.jinengtubiao.skin = "icons/skill/" + sysSkill.id + ".png";
     }
 
-    public setOne( box:Laya.Box , type:HeroLvType , btn:Laya.Button , fc:Laya.FontClip  ,fc2:Laya.FontClip , tiao:Laya.Image , allFc:Laya.FontClip , lvFc:Laya.FontClip ,goldFc:Laya.Text ,addFc:Laya.FontClip ):void{
+    public setOne( box:Laya.Box , type:HeroLvType , btn:Laya.Button , fc:Laya.FontClip  ,fc2:Laya.FontClip , tiao:Laya.Image , allFc:Laya.FontClip , lvFc:Laya.FontClip ,goldFc:Laya.Text ,addFc:Laya.FontClip , vs:Laya.ViewStack , vs2:Laya.ViewStack ):void{
+        
         let lv = Session.heroData.getHeroLv( this.nowRoleId , type );
+        let sysRB = SysRoleBase.getSys( this.nowRoleId );
+        
+        
+
         let sys = SysRoleUp.getSysRole( this.nowRoleId , lv );
         //显示这个等级加多少属性
         // if( type == HeroLvType.ATK ){
@@ -133,9 +160,16 @@ export default class RoleView extends ui.test.jueseUI {
         let costType = sys.getCostType(type);
         let have = Session.homeData.getGoldByType( costType );
         let can = (have >= cost);
-        btn.visible = can;
-        box.visible = !can;
-        let sysRB = SysRoleBase.getSys( this.nowRoleId );
+        
+        //btn.visible = can;
+        //box.visible = !can;
+        
+        if( can ){
+            vs2.selectedIndex = 1;
+        }else{
+            vs2.selectedIndex = 0;
+        }
+        
         let v = sysRB.getValue( type );
         
         //这里显示最终加的
@@ -145,9 +179,11 @@ export default class RoleView extends ui.test.jueseUI {
 
         addFc.x = allFc.x + allFc.value.length * 23 + 10;
 
+        addFc.visible = (lv != 0);
+
         lvFc.value = lv + "";
         
-        if( box.visible == false ){
+        if( vs2.selectedIndex == 1 ){
             return;
         }
         goldFc.text = sys.costGold + "";
@@ -155,5 +191,16 @@ export default class RoleView extends ui.test.jueseUI {
         let vv = (have / cost);
         tiao.scrollRect = new Laya.Rectangle( 0 , 0,  tiao.width * vv , tiao.height );
         tiao.visible = (vv != 0);
+
+        if( lv >= sysRB.roleLimt ){
+            //超过限制了  只显示max
+            vs.selectedIndex = 1;
+            vs2.visible = false;
+            return;
+        }
+        vs2.visible = true;
+        // btn.visible = true;
+        // box.visible = true;
+        vs.selectedIndex = 0;
     }
 }
