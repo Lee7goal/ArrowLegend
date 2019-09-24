@@ -22,6 +22,7 @@ import GameEvent from "../../GameEvent";
 
             this.topUI = new TopUI();
             this.addChild(this.topUI);
+            this.topUI.y = App.top - 1;
 
             this.bottomUI = new BottomUI();
             this.addChild(this.bottomUI);

@@ -408,6 +408,14 @@ export default class Game {
                     CoinEffect.addEffect(pro,SysChapter.redNum,2);
                 }
             }
+
+            if(Game.battleLoader.index == SysChapter.heartIndex)
+            {
+                if(SysChapter.heartNum > 0)
+                {
+                    CoinEffect.addEffect(pro,SysChapter.heartNum,3);
+                }
+            }
         }
     }
 }

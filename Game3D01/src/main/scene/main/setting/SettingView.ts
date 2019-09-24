@@ -20,7 +20,7 @@ import Session from "../../../Session";
         this.id.text = "ID:" + Session.SKEY.substring( Session.SKEY.length - 6  );
         this.on(Laya.Event.DISPLAY,this,this.onDis);
 
-        this.box1.centerY = 0;
+        // this.box1.centerY = 0;
     }
 
     private zuobiFun():void{
