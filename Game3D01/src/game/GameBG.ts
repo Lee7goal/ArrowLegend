@@ -184,49 +184,60 @@ export default class GameBG extends Laya.Sprite {
         this.addChild(this._box);
         this.addChild(this.saw);
 
-        // this._box.cacheAs = "bitmap";
-
-
-
-        // var topImg:Laya.Image = new Laya.Image();
-        // this._box.addChild(topImg);
-        // topImg.y = -211;
-        // topImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_0.png");
-
-        // var bottomImg:Laya.Image = new Laya.Image();
-        // this._box.addChild(bottomImg);
-        // bottomImg.texture = Laya.loader.getRes("h5/mapbg/"+GameBG.BG_TYPE_NUM+"_1.png");
-        // bottomImg.y = 1372;
-
-        let index2: number = 0;
+        let index3: number = 0;
         for (let j = 0; j < GameBG.MAP_ROW; j++) {
-            this.bgh += ww;
             if (GameBG.MAP_COL % 2 == 0)  {
-                index2++;
+                index3++;
             }
             for (let i = 0; i < GameBG.MAP_COL; i++) {
-
-                gType = GameBG.arr0[k];
                 img = new Image();
-                img.skin = (index2 % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
+                img.skin = (index3 % 2 == 0) ? GameBG.BG_TYPE + "/10.png" : GameBG.BG_TYPE + "/11.png";
                 this._box.addChild(img);
                 img.size(64, 64);
                 img.x = i * ww;//- (ww/2);
                 img.y = j * ww;
+                index3++;
+            }
+        }
 
-                index2++;
+        var k = 0;
+        for (let j = 0; j < GameBG.MAP_ROW; j++) {
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
+                gType = GameBG.arr0[k];
+                var shadow: Laya.Image = new Laya.Image();
+                if ((GridType.isWall(gType) || (gType >= 1 && gType <= 10)))  {
+                    shadow.skin = GameBG.BG_TYPE + '/y' + GameCube.getType(gType) + '.png';
+                    shadow.x = i * ww;
+                    shadow.y = j * ww;
+                    this._box.addChild(shadow);
+                }
+                else if (GridType.isFence(gType))  {
+                    shadow.skin = 'bg/lanying.png';
+                    shadow.width = 200;
+                    shadow.x = i * ww - 64;
+                    shadow.y = j * ww + 50;
+                    this._box.addChild(shadow);
+                }
+                k++;
+            }
+        }
+
+        k = 0;
+        for (let j = 0; j < GameBG.MAP_ROW; j++) {
+            this.bgh += GameBG.ww;
+            for (let i = 0; i < GameBG.MAP_COL; i++) {
+                gType = GameBG.arr0[k];
+                let xx = i * GameBG.ww;//- (ww/2);
+                let yy = j * GameBG.ww;
                 var thorn: GameThorn;
                 var grid: Image = new Image();
                 if (GridType.isRiverPoint(gType)) {
                     grid.skin = GameBG.BG_TYPE + '/100.png';
                 }
                 else if (GridType.isThorn(gType)) {
-                    // grid.skin = GameBG.BG_TYPE + '/500.png';
                     thorn = GameThorn.getOne();
-                    thorn.hbox.setXY(img.x, img.y);
-                    // thorn.pos(img.x,img.y);
-                    console.log("添加地刺");
-                    img.addChild(thorn);
+                    thorn.hbox.setXY(xx, yy);
+                    this._box.addChild(thorn);
                 }
                 else if (GridType.isRiverScale9Grid(gType) || GridType.isRiverScale9Grid2(gType) || GridType.isRiverRow(gType) || GridType.isRiverCol(gType)) {
                     gType = Math.floor(gType / 100) * 100 + gType % 10;
@@ -241,7 +252,7 @@ export default class GameBG extends Laya.Sprite {
                         let hengAry: Laya.Point[] = [];
                         this._sawInfo[gType] = hengAry;
                     }
-                    let p: Laya.Point = new Laya.Point(img.x, img.y);
+                    let p: Laya.Point = new Laya.Point(xx, yy);
                     this._sawInfo[gType].push(p);
                 }
                 else if (GridType.isSawZong(gType))//纵锯子
@@ -250,7 +261,7 @@ export default class GameBG extends Laya.Sprite {
                         let hengAry: Laya.Point[] = [];
                         this._sawInfoZong[gType] = hengAry;
                     }
-                    let p: Laya.Point = new Laya.Point(img.x, img.y);
+                    let p: Laya.Point = new Laya.Point(xx, yy);
                     this._sawInfoZong[gType].push(p);
                 }
                 else if (GridType.isNpc(gType))  {
@@ -260,8 +271,8 @@ export default class GameBG extends Laya.Sprite {
                     //     let NPC = Laya.ClassUtils.getClass("NPC" + this.npcId);
                     //     this._npcAni = new NPC();
                     // }
-                    this.npcP.x = img.x + GameBG.ww2;
-                    this.npcP.y = img.y;
+                    this.npcP.x = xx + GameBG.ww2;
+                    this.npcP.y = yy;
 
                     if (this.npcId == BattleFlagID.ANGLE)  {
                         this.npcId = 1001;
@@ -280,59 +291,15 @@ export default class GameBG extends Laya.Sprite {
 
 
                 if (gType == BattleFlagID.DOOR)  {
-                    this._door.pos(img.x - GameBG.ww2, img.y - GameBG.ww2);
+                    this._door.pos(xx - GameBG.ww2, yy - GameBG.ww2);
                     this._door.skin = 'bg/door.png';
-                    console.log("门的位置", img.x, img.y);
                 }
                 else if (gType == BattleFlagID.HERO)  {
-                    Hero.bornX = img.x;
-                    Hero.bornY = img.y;
+                    Hero.bornX = xx;
+                    Hero.bornY = yy;
+                    console.log("主角出生位置",xx,yy);
                 }
-                else if (gType == BattleFlagID.GUIDE)  {
-                    // if(!this._guidePointer)
-                    // {
-                    //     this._guidePointer = new GuidePointer();
-                    // }
-                    // this._guidePointer.pos(img.x,img.y);
-                }
-                // }
-
-                img.addChild(grid);
-
-                k++;
-            }
-        }
-
-        var k = 0;
-        for (let j = 0; j < GameBG.MAP_ROW; j++) {
-            for (let i = 0; i < GameBG.MAP_COL; i++) {
-                // if (k > GameBG.arr0.length)  {
-                //     continue;
-                // }
-                gType = GameBG.arr0[k];
-                var shadow: Laya.Image = new Laya.Image();
-                if ((GridType.isWall(gType) || (gType >= 1 && gType <= 10)))  {
-                    shadow.skin = GameBG.BG_TYPE + '/y' + GameCube.getType(gType) + '.png';
-                    shadow.x = i * ww;
-                    shadow.y = j * ww;
-                    this._box.addChild(shadow);
-                }
-                else if (GridType.isFence(gType))  {
-                    shadow.skin = 'bg/lanying.png';
-                    shadow.width = 200;
-                    shadow.x = i * ww - 64;
-                    shadow.y = j * ww + 50;
-                    this._box.addChild(shadow);
-                }
-                else if (GridType.isRiverCube(gType))  {
-                    shadow.skin = GameBG.BG_TYPE + '/900.png';
-                    shadow.width = 122;
-                    shadow.height = 134;
-                    // shadow.width = 200;
-                    shadow.x = i * ww - 28;
-                    shadow.y = j * ww - 35;
-                    this._box.addChild(shadow);
-                }
+                this._box.addChild(grid);
                 k++;
             }
         }

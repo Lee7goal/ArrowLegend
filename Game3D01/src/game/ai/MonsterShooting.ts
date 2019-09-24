@@ -70,6 +70,10 @@ export default class MonsterShooting {
     }
 
     private ac0(): void {
+        if(this.pro.gamedata.hp <= 0)
+        {
+            return;
+        }
         if (this.pro.normalizedTime >= this.at) {
             if (this.pro.normalizedTime >= 1) {
                 Laya.stage.timer.clear(this, this.ac0);

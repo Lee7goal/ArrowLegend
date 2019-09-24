@@ -62,7 +62,6 @@ export default class SysChapter{
         if(heartRate >= 0.1)
         {
             SysChapter.heartIndex = Math.ceil(totolNum * Math.random());
-            SysChapter.heartIndex = 1;
             SysChapter.heartNum = 1;
             console.log("红心掉落的关卡",SysChapter.heartIndex);
         }
